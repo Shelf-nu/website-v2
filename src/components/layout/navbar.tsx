@@ -1,43 +1,42 @@
 import Link from "next/link";
-import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-
-const navigation = [
-    { name: "Features", href: "/features" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
-];
+import { Container } from "@/components/ui/container";
 
 export function Navbar() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <Container>
-                <div className="flex h-16 items-center justify-between">
-                    <div className="flex items-center gap-8">
-                        <Link href="/" className="flex items-center space-x-2">
-                            <span className="text-xl font-bold tracking-tight">Shelf</span>
+        <header className="fixed top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
+            <Container className="flex h-16 items-center justify-between">
+                <div className="flex items-center gap-8">
+                    <Link href="/" className="text-xl font-bold tracking-tight">
+                        shelf.nu
+                    </Link>
+                    <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+                        <Link href="/features" className="hover:text-primary transition-colors">
+                            Features
                         </Link>
-                        <nav className="hidden md:flex items-center gap-6">
-                            {navigation.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
-                        </nav>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <Link href="/login" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hidden sm:block">
+                        <Link href="/solutions" className="hover:text-primary transition-colors">
+                            Solutions
+                        </Link>
+                        <Link href="/pricing" className="hover:text-primary transition-colors">
+                            Pricing
+                        </Link>
+                        <Link href="/blog" className="hover:text-primary transition-colors">
+                            Blog
+                        </Link>
+                    </nav>
+                </div>
+                <div className="flex items-center gap-4">
+                    <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-primary hidden sm:block">
+                        Contact
+                    </Link>
+                    <Link href="https://app.shelf.nu/login">
+                        <Button variant="ghost" size="sm">
                             Log in
-                        </Link>
-                        <Button asChild size="sm">
-                            <Link href="/signup">Get Started</Link>
                         </Button>
-                    </div>
+                    </Link>
+                    <Link href="https://app.shelf.nu/register">
+                        <Button size="sm">Get Started</Button>
+                    </Link>
                 </div>
             </Container>
         </header>

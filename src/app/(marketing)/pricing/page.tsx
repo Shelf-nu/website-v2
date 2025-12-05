@@ -1,120 +1,122 @@
 import { Container } from "@/components/ui/container";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Pricing - Shelf",
+    title: "Pricing - Shelf Asset Management",
     description: "Simple, transparent pricing for teams of all sizes.",
 };
 
 const tiers = [
     {
         name: "Starter",
-        id: "starter",
-        href: "/signup",
-        priceMonthly: "$0",
-        description: "Perfect for small teams just getting started.",
+        price: "$0",
+        description: "Perfect for individuals and small hobby projects.",
         features: [
             "Up to 100 assets",
-            "Basic reporting",
-            "Mobile app access",
-            "Email support",
+            "Basic QR code generation",
+            "1 User",
+            "Mobile App Access"
         ],
+        cta: "Get Started",
+        variant: "outline" as const
     },
     {
         name: "Pro",
-        id: "pro",
-        href: "/signup",
-        priceMonthly: "$29",
-        description: "For growing teams that need more power.",
+        price: "$29",
+        period: "/month",
+        description: "For growing teams that need to track equipment seriously.",
         features: [
             "Unlimited assets",
-            "Advanced analytics",
-            "API access",
-            "Priority support",
-            "Custom fields",
+            "Custom QR codes & branding",
+            "Up to 5 Users",
+            "Check-in / Check-out",
+            "Maintenance Schedules",
+            "Email Support"
         ],
+        cta: "Start Free Trial",
+        variant: "default" as const,
+        popular: true
     },
     {
         name: "Enterprise",
-        id: "enterprise",
-        href: "/contact",
-        priceMonthly: "Custom",
-        description: "Dedicated support and infrastructure for large orgs.",
+        price: "Custom",
+        description: "For large organizations with advanced security needs.",
         features: [
-            "SSO / SAML",
-            "Dedicated success manager",
-            "SLA",
-            "On-premise deployment",
-            "Audit logs",
+            "Unlimited Users",
+            "SSO & SAML",
+            "API Access",
+            "Audit Logs",
+            "Dedicated Account Manager",
+            "SLA"
         ],
-    },
+        cta: "Contact Sales",
+        variant: "outline" as const
+    }
 ];
 
 export default function PricingPage() {
     return (
-        <Container className="py-20">
-            <div className="mx-auto max-w-2xl text-center mb-16">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
-                    Simple, transparent pricing
-                </h1>
-                <p className="text-xl text-muted-foreground">
-                    Choose the plan that's right for your team.
-                </p>
-            </div>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                {tiers.map((tier) => (
-                    <div
-                        key={tier.id}
-                        className="flex flex-col justify-between rounded-3xl bg-background p-8 ring-1 ring-gray-200 xl:p-10"
-                    >
-                        <div>
-                            <div className="flex items-center justify-between gap-x-4">
-                                <h3 className="text-lg font-semibold leading-8 text-foreground">
-                                    {tier.name}
-                                </h3>
-                            </div>
-                            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                                {tier.description}
-                            </p>
-                            <p className="mt-6 flex items-baseline gap-x-1">
-                                <span className="text-4xl font-bold tracking-tight text-foreground">
-                                    {tier.priceMonthly}
-                                </span>
-                                {tier.priceMonthly !== "Custom" && (
-                                    <span className="text-sm font-semibold leading-6 text-muted-foreground">
-                                        /month
-                                    </span>
+        <div className="flex min-h-screen flex-col">
+            <Container className="py-20 md:py-32">
+                <div className="mx-auto max-w-2xl text-center mb-16">
+                    <Badge variant="secondary" className="mb-4">Pricing</Badge>
+                    <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
+                        Simple, transparent pricing
+                    </h1>
+                    <p className="text-xl text-muted-foreground">
+                        No hidden fees. No credit card required to start.
+                    </p>
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12 max-w-7xl mx-auto">
+                    {tiers.map((tier) => (
+                        <Card key={tier.name} className={`flex flex-col ${tier.popular ? 'border-primary shadow-lg scale-105 z-10' : ''}`}>
+                            <CardHeader>
+                                {tier.popular && (
+                                    <div className="mb-4">
+                                        <Badge>Most Popular</Badge>
+                                    </div>
                                 )}
-                            </p>
-                            <ul
-                                role="list"
-                                className="mt-8 space-y-3 text-sm leading-6 text-muted-foreground"
-                            >
-                                {tier.features.map((feature) => (
-                                    <li key={feature} className="flex gap-x-3">
-                                        <Check
-                                            className="h-6 w-5 flex-none text-primary"
-                                            aria-hidden="true"
-                                        />
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <Button
-                            asChild
-                            className="mt-8"
-                            variant={tier.id === "pro" ? "default" : "outline"}
-                        >
-                            <a href={tier.href}>
-                                {tier.priceMonthly === "Custom" ? "Contact sales" : "Get started"}
-                            </a>
-                        </Button>
-                    </div>
-                ))}
-            </div>
-        </Container>
+                                <CardTitle className="text-2xl">{tier.name}</CardTitle>
+                                <CardDescription className="mt-2 text-base">
+                                    {tier.description}
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-1">
+                                <div className="mb-6">
+                                    <span className="text-4xl font-bold">{tier.price}</span>
+                                    {tier.period && (
+                                        <span className="text-muted-foreground">{tier.period}</span>
+                                    )}
+                                </div>
+                                <ul className="space-y-3">
+                                    {tier.features.map((feature) => (
+                                        <li key={feature} className="flex items-center text-sm">
+                                            <Check className="mr-2 h-4 w-4 text-primary" />
+                                            {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                            <CardFooter>
+                                <Button className="w-full" variant={tier.variant}>
+                                    {tier.cta}
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+
+                <div className="mt-20 text-center">
+                    <p className="text-muted-foreground">
+                        Have questions? <a href="/contact" className="underline underline-offset-4 text-primary">Contact our team</a>
+                    </p>
+                </div>
+            </Container>
+        </div>
     );
 }
