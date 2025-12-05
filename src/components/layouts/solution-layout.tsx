@@ -1,0 +1,48 @@
+import { Frontmatter } from "@/lib/content/schema";
+import { PageHeader } from "./shared/page-header";
+import { RelatedContent } from "./shared/related-content";
+import { SeoHead } from "./shared/seo-head";
+import { Container } from "@/components/ui/container";
+
+interface LayoutProps {
+    frontmatter: Frontmatter;
+    children: React.ReactNode;
+}
+
+export function SolutionLayout({ frontmatter, children }: LayoutProps) {
+    return (
+        <>
+            <SeoHead frontmatter={frontmatter} />
+            <div className="flex min-h-screen flex-col">
+                <PageHeader
+                    title={frontmatter.title}
+                    description={frontmatter.description}
+                    heroTagline={frontmatter.heroTagline}
+                />
+
+                {frontmatter.problemStatements && (
+                    <section className="bg-muted py-16">
+                        <Container>
+                            <h2 className="text-2xl font-bold mb-6">The Challenge</h2>
+                            <ul className="grid gap-4 md:grid-cols-2">
+                                {frontmatter.problemStatements.map((prob, i) => (
+                                    <li key={i} className="bg-background p-6 rounded-lg border">{prob}</li>
+                                ))}
+                            </ul>
+                        </Container>
+                    </section>
+                )}
+
+                <main className="flex-1">
+                    <Container className="py-16">
+                        <div className="prose prose-lg dark:prose-invert max-w-3xl mx-auto">
+                            {children}
+                        </div>
+                    </Container>
+                </main>
+
+                {frontmatter.related && <RelatedContent related={frontmatter.related} />}
+            </div>
+        </>
+    );
+}
