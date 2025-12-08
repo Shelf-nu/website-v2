@@ -67,5 +67,5 @@ export interface Frontmatter {
     challenge?: string;
     solution?: string;
     results?: string[];
-    quotes?: string[];
+    quotes?: (string | { quote: string; author: string; role: string })[];
 }

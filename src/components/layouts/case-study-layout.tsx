@@ -29,7 +29,13 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                             <aside className="space-y-6">
                                 {frontmatter.quotes && frontmatter.quotes.length > 0 && (
                                     <div className="bg-muted p-6 rounded-lg italic">
-                                        "{frontmatter.quotes[0]}"
+                                        "{typeof frontmatter.quotes[0] === 'string' ? frontmatter.quotes[0] : frontmatter.quotes[0].quote}"
+                                        {typeof frontmatter.quotes[0] !== 'string' && frontmatter.quotes[0].author && (
+                                            <div className="mt-4 text-sm font-semibold not-italic">
+                                                — {frontmatter.quotes[0].author}
+                                                {frontmatter.quotes[0].role && `, ${frontmatter.quotes[0].role}`}
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                                 {frontmatter.results && (
