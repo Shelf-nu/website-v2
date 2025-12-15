@@ -1,65 +1,134 @@
 ---
-title: "Why We Built Availability View"
-description: "A behind-the-scenes explanation of the design thinking behind Shelf's Availability View — created after customers showed us gaps in traditional inventory and booking interfaces."
+title: "Why We Built Availability View: When Customers Show You What's Missing"
+description: "How a single customer email changed our roadmap and taught us about real-world asset management"
 layout: "blog"
-intent: "product"
-cluster: "bookings"
-personas:
-  - "education"
-  - "media"
-  - "operations"
 canonicalUrl: "/blog/why-we-built-availability-view-when-customers-show-you-whats-missing"
-date: "2025-01-01"
-updated: "2025-01-01"
-
-seo:
-  title: "Why We Built Availability View | Product Design Story"
-  description: "Learn how Shelf designed Availability View to solve the real scheduling, booking, and visibility problems teams face when managing equipment."
-  image: "/images/og/blog-availability-view.png"
+date: "2025-06-18"
+updated: "2025-06-18"
+author: "carlos-virreira"
+category: "team-collaboration-communication"
 ---
 
-# Why We Built Availability View
+*How a single customer email changed our roadmap and taught us about real-world asset management*
 
-Availability View came from a simple customer need: "I just want to see when this thing is free."
+Sometimes the best product ideas come from the most unexpected places. For us, it came in the form of an email marked "Importance: High" from an environmental consulting firm in Australia.
 
----
+## The Email That Changed Our Roadmap
 
-## Problems With Traditional Booking Interfaces
+It was February 14th, 2025, when we received a message that would fundamentally change how we thought about asset visibility in Shelf. The email came from the operations team at an environmental consulting firm managing 140 assets across 82 team members.
 
-Calendars create clutter, confusion, and mobile friction.
+Their message was direct: *"I have questions related to the calendar view on this application – specifically that the calendar view cannot be filtered for a particular asset – making this system difficult to use."*
 
----
+They wanted to meet. Today. Sydney 4pm.
 
-## What Availability View Solves
+## The Real Problem Behind the Request
 
-- Clear availability windows  
-- Mobile-friendly scanning  
-- Accessory awareness  
-- Simple time selection
+When we jumped on the call, the picture became crystal clear. Here was a team doing incredible work in ecosystem restoration and biodiversity conservation, managing 140 high-impact, high-value assets, but they were struggling with something that should have been simple: seeing when their equipment would be available.
 
-See: [Bookings](/features/bookings)
+**Their workflow looked like this:**
 
----
+- Project manager needs to plan a field survey
+- Opens Shelf's calendar view to check equipment availability
+- Sees ALL bookings for ALL 140 assets in one overwhelming view
+- Can't filter to just see the specific high-value equipment they need for their project
+- Has to manually scan through dozens of irrelevant bookings
+- Gives up and calls colleagues instead
 
-## How We Designed It
+For a team managing environmental projects with expensive, specialized equipment where availability can make or break field work timing, this wasn't just inconvenient—it was a blocker.
 
-We emphasized clarity, predictability, speed, and cognitive simplicity.
+## When Customers Know Exactly What They Need
 
----
+![](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/6852a8a9511c06100780221b_filter_integration.jpg)
 
-## Customer Feedback
+What struck us most about this conversation wasn't just the problem they identified, but how clearly they articulated the solution. They didn't just say "the calendar is hard to use." They said exactly what was missing: **"filter by asset"** functionality.
 
-Teams experienced fewer conflicts, faster check-outs, and smoother schedules.
+This is the kind of feedback that makes product teams sit up and listen. When a customer can:
 
----
+- Identify a specific workflow pain point
+- Articulate exactly what's missing
+- Explain why it matters for their business
 
-## Use Cases
+...you know you're looking at a real product gap, not just a nice-to-have feature.
 
-AV, engineering labs, photography, IT programs, field teams.
+## Building the Solution They Actually Needed
 
----
+Within weeks, we had Availability View in development. But we didn't just build what they asked for—we built what the request revealed they *really* needed.
 
-## CTA
+**The core insight:** Teams managing multiple assets don't just need filtered calendar views. They need **instant visibility into asset availability** without jumping between tabs, pages, or views.
 
-**Want to see it in action?  
-Try Shelf's simplified scheduling workflow.**
+**What we built:**
+
+- **Calendar integration** within the Advanced Asset Index
+- **Filter compatibility** with all existing Shelf filters (category, location, status, custom fields)
+- **Status indicators** showing available, reserved, checked out, and overdue assets at a glance
+- **Future planning visibility** to see availability weeks or months ahead
+
+## The Bigger Picture: Why Asset Visibility Matters
+
+![](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/6852b077ebc59db7cb121f1a_Screenshot%202025-06-18%20at%2012.46.32.jpg)
+
+This customer request illuminated something larger about modern asset management. When you're managing dozens or hundreds of assets across large teams, the traditional "check each asset individually" approach breaks down.
+
+**For environmental consulting firms** like our Australian customer:
+
+- Field work depends on specific equipment availability
+- Project timelines are often weather and permit dependent
+- Equipment downtime affects client deliverables
+- Last-minute changes are common
+
+**For any organization managing shared assets:**
+
+- Resource planning becomes exponentially harder as team size grows
+- Double-bookings create operational chaos
+- Manual coordination doesn't scale past a certain point
+- Visibility gaps lead to underutilized assets
+
+## Customer-Driven Development Done Right
+
+![](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/6435bd626d1fc3d4bb54868e_whale-team-in-rozet-3-min.jpg)
+
+This experience reinforced something we've always believed at Shelf: the best features come from listening to real customer problems, not guessing what people might want.
+
+**What made this request special:**
+
+- **Specificity** - They knew exactly what was missing
+- **Context** - They explained their real-world workflow
+- **Urgency** - They prioritized it enough to schedule same-day calls
+- **Validation** - They had 82 team members who would benefit
+
+## The Result: A Feature That Scales
+
+Today, Availability View is live and helping teams like theirs plan better. But the impact goes beyond that single feature request.
+
+**For our Australian customer:**
+
+- Project managers can now filter by equipment type and see availability instantly
+- Field teams can check equipment status before heading to remote locations
+- Resource planning happens in minutes instead of hours
+- Equipment utilization has improved through better visibility
+
+**For the broader Shelf community:**
+
+- Large teams have better resource planning tools
+- Asset managers can spot trends and optimization opportunities
+- The booking workflow is significantly streamlined
+
+## What This Taught Us About Asset Management
+
+Building Availability View taught us that **visibility isn't just about seeing data—it's about seeing the *right* data at the *right* time in the *right* context.**
+
+Asset management scales differently than other business operations. With 5 assets and 3 people, you can manage by memory and conversation. With 140 assets and 82 people, you need systems that provide instant, filtered, contextual visibility.
+
+## Looking Forward: The Power of Customer Partnership
+
+This story isn't just about building a feature—it's about the partnership between product teams and the customers who push us to build better solutions.
+
+To our Australian environmental consulting friends: thank you for being direct, specific, and patient as we built what you needed. Your real-world insights made Availability View better for everyone.
+
+To the broader Shelf community: keep the feedback coming. Whether it's marked "Importance: High" or just a casual suggestion, we're listening.
+
+**The best products aren't built in isolation—they're built in partnership with the people who use them every day.**
+
+*Ready to see how Availability View can transform your asset planning? *[*Try it today*](https://shelf.nu)* or *[*book a demo*](https://cal.com/shelf/demo)* to see it in action.*
+
+**About Shelf:** Shelf is an open-source asset management platform helping organizations track, manage, and optimize their physical assets. From small teams to large enterprises, Shelf provides the visibility and control teams need to make better decisions about their equipment and resources.
