@@ -1,0 +1,272 @@
+---
+title: "Kansas City Art Institute: Seamless Migration from Cheqroom to Shelf"
+description: "How KCAI’s Media Center migrated from Cheqroom to Shelf, preserved their DYMO label printing workflow, and upgraded to a modern asset management system without disrupting students."
+layout: "case-study"
+intent: "commercial"
+cluster: "education"
+personas:
+  - "education"
+  - "operations"
+  - "it"
+canonicalUrl: "/case-studies/kansas-city-art-institute-cheqroom-migration"
+date: "2025-11-19"
+updated: "2025-11-19"
+seo:
+  title: "How Kansas City Art Institute Migrated from Cheqroom to Shelf"
+  description: "Learn how Kansas City Art Institute preserved their DYMO label investment while upgrading from Cheqroom to Shelf’s modern asset management platform."
+  image: "/images/og/case-studies-kcai-cheqroom-migration.png"
+---
+
+# Kansas City Art Institute: Seamless Migration from Cheqroom to Shelf
+
+When Kansas City Art Institute’s Media Center decided to move from Cheqroom to Shelf, the stakes were high:
+
+- a large inventory of student-loan equipment  
+- carefully tuned check-out workflows  
+- and a significant investment in DYMO label printers and templates.
+
+The goal wasn’t just “new software.” It was **modernizing asset management without disrupting students or replacing hardware that already worked well**.
+
+> “We use a DYMO LabelWriter 550 to print labels for all of our items. This was a holdover from our time with Cheqroom as their system could print labels to a DYMO template/printer with one click. This was really convenient and a great investment.”
+>
+> — *Steve Gardels, Manager of the Media Center*
+
+Shelf had to fit into that world — not force KCAI to start from scratch.
+
+---
+
+## At a glance
+
+- **Institution:** Kansas City Art Institute (KCAI)  
+- **Location:** Kansas City, Missouri, United States  
+- **Program:** Media Center, supporting student creative projects  
+- **Key challenge:** Migrate from Cheqroom to Shelf **without losing** the existing DYMO label workflow  
+- **Key outcome:** Shelf adapted its QR scanning so KCAI could keep:
+  - their DYMO LabelWriter 550 hardware  
+  - their existing label templates  
+  - and their one-click label printing flow  
+
+---
+
+## About Kansas City Art Institute
+
+![Kansas City Art Institute printmaking studio](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67aa1ba2c258695b6bd94483_Printmaking_Studio.original.jpg)
+
+Kansas City Art Institute (KCAI) is a private art school with over 1,500 students specializing in fine arts, design, and media arts.
+
+The **Media Center** manages a large inventory of cameras, lenses, audio gear, lighting, and production accessories that students rely on for coursework, personal projects, and collaborations.
+
+- **Students:** 1,500+  
+- **Use case:** Equipment lending for creative projects  
+- **Expectation:** Reliable, fast check-outs that don’t get in the way of making work
+
+---
+
+## The challenge: Migration without disruption
+
+KCAI’s Media Center had already invested deeply in their previous setup:
+
+- **DYMO LabelWriter 550 printers** deployed and configured  
+- Label templates tuned for their shelving, cases, and inventory  
+- A one-click workflow that generated QR labels through Cheqroom
+
+When they decided to move to Shelf, they faced a familiar migration problem:
+
+> How do we **upgrade** our asset management platform **without** throwing away working hardware, label designs, and established staff habits?
+
+The priority was clear:
+
+- Keep labels printing from **DYMO**  
+- Keep labels **scannable by any phone**  
+- Gain Shelf’s **modern workflows** for bookings, custody, and tracking  
+- Avoid a painful, disruptive “rip and replace” implementation
+
+---
+
+## The technical hurdle
+
+On paper, the migration looked straightforward:
+
+- KCAI generated QR codes using DYMO Connect and existing templates  
+- Those codes pointed to valid Shelf short URLs (`https://eam.sh/[QR-ID]`)  
+- Phone cameras could scan them and open the correct Shelf asset pages
+
+But there was a hidden problem.
+
+During booking workflows — especially **Scan to Add** when building reservations — Shelf’s **internal scanner** wasn’t consistently detecting these externally generated codes, even though they worked fine in regular camera apps.
+
+That meant the most important workflow for the Media Center — **quickly scanning items into bookings** — was at risk.
+
+The options were:
+
+1. Ask KCAI to abandon DYMO and start over  
+2. Force staff to change their label process mid-semester  
+3. Or adapt Shelf so it could **work with** KCAI’s existing labels
+
+Shelf chose option 3.
+
+---
+
+## How Shelf adapted to KCAI — not the other way around
+
+Instead of asking KCAI to redesign their labels or replace hardware, Shelf’s team changed the product.
+
+Engineering focused on:
+
+- Improving the robustness of the **built-in QR scanner**  
+- Ensuring compatibility with QR codes generated by DYMO Connect  
+- Validating that any QR that opens a valid Shelf URL can also be used in **Scan to Add** flows
+
+From KCAI’s perspective, the outcome was simple:
+
+- **No hardware changes**  
+- **No label redesign**  
+- **No major re-training of staff**  
+- Their DYMO LabelWriter 550s kept doing exactly what they were good at: printing QR labels with a single click.
+
+Behind the scenes, Shelf’s scanning pipeline became more tolerant and flexible — not just for KCAI, but for any customer generating QR codes externally.
+
+---
+
+## The new workflow with Shelf
+
+With the scanner compatibility solved, KCAI’s Media Center could combine:
+
+- **Existing hardware & labels**  
+- **New Shelf workflows**  
+- **A smoother experience for students & staff**
+
+### 1. Asset import & labeling
+
+- Assets are created or imported into Shelf  
+- QR IDs are associated with each asset  
+- DYMO Connect generates labels pointing to Shelf’s short URLs  
+- Labels are applied to cameras, lenses, kits, and accessories
+
+### 2. Check-outs and bookings
+
+Using Shelf’s **booking workflows** and device-friendly UI:
+
+- Staff scan QR labels to add items to a booking  
+- Students check gear in and out based on clear reservations  
+- Everyone sees what’s booked, what’s available, and what’s overdue
+
+See also:
+
+- [Bookings](/features/bookings)  
+- [Asset Tracking](/solutions/asset-tracking)  
+- [Camera Equipment Check-Out](/solutions/camera-equipment-check-out)
+
+### 3. Day-to-day operations
+
+Because the **core label workflow didn’t change**, adoption focused on:
+
+- Learning Shelf’s interface, not rebuilding their process from scratch  
+- Using Shelf as a **single source of truth** for what is where  
+- Relying on scanning instead of manual typing or spreadsheets  
+
+---
+
+## Results: Upgrade in capability, not in chaos
+
+### 1. Hardware investment preserved
+
+KCAI kept their **DYMO LabelWriter 550** printers and existing label stock.
+
+- No new hardware purchases  
+- No wasted spend on previously installed printers  
+- No need to re-train staff on an entirely new labeling system
+
+### 2. Zero disruption to student workflows
+
+Students and staff experienced:
+
+- Familiar labels on gear  
+- Faster check-outs and returns  
+- Less friction during busy periods of the semester
+
+### 3. Better bookings, same printers
+
+By combining Shelf’s booking system with their existing labels, KCAI gained:
+
+- Clear visibility into who has what, and when  
+- Less manual coordination for equipment reservations  
+- Reduced risk of double bookings or missed items  
+
+### 4. A platform that grows with them
+
+Shelf’s improvements for KCAI’s use case now benefit:
+
+- Other schools using DYMO, Brother, Zebra, or similar printers  
+- Teams generating QR codes through third-party software  
+- Any organization that wants to bring its **own label workflow** to Shelf
+
+This case became an internal pattern: when a customer has a proven workflow, Shelf aims to **meet them where they are** — and then help them go further.
+
+---
+
+## Lessons for other institutions
+
+KCAI’s experience offers a few clear takeaways for other schools and media centers:
+
+### 1. You don’t need to throw away what already works
+
+If you’ve invested in:
+
+- Label printers  
+- Templates  
+- Barcodes or QR codes  
+- Staff training around a specific workflow  
+
+You can still modernize your asset management layer without discarding all of that.
+
+### 2. Evaluate partners on flexibility — not just features
+
+When comparing tools like Cheqroom, Snipe-IT, or custom systems, ask:
+
+- Will this platform work with our existing hardware?  
+- How do they handle migration quirks?  
+- Are they willing to ship improvements for real use cases — not just ideal demos?
+
+### 3. Migrations are about people, not just data
+
+For KCAI, success looked like:
+
+- Staff not having to relearn label printing from scratch  
+- Students enjoying smoother check-outs  
+- Leadership seeing reduced risk, not extra complexity  
+
+The best migration is the one that **barely feels like a migration** to your end users.
+
+---
+
+## Why this matters for Shelf
+
+KCAI’s migration highlights a core principle of how Shelf evolves:
+
+> The right product doesn’t just import your data — it respects your existing operational reality.
+
+By adapting Shelf’s QR scanning to KCAI’s DYMO setup, we:
+
+- Preserved a working hardware investment  
+- Unblocked a critical booking workflow  
+- Improved the product for every customer using external QR generation
+
+This is the kind of quiet, high-leverage change that turns a tool into a long-term operational partner.
+
+---
+
+## Ready to modernize without starting over?
+
+If you’re running:
+
+- A media center  
+- An equipment lending desk  
+- A creative lab or AV department  
+
+…and you’re worried that switching systems means rebuilding everything, KCAI’s story shows another path.
+
+**You can keep what works — and still get a modern, workflow-first asset management platform.**
+
+👉 Want to talk through your migration constraints (QR codes, printers, legacy systems)?  
+**Email Carlos directly:** [carlos@shelf.nu](mailto:carlos@shelf.nu)
