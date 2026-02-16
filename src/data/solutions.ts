@@ -1,4 +1,14 @@
-import { Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone } from "lucide-react";
+import { LucideIcon, Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone } from "lucide-react";
+
+export const solutionIcons: Record<string, LucideIcon> = {
+    "asset-tracking": LinkIcon,
+    "tool-tracking": Settings,
+    "it-asset-management": Code2,
+    "fixed-asset-tracking": BarChart2,
+    "equipment-reservations": Layers,
+    "educational-resource-management": BookOpen,
+    "camera-equipment-check-out": Smartphone,
+};
 
 export const solutions = [
     {
