@@ -135,7 +135,7 @@ export function Navbar() {
                                                     <ul className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6 py-8">
                                                         <li className="col-span-full border-b border-border/40 pb-4 mb-2 flex items-center justify-between">
                                                             <h4 className="font-medium leading-none text-muted-foreground text-xs uppercase tracking-wider">Features</h4>
-                                                            <Link href="/product" className="text-xs font-semibold text-orange-600 hover:text-orange-700 flex items-center">
+                                                            <Link href="/features" className="text-xs font-semibold text-orange-600 hover:text-orange-700 flex items-center">
                                                                 View all features <ArrowRight className="ml-1 h-3 w-3" />
                                                             </Link>
                                                         </li>
