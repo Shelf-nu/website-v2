@@ -2,43 +2,68 @@ import Link from "next/link";
 import { getAllContent } from "@/lib/mdx";
 import { Container } from "@/components/ui/container";
 import { Metadata } from "next";
-import { PageHeader } from "@/components/layouts/shared/page-header";
+import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { CTA } from "@/components/sections/cta";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Glossary - Shelf",
-    description: "Asset management terms explained.",
+    description: "Asset management terms explained — a reference for operations teams.",
 };
 
 export default function GlossaryIndexPage() {
     const terms = getAllContent("glossary");
 
-    return (
-        <div className="flex min-h-screen flex-col">
-            <PageHeader
-                title="Glossary"
-                description="Common terms and definitions."
-                heroTagline="Reference"
-            />
+    // Sort alphabetically by title
+    const sorted = [...terms].sort((a, b) =>
+        a.frontmatter.title.localeCompare(b.frontmatter.title)
+    );
 
-            <Container className="py-16 md:py-24">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {terms.map((term, index) => (
-                        <ScrollReveal key={term.slug} delay={index * 0.05}>
-                            <Link href={`/glossary/${term.slug}`} className="group block h-full">
-                                <div className="h-full p-6 rounded-2xl border border-border/40 bg-background/50 backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-lg hover:border-orange-500/20">
-                                    <h3 className="text-xl font-bold group-hover:text-orange-600 transition-colors mb-3">
-                                        {term.frontmatter.title}
-                                    </h3>
-                                    <p className="text-muted-foreground text-sm leading-relaxed">
-                                        {term.frontmatter.description}
-                                    </p>
-                                </div>
-                            </Link>
-                        </ScrollReveal>
-                    ))}
+    return (
+        <div className="flex min-h-screen flex-col relative overflow-hidden">
+            {/* Ambient Background */}
+            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
+
+            <Container className="py-24 md:py-32 relative">
+                <div className="max-w-3xl mx-auto text-center mb-20">
+                    <ScrollReveal width="100%">
+                        <Badge variant="secondary" className="mb-4 bg-orange-50 text-orange-700 border-orange-100/50">Reference</Badge>
+                        <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
+                            Asset Management <span className="text-orange-600">Glossary</span>
+                        </h1>
+                        <p className="text-xl text-muted-foreground leading-relaxed">
+                            Common terms and definitions for operations teams, IT managers, and equipment coordinators.
+                        </p>
+                    </ScrollReveal>
+                </div>
+
+                <div className="max-w-4xl mx-auto">
+                    <div className="divide-y divide-border/60">
+                        {sorted.map((term, index) => (
+                            <ScrollReveal key={term.slug} delay={index * 0.03} width="100%">
+                                <Link href={`/glossary/${term.slug}`} className="group flex items-start gap-6 py-6 first:pt-0 last:pb-0">
+                                    <span className="shrink-0 mt-1 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600 font-bold text-sm group-hover:bg-orange-100 transition-colors">
+                                        {term.frontmatter.title.charAt(0).toUpperCase()}
+                                    </span>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-lg font-bold text-foreground group-hover:text-orange-600 transition-colors mb-1">
+                                            {term.frontmatter.title}
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                                            {term.frontmatter.description}
+                                        </p>
+                                    </div>
+                                    <ArrowRight className="shrink-0 mt-2 h-4 w-4 text-muted-foreground/40 group-hover:text-orange-600 group-hover:translate-x-1 transition-all" />
+                                </Link>
+                            </ScrollReveal>
+                        ))}
+                    </div>
                 </div>
             </Container>
+
+            <CTA />
         </div>
     );
 }

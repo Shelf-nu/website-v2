@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Metadata } from "next";
 import { Shield, MessageSquare, HelpCircle, Code } from "lucide-react";
 import Link from "next/link";
+import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
     title: "Resources - Shelf Asset Management",
@@ -99,6 +100,8 @@ export default function ResourcesPage() {
                     </Card>
                 </div>
             </Container>
+
+            <CTA />
         </div>
     );
 }
