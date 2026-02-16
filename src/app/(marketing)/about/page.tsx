@@ -92,7 +92,7 @@ export default function AboutPage() {
                                 <div className="aspect-video w-full relative bg-zinc-100">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
-                                        src="https://cdn.prod.website-files.com/64186faca4f0a0ec048fb2dd/6437d5e6c0a2d72bbf7dea5a_whale-team.jpg"
+                                        src="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/about/whale-team.jpg"
                                         alt="Shelf Team"
                                         className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                                     />

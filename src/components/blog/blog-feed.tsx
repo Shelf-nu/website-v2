@@ -61,7 +61,7 @@ export function BlogFeed({ allPosts }: BlogFeedProps) {
                                 {/* Image Placeholder */}
                                 <div className="aspect-[16/9] lg:aspect-[4/3] w-full relative rounded-2xl overflow-hidden bg-muted border border-border/50">
                                     <Image
-                                        src={featuredPost.frontmatter.image || "https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67aa1ba2c258695b6bd94483_Printmaking_Studio.original.jpg"}
+                                        src={featuredPost.frontmatter.image || "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/Printmaking_Studio.original.jpg"}
                                         alt={featuredPost.frontmatter.title}
                                         fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -103,7 +103,7 @@ export function BlogFeed({ allPosts }: BlogFeedProps) {
                                         {/* Image */}
                                         <div className="relative aspect-video w-full bg-muted overflow-hidden">
                                             <Image
-                                                src={post.frontmatter.image || "https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67aa1ba2c258695b6bd94483_Printmaking_Studio.original.jpg"}
+                                                src={post.frontmatter.image || "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/Printmaking_Studio.original.jpg"}
                                                 alt={post.frontmatter.title}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -88,7 +88,7 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                         {/* Featured Image */}
                         <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/50 shadow-sm mb-12">
                             <Image
-                                src={frontmatter.image || "https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67aa1ba2c258695b6bd94483_Printmaking_Studio.original.jpg"}
+                                src={frontmatter.image || "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/Printmaking_Studio.original.jpg"}
                                 alt={frontmatter.title}
                                 fill
                                 className="object-cover"
@@ -118,7 +118,7 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                                     <article className="flex flex-col h-full bg-card/40 border border-border/40 rounded-2xl overflow-hidden hover:bg-card/80 hover:scale-[1.01] transition-all duration-300">
                                         <div className="relative aspect-video w-full bg-muted border-b border-border/50">
                                             <Image
-                                                src={post.frontmatter.image || "https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67aa1ba2c258695b6bd94483_Printmaking_Studio.original.jpg"}
+                                                src={post.frontmatter.image || "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/Printmaking_Studio.original.jpg"}
                                                 alt={post.frontmatter.title}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
