@@ -1,47 +1,156 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { ArrowRight } from "lucide-react";
 
-export function Hero() {
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { Pill } from "@/components/ui/pill";
+
+interface HeroProps {
+    heroImageDesktop?: string;
+    heroImageMobile?: string;
+}
+
+export function Hero({
+    heroImageDesktop = "/images/hero_dashboard_v2.png",
+    heroImageMobile
+}: HeroProps) {
     return (
-        <section className="relative overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36">
-            <Container>
-                <div className="mx-auto max-w-2xl text-center">
-                    <div className="mb-8 flex justify-center">
-                        <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-muted-foreground ring-1 ring-ring/10 hover:ring-ring/20">
-                            Announcing our new mobile app{" "}
-                            <Link href="/blog/mobile-app" className="font-semibold text-primary">
-                                <span className="absolute inset-0" aria-hidden="true" />
-                                Read more <span aria-hidden="true">&rarr;</span>
-                            </Link>
-                        </div>
+        <section className="py-24 sm:py-32 relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+            <div className="absolute top-0 inset-x-0 h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
+
+            <Container className="relative">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                    {/* Left Column: Content */}
+                    <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0 relative z-20">
+                        {/* Announcement Badge */}
+                        <ScrollReveal width="100%" delay={0.1}>
+                            <div className="mb-8 flex justify-center lg:justify-start">
+                                <Pill
+                                    href="/migrate"
+                                    icon={
+                                        <>
+                                            <span className="font-semibold">New</span>
+                                            <span className="opacity-60 mx-2">|</span>
+                                        </>
+                                    }
+                                >
+                                    Check out our latest Migration Guides
+                                    <span className="ml-2 font-semibold text-orange-600">
+                                        &rarr;
+                                    </span>
+                                </Pill>
+                            </div>
+                        </ScrollReveal>
+
+                        {/* Testimonials */}
+                        <ScrollReveal width="100%" delay={0.15}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                <div>
+                                    <div className="flex gap-1 mb-2 text-yellow-400">
+                                        {[...Array(5)].map((_, i) => (
+                                            <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                                                <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
+                                            </svg>
+                                        ))}
+                                    </div>
+                                    <p className="text-sm font-medium text-muted-foreground/80 leading-snug">
+                                        "Finally, a modern and convenient asset database"
+                                    </p>
+                                </div>
+                                <div>
+                                    <div className="flex gap-1 mb-2 text-yellow-400">
+                                        {[...Array(5)].map((_, i) => (
+                                            <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                                                <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
+                                            </svg>
+                                        ))}
+                                    </div>
+                                    <p className="text-sm font-medium text-muted-foreground/80 leading-snug">
+                                        "Equipment reservations, no drama, no double bookings."
+                                    </p>
+                                </div>
+                            </div>
+                        </ScrollReveal>
+
+                        {/* Main Heading */}
+                        <ScrollReveal width="100%" delay={0.2}>
+                            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl mb-6 leading-[1.1]">
+                                <span className="text-orange-600">Asset Management</span> for physical & digital equipment teams.
+                            </h1>
+                        </ScrollReveal>
+
+                        {/* Subheading */}
+                        <ScrollReveal width="100%" delay={0.3}>
+                            <p className="mx-auto lg:mx-0 max-w-xl text-lg leading-relaxed text-muted-foreground mb-8">
+                                Shelf is the open source asset management platform for modern teams. Instantly track what you own, who's using it, and when it's available—zero spreadsheets required.
+                            </p>
+                        </ScrollReveal>
+
+                        {/* CTAs */}
+                        <ScrollReveal width="100%" delay={0.4}>
+                            <div className="flex flex-col items-center lg:items-start gap-4 mb-16 lg:mb-0">
+                                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
+                                    <Button size="lg" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-500/20" asChild>
+                                        <Link href="https://app.shelf.nu/register">
+                                            Sign up free
+                                        </Link>
+                                    </Button>
+                                    <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
+                                        <Link href="/demo">
+                                            Book a demo
+                                        </Link>
+                                    </Button>
+                                </div>
+                                <p className="text-sm text-muted-foreground/60">
+                                    Get a free 7-day trial of premium features <span className="mx-1 opacity-50">|</span> No credit card required
+                                </p>
+                            </div>
+                        </ScrollReveal>
                     </div>
-                    <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-                        Asset management for modern teams
-                    </h1>
-                    <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                        Track, manage, and optimize your physical assets with Shelf.
-                        The all-in-one platform designed for speed and simplicity.
-                    </p>
-                    <div className="mt-10 flex items-center justify-center gap-x-6">
-                        <Button size="lg" asChild>
-                            <Link href="/signup">
-                                Get started <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                        </Button>
-                        <Button variant="ghost" size="lg" asChild>
-                            <Link href="/about">
-                                Learn more <span aria-hidden="true">→</span>
-                            </Link>
-                        </Button>
-                    </div>
-                </div>
-                <div className="mt-16 flow-root sm:mt-24">
-                    <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                        <div className="rounded-md bg-background shadow-2xl ring-1 ring-gray-900/10 aspect-[16/9] flex items-center justify-center text-muted-foreground">
-                            App Screenshot Placeholder
-                        </div>
+
+                    {/* Right Column: Visual - Stripe-like Breakout */}
+                    <div className="relative mx-auto w-full max-w-[500px] lg:max-w-none lg:static lg:block lg:pl-12">
+                        <ScrollReveal width="100%" delay={0.5} className="lg:relative lg:w-[140%] xl:w-[150%] lg:max-w-[1200px] z-10 perspective-1000">
+                            <div className="relative group transition-transform duration-700 ease-out hover:scale-[1.005]">
+                                {/* Depth Layer: Secondary Card (Subtle Backdrop) */}
+                                <div className="absolute inset-0 translate-x-3 translate-y-3 bg-orange-100/5 rounded-2xl border border-white/5 -z-10 hidden lg:block" />
+
+                                {/* Main Hero Card Container */}
+                                <div className="relative rounded-2xl border border-border/40 bg-background/60 backdrop-blur-xl shadow-2xl shadow-black/5 p-2 lg:p-3 ring-1 ring-white/20">
+
+                                    {/* Inner Image Container */}
+                                    <div className="rounded-xl overflow-hidden bg-muted border border-border/30 aspect-[16/10] relative shadow-sm">
+                                        {/* Desktop / Default Image */}
+                                        <Image
+                                            src={heroImageDesktop}
+                                            alt="Shelf Asset Management Dashboard"
+                                            fill
+                                            className={heroImageMobile ? "hidden lg:block object-cover object-left-top" : "object-cover object-left-top"}
+                                            priority
+                                            sizes="(max-width: 1024px) 100vw, 900px"
+                                        />
+
+                                        {/* Mobile Optimized Image (If Provided) */}
+                                        {heroImageMobile && (
+                                            <Image
+                                                src={heroImageMobile}
+                                                alt="Shelf Asset Management Dashboard (Mobile)"
+                                                fill
+                                                className="lg:hidden object-cover object-top"
+                                                priority
+                                                sizes="100vw"
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Subtle Ambient Glow (Behind) - Reduced Intensity */}
+                                <div className="absolute -inset-10 bg-orange-500/5 rounded-[40%] blur-[80px] -z-20 pointer-events-none opacity-20 mix-blend-multiply dark:mix-blend-normal" />
+                            </div>
+                        </ScrollReveal>
                     </div>
                 </div>
             </Container>

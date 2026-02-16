@@ -1,0 +1,17 @@
+=== Ambiguities & Assumptions ===
+1. Table Alignment: Several rows in the source text provided only 3 values for 4 column headers (Free, Plus, Team, Enterprise).
+   - Affected Rows: 'Team Members', 'Zapier', 'User Access Role-Based Access', 'PDF Reports', 'GPS Tracker'.
+   - Assumption: Left-aligned mapping (Free: Val1, Plus: Val2, Team: Val3, Enterprise: UNKNOWN).
+   - Result: Enterprise column marked as 'unknown' for these features.
+
+2. 'Self-Hosted' on Free Plan: Source text indicates 'Self-Hosted' is '✓' (Included) for Free, but '✗' (Not Included) for Plus. This is unusual for a SaaS pricing model and has been encoded exactly as written.
+
+3. 'SAML/SSO option (Azure)': Source text indicates '✓' (Included) for Plus, Team, and Enterprise. This implies SSO is available on lower-tier paid plans, which contradicts common 'Enterprise-only' checks. Encoded exactly as written.
+
+4. Feature Categorization: Features were grouped into categories (Core, Team, Integrations, etc.) based on the visual proximity in the raw text, but explicit category headers were not always present or strictly aligned.
+
+=== Human Confirmation Required ===
+1. Please confirm the values for the 'Enterprise' column for the rows with missing data (Team Members, Zapier, PDF Reports, GPS Tracker).
+2. Please confirm if 'Self-Hosted' is truly included in 'Free' but not 'Plus'.
+3. Please confirm if 'SAML/SSO' is truly included in 'Plus'.
+

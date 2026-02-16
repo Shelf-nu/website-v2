@@ -16,16 +16,20 @@ export async function generateStaticParams() {
 
 export default async function UseCasePage({ params }: PageProps) {
     const { slug } = await params;
-    try {
-        const { content, frontmatter } = getContentBySlug("use-cases", slug);
-        const Layout = resolveLayout(frontmatter.layout);
 
-        return (
-            <Layout frontmatter={frontmatter}>
-                <MDXContent source={content} />
-            </Layout>
-        );
+    let pageData;
+    try {
+        pageData = getContentBySlug("use-cases", slug);
     } catch {
         notFound();
     }
+
+    const { content, frontmatter } = pageData;
+    const Layout = resolveLayout(frontmatter.layout);
+
+    return (
+        <Layout frontmatter={frontmatter}>
+            <MDXContent source={content} />
+        </Layout>
+    );
 }

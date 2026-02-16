@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { BarChart3, Lock, Zap } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const features = [
     {
@@ -24,34 +25,45 @@ const features = [
 
 export function FeatureSection() {
     return (
-        <section className="py-24 sm:py-32">
+        <section className="py-32 sm:py-40 relative overflow-hidden">
+            {/* Subtle background gradient to tie into Hero */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-50/40 opacity-50 blur-[100px] rounded-full -z-10 pointer-events-none" />
+
             <Container>
                 <div className="mx-auto max-w-2xl lg:text-center">
-                    <h2 className="text-base font-semibold leading-7 text-primary">
-                        Deploy faster
-                    </h2>
-                    <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        Everything you need to manage assets
-                    </p>
-                    <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                        Shelf provides a comprehensive suite of tools to help you track, manage, and optimize your physical assets.
-                    </p>
+                    <ScrollReveal width="100%">
+                        <p className="text-base font-semibold leading-7 text-orange-600 uppercase tracking-widest mb-3">
+                            Deploy faster
+                        </p>
+                        <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+                            Everything you need to <br />
+                            <span className="text-orange-600">manage your assets</span>
+                        </h2>
+                        <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+                            Shelf provides a comprehensive suite of tools to help you track, manage, and optimize your physical assets.
+                        </p>
+                    </ScrollReveal>
                 </div>
+
                 <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
                     <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-                        {features.map((feature) => (
-                            <div key={feature.name} className="flex flex-col">
-                                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-foreground">
-                                    <feature.icon
-                                        className="h-5 w-5 flex-none text-primary"
-                                        aria-hidden="true"
-                                    />
-                                    {feature.name}
-                                </dt>
-                                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
-                                    <p className="flex-auto">{feature.description}</p>
-                                </dd>
-                            </div>
+                        {features.map((feature, index) => (
+                            <ScrollReveal key={feature.name} width="100%" delay={index * 0.1} className="h-full">
+                                <div className="flex flex-col items-start text-left h-full p-8 rounded-2xl bg-muted/30 border border-border/60 hover:bg-muted/50 hover:border-orange-500/10 hover:shadow-lg hover:shadow-orange-500/5 transition-all duration-300 group">
+                                    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-background border border-border/50 shadow-sm text-orange-600 group-hover:scale-110 transition-transform duration-300">
+                                        <feature.icon
+                                            className="h-6 w-6 flex-none"
+                                            aria-hidden="true"
+                                        />
+                                    </div>
+                                    <dt className="text-xl font-bold leading-7 text-foreground tracking-tight mb-3">
+                                        {feature.name}
+                                    </dt>
+                                    <dd className="mt-0 flex flex-auto flex-col text-base leading-relaxed text-muted-foreground">
+                                        <p className="flex-auto">{feature.description}</p>
+                                    </dd>
+                                </div>
+                            </ScrollReveal>
                         ))}
                     </dl>
                 </div>

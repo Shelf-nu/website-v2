@@ -1,5 +1,5 @@
 import { Frontmatter } from "@/lib/content/schema";
-import { PageHeader } from "./shared/page-header";
+import { HeroWithSocialProof } from "./shared/hero-with-social-proof";
 import { RelatedContent } from "./shared/related-content";
 import { SeoHead } from "./shared/seo-head";
 import { Container } from "@/components/ui/container";
@@ -14,10 +14,10 @@ export function FeatureLayout({ frontmatter, children }: LayoutProps) {
         <>
             <SeoHead frontmatter={frontmatter} />
             <div className="flex min-h-screen flex-col">
-                <PageHeader
+                <HeroWithSocialProof
                     title={frontmatter.title}
                     description={frontmatter.description}
-                    heroTagline="Feature"
+                    tagline="Feature"
                 />
 
                 <main className="flex-1">

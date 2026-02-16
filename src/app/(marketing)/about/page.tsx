@@ -1,47 +1,187 @@
 import { Container } from "@/components/ui/container";
 import { Metadata } from "next";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScaleBlock } from "@/components/sections/scale-block";
+import { ArrowRight, Github, Mail, Users, Globe } from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "About Us - Shelf Asset Management",
-    description: "We are on a mission to make asset tracking simple and accessible for everyone.",
+    description: "Shelf is an open-source platform for tracking and managing physical assets.",
 };
 
 export default function AboutPage() {
     return (
-        <div className="flex min-h-screen flex-col">
-            <Container className="py-20 md:py-32">
-                <div className="mx-auto max-w-3xl text-center mb-16">
-                    <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
-                        We help teams keep track of their things
-                    </h1>
-                    <p className="text-xl text-muted-foreground">
-                        Shelf was born out of frustration with clunky, expensive enterprise software.
-                        We believe that tracking your assets should be as easy as checking your email.
-                    </p>
-                </div>
+        <div className="flex min-h-screen flex-col bg-background text-zinc-900 font-sans">
 
-                <div className="prose prose-lg dark:prose-invert mx-auto max-w-3xl">
-                    <h2>Our Mission</h2>
-                    <p>
-                        To enable every organization, from schools to construction companies, to have
-                        complete visibility over their physical tools and equipment. We are building
-                        the operating system for physical assets.
-                    </p>
+            {/* 1. HERO — Standard SaaS Layout */}
+            <section className="pt-32 pb-16 md:pt-48 md:pb-24 relative overflow-hidden">
+                <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/40 via-background to-background pointer-events-none" />
+                <Container>
+                    <div className="max-w-3xl mx-auto text-center">
+                        <Badge variant="secondary" className="mb-6 bg-orange-50 text-orange-700 border-orange-100/50">
+                            Our Mission
+                        </Badge>
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900">
+                            Asset tracking for <span className="text-orange-600">everyone</span>.
+                        </h1>
+                        <p className="text-xl md:text-2xl text-zinc-500 leading-relaxed font-light mb-8 max-w-2xl mx-auto">
+                            Shelf is an open-source platform built for people who need clarity over what they own, where it is, and who has it.
+                        </p>
+                    </div>
+                </Container>
+            </section>
 
-                    <h2>The Story</h2>
-                    <p>
-                        In 2023, we saw a gap in the market. Spreadsheets were too error-prone, and
-                        existing "enterprise" solutions were stuck in the 90s. We decided to build
-                        Shelf with a focus on:
-                    </p>
-                    <ul>
-                        <li><strong>Mobile-first design:</strong> Because tracking happens in the field, not at a desk.</li>
-                        <li><strong>Openness:</strong> Our software plays nice with others (API first).</li>
-                        <li><strong>Simplicity:</strong> No training manuals required.</li>
-                    </ul>
-                </div>
-            </Container>
+            {/* 2. WHY SHELF EXISTS - Standard Grid */}
+            <section className="py-24 border-t border-zinc-100 bg-white">
+                <Container>
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 className="text-3xl font-bold tracking-tight mb-6 text-zinc-900">Why Shelf Exists</h2>
+                            <p className="text-lg leading-relaxed text-zinc-600 mb-6">
+                                Physical assets are still managed with fragile tools: spreadsheets, clipboards, and disconnected systems.
+                            </p>
+                            <p className="text-lg leading-relaxed text-zinc-600 mb-8">
+                                Shelf exists to make asset management simple, transparent, and accessible — without lock-in or hidden complexity. We believe people should always understand what they own.
+                            </p>
+                        </div>
+                        <div className="grid gap-6">
+                            <Card className="bg-zinc-50 border-zinc-200 shadow-sm">
+                                <CardHeader className="pb-3">
+                                    <Globe className="h-6 w-6 text-orange-600 mb-2" />
+                                    <CardTitle>Open Source</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-zinc-600">No black boxes. Verify our code, host it yourself, or use our cloud.</p>
+                                </CardContent>
+                            </Card>
+                            <Card className="bg-zinc-50 border-zinc-200 shadow-sm">
+                                <CardHeader className="pb-3">
+                                    <Users className="h-6 w-6 text-orange-600 mb-2" />
+                                    <CardTitle>Community Driven</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-zinc-600">Built with feedback from real users in education, logistics, and tech.</p>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* 3. GLOBE INTEGRATION */}
+            <div className="border-t border-zinc-100">
+                <ScaleBlock />
+            </div>
+
+            {/* 4. TEAM & COMMUNITY - Features Grid Style */}
+            <section className="py-24 bg-white border-t border-zinc-100">
+                <Container>
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <h2 className="text-3xl font-bold tracking-tight mb-4">Built by a global team</h2>
+                        <p className="text-lg text-zinc-500">
+                            Led by Carlos Virreira and Nikolay Bonev, supported by an amazing open-source community.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-12 gap-12 items-start">
+                        <div className="md:col-span-8 md:col-start-3">
+                            <Card className="overflow-hidden border-zinc-200 shadow-lg">
+                                <div className="aspect-video w-full relative bg-zinc-100">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src="https://cdn.prod.website-files.com/64186faca4f0a0ec048fb2dd/6437d5e6c0a2d72bbf7dea5a_whale-team.jpg"
+                                        alt="Shelf Team"
+                                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                                    />
+                                </div>
+                                <CardContent className="p-8">
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        <div>
+                                            <h3 className="font-semibold text-zinc-900 mb-2">Leadership</h3>
+                                            <p className="text-sm text-zinc-600 leading-relaxed">
+                                                We are a small, focused team obsessed with solving physical asset problems for the long term. We don&apos;t chase trends.
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-semibold text-zinc-900 mb-2">Community</h3>
+                                            <p className="text-sm text-zinc-600 leading-relaxed">
+                                                Contributors from around the world help improve Shelf&apos;s core, ensuring it works for diverse use cases.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* 6. LONG-TERM VISION - Dark Section */}
+            <section className="py-24 bg-zinc-900 text-white">
+                <Container>
+                    <div className="max-w-3xl mx-auto text-center">
+                        <Badge variant="outline" className="mb-6 border-zinc-700 text-zinc-300">Long-term Vision</Badge>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8">One Billion Assets.</h2>
+                        <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed mb-12">
+                            Our goal is to help people tag and track one billion assets — creating a world where physical belongings are as visible as digital ones.
+                        </p>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-zinc-800 pt-12">
+                            <div>
+                                <div className="text-3xl font-bold text-white mb-1">100%</div>
+                                <div className="text-sm text-zinc-500">Open Source</div>
+                            </div>
+                            <div>
+                                <div className="text-3xl font-bold text-white mb-1">Global</div>
+                                <div className="text-sm text-zinc-500">Availability</div>
+                            </div>
+                            <div>
+                                <div className="text-3xl font-bold text-white mb-1">Zero</div>
+                                <div className="text-sm text-zinc-500">Lock-in</div>
+                            </div>
+                            <div>
+                                <div className="text-3xl font-bold text-white mb-1">24/7</div>
+                                <div className="text-sm text-zinc-500">Reliability</div>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* 7. FOOTER CTA - Standard Pattern */}
+            <section className="py-24 bg-zinc-50 border-t border-zinc-200">
+                <Container>
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl font-bold tracking-tight text-zinc-900 mb-6">
+                            Asset Tagging and Tracking Infrastructure for Everyone™
+                        </h2>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 min-w-[160px]">
+                                <Link href="https://app.shelf.nu/register">
+                                    Start free <ArrowRight className="ml-2 h-4 w-4" />
+                                </Link>
+                            </Button>
+                            <Button asChild variant="outline" size="lg" className="bg-white border-zinc-200 h-12 px-8 min-w-[160px]">
+                                <Link href="/demo">
+                                    Book a demo
+                                </Link>
+                            </Button>
+                            <Button asChild variant="ghost" size="lg" className="h-12 min-w-[160px]">
+                                <Link href="https://github.com/shelf-nu/shelf.nu" target="_blank">
+                                    <Github className="mr-2 h-4 w-4" /> Contribute
+                                </Link>
+                            </Button>
+                        </div>
+                        <p className="mt-8 text-zinc-500 text-sm">
+                            Need help? <Link href="mailto:hello@shelf.nu" className="text-zinc-900 font-medium hover:underline">Contact our team</Link>
+                        </p>
+                    </div>
+                </Container>
+            </section>
         </div>
     );
 }
+
+

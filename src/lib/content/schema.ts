@@ -40,14 +40,14 @@ export interface Frontmatter {
     ctaText?: string;
 
     // Industries
-    industry?: string;
+    industry?: string | string[];
     useCases?: string[];
     audience?: string[];
 
     // Alternatives
     competitor?: string;
     competitorFeatures?: string[];
-    comparisonTable?: any[];
+    comparisonTable?: Record<string, unknown>[];
     whyShelf?: string[];
 
     // Glossary
@@ -59,8 +59,24 @@ export interface Frontmatter {
     date?: string;
     tags?: string[];
     readingTime?: string;
+    image?: string;
+    category?: string;
+    author?: string;
+    authorRole?: string;
 
     // Case studies
+    customer?: string | {
+        name: string;
+        industry?: string;
+        size?: string;
+        founded?: string;
+        headquarters?: string;
+        website?: string;
+        logo?: string;
+        quote?: string;
+    };
+    logo?: string;
+    coverImage?: string;
     organization?: string;
     industryPage?: string;
     summary?: string;
@@ -68,4 +84,14 @@ export interface Frontmatter {
     solution?: string;
     results?: string[];
     quotes?: (string | { quote: string; author: string; role: string })[];
+    location?: string;
+    team_size?: string;
+    featured_metrics?: { label: string; value: string }[];
+    nextStudy?: {
+        title: string;
+        slug: string;
+        organization?: string;
+        description?: string;
+        image?: string;
+    };
 }

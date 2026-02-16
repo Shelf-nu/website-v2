@@ -5,74 +5,83 @@ import Image from "next/image";
 
 const components = {
     h1: (props: any) => (
-        <h1 className="mt-2 scroll-m-20 text-4xl font-bold tracking-tight" {...props} />
+        <h1 className="mt-8 scroll-m-20 text-4xl font-bold tracking-tight text-foreground lg:text-5xl" {...props} />
     ),
-    h2: (props: any) => (
-        <h2
-            className="mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0"
-            {...props}
-        />
-    ),
-    h3: (props: any) => (
-        <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight" {...props} />
-    ),
+    h2: (props: any) => {
+        // Generate ID from text content if not provided
+        const id = props.id || props.children?.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+        return (
+            <h2
+                id={id}
+                className="mt-12 scroll-m-20 border-b border-border/40 pb-2 text-3xl font-semibold tracking-tight first:mt-0"
+                {...props}
+            />
+        );
+    },
+    h3: (props: any) => {
+        const id = props.id || props.children?.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+        return <h3 id={id} className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight" {...props} />;
+    },
     h4: (props: any) => (
         <h4 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight" {...props} />
     ),
     p: (props: any) => (
-        <p className="leading-7 [&:not(:first-child)]:mt-6" {...props} />
+        <p className="leading-7 [&:not(:first-child)]:mt-6 text-muted-foreground" {...props} />
     ),
     ul: (props: any) => (
-        <ul className="my-6 ml-6 list-disc [&>li]:mt-2" {...props} />
+        <ul className="my-6 ml-6 list-disc [&>li]:mt-2 marker:text-orange-500" {...props} />
     ),
     ol: (props: any) => (
-        <ol className="my-6 ml-6 list-decimal [&>li]:mt-2" {...props} />
+        <ol className="my-6 ml-6 list-decimal [&>li]:mt-2 marker:text-orange-500" {...props} />
     ),
-    li: (props: any) => <li className="leading-7" {...props} />,
+    li: (props: any) => <li className="leading-7 text-muted-foreground" {...props} />,
     blockquote: (props: any) => (
         <blockquote
-            className="mt-6 border-l-2 pl-6 italic text-muted-foreground"
+            className="mt-6 border-l-4 border-orange-500 pl-6 italic text-foreground bg-orange-50/50 py-3 pr-4 rounded-r-lg"
             {...props}
         />
+    ),
+    a: (props: any) => (
+        <Link className="font-medium text-foreground underline decoration-orange-500/30 decoration-2 underline-offset-4 hover:decoration-orange-500 transition-all" {...props} />
     ),
     img: (props: any) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-            className="rounded-md border bg-muted"
+            className="rounded-xl border border-border/50 bg-muted shadow-sm my-8"
             alt={props.alt}
             {...props}
         />
     ),
-    hr: (props: any) => <hr className="my-4 md:my-8" {...props} />,
+    hr: (props: any) => <hr className="my-8 md:my-12 border-border/40" {...props} />,
     table: (props: any) => (
-        <div className="my-6 w-full overflow-y-auto">
+        <div className="my-6 w-full overflow-y-auto rounded-lg border border-border/40 shadow-sm">
             <table className="w-full" {...props} />
         </div>
     ),
     tr: (props: any) => (
-        <tr className="m-0 border-t p-0 even:bg-muted" {...props} />
+        <tr className="m-0 border-t border-border/40 p-0 even:bg-muted/30" {...props} />
     ),
     th: (props: any) => (
         <th
-            className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+            className="border-none px-4 py-3 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right bg-muted/50"
             {...props}
         />
     ),
     td: (props: any) => (
         <td
-            className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+            className="border-none px-4 py-3 text-left [&[align=center]]:text-center [&[align=right]]:text-right text-muted-foreground"
             {...props}
         />
     ),
     pre: (props: any) => (
         <pre
-            className="mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4"
+            className="mb-4 mt-6 overflow-x-auto rounded-xl border border-border/40 bg-zinc-950 py-4 shadow-lg"
             {...props}
         />
     ),
     code: (props: any) => (
         <code
-            className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold"
+            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-orange-800"
             {...props}
         />
     ),
