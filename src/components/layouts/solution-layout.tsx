@@ -3,6 +3,7 @@ import { HeroWithSocialProof } from "./shared/hero-with-social-proof";
 import { RelatedContent } from "./shared/related-content";
 import { SeoHead } from "./shared/seo-head";
 import { Container } from "@/components/ui/container";
+import { CTA } from "@/components/sections/cta";
 
 interface LayoutProps {
     frontmatter: Frontmatter;
@@ -40,6 +41,8 @@ export function SolutionLayout({ frontmatter, children }: LayoutProps) {
                         </div>
                     </Container>
                 </main>
+
+                <CTA />
 
                 {frontmatter.related && <RelatedContent related={frontmatter.related} />}
             </div>
