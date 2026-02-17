@@ -166,9 +166,9 @@ export const pricingFeatures: PricingFeature[] = [
         },
         metadata: {
             free: "3 custom fields",
-            plus: "100 custom fields",
-            team: "100 custom fields",
-            enterprise: "1000 custom fields",
+            plus: "Unlimited",
+            team: "Unlimited",
+            enterprise: "Unlimited",
         },
         requiresPremiumEnabled: true,
     },
@@ -347,62 +347,95 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Bookings & Reservations",
         name: "Bookings",
         description:
-            "Reserve assets with start/end dates and custodian assignment (requires TEAM workspace)",
+            "Reserve assets with start/end dates and custodian assignment",
         availability: {
-            free: "requires-team-org",
-            plus: "requires-team-org",
-            team: "requires-team-org",
-            enterprise: "requires-team-org",
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
         },
         internalAvailability: {
-            free: "requires-team-org",
-            tier_1: "requires-team-org",
-            tier_2: "requires-team-org",
-            custom: "requires-team-org",
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
         },
-        requiresTeamOrg: true,
-        requiresPremiumEnabled: true,
     },
     {
         id: "booking-calendar",
         category: "Bookings & Reservations",
         name: "Booking Calendar",
         description:
-            "Calendar view for asset availability and bookings (requires TEAM workspace)",
+            "Calendar view for asset availability and bookings",
         availability: {
-            free: "requires-team-org",
-            plus: "requires-team-org",
-            team: "requires-team-org",
-            enterprise: "requires-team-org",
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
         },
         internalAvailability: {
-            free: "requires-team-org",
-            tier_1: "requires-team-org",
-            tier_2: "requires-team-org",
-            custom: "requires-team-org",
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
         },
-        requiresTeamOrg: true,
-        requiresPremiumEnabled: true,
+    },
+    {
+        id: "availability-view",
+        category: "Bookings & Reservations",
+        name: "Availability View",
+        description:
+            "Daily, weekly, and monthly availability views for equipment scheduling",
+        availability: {
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
+    },
+    {
+        id: "fixed-period-checkout",
+        category: "Bookings & Reservations",
+        name: "Fixed Time Period Checkout",
+        description:
+            "Assign custody with fixed start and end dates",
+        availability: {
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
     },
     {
         id: "working-hours",
         category: "Bookings & Reservations",
         name: "Working Hours",
         description:
-            "Configure weekly schedules and holiday overrides for availability (requires TEAM workspace)",
+            "Configure weekly schedules and holiday overrides for availability",
         availability: {
-            free: "requires-team-org",
-            plus: "requires-team-org",
-            team: "requires-team-org",
-            enterprise: "requires-team-org",
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
         },
         internalAvailability: {
-            free: "requires-team-org",
-            tier_1: "requires-team-org",
-            tier_2: "requires-team-org",
-            custom: "requires-team-org",
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
         },
-        requiresTeamOrg: true,
     },
     {
         id: "self-checkouts",
@@ -420,6 +453,35 @@ export const pricingFeatures: PricingFeature[] = [
             tier_1: "included",
             tier_2: "included",
             custom: "included",
+        },
+    },
+
+    // ============================================================================
+    // CUSTODY
+    // ============================================================================
+    {
+        id: "assign-custody-signature",
+        category: "Custody",
+        name: "Assign Custody (Signature)",
+        description:
+            "Require a digital signature when assigning custody of assets",
+        availability: {
+            free: "limited",
+            plus: "limited",
+            team: "limited",
+            enterprise: "limited",
+        },
+        internalAvailability: {
+            free: "limited",
+            tier_1: "limited",
+            tier_2: "limited",
+            custom: "limited",
+        },
+        metadata: {
+            free: "Coming soon",
+            plus: "Coming soon",
+            team: "Coming soon",
+            enterprise: "Coming soon",
         },
     },
 
@@ -486,6 +548,48 @@ export const pricingFeatures: PricingFeature[] = [
     },
 
     // ============================================================================
+    // TAGS & REQUESTS
+    // ============================================================================
+    {
+        id: "request-unclaimed-tags",
+        category: "Tags & Requests",
+        name: "Request Unclaimed Tags",
+        description:
+            "Allow team members to request unclaimed QR tags for new assets",
+        availability: {
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
+    },
+    {
+        id: "priority-feature-request",
+        category: "Tags & Requests",
+        name: "Priority Feature Request",
+        description:
+            "Submit feature requests with priority visibility to the Shelf team",
+        availability: {
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
+    },
+
+    // ============================================================================
     // DATA IMPORT/EXPORT
     // ============================================================================
     {
@@ -494,18 +598,17 @@ export const pricingFeatures: PricingFeature[] = [
         name: "Import Assets (CSV)",
         description: "Bulk import assets via CSV file",
         availability: {
-            free: "not-included",
+            free: "included",
             plus: "included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "not-included",
+            free: "included",
             tier_1: "included",
             tier_2: "included",
             custom: "included",
         },
-        requiresPremiumEnabled: true,
     },
     {
         id: "csv-export-assets",
@@ -513,37 +616,66 @@ export const pricingFeatures: PricingFeature[] = [
         name: "Export Assets (CSV)",
         description: "Bulk export assets to CSV file",
         availability: {
-            free: "not-included",
+            free: "included",
             plus: "included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "not-included",
+            free: "included",
             tier_1: "included",
             tier_2: "included",
             custom: "included",
         },
-        requiresPremiumEnabled: true,
+    },
+    {
+        id: "import-external-barcodes",
+        category: "Data Import/Export",
+        name: "Import External Barcodes",
+        description:
+            "Import and link external barcodes (UPC, EAN, etc.) to assets",
+        availability: {
+            free: "not-included",
+            plus: "not-included",
+            team: "limited",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "not-included",
+            tier_1: "not-included",
+            tier_2: "limited",
+            custom: "included",
+        },
+        metadata: {
+            free: "Not available",
+            plus: "Not available",
+            team: "Add-on",
+            enterprise: "Included",
+        },
     },
     {
         id: "import-nrm",
         category: "Data Import/Export",
-        name: "Import Non-Registered Members",
-        description: "Bulk import team members without email invites",
+        name: "Non-Registered Team Members",
+        description: "Unlimited non-registered team members across all plans",
         availability: {
-            free: "not-included",
+            free: "included",
             plus: "included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "not-included",
+            free: "included",
             tier_1: "included",
             tier_2: "included",
             custom: "included",
         },
-        requiresPremiumEnabled: true,
+        metadata: {
+            free: "Unlimited",
+            plus: "Unlimited",
+            team: "Unlimited",
+            enterprise: "Unlimited",
+        },
     },
 
     // ============================================================================

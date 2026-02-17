@@ -1,8 +1,8 @@
 export interface PricingTier {
     id: "free" | "plus" | "team" | "enterprise";
     name: string;
-    price: string | "unknown";
-    description: string | "unknown";
+    price: string;
+    description: string;
     cta: string;
     popular?: boolean;
 }
@@ -10,31 +10,31 @@ export interface PricingTier {
 export const pricingTiers: PricingTier[] = [
     {
         id: "free",
-        name: "Free",
-        price: "unknown",
-        description: "unknown",
+        name: "Personal",
+        price: "$0",
+        description: "For private collectors or small businesses.",
         cta: "Start Free"
     },
     {
         id: "plus",
         name: "Plus",
-        price: "unknown",
-        description: "unknown",
-        cta: "Start Trial",
-        popular: true
+        price: "$34",
+        description: "Perfect for power users.",
+        cta: "Buy Now"
     },
     {
         id: "team",
         name: "Team",
-        price: "unknown",
-        description: "unknown",
-        cta: "Start Trial"
+        price: "$67",
+        description: "Perfect for businesses.",
+        cta: "Start Free Trial",
+        popular: true
     },
     {
         id: "enterprise",
         name: "Enterprise",
-        price: "unknown",
-        description: "unknown",
+        price: "Custom",
+        description: "Perfect for large organizations.",
         cta: "Contact Sales"
     }
 ];

@@ -565,6 +565,22 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         showInTrustedBy: true,
     },
     {
+        id: "kent-state-university",
+        name: "Kent State University",
+        logo: "/logos/kent-state.png",
+        showOnHomePage: false,
+        showInTrustedBy: true,
+        industry: "Education",
+    },
+    {
+        id: "university-of-missouri",
+        name: "University of Missouri",
+        logo: "/logos/university-of-missouri.png",
+        showOnHomePage: false,
+        showInTrustedBy: true,
+        industry: "Education",
+    },
+    {
         id: "uss-midway-museum",
         name: "USS Midway Museum",
         logo: "/logos/uss-midway-museum.png",

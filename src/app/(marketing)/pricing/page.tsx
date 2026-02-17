@@ -15,7 +15,17 @@ import { FeatureTable } from "@/components/pricing/feature-table";
 import Link from "next/link";
 import NumberFlow from '@number-flow/react';
 import { TrustedBy } from "@/components/sections/trusted-by";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
+import Image from "next/image";
+
+// Curated social proof logos for pricing page (prestigious brands)
+const pricingSocialProof = [
+    { name: "Chicago Bulls", logo: "/logos/chicago-bulls.png" },
+    { name: "Kent State University", logo: "/logos/kent-state.png" },
+    { name: "UC Berkeley", logo: "/logos/berkeley.png" },
+    { name: "USS Midway Museum", logo: "/logos/uss-midway-museum.png" },
+    { name: "University of Missouri", logo: "/logos/university-of-missouri.png" },
+];
 
 // Helper to convert structured data back to the list format for the card view
 function getDisplayFeatures(plan: PricingPlan): string[] {
@@ -25,9 +35,10 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
                 "Unlimited assets",
                 "1 user",
                 "Locations & sublocations",
-                "Assign custody (long-term usage)",
+                "Assign custody",
                 "Kits",
-                "Advanced search & filtering"
+                "Advanced asset index",
+                "3 custom fields"
             ];
         case "plus":
             return [
@@ -35,12 +46,12 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
                 "Unlimited custom fields",
                 "Custom field → category mapping",
                 "CSV import & export",
-                "Maintenance schedules"
+                "Email support"
             ];
         case "team":
             return [
                 "Everything in Plus",
-                "Unlimited users",
+                "Unlimited user seats",
                 "Bookings & reservations",
                 "Booking calendar",
                 "Fixed checkout & return dates",
@@ -51,7 +62,7 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
         case "enterprise":
             return [
                 "Everything in Team",
-                "Custom agreement (on demand)",
+                "Custom agreement",
                 "SSO / SAML included",
                 "Dedicated hosting (cloud or private)",
                 "On-prem / private deployment option",
@@ -97,6 +108,23 @@ export default function PricingPage() {
                     <p className="text-xl text-muted-foreground">
                         No hidden fees. No credit card required to start.
                     </p>
+                </div>
+
+                {/* Social Proof Logos */}
+                <div className="flex flex-col items-center gap-4 mb-12">
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Trusted by innovative teams</p>
+                    <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
+                        {pricingSocialProof.map((brand) => (
+                            <Image
+                                key={brand.name}
+                                src={brand.logo}
+                                alt={brand.name}
+                                width={100}
+                                height={32}
+                                className="h-7 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {/* Billing Toggle */}
@@ -193,6 +221,17 @@ export default function PricingPage() {
                 {/* Trusted By Section */}
                 <div className="mt-20 mb-20">
                     <TrustedBy />
+                </div>
+
+                {/* Testimonial */}
+                <div className="mx-auto max-w-2xl text-center mb-20">
+                    <Quote className="h-8 w-8 text-orange-500/20 mx-auto mb-4" />
+                    <blockquote className="text-lg md:text-xl font-medium text-foreground leading-relaxed tracking-tight mb-4">
+                        &ldquo;If you are still using Excel for assets management, you are missing out a lot by not choosing Shelf.&rdquo;
+                    </blockquote>
+                    <div className="text-sm text-muted-foreground">
+                        <span className="font-semibold text-foreground">Tadas Andriuska</span> · IT Administrator at Ovoko
+                    </div>
                 </div>
 
                 {/* Conversion CTA */}
