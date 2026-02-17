@@ -10,7 +10,7 @@ export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
         name: l.name,
         src: l.logo,
     }));
-    const infiniteLogos = [...logos, ...logos, ...logos, ...logos];
+    const infiniteLogos = [...logos, ...logos];
 
     return (
         <section className="py-20 overflow-hidden">
@@ -31,7 +31,7 @@ export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
                             x: {
                                 repeat: Infinity,
                                 repeatType: "loop",
-                                duration: 40,
+                                duration: logos.length * 3,
                                 ease: "linear",
                             },
                         }}
