@@ -5,6 +5,7 @@ import { SeoHead } from "./shared/seo-head";
 import { Container } from "@/components/ui/container";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface LayoutProps {
     frontmatter: Frontmatter;
@@ -12,6 +13,8 @@ interface LayoutProps {
 }
 
 export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
+    const customer = typeof frontmatter.customer === "object" ? frontmatter.customer : null;
+
     return (
         <>
             <SeoHead frontmatter={frontmatter} />
@@ -24,7 +27,7 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                     <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-muted-foreground mt-8 border-t border-white/10 pt-8 max-w-2xl mx-auto">
                         {frontmatter.industry && (
                             <div className="flex items-center gap-2">
-                                <span className="font-semibold text-foreground">Industry:</span> {frontmatter.industry}
+                                <span className="font-semibold text-foreground">Industry:</span> {Array.isArray(frontmatter.industry) ? frontmatter.industry.join(", ") : frontmatter.industry}
                             </div>
                         )}
                         {frontmatter.location && (
@@ -41,7 +44,42 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                 </PageHeader>
 
                 <main className="flex-1">
+                    {/* Cover Image Hero */}
+                    {frontmatter.coverImage && (
+                        <Container className="-mt-8 mb-8">
+                            <div className="relative w-full aspect-video max-h-[480px] overflow-hidden rounded-2xl border border-border/50">
+                                <Image
+                                    src={frontmatter.coverImage}
+                                    alt={frontmatter.title}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                            </div>
+                        </Container>
+                    )}
+
                     <Container className="py-16 md:py-24">
+                        {/* Company Info Strip */}
+                        {customer && (
+                            <div className="mx-auto max-w-3xl flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground mb-12 pb-6 border-b border-border/40">
+                                {customer.industry && (
+                                    <span><strong className="text-foreground">Industry:</strong> {customer.industry}</span>
+                                )}
+                                {customer.size && (
+                                    <span><strong className="text-foreground">Team:</strong> {customer.size}</span>
+                                )}
+                                {customer.headquarters && (
+                                    <span><strong className="text-foreground">Location:</strong> {customer.headquarters}</span>
+                                )}
+                                {customer.website && (
+                                    <a href={customer.website} target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline font-medium">
+                                        Visit website &rarr;
+                                    </a>
+                                )}
+                            </div>
+                        )}
+
                         {/* Key Results - High Impact Grid */}
                         {frontmatter.featured_metrics && frontmatter.featured_metrics.length > 0 && (
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
@@ -60,11 +98,15 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
 
                         {/* Main Content - Centered */}
                         <div className="mx-auto max-w-3xl font-normal">
-                            {/* Large Quote Breakout */}
+                            <div className="prose prose-lg dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-p:leading-relaxed prose-img:rounded-2xl prose-img:border prose-img:border-border/50">
+                                {children}
+                            </div>
+
+                            {/* Featured Quote — Closing Highlight */}
                             {frontmatter.quotes && frontmatter.quotes.length > 0 && (
-                                <blockquote className="relative my-16 pl-8 border-l-4 border-orange-500 italic">
+                                <blockquote className="relative mt-20 mb-16 pl-8 border-l-4 border-orange-500 italic">
                                     <p className="text-2xl font-medium leading-relaxed text-foreground mb-4">
-                                        "{typeof frontmatter.quotes[0] === 'string' ? frontmatter.quotes[0] : frontmatter.quotes[0].quote}"
+                                        &ldquo;{typeof frontmatter.quotes[0] === 'string' ? frontmatter.quotes[0] : frontmatter.quotes[0].quote}&rdquo;
                                     </p>
                                     {typeof frontmatter.quotes[0] !== 'string' && frontmatter.quotes[0].author && (
                                         <footer className="text-base not-italic text-muted-foreground">
@@ -74,10 +116,6 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                     )}
                                 </blockquote>
                             )}
-
-                            <div className="prose prose-lg dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-p:leading-relaxed prose-img:rounded-2xl prose-img:border prose-img:border-border/50">
-                                {children}
-                            </div>
 
                             {/* Read Next Flow */}
                             {frontmatter.nextStudy && (

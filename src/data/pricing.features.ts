@@ -797,7 +797,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Deployment",
         name: "Self-Hosting",
         description:
-            "Deploy Shelf on your own infrastructure (feature gating controlled by ENABLE_PREMIUM_FEATURES flag)",
+            "Deploy Shelf on your own infrastructure with full access to all features",
         availability: {
             free: "included",
             plus: "included",

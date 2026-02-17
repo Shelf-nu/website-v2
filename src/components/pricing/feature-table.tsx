@@ -40,7 +40,7 @@ export function FeatureTable() {
     const categories = Object.keys(featuresByCategory);
 
     return (
-        <div className="mt-24 rounded-xl border bg-background shadow-none">
+        <div className="mt-24 rounded-xl border bg-background shadow-none lg:overflow-visible">
             {/* 
                 We use overflow-x-auto for mobile responsiveness.
                 However, for sticky headers to work relative to the WINDOW on desktop, 
@@ -107,14 +107,11 @@ export function FeatureTable() {
                                                             </TooltipProvider>
                                                         )}
                                                     </div>
-                                                    <div className="flex flex-wrap gap-2 text-[10px] uppercase font-bold tracking-wide text-muted-foreground/70">
-                                                        {feature.requiresTeamOrg && (
-                                                            <span className="text-orange-600/80">(Team Org)</span>
-                                                        )}
-                                                        {feature.requiresPremiumEnabled && (
-                                                            <span className="text-blue-600/80">(Premium Flag)</span>
-                                                        )}
-                                                    </div>
+                                                    {feature.requiresTeamOrg && (
+                                                        <span className="text-[10px] font-medium text-orange-600/80">
+                                                            Requires Team workspace
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </td>
 
