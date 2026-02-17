@@ -9,21 +9,7 @@ import { TestimonialsSection } from "@/components/sections/case-studies/testimon
 import { FAQSection } from "@/components/sections/faq";
 import { FeatureNavigationCTA } from "@/components/sections/feature-navigation-cta";
 import { JsonLd } from "@/components/seo/json-ld";
-
-// Default high-impact logos for the home page
-const homePageLogos = [
-    // Row 1
-    { id: "ces", name: "CES Utility", logo: "/logos/ces-utility.svg", slug: "ces-70k-recovery" },
-    { id: "fabel", name: "Fabel Film", logo: "/logos/fabel-film.svg", slug: "fabel-film-double-bookings" },
-    { id: "haarp", name: "HAARP", logo: "/logos/haarp.svg", slug: "haarp" },
-    { id: "resq", name: "ResQ", logo: "/logos/resq.svg", slug: "resq" },
-
-    // Row 2
-    { id: "uni-music", name: "Universal Music", logo: "/logos/universal-music.svg" },
-    { id: "nokia", name: "Nokia", logo: "/logos/nokia.svg" },
-    { id: "virgin", name: "Virgin Hyperloop", logo: "/logos/virgin-hyperloop.svg" },
-    { id: "brabant", name: "Brabant", logo: "/logos/brabant.svg" }
-];
+import { getHomePageLogosForGrid } from "@/data/customer-logos";
 
 export const metadata = {
     title: "The Open Source Asset Tracking Platform",
@@ -36,7 +22,7 @@ export default function HomePage() {
             <JsonLd />
             <Hero />
 
-            <LogoGrid items={homePageLogos} />
+            <LogoGrid items={getHomePageLogosForGrid()} />
             <FounderLetter />
 
 

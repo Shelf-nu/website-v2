@@ -3,21 +3,14 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { motion } from "framer-motion";
-
-const LOGOS = [
-    { name: "Nokia", src: "/logos/nokia.svg" },
-    { name: "Universal Music", src: "/logos/universal-music.svg" },
-    { name: "Virgin Hyperloop", src: "/logos/virgin-hyperloop.svg" },
-    { name: "Brabant", src: "/logos/brabant.svg" },
-    { name: "Fabel Film", src: "/logos/fabel-film.svg" },
-    { name: "CES Utility", src: "/logos/ces-utility.svg" },
-
-];
+import { getTrustedByLogos } from "@/data/customer-logos";
 
 export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
-    // Determine loop count to ensure we fill wide screens
-    // We'll duplicate the list 4 times for safety
-    const infiniteLogos = [...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS];
+    const logos = getTrustedByLogos().map((l) => ({
+        name: l.name,
+        src: l.logo,
+    }));
+    const infiniteLogos = [...logos, ...logos, ...logos, ...logos];
 
     return (
         <section className="py-20 overflow-hidden">
