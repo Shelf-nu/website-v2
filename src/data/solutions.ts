@@ -1,4 +1,4 @@
-import { LucideIcon, Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone } from "lucide-react";
+import { LucideIcon, Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone, ArrowLeftRight, Home } from "lucide-react";
 
 export const solutionIcons: Record<string, LucideIcon> = {
     "asset-tracking": LinkIcon,
@@ -8,6 +8,9 @@ export const solutionIcons: Record<string, LucideIcon> = {
     "equipment-reservations": Layers,
     "educational-resource-management": BookOpen,
     "camera-equipment-check-out": Smartphone,
+    "equipment-check-in": ArrowLeftRight,
+    "mobile-asset-auditing": Smartphone,
+    "home-inventory-management": Home,
 };
 
 export const solutions = [
@@ -52,5 +55,23 @@ export const solutions = [
         description: "Check-out workflows for studios.",
         icon: Smartphone,
         href: "/solutions/camera-equipment-check-out"
+    },
+    {
+        title: "Equipment Check-In/Out",
+        description: "QR-based lending workflows.",
+        icon: ArrowLeftRight,
+        href: "/solutions/equipment-check-in"
+    },
+    {
+        title: "Mobile Auditing",
+        description: "Audit assets from any device.",
+        icon: Smartphone,
+        href: "/solutions/mobile-asset-auditing"
+    },
+    {
+        title: "Home Inventory",
+        description: "Track household items with QR tags.",
+        icon: Home,
+        href: "/solutions/home-inventory-management"
     }
 ];

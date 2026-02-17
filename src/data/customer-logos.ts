@@ -35,6 +35,15 @@ export interface CustomerLogo {
 
     /** Controls ordering: lower number = appears first */
     priority?: number;
+
+    /** Optional customer testimonial quote */
+    quote?: string;
+
+    /** Quote author name */
+    quoteAuthor?: string;
+
+    /** Quote author role/title */
+    quoteRole?: string;
 }
 
 export const CUSTOMER_LOGOS: CustomerLogo[] = [
@@ -58,6 +67,9 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         showInTrustedBy: true,
         industry: "Media Production",
         priority: 2,
+        quote: "Double bookings is the reason I wanted to use Shelf. The moment I had to arrange a last-minute extra camera, I knew we needed a system.",
+        quoteAuthor: "Erik Stakenborg",
+        quoteRole: "Producer, Fabel Film",
     },
     {
         id: "haarp",
@@ -218,6 +230,9 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
+        quote: "I've been using Shelf for our filming equipment management, and it has been a game-changer. The personal support is exceptional. Shelf has made our operations smoother and more efficient.",
+        quoteAuthor: "AK",
+        quoteRole: "Founder, AK Film It!",
     },
     {
         id: "arcca",
@@ -235,6 +250,9 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Community Outreach",
+        quote: "If you're still relying on spreadsheets or memory, you're making things harder than they need to be. A system like Shelf keeps everything organized, visible, and easy to manage.",
+        quoteAuthor: "Jacky",
+        quoteRole: "Office & Events Coordinator, Arellano Associates",
     },
     {
         id: "berkeys",
@@ -243,6 +261,9 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Home Services",
+        quote: "We primarily use Shelf for keeping track of roughly 400 assets in the field and 120 within our office. The system for assigning devices to team members is easy to learn.",
+        quoteAuthor: "Operations Team",
+        quoteRole: "Berkeys",
     },
     {
         id: "big-slate-media",
@@ -609,4 +630,20 @@ export function getHomePageLogosForGrid() {
         logo: l.logo,
         slug: l.caseStudySlug,
     }));
+}
+
+/** Logos that have customer testimonial quotes */
+export function getTestimonialLogos() {
+    return CUSTOMER_LOGOS.filter((l) => l.quote);
+}
+
+/** All logos grouped by industry */
+export function getLogosByIndustry() {
+    const grouped: Record<string, CustomerLogo[]> = {};
+    for (const logo of CUSTOMER_LOGOS) {
+        const industry = logo.industry || "Other";
+        if (!grouped[industry]) grouped[industry] = [];
+        grouped[industry].push(logo);
+    }
+    return grouped;
 }
