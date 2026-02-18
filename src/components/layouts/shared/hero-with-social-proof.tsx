@@ -41,12 +41,12 @@ export function HeroWithSocialProof({ title, description, tagline }: HeroWithSoc
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24">
                     <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 text-base shadow-lg shadow-orange-600/20" asChild>
-                        <Link href="/pricing">
+                        <Link href="/pricing?utm_source=shelf_website&utm_medium=cta&utm_content=feature_hero_signup">
                             Get Started <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                     <Button size="lg" variant="outline" className="h-12 px-8 text-base bg-background/50 backdrop-blur-sm" asChild>
-                        <Link href="/demo">
+                        <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=feature_hero_demo">
                             Request a demo
                         </Link>
                     </Button>

@@ -8,16 +8,16 @@ import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const FEATURE_LINKS = [
-    { label: "Asset Tracking", href: "/features/asset-tracking" },
-    { label: "QR Codes", href: "/features/qr-codes" },
-    { label: "Check-in & Checkout", href: "/features/check-in-check-out" },
-    { label: "Maintenance", href: "/features/maintenance" },
+    { label: "Asset Tracking", href: "/solutions/asset-tracking" },
+    { label: "Custody & Checkouts", href: "/features/custody" },
     { label: "Bookings", href: "/features/bookings" },
-    { label: "Audit Logs", href: "/features/audit-logs" },
-    { label: "Team Management", href: "/features/team-management" },
-    { label: "Locations", href: "/features/locations" },
-    { label: "Mobile App", href: "/features/mobile-app" },
-    { label: "API & Integrations", href: "/features/api" },
+    { label: "Dashboard", href: "/features/dashboard" },
+    { label: "Location Tracking", href: "/features/location-tracking" },
+    { label: "Asset Reminders", href: "/features/asset-reminders" },
+    { label: "Kits", href: "/features/kits" },
+    { label: "Workspaces", href: "/features/workspaces" },
+    { label: "Asset Search", href: "/features/asset-search" },
+    { label: "Calendar", href: "/features/calendar" },
 ];
 
 export function FeatureNavigationCTA() {

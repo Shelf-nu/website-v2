@@ -64,6 +64,9 @@ export interface Frontmatter {
     author?: string;
     authorRole?: string;
 
+    // Updates (product changelog)
+    readMoreUrl?: string;
+
     // Case studies
     customer?: string | {
         name: string;

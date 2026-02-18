@@ -20,12 +20,12 @@ export function CTA() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button size="lg" variant="secondary" className="bg-white text-neutral-900 hover:bg-neutral-200 h-12 px-8" asChild>
-                            <Link href="/signup">
+                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=global_bottom_cta_signup">
                                 Get Started for Free <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
                         <Button size="lg" variant="outline" className="text-white border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:text-white h-12 px-8" asChild>
-                            <Link href="/demo">
+                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=global_bottom_cta_demo">
                                 Book a demo
                             </Link>
                         </Button>

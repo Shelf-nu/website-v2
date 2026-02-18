@@ -72,13 +72,13 @@ export default function ResourcesPage() {
                         <div className="mb-6 bg-emerald-50 p-3 rounded-lg">
                             <HelpCircle className="h-6 w-6 text-emerald-600" strokeWidth={2} />
                         </div>
-                        <h3 className="font-bold text-xl mb-3">Questions</h3>
+                        <h3 className="font-bold text-xl mb-3">Knowledge Base</h3>
                         <p className="text-muted-foreground mb-8 text-[15px] leading-relaxed">
-                            Read our help articles to find the answer to your question.
+                            Browse guides, tutorials, and how-to articles to find the answer to your question.
                         </p>
                         <div className="mt-auto pt-4 w-full sm:w-auto">
                             <Button variant="outline" className="w-full sm:w-auto" asChild>
-                                <Link href="/glossary">View Help Center</Link>
+                                <Link href="/knowledge-base">Browse articles</Link>
                             </Button>
                         </div>
                     </Card>
@@ -94,7 +94,7 @@ export default function ResourcesPage() {
                         </p>
                         <div className="mt-auto pt-4 w-full sm:w-auto">
                             <Button variant="outline" className="w-full sm:w-auto" asChild>
-                                <Link href="https://github.com/shelf-nu/shelf-nu">Read docs</Link>
+                                <Link href="https://docs.shelf.nu">Read docs</Link>
                             </Button>
                         </div>
                     </Card>

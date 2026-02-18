@@ -48,12 +48,12 @@ export default function CustomersPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button size="lg" asChild>
-                            <Link href="/signup">
+                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=customers_hero_signup">
                                 Start for free <ArrowRight className="ml-1 h-4 w-4" />
                             </Link>
                         </Button>
                         <Button variant="outline" size="lg" asChild>
-                            <Link href="/demo">Book a demo</Link>
+                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=customers_hero_demo">Book a demo</Link>
                         </Button>
                     </div>
                 </Container>

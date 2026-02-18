@@ -31,6 +31,7 @@ export function Footer() {
                         <h3 className="text-sm font-semibold mb-6 text-foreground tracking-tight">Resources</h3>
                         <ul className="space-y-3.5 text-sm">
                             <li><Link href="/blog" className="hover:text-orange-600 transition-colors">Blog</Link></li>
+                            <li><Link href="/updates" className="hover:text-orange-600 transition-colors">Updates</Link></li>
                             <li><Link href="/glossary" className="hover:text-orange-600 transition-colors">Glossary</Link></li>
                             <li><Link href="/tools" className="hover:text-orange-600 transition-colors font-medium text-foreground">Free Tools</Link></li>
                             <li><Link href="/tools/qr-code-decoder" className="hover:text-orange-600 transition-colors">QR Code Decoder</Link></li>

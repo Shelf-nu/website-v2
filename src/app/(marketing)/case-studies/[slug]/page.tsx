@@ -2,6 +2,10 @@ import { resolveLayout } from "@/components/layouts/resolve-layout";
 import { getContentBySlug, getContentSlugs } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx-content";
+import { Metadata } from "next";
+import { buildContentMetadata, breadcrumbJsonLd, articleJsonLd } from "@/lib/seo";
+import { StructuredData } from "@/components/seo/structured-data";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -12,6 +16,16 @@ export async function generateStaticParams() {
     return slugs.map((slug) => ({
         slug: slug.replace(/\.mdx$/, ""),
     }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    try {
+        const { frontmatter } = getContentBySlug("case-studies", slug);
+        return buildContentMetadata(slug, frontmatter, "case-studies");
+    } catch {
+        return { title: "Case Study Not Found" };
+    }
 }
 
 export default async function CaseStudyPage({ params }: PageProps) {
@@ -38,10 +52,22 @@ export default async function CaseStudyPage({ params }: PageProps) {
             }
         };
 
+        const jsonLd = [
+            breadcrumbJsonLd([
+                { name: "Home", href: "/" },
+                { name: "Case Studies", href: "/case-studies" },
+                { name: frontmatter.title, href: `/case-studies/${slug}` },
+            ]),
+            articleJsonLd(`/case-studies/${slug}`, frontmatter),
+        ];
+
         return (
-            <Layout frontmatter={enrichedFrontmatter}>
-                <MDXContent source={content} />
-            </Layout>
+            <PagefindWrapper type="Case Study" title={frontmatter.title}>
+                <StructuredData data={jsonLd} />
+                <Layout frontmatter={enrichedFrontmatter}>
+                    <MDXContent source={content} />
+                </Layout>
+            </PagefindWrapper>
         );
     } catch {
         notFound();

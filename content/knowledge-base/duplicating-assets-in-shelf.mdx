@@ -1,0 +1,54 @@
+---
+title: "Duplicating Assets in Shelf"
+description: "Shelf's duplicate feature enables rapid creation of multiple copies from an existing asset. This guide explains proper usage and important considerations regarding custom fields and unique identifiers."
+category: "Assets"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+## How to Duplicate an Asset
+
+1. Navigate to the asset page you want to duplicate
+2. Click the "Actions" dropdown menu
+3. Select "Duplicate"
+4. Enter the number of duplicates you want to create
+5. Click "Duplicate" to confirm
+
+The new assets will be created with "(copy [ID])" appended to their names. For example, duplicating "Shimadzu GCMS-QP2020 NX" produces "Shimadzu GCMS-QP2020 NX (copy 1729610912949)".
+
+## Important Considerations
+
+### Custom Fields and Unique Data
+
+When duplicating assets, all custom fields -- including those requiring unique values like serial numbers, MAC addresses, or asset tags -- will be copied from the original asset. This means:
+
+- **All duplicates will initially have identical custom field values**
+- **You'll need to update unique identifiers manually for each duplicate**
+- **Required fields with unique constraints may need immediate attention**
+
+### Best Practices
+
+- **Bulk Asset Creation**: While duplicating can be efficient for creating multiple similar assets, it's not recommended for assets that require unique identifiers
+- **Inventory Accuracy**: Ensure you update any unique fields immediately after duplication to maintain accurate records
+- **Asset Tracking**: Consider using the CSV import feature instead of duplication when adding multiple assets with unique attributes
+
+### When to Use Duplication
+
+- Creating multiple identical assets without unique identifiers
+- Setting up template assets for future use
+- Quick creation of similar assets where unique fields can be updated later
+
+### When to Avoid Duplication
+
+- Adding assets that require unique serial numbers
+- Creating inventory items that need distinct identification
+- Managing regulated equipment requiring unique tracking
+
+## Alternative Approaches
+
+For adding multiple assets with unique identifiers, consider:
+
+- Using the CSV import feature
+- Creating assets individually
+
+For additional assistance, contact support at hello@shelf.nu.

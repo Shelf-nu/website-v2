@@ -2,6 +2,10 @@ import { resolveLayout } from "@/components/layouts/resolve-layout";
 import { getContentBySlug, getContentSlugs, getAllContent } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx-content";
+import { Metadata } from "next";
+import { buildContentMetadata, breadcrumbJsonLd, blogPostingJsonLd } from "@/lib/seo";
+import { StructuredData } from "@/components/seo/structured-data";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -14,34 +18,13 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
     try {
         const { frontmatter } = getContentBySlug("blog", slug);
-
-        return {
-            title: frontmatter.seo?.title || frontmatter.title,
-            description: frontmatter.seo?.description || frontmatter.description,
-            alternates: {
-                canonical: frontmatter.canonicalUrl,
-            },
-            openGraph: {
-                title: frontmatter.seo?.title || frontmatter.title,
-                description: frontmatter.seo?.description || frontmatter.description,
-                type: "article",
-                publishedTime: frontmatter.date,
-                authors: [frontmatter.author],
-            },
-            twitter: {
-                card: "summary_large_image",
-                title: frontmatter.seo?.title || frontmatter.title,
-                description: frontmatter.seo?.description || frontmatter.description,
-            },
-        };
+        return buildContentMetadata(slug, frontmatter, "blog");
     } catch {
-        return {
-            title: "Blog Not Found",
-        };
+        return { title: "Blog Not Found" };
     }
 }
 
@@ -58,11 +41,23 @@ export default async function BlogPost({ params }: PageProps) {
             .sort(() => 0.5 - Math.random()) // Simple shuffle
             .slice(0, 3);
 
+        const jsonLd = [
+            breadcrumbJsonLd([
+                { name: "Home", href: "/" },
+                { name: "Blog", href: "/blog" },
+                { name: frontmatter.title, href: `/blog/${slug}` },
+            ]),
+            blogPostingJsonLd(slug, frontmatter),
+        ];
+
         return (
-            // @ts-ignore - Dynamic layout props are tricky to type strictly
-            <Layout frontmatter={frontmatter} relatedPosts={relatedPosts}>
-                <MDXContent source={content} />
-            </Layout>
+            <PagefindWrapper type="Blog" title={frontmatter.title}>
+                <StructuredData data={jsonLd} />
+                {/* @ts-ignore - Dynamic layout props are tricky to type strictly */}
+                <Layout frontmatter={frontmatter} relatedPosts={relatedPosts}>
+                    <MDXContent source={content} />
+                </Layout>
+            </PagefindWrapper>
         );
     } catch {
         notFound();

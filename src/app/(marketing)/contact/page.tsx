@@ -27,7 +27,7 @@ export default function ContactPage() {
                         Interested in Shelf for your team? Let's talk about your needs.
                     </p>
                     <Button asChild className="w-full">
-                        <Link href="/demo">Book a Demo</Link>
+                        <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=contact_demo">Book a Demo</Link>
                     </Button>
                 </div>
 

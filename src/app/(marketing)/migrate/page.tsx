@@ -61,12 +61,12 @@ export default function MigratePage() {
                 image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop"
             >
                 <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
-                    <Link href="https://app.shelf.nu/register">
+                    <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_signup">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white">
                             Start Free Migration
                         </Button>
                     </Link>
-                    <Link href="/contact">
+                    <Link href="/contact?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_demo">
                         <Button size="lg" variant="outline" className="bg-background/50 border-input">
                             Book Migration Call
                         </Button>
@@ -166,7 +166,7 @@ export default function MigratePage() {
                                 question: "Does Shelf integrate with my existing tools?",
                                 answer: (
                                     <>
-                                        Shelf supports common authentication and operational workflows used by teams managing physical assets. We integrate with <Link href="/features/sso" className="text-orange-600 hover:underline">SSO providers</Link> and offer a <Link href="/developers/api" className="text-orange-600 hover:underline">robust API</Link>.
+                                        Shelf supports common authentication and operational workflows used by teams managing physical assets. We integrate with SSO providers and support flexible import/export options. Check our <Link href="https://docs.shelf.nu" className="text-orange-600 hover:underline">documentation</Link> for details.
                                     </>
                                 )
                             },

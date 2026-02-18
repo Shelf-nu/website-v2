@@ -159,12 +159,12 @@ export default function AboutPage() {
                         </h2>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 min-w-[160px]">
-                                <Link href="https://app.shelf.nu/register">
+                                <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_signup">
                                     Start free <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
                             <Button asChild variant="outline" size="lg" className="bg-white border-zinc-200 h-12 px-8 min-w-[160px]">
-                                <Link href="/demo">
+                                <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_demo">
                                     Book a demo
                                 </Link>
                             </Button>

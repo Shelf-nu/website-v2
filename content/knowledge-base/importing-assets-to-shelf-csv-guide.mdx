@@ -1,0 +1,213 @@
+---
+title: "Importing Assets to Shelf: CSV Guide"
+description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
+category: "Assets"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+Shelf enables users to import assets through CSV (Comma-Separated Values) files. The platform provides a template-based approach with validation to ensure data integrity during the import process.
+
+## Quick Start
+
+To begin importing assets:
+
+1. Download the CSV template or barcode-enabled version from Shelf
+2. Add your asset information following the provided format
+3. Save the file with UTF-8 encoding
+4. Navigate to Assets then Import in your workspace
+5. Upload the file and confirm with "I AGREE"
+
+> **Important:** Never use data exported from asset backup to import assets, as this may cause data corruption.
+
+## File Requirements
+
+### Basic Format Rules
+
+- **Delimiter options:** Use comma (`,`) or semicolon (`;`)
+- **Encoding requirement:** Save as UTF-8 to prevent character issues
+- **Header row:** First row must contain column headers (ignored during import)
+- **File format:** Only `.csv` files accepted
+
+### Standard Columns
+
+| Column | Required | Purpose | Example |
+|--------|----------|---------|---------|
+| `title` | Yes | Asset name | "MacBook Pro 13-inch" |
+| `description` | No | Detailed information | "Company laptop with 256GB storage" |
+| `category` | No | Asset category | "Laptops" |
+| `kit` | No | Kit grouping | "Developer Kit" |
+| `tags` | No | Comma-separated labels | "electronics, portable" |
+| `location` | No | Physical location | "Office Floor 2" |
+| `custodian` | No | Team member assignment | "john@company.com" |
+| `bookable` | No | Booking capability | "true" |
+| `imageUrl` | No | Public image link | "https://example.com/image.jpg" |
+| `valuation` | No | Asset monetary value | "1200.50" |
+| `qrId` | No | Existing QR code identifier | "qr_abc123" |
+
+## Advanced Features
+
+### Custom Fields
+
+Create custom fields using the format: `cf:FieldName,type:TypeName`
+
+**Supported field types:**
+
+- **text** -- Standard text input
+- **boolean** -- Yes/No values (accepts: yes, no, true, false, 1, 0)
+- **option** -- Dropdown selections
+- **multiline text** -- Extended text areas
+- **date** -- YYYY-MM-DD format only
+- **amount** -- Currency values (numbers without symbols)
+- **number** -- Numeric values including negatives
+
+**Example custom field CSV:**
+
+```
+title,cf:Purchase Date,type:date,cf:Warranty Status,type:option
+MacBook Pro,2023-12-15,Active
+iPhone 14,2024-01-10,Expired
+```
+
+### QR Code Integration
+
+Link imported assets to existing Shelf QR codes:
+
+- QR code must already exist in your workspace
+- Each QR code must be unique
+- Cannot already be linked to assets or kits
+- Must belong to your organization
+
+If no QR ID is provided, Shelf automatically generates new codes.
+
+### Barcode Support (Premium Feature)
+
+**Supported barcode types:**
+
+- **barcode_Code128** -- 4-40 characters (letters, numbers, symbols)
+- **barcode_Code39** -- 4-43 characters (letters and numbers only)
+- **barcode_DataMatrix** -- 4-100 characters (letters and numbers)
+- **barcode_ExternalQR** -- 1-2048 characters (external QR codes, URLs)
+- **barcode_EAN13** -- 13-digit retail product codes
+
+**Barcode rules:**
+
+- Separate multiple values with commas
+- Values must be unique within your organization
+- Code39 and DataMatrix support letters and numbers only
+- Values automatically convert to uppercase
+
+**Example barcode CSV:**
+
+```
+title,barcode_Code128,barcode_EAN13
+Laptop,LAP001,1234567890123
+Mouse,MOUSE001,9876543210987
+```
+
+### Kit and Custody Management
+
+When importing assets with custodians and kits:
+
+- New kits automatically inherit custody from their assets
+- Empty existing kits update to match asset custodian
+- Kits with existing assets validate for consistency
+
+## Import Process
+
+### Pre-Import Validation
+
+The system checks:
+
+1. File format and encoding validity
+2. Header accuracy against supported columns
+3. QR code availability and status
+4. Barcode feature permissions
+5. Kit-custody conflict prevention
+6. Custom field format compliance
+
+### Import Execution Order
+
+1. Related entities creation (categories, locations, kits, members)
+2. Image processing and validation
+3. Asset creation with properties
+4. QR code linking or generation
+5. Barcode generation (if enabled)
+6. Kit custody assignment
+7. Custom field value processing
+
+## Troubleshooting
+
+### Common Error Messages
+
+**"Invalid headers in csv file"**
+
+- Verify column headers match exactly
+- Check custom field format: `cf:FieldName,type:TypeName`
+- Remove extra spaces or special characters
+
+**"CSV file is empty"**
+
+- File requires minimum 2 rows (headers + 1 data row)
+- Confirm file saved properly as `.csv`
+
+### QR Code Issues
+
+- **Duplicate codes:** Each qrId must be unique in import
+- **Non-existent codes:** Must exist in Shelf beforehand
+- **Already linked:** Cannot link to other assets or kits
+- **Wrong organization:** Must belong to your workspace
+
+### Kit Custody Conflicts
+
+- All assets in a kit must share the same custodian
+- Cannot assign different custodian to kit with existing assets
+
+### Data Format Issues
+
+**Date fields not importing:**
+- Use only YYYY-MM-DD format (e.g., 2024-01-15)
+- Avoid MM/DD/YYYY or DD-MM-YYYY formats
+
+**Boolean fields incorrect:**
+- Use: true, false, yes, no, 1, or 0
+- Avoid: True, FALSE, Y, N
+
+**Tags not separating:**
+- Use commas without spaces: "electronics,laptop,portable"
+- Spaces after commas only if part of tag name
+
+**Custodian not found:**
+- Use exact team member name or email
+- Verify team member exists in workspace
+- Check for email typos
+
+## Best Practices
+
+### Before Importing
+
+- Clean data and remove empty rows
+- Test with small batch (5-10 assets) first
+- Back up existing data before large imports
+- Plan categories, locations, and kits beforehand
+
+### After Importing
+
+- Review all imported assets for accuracy
+- Verify kit, category, and location linkages
+- Test QR code scanning
+- Update team member permissions
+
+### Large Imports (1000+ assets)
+
+- Break into smaller batches
+- Ensure stable internet connection
+- Allow extra time for processing
+- Account for image download time
+
+## Related Resources
+
+- [Adding additional fields to Assets](/knowledge-base/adding-additional-fields-to-assets)
+- [Alternative Barcodes](/knowledge-base/alternative-barcodes)
+
+The CSV Helper tool assists with formatting. Contact support for personalized assistance.

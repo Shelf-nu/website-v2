@@ -2,9 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { VideoLightbox } from "@/components/ui/video-lightbox";
 
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Pill } from "@/components/ui/pill";
+import { Play } from "lucide-react";
 
 interface HeroProps {
     heroImageDesktop?: string;
@@ -12,7 +14,7 @@ interface HeroProps {
 }
 
 export function Hero({
-    heroImageDesktop = "/images/hero_dashboard_v2.png",
+    heroImageDesktop = "/images/hero_dashboard_v3.png",
     heroImageMobile
 }: HeroProps) {
     return (
@@ -22,7 +24,7 @@ export function Hero({
             <div className="absolute top-0 inset-x-0 h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
             <Container className="relative">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
                     {/* Left Column: Content */}
                     <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0 relative z-20">
                         {/* Announcement Badge */}
@@ -94,12 +96,12 @@ export function Hero({
                             <div className="flex flex-col items-center lg:items-start gap-4 mb-16 lg:mb-0">
                                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
                                     <Button size="lg" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-500/20" asChild>
-                                        <Link href="https://app.shelf.nu/register">
+                                        <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=homepage_hero_signup">
                                             Sign up free
                                         </Link>
                                     </Button>
                                     <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
-                                        <Link href="/demo">
+                                        <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=homepage_hero_demo">
                                             Book a demo
                                         </Link>
                                     </Button>
@@ -111,45 +113,47 @@ export function Hero({
                         </ScrollReveal>
                     </div>
 
-                    {/* Right Column: Visual - Stripe-like Breakout */}
-                    <div className="relative mx-auto w-full max-w-[500px] lg:max-w-none lg:static lg:block lg:pl-12">
-                        <ScrollReveal width="100%" delay={0.5} className="lg:relative lg:w-[140%] xl:w-[150%] lg:max-w-[1200px] z-10 perspective-1000">
-                            <div className="relative group transition-transform duration-700 ease-out hover:scale-[1.005]">
-                                {/* Depth Layer: Secondary Card (Subtle Backdrop) */}
-                                <div className="absolute inset-0 translate-x-3 translate-y-3 bg-orange-100/5 rounded-2xl border border-white/5 -z-10 hidden lg:block" />
+                    {/* Right Column: Visual - Free-floating Breakout */}
+                    <div className="relative mx-auto w-full max-w-[500px] lg:max-w-none lg:static lg:block">
+                        <ScrollReveal width="100%" delay={0.5} className="lg:relative lg:w-[150%] xl:w-[160%] lg:max-w-[1400px] z-10">
+                            <VideoLightbox videoId="RHs9nBpXuuE">
+                                <div className="relative group cursor-pointer transition-transform duration-700 ease-out hover:scale-[1.01]">
+                                    {/* Hero Image — natural dimensions, no box */}
+                                    <Image
+                                        src={heroImageDesktop}
+                                        alt="Shelf Asset Management — asset index with QR codes and labels"
+                                        width={2432}
+                                        height={1300}
+                                        className={heroImageMobile ? "hidden lg:block w-full h-auto" : "w-full h-auto"}
+                                        priority
+                                        sizes="(max-width: 1024px) 100vw, 1200px"
+                                    />
 
-                                {/* Main Hero Card Container */}
-                                <div className="relative rounded-2xl border border-border/40 bg-background/60 backdrop-blur-xl shadow-2xl shadow-black/5 p-2 lg:p-3 ring-1 ring-white/20">
-
-                                    {/* Inner Image Container */}
-                                    <div className="rounded-xl overflow-hidden bg-muted border border-border/30 aspect-[16/10] relative shadow-sm">
-                                        {/* Desktop / Default Image */}
+                                    {/* Mobile Optimized Image (If Provided) */}
+                                    {heroImageMobile && (
                                         <Image
-                                            src={heroImageDesktop}
-                                            alt="Shelf Asset Management Dashboard"
-                                            fill
-                                            className={heroImageMobile ? "hidden lg:block object-cover object-left-top" : "object-cover object-left-top"}
+                                            src={heroImageMobile}
+                                            alt="Shelf Asset Management Dashboard (Mobile)"
+                                            width={2432}
+                                            height={1300}
+                                            className="lg:hidden w-full h-auto"
                                             priority
-                                            sizes="(max-width: 1024px) 100vw, 900px"
+                                            sizes="100vw"
                                         />
+                                    )}
 
-                                        {/* Mobile Optimized Image (If Provided) */}
-                                        {heroImageMobile && (
-                                            <Image
-                                                src={heroImageMobile}
-                                                alt="Shelf Asset Management Dashboard (Mobile)"
-                                                fill
-                                                className="lg:hidden object-cover object-top"
-                                                priority
-                                                sizes="100vw"
-                                            />
-                                        )}
+                                    {/* Video Play Pill — bottom-right corner */}
+                                    <div className="absolute bottom-4 right-4 z-10">
+                                        <div className="flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 shadow-lg shadow-black/10 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                            <Play className="h-3.5 w-3.5 text-orange-600 fill-orange-600 ml-0.5" />
+                                            <span className="text-xs font-semibold text-zinc-700">See it in action</span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Subtle Ambient Glow (Behind) - Reduced Intensity */}
-                                <div className="absolute -inset-10 bg-orange-500/5 rounded-[40%] blur-[80px] -z-20 pointer-events-none opacity-20 mix-blend-multiply dark:mix-blend-normal" />
-                            </div>
+                                    {/* Subtle Ambient Glow (Behind) */}
+                                    <div className="absolute -inset-10 bg-orange-500/5 rounded-[40%] blur-[80px] -z-10 pointer-events-none opacity-30" />
+                                </div>
+                            </VideoLightbox>
                         </ScrollReveal>
                     </div>
                 </div>

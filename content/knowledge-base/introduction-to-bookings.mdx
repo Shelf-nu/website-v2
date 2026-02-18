@@ -1,0 +1,67 @@
+---
+title: "Introduction to Bookings"
+description: "This guide explains the fundamental concepts of Shelf's Bookings feature, which enables users to reserve equipment for specific time periods while preventing double-bookings."
+category: "Bookings & Custody"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+## Overview
+
+With bookings, users can reserve equipment for designated periods. Assets or kits added to a booking are assigned to a custodian during the specified timeframe. During this period, items receive a "Checked out" status and become unavailable for overlapping bookings. This system prevents conflicts and ensures equipment availability when needed.
+
+## Required Booking Information
+
+A booking requires four essential components:
+
+1. A **Name**
+2. **Start** and **End** date/time
+3. Selection of **Assets** and/or **Kits**
+4. A **Custodian**
+
+## Booking States
+
+### 1. Draft
+
+The booking is being configured. To proceed, you must fill in the Name, Start/End dates, and Custodian. You can then add assets or kits and perform a **Reserve** action. Deletion is still possible at this stage.
+
+### 2. Reserved
+
+The booking is fully configured. Assets become unavailable for overlapping bookings. The booking period is in the future and hasn't been checked out yet -- assets retain an **Available** status. Administrators can still take or assign custody. Options include **Check-out**, **Delete**, or **Cancel**.
+
+### 3. Ongoing
+
+The **Check-out** action has been performed. Assets now have a **Checked out** status and are in the custodian's possession. Administrators cannot take or assign custody during this phase. A **Check-in** action moves the booking to **Completed**. You can also **Delete** or **Cancel**.
+
+### 4. Overdue
+
+The booking's end date/time has passed without check-in. The system automatically changes the status to **Overdue**. Assets remain **Checked out**, potentially creating conflicts with other bookings. Perform **Check-in** to complete the booking, or **Delete** or **Cancel** it.
+
+### 5. Completed
+
+Assets have been returned and **Checked in**. The booking status changes to **Completed**, and asset statuses return to **Available**. You can now **Delete** or **Archive** the booking.
+
+### 6. Archived
+
+Completed bookings can be archived to organize the index. Archived bookings are hidden in the default view but accessible via dropdown filter selection.
+
+### 7. Cancelled
+
+Equipment managers can cancel non-completed bookings when they're no longer needed. Cancelled bookings remain logged but are hidden from the default index view.
+
+## Notification Emails
+
+The system sends automated emails to custodians and administrators at key stages:
+
+- **Confirmation**: Sent when a booking reaches Reserved status
+- **Check-out Reminder**: Sent 1 hour before the Start date/time
+- **Check-in Reminder**: Sent 1 hour before the End date/time
+- **Overdue**: Sent when the End date/time passes without check-in
+- **Completed**: Sent when the booking is checked in
+- **Cancelled**: Sent when an administrator cancels the booking
+- **Deleted**: Sent when an administrator deletes the booking
+
+## Related Resources
+
+- [How to create a Booking](/knowledge-base/how-to-create-a-booking)
+- [Adding assets and kits to a Booking](/knowledge-base/adding-assets-and-kits-to-a-booking)

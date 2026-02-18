@@ -5,7 +5,7 @@ import { Frontmatter } from './content/schema';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
-export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'concepts' | 'use-cases' | 'solutions' | 'industries' | 'alternatives' | 'glossary';
+export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'concepts' | 'use-cases' | 'solutions' | 'industries' | 'alternatives' | 'glossary' | 'updates' | 'knowledge-base';
 
 export interface MDXContent {
     slug: string;

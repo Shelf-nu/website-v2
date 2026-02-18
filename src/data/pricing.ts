@@ -44,7 +44,7 @@ export const pricingPlans: PricingPlan[] = [
         description: "For private collectors or small businesses.",
         billing: "monthly",
         cta: "Get Started",
-        href: "https://app.shelf.nu/register",
+        href: "https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_card_free_signup",
         variant: "outline",
         limits: {
             assets: "Unlimited",
@@ -74,7 +74,7 @@ export const pricingPlans: PricingPlan[] = [
         description: "Perfect for power users.",
         billing: "monthly",
         cta: "Buy Now",
-        href: "https://app.shelf.nu/register?plan=plus",
+        href: "https://app.shelf.nu/register?plan=plus&utm_source=shelf_website&utm_medium=cta&utm_content=pricing_card_plus_signup",
         variant: "default",
         popular: false,
         limits: {
@@ -105,10 +105,10 @@ export const pricingPlans: PricingPlan[] = [
         description: "Perfect for businesses.",
         billing: "monthly",
         cta: "Start Free Trial",
-        href: "https://app.shelf.nu/register?plan=team&trial=true",
+        href: "https://app.shelf.nu/register?plan=team&trial=true&utm_source=shelf_website&utm_medium=cta&utm_content=pricing_card_team_signup",
         secondaryCta: {
             text: "Buy Now",
-            href: "https://app.shelf.nu/register?plan=team"
+            href: "https://app.shelf.nu/register?plan=team&utm_source=shelf_website&utm_medium=cta&utm_content=pricing_card_team_buy"
         },
         variant: "default",
         popular: true,
@@ -139,7 +139,7 @@ export const pricingPlans: PricingPlan[] = [
         description: "Perfect for large organizations.",
         billing: "custom",
         cta: "Get a demo",
-        href: "/demo",
+        href: "/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_card_enterprise_demo",
         variant: "outline",
         limits: {
             assets: "Unlimited",

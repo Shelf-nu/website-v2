@@ -1,0 +1,86 @@
+---
+title: "Inviting Users via CSV Upload"
+description: "Shelf allows you to invite multiple users simultaneously by uploading a CSV file containing their information, making it useful for onboarding teams or departments all at once."
+category: "Other"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+## Overview
+
+Shelf enables bulk user invitations through CSV file uploads, making it particularly useful for onboarding teams or departments all at once.
+
+## Prerequisites
+
+- Administrator permissions required in your workspace
+- CSV file formatted according to the provided template
+- Team subscription (user management is a team feature)
+
+## Getting Started
+
+1. Navigate to **Settings > Team**
+2. Click on **Import Users**
+3. Download the CSV template to ensure proper formatting
+4. Fill in the template with user information
+
+## CSV File Requirements
+
+### Base Rules
+
+- Use comma (,) as the delimiter
+- Valid roles: ADMIN, BASE, SELF_SERVICE
+- Role column is case-sensitive
+- Each row represents one new user
+- Email addresses must be valid
+- First row reserved for column headers
+
+### Required Columns
+
+- **role**: User's workspace role (ADMIN, BASE, or SELF_SERVICE)
+- **email**: User's email address
+
+### Sample CSV Format
+
+```
+role,email
+ADMIN,john.doe@company.com
+SELF_SERVICE,jane.smith@company.com
+```
+
+## Import Process
+
+1. Prepare CSV file according to template
+2. Click **Import Users** in Team settings
+3. Add optional welcome message for invitation emails
+4. Select prepared CSV file
+5. Click **Import now**
+
+## After Import
+
+- Users receive email invitations
+- System validates all entries before processing
+- Summary provided of successful invites and errors
+- New users must accept invitation to gain access
+
+## Important Notes
+
+- All entries validated before processing
+- Invites sent via email with secure join link
+- Users already in workspace cannot be invited again
+- Email addresses must be correctly formatted
+
+## Troubleshooting
+
+- Verify CSV uses comma delimiter
+- Check roles are correctly capitalized
+- Ensure all email addresses are valid
+- Confirm users are not already workspace members
+
+## Best Practices
+
+- Review CSV before upload for accuracy
+- Include clear welcome message with context or instructions
+- Keep track of sent invitations
+- Follow up with users who have not accepted
+
+**Support Contact:** hello@shelf.nu

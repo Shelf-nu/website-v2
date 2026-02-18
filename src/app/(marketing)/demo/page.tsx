@@ -1,13 +1,11 @@
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Metadata } from "next";
-import { Star, Quote, ArrowRight } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import Image from "next/image";
+import { Suspense } from "react";
+import { DemoForm } from "@/components/forms/demo-form";
 
 export const metadata: Metadata = {
     title: "Book a Demo - Shelf Asset Management",
@@ -93,9 +91,9 @@ export default function DemoPage() {
                                 <div className="text-sm font-semibold text-muted-foreground mb-2">Trusted by modern teams</div>
                                 <div className="flex -space-x-2">
                                     {[
-                                        { src: "/logos/nokia.svg", alt: "Nokia" },
-                                        { src: "/logos/universal-music.svg", alt: "Universal Music" },
-                                        { src: "/logos/virgin-hyperloop.svg", alt: "Virgin Hyperloop" }
+                                        { src: "/logos/nokia.png", alt: "Nokia" },
+                                        { src: "/logos/universal-music.png", alt: "Universal Music" },
+                                        { src: "/logos/virgin-hyperloop.webp", alt: "Virgin Hyperloop" }
                                     ].map((logo, i) => (
                                         <div key={i} className="relative h-8 w-8 rounded-full border-2 border-background bg-white flex items-center justify-center overflow-hidden">
                                             <Image src={logo.src} alt={logo.alt} fill className="object-contain p-1" />
@@ -119,36 +117,9 @@ export default function DemoPage() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <form className="space-y-4">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <Label htmlFor="first-name">First name</Label>
-                                            <Input id="first-name" placeholder="Jane" required />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label htmlFor="last-name">Last name</Label>
-                                            <Input id="last-name" placeholder="Doe" required />
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="email">Work email</Label>
-                                        <Input id="email" type="email" placeholder="jane@company.com" required />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="company">Company name</Label>
-                                        <Input id="company" placeholder="Acme Inc." required />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="message">How can we help?</Label>
-                                        <Textarea id="message" placeholder="Tell us about your use case..." className="min-h-[100px]" />
-                                    </div>
-                                    <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold h-11">
-                                        Book Demo <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
-                                    <p className="text-xs text-center text-muted-foreground">
-                                        By booking a demo, you agree to our <a href="/terms" className="underline underline-offset-2">Terms of Service</a>.
-                                    </p>
-                                </form>
+                                <Suspense fallback={<div className="h-[400px] animate-pulse rounded-lg bg-muted/50" />}>
+                                    <DemoForm />
+                                </Suspense>
                             </CardContent>
                         </Card>
                     </div>

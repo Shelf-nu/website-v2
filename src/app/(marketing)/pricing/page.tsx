@@ -242,12 +242,12 @@ export default function PricingPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 text-base shadow-lg shadow-orange-600/20" asChild>
-                            <Link href="https://app.shelf.nu/register">
+                            <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup">
                                 Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                         <Button size="lg" variant="outline" className="h-12 px-8 text-base" asChild>
-                            <Link href="/demo">
+                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo">
                                 Book a Demo
                             </Link>
                         </Button>
@@ -257,7 +257,7 @@ export default function PricingPage() {
                 <div className="max-w-[1400px] mx-auto mt-24">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold tracking-tight">Compare all features</h2>
-                        <p className="mt-4 text-lg text-muted-foreground">Detailed breakdown of what is included in each plan. Learn <Link href="/blog/what-counts-as-an-asset" className="underline underline-offset-4 decoration-muted-foreground/50 hover:text-foreground">how we count assets</Link> or <Link href="/features/integrity" className="underline underline-offset-4 decoration-muted-foreground/50 hover:text-foreground">why audit logs matter</Link>.</p>
+                        <p className="mt-4 text-lg text-muted-foreground">Detailed breakdown of what is included in each plan.</p>
                     </div>
                     <FeatureTable />
                 </div>

@@ -8,9 +8,13 @@ export default function MarketingLayout({
 }) {
     return (
         <div className="flex min-h-screen flex-col">
-            <Navbar />
+            <div data-pagefind-ignore>
+                <Navbar />
+            </div>
             <main className="flex-1">{children}</main>
-            <Footer />
+            <div data-pagefind-ignore>
+                <Footer />
+            </div>
         </div>
     );
 }

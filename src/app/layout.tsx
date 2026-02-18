@@ -46,11 +46,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://shelf.nu/og.jpg",
+        url: "https://shelf.nu/og.webp",
         width: 1200,
         height: 630,
         alt: "Shelf Asset Management Interface",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     description: "Modern open source asset tracking for teams. Star us on GitHub.",
     creator: "@shelf_nu",
     site: "@shelf_nu",
-    images: ["https://shelf.nu/og.jpg"],
+    images: ["https://shelf.nu/og.webp"],
   },
   icons: {
     icon: "/favicon.ico",

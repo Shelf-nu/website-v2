@@ -1,0 +1,150 @@
+---
+title: "Batch Scanning Actions"
+description: "Shelf's Batch QR Scanning feature enables users to perform actions on multiple assets simultaneously by scanning their QR codes in succession, significantly improving efficiency when managing groups of assets."
+category: "Assets"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+## Key Benefits
+
+- **Time Savings**: Process multiple assets in a single operation instead of individually
+- **Streamlined Workflows**: Ideal for inventory counts, location changes, and custody transfers
+- **Error Reduction**: Confirm all actions before execution to prevent mistakes
+- **Simplified Auditing**: Quickly update information for batches of assets during audits
+
+## Accessing Batch QR Scanning
+
+1. Open the Shelf mobile app or mobile website
+2. Tap the **Scanner** button in the navigation
+3. When the scanner opens, you'll see a dropdown button labeled "Action:" with the current selected action
+4. Tap this dropdown to reveal the available actions:
+   - **View asset** (single action - default)
+   - **Assign custody** (bulk action)
+   - **Release custody** (bulk action)
+   - **Update location** (bulk action)
+
+## Batch Actions Available
+
+### Assign Custody
+
+Use this option to transfer custody of multiple assets to a team member in one operation.
+
+1. Select **Assign custody** from the scanner dropdown
+2. Scan each asset's QR code you want to include in the batch
+3. The system will display a count of scanned assets (e.g., "Items scanned (8)")
+4. You'll see a list of the scanned assets, with options to remove individual items (trash icon)
+5. Select the team member to assign custody to from the dropdown
+6. Tap the orange **Assign custody** button to complete the action
+
+### Release Custody
+
+This option allows you to release multiple assets from custody simultaneously.
+
+1. Select **Release Custody** from the scanner dropdown
+2. Scan each asset's QR code you want to release
+3. The system will display a count of scanned assets
+4. After scanning all desired assets, tap **Continue**
+5. Review the list of assets and confirm the release
+
+### Update Location
+
+Change the location of multiple assets at once with this option.
+
+1. Select **Update Location** from the scanner dropdown
+2. Scan each asset's QR code you want to relocate
+3. The system will display a count of scanned assets
+4. After scanning all desired assets, tap **Continue**
+5. Select the new location
+6. Review the list of assets and confirm the location update
+
+## Handling Conflicts
+
+When using batch actions, the system automatically checks for potential conflicts. Different actions have different types of blockers:
+
+### For Assign Custody
+
+- Assets already in custody of someone else
+- Assets currently checked out
+- Assets that are part of a kit
+- Kits already in custody
+- Kits with assets in custody
+- Kits that are checked out
+- Invalid or unregistered QR codes
+
+### For Release Custody
+
+- Assets not currently in custody
+- Assets that are part of a kit
+- Kits not in custody
+- Invalid or unregistered QR codes
+
+### For Update Location
+
+- Kits (cannot be added to a location)
+- Invalid or unregistered QR codes
+
+### If conflicts are detected, the system will:
+
+1. Alert you with a yellow warning banner showing "Unresolved blockers" and the number of issues
+2. Explain the specific issues (e.g., "4 assets are already in custody")
+3. Provide options to resolve conflicts, such as "Remove from list" for individual items or "Resolve all" for all conflicts
+4. Only enable the action button once all conflicts are resolved
+
+## Best Practices
+
+- **Organize Assets First**: Group assets physically before scanning to improve efficiency
+- **Use in Well-Lit Areas**: Ensure adequate lighting for faster QR code recognition
+- **Verify Count**: Always check that the number of scanned assets matches your expectations (visible at the top of the scan list)
+- **Use the Clear List Option**: If you need to start over, use the "Clear list" button in the top right
+- **Remove Individual Items**: Use the trash icon next to each asset to remove it from the batch if needed
+- **Review Before Confirming**: Take a moment to review the final list before completing the action
+- **Deal with Conflicts Promptly**: Use the "Resolve all" button to quickly address multiple issues at once
+
+## Common Use Cases
+
+### Team Member Onboarding/Offboarding
+
+When a new team member joins or leaves, efficiently transfer multiple assets to or from their custody.
+
+### Asset Relocations
+
+When moving equipment between locations (e.g., from storage to a project site), update all assets' locations in one operation.
+
+## The Scanning Interface
+
+When scanning in batch mode, you'll notice several key interface elements:
+
+1. **Action Dropdown**: Shows your currently selected action (e.g., "Action: assign custody")
+2. **Scan Counter**: Displays the number of items scanned (e.g., "Items scanned (12)")
+3. **Asset List**: Shows all scanned assets with labels indicating their type
+4. **Action Button**: The orange button at the bottom to complete the selected action
+5. **Blocker Warnings**: Yellow warning banners that appear when there are issues to resolve
+
+## Frequently Asked Questions
+
+### How many assets can I process in a single batch?
+
+There is no strict limit to how many assets you can include in a batch action.
+
+### What happens if I scan the same asset twice during a batch scan?
+
+The system will automatically detect duplicate scans and only include each asset once in the final action.
+
+### Can I collapse or expand the scanned items list?
+
+Yes, you can use the arrow buttons at the top of the items list to collapse or expand it, making it easier to continue scanning without the list taking up too much screen space.
+
+### Can I cancel a batch action after I've started scanning?
+
+Yes, you can tap the "Back" button or "Clear list" at any time during the scanning process to abandon the current batch action.
+
+### Can all user roles use batch scanning?
+
+Batch scanning capabilities depend on your user role:
+
+- **Administrators**: Full access to all batch actions
+- **Self-service users**: Can use batch scanning for operations within their permission level
+- **Base users**: Limited to viewing assets via QR scanning
+
+For more information on user roles and permissions, see the [User Roles and Permissions](/knowledge-base/user-roles-and-their-permissions) guide.

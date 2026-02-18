@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 
+const isStaticExport = process.env.NEXT_OUTPUT === "export";
+
 const nextConfig: NextConfig = {
-  // output: "export",
+  ...(isStaticExport ? { output: "export" } : {}),
   images: {
-    // unoptimized: true,
+    ...(isStaticExport ? { unoptimized: true } : {}),
     remotePatterns: [
       {
         protocol: "https",

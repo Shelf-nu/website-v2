@@ -49,12 +49,12 @@ export default function CaseStudiesIndexPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button size="lg" asChild>
-                            <Link href="/signup">
+                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_hero_signup">
                                 Start for free <ArrowRight />
                             </Link>
                         </Button>
                         <Button variant="outline" size="lg" asChild>
-                            <Link href="/demo">
+                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_hero_demo">
                                 Book a demo
                             </Link>
                         </Button>
@@ -113,7 +113,7 @@ export default function CaseStudiesIndexPage() {
                         Stop losing equipment and start tracking in minutes. No credit card required.
                     </p>
                     <Button size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-orange-50 hover:text-orange-700" asChild>
-                        <Link href="/signup">
+                        <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_bottom_cta_signup">
                             Get Started for Free <ArrowRight />
                         </Link>
                     </Button>

@@ -1,0 +1,55 @@
+---
+title: "Early Check-in and Check-out of Bookings"
+description: "Shelf's booking system allows users to check in or check out assets earlier than originally scheduled, while maintaining records of the original booking period for transparency and analytics purposes."
+category: "Bookings & Custody"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+## How Early Check-in/Check-out Works
+
+### Early Check-out
+
+When checking out assets before the scheduled start date:
+
+- A warning message appears notifying you that the booking start date will be adjusted to the current time
+- You can choose to:
+  - Cancel the action
+  - Adjust the date (updating the booking start date to now)
+  - Proceed without adjusting dates
+
+### Early Check-in
+
+When checking in assets before the scheduled end date:
+
+- You receive a warning that the booking end date will be adjusted to the current time
+- Options include:
+  - Cancel
+  - Adjust the date (updating the booking end date to now)
+  - Proceed without changing dates
+
+## Original Booking Dates
+
+The system preserves original booking information:
+
+- Initial booking dates are stored as `originalFrom` and `originalTo`
+- Original dates remain even when actual booking dates are adjusted
+- Booking details display both the actual and original booking periods
+- Access this information through your [booking data export](/knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out)
+
+## Important Notes
+
+- When creating or updating draft bookings, both actual and original dates are updated
+- Original dates are preserved only during early check-in/check-out operations
+- Scheduled reminders and overdue notifications follow actual booking dates, not original dates
+- CSV exports include both actual and original booking dates
+
+## Use Cases
+
+This feature helps when:
+
+- Equipment is no longer needed for the full originally scheduled period
+- Equipment must be returned early for urgent requests
+- Tracking actual versus planned usage for reporting and analytics
+
+The ability to track both original and adjusted periods provides transparency for resource planning and utilization analysis.

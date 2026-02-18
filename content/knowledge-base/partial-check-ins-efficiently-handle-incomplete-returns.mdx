@@ -1,0 +1,115 @@
+---
+title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
+description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
+category: "Bookings & Custody"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+## What Are Partial Check-ins?
+
+When someone returns only some of the assets from their booking, partial check-ins let you:
+
+- Check in available assets immediately without waiting for missing items
+- Keep bookings active until all assets are returned
+- Maintain accurate inventory status with context-aware asset states
+- Track which assets are still outstanding with real-time progress monitoring
+- Handle complex multi-booking scenarios where assets exist in multiple bookings
+
+The system functions similarly to a library loan where you can return some books while keeping others checked out under the same loan, with intelligent tracking of each item's status across all active loans.
+
+## How Partial Check-ins Work
+
+### Three Ways to Perform Partial Check-ins
+
+**Quick Check-in (Dropdown)**
+
+- Checks in all remaining assets at once (traditional method)
+- Intelligently skips assets already checked in from previous partial sessions
+- Use this when all remaining assets are being returned together
+
+**Explicit Check-in (Scanner)**
+
+- Opens a dedicated scanner interface for selective asset check-in
+- Features real-time progress tracking and booking context
+- Perfect for partial returns with physical verification of each item
+- Mobile-optimized with responsive progress display
+
+**Bulk Selection (Actions Menu)**
+
+- Select specific assets from the booking list using checkboxes
+- Choose Actions > Check in to process only the selected items
+- Ideal when you want to check in specific assets without scanning
+- Supports both individual assets and entire kits
+
+### Using Explicit Check-in (Scanner Method)
+
+1. Access the scanner: Click "Explicit check-in" from the check-in dropdown
+2. Smart booking context: Scanner opens with booking details and progress bar at the top
+3. Scan returned assets: Use your device's camera to scan QR codes or barcodes
+4. Real-time validation: System validates each scan against booking contents and prevents conflicts
+5. Progress tracking: Watch the progress bar update with percentage completion
+6. Auto-completion: Booking automatically completes when last asset is scanned
+
+### Using Bulk Selection (Actions Method)
+
+1. View the booking: Navigate to the booking detail page
+2. Select assets: Check the boxes next to assets being returned
+3. Access Actions menu: Click the Actions dropdown in the toolbar
+4. Check in selected: Choose "Check in" from the Actions menu
+5. Confirm action: The selected assets will be checked in and marked as available
+
+**Bulk Selection Benefits:**
+
+- No scanning required -- perfect for damaged QR codes or when scanning is not practical
+- Visual confirmation of exactly which assets you are processing
+- Works with both individual assets and complete kits
+- Instant processing without needing to navigate to scanner interface
+
+### Asset Status Intelligence
+
+The system features context-aware status management that handles complex scenarios:
+
+**Multi-booking Asset States**
+
+- Assets can exist in multiple bookings simultaneously
+- Status displays are context-aware based on which booking you are viewing
+- An asset might be "Available" in one booking context but "Checked Out" in another
+
+**Smart Status Labels**
+
+- "Already checked in": Shows for assets that have been returned in active bookings
+- "Available": Asset returned and ready for new bookings
+- "Checked out": Asset currently in use in this booking context
+
+## Best Practices
+
+### Choosing the Right Method
+
+**Use Explicit Check-in (Scanner) when:**
+
+- You need physical verification of each item
+- Processing returns incrementally as they arrive
+- Working with mixed kit returns
+- QR codes are easily scannable
+
+**Use Bulk Selection (Actions) when:**
+
+- QR codes are damaged or hard to scan
+- You prefer working from a visual list
+- Processing specific items from paperwork or notes
+- Quick selection of multiple items at once
+
+**Use Quick Check-in when:**
+
+- All remaining assets are being returned together
+- Fast processing is priority
+- You have verified all items are present
+
+## Continue Learning
+
+Ready to dive deeper? Check out these related articles:
+
+- [Availability View Complete Guide](/knowledge-base/availability-view-complete-guide)
+
+**Need help getting started?** Contact the support team or [schedule a demo](/demo) to see the complete partial check-in system in action with your specific use case and multi-booking scenarios.

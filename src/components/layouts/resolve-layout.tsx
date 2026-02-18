@@ -7,6 +7,8 @@ import { CaseStudyLayout } from "./case-study-layout";
 import { BlogLayout } from "./blog-layout";
 import { ConceptLayout } from "./concept-layout";
 import { FeatureLayout } from "./feature-layout";
+import { KnowledgeBaseLayout } from "./knowledge-base-layout";
+import { UpdateLayout } from "./update-layout";
 
 // Fallback layout (simple container)
 import { Container } from "@/components/ui/container";
@@ -27,6 +29,8 @@ export function resolveLayout(layout: string) {
         case "blog": return BlogLayout;
         case "concept": return ConceptLayout;
         case "feature": return FeatureLayout;
+        case "knowledge-base": return KnowledgeBaseLayout;
+        case "update": return UpdateLayout;
         default: return DefaultLayout;
     }
 }

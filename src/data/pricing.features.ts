@@ -457,35 +457,6 @@ export const pricingFeatures: PricingFeature[] = [
     },
 
     // ============================================================================
-    // CUSTODY
-    // ============================================================================
-    {
-        id: "assign-custody-signature",
-        category: "Custody",
-        name: "Assign Custody (Signature)",
-        description:
-            "Require a digital signature when assigning custody of assets",
-        availability: {
-            free: "limited",
-            plus: "limited",
-            team: "limited",
-            enterprise: "limited",
-        },
-        internalAvailability: {
-            free: "limited",
-            tier_1: "limited",
-            tier_2: "limited",
-            custom: "limited",
-        },
-        metadata: {
-            free: "Coming soon",
-            plus: "Coming soon",
-            team: "Coming soon",
-            enterprise: "Coming soon",
-        },
-    },
-
-    // ============================================================================
     // SEARCH & FILTERING
     // ============================================================================
     {

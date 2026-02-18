@@ -39,7 +39,7 @@ const NavigationMenuList = React.forwardRef<
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 
 const navigationMenuTriggerStyle = cva(
-    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-zinc-100 hover:text-orange-600 focus:bg-zinc-100 focus:text-orange-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-zinc-100/50 data-[state=open]:bg-zinc-100/50"
+    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-3 py-2 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:text-foreground data-[state=open]:text-foreground"
 )
 
 const NavigationMenuItem = NavigationMenuPrimitive.Item
@@ -55,7 +55,7 @@ const NavigationMenuTrigger = React.forwardRef<
     >
         {children}
         <ChevronDown
-            className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
+            className="relative top-[1px] ml-1 h-2.5 w-2.5 opacity-60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:opacity-100"
             aria-hidden="true"
         />
     </NavigationMenuPrimitive.Trigger>
@@ -86,7 +86,7 @@ const NavigationMenuViewport = React.forwardRef<
     <div className={cn("absolute left-0 top-full flex justify-center w-full z-50")}>
         <NavigationMenuPrimitive.Viewport
             className={cn(
-                "origin-top-center relative h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-border bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90",
+                "origin-top-center relative h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border border-border/40 bg-background shadow-xl shadow-black/5 transition-[height] duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90",
                 className
             )}
             ref={ref}

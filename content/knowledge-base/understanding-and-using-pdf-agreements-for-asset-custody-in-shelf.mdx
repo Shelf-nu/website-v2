@@ -1,0 +1,45 @@
+---
+title: "Understanding and Using PDF Agreements for Asset Custody in Shelf"
+description: "Learn how Shelf's signed custody feature enables administrators to attach PDF documents to custody transfers, creating formal agreements between asset owners and custodians."
+category: "Assets"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+Shelf's signed custody feature enables administrators to attach PDF documents to custody transfers, creating formal agreements between asset owners and custodians. The system supports two agreement types: read-only (requiring acknowledgment) and signature-required (requiring electronic signatures).
+
+## Key Features
+
+### Enhanced Accountability and Documentation
+
+The system establishes a clear audit trail of who has taken responsibility for assets while providing legal documentation capabilities. Users must ensure agreements comply with their jurisdiction's requirements.
+
+### Agreement Types
+
+- **Read-only agreements** require custodians to confirm document review
+- **Signature-required agreements** demand electronic signatures before custody transfers complete
+
+### Flexible Implementation
+
+Agreements are optional and can be applied selectively -- some assets require them while others don't, accommodating different asset values and risk levels.
+
+## Setup and Management
+
+Administrators access **Settings > PDF Agreements** to create templates by uploading PDFs and designating agreement type. Templates receive names, active/inactive status, and can be customized for different scenarios (equipment training, custody terms, etc.).
+
+When assigning custody, administrators toggle "Add PDF Agreement" and select appropriate templates. Registered users receive email notifications with review links; non-registered members require manual link sharing since they lack system email addresses.
+
+## Special Considerations
+
+### Kit Custody
+
+When kits receive custody assignments, all contained assets automatically synchronize. Individual asset custodies are released and reassigned through the kit, with pending receipts cancelled during this process.
+
+### Record Keeping
+
+Completed agreements are accessible through the Signed Custody section (showing Agreements and Receipts), asset detail pages, or kit pages. Receipt statuses include:
+
+- **Pending** -- Awaiting custodian action
+- **Completed** -- Agreement acknowledged or signed
+- **Declined** -- Custodian rejected the agreement
+- **Cancelled** -- Agreement was cancelled by administrator

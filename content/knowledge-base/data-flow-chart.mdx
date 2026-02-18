@@ -1,0 +1,31 @@
+---
+title: "Data Flow Chart"
+description: "An overview of Shelf's data management architecture, illustrating how user data moves from initial platform interaction through secure database storage."
+category: "Getting Started"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+At Shelf, we prioritize the security and efficiency of our data management system. This flow chart illustrates the journey of data within our application, from the moment a user interacts with our platform to the secure storage of information in our databases.
+
+## Key Components
+
+1. **Client Web Browser** -- The entry point for all user interactions.
+2. **Web App (Remix)** -- The main application, hosted on Fly.io's SOC 2 Type 2 compliant servers.
+3. **Supabase** -- The robust backend solution, handling authentication, data storage, and database management.
+4. **Stripe** -- Manages all payment and subscription-related processes.
+5. **Sentry** -- The error logging and monitoring system.
+6. **Microsoft Clarity** -- Web Performance / Javascript Error Tracking.
+7. **SSO & SCIM** -- Enables seamless integration with Microsoft or Google authentication systems.
+
+## Security Measures
+
+- All HTTP requests are secured using SSL/TLS 128-bit encryption with TLS 1.3 protocol.
+- The PostgreSQL database is encrypted with AES-256, ensuring top-tier data protection.
+- Strict RLS (Row Level Security) policies maintain data integrity and access control.
+
+## Conclusion
+
+This architecture provides a seamless, secure, and scalable solution for all your asset management needs. By leveraging industry-leading technologies and following best practices in data security, Shelf ensures valuable information remains protected and accessible.
+
+For questions about data flow or security measures, contact the support team.

@@ -1,0 +1,242 @@
+---
+title: "Advanced Asset Index: Complete Guide"
+description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers all features and best practices for maximizing your asset management efficiency."
+category: "Assets"
+date: "2024-06-01"
+layout: "knowledge-base"
+---
+
+## Managing Your View
+
+### Columns Management
+
+- Fixed column: "Name" is always visible
+- Toggle any available columns including custom fields
+- Use drag handles to reorder columns
+- "Select all" or "Deselect all" for quick configuration
+
+**Pro tip**: Show only necessary columns for your current task to maintain a clean view.
+
+## Advanced Filtering System
+
+### Text Fields (Name, Category, Location, etc.)
+
+- **is**: Exact match (e.g., `Location is "Server Room"`)
+- **is not**: Excludes exact match (e.g., `Category is not "Computers"`)
+- **contains**: Partial match (e.g., `Description contains "wireless"`)
+- **matches any**: Multiple exact matches
+- **contains any**: Multiple partial matches
+
+### Number Fields (Value)
+
+- **is**: Exact value (e.g., `Value is 1200`)
+- **is not**: Excludes value
+- **greater than**: Above value (e.g., `Value greater than 5000`)
+- **less than**: Below value
+- **greater or equal**: Minimum value
+- **lower or equal**: Maximum value
+- **between**: Value range (e.g., `Value between 1000 and 5000`)
+
+### Date Fields (Created At, Purchase Date, etc.)
+
+- **is**: Specific date
+- **is not**: Exclude date
+- **before**: Before date
+- **after**: After date
+- **between**: Date range
+- **in dates**: Multiple specific dates
+
+### Boolean Fields (Available to Book, Is Portable)
+
+- **is**: Yes/No selection
+
+### Tags
+
+- **contains**: Has specific tag
+- **contains all**: Has all specified tags
+- **contains any**: Has any of specified tags
+
+## Natural and Advanced Sorting
+
+### Natural Sorting
+
+The system uses natural sorting for logical number ordering:
+
+**Traditional Sorting:**
+- Scanner 1
+- Scanner 10
+- Scanner 11
+- Scanner 2
+- Scanner 3
+
+**Natural Sorting (Shelf):**
+- Scanner 1
+- Scanner 2
+- Scanner 3
+- Scanner 10
+- Scanner 11
+
+**Benefits:**
+- Numbers sort logically within names
+- Equipment series appear in proper order
+- Serial numbers sort correctly
+- Case-insensitive ordering
+
+### Multi-Field (Stacked) Sorting
+
+You can build complex sort orders:
+
+1. Primary sort sets main grouping
+2. Secondary sort organizes within groups
+3. Additional sorts provide final ordering
+
+**Example:** Sort by Category, then Value, then Name:
+
+```
+Computers
+  - Laptop ($2,000) - "Dell XPS"
+  - Laptop ($1,500) - "HP Elite"
+  - Desktop ($1,200) - "iMac"
+
+Networking
+  - Switch ($5,500) - "Cisco"
+  - Router ($350) - "Netgear"
+  - Access Point ($180) - "Ubiquiti"
+```
+
+## Batch Actions
+
+### Custody Management
+
+- Release custody from multiple assets
+- Assign new custodian to selection
+- Perfect for employee offboarding/onboarding
+
+### Tag Operations
+
+- Add tags to multiple assets
+- Remove tags from selection
+- Great for categorization updates
+
+### Location and Category Updates
+
+- Move multiple assets to new location
+- Update category for selected assets
+- Useful for department reorganization
+
+### Availability Control
+
+- Mark multiple assets as available/unavailable
+- Helpful for maintenance periods
+
+## Export Capabilities
+
+Export creates a CSV file containing:
+
+- All assets matching your current filters
+- All columns currently visible in your index
+- Perfect for:
+  - Inventory reports
+  - Audit preparation
+  - Budget planning
+  - Maintenance schedules
+
+## Practical Examples
+
+### Equipment Relocation
+
+1. Filter: Location is "Floor 2"
+2. Select all filtered assets
+3. Batch action: Update location to "Floor 3"
+4. Export selection for move documentation
+
+### Maintenance Planning
+
+1. Filter: Last maintenance before 2023-12-31
+2. Sort by: Category, Location
+3. Add tag "maintenance-due-2024"
+4. Export for service scheduling
+
+### Value Assessment
+
+1. Filter: Value greater than 5000
+2. Sort by: Category, Value (descending)
+3. Export selection for insurance update
+
+### Department Transfer
+
+1. Filter: Custody is "Marketing Team"
+2. Sort by: Category, Name
+3. Batch update: New location and custody
+4. Export for handover documentation
+
+## Best Practices
+
+### Efficient Filtering
+
+1. Start with broad filters
+2. Add specific filters to narrow results
+3. Use date ranges for time-sensitive queries
+4. Combine filters for precise results
+
+### Column Management
+
+1. Show only necessary columns
+2. Order by importance left to right
+3. Add all needed columns before exporting
+
+### Sorting Strategy
+
+1. Choose primary sort for main grouping
+2. Add supporting sorts for subgroups
+3. Use Name as final sort for easy scanning
+
+### Batch Operations
+
+1. Filter precisely before selecting
+2. Verify selection before applying actions
+3. Export before and after major changes
+4. Use consistent tag naming for tracking
+
+## Tips and Tricks
+
+1. Use `contains` for flexible text matching
+2. Combine date and value filters for precise queries
+3. Export filtered views for reporting
+4. Use tags for temporary grouping
+5. Regular column setup saves time
+6. Stack sorts for logical grouping
+7. Use natural sorting for numbered items
+8. Export before batch updates for backup
+
+## Troubleshooting
+
+### No Results?
+
+- Check filter spelling
+- Try broader criteria
+- Verify date formats (YYYY-MM-DD)
+- Remove some filters temporarily
+
+### Too Many Results?
+
+- Add more specific filters
+- Combine multiple filter types
+- Use exact matches instead of contains
+- Add date ranges to narrow scope
+
+### Performance Issues?
+
+- Reduce visible columns
+- Remove unused filters
+- Clear filters after use
+- Export large datasets instead of viewing
+
+### Export Issues?
+
+- Verify column selection
+- Check filter combinations
+- Ensure reasonable dataset size
+- Confirm file permissions
+
+Need more help? Contact support at hello@shelf.nu.
