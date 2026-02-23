@@ -2,8 +2,8 @@
 
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
+import { useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useSpring } from 'react-spring';
 
 interface GlobeProps {
     className?: string;
@@ -14,15 +14,8 @@ export function Globe({ className, config }: GlobeProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const pointerInteracting = useRef(null);
     const pointerInteractionMovement = useRef(0);
-    const [{ r }, api] = useSpring(() => ({
-        r: 0,
-        config: {
-            mass: 1,
-            tension: 280,
-            friction: 40,
-            precision: 0.001,
-        },
-    }));
+    const r = useMotionValue(0);
+    const springR = useSpring(r, { stiffness: 280, damping: 40 });
 
     useEffect(() => {
         let phi = 0;
@@ -65,8 +58,7 @@ export function Globe({ className, config }: GlobeProps) {
                 if (!pointerInteracting.current) {
                     phi += 0.003; // Auto-rotate
                 }
-                const springR = r.get();
-                state.phi = phi + springR;
+                state.phi = phi + springR.get();
                 state.width = width * 2;
                 state.height = width * 2;
             },
@@ -86,7 +78,7 @@ export function Globe({ className, config }: GlobeProps) {
             globe.destroy();
             window.removeEventListener('resize', onResize);
         };
-    }, [config, r]);
+    }, [config, springR]);
 
     return (
         <div
@@ -117,14 +109,14 @@ export function Globe({ className, config }: GlobeProps) {
                         const delta = e.clientX - pointerInteracting.current;
                         pointerInteractionMovement.current = delta;
                         // Map pixel delta to rotation (sensitivity)
-                        api.start({ r: delta / 200 });
+                        r.set(delta / 200);
                     }
                 }}
                 onTouchMove={(e) => {
                     if (pointerInteracting.current !== null && e.touches[0]) {
                         const delta = e.touches[0].clientX - pointerInteracting.current;
                         pointerInteractionMovement.current = delta;
-                        api.start({ r: delta / 100 });
+                        r.set(delta / 100);
                     }
                 }}
             />
