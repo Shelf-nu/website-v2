@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/container';
 import { Badge } from '@/components/ui/badge';
 import { Pill } from "@/components/ui/pill";
 import { PageHeader } from '@/components/layouts/shared/page-header';
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: 'Free Tools for Asset Management | Shelf',
@@ -34,6 +35,7 @@ const tools = [
 
 export default function ToolsIndexPage() {
     return (
+        <PagefindWrapper type="Page" title="Free Tools for Asset Management" keywords="tools free tools asset tools tools page">
         <div className="min-h-screen font-sans">
             {/* Custom Header with Grid Pattern */}
             <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">
@@ -89,5 +91,6 @@ export default function ToolsIndexPage() {
                 </Container>
             </section>
         </div>
+        </PagefindWrapper>
     );
 }

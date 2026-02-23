@@ -17,6 +17,7 @@ import NumberFlow from '@number-flow/react';
 import { TrustedBy } from "@/components/sections/trusted-by";
 import { ArrowRight, Quote } from "lucide-react";
 import Image from "next/image";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -94,6 +95,7 @@ export default function PricingPage() {
     const maxSavings = calculateSavings(pricingPlans);
 
     return (
+        <PagefindWrapper type="Page" title="Pricing - Simple, transparent pricing" keywords="pricing plans price cost pricing page">
         <div className="flex min-h-screen flex-col relative overflow-hidden">
             {/* Ambient Background Gradient & Grid */}
             <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
@@ -281,5 +283,6 @@ export default function PricingPage() {
                 </div>
             </Container>
         </div>
+        </PagefindWrapper>
     );
 }

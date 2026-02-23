@@ -10,6 +10,7 @@ import { CUSTOMER_LOGOS, getTestimonialLogos } from "@/data/customer-logos";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CTA } from "@/components/sections/cta";
 import { CustomerLogoWall } from "@/components/sections/customers/customer-logo-wall";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "Customers - Shelf",
@@ -31,6 +32,7 @@ export default function CustomersPage() {
     }));
 
     return (
+        <PagefindWrapper type="Page" title="Customers - Trusted by 3,000+ teams worldwide" keywords="customers customer stories testimonials customers page">
         <div className="flex min-h-screen flex-col">
             {/* 1. Hero */}
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden">
@@ -192,5 +194,6 @@ export default function CustomersPage() {
             {/* 6. CTA */}
             <CTA />
         </div>
+        </PagefindWrapper>
     );
 }

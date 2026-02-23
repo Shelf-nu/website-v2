@@ -1,3 +1,5 @@
+// SSR-only — not used in static export build.
+// Preserved for future SSR deployment. Do not import from client components.
 import "server-only";
 
 import { getSupabaseAdmin } from "./supabase-server";

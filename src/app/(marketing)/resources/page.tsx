@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { Shield, MessageSquare, HelpCircle, Code } from "lucide-react";
 import Link from "next/link";
 import { CTA } from "@/components/sections/cta";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "Resources - Shelf Asset Management",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
     return (
+        <PagefindWrapper type="Page" title="Resources - Help, support, and documentation" keywords="resources help support documentation resources page">
         <div className="flex min-h-screen flex-col">
             <Container className="py-24 sm:py-32">
                 <div className="text-center max-w-2xl mx-auto mb-20">
@@ -103,5 +105,6 @@ export default function ResourcesPage() {
 
             <CTA />
         </div>
+        </PagefindWrapper>
     );
 }

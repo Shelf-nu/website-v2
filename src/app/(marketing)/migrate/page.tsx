@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { FAQSection } from "@/components/sections/faq";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata = {
     title: "Migrate to Shelf - Modern Asset Management",
@@ -53,7 +54,7 @@ const competitors = [
 
 export default function MigratePage() {
     return (
-        <>
+        <PagefindWrapper type="Page" title="Migrate to Shelf - Switch from legacy tools" keywords="migrate migration switch migrate page">
             <PageHeader
                 title="Switch to Shelf"
                 description="Import your data in minutes. Join hundreds of teams upgrading their asset management stack."
@@ -190,6 +191,6 @@ export default function MigratePage() {
                     />
                 </div>
             </Container>
-        </>
+        </PagefindWrapper>
     );
 }

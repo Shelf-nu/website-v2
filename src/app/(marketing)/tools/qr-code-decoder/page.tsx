@@ -3,6 +3,7 @@ import { QrCodeDecoder } from '@/components/tools/qr-code-decoder';
 import { Container } from '@/components/ui/container';
 import Link from 'next/link';
 import { ArrowRight, Box, Tag, FileText, CheckCircle2 } from 'lucide-react';
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: 'Free QR Code Decoder for Asset Labels | Shelf',
@@ -65,7 +66,7 @@ export default function QrDecoderPage() {
     };
 
     return (
-        <>
+        <PagefindWrapper type="Page" title="Free QR Code Decoder for Asset Labels" keywords="qr code decoder scan qr code read qr code">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -188,6 +189,6 @@ export default function QrDecoderPage() {
                     </Container>
                 </section>
             </div>
-        </>
+        </PagefindWrapper>
     );
 }

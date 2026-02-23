@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/container';
 import { ArrowRight } from 'lucide-react';
 import { AssetLabelDesigner } from '@/components/tools/asset-label-designer';
 import { CTA } from '@/components/sections/cta';
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: 'Free Asset Label Designer (Scan-Safe) | Shelf',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 
 export default function AssetLabelDesignerPage() {
     return (
+        <PagefindWrapper type="Page" title="Free Asset Label Designer (Scan-Safe)" keywords="asset label designer create labels design labels">
         <div className="min-h-screen font-sans">
             {/* Custom Header with Grid Pattern */}
             <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">
@@ -94,5 +96,6 @@ export default function AssetLabelDesignerPage() {
 
             <CTA />
         </div>
+        </PagefindWrapper>
     );
 }

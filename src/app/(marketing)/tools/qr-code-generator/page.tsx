@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/container';
 import { ArrowRight } from 'lucide-react';
 import { QrCodeGenerator } from '@/components/tools/qr-code-generator';
 import { CTA } from '@/components/sections/cta';
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     // ... existing metadata ...
@@ -13,6 +14,7 @@ export default function QrCodeGeneratorPage() {
     // ... existing logic ...
 
     return (
+        <PagefindWrapper type="Page" title="Free QR Code Generator (PNG & SVG)" keywords="qr code generator create qr code free qr generator">
         <div className="min-h-screen font-sans">
             {/* ... script ... */}
 
@@ -99,5 +101,6 @@ export default function QrCodeGeneratorPage() {
             {/* Standard Premium CTA */}
             <CTA />
         </div>
+        </PagefindWrapper>
     );
 }

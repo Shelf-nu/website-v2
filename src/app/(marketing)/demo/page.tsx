@@ -6,6 +6,7 @@ import { Star, Quote } from "lucide-react";
 import Image from "next/image";
 import { Suspense } from "react";
 import { DemoForm } from "@/components/forms/demo-form";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "Book a Demo - Shelf Asset Management",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 
 export default function DemoPage() {
     return (
+        <PagefindWrapper type="Page" title="Book a Demo - See Shelf in action" keywords="demo book a demo request demo schedule demo demo page">
         <div className="flex flex-col min-h-screen relative">
             {/* Ambient Background Gradient (reused from pricing for consistency) */}
             {/* Ambient Background Gradient & Grid */}
@@ -127,5 +129,6 @@ export default function DemoPage() {
                 </div>
             </Container>
         </div>
+        </PagefindWrapper>
     );
 }

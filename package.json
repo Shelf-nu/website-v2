@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run search:index && npm run search:verify",
+    "build": "next build && npm run search:index && npm run search:verify && npm run search:dev",
     "build:next": "next build",
-    "search:index": "pagefind --site .next/server/app --output-path public/pagefind",
-    "search:verify": "node scripts/verify-pagefind.mjs public/pagefind",
-    "build:static": "NEXT_OUTPUT=export next build && pagefind --site out --output-path out/pagefind && node scripts/verify-pagefind.mjs out/pagefind",
-    "start": "next start",
+    "search:index": "pagefind --site out --output-path out/pagefind",
+    "search:verify": "node scripts/verify-pagefind.mjs out/pagefind",
+    "search:dev": "rm -rf public/pagefind && cp -r out/pagefind public/pagefind",
+    "start": "npx serve out",
     "lint": "eslint"
   },
   "dependencies": {

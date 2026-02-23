@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScaleBlock } from "@/components/sections/scale-block";
 import { ArrowRight, Github, Mail, Users, Globe } from "lucide-react";
 import Link from "next/link";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "About Us - Shelf Asset Management",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
+        <PagefindWrapper type="Page" title="About Us - Asset tracking for everyone" keywords="about about us who we are about page">
         <div className="flex min-h-screen flex-col bg-background text-zinc-900 font-sans">
 
             {/* 1. HERO — Standard SaaS Layout */}
@@ -181,7 +183,6 @@ export default function AboutPage() {
                 </Container>
             </section>
         </div>
+        </PagefindWrapper>
     );
 }
-
-
