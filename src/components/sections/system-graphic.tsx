@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState, memo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useEffect, useState, memo, startTransition } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/container";
 import {
@@ -12,7 +12,6 @@ import {
     Smartphone,
     BellRing,
     FileCheck2,
-    ArrowRight
 } from "lucide-react";
 
 // =============================================================================
@@ -137,7 +136,7 @@ const NarrativeStep = memo(function NarrativeStep({ step, index, setActiveStep }
     useEffect(() => {
         const el = ref.current;
         const observer = new IntersectionObserver(
-            (entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveStep(index); }),
+            (entries) => entries.forEach((e) => { if (e.isIntersecting) startTransition(() => setActiveStep(index)); }),
             { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
         );
         if (el) observer.observe(el);
@@ -268,7 +267,7 @@ interface BentoCardProps {
     variant?: "default" | "primary";
 }
 
-const BentoCard = memo(function BentoCard({ id, label, icon: Icon, isActive, className, variant = "default" }: BentoCardProps) {
+const BentoCard = memo(function BentoCard({ label, icon: Icon, isActive, className }: BentoCardProps) {
     return (
         <motion.div
             initial={false}

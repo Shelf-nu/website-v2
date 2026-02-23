@@ -5,7 +5,7 @@ import { Globe } from "@/components/ui/globe";
 import NumberFlow from '@number-flow/react';
 import { GlobeEventFeed } from "@/components/sections/scale/globe-event-feed";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, startTransition } from "react";
 import { useInView } from "framer-motion";
 
 export function ScaleBlock() {
@@ -15,7 +15,9 @@ export function ScaleBlock() {
 
     useEffect(() => {
         if (isInView) {
-            setHasStarted(true);
+            startTransition(() => {
+                setHasStarted(true);
+            });
         }
     }, [isInView]);
 

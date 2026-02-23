@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, QrCode, PenTool, Tag, Wrench } from 'lucide-react';
+import { ArrowRight, QrCode, PenTool, Tag } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { Badge } from '@/components/ui/badge';
 import { Pill } from "@/components/ui/pill";
-import { PageHeader } from '@/components/layouts/shared/page-header';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {

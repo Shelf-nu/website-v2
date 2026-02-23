@@ -59,7 +59,7 @@ export function Hero({
                                         ))}
                                     </div>
                                     <p className="text-sm font-medium text-muted-foreground/80 leading-snug">
-                                        "Finally, a modern and convenient asset database"
+                                        &quot;Finally, a modern and convenient asset database&quot;
                                     </p>
                                 </div>
                                 <div>
@@ -71,7 +71,7 @@ export function Hero({
                                         ))}
                                     </div>
                                     <p className="text-sm font-medium text-muted-foreground/80 leading-snug">
-                                        "Equipment reservations, no drama, no double bookings."
+                                        &quot;Equipment reservations, no drama, no double bookings.&quot;
                                     </p>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@ export function Hero({
                         {/* Subheading */}
                         <ScrollReveal width="100%" delay={0.3}>
                             <p className="mx-auto lg:mx-0 max-w-xl text-lg leading-relaxed text-muted-foreground mb-8">
-                                Shelf is the open source asset management platform for modern teams. Instantly track what you own, who's using it, and when it's available—zero spreadsheets required.
+                                Shelf is the open source asset management platform for modern teams. Instantly track what you own, who&apos;s using it, and when it&apos;s available—zero spreadsheets required.
                             </p>
                         </ScrollReveal>
 

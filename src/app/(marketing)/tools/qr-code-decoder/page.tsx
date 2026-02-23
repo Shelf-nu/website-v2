@@ -107,7 +107,7 @@ export default function QrDecoderPage() {
                                 <div className="bg-card p-6 rounded-xl border border-border">
                                     <FileText className="h-8 w-8 text-orange-600 mb-4" />
                                     <h3 className="font-semibold mb-2">Client-side decoding</h3>
-                                    <p className="text-sm text-muted-foreground">The processing logic runs entirely on your device using your browser's capabilities.</p>
+                                    <p className="text-sm text-muted-foreground">The processing logic runs entirely on your device using your browser&apos;s capabilities.</p>
                                 </div>
                                 <div className="bg-card p-6 rounded-xl border border-border">
                                     <CheckCircle2 className="h-8 w-8 text-orange-600 mb-4" />

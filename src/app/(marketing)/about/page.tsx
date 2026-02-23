@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScaleBlock } from "@/components/sections/scale-block";
-import { ArrowRight, Github, Mail, Users, Globe } from "lucide-react";
+import { ArrowRight, Github, Users, Globe } from "lucide-react";
 import Link from "next/link";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 

@@ -22,11 +22,10 @@ import {
     Box,
     RefreshCw,
     Smartphone,
-    HelpCircle,
     ArrowRight,
     Wrench,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, startTransition } from "react";
 import {
     AnimatePresence,
     motion,
@@ -145,7 +144,9 @@ export function Navbar() {
     // Close mobile menu when route changes
     useEffect(() => {
         if (isOpen) {
-            setIsOpen(false);
+            startTransition(() => {
+                setIsOpen(false);
+            });
         }
     }, [pathname, isOpen]);
 

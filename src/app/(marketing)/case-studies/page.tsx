@@ -3,7 +3,7 @@ import { getAllContent } from "@/lib/mdx";
 import { Container } from "@/components/ui/container";
 import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CaseStudyCard } from "@/components/sections/case-studies/case-study-card";
 import { LogoWall } from "@/components/sections/case-studies/logo-wall";
 import { TestimonialsSection } from "@/components/sections/case-studies/testimonials-section";
@@ -92,7 +92,7 @@ export default function CaseStudiesIndexPage() {
             <section className="py-24 md:py-32">
                 <Container>
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold tracking-tight mb-4">You're in good company</h2>
+                        <h2 className="text-3xl font-bold tracking-tight mb-4">You&apos;re in good company</h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto">
                             Join thousands of teams using Shelf to track what matters. Filter by industry to see who else is onboard.
                         </p>

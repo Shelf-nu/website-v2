@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, User, ArrowRight } from "lucide-react";
+import { ArrowLeft, Clock, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Frontmatter } from "@/lib/content/schema";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";

@@ -47,6 +47,9 @@ out/                     # Build output (static HTML + pagefind index)
 
 ## Important conventions
 
+### Linting
+- Always run `npm run lint` after completing a task to verify no lint errors were introduced.
+
 ### Static export
 - The site is **fully static** (`output: "export"`). No server actions, no API routes, no SSR.
 - Never use `"use server"`, `cookies()`, `headers()`, or anything requiring a Node.js runtime.
@@ -107,3 +110,4 @@ Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.y
 - Don't commit `.env.local` — contains Supabase keys (gitignored).
 - Don't commit `public/pagefind/` — generated at build time (gitignored).
 - Don't send auth headers (Authorization, apikey) in client-side fetch — causes CORS issues.
+- Don't add `Co-Authored-By` lines to commit messages.

@@ -16,7 +16,7 @@ export default function ContactPage() {
         <Container className="py-24 max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">Get in touch</h1>
             <p className="text-xl text-muted-foreground mb-12">
-                We're here to help. Whether you have questions about pricing, features, or need technical support.
+                We&apos;re here to help. Whether you have questions about pricing, features, or need technical support.
             </p>
 
             <div className="grid gap-8 md:grid-cols-2 text-left">
@@ -26,7 +26,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="font-semibold text-xl mb-2">Sales & General</h3>
                     <p className="text-muted-foreground mb-6">
-                        Interested in Shelf for your team? Let's talk about your needs.
+                        Interested in Shelf for your team? Let&apos;s talk about your needs.
                     </p>
                     <Button asChild className="w-full">
                         <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=contact_demo">Book a Demo</Link>
