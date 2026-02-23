@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -37,14 +36,18 @@ export function BlogSidebar() {
             };
         });
 
-        setToc(items);
+        startTransition(() => {
+            setToc(items);
+        });
 
         // Scroll spy to highlight active section
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setActiveId(entry.target.id);
+                        startTransition(() => {
+                            setActiveId(entry.target.id);
+                        });
                     }
                 });
             },
@@ -172,7 +175,7 @@ export function BlogSidebar() {
                 <div className="px-6 pb-6">
                     <div className="rounded-lg bg-muted/40 border border-border/50 p-5 relative">
                         <blockquote className="text-sm text-foreground/80 italic leading-relaxed mb-4">
-                            "Avoiding double bookings is the reason I wanted to use Shelf. The moment I had to fix a last-minute extra camera proved stressful enough to justify the change."
+                            &quot;Avoiding double bookings is the reason I wanted to use Shelf. The moment I had to fix a last-minute extra camera proved stressful enough to justify the change.&quot;
                         </blockquote>
 
                         <div className="flex items-center justify-between border-t border-border/50 pt-4">

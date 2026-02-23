@@ -31,7 +31,7 @@ export default function SolutionsPage() {
                             Built for <span className="text-orange-600">every scale</span>
                         </h1>
                         <p className="text-xl text-muted-foreground leading-relaxed">
-                            Whether you're managing a university campus, a construction fleet, or IT for a distributed team, Shelf adapts to your workflow.
+                            Whether you&apos;re managing a university campus, a construction fleet, or IT for a distributed team, Shelf adapts to your workflow.
                         </p>
                     </ScrollReveal>
                 </div>

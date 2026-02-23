@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // One-off migration/debug scripts (CommonJS, not part of the app):
+    "scripts/**",
+    // Generated Pagefind search index (copied to public/ for dev):
+    "public/pagefind/**",
   ]),
 ]);
 

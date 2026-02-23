@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { buildContentMetadata, breadcrumbJsonLd, articleJsonLd } from "@/lib/seo";
 import { StructuredData } from "@/components/seo/structured-data";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { Frontmatter } from "@/lib/content/schema";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -30,28 +31,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function KnowledgeBasePage({ params }: PageProps) {
     const { slug } = await params;
+
+    let content: string;
+    let frontmatter: Frontmatter;
     try {
-        const { content, frontmatter } = getContentBySlug("knowledge-base", slug);
-        const Layout = resolveLayout(frontmatter.layout);
-
-        const jsonLd = [
-            breadcrumbJsonLd([
-                { name: "Home", href: "/" },
-                { name: "Knowledge Base", href: "/knowledge-base" },
-                { name: frontmatter.title, href: `/knowledge-base/${slug}` },
-            ]),
-            articleJsonLd(`/knowledge-base/${slug}`, frontmatter),
-        ];
-
-        return (
-            <PagefindWrapper type="Knowledge Base" title={frontmatter.title}>
-                <StructuredData data={jsonLd} />
-                <Layout frontmatter={frontmatter}>
-                    <MDXContent source={content} />
-                </Layout>
-            </PagefindWrapper>
-        );
+        ({ content, frontmatter } = getContentBySlug("knowledge-base", slug));
     } catch {
         notFound();
     }
+
+    const Layout = resolveLayout(frontmatter.layout);
+
+    const jsonLd = [
+        breadcrumbJsonLd([
+            { name: "Home", href: "/" },
+            { name: "Knowledge Base", href: "/knowledge-base" },
+            { name: frontmatter.title, href: `/knowledge-base/${slug}` },
+        ]),
+        articleJsonLd(`/knowledge-base/${slug}`, frontmatter),
+    ];
+
+    return (
+        <PagefindWrapper type="Knowledge Base" title={frontmatter.title}>
+            <StructuredData data={jsonLd} />
+            {/* eslint-disable-next-line react-hooks/static-components */}
+            <Layout frontmatter={frontmatter}>
+                <MDXContent source={content} />
+            </Layout>
+        </PagefindWrapper>
+    );
 }

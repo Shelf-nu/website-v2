@@ -112,9 +112,9 @@ export default function MigratePage() {
 
                 <div className="mt-24 p-8 sm:p-12 bg-muted/50 rounded-lg border border-border flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="max-w-xl">
-                        <h3 className="text-2xl font-bold mb-4">Don't see your current tool?</h3>
+                        <h3 className="text-2xl font-bold mb-4">Don&apos;t see your current tool?</h3>
                         <p className="text-lg text-muted-foreground">
-                            We support CSV imports from any system. Download our template and you'll be running in minutes.
+                            We support CSV imports from any system. Download our template and you&apos;ll be running in minutes.
                         </p>
                     </div>
                     <Link href="https://docs.shelf.nu/importing-data">

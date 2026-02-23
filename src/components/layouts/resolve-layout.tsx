@@ -14,7 +14,7 @@ import { UpdateLayout } from "./update-layout";
 import { Container } from "@/components/ui/container";
 import { Frontmatter } from "@/lib/content/schema";
 
-function DefaultLayout({ frontmatter, children }: { frontmatter: Frontmatter, children: React.ReactNode }) {
+function DefaultLayout({ children }: { frontmatter: Frontmatter, children: React.ReactNode }) {
     return <Container className="py-20">{children}</Container>;
 }
 

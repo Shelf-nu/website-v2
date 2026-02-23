@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 
 interface QrOptions {
     size: number;
@@ -35,8 +34,8 @@ export function QrCodeGenerator() {
     const [options, setOptions] = useState<QrOptions>(DEFAULT_OPTIONS);
     const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
     const [qrSvgString, setQrSvgString] = useState<string | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const [isGenerating, setIsGenerating] = useState(false);
+    const [, setError] = useState<string | null>(null);
+    const [, setIsGenerating] = useState(false);
 
     // Debounced Generation
     useEffect(() => {
@@ -152,7 +151,7 @@ export function QrCodeGenerator() {
                         />
                         {value.length > 500 && (
                             <p className="text-xs text-orange-600 font-medium">
-                                Warning: High data density. Use "High" error correction for labels.
+                                Warning: High data density. Use &quot;High&quot; error correction for labels.
                             </p>
                         )}
                     </div>
@@ -163,7 +162,7 @@ export function QrCodeGenerator() {
                             <select
                                 id="ecc"
                                 value={options.errorCorrectionLevel}
-                                onChange={(e) => setOptions(prev => ({ ...prev, errorCorrectionLevel: e.target.value as any }))}
+                                onChange={(e) => setOptions(prev => ({ ...prev, errorCorrectionLevel: e.target.value as QrOptions['errorCorrectionLevel'] }))}
                                 className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 <option value="L">Low (7%)</option>

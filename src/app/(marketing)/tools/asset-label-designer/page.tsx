@@ -56,12 +56,12 @@ export default function AssetLabelDesignerPage() {
                             <h2 className="text-2xl font-bold mb-6">Why standard labels matter</h2>
                             <div className="prose prose-sm text-muted-foreground">
                                 <p>
-                                    In asset management, a label isn't just a sticker—it's the digital twin's physical anchor.
-                                    This tool enforces best practices that we've learned from tracking millions of dollars of equipment:
+                                    In asset management, a label isn&apos;t just a sticker—it&apos;s the digital twin&apos;s physical anchor.
+                                    This tool enforces best practices that we&apos;ve learned from tracking millions of dollars of equipment:
                                 </p>
                                 <ul className="mt-4 space-y-2 list-disc list-inside">
                                     <li><strong>High Contrast Only:</strong> Aesthetics take a backseat to readability. Black on white is the gold standard for scanners.</li>
-                                    <li><strong>Sufficient Quiet Zone:</strong> We enforce margins so scanners don't get confused by nearby text or bezel edges.</li>
+                                    <li><strong>Sufficient Quiet Zone:</strong> We enforce margins so scanners don&apos;t get confused by nearby text or bezel edges.</li>
                                     <li><strong>Human Readable Backup:</strong> Every label should have the ID printed in plain text for when technology fails.</li>
                                 </ul>
                             </div>

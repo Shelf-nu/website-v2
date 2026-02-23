@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { Container } from "@/components/ui/container";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Frontmatter } from "@/lib/content/schema";
 import { ArrowRight } from "lucide-react";
 

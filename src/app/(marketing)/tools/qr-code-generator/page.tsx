@@ -82,7 +82,7 @@ export default function QrCodeGeneratorPage() {
                                 <div>
                                     <h3 className="font-semibold text-foreground mb-2">What data can I encode?</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        You can encode text, URLs, Wi-Fi credentials, or vCards. For assets, we recommend encoding a unique URL (e.g., <code>https://shelf.nu/a/123</code>) so scanners open the item's details immediately.
+                                        You can encode text, URLs, Wi-Fi credentials, or vCards. For assets, we recommend encoding a unique URL (e.g., <code>https://shelf.nu/a/123</code>) so scanners open the item&apos;s details immediately.
                                     </p>
                                 </div>
                                 <div>

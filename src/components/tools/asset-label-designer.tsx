@@ -139,7 +139,7 @@ export function AssetLabelDesigner() {
                 downloadBlob(blob, `${filename}.png`);
 
             } else if (format === 'svg') {
-                let svgDataUrl = await toSvg(labelRef.current, captureOptions);
+                const svgDataUrl = await toSvg(labelRef.current, captureOptions);
                 // Decode to get raw string
                 const svgString = decodeURIComponent(svgDataUrl.split(',')[1]);
                 const finalSvg = `<?xml version="1.0" encoding="UTF-8"?>\n${svgString}`;

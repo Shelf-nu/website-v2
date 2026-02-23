@@ -45,6 +45,7 @@ export function PageHeader({ title, description, heroTagline, children, image }:
                         {/* Visual Enhancement Image */}
                         <div className="relative mt-8 lg:mt-0 hidden lg:block">
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/10 border border-white/50 aspect-[4/3] transform rotate-2 hover:rotate-0 transition-all duration-700">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={displayImage}
                                     alt=""

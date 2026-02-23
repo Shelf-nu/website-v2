@@ -2,6 +2,9 @@
   "name": "shelf-website",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build && npm run search:index && npm run search:verify && npm run search:dev",
@@ -21,21 +24,12 @@
     "@radix-ui/react-navigation-menu": "^1.2.14",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@supabase/supabase-js": "^2.97.0",
-    "@tailwindcss/postcss": "^4.1.17",
     "@tailwindcss/typography": "^0.5.19",
-    "@types/node": "^24.10.1",
-    "@types/qrcode": "^1.5.6",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
     "@zxing/browser": "^0.1.5",
     "@zxing/library": "^0.21.3",
-    "autoprefixer": "^10.4.22",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cobe": "^0.6.5",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "^16.0.7",
     "framer-motion": "^12.23.26",
     "gray-matter": "^4.0.3",
     "html-to-image": "^1.11.13",
@@ -44,18 +38,24 @@
     "next": "^16.0.7",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
-    "postcss": "^8.5.6",
     "qrcode": "^1.5.4",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "react-spring": "^10.0.3",
-    "server-only": "^0.0.1",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
-    "typescript": "^5.9.3",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "pagefind": "^1.4.0"
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^24.10.1",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.22",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.7",
+    "pagefind": "^1.4.0",
+    "postcss": "^8.5.6",
+    "typescript": "^5.9.3"
   }
 }

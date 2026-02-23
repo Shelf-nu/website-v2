@@ -1,11 +1,8 @@
 import { Hero } from "@/components/sections/hero";
-import { FeatureSection } from "@/components/sections/features";
-import { HowItWorks } from "@/components/sections/how-it-works";
 import { LogoGrid } from "@/components/sections/logo-grid";
 import { FounderLetter } from "@/components/sections/founder-letter";
 import { ScaleBlock } from "@/components/sections/scale-block";
 
-import { TestimonialsSection } from "@/components/sections/case-studies/testimonials-section";
 import { FAQSection } from "@/components/sections/faq";
 import { FeatureNavigationCTA } from "@/components/sections/feature-navigation-cta";
 import { JsonLd } from "@/components/seo/json-ld";

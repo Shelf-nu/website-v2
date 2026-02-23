@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Archive, CalendarClock, CheckCircle2, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -39,7 +39,9 @@ export function GlobeEventFeed({ className }: { className?: string }) {
     useEffect(() => {
         // Initial population
         const initialEvents = Array.from({ length: 3 }).map((_, i) => generateEvent(i.toString()));
-        setEvents(initialEvents);
+        startTransition(() => {
+            setEvents(initialEvents);
+        });
 
         const interval = setInterval(() => {
             setEvents((prev) => {
@@ -97,7 +99,6 @@ function generateEvent(id: string): Event {
     const type = EVENT_TYPES[Math.floor(Math.random() * EVENT_TYPES.length)];
     const location = LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)];
 
-    // @ts-ignore
     return {
         id,
         type: type.type,

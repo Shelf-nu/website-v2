@@ -14,7 +14,7 @@ Marketing website for [Shelf.nu](https://shelf.nu), an open-source asset managem
 - **Forms**: Zod client-side validation, fetch POST to Supabase Edge Function
 - **Search**: Pagefind (static search index, Cmd+K dialog)
 - **Content**: MDX via next-mdx-remote (blog, KB, case studies, etc.)
-- **Animation**: Framer Motion, React Spring
+- **Animation**: Framer Motion
 - **Linting**: ESLint 9
 
 ## Key commands
@@ -46,6 +46,9 @@ out/                     # Build output (static HTML + pagefind index)
 ```
 
 ## Important conventions
+
+### Linting
+- Always run `npm run lint` after completing a task to verify no lint errors were introduced.
 
 ### Static export
 - The site is **fully static** (`output: "export"`). No server actions, no API routes, no SSR.
@@ -82,15 +85,22 @@ out/                     # Build output (static HTML + pagefind index)
 |----------|-------|---------|
 | `NEXT_PUBLIC_FORM_ENDPOINT` | Client | Supabase Edge Function URL for form submissions |
 | `NEXT_PUBLIC_APP_URL` | Client | Base URL for SEO/sitemap (defaults to https://shelf.nu) |
-| `SUPABASE_URL` | Server (unused) | Supabase project URL (dead code, kept for future SSR) |
-| `SUPABASE_SERVICE_KEY` | Server (unused) | Service role key (dead code, never exposed to client) |
 
-## Dead code (SSR remnants)
+## CI/CD
 
-These files are preserved but NOT imported in the static build:
-- `src/lib/supabase-server.ts` — Supabase admin client
-- `src/lib/forms.ts` — Server-side form insertion helper
-- `src/lib/hash-ip.ts` — IP hashing utility
+Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.yml`):
+- **Production**: auto-deploys on merge to `main`
+- **Preview**: deploys per PR, posts preview URL as a PR comment
+- Pipeline: `npm ci` → `npm run lint` → `npm run build` → `wrangler pages deploy`
+- Node version pinned in `.nvmrc` (22)
+
+**Required GitHub secrets**:
+- `CLOUDFLARE_API_TOKEN` — Cloudflare API token with Pages edit permission
+- `CLOUDFLARE_ACCOUNT_ID` — Cloudflare account ID
+- `NEXT_PUBLIC_FORM_ENDPOINT` — Supabase Edge Function URL for form submissions
+
+**Optional GitHub variable**:
+- `NEXT_PUBLIC_APP_URL` — Base URL for SEO (defaults to `https://shelf.nu`)
 
 ## Things to avoid
 
@@ -100,3 +110,4 @@ These files are preserved but NOT imported in the static build:
 - Don't commit `.env.local` — contains Supabase keys (gitignored).
 - Don't commit `public/pagefind/` — generated at build time (gitignored).
 - Don't send auth headers (Authorization, apikey) in client-side fetch — causes CORS issues.
+- Don't add `Co-Authored-By` lines to commit messages.
