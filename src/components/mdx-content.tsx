@@ -40,7 +40,7 @@ const components = {
     li: (props: HtmlProps<"li">) => <li className="leading-7 text-muted-foreground" {...props} />,
     blockquote: (props: HtmlProps<"blockquote">) => (
         <blockquote
-            className="mt-6 border-l-4 border-orange-500 pl-6 italic text-foreground bg-orange-50/50 py-3 pr-4 rounded-r-lg"
+            className="mt-6 border-l-4 border-orange-500 pl-6 italic text-foreground bg-orange-50/50 dark:bg-orange-950/20 py-3 pr-4 rounded-r-lg"
             {...props}
         />
     ),
@@ -84,7 +84,7 @@ const components = {
     ),
     code: (props: HtmlProps<"code">) => (
         <code
-            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-orange-800"
+            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-orange-800 dark:text-orange-300"
             {...props}
         />
     ),

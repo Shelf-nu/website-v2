@@ -14,9 +14,8 @@ export function JsonLd() {
                     "url": "https://shelf.nu/logo.png"
                 },
                 "sameAs": [
-                    "https://twitter.com/shelf_nu",
                     "https://github.com/Shelf-nu/shelf.nu",
-                    "https://www.linkedin.com/company/shelf-nu"
+                    "https://www.linkedin.com/company/shelf-inc/"
                 ],
                 "contactPoint": {
                     "@type": "ContactPoint",

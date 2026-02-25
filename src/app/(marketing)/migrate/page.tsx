@@ -22,7 +22,7 @@ const competitors = [
     },
     {
         name: "Snipe-IT",
-        logo: "/logos/snipe-it.svg",
+        logo: "/logos/snipe-it.png",
         description: "Want something more modern than open source legacy software?",
         slug: "snipe-it"
     },
@@ -45,10 +45,10 @@ const competitors = [
         slug: "upkeep"
     },
     {
-        name: "Hippo CMMS",
-        logo: "/logos/hippo-cmms.svg",
-        description: "Switching from complex maintenance systems to easy tracking?",
-        slug: "hippo-cmms"
+        name: "EZOfficeInventory",
+        logo: "/logos/ezofficeinventory.webp",
+        description: "Looking for a simpler, more modern alternative?",
+        slug: "ezofficeinventory"
     }
 ];
 
@@ -62,14 +62,14 @@ export default function MigratePage() {
                 image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop"
             >
                 <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
-                    <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_signup">
+                    <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_signup">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white">
-                            Start Free Migration
+                            Create a Shelf account
                         </Button>
                     </Link>
-                    <Link href="/contact?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_demo">
+                    <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_demo">
                         <Button size="lg" variant="outline" className="bg-background/50 border-input">
-                            Book Migration Call
+                            Book a demo
                         </Button>
                     </Link>
                 </div>
@@ -117,9 +117,9 @@ export default function MigratePage() {
                             We support CSV imports from any system. Download our template and you&apos;ll be running in minutes.
                         </p>
                     </div>
-                    <Link href="https://docs.shelf.nu/importing-data">
+                    <Link href="/knowledge-base/importing-assets-to-shelf-csv-guide">
                         <Button variant="secondary" size="lg" className="shrink-0">
-                            View Import Guides <ArrowRight className="ml-2 h-4 w-4" />
+                            View Import Guide <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </Link>
                 </div>

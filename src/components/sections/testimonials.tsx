@@ -4,7 +4,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 export function Testimonials() {
     return (
         <section className="py-24 sm:py-32 bg-muted/20 border-t border-border/40 relative">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-50 pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-background via-transparent to-transparent opacity-50 pointer-events-none" />
 
             <Container>
                 <div className="mx-auto max-w-2xl lg:text-center mb-16">
@@ -28,7 +28,7 @@ export function Testimonials() {
                                         </p>
                                     </blockquote>
                                     <div className="mt-8 flex items-center gap-x-4 border-t border-border/40 pt-6">
-                                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-100 to-orange-50 ring-2 ring-white" />
+                                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-100 to-orange-50 ring-2 ring-background" />
                                         <div>
                                             <div className="font-semibold text-foreground">Jane Doe</div>
                                             <div className="text-sm leading-6 text-muted-foreground/80">CTO, Tech Corp</div>

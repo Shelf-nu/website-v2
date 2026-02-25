@@ -1,10 +1,18 @@
 import React from "react";
+import Link from "next/link";
 import { Check, Minus, Info } from "lucide-react";
 import { pricingFeatures, PricingFeature, AvailabilityState } from "@/data/pricing.features";
 import { pricingTiers } from "@/data/pricing.tiers";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { Button } from "@/components/ui/button";
+
+const tierLinks: Record<string, string> = {
+    free: "https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_table_free",
+    plus: "https://app.shelf.nu/join?plan=plus&utm_source=shelf_website&utm_medium=cta&utm_content=pricing_table_plus",
+    team: "https://app.shelf.nu/join?plan=team&trial=true&utm_source=shelf_website&utm_medium=cta&utm_content=pricing_table_team",
+    enterprise: "/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_table_enterprise",
+};
 
 function AvailabilityIcon({ state, metadata }: { state: AvailabilityState, metadata?: string }) {
     if (metadata) {
@@ -40,6 +48,7 @@ export function FeatureTable() {
     const categories = Object.keys(featuresByCategory);
 
     return (
+        <TooltipProvider delayDuration={100}>
         <div className="mt-24 rounded-xl border bg-background shadow-none lg:overflow-visible">
             {/* 
                 We use overflow-x-auto for mobile responsiveness.
@@ -63,8 +72,11 @@ export function FeatureTable() {
                                             size="sm"
                                             variant={tier.popular ? "default" : "outline"}
                                             className="w-full max-w-[120px] h-8 text-xs"
+                                            asChild
                                         >
-                                            {tier.cta}
+                                            <Link href={tierLinks[tier.id]}>
+                                                {tier.cta}
+                                            </Link>
                                         </Button>
                                     </div>
                                 </th>
@@ -95,16 +107,16 @@ export function FeatureTable() {
                                                     <div className="flex items-center gap-2">
                                                         <span className="text-sm font-medium text-foreground">{feature.name}</span>
                                                         {feature.description && (
-                                                            <TooltipProvider>
-                                                                <Tooltip>
-                                                                    <TooltipTrigger>
+                                                            <Tooltip>
+                                                                <TooltipTrigger asChild>
+                                                                    <button type="button" className="cursor-help">
                                                                         <Info className="h-4 w-4 text-muted-foreground/50 hover:text-muted-foreground transition-colors" />
-                                                                    </TooltipTrigger>
-                                                                    <TooltipContent>
-                                                                        <p className="max-w-xs">{feature.description}</p>
-                                                                    </TooltipContent>
-                                                                </Tooltip>
-                                                            </TooltipProvider>
+                                                                    </button>
+                                                                </TooltipTrigger>
+                                                                <TooltipContent side="top" className="max-w-xs">
+                                                                    <p>{feature.description}</p>
+                                                                </TooltipContent>
+                                                            </Tooltip>
                                                         )}
                                                     </div>
                                                     {feature.requiresTeamOrg && (
@@ -136,5 +148,6 @@ export function FeatureTable() {
                 </table>
             </div>
         </div>
+        </TooltipProvider>
     );
 }

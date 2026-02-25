@@ -19,7 +19,7 @@ export default function DemoPage() {
         <div className="flex flex-col min-h-screen relative">
             {/* Ambient Background Gradient (reused from pricing for consistency) */}
             {/* Ambient Background Gradient & Grid */}
-            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
             <Container className="pt-32 pb-12 md:pt-48 md:pb-24 relative z-10 flex-1 flex flex-col justify-center">
@@ -52,7 +52,7 @@ export default function DemoPage() {
                                     &quot;Having SHELF has massively improved our ability to locate equipment... This makes purchasing much easier and will prevent over and under purchasing of equipment.&quot;
                                 </blockquote>
                                 <div className="flex items-center gap-3">
-                                    <div className="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center font-bold text-orange-700 text-xs">TL</div>
+                                    <Image src="/testimonials/toby.jpeg" alt="Toby Liversedge" width={32} height={32} className="h-8 w-8 rounded-full object-cover" />
                                     <div>
                                         <div className="font-semibold text-sm">Toby Liversedge</div>
                                         <div className="text-xs text-muted-foreground">Support Supervisor | Resq | Migrated from Excel</div>
@@ -71,7 +71,7 @@ export default function DemoPage() {
                                     &quot;Migrating to Shelf let us modernize without losing the systems we’d already invested in. The team adapted Shelf to work perfectly with our DYMO label workflow—no retraining, no downtime, just a seamless upgrade.&quot;
                                 </blockquote>
                                 <div className="flex items-center gap-3">
-                                    <div className="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center font-bold text-orange-700 text-xs">SG</div>
+                                    <Image src="/testimonials/steve.jpeg" alt="Steve Gardels" width={32} height={32} className="h-8 w-8 rounded-full object-cover" />
                                     <div>
                                         <div className="font-semibold text-sm">Steve Gardels</div>
                                         <div className="text-xs text-muted-foreground">Media Center Manager | Kansas City Art Institute | Migrated from Cheqroom</div>

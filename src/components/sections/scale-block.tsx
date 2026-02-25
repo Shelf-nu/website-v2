@@ -29,9 +29,9 @@ export function ScaleBlock() {
     ];
 
     return (
-        <section className="py-24 bg-zinc-50 text-foreground overflow-hidden relative">
+        <section className="py-24 bg-surface text-foreground overflow-hidden relative">
             {/* Background Gradient - Light & Warm */}
-            <div className="absolute top-0 inset-x-0 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-100/40 via-zinc-50 to-zinc-50 pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-100/40 via-surface to-surface pointer-events-none" />
 
             <Container className="relative z-10">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -42,31 +42,31 @@ export function ScaleBlock() {
                             <h2 className="text-sm font-semibold text-orange-600 uppercase tracking-wider">
                                 Built for real-world scale
                             </h2>
-                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-zinc-900">
+                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-heading">
                                 Shelf runs in production for teams managing thousands of assets.
                             </h3>
-                            <p className="text-lg text-zinc-500 leading-relaxed max-w-xl">
+                            <p className="text-lg text-caption leading-relaxed max-w-xl">
                                 High booking volume and large user bases — without performance or data integrity tradeoffs.
                             </p>
                         </div>
 
-                        <div ref={ref} className="grid grid-cols-2 gap-y-10 gap-x-8 border-t border-zinc-200 pt-10">
+                        <div ref={ref} className="grid grid-cols-2 gap-y-10 gap-x-8 border-t border-border-subtle pt-10">
                             {metrics.map((metric, index) => (
                                 <div key={index}>
-                                    <div className="text-3xl font-bold text-zinc-900 mb-1 flex items-baseline">
+                                    <div className="text-3xl font-bold text-heading mb-1 flex items-baseline">
                                         <NumberFlow
                                             value={hasStarted ? metric.value : 0}
                                             format={{ useGrouping: true, maximumFractionDigits: metric.decimalPlaces || 0 }}
                                         />
                                         <span>{metric.suffix}</span>
                                     </div>
-                                    <div className="text-sm text-zinc-500 font-medium">{metric.label}</div>
+                                    <div className="text-sm text-caption font-medium">{metric.label}</div>
                                 </div>
                             ))}
                         </div>
 
                         <div className="pt-2">
-                            <p className="text-lg font-medium text-zinc-900 italic">
+                            <p className="text-lg font-medium text-heading italic">
                                 &quot;When Shelf scales, your workflows stay the same.&quot;
                             </p>
                         </div>
@@ -85,13 +85,9 @@ export function ScaleBlock() {
                                 devicePixelRatio: 2,
                                 phi: 0,
                                 theta: 0.25,
-                                dark: 0, // Light mode
                                 diffuse: 1.2,
                                 mapSamples: 24000,
-                                mapBrightness: 6,
-                                baseColor: [0.93, 0.93, 0.93], // Zinc-100ish
-                                markerColor: [0.96, 0.5, 0.2], // Orange
-                                glowColor: [1, 0.8, 0.6], // Soft Warm glow
+                                markerColor: [0.96, 0.5, 0.2],
                             }}
                         />
 

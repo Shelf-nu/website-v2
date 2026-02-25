@@ -15,9 +15,9 @@ export function PageHeader({ title, description, heroTagline, children, image }:
     const displayImage = image || "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop";
 
     return (
-        <section className="relative overflow-hidden bg-zinc-50/50 dark:bg-zinc-900/10 border-b border-border/40 py-16 sm:py-24 lg:py-32">
+        <section className="relative overflow-hidden bg-surface/50 dark:bg-zinc-900/10 border-b border-border/40 py-16 sm:py-24 lg:py-32">
             {/* Background Gradients */}
-            <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-background to-transparent pointer-events-none" />
             <div className="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-orange-100/40 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-normal dark:bg-orange-900/10" />
             <div className="absolute bottom-0 right-[10%] w-[300px] h-[300px] bg-orange-50/30 rounded-full blur-[80px] pointer-events-none" />
 
@@ -44,7 +44,7 @@ export function PageHeader({ title, description, heroTagline, children, image }:
 
                         {/* Visual Enhancement Image */}
                         <div className="relative mt-8 lg:mt-0 hidden lg:block">
-                            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/10 border border-white/50 aspect-[4/3] transform rotate-2 hover:rotate-0 transition-all duration-700">
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/10 border border-border/50 aspect-[4/3] transform rotate-2 hover:rotate-0 transition-all duration-700">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={displayImage}

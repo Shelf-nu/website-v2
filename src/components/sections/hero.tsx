@@ -7,6 +7,7 @@ import { VideoLightbox } from "@/components/ui/video-lightbox";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Pill } from "@/components/ui/pill";
 import { Play } from "lucide-react";
+import { MigrationDropdown } from "@/components/sections/migration-dropdown";
 
 interface HeroProps {
     heroImageDesktop?: string;
@@ -18,9 +19,9 @@ export function Hero({
     heroImageMobile
 }: HeroProps) {
     return (
-        <section className="py-24 sm:py-32 relative overflow-hidden">
+        <section className="py-24 sm:py-32 relative overflow-x-clip">
             {/* Background Effects */}
-            <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+            <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
             <div className="absolute top-0 inset-x-0 h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
             <Container className="relative">
@@ -96,7 +97,7 @@ export function Hero({
                             <div className="flex flex-col items-center lg:items-start gap-4 mb-16 lg:mb-0">
                                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
                                     <Button size="lg" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-500/20" asChild>
-                                        <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=homepage_hero_signup">
+                                        <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=homepage_hero_signup">
                                             Sign up free
                                         </Link>
                                     </Button>
@@ -106,9 +107,11 @@ export function Hero({
                                         </Link>
                                     </Button>
                                 </div>
-                                <p className="text-sm text-muted-foreground/60">
-                                    Get a free 7-day trial of premium features <span className="mx-1 opacity-50">|</span> No credit card required
-                                </p>
+                                <div className="flex flex-col sm:flex-row items-center gap-2 text-sm text-muted-foreground/60">
+                                    <span>Free 7-day trial <span className="mx-1 opacity-50">|</span> No credit card</span>
+                                    <span className="hidden sm:inline opacity-50">|</span>
+                                    <MigrationDropdown />
+                                </div>
                             </div>
                         </ScrollReveal>
                     </div>
@@ -124,7 +127,7 @@ export function Hero({
                                         alt="Shelf Asset Management — asset index with QR codes and labels"
                                         width={2432}
                                         height={1300}
-                                        className={heroImageMobile ? "hidden lg:block w-full h-auto" : "w-full h-auto"}
+                                        className={heroImageMobile ? "hidden lg:block w-full h-auto dark:brightness-90 dark:contrast-110" : "w-full h-auto dark:brightness-90 dark:contrast-110"}
                                         priority
                                         sizes="(max-width: 1024px) 100vw, 1200px"
                                     />
@@ -144,9 +147,9 @@ export function Hero({
 
                                     {/* Video Play Pill — bottom-right corner */}
                                     <div className="absolute bottom-4 right-4 z-10">
-                                        <div className="flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 shadow-lg shadow-black/10 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                        <div className="flex items-center gap-1.5 rounded-full bg-card/90 backdrop-blur-sm px-3 py-1.5 shadow-lg shadow-black/10 group-hover:bg-card group-hover:scale-105 transition-all duration-300">
                                             <Play className="h-3.5 w-3.5 text-orange-600 fill-orange-600 ml-0.5" />
-                                            <span className="text-xs font-semibold text-zinc-700">See it in action</span>
+                                            <span className="text-xs font-semibold text-body">See it in action</span>
                                         </div>
                                     </div>
 

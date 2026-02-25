@@ -36,7 +36,7 @@ export default function CustomersPage() {
         <div className="flex min-h-screen flex-col">
             {/* 1. Hero */}
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden">
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+                <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
                 <Container className="text-center relative z-10">
                     <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-1.5 text-sm font-medium text-orange-700 mb-8">
                         <Users className="h-3.5 w-3.5" />
@@ -150,7 +150,7 @@ export default function CustomersPage() {
                             You&apos;re in good company
                         </h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto">
-                            {CUSTOMER_LOGOS.length} organizations across every industry trust Shelf to manage their assets. Filter by industry to find teams like yours.
+                            Showing {CUSTOMER_LOGOS.length} organizations that have approved being featured. Thousands more trust Shelf every day.
                         </p>
                     </div>
                     <CustomerLogoWall items={logoItems} />

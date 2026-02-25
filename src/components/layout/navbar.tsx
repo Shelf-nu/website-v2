@@ -506,7 +506,7 @@ export function Navbar() {
                             >
                                 Log in
                             </Link>
-                            <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup">
+                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup">
                                 <Button
                                     size="sm"
                                     className="bg-orange-600 hover:bg-orange-700 text-white ring-1 ring-orange-500/20 transition-all hover:shadow-md hover:shadow-orange-500/10"
@@ -674,7 +674,7 @@ export function Navbar() {
                                     </Button>
                                 </Link>
                                 <Link
-                                    href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup"
+                                    href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup"
                                     className="block w-full"
                                 >
                                     <Button className="w-full justify-center bg-orange-600 hover:bg-orange-700 text-white">
