@@ -66,7 +66,7 @@ const ListItem = React.forwardRef<
                     {...props}
                 >
                     {Icon && (
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-muted/60 text-orange-600 transition-colors group-hover/item:bg-orange-50 group-hover/item:text-orange-600">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-muted/60 text-orange-600 transition-colors group-hover/item:bg-orange-50 dark:group-hover/item:bg-orange-950/50 group-hover/item:text-orange-600">
                             <Icon className="h-4 w-4" />
                         </span>
                     )}
@@ -101,7 +101,7 @@ function HighlightCard({
     return (
         <Link
             href={href}
-            className="group flex h-full flex-col justify-between rounded-xl bg-gradient-to-br from-orange-50/80 to-orange-100/40 p-6 transition-colors hover:from-orange-50 hover:to-orange-100/60"
+            className="group flex h-full flex-col justify-between rounded-xl bg-gradient-to-br from-orange-50/80 to-orange-100/40 dark:from-orange-500/10 dark:to-orange-600/5 p-6 transition-colors hover:from-orange-50 hover:to-orange-100/60 dark:hover:from-orange-500/15 dark:hover:to-orange-600/10 dark:ring-1 dark:ring-orange-500/20"
         >
             <div>
                 <h4 className="text-sm font-semibold text-foreground mb-2">
@@ -111,7 +111,7 @@ function HighlightCard({
                     {description}
                 </p>
             </div>
-            <span className="mt-4 inline-flex items-center text-xs font-semibold text-orange-600 group-hover:text-orange-700 transition-colors">
+            <span className="mt-4 inline-flex items-center text-xs font-semibold text-orange-600 dark:text-orange-500 group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors">
                 Explore
                 <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
             </span>

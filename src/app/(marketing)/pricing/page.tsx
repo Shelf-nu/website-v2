@@ -99,11 +99,11 @@ export default function PricingPage() {
         <div className="flex min-h-screen flex-col relative overflow-hidden">
             {/* Ambient Background Gradient & Grid */}
             <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-            <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 dark:from-orange-950/20 via-background to-background pointer-events-none" />
 
             <Container className="py-24 md:py-40 relative">
                 <div className="mx-auto max-w-2xl text-center mb-10">
-                    <Badge variant="secondary" className="mb-4 bg-orange-50 text-orange-700 border-orange-100/50">Pricing</Badge>
+                    <Badge variant="secondary" className="mb-4 bg-orange-50 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 border-orange-100/50 dark:border-orange-900/50">Pricing</Badge>
                     <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
                         Simple, transparent <span className="text-orange-600">pricing</span>
                     </h1>
@@ -123,7 +123,7 @@ export default function PricingPage() {
                                 alt={brand.name}
                                 width={100}
                                 height={32}
-                                className="h-7 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                className="h-7 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 dark:invert dark:brightness-200"
                             />
                         ))}
                     </div>
@@ -140,7 +140,7 @@ export default function PricingPage() {
                         onCheckedChange={setIsYearly}
                     />
                     <Label htmlFor="billing-toggle" className={`text-sm font-medium cursor-pointer ${isYearly ? 'text-foreground' : 'text-muted-foreground'}`} onClick={() => setIsYearly(true)}>
-                        Yearly <span className="ml-1.5 inline-flex items-center rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-700">Save {maxSavings}%</span>
+                        Yearly <span className="ml-1.5 inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-950/50 px-2 py-0.5 text-xs font-semibold text-orange-700 dark:text-orange-400">Save {maxSavings}%</span>
                     </Label>
                 </div>
 
@@ -237,7 +237,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Conversion CTA */}
-                <div className="mx-auto max-w-4xl text-center bg-gradient-to-b from-orange-50/50 to-transparent p-12 rounded-3xl border border-orange-100 mb-20">
+                <div className="mx-auto max-w-4xl text-center bg-gradient-to-b from-orange-50/50 to-transparent dark:from-orange-950/30 dark:to-transparent p-12 rounded-3xl border border-orange-100 dark:border-orange-900/40 mb-20">
                     <h3 className="text-3xl font-bold mb-4">Join innovative teams around the world</h3>
                     <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                         Stop using spreadsheets and start tracking your assets with a modern tool that your team will actually enjoy using.
