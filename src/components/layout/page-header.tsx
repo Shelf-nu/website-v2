@@ -9,9 +9,9 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, children }: PageHeaderProps) {
     return (
-        <section className="relative py-20 pb-32 md:py-32 overflow-hidden border-b border-border/40 bg-zinc-50/50 dark:bg-zinc-900/10">
+        <section className="relative py-20 pb-32 md:py-32 overflow-hidden border-b border-border/40 bg-surface/50 dark:bg-zinc-900/10">
             {/* Background Gradients */}
-            <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-background to-transparent pointer-events-none" />
             <div className="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-orange-100/40 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-normal dark:bg-orange-900/10" />
 
             <Container className="relative">

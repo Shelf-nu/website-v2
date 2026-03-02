@@ -16,7 +16,7 @@ export function CTA() {
                     </h2>
                     <p className="text-neutral-400 text-lg mb-10 max-w-xl mx-auto">
                         Join thousands of teams who trust Shelf to manage their physical assets.
-                        Start your free trial today.
+                        Free forever, or try the Team plan free for 7 days.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button size="lg" variant="secondary" className="bg-white text-neutral-900 hover:bg-neutral-200 h-12 px-8" asChild>

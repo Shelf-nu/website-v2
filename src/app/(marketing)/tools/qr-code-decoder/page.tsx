@@ -76,7 +76,7 @@ export default function QrDecoderPage() {
                 {/* Custom Header with Grid Pattern */}
                 <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">
                     {/* Background Gradient - Exact Match from Features & Tools Page */}
-                    <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+                    <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
                     <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
                     <Container>
@@ -170,19 +170,23 @@ export default function QrDecoderPage() {
                         {/* Related Tools */}
                         <div className="space-y-6 pt-8 border-t border-border">
                             <h2 className="text-2xl font-bold tracking-tight">Related free tools</h2>
-                            <div className="grid sm:grid-cols-3 gap-6">
-                                {[
-                                    "Free Asset Label Designer",
-                                    "Free QR Code Generator",
-
-                                ].map((tool, i) => (
-                                    <div key={i} className="group block p-4 rounded-xl border border-dashed border-border bg-muted/10">
-                                        <div className="font-semibold text-muted-foreground group-hover:text-foreground transition-colors mb-2">
-                                            {tool}
-                                        </div>
-                                        <div className="text-xs text-orange-600 font-medium">Coming soon</div>
+                            <div className="grid sm:grid-cols-2 gap-6">
+                                <Link href="/tools/asset-label-designer" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
+                                    <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">
+                                        Free Asset Label Designer
                                     </div>
-                                ))}
+                                    <div className="text-sm text-muted-foreground">
+                                        Design and print custom asset labels with QR codes.
+                                    </div>
+                                </Link>
+                                <Link href="/tools/qr-code-generator" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
+                                    <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">
+                                        Free QR Code Generator
+                                    </div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Generate QR codes in PNG or SVG format for any URL.
+                                    </div>
+                                </Link>
                             </div>
                         </div>
 

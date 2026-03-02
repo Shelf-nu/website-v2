@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -22,9 +24,22 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+
+  --color-heading: var(--heading);
+  --color-body: var(--body);
+  --color-caption: var(--caption);
+  --color-subtle: var(--subtle);
+
   --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-grid-line: var(--grid-line);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -48,12 +63,25 @@
   --accent: hsl(40 5% 96%);
   --accent-foreground: hsl(24 10% 10%);
 
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 9%);
+
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(0 0% 98%);
 
+  --surface: hsl(0 0% 98%);
+  --surface-foreground: hsl(0 0% 9%);
+
+  --heading: hsl(0 0% 9%);
+  --body: hsl(0 0% 33%);
+  --caption: hsl(0 0% 45%);
+  --subtle: hsl(0 0% 60%);
+
   --border: hsl(40 5% 92%);
+  --border-subtle: hsl(0 0% 92%);
   --input: hsl(40 5% 92%);
   --ring: hsl(24 90% 50%);
+  --grid-line: hsl(0 0% 50% / 0.07);
 
   --radius: 0.5rem;
 }
@@ -68,6 +96,9 @@
   --secondary: hsl(240 3.7% 15.9%);
   --secondary-foreground: hsl(0 0% 98%);
 
+  --card: hsl(240 6% 10%);
+  --card-foreground: hsl(0 0% 98%);
+
   --muted: hsl(240 3.7% 15.9%);
   --muted-foreground: hsl(240 5% 64.9%);
 
@@ -77,9 +108,19 @@
   --destructive: hsl(0 62.8% 30.6%);
   --destructive-foreground: hsl(0 0% 98%);
 
+  --surface: hsl(240 6% 10%);
+  --surface-foreground: hsl(0 0% 98%);
+
+  --heading: hsl(0 0% 98%);
+  --body: hsl(240 5% 65%);
+  --caption: hsl(240 5% 55%);
+  --subtle: hsl(240 5% 45%);
+
   --border: hsl(240 3.7% 15.9%);
+  --border-subtle: hsl(240 4% 16%);
   --input: hsl(240 3.7% 15.9%);
   --ring: hsl(24 90% 50%);
+  --grid-line: hsl(0 0% 80% / 0.07);
 }
 
 
@@ -97,7 +138,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    @apply antialiased subpixel-antialiased selection:bg-orange-500/20 selection:text-orange-900;
+    @apply antialiased subpixel-antialiased selection:bg-orange-500/20 selection:text-orange-900 dark:selection:text-orange-100;
   }
 
   h1,
@@ -175,6 +216,12 @@
 
   .link-standard {
     @apply underline underline-offset-4 decoration-orange-500/30 hover:decoration-orange-500 hover:text-orange-600 transition-all;
+  }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   }
 
   .bg-\[size\:24px_24px\] {

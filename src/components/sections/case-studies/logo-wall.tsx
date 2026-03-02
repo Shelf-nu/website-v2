@@ -71,7 +71,7 @@ export function LogoWall({ items }: LogoWallProps) {
                                                     alt={item.name}
                                                     width={100}
                                                     height={40}
-                                                    className="object-contain h-full w-auto grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100"
+                                                    className="object-contain h-full w-auto grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100 dark:invert dark:brightness-200"
                                                 />
                                             </div>
                                         ) : (

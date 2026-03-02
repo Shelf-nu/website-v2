@@ -6,7 +6,15 @@ import Image from "next/image";
 import { Frontmatter } from "@/lib/content/schema";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import { ShareButton } from "@/components/blog/share-button";
-import { Button } from "@/components/ui/button";
+import { formatCategoryLabel } from "@/lib/utils";
+
+function formatAuthorName(author: string): string {
+    // Convert slug-style "carlos-virreira" to "Carlos Virreira"
+    return author
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
 
 interface RelatedPost {
     slug: string;
@@ -42,9 +50,11 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                         <header className="mb-10 text-center lg:text-left">
                             <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
                                 {frontmatter.category && (
-                                    <Badge variant="secondary" className="bg-orange-50 text-orange-700 hover:bg-orange-100">
-                                        {frontmatter.category}
-                                    </Badge>
+                                    <Link href={`/blog?category=${frontmatter.category}`}>
+                                        <Badge variant="secondary" className="bg-orange-50 text-orange-700 hover:bg-orange-100 cursor-pointer">
+                                            {formatCategoryLabel(frontmatter.category)}
+                                        </Badge>
+                                    </Link>
                                 )}
                                 {frontmatter.date && (
                                     <time dateTime={frontmatter.date} className="text-sm text-muted-foreground">
@@ -57,21 +67,15 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                                 {frontmatter.title}
                             </h1>
 
-                            {frontmatter.description && (
-                                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 border-l-4 border-orange-200 pl-6 dark:border-orange-900">
-                                    {frontmatter.description}
-                                </p>
-                            )}
-
                             {/* Author Block */}
                             <div className="flex items-center justify-center lg:justify-start gap-4 border-y border-border py-6">
                                 <div className="h-12 w-12 rounded-full bg-orange-100 flex items-center justify-center text-lg font-bold text-orange-700 overflow-hidden relative">
-                                    {frontmatter.author ? frontmatter.author.charAt(0) : 'S'}
+                                    {frontmatter.author ? formatAuthorName(frontmatter.author).charAt(0) : 'S'}
                                 </div>
                                 <div className="text-left">
-                                    <div className="font-semibold text-foreground">{frontmatter.author || "Shelf Team"}</div>
+                                    <div className="font-semibold text-foreground">{frontmatter.author ? formatAuthorName(frontmatter.author) : "Shelf Team"}</div>
                                     <div className="text-sm text-muted-foreground">
-                                        {frontmatter.authorRole || "Contents Team"}
+                                        {frontmatter.authorRole || "Shelf Team"}
                                     </div>
                                 </div>
                                 <div className="ml-auto flex items-center gap-4 text-sm text-muted-foreground">
@@ -111,7 +115,7 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                 {/* Read Next Section */}
                 {relatedPosts && relatedPosts.length > 0 && (
                     <div className="border-t border-border pt-16 mt-24 mb-16">
-                        <h3 className="text-2xl font-bold mb-8">Read next</h3>
+                        <h3 className="text-2xl font-bold mb-8">More from the blog</h3>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {relatedPosts.map((post) => (
                                 <Link key={post.slug} href={`/blog/${post.slug}`} className="group block h-full">
@@ -127,8 +131,8 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                                         <div className="p-6 flex flex-col flex-1">
                                             <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
                                                 {post.frontmatter.category && (
-                                                    <Badge variant="secondary" className="bg-orange-50 text-orange-700 hover:bg-orange-100 border-orange-100">
-                                                        {post.frontmatter.category}
+                                                    <Badge variant="secondary" className="bg-orange-50 text-orange-700 border-orange-100">
+                                                        {formatCategoryLabel(post.frontmatter.category)}
                                                     </Badge>
                                                 )}
                                                 {post.frontmatter.date && (
@@ -154,25 +158,6 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                     </div>
                 )}
 
-                {/* Bottom CTA */}
-                <div className="bg-orange-50 border border-orange-100 rounded-2xl p-8 md:p-12 text-center md:text-left md:flex items-center justify-between gap-8">
-                    <div className="max-w-xl">
-                        <h3 className="text-2xl md:text-3xl font-bold text-orange-950 mb-3">
-                            Stop chasing assets. Start managing them.
-                        </h3>
-                        <p className="text-orange-800/80 text-lg">
-                            Join over 2,000 teams who trust Shelf to track their equipment.
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
-                        <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-900/10" asChild>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=blog_bottom_cta_signup">Get Started Free</Link>
-                        </Button>
-                        <Button size="lg" variant="outline" className="border-orange-200 text-orange-800 hover:bg-orange-100" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=blog_bottom_cta_demo">Book Demo</Link>
-                        </Button>
-                    </div>
-                </div>
             </Container>
         </article>
     );

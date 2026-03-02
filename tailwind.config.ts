@@ -27,6 +27,10 @@ const config: Config = {
           DEFAULT: "var(--secondary)",
           foreground: "var(--secondary-foreground)",
         },
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
         muted: {
           DEFAULT: "var(--muted)",
           foreground: "var(--muted-foreground)",
@@ -35,9 +39,19 @@ const config: Config = {
           DEFAULT: "var(--accent)",
           foreground: "var(--accent-foreground)",
         },
+        surface: {
+          DEFAULT: "var(--surface)",
+          foreground: "var(--surface-foreground)",
+        },
+        heading: "var(--heading)",
+        body: "var(--body)",
+        caption: "var(--caption)",
+        subtle: "var(--subtle)",
         border: "var(--border)",
+        "border-subtle": "var(--border-subtle)",
         input: "var(--input)",
         ring: "var(--ring)",
+        "grid-line": "var(--grid-line)",
       },
       borderRadius: {
         lg: "var(--radius)",

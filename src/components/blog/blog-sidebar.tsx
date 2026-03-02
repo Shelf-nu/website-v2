@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState, startTransition } from "react";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface TocItem {
@@ -142,54 +140,6 @@ export function BlogSidebar() {
                 </div>
             )}
 
-            {/* CTA Card - Refined Layout */}
-            <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
-                {/* Top Section: Value Prop */}
-                <div className="p-6 pb-2 space-y-4">
-                    <h4 className="font-bold text-2xl tracking-tight text-foreground leading-tight">
-                        Never double-book equipment
-                    </h4>
-
-                    <p className="text-base text-muted-foreground leading-relaxed">
-                        Track who has what, when — and avoid last-minute chaos when plans change. Shelf gives teams a single system of truth for shared gear.
-                    </p>
-
-                    <div className="pt-2 flex flex-col gap-3">
-                        {/* Primary Action */}
-                        <Link href="/customers" className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-700 transition-colors group">
-                            See how teams use Shelf <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </Link>
-
-                        {/* Secondary Action */}
-                        <Link href="/pricing" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                            Learn more <ArrowRight className="ml-1.5 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className="px-6 py-4">
-                    <div className="h-px bg-border/50 w-full" />
-                </div>
-
-                {/* Bottom Section: Quote Panel */}
-                <div className="px-6 pb-6">
-                    <div className="rounded-lg bg-muted/40 border border-border/50 p-5 relative">
-                        <blockquote className="text-sm text-foreground/80 italic leading-relaxed mb-4">
-                            &quot;Avoiding double bookings is the reason I wanted to use Shelf. The moment I had to fix a last-minute extra camera proved stressful enough to justify the change.&quot;
-                        </blockquote>
-
-                        <div className="flex items-center justify-between border-t border-border/50 pt-4">
-                            <div>
-                                <div className="font-semibold text-xs text-foreground">Johannes van Beeck</div>
-                                <div className="text-[11px] text-muted-foreground">Technical Director</div>
-                            </div>
-                            <Link href="/case-studies" className="text-xs font-medium text-orange-600 hover:text-orange-700 whitespace-nowrap group flex items-center">
-                                Case study <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 }

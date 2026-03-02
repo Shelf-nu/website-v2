@@ -27,7 +27,7 @@ export function Logo({ className = "" }: Omit<LogoProps, "showText" | "variant">
                 <ContextMenuTrigger>
                     <div className="relative flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity">
                         <Image
-                            src="/logo-dark.png"
+                            src="/logo-light.png"
                             alt="Shelf Logo"
                             width={120}
                             height={40}
@@ -35,8 +35,8 @@ export function Logo({ className = "" }: Omit<LogoProps, "showText" | "variant">
                             priority
                         />
                         <Image
-                            src="/logo-light.png"
-                            alt="Shelf Logo (Dark)"
+                            src="/logo-dark.png"
+                            alt="Shelf Logo"
                             width={120}
                             height={40}
                             className="h-10 w-auto object-contain hidden dark:block"

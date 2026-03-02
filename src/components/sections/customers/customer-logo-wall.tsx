@@ -69,7 +69,7 @@ export function CustomerLogoWall({ items }: CustomerLogoWallProps) {
                                         alt={item.name}
                                         width={120}
                                         height={40}
-                                        className="object-contain h-10 w-auto max-w-[100px] grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                                        className="object-contain h-10 w-auto max-w-[100px] grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 dark:invert dark:brightness-200"
                                     />
                                 </div>
                                 <span className="text-[11px] text-muted-foreground/70 text-center leading-tight line-clamp-1 group-hover:text-foreground transition-colors">

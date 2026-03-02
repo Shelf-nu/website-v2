@@ -1,4 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -40,7 +41,7 @@ const components = {
     li: (props: HtmlProps<"li">) => <li className="leading-7 text-muted-foreground" {...props} />,
     blockquote: (props: HtmlProps<"blockquote">) => (
         <blockquote
-            className="mt-6 border-l-4 border-orange-500 pl-6 italic text-foreground bg-orange-50/50 py-3 pr-4 rounded-r-lg"
+            className="mt-6 border-l-4 border-orange-500 pl-6 italic text-foreground bg-orange-50/50 dark:bg-orange-950/20 py-3 pr-4 rounded-r-lg"
             {...props}
         />
     ),
@@ -57,8 +58,8 @@ const components = {
     ),
     hr: (props: HtmlProps<"hr">) => <hr className="my-8 md:my-12 border-border/40" {...props} />,
     table: (props: HtmlProps<"table">) => (
-        <div className="my-6 w-full overflow-y-auto rounded-lg border border-border/40 shadow-sm">
-            <table className="w-full" {...props} />
+        <div className="my-6 w-full overflow-x-auto rounded-lg border border-border/40 shadow-sm">
+            <table className="w-full text-sm" {...props} />
         </div>
     ),
     tr: (props: HtmlProps<"tr">) => (
@@ -84,7 +85,7 @@ const components = {
     ),
     code: (props: HtmlProps<"code">) => (
         <code
-            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-orange-800"
+            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-orange-800 dark:text-orange-300"
             {...props}
         />
     ),
@@ -96,7 +97,7 @@ const components = {
 export function MDXContent({ source }: { source: string }) {
     return (
         <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <MDXRemote source={source} components={components} />
+            <MDXRemote source={source} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </div>
     );
 }

@@ -19,7 +19,7 @@ export default function DemoPage() {
         <div className="flex flex-col min-h-screen relative">
             {/* Ambient Background Gradient (reused from pricing for consistency) */}
             {/* Ambient Background Gradient & Grid */}
-            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
             <Container className="pt-32 pb-12 md:pt-48 md:pb-24 relative z-10 flex-1 flex flex-col justify-center">
@@ -52,7 +52,7 @@ export default function DemoPage() {
                                     &quot;Having SHELF has massively improved our ability to locate equipment... This makes purchasing much easier and will prevent over and under purchasing of equipment.&quot;
                                 </blockquote>
                                 <div className="flex items-center gap-3">
-                                    <div className="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center font-bold text-orange-700 text-xs">TL</div>
+                                    <Image src="/testimonials/toby.jpeg" alt="Toby Liversedge" width={32} height={32} className="h-8 w-8 rounded-full object-cover" />
                                     <div>
                                         <div className="font-semibold text-sm">Toby Liversedge</div>
                                         <div className="text-xs text-muted-foreground">Support Supervisor | Resq | Migrated from Excel</div>
@@ -71,7 +71,7 @@ export default function DemoPage() {
                                     &quot;Migrating to Shelf let us modernize without losing the systems we’d already invested in. The team adapted Shelf to work perfectly with our DYMO label workflow—no retraining, no downtime, just a seamless upgrade.&quot;
                                 </blockquote>
                                 <div className="flex items-center gap-3">
-                                    <div className="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center font-bold text-orange-700 text-xs">SG</div>
+                                    <Image src="/testimonials/steve.jpeg" alt="Steve Gardels" width={32} height={32} className="h-8 w-8 rounded-full object-cover" />
                                     <div>
                                         <div className="font-semibold text-sm">Steve Gardels</div>
                                         <div className="text-xs text-muted-foreground">Media Center Manager | Kansas City Art Institute | Migrated from Cheqroom</div>
@@ -88,24 +88,18 @@ export default function DemoPage() {
                                 </div>
                             </div>
 
-                            {/* Card 3: Trust Badge */}
-                            <div className="bg-card/50 border border-border/50 rounded-2xl p-6 backdrop-blur-sm flex flex-col justify-center items-center text-center min-h-[140px]">
-                                <div className="text-sm font-semibold text-muted-foreground mb-2">Trusted by modern teams</div>
-                                <div className="flex -space-x-2">
-                                    {[
-                                        { src: "/logos/nokia.png", alt: "Nokia" },
-                                        { src: "/logos/universal-music.png", alt: "Universal Music" },
-                                        { src: "/logos/virgin-hyperloop.webp", alt: "Virgin Hyperloop" }
-                                    ].map((logo, i) => (
-                                        <div key={i} className="relative h-8 w-8 rounded-full border-2 border-background bg-white flex items-center justify-center overflow-hidden">
-                                            <Image src={logo.src} alt={logo.alt} fill className="object-contain p-1" />
-                                        </div>
-                                    ))}
-                                    <div className="h-8 w-8 rounded-full border-2 border-background bg-orange-100 flex items-center justify-center text-[10px] font-bold text-orange-700">
-                                        +500
-                                    </div>
+                            {/* Card 3: G2 Rating */}
+                            <a href="https://www.g2.com/products/shelf-asset-management/reviews" target="_blank" rel="noopener noreferrer" className="bg-card/50 border border-border/50 rounded-2xl p-6 backdrop-blur-sm flex flex-col justify-center items-center text-center min-h-[140px] hover:bg-card/70 transition-colors group">
+                                <div className="relative h-8 w-8 mb-2">
+                                    <Image src="/logos/g2-logo.png" alt="G2 Logo" fill className="object-contain" />
                                 </div>
-                            </div>
+                                <div className="flex gap-0.5 mb-1">
+                                    {[1, 2, 3, 4, 5].map((i) => (
+                                        <Star key={i} className="h-4 w-4 fill-orange-500 text-orange-500" />
+                                    ))}
+                                </div>
+                                <div className="text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors">5.0/5 on G2</div>
+                            </a>
                         </div>
                     </div>
 

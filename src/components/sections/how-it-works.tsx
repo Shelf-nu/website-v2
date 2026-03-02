@@ -21,7 +21,7 @@ const steps = [
 
 export function HowItWorks() {
     return (
-        <section className="py-24 sm:py-32 bg-zinc-50/50 dark:bg-zinc-900/10">
+        <section className="py-24 sm:py-32 bg-surface/50">
             <Container>
                 <div className="mx-auto max-w-2xl lg:text-center">
                     <ScrollReveal width="100%">
@@ -37,7 +37,7 @@ export function HowItWorks() {
                     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                         {steps.map((step, index) => (
                             <ScrollReveal key={step.id} width="100%" delay={index * 0.15}>
-                                <div className="relative pl-16 group p-6 rounded-2xl transition-colors hover:bg-white/50 border border-transparent hover:border-black/5">
+                                <div className="relative pl-16 group p-6 rounded-2xl transition-colors hover:bg-card/50 border border-transparent hover:border-foreground/5">
                                     <div className="absolute left-0 top-6 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-600 text-white font-bold shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform duration-300">
                                         {step.id}
                                     </div>

@@ -101,7 +101,7 @@ export function SystemGraphic() {
     const [activeStepIdx, setActiveStepIdx] = useState(0);
 
     return (
-        <section className="relative bg-white border-y border-zinc-200">
+        <section className="relative bg-card border-y border-border-subtle">
             <Container>
                 <div className="lg:grid lg:grid-cols-12 gap-12 relative">
 
@@ -153,24 +153,24 @@ const NarrativeStep = memo(function NarrativeStep({ step, index, setActiveStep }
                 className="space-y-6 max-w-md"
             >
                 <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-100 text-xs font-bold text-orange-600 ring-4 ring-white">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-100 text-xs font-bold text-orange-600 ring-4 ring-background">
                         {index + 1}
                     </span>
                     <p className="text-orange-600 font-medium text-sm tracking-wider uppercase">{step.eyebrow}</p>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight">{step.headline}</h3>
-                <p className="text-lg text-zinc-600 leading-relaxed text-pretty">{step.body}</p>
+                <h3 className="text-3xl md:text-4xl font-bold text-heading tracking-tight">{step.headline}</h3>
+                <p className="text-lg text-body leading-relaxed text-pretty">{step.body}</p>
 
                 {step.testimonial && (
-                    <div className="mt-6 pt-6 border-t border-zinc-200">
-                        <blockquote className="text-base text-zinc-500 italic mb-3">&quot;{step.testimonial.quote}&quot;</blockquote>
+                    <div className="mt-6 pt-6 border-t border-border-subtle">
+                        <blockquote className="text-base text-caption italic mb-3">&quot;{step.testimonial.quote}&quot;</blockquote>
                         <div className="flex items-center gap-3">
-                            <div className="h-6 w-6 rounded-full bg-zinc-200 flex items-center justify-center text-[10px] font-bold text-zinc-500">
+                            <div className="h-6 w-6 rounded-full bg-muted flex items-center justify-center text-[10px] font-bold text-caption">
                                 {step.testimonial.author.charAt(0)}
                             </div>
-                            <div className="text-xs text-zinc-400 font-medium">
-                                <span className="text-zinc-900">{step.testimonial.author}</span> — {step.testimonial.role}
+                            <div className="text-xs text-subtle font-medium">
+                                <span className="text-heading">{step.testimonial.author}</span> — {step.testimonial.role}
                             </div>
                         </div>
                     </div>
@@ -212,7 +212,7 @@ function BentoGrid({ activeCards }: { activeCards: CardId[] }) {
                     label="Assets"
                     icon={Box}
                     isActive={isActive("assets")}
-                    className="col-start-2 row-start-1 bg-gradient-to-b from-white to-zinc-50"
+                    className="col-start-2 row-start-1 bg-gradient-to-b from-background to-surface"
                     variant="primary"
                 />
 
@@ -253,7 +253,7 @@ function BentoGrid({ activeCards }: { activeCards: CardId[] }) {
             </div>
 
             {/* Background Glow for Active State */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-zinc-100/50 via-transparent to-transparent opacity-50 rounded-full blur-3xl -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-surface/50 via-transparent to-transparent opacity-50 rounded-full blur-3xl -z-10" />
         </div>
     );
 }
@@ -278,20 +278,20 @@ const BentoCard = memo(function BentoCard({ label, icon: Icon, isActive, classNa
             }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className={cn(
-                "relative flex flex-col items-center justify-center p-4 rounded-xl border border-transparent bg-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] transition-all",
-                isActive && "shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] bg-white",
+                "relative flex flex-col items-center justify-center p-4 rounded-xl border border-transparent bg-card shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] transition-all",
+                isActive && "shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] bg-card",
                 className
             )}
         >
             <div className={cn(
                 "p-3 rounded-full mb-3",
-                isActive ? "bg-orange-50 text-orange-600" : "bg-zinc-100 text-zinc-400"
+                isActive ? "bg-orange-50 text-orange-600" : "bg-surface text-subtle"
             )}>
                 <Icon size={24} strokeWidth={isActive ? 2 : 1.5} />
             </div>
             <span className={cn(
                 "text-sm font-semibold tracking-tight",
-                isActive ? "text-zinc-900" : "text-zinc-400"
+                isActive ? "text-heading" : "text-subtle"
             )}>
                 {label}
             </span>

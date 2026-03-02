@@ -58,7 +58,7 @@ export function Breadcrumbs({ className }: { className?: string }) {
     };
 
     return (
-        <nav aria-label="Breadcrumb" className={cn("flex items-center text-[13px] text-zinc-500 mb-6", className)}>
+        <nav aria-label="Breadcrumb" className={cn("flex items-center text-[13px] text-caption mb-6", className)}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -68,7 +68,7 @@ export function Breadcrumbs({ className }: { className?: string }) {
                 <li>
                     <Link
                         href="/"
-                        className="flex items-center hover:text-zinc-900 transition-colors"
+                        className="flex items-center hover:text-heading transition-colors"
                         aria-label="Home"
                     >
                         <Home className="h-3.5 w-3.5" />
@@ -82,7 +82,7 @@ export function Breadcrumbs({ className }: { className?: string }) {
 
                     return (
                         <Fragment key={href}>
-                            <li aria-hidden="true" className="text-zinc-300">
+                            <li aria-hidden="true" className="text-border-subtle">
                                 <ChevronRight className="h-3 w-3" />
                             </li>
                             <li>
@@ -93,7 +93,7 @@ export function Breadcrumbs({ className }: { className?: string }) {
                                 ) : (
                                     <Link
                                         href={href}
-                                        className="hover:text-zinc-900 transition-colors"
+                                        className="hover:text-heading transition-colors"
                                     >
                                         {label}
                                     </Link>

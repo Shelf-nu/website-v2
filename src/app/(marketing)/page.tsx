@@ -5,6 +5,7 @@ import { ScaleBlock } from "@/components/sections/scale-block";
 
 import { FAQSection } from "@/components/sections/faq";
 import { FeatureNavigationCTA } from "@/components/sections/feature-navigation-cta";
+import { CaseStudiesPreview } from "@/components/sections/case-studies-preview";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getHomePageLogosForGrid } from "@/data/customer-logos";
 
@@ -26,6 +27,7 @@ export default function HomePage() {
             <FAQSection />
             <ScaleBlock />
             <FeatureNavigationCTA />
+            <CaseStudiesPreview />
         </>
     );
 }

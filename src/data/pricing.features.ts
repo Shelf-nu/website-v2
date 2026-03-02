@@ -193,58 +193,6 @@ export const pricingFeatures: PricingFeature[] = [
     },
 
     // ============================================================================
-    // STORAGE & FILES
-    // ============================================================================
-    {
-        id: "max-file-size",
-        category: "Storage & Files",
-        name: "Max File Size",
-        description: "Maximum file size per asset (photos/documents)",
-        availability: {
-            free: "limited",
-            plus: "included",
-            team: "included",
-            enterprise: "included",
-        },
-        internalAvailability: {
-            free: "limited",
-            tier_1: "included",
-            tier_2: "included",
-            custom: "included",
-        },
-        metadata: {
-            free: "5 MB per file",
-            plus: "Unlimited",
-            team: "Unlimited",
-            enterprise: "Unlimited",
-        },
-    },
-    {
-        id: "file-storage",
-        category: "Storage & Files",
-        name: "File Storage",
-        description: "Total storage for asset files",
-        availability: {
-            free: "included",
-            plus: "included",
-            team: "included",
-            enterprise: "included",
-        },
-        internalAvailability: {
-            free: "included",
-            tier_1: "included",
-            tier_2: "included",
-            custom: "included",
-        },
-        metadata: {
-            free: "Unlimited (within file size limit)",
-            plus: "Unlimited",
-            team: "Unlimited",
-            enterprise: "Unlimited",
-        },
-    },
-
-    // ============================================================================
     // WORKSPACE MANAGEMENT
     // ============================================================================
     {
@@ -265,10 +213,10 @@ export const pricingFeatures: PricingFeature[] = [
             custom: "included",
         },
         metadata: {
-            free: "1 workspace (Personal org only)",
-            plus: "1 workspace",
-            team: "2 workspaces",
-            enterprise: "Unlimited workspaces",
+            free: "Personal workspace only",
+            plus: "Personal workspace (no limits)",
+            team: "1 Team + 1 Personal workspace",
+            enterprise: "Custom — based on agreement",
         },
         requiresPremiumEnabled: true,
     },
@@ -299,26 +247,25 @@ export const pricingFeatures: PricingFeature[] = [
         id: "team-members",
         category: "Team Collaboration",
         name: "Team Members",
-        description: "Invite team members to collaborate (requires TEAM workspace)",
+        description: "Invite team members to collaborate on your workspace",
         availability: {
-            free: "requires-team-org",
-            plus: "requires-team-org",
-            team: "requires-team-org",
-            enterprise: "requires-team-org",
+            free: "limited",
+            plus: "limited",
+            team: "included",
+            enterprise: "included",
         },
         internalAvailability: {
-            free: "requires-team-org",
-            tier_1: "requires-team-org",
-            tier_2: "requires-team-org",
-            custom: "requires-team-org",
+            free: "limited",
+            tier_1: "limited",
+            tier_2: "included",
+            custom: "included",
         },
         metadata: {
-            free: "Unlimited (TEAM workspace only)",
-            plus: "Unlimited (TEAM workspace only)",
-            team: "Unlimited (TEAM workspace only)",
-            enterprise: "Unlimited (TEAM workspace only)",
+            free: "1 user (you)",
+            plus: "1 user (you)",
+            team: "Unlimited",
+            enterprise: "Unlimited",
         },
-        requiresTeamOrg: true,
     },
     {
         id: "role-based-access",
@@ -349,14 +296,14 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Reserve assets with start/end dates and custodian assignment",
         availability: {
-            free: "included",
-            plus: "included",
+            free: "not-included",
+            plus: "not-included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
-            tier_1: "included",
+            free: "not-included",
+            tier_1: "not-included",
             tier_2: "included",
             custom: "included",
         },
@@ -368,14 +315,14 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Calendar view for asset availability and bookings",
         availability: {
-            free: "included",
-            plus: "included",
+            free: "not-included",
+            plus: "not-included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
-            tier_1: "included",
+            free: "not-included",
+            tier_1: "not-included",
             tier_2: "included",
             custom: "included",
         },
@@ -387,14 +334,14 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Daily, weekly, and monthly availability views for equipment scheduling",
         availability: {
-            free: "included",
-            plus: "included",
+            free: "not-included",
+            plus: "not-included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
-            tier_1: "included",
+            free: "not-included",
+            tier_1: "not-included",
             tier_2: "included",
             custom: "included",
         },
@@ -406,14 +353,14 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Assign custody with fixed start and end dates",
         availability: {
-            free: "included",
-            plus: "included",
+            free: "not-included",
+            plus: "not-included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
-            tier_1: "included",
+            free: "not-included",
+            tier_1: "not-included",
             tier_2: "included",
             custom: "included",
         },
@@ -425,14 +372,14 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Configure weekly schedules and holiday overrides for availability",
         availability: {
-            free: "included",
-            plus: "included",
+            free: "not-included",
+            plus: "not-included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
-            tier_1: "included",
+            free: "not-included",
+            tier_1: "not-included",
             tier_2: "included",
             custom: "included",
         },
@@ -443,14 +390,14 @@ export const pricingFeatures: PricingFeature[] = [
         name: "Self-Checkouts",
         description: "Allow members to check out and check in items",
         availability: {
-            free: "included",
-            plus: "included",
+            free: "not-included",
+            plus: "not-included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
-            tier_1: "included",
+            free: "not-included",
+            tier_1: "not-included",
             tier_2: "included",
             custom: "included",
         },
@@ -528,13 +475,13 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Allow team members to request unclaimed QR tags for new assets",
         availability: {
-            free: "included",
+            free: "not-included",
             plus: "included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
+            free: "not-included",
             tier_1: "included",
             tier_2: "included",
             custom: "included",
@@ -547,13 +494,13 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Submit feature requests with priority visibility to the Shelf team",
         availability: {
-            free: "included",
+            free: "not-included",
             plus: "included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
+            free: "not-included",
             tier_1: "included",
             tier_2: "included",
             custom: "included",
@@ -569,13 +516,13 @@ export const pricingFeatures: PricingFeature[] = [
         name: "Import Assets (CSV)",
         description: "Bulk import assets via CSV file",
         availability: {
-            free: "included",
+            free: "not-included",
             plus: "included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
+            free: "not-included",
             tier_1: "included",
             tier_2: "included",
             custom: "included",
@@ -587,13 +534,13 @@ export const pricingFeatures: PricingFeature[] = [
         name: "Export Assets (CSV)",
         description: "Bulk export assets to CSV file",
         availability: {
-            free: "included",
+            free: "not-included",
             plus: "included",
             team: "included",
             enterprise: "included",
         },
         internalAvailability: {
-            free: "included",
+            free: "not-included",
             tier_1: "included",
             tier_2: "included",
             custom: "included",
@@ -607,19 +554,19 @@ export const pricingFeatures: PricingFeature[] = [
             "Import and link external barcodes (UPC, EAN, etc.) to assets",
         availability: {
             free: "not-included",
-            plus: "not-included",
+            plus: "limited",
             team: "limited",
             enterprise: "included",
         },
         internalAvailability: {
             free: "not-included",
-            tier_1: "not-included",
+            tier_1: "limited",
             tier_2: "limited",
             custom: "included",
         },
         metadata: {
             free: "Not available",
-            plus: "Not available",
+            plus: "Add-on",
             team: "Add-on",
             enterprise: "Included",
         },
@@ -655,27 +602,26 @@ export const pricingFeatures: PricingFeature[] = [
     {
         id: "booking-pdf",
         category: "Reports & Exports",
-        name: "Booking PDFs",
-        description: "Export booking details as PDF (requires TEAM workspace)",
+        name: "Booking PDFs (Pull Lists)",
+        description: "Export booking details as PDF pull lists",
         availability: {
-            free: "requires-team-org",
-            plus: "requires-team-org",
-            team: "requires-team-org",
-            enterprise: "requires-team-org",
+            free: "not-included",
+            plus: "not-included",
+            team: "included",
+            enterprise: "included",
         },
         internalAvailability: {
-            free: "requires-team-org",
-            tier_1: "requires-team-org",
-            tier_2: "requires-team-org",
-            custom: "requires-team-org",
+            free: "not-included",
+            tier_1: "not-included",
+            tier_2: "included",
+            custom: "included",
         },
-        requiresTeamOrg: true,
     },
     {
         id: "qr-export",
         category: "Reports & Exports",
-        name: "Bulk QR Code Export",
-        description: "Download multiple QR codes at once",
+        name: "Bulk Asset Label Export",
+        description: "Download multiple asset labels at once",
         availability: {
             free: "included",
             plus: "included",
@@ -694,28 +640,10 @@ export const pricingFeatures: PricingFeature[] = [
     // INTEGRATIONS
     // ============================================================================
     {
-        id: "webhooks",
+        id: "sso-saml-scim",
         category: "Integrations",
-        name: "Webhooks",
-        description: "Webhook capabilities for automation",
-        availability: {
-            free: "included",
-            plus: "included",
-            team: "included",
-            enterprise: "included",
-        },
-        internalAvailability: {
-            free: "included",
-            tier_1: "included",
-            tier_2: "included",
-            custom: "included",
-        },
-    },
-    {
-        id: "sso-saml",
-        category: "Integrations",
-        name: "SSO/SAML",
-        description: "Single Sign-On via Azure, Google Workspace, etc.",
+        name: "SSO / SAML / SCIM",
+        description: "Single Sign-On, SAML, and SCIM provisioning",
         availability: {
             free: "not-included",
             plus: "not-included",
@@ -731,63 +659,11 @@ export const pricingFeatures: PricingFeature[] = [
         metadata: {
             free: "Not available",
             plus: "Not available",
-            team: "Available on request",
-            enterprise: "Fully supported",
-        },
-    },
-    {
-        id: "scim",
-        category: "Integrations",
-        name: "SCIM",
-        description: "System for Cross-domain Identity Management",
-        availability: {
-            free: "not-included",
-            plus: "not-included",
-            team: "limited",
-            enterprise: "included",
-        },
-        internalAvailability: {
-            free: "not-included",
-            tier_1: "not-included",
-            tier_2: "limited",
-            custom: "included",
-        },
-        metadata: {
-            free: "Not available",
-            plus: "Not available",
-            team: "Available on request",
-            enterprise: "Fully supported",
+            team: "Add-on — contact sales",
+            enterprise: "Included",
         },
     },
 
-    // ============================================================================
-    // DEPLOYMENT
-    // ============================================================================
-    {
-        id: "self-hosting",
-        category: "Deployment",
-        name: "Self-Hosting",
-        description:
-            "Deploy Shelf on your own infrastructure with full access to all features",
-        availability: {
-            free: "included",
-            plus: "included",
-            team: "included",
-            enterprise: "included",
-        },
-        internalAvailability: {
-            free: "included",
-            tier_1: "included",
-            tier_2: "included",
-            custom: "included",
-        },
-        metadata: {
-            free: "Open source",
-            plus: "Open source",
-            team: "Open source",
-            enterprise: "Enterprise support available",
-        },
-    },
 ];
 
 /**

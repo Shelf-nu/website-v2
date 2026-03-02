@@ -39,7 +39,7 @@ export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
                         {infiniteLogos.map((logo, index) => (
                             <div
                                 key={`${logo.name}-${index}`}
-                                className="relative h-10 w-32 flex-shrink-0 flex items-center justify-center grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+                                className="relative h-10 w-32 flex-shrink-0 flex items-center justify-center grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500 dark:invert dark:brightness-200"
                             >
                                 <Image
                                     src={logo.src}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { SkipToContent } from "@/components/layout/skip-to-content";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,11 +94,13 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <SkipToContent />
-        <ScrollToTop />
-        <div id="main-content">
-          {children}
-        </div>
+        <ThemeProvider>
+          <SkipToContent />
+          <ScrollToTop />
+          <div id="main-content">
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

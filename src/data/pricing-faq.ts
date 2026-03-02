@@ -30,7 +30,7 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "Do you offer discounts for non-profits?",
-        answer: "Yes, we offer a 20% discount for registered non-profit organizations and educational institutions. Please contact our support team with proof of status to apply the discount to your account."
+        answer: "Yes, we offer special pricing for registered non-profit organizations and educational institutions. Get in touch with our team and we'll work out a plan that fits your budget."
     },
     {
         question: "Will you help us switch to Shelf?",

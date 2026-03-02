@@ -42,17 +42,16 @@ export default async function BlogPost({ params }: PageProps) {
 
     const Layout = resolveLayout(frontmatter.layout);
 
-    // Deterministic shuffle based on slug
-    const hash = slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    // Related posts: prefer same category, then fall back to recent posts
     const allPosts = getAllContent("blog");
-    const relatedPosts = allPosts
-        .filter(post => post.slug !== slug)
-        .sort((a, b) => {
-            const ha = a.slug.charCodeAt(0) ^ hash;
-            const hb = b.slug.charCodeAt(0) ^ hash;
-            return ha - hb;
-        })
-        .slice(0, 3);
+    const otherPosts = allPosts.filter(post => post.slug !== slug);
+    const sameCategoryPosts = frontmatter.category
+        ? otherPosts.filter(post => post.frontmatter.category === frontmatter.category)
+        : [];
+    const differentCategoryPosts = otherPosts.filter(
+        post => post.frontmatter.category !== frontmatter.category
+    );
+    const relatedPosts = [...sameCategoryPosts, ...differentCategoryPosts].slice(0, 3);
 
     const jsonLd = [
         breadcrumbJsonLd([
@@ -66,7 +65,6 @@ export default async function BlogPost({ params }: PageProps) {
     return (
         <PagefindWrapper type="Blog" title={frontmatter.title}>
             <StructuredData data={jsonLd} />
-            {/* eslint-disable-next-line react-hooks/static-components */}
             <Layout frontmatter={frontmatter} relatedPosts={relatedPosts}>
                 <MDXContent source={content} />
             </Layout>

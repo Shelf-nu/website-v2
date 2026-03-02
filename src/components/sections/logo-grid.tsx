@@ -51,7 +51,7 @@ export function LogoGrid({ items }: LogoGridProps) {
 
                         // Content wrapper for the logo image
                         const LogoImage = (
-                            <div className={`relative h-12 w-full max-w-[160px] transition-all duration-300 ${hasCaseStudy ? 'opacity-60 grayscale group-hover:opacity-0 group-hover:-translate-y-2' : 'opacity-50 grayscale hover:opacity-100 hover:grayscale-0'}`}>
+                            <div className={`relative h-12 w-full max-w-[160px] transition-all duration-300 dark:invert dark:brightness-200 ${hasCaseStudy ? 'opacity-60 grayscale group-hover:opacity-0 group-hover:-translate-y-2' : 'opacity-50 grayscale hover:opacity-100 hover:grayscale-0'}`}>
                                 <Image
                                     src={item.logo}
                                     alt={item.name}

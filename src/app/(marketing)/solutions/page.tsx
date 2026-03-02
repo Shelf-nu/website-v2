@@ -20,7 +20,7 @@ export default function SolutionsPage() {
     return (
         <div className="flex flex-col min-h-screen relative overflow-hidden">
             {/* Ambient Background */}
-            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
             <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
             <Container className="py-24 md:py-32 relative">
@@ -53,10 +53,10 @@ export default function SolutionsPage() {
                                                     src={solutionImage}
                                                     alt={frontmatter.title}
                                                     fill
-                                                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105 dark:brightness-90 dark:contrast-105"
                                                 />
                                             ) : (
-                                                <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center">
+                                                <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/30 dark:to-orange-900/20 flex items-center justify-center">
                                                     <Icon className="h-12 w-12 text-orange-300" />
                                                 </div>
                                             )}
@@ -64,7 +64,7 @@ export default function SolutionsPage() {
                                             <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/80 to-transparent" />
 
                                             {/* Icon badge */}
-                                            <div className="absolute top-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm border border-white/20 shadow-sm text-orange-600">
+                                            <div className="absolute top-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/90 dark:bg-card/90 backdrop-blur-sm border border-white/20 dark:border-border/30 shadow-sm text-orange-600">
                                                 <Icon className="h-5 w-5" />
                                             </div>
                                         </div>
