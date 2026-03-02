@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
     return (
         <PagefindWrapper type="Page" title="About Us - Asset tracking for everyone" keywords="about about us who we are about page">
-        <div className="flex min-h-screen flex-col bg-background text-zinc-900 font-sans">
+        <div className="flex min-h-screen flex-col bg-background text-heading font-sans">
 
             {/* 1. HERO — Standard SaaS Layout */}
             <section className="pt-32 pb-16 md:pt-48 md:pb-24 relative overflow-hidden">
@@ -26,10 +26,10 @@ export default function AboutPage() {
                         <Badge variant="secondary" className="mb-6 bg-orange-50 text-orange-700 border-orange-100/50">
                             Our Mission
                         </Badge>
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900">
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 text-heading">
                             Asset tracking for <span className="text-orange-600">everyone</span>.
                         </h1>
-                        <p className="text-xl md:text-2xl text-zinc-500 leading-relaxed font-light mb-8 max-w-2xl mx-auto">
+                        <p className="text-xl md:text-2xl text-caption leading-relaxed font-light mb-8 max-w-2xl mx-auto">
                             Shelf is an open-source platform built for people who need clarity over what they own, where it is, and who has it.
                         </p>
                     </div>
@@ -37,35 +37,35 @@ export default function AboutPage() {
             </section>
 
             {/* 2. WHY SHELF EXISTS - Standard Grid */}
-            <section className="py-24 border-t border-zinc-100 bg-white">
+            <section className="py-24 border-t border-border-subtle bg-card">
                 <Container>
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
-                            <h2 className="text-3xl font-bold tracking-tight mb-6 text-zinc-900">Why Shelf Exists</h2>
-                            <p className="text-lg leading-relaxed text-zinc-600 mb-6">
+                            <h2 className="text-3xl font-bold tracking-tight mb-6 text-heading">Why Shelf Exists</h2>
+                            <p className="text-lg leading-relaxed text-body mb-6">
                                 Physical assets are still managed with fragile tools: spreadsheets, clipboards, and disconnected systems.
                             </p>
-                            <p className="text-lg leading-relaxed text-zinc-600 mb-8">
+                            <p className="text-lg leading-relaxed text-body mb-8">
                                 Shelf exists to make asset management simple, transparent, and accessible — without lock-in or hidden complexity. We believe people should always understand what they own.
                             </p>
                         </div>
                         <div className="grid gap-6">
-                            <Card className="bg-zinc-50 border-zinc-200 shadow-sm">
+                            <Card className="bg-surface border-border-subtle shadow-sm">
                                 <CardHeader className="pb-3">
                                     <Globe className="h-6 w-6 text-orange-600 mb-2" />
                                     <CardTitle>Open Source</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-zinc-600">No black boxes. Verify our code, host it yourself, or use our cloud.</p>
+                                    <p className="text-body">No black boxes. Verify our code, host it yourself, or use our cloud.</p>
                                 </CardContent>
                             </Card>
-                            <Card className="bg-zinc-50 border-zinc-200 shadow-sm">
+                            <Card className="bg-surface border-border-subtle shadow-sm">
                                 <CardHeader className="pb-3">
                                     <Users className="h-6 w-6 text-orange-600 mb-2" />
                                     <CardTitle>Community Driven</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-zinc-600">Built with feedback from real users in education, logistics, and tech.</p>
+                                    <p className="text-body">Built with feedback from real users in education, logistics, and tech.</p>
                                 </CardContent>
                             </Card>
                         </div>
@@ -74,24 +74,24 @@ export default function AboutPage() {
             </section>
 
             {/* 3. GLOBE INTEGRATION */}
-            <div className="border-t border-zinc-100">
+            <div className="border-t border-border-subtle">
                 <ScaleBlock />
             </div>
 
             {/* 4. TEAM & COMMUNITY - Features Grid Style */}
-            <section className="py-24 bg-white border-t border-zinc-100">
+            <section className="py-24 bg-card border-t border-border-subtle">
                 <Container>
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <h2 className="text-3xl font-bold tracking-tight mb-4">Built by a global team</h2>
-                        <p className="text-lg text-zinc-500">
+                        <p className="text-lg text-caption">
                             Led by Carlos Virreira and Nikolay Bonev, supported by an amazing open-source community.
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-12 gap-12 items-start">
                         <div className="md:col-span-8 md:col-start-3">
-                            <Card className="overflow-hidden border-zinc-200 shadow-lg">
-                                <div className="aspect-video w-full relative bg-zinc-100">
+                            <Card className="overflow-hidden border-border-subtle shadow-lg">
+                                <div className="aspect-video w-full relative bg-surface">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/about/whale-team.jpg"
@@ -102,14 +102,14 @@ export default function AboutPage() {
                                 <CardContent className="p-8">
                                     <div className="grid md:grid-cols-2 gap-8">
                                         <div>
-                                            <h3 className="font-semibold text-zinc-900 mb-2">Leadership</h3>
-                                            <p className="text-sm text-zinc-600 leading-relaxed">
+                                            <h3 className="font-semibold text-heading mb-2">Leadership</h3>
+                                            <p className="text-sm text-body leading-relaxed">
                                                 We are a small, focused team obsessed with solving physical asset problems for the long term. We don&apos;t chase trends.
                                             </p>
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-zinc-900 mb-2">Community</h3>
-                                            <p className="text-sm text-zinc-600 leading-relaxed">
+                                            <h3 className="font-semibold text-heading mb-2">Community</h3>
+                                            <p className="text-sm text-body leading-relaxed">
                                                 Contributors from around the world help improve Shelf&apos;s core, ensuring it works for diverse use cases.
                                             </p>
                                         </div>
@@ -153,19 +153,19 @@ export default function AboutPage() {
             </section>
 
             {/* 7. FOOTER CTA - Standard Pattern */}
-            <section className="py-24 bg-zinc-50 border-t border-zinc-200">
+            <section className="py-24 bg-surface border-t border-border-subtle">
                 <Container>
                     <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl font-bold tracking-tight text-zinc-900 mb-6">
+                        <h2 className="text-3xl font-bold tracking-tight text-heading mb-6">
                             Asset Tagging and Tracking Infrastructure for Everyone™
                         </h2>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 min-w-[160px]">
-                                <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_signup">
+                                <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_signup">
                                     Start free <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
-                            <Button asChild variant="outline" size="lg" className="bg-white border-zinc-200 h-12 px-8 min-w-[160px]">
+                            <Button asChild variant="outline" size="lg" className="bg-card border-border-subtle h-12 px-8 min-w-[160px]">
                                 <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_demo">
                                     Book a demo
                                 </Link>
@@ -176,8 +176,8 @@ export default function AboutPage() {
                                 </Link>
                             </Button>
                         </div>
-                        <p className="mt-8 text-zinc-500 text-sm">
-                            Need help? <Link href="mailto:hello@shelf.nu" className="text-zinc-900 font-medium hover:underline">Contact our team</Link>
+                        <p className="mt-8 text-caption text-sm">
+                            Need help? <Link href="mailto:hello@shelf.nu" className="text-heading font-medium hover:underline">Contact our team</Link>
                         </p>
                     </div>
                 </Container>

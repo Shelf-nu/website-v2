@@ -69,21 +69,21 @@ export function GlobeEventFeed({ className }: { className?: string }) {
                             animate={{ opacity: 1, x: 0, scale: 1 }}
                             exit={{ opacity: 0, x: 20, scale: 0.95, transition: { duration: 0.2 } }}
                             transition={{ duration: 0.4, type: "spring" }}
-                            className="bg-white/80 backdrop-blur-md border border-zinc-200/50 p-3 rounded-xl shadow-xl flex items-center gap-3"
+                            className="bg-card/80 backdrop-blur-md border border-border-subtle/50 p-3 rounded-xl shadow-xl flex items-center gap-3"
                         >
-                            <div className={cn("p-2 rounded-lg bg-zinc-100", eventType.color)}>
+                            <div className={cn("p-2 rounded-lg bg-surface", eventType.color)}>
                                 <Icon className="w-4 h-4" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-0.5">
-                                    <span className="text-sm font-medium text-zinc-900 truncate">
+                                    <span className="text-sm font-medium text-heading truncate">
                                         {eventType.label}
                                     </span>
                                 </div>
-                                <div className="flex items-center gap-1.5 text-xs text-zinc-500">
+                                <div className="flex items-center gap-1.5 text-xs text-caption">
                                     <span>{event.flag}</span>
                                     <span className="truncate">{event.location}</span>
-                                    <span className="text-zinc-400">•</span>
+                                    <span className="text-subtle">•</span>
                                     <span>just now</span>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { useMotionValue, useSpring } from "framer-motion";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 interface GlobeConfig {
@@ -33,6 +34,8 @@ export function Globe({ className, config }: GlobeProps) {
     const pointerInteractionMovement = useRef(0);
     const r = useMotionValue(0);
     const springR = useSpring(r, { stiffness: 280, damping: 40 });
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
 
     useEffect(() => {
         let phi = 0;
@@ -46,6 +49,11 @@ export function Globe({ className, config }: GlobeProps) {
         window.addEventListener('resize', onResize);
         onResize();
 
+        // Theme-aware defaults
+        const themeDefaults = isDark
+            ? { dark: 1, baseColor: [0.15, 0.15, 0.18] as [number, number, number], mapBrightness: 2, glowColor: [0.3, 0.15, 0.05] as [number, number, number] }
+            : { dark: 0, baseColor: [0.93, 0.93, 0.93] as [number, number, number], mapBrightness: 6, glowColor: [1, 0.8, 0.6] as [number, number, number] };
+
         // Default configuration
         const globeConfig = {
             devicePixelRatio: 2,
@@ -53,13 +61,10 @@ export function Globe({ className, config }: GlobeProps) {
             height: 600 * 2,
             phi: 0,
             theta: 0.3,
-            dark: 1,
             diffuse: 1.2,
-            mapSamples: 24000, // Increased density (Shopify style)
-            mapBrightness: 6,
-            baseColor: [0.1, 0.1, 0.1] as [number, number, number],
+            mapSamples: 24000,
             markerColor: [1, 0.5, 0.2] as [number, number, number],
-            glowColor: [1, 0.5, 0.2] as [number, number, number],
+            ...themeDefaults,
             markers: [
                 { location: [37.7595, -122.4367] as [number, number], size: 0.05 },
                 { location: [40.7128, -74.006] as [number, number], size: 0.05 },
@@ -94,7 +99,7 @@ export function Globe({ className, config }: GlobeProps) {
             globe.destroy();
             window.removeEventListener('resize', onResize);
         };
-    }, [config, springR]);
+    }, [config, springR, isDark]);
 
     return (
         <div

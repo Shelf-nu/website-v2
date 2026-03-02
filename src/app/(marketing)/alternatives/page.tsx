@@ -16,11 +16,24 @@ export const metadata: Metadata = {
 // Map competitor slugs to their logo files
 const competitorLogos: Record<string, string> = {
     "asset-panda": "/logos/asset-panda.svg",
-    "snipe-it": "/logos/snipe-it.svg",
-    cheqroom: "/logos/cheqroom.svg",
+    "snipe-it": "/logos/snipe-it.png",
+    cheqroom: "/logos/cheqroom.png",
     sortly: "/logos/sortly.svg",
     upkeep: "/logos/upkeep.svg",
-    "hippo-cmms": "/logos/hippo-cmms.svg",
+    "asset-guru": "/logos/asset-guru.webp",
+    "asset-infinity": "/logos/asset-infinity.webp",
+    "asset-tiger": "/logos/asset-tiger.svg",
+    "blue-tally": "/logos/blue-tally.jpeg",
+    "brite-check": "/logos/brite-check.svg",
+    ezofficeinventory: "/logos/ezofficeinventory.webp",
+    gocodes: "/logos/gocodes.png",
+    hardcat: "/logos/hardcat.svg",
+    hector: "/logos/hector.svg",
+    itemit: "/logos/itemit.png",
+    "share-my-toolbox": "/logos/share-my-toolbox.jpeg",
+    timly: "/logos/timly.svg",
+    wasp: "/logos/wasp.jpeg",
+    webcheckout: "/logos/webcheckout.jpeg",
 };
 
 export default function AlternativesIndexPage() {
@@ -30,7 +43,7 @@ export default function AlternativesIndexPage() {
         <div className="flex min-h-screen flex-col">
             {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden">
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+                <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
                 <Container className="text-center relative z-10">
                     <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-1.5 text-sm font-medium text-orange-700 mb-8">
                         <ArrowLeftRight className="h-3.5 w-3.5" />

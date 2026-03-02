@@ -31,7 +31,7 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                 <section className="relative overflow-hidden">
                     {/* Background */}
                     <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/30 via-background to-background pointer-events-none" />
-                    <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+                    <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
                     <Container className="pt-32 pb-12 md:pt-44 md:pb-16 relative">
                         {/* Back link */}
@@ -48,7 +48,7 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                         {/* Logo + Org Name Row */}
                         <div className="flex items-center gap-4 mb-8">
                             {frontmatter.logo && (
-                                <div className="h-14 w-14 rounded-xl bg-white border border-border/60 p-2 shadow-sm flex items-center justify-center flex-shrink-0">
+                                <div className="h-14 w-14 rounded-xl bg-card border border-border/60 p-2 shadow-sm flex items-center justify-center flex-shrink-0">
                                     <Image
                                         src={frontmatter.logo}
                                         alt={frontmatter.organization || "Company logo"}
@@ -190,7 +190,7 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                                     </p>
                                                 </div>
                                                 <div className="flex-shrink-0">
-                                                    <div className="h-12 w-12 rounded-full bg-white border border-border/50 flex items-center justify-center text-orange-600 shadow-sm group-hover:scale-110 group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-600 transition-all duration-300">
+                                                    <div className="h-12 w-12 rounded-full bg-card border border-border/50 flex items-center justify-center text-orange-600 shadow-sm group-hover:scale-110 group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-600 transition-all duration-300">
                                                         <ArrowRight className="h-6 w-6" />
                                                     </div>
                                                 </div>
@@ -216,7 +216,7 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
                                     <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-900/10" asChild>
-                                        <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_signup">Get Started Free</Link>
+                                        <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_signup">Get Started Free</Link>
                                     </Button>
                                     <Button size="lg" variant="outline" className="border-orange-200 text-orange-800 hover:bg-orange-100" asChild>
                                         <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_demo">Book Demo</Link>

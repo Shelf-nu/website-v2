@@ -9,7 +9,7 @@ interface PillProps {
 }
 
 export function Pill({ children, href, className, icon }: PillProps) {
-    const baseStyles = "inline-flex items-center rounded-full border border-orange-200 bg-orange-50/50 px-3 py-1 text-sm font-medium text-orange-800 backdrop-blur-sm transition-colors hover:bg-orange-100/50";
+    const baseStyles = "inline-flex items-center rounded-full border border-orange-200 bg-orange-50/50 px-3 py-1 text-sm font-medium text-orange-800 backdrop-blur-sm transition-colors hover:bg-orange-100/50 dark:border-orange-800 dark:bg-orange-950/50 dark:text-orange-200 dark:hover:bg-orange-900/50";
 
     const content = (
         <>

@@ -44,7 +44,7 @@ export function UpdatesFeed({ updates }: UpdatesFeedProps) {
         <div className="flex min-h-screen flex-col relative">
             {/* Background */}
             <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/30 via-background to-background pointer-events-none" />
-            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
             {/* Hero */}
             <Container className="pt-32 pb-12 md:pt-48 md:pb-16 text-center relative z-10">
@@ -112,7 +112,7 @@ export function UpdatesFeed({ updates }: UpdatesFeedProps) {
                                                             src={update.frontmatter.image}
                                                             alt={update.frontmatter.title}
                                                             fill
-                                                            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                                                            className="object-cover transition-transform duration-500 group-hover:scale-[1.02] dark:brightness-90 dark:contrast-105"
                                                         />
                                                     </div>
                                                 )}
@@ -195,7 +195,7 @@ export function UpdatesFeed({ updates }: UpdatesFeedProps) {
                         </div>
                         <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
                             <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-900/10" asChild>
-                                <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=updates_bottom_cta_signup">Get Started Free</Link>
+                                <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=updates_bottom_cta_signup">Get Started Free</Link>
                             </Button>
                             <Button size="lg" variant="outline" className="border-orange-200 text-orange-800 hover:bg-orange-100" asChild>
                                 <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=updates_bottom_cta_demo">Book Demo</Link>

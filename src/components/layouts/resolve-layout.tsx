@@ -15,7 +15,7 @@ import { Container } from "@/components/ui/container";
 import { Frontmatter } from "@/lib/content/schema";
 
 function DefaultLayout({ children }: { frontmatter: Frontmatter, children: React.ReactNode }) {
-    return <Container className="py-20">{children}</Container>;
+    return <Container className="pt-36 sm:pt-44 pb-20">{children}</Container>;
 }
 
 export function resolveLayout(layout: string) {

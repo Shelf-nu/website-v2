@@ -59,7 +59,7 @@ export function FAQSection({
     };
 
     return (
-        <section className={`py-24 sm:py-32 bg-white border-t border-zinc-100 ${className}`}>
+        <section className={`py-24 sm:py-32 bg-card border-t border-border-subtle ${className}`}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -68,11 +68,11 @@ export function FAQSection({
                 <ScrollReveal width="100%">
                     <div className="mx-auto max-w-2xl lg:max-w-4xl">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl mb-4">
+                            <h2 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl mb-4">
                                 {title}
                             </h2>
                             {description && (
-                                <p className="text-lg text-zinc-500">
+                                <p className="text-lg text-caption">
                                     {description}
                                 </p>
                             )}
@@ -80,11 +80,11 @@ export function FAQSection({
 
                         <Accordion type="single" collapsible className="w-full">
                             {items.map((faq, index) => (
-                                <AccordionItem key={index} value={`item-${index}`} className="border-b border-zinc-200">
-                                    <AccordionTrigger className="text-left text-lg font-medium text-zinc-900 data-[state=open]:text-orange-600 hover:text-orange-600 hover:no-underline py-6">
+                                <AccordionItem key={index} value={`item-${index}`} className="border-b border-border-subtle">
+                                    <AccordionTrigger className="text-left text-lg font-medium text-heading data-[state=open]:text-orange-600 hover:text-orange-600 hover:no-underline py-6">
                                         {faq.question}
                                     </AccordionTrigger>
-                                    <AccordionContent className="text-zinc-600 text-[1.05rem] leading-relaxed pb-8">
+                                    <AccordionContent className="text-body text-[1.05rem] leading-relaxed pb-8">
                                         {faq.answer}
                                     </AccordionContent>
                                 </AccordionItem>

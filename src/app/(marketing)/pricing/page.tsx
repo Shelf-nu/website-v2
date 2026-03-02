@@ -98,12 +98,12 @@ export default function PricingPage() {
         <PagefindWrapper type="Page" title="Pricing - Simple, transparent pricing" keywords="pricing plans price cost pricing page">
         <div className="flex min-h-screen flex-col relative overflow-hidden">
             {/* Ambient Background Gradient & Grid */}
-            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-            <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 dark:from-orange-950/20 via-background to-background pointer-events-none" />
 
             <Container className="py-24 md:py-40 relative">
                 <div className="mx-auto max-w-2xl text-center mb-10">
-                    <Badge variant="secondary" className="mb-4 bg-orange-50 text-orange-700 border-orange-100/50">Pricing</Badge>
+                    <Badge variant="secondary" className="mb-4 bg-orange-50 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 border-orange-100/50 dark:border-orange-900/50">Pricing</Badge>
                     <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
                         Simple, transparent <span className="text-orange-600">pricing</span>
                     </h1>
@@ -123,7 +123,7 @@ export default function PricingPage() {
                                 alt={brand.name}
                                 width={100}
                                 height={32}
-                                className="h-7 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                className="h-7 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 dark:invert dark:brightness-200"
                             />
                         ))}
                     </div>
@@ -140,13 +140,13 @@ export default function PricingPage() {
                         onCheckedChange={setIsYearly}
                     />
                     <Label htmlFor="billing-toggle" className={`text-sm font-medium cursor-pointer ${isYearly ? 'text-foreground' : 'text-muted-foreground'}`} onClick={() => setIsYearly(true)}>
-                        Yearly <span className="ml-1.5 inline-flex items-center rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-700">Save {maxSavings}%</span>
+                        Yearly <span className="ml-1.5 inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-950/50 px-2 py-0.5 text-xs font-semibold text-orange-700 dark:text-orange-400">Save {maxSavings}%</span>
                     </Label>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 max-w-[1400px] mx-auto pt-8">
                     {pricingPlans.map((plan) => (
-                        <Card key={plan.id} className={`flex flex-col relative transition-all duration-300 ${plan.popular ? 'border-orange-500 shadow-2xl shadow-orange-500/10 z-10 bg-white ring-1 ring-orange-500/20' : 'border-zinc-200 hover:border-zinc-300 hover:shadow-lg bg-white/50 hover:bg-white'} rounded-xl overflow-visible`}>
+                        <Card key={plan.id} className={`flex flex-col relative transition-all duration-300 ${plan.popular ? 'border-orange-500 shadow-2xl shadow-orange-500/10 z-10 bg-card ring-1 ring-orange-500/20' : 'border-border-subtle hover:border-zinc-300 dark:hover:border-zinc-600 hover:shadow-lg bg-card/50 hover:bg-card'} rounded-xl overflow-visible`}>
 
                             {/* Absolute Badge for perfect alignment of cards */}
                             {plan.popular && (
@@ -158,27 +158,27 @@ export default function PricingPage() {
                             )}
 
                             <CardHeader className="pb-3 pt-6 px-5 space-y-0">
-                                <CardTitle className="text-xl font-bold tracking-tight text-zinc-900 leading-tight">
+                                <CardTitle className="text-xl font-bold tracking-tight text-heading leading-tight">
                                     {plan.name}
                                 </CardTitle>
-                                <CardDescription className="mt-2 text-sm text-zinc-500 leading-normal min-h-[40px] flex items-center">
+                                <CardDescription className="mt-2 text-sm text-caption leading-normal min-h-[40px] flex items-center">
                                     {plan.description}
                                 </CardDescription>
                             </CardHeader>
 
                             <CardContent className="flex-1 pt-0 px-5">
-                                <div className="mb-6 pt-2 pb-2 border-b border-zinc-100">
+                                <div className="mb-6 pt-2 pb-2 border-b border-border-subtle">
                                     <div className="flex items-baseline gap-1">
                                         {plan.price === "Custom" ? (
-                                            <span className="text-4xl font-extrabold tracking-tight text-zinc-900">Custom</span>
+                                            <span className="text-4xl font-extrabold tracking-tight text-heading">Custom</span>
                                         ) : (
                                             <>
                                                 <NumberFlow
                                                     value={isYearly ? parseInt(plan.priceYearly.replace('$', '')) : parseInt(plan.priceMonthly.replace('$', ''))}
                                                     format={{ style: 'currency', currency: 'USD', trailingZeroDisplay: 'stripIfInteger' }}
-                                                    className="text-4xl font-extrabold tracking-tight text-zinc-900"
+                                                    className="text-4xl font-extrabold tracking-tight text-heading"
                                                 />
-                                                <span className="text-zinc-500 text-xs font-semibold uppercase ml-1 tracking-wide">
+                                                <span className="text-caption text-xs font-semibold uppercase ml-1 tracking-wide">
                                                     /{isYearly ? 'year' : 'mo'}
                                                 </span>
                                             </>
@@ -189,11 +189,11 @@ export default function PricingPage() {
                                 <ul className="space-y-3">
                                     {getDisplayFeatures(plan).map((feature, idx) => (
                                         feature === "DIVIDER" ? (
-                                            <li key={`divider-${idx}`} className="pt-3 border-t border-zinc-200/80 mt-3">
-                                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block mb-2">Add-ons</span>
+                                            <li key={`divider-${idx}`} className="pt-3 border-t border-border-subtle mt-3">
+                                                <span className="text-[10px] font-bold text-subtle uppercase tracking-widest block mb-2">Add-ons</span>
                                             </li>
                                         ) : (
-                                            <li key={feature} className="flex items-start text-[13px] text-zinc-700 font-medium leading-snug">
+                                            <li key={feature} className="flex items-start text-[13px] text-body font-medium leading-snug">
                                                 <Check className="mr-2.5 h-3.5 w-3.5 text-orange-600 mt-0.5 flex-shrink-0 stroke-[3px]" />
                                                 <span>{feature}</span>
                                             </li>
@@ -237,14 +237,14 @@ export default function PricingPage() {
                 </div>
 
                 {/* Conversion CTA */}
-                <div className="mx-auto max-w-4xl text-center bg-gradient-to-b from-orange-50/50 to-transparent p-12 rounded-3xl border border-orange-100 mb-20">
+                <div className="mx-auto max-w-4xl text-center bg-gradient-to-b from-orange-50/50 to-transparent dark:from-orange-950/30 dark:to-transparent p-12 rounded-3xl border border-orange-100 dark:border-orange-900/40 mb-20">
                     <h3 className="text-3xl font-bold mb-4">Join innovative teams around the world</h3>
                     <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                         Stop using spreadsheets and start tracking your assets with a modern tool that your team will actually enjoy using.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 text-base shadow-lg shadow-orange-600/20" asChild>
-                            <Link href="https://app.shelf.nu/register?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup">
+                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup">
                                 Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
