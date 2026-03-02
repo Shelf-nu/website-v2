@@ -39,6 +39,7 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
+    NavigationMenuIndicator,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -173,8 +174,8 @@ export function Navbar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 bg-black/10 backdrop-blur-[1px] z-[-1]"
+                        transition={{ duration: 0.15 }}
+                        className="fixed inset-0 bg-black/5 z-[-1]"
                     />
                 )}
             </AnimatePresence>
@@ -491,6 +492,8 @@ export function Navbar() {
                                             </Link>
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
+
+                                    <NavigationMenuIndicator />
                                 </NavigationMenuList>
                             </NavigationMenu>
                         </div>
