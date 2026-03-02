@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const competitorLogos: Record<string, string> = {
     "asset-panda": "/logos/asset-panda.svg",
     "snipe-it": "/logos/snipe-it.png",
-    cheqroom: "/logos/cheqroom.svg",
+    cheqroom: "/logos/cheqroom.png",
     sortly: "/logos/sortly.svg",
     upkeep: "/logos/upkeep.svg",
     "asset-guru": "/logos/asset-guru.webp",

@@ -28,7 +28,7 @@ const competitors = [
     },
     {
         name: "Cheqroom",
-        logo: "/logos/cheqroom.svg",
+        logo: "/logos/cheqroom.png",
         description: "Looking for a cleaner UI and faster booking workflows?",
         slug: "cheqroom"
     },
