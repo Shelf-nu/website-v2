@@ -34,7 +34,7 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
         case "free":
             return [
                 "Unlimited assets",
-                "1 user",
+                "1 user (personal workspace)",
                 "Locations & sublocations",
                 "Assign custody",
                 "Kits",
@@ -43,7 +43,7 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
             ];
         case "plus":
             return [
-                "Everything in Personal",
+                "Everything in Free",
                 "Unlimited custom fields",
                 "Custom field → category mapping",
                 "CSV import & export",
@@ -52,22 +52,22 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
         case "team":
             return [
                 "Everything in Plus",
-                "Unlimited user seats",
+                "Unlimited team members",
                 "Bookings & reservations",
-                "Booking calendar",
-                "Fixed checkout & return dates",
+                "Booking calendar & availability",
+                "Booking PDFs (pull lists)",
                 "DIVIDER",
                 "External barcode import (add-on)",
-                "SSO available (add-on)"
+                "SSO / SAML / SCIM (add-on)"
             ];
         case "enterprise":
             return [
                 "Everything in Team",
                 "Custom agreement",
-                "SSO / SAML included",
-                "Dedicated hosting (cloud or private)",
-                "On-prem / private deployment option",
-                "Dedicated account manager & SLA"
+                "SSO / SAML / SCIM included",
+                "Dedicated account manager & SLA",
+                "Custom workspace setup",
+                "Priority support"
             ];
         default:
             return [];
