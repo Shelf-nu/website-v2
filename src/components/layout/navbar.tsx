@@ -514,7 +514,7 @@ export function Navbar() {
                                     size="sm"
                                     className="bg-orange-600 hover:bg-orange-700 text-white ring-1 ring-orange-500/20 transition-all hover:shadow-md hover:shadow-orange-500/10"
                                 >
-                                    Get Started
+                                    Sign up free
                                 </Button>
                             </Link>
                         </div>
@@ -681,7 +681,7 @@ export function Navbar() {
                                     className="block w-full"
                                 >
                                     <Button className="w-full justify-center bg-orange-600 hover:bg-orange-700 text-white">
-                                        Get Started
+                                        Sign up free
                                     </Button>
                                 </Link>
                             </div>

@@ -45,7 +45,7 @@ export function CaseStudyCard({ slug, title, summary, coverImage, logo, industry
             <div className="flex flex-1 flex-col p-6">
                 <div className="mb-3 flex flex-wrap gap-1.5">
                     {industry?.slice(0, 2).map((tag) => (
-                        <Badge key={tag} variant="secondary" className="bg-orange-50 text-orange-700 hover:bg-orange-100 border-orange-100 text-xs">
+                        <Badge key={tag} variant="secondary" className="bg-orange-50 text-orange-700 border-orange-100 text-xs">
                             {tag}
                         </Badge>
                     ))}
@@ -59,7 +59,7 @@ export function CaseStudyCard({ slug, title, summary, coverImage, logo, industry
                     {summary}
                 </p>
 
-                <div className="mt-4 flex items-center text-sm font-medium text-orange-600 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
+                <div className="mt-4 flex items-center text-sm font-medium text-orange-600 transition-all duration-300 group-hover:translate-x-0.5">
                     Read story <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                 </div>
             </div>

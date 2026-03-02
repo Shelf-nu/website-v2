@@ -84,11 +84,9 @@ export default function GlossaryIndexPage() {
                                                 <Icon className="h-6 w-6" />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <Link href={`/glossary/${term.slug}`} className="hover:text-orange-600 transition-colors">
-                                                    <h2 className="text-2xl font-bold text-foreground mb-1 group-hover:text-orange-600 transition-colors">
-                                                        {term.frontmatter.title}
-                                                    </h2>
-                                                </Link>
+                                                <h2 className="text-2xl font-bold text-foreground mb-1 group-hover:text-orange-600 transition-colors">
+                                                    {term.frontmatter.title}
+                                                </h2>
                                             </div>
                                         </div>
 

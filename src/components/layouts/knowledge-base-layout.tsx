@@ -28,9 +28,12 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                                 Knowledge Base
                             </Link>
                             <ChevronRight className="h-3.5 w-3.5" />
-                            <span className="text-foreground font-medium truncate">
+                            <Link
+                                href={`/knowledge-base?category=${encodeURIComponent(category)}`}
+                                className="text-foreground font-medium truncate hover:text-orange-600 transition-colors"
+                            >
                                 {category}
-                            </span>
+                            </Link>
                         </nav>
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-3">
                             {frontmatter.title}

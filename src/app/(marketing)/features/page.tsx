@@ -78,7 +78,7 @@ export default function FeaturesPage() {
                                             <p className="text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-3">
                                                 {frontmatter.description}
                                             </p>
-                                            <div className="mt-4 flex items-center text-sm font-medium text-orange-600 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
+                                            <div className="mt-4 flex items-center text-sm font-medium text-orange-600 transition-all duration-300 group-hover:translate-x-0.5">
                                                 Learn more <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                                             </div>
                                         </div>

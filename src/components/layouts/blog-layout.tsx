@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Frontmatter } from "@/lib/content/schema";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import { ShareButton } from "@/components/blog/share-button";
+import { formatCategoryLabel } from "@/lib/utils";
 
 function formatAuthorName(author: string): string {
     // Convert slug-style "carlos-virreira" to "Carlos Virreira"
@@ -49,9 +50,11 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                         <header className="mb-10 text-center lg:text-left">
                             <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
                                 {frontmatter.category && (
-                                    <Badge variant="secondary" className="bg-orange-50 text-orange-700 hover:bg-orange-100">
-                                        {frontmatter.category}
-                                    </Badge>
+                                    <Link href={`/blog?category=${frontmatter.category}`}>
+                                        <Badge variant="secondary" className="bg-orange-50 text-orange-700 hover:bg-orange-100 cursor-pointer">
+                                            {formatCategoryLabel(frontmatter.category)}
+                                        </Badge>
+                                    </Link>
                                 )}
                                 {frontmatter.date && (
                                     <time dateTime={frontmatter.date} className="text-sm text-muted-foreground">
@@ -112,7 +115,7 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                 {/* Read Next Section */}
                 {relatedPosts && relatedPosts.length > 0 && (
                     <div className="border-t border-border pt-16 mt-24 mb-16">
-                        <h3 className="text-2xl font-bold mb-8">Read next</h3>
+                        <h3 className="text-2xl font-bold mb-8">More from the blog</h3>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {relatedPosts.map((post) => (
                                 <Link key={post.slug} href={`/blog/${post.slug}`} className="group block h-full">
@@ -128,8 +131,8 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                                         <div className="p-6 flex flex-col flex-1">
                                             <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
                                                 {post.frontmatter.category && (
-                                                    <Badge variant="secondary" className="bg-orange-50 text-orange-700 hover:bg-orange-100 border-orange-100">
-                                                        {post.frontmatter.category}
+                                                    <Badge variant="secondary" className="bg-orange-50 text-orange-700 border-orange-100">
+                                                        {formatCategoryLabel(post.frontmatter.category)}
                                                     </Badge>
                                                 )}
                                                 {post.frontmatter.date && (

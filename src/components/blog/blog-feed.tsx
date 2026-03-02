@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Frontmatter } from "@/lib/content/schema";
+import { formatCategoryLabel } from "@/lib/utils";
 
 interface BlogPost {
     slug: string;
@@ -115,9 +116,9 @@ export function BlogFeed({ allPosts }: BlogFeedProps) {
                                             {/* Category */}
                                             {post.frontmatter.category && (
                                                 <div className="mb-4">
-                                                    <span className="inline-flex items-center rounded-full bg-orange-50 px-2.5 py-0.5 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/10">
-                                                        {post.frontmatter.category}
-                                                    </span>
+                                                    <Link href={`/blog?category=${post.frontmatter.category}`} className="inline-flex items-center rounded-full bg-orange-50 px-2.5 py-0.5 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/10 hover:bg-orange-100 transition-colors" onClick={(e) => e.stopPropagation()}>
+                                                        {formatCategoryLabel(post.frontmatter.category)}
+                                                    </Link>
                                                 </div>
                                             )}
 

@@ -84,11 +84,11 @@ export function Footer() {
                     </p>
                     <div className="flex items-center space-x-5">
                         <ThemeToggle />
-                        <Link href="https://github.com/Shelf-nu/shelf.nu" className="text-muted-foreground/40 hover:text-orange-600 transition-colors">
+                        <Link href="https://github.com/Shelf-nu/shelf.nu" className="text-muted-foreground/60 hover:text-orange-600 transition-colors">
                             <span className="sr-only">GitHub</span>
                             <Github className="h-4.5 w-4.5" />
                         </Link>
-                        <Link href="https://www.linkedin.com/company/shelf-inc/" className="text-muted-foreground/40 hover:text-orange-600 transition-colors">
+                        <Link href="https://www.linkedin.com/company/shelf-inc/" className="text-muted-foreground/60 hover:text-orange-600 transition-colors">
                             <span className="sr-only">LinkedIn</span>
                             <Linkedin className="h-4.5 w-4.5" />
                         </Link>
