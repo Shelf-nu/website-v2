@@ -59,10 +59,13 @@ const CASE_STUDIES = [
 export function CaseStudiesPreview() {
     return (
         <section className="relative overflow-hidden">
-            {/* Full-width background */}
-            <div className="absolute inset-0 bg-zinc-950 dark:bg-zinc-900" />
+            {/* Full-width background — dark on light pages, elevated on dark pages */}
+            <div className="absolute inset-0 bg-zinc-950 dark:bg-zinc-800/40" />
             {/* Subtle radial glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-orange-500/8 blur-[140px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-orange-500/8 dark:bg-orange-500/10 blur-[140px] rounded-full pointer-events-none" />
+            {/* Top/bottom border lines for dark mode separation */}
+            <div className="absolute inset-x-0 top-0 h-px bg-white/[0.06] hidden dark:block" />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.06] hidden dark:block" />
 
             <Container className="relative py-24 sm:py-32">
                 <ScrollReveal width="100%">
