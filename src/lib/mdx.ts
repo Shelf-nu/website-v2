@@ -4,6 +4,24 @@ import matter from 'gray-matter';
 import { Frontmatter } from './content/schema';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
+const WORDS_PER_MINUTE = 200;
+
+function calculateReadingTime(content: string): string {
+    // Strip MDX/markdown syntax for a more accurate word count
+    const plainText = content
+        .replace(/```[\s\S]*?```/g, '') // code blocks
+        .replace(/`[^`]*`/g, '')        // inline code
+        .replace(/!\[.*?\]\(.*?\)/g, '') // images
+        .replace(/\[([^\]]*)\]\(.*?\)/g, '$1') // links → text
+        .replace(/#{1,6}\s/g, '')       // headings
+        .replace(/[*_~]+/g, '')         // bold/italic/strikethrough
+        .replace(/---/g, '')            // horizontal rules
+        .replace(/\n+/g, ' ')
+        .trim();
+    const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+    return `${minutes} min`;
+}
 
 export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'concepts' | 'use-cases' | 'solutions' | 'industries' | 'alternatives' | 'glossary' | 'updates' | 'knowledge-base';
 
@@ -57,6 +75,11 @@ export function getContentBySlug(type: ContentType, slug: string): MDXContent {
 
         ...data,
     } as Frontmatter;
+
+    // Auto-calculate reading time for blog posts if not explicitly set
+    if (type === 'blog' && !data.readingTime) {
+        frontmatter.readingTime = calculateReadingTime(content);
+    }
 
     return {
         slug: realSlug,
