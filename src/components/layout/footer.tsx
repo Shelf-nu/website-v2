@@ -79,9 +79,11 @@ export function Footer() {
                 </div>
 
                 <div className="border-t border-border/40 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <p className="text-xs text-muted-foreground/60">
-                        &copy; {new Date().getFullYear()} Shelf Asset Management, Inc.
-                    </p>
+                    <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-muted-foreground/60">
+                        <p>&copy; {new Date().getFullYear()} Shelf Asset Management, Inc.</p>
+                        <span className="hidden sm:inline">·</span>
+                        <p>651 N Broad St, Suite 201, Middletown, DE 19709</p>
+                    </div>
                     <div className="flex items-center space-x-5">
                         <ThemeToggle />
                         <Link href="https://github.com/Shelf-nu/shelf.nu" className="text-muted-foreground/60 hover:text-orange-600 transition-colors">

@@ -88,24 +88,18 @@ export default function DemoPage() {
                                 </div>
                             </div>
 
-                            {/* Card 3: Trust Badge */}
-                            <div className="bg-card/50 border border-border/50 rounded-2xl p-6 backdrop-blur-sm flex flex-col justify-center items-center text-center min-h-[140px]">
-                                <div className="text-sm font-semibold text-muted-foreground mb-2">Trusted by modern teams</div>
-                                <div className="flex -space-x-2">
-                                    {[
-                                        { src: "/logos/nokia.png", alt: "Nokia" },
-                                        { src: "/logos/universal-music.png", alt: "Universal Music" },
-                                        { src: "/logos/virgin-hyperloop.webp", alt: "Virgin Hyperloop" }
-                                    ].map((logo, i) => (
-                                        <div key={i} className="relative h-8 w-8 rounded-full border-2 border-background bg-white flex items-center justify-center overflow-hidden">
-                                            <Image src={logo.src} alt={logo.alt} fill className="object-contain p-1" />
-                                        </div>
-                                    ))}
-                                    <div className="h-8 w-8 rounded-full border-2 border-background bg-orange-100 flex items-center justify-center text-[10px] font-bold text-orange-700">
-                                        +500
-                                    </div>
+                            {/* Card 3: G2 Rating */}
+                            <a href="https://www.g2.com/products/shelf-asset-management/reviews" target="_blank" rel="noopener noreferrer" className="bg-card/50 border border-border/50 rounded-2xl p-6 backdrop-blur-sm flex flex-col justify-center items-center text-center min-h-[140px] hover:bg-card/70 transition-colors group">
+                                <div className="relative h-8 w-8 mb-2">
+                                    <Image src="/logos/g2-logo.png" alt="G2 Logo" fill className="object-contain" />
                                 </div>
-                            </div>
+                                <div className="flex gap-0.5 mb-1">
+                                    {[1, 2, 3, 4, 5].map((i) => (
+                                        <Star key={i} className="h-4 w-4 fill-orange-500 text-orange-500" />
+                                    ))}
+                                </div>
+                                <div className="text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors">5.0/5 on G2</div>
+                            </a>
                         </div>
                     </div>
 

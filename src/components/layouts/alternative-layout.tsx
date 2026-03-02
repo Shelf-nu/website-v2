@@ -6,7 +6,7 @@ import { SeoHead } from "./shared/seo-head";
 import { Container } from "@/components/ui/container";
 import { CTA } from "@/components/sections/cta";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, MessageSquare } from "lucide-react";
+import { ArrowRight, CheckCircle2, MessageSquare, Check, Minus } from "lucide-react";
 
 interface LayoutProps {
     frontmatter: Frontmatter;
@@ -106,6 +106,56 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                                     </Link>
                                 </div>
                             </aside>
+                        </div>
+
+                        {/* Quick Comparison Table */}
+                        <div className="mt-16 max-w-3xl">
+                            <h2 className="text-2xl font-bold text-foreground mb-6">Quick comparison</h2>
+                            <div className="overflow-x-auto rounded-xl border border-border/50">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="border-b border-border/50 bg-muted/30">
+                                            <th className="text-left py-3 px-4 font-semibold text-foreground">Feature</th>
+                                            <th className="text-center py-3 px-4 font-semibold text-orange-600">Shelf</th>
+                                            <th className="text-center py-3 px-4 font-semibold text-muted-foreground">{competitor}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {[
+                                            { feature: "Free plan with unlimited assets", shelf: true, competitor: "varies" },
+                                            { feature: "Open source codebase", shelf: true, competitor: false },
+                                            { feature: "QR codes & labels built in", shelf: true, competitor: "varies" },
+                                            { feature: "CSV import from any tool", shelf: true, competitor: "varies" },
+                                            { feature: "Bookings & reservations", shelf: true, competitor: "varies" },
+                                            { feature: "Custody tracking", shelf: true, competitor: "varies" },
+                                            { feature: "No credit card to start", shelf: true, competitor: "varies" },
+                                        ].map((row) => (
+                                            <tr key={row.feature} className="border-b border-border/30 last:border-0">
+                                                <td className="py-3 px-4 text-muted-foreground">{row.feature}</td>
+                                                <td className="py-3 px-4 text-center">
+                                                    {row.shelf ? (
+                                                        <Check className="h-4 w-4 text-orange-600 mx-auto" />
+                                                    ) : (
+                                                        <Minus className="h-4 w-4 text-muted-foreground/40 mx-auto" />
+                                                    )}
+                                                </td>
+                                                <td className="py-3 px-4 text-center">
+                                                    {row.competitor === true ? (
+                                                        <Check className="h-4 w-4 text-muted-foreground mx-auto" />
+                                                    ) : row.competitor === false ? (
+                                                        <Minus className="h-4 w-4 text-muted-foreground/40 mx-auto" />
+                                                    ) : (
+                                                        <span className="text-xs text-muted-foreground/60">Varies</span>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="text-xs text-muted-foreground/60 mt-3">
+                                Feature availability for {competitor} may vary by plan. We encourage you to verify on their website.
+                            </p>
                         </div>
 
                         {/* Mobile CTA (shown below content on small screens) */}

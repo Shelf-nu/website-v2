@@ -107,7 +107,7 @@ export function Hero({
                                 </Button>
                             </div>
                             <div className="flex flex-col sm:flex-row items-center gap-2 text-sm text-muted-foreground/60">
-                                <span>Free 7-day trial <span className="mx-1 opacity-50">|</span> No credit card</span>
+                                <span>Free forever <span className="mx-1 opacity-50">|</span> 7-day Team trial <span className="mx-1 opacity-50">|</span> No credit card</span>
                                 <span className="hidden sm:inline opacity-50">|</span>
                                 <MigrationDropdown />
                             </div>
