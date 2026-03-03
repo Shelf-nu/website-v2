@@ -380,7 +380,7 @@ export function Navbar() {
                                                             </ListItem>
                                                             <ListItem
                                                                 href="/solutions/educational-resource-management"
-                                                                title="Education"
+                                                                title="Higher Education & Universities"
                                                                 icon={BookOpen}
                                                             >
                                                                 Resources for
@@ -389,7 +389,7 @@ export function Navbar() {
                                                             </ListItem>
                                                             <ListItem
                                                                 href="/solutions/camera-equipment-check-out"
-                                                                title="Media & AV"
+                                                                title="Video Production & AV"
                                                                 icon={
                                                                     Smartphone
                                                                 }
@@ -613,10 +613,10 @@ export function Navbar() {
                                         Equipment Reservations
                                     </MobileLink>
                                     <MobileLink href="/solutions/educational-resource-management">
-                                        Education
+                                        Higher Education & Universities
                                     </MobileLink>
                                     <MobileLink href="/solutions/camera-equipment-check-out">
-                                        Media & AV
+                                        Video Production & AV
                                     </MobileLink>
                                 </nav>
                             </div>

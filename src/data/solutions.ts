@@ -45,13 +45,13 @@ export const solutions = [
         href: "/solutions/equipment-reservations"
     },
     {
-        title: "Education",
+        title: "Higher Education & Universities",
         description: "Resources for schools & universities.",
         icon: BookOpen,
         href: "/solutions/educational-resource-management"
     },
     {
-        title: "Media & AV",
+        title: "Video Production & AV",
         description: "Check-out workflows for studios.",
         icon: Smartphone,
         href: "/solutions/camera-equipment-check-out"
