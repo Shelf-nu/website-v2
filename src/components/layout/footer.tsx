@@ -82,7 +82,7 @@ export function Footer() {
                     <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-muted-foreground/60">
                         <p>&copy; {new Date().getFullYear()} Shelf Asset Management, Inc.</p>
                         <span className="hidden sm:inline">·</span>
-                        <p>651 N Broad St, Suite 201, Middletown, DE 19709</p>
+                        <p>1111b South Governors Avenue, STE 6801, Dover, DE 19904</p>
                     </div>
                     <div className="flex items-center space-x-5">
                         <ThemeToggle />
