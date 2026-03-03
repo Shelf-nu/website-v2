@@ -18,6 +18,7 @@ const FEATURE_LINKS = [
     { label: "Workspaces", href: "/features/workspaces" },
     { label: "Asset Search", href: "/features/asset-search" },
     { label: "Calendar", href: "/features/calendar" },
+    { label: "SSO (SAML / SCIM)", href: "/pricing" },
 ];
 
 export function FeatureNavigationCTA() {
