@@ -80,14 +80,14 @@ export function Hero({
                     {/* Main Heading */}
                     <ScrollReveal width="100%" delay={0.2}>
                         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-[1.1]">
-                            <span className="text-orange-600">Asset Management</span> for physical & digital equipment teams.
+                            The equipment platform your team <span className="text-orange-600">will actually use.</span>
                         </h1>
                     </ScrollReveal>
 
                     {/* Subheading */}
                     <ScrollReveal width="100%" delay={0.3}>
                         <p className="mx-auto max-w-xl text-lg leading-relaxed text-muted-foreground mb-10">
-                            Shelf is the open source asset management platform for modern teams. Instantly track what you own, who&apos;s using it, and when it&apos;s available—zero spreadsheets required.
+                            Stop wrestling with spreadsheets and per-user pricing. Shelf is the fast, open-source way to track gear, manage bookings, and prevent double-bookings.
                         </p>
                     </ScrollReveal>
 

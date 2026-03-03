@@ -108,7 +108,7 @@ export default function PricingPage() {
                         Simple, transparent <span className="text-orange-600">pricing</span>
                     </h1>
                     <p className="text-xl text-muted-foreground">
-                        No hidden fees. No credit card required to start.
+                        Flat pricing for your whole team. No per-seat fees. No credit card required.
                     </p>
                 </div>
 
