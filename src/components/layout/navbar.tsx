@@ -144,12 +144,10 @@ export function Navbar() {
 
     // Close mobile menu when route changes
     useEffect(() => {
-        if (isOpen) {
-            startTransition(() => {
-                setIsOpen(false);
-            });
-        }
-    }, [pathname, isOpen]);
+        startTransition(() => {
+            setIsOpen(false);
+        });
+    }, [pathname]);
 
     const [navState, setNavState] = useState<string>("");
 
