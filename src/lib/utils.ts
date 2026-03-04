@@ -5,7 +5,20 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+const MONTHS = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+];
+
+/** Timezone-safe date formatter. Parses YYYY-MM-DD without UTC shift. */
 export function formatDate(input: string | number): string {
+    const s = String(input);
+    const parts = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (parts) {
+        const [, year, month, day] = parts;
+        return `${MONTHS[parseInt(month, 10) - 1]} ${parseInt(day, 10)}, ${year}`;
+    }
+    // Fallback for non-ISO strings
     const date = new Date(input);
     return date.toLocaleDateString("en-US", {
         month: "long",

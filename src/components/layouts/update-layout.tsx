@@ -5,19 +5,11 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { formatDate } from "@/lib/utils";
 
 interface LayoutProps {
     frontmatter: Frontmatter;
     children: React.ReactNode;
-}
-
-function formatDate(dateStr?: string) {
-    if (!dateStr) return "";
-    return new Date(dateStr).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
 }
 
 function isExternalUrl(url: string) {

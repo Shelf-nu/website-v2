@@ -55,7 +55,7 @@ export function PageHeader({ title, description, heroTagline, children, image, h
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
                                             src={displayImage}
-                                            alt=""
+                                            alt={title}
                                             className="object-cover w-full h-full"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 to-transparent mix-blend-overlay" />
