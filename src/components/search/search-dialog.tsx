@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Search, FileText, Loader2, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 /* ------------------------------------------------------------------ */
 /*  Pagefind type stubs (loaded dynamically at runtime)               */
@@ -150,6 +151,14 @@ export function SearchDialog() {
                 );
                 setResults(data);
                 setActiveIndex(0);
+
+                // Track search query (only queries with 3+ chars to reduce noise)
+                if (query.trim().length >= 3) {
+                    trackEvent("search_query", {
+                        query: query.trim().toLowerCase(),
+                        results_count: String(response.results.length),
+                    });
+                }
             } catch {
                 setResults([]);
             } finally {
