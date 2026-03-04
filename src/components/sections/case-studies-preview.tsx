@@ -165,7 +165,7 @@ export function CaseStudiesPreview() {
                         <Button
                             variant="outline"
                             size="lg"
-                            className="border-white/20 text-white bg-white/5 hover:bg-white/10 hover:border-white/30 h-12 px-8"
+                            className="border-white/20 text-white bg-white/5 hover:bg-white/10 hover:border-white/30 hover:text-white h-12 px-8"
                             asChild
                         >
                             <Link href="/case-studies">
