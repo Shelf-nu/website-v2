@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { motion } from "framer-motion";
 import { getTrustedByLogos } from "@/data/customer-logos";
 
 export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
@@ -22,19 +21,9 @@ export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
                 )}
 
                 <div className="relative flex max-w-[90vw] mx-auto overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                    <motion.div
-                        className="flex gap-16 md:gap-24 flex-nowrap"
-                        animate={{
-                            x: [0, "-50%"],
-                        }}
-                        transition={{
-                            x: {
-                                repeat: Infinity,
-                                repeatType: "loop",
-                                duration: logos.length * 3,
-                                ease: "linear",
-                            },
-                        }}
+                    <div
+                        className="flex gap-16 md:gap-24 flex-nowrap animate-marquee"
+                        style={{ "--marquee-duration": `${logos.length * 3}s` } as React.CSSProperties}
                     >
                         {infiniteLogos.map((logo, index) => (
                             <div
@@ -49,7 +38,7 @@ export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
                                 />
                             </div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </Container>
         </section>

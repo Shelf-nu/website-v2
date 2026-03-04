@@ -99,7 +99,8 @@ export function Globe({ className, config }: GlobeProps) {
             globe.destroy();
             window.removeEventListener('resize', onResize);
         };
-    }, [config, springR, isDark]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- springR is a stable MotionValue ref, read imperatively in onRender
+    }, [config, isDark]);
 
     return (
         <div

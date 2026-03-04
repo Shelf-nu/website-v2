@@ -151,16 +151,24 @@ export function Navbar() {
 
     const [navState, setNavState] = useState<string>("");
 
-    // Lock body scroll when menu is open
+    // Lock body scroll when menu is open (iOS Safari–safe)
     useEffect(() => {
         if (isOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
+            const scrollY = window.scrollY;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.overflowY = "scroll";
+            return () => {
+                document.body.style.position = "";
+                document.body.style.top = "";
+                document.body.style.left = "";
+                document.body.style.right = "";
+                document.body.style.overflowY = "";
+                window.scrollTo(0, scrollY);
+            };
         }
-        return () => {
-            document.body.style.overflow = "unset";
-        };
     }, [isOpen]);
 
     return (

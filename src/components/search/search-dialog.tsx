@@ -98,13 +98,28 @@ export function SearchDialog() {
         return () => document.removeEventListener("keydown", onKeyDown);
     }, []);
 
-    /* ---------- Focus input when dialog opens ---------- */
+    /* ---------- Focus input + lock body scroll when dialog opens ---------- */
     useEffect(() => {
         if (open) {
             loadPagefind();
+            // iOS Safari–safe body scroll lock
+            const scrollY = window.scrollY;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.overflowY = "scroll";
             // Small delay to let the dialog animate in
             const t = setTimeout(() => inputRef.current?.focus(), 50);
-            return () => clearTimeout(t);
+            return () => {
+                clearTimeout(t);
+                document.body.style.position = "";
+                document.body.style.top = "";
+                document.body.style.left = "";
+                document.body.style.right = "";
+                document.body.style.overflowY = "";
+                window.scrollTo(0, scrollY);
+            };
         } else {
             // Reset state on close
             setQuery("");
