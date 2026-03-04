@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Frontmatter } from "@/lib/content/schema";
-import { formatCategoryLabel } from "@/lib/utils";
+import { formatCategoryLabel, formatDate } from "@/lib/utils";
 
 interface BlogPost {
     slug: string;
@@ -75,7 +75,7 @@ export function BlogFeed({ allPosts }: BlogFeedProps) {
                                         <span>•</span>
                                         {featuredPost.frontmatter.date && (
                                             <time dateTime={featuredPost.frontmatter.date}>
-                                                {new Date(featuredPost.frontmatter.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                                                {formatDate(featuredPost.frontmatter.date)}
                                             </time>
                                         )}
                                     </div>
@@ -135,11 +135,7 @@ export function BlogFeed({ allPosts }: BlogFeedProps) {
                                             {/* Date */}
                                             {post.frontmatter.date && (
                                                 <time dateTime={post.frontmatter.date} className="text-xs font-medium text-muted-foreground/80 mt-auto pt-4 border-t border-border/40 w-full block">
-                                                    {new Date(post.frontmatter.date).toLocaleDateString('en-US', {
-                                                        month: 'long',
-                                                        day: 'numeric',
-                                                        year: 'numeric'
-                                                    })}
+                                                    {formatDate(post.frontmatter.date)}
                                                 </time>
                                             )}
                                         </div>

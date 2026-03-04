@@ -553,9 +553,24 @@ export function Navbar() {
                             duration: 0.25,
                             ease: [0.25, 0.1, 0.25, 1],
                         }}
-                        className="fixed inset-0 z-40 bg-background md:hidden overflow-y-auto pt-28 border-t border-border/40"
+                        className="fixed inset-0 z-[55] bg-background md:hidden overflow-y-auto border-t border-border/40"
                     >
-                        <div className="px-6 pb-8 space-y-6">
+                        {/* Mobile menu header with close */}
+                        <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-background border-b border-border/40">
+                            <Link href="/" onClick={() => setIsOpen(false)}>
+                                <Logo />
+                            </Link>
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="flex items-center gap-1.5 rounded-lg border border-border/60 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
+                                aria-label="Close menu"
+                            >
+                                <X className="h-4 w-4" />
+                                Close
+                            </button>
+                        </div>
+
+                        <div className="px-6 pb-8 pt-6 space-y-6">
                             {/* Product Section */}
                             <div>
                                 <h3 className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">

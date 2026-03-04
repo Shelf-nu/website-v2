@@ -9,7 +9,7 @@ type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef
 
 const components = {
     h1: (props: HtmlProps<"h1">) => (
-        <h1 className="mt-8 scroll-m-20 text-4xl font-bold tracking-tight text-foreground lg:text-5xl" {...props} />
+        <h2 className="mt-8 scroll-m-20 text-4xl font-bold tracking-tight text-foreground lg:text-5xl" {...props} />
     ),
     h2: (props: HtmlProps<"h2">) => {
         // Generate ID from text content if not provided

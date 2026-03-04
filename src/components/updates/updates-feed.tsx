@@ -9,17 +9,10 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { MDXContent } from "@/lib/mdx";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { formatDate } from "@/lib/utils";
 
 interface UpdatesFeedProps {
     updates: MDXContent[];
-}
-
-function formatDate(dateStr: string) {
-    return new Date(dateStr).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
 }
 
 function groupByYear(updates: MDXContent[]): Record<string, MDXContent[]> {

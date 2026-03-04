@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Frontmatter } from "@/lib/content/schema";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import { ShareButton } from "@/components/blog/share-button";
-import { formatCategoryLabel } from "@/lib/utils";
+import { formatCategoryLabel, formatDate } from "@/lib/utils";
 
 function formatAuthorName(author: string): string {
     // Convert slug-style "carlos-virreira" to "Carlos Virreira"
@@ -58,7 +58,7 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                                 )}
                                 {frontmatter.date && (
                                     <time dateTime={frontmatter.date} className="text-sm text-muted-foreground">
-                                        {new Date(frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                        {formatDate(frontmatter.date)}
                                     </time>
                                 )}
                             </div>
@@ -137,7 +137,7 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                                                 )}
                                                 {post.frontmatter.date && (
                                                     <time dateTime={post.frontmatter.date}>
-                                                        {new Date(post.frontmatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                                        {formatDate(post.frontmatter.date)}
                                                     </time>
                                                 )}
                                             </div>
