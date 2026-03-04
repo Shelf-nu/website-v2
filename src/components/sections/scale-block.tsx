@@ -8,6 +8,17 @@ import { GlobeEventFeed } from "@/components/sections/scale/globe-event-feed";
 import { useRef, useState, useEffect, startTransition } from "react";
 import { useInView } from "framer-motion";
 
+const GLOBE_CONFIG = {
+    width: 1200,
+    height: 1200,
+    devicePixelRatio: 2,
+    phi: 0,
+    theta: 0.25,
+    diffuse: 1.2,
+    mapSamples: 24000,
+    markerColor: [0.96, 0.5, 0.2] as [number, number, number],
+};
+
 export function ScaleBlock() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -79,16 +90,7 @@ export function ScaleBlock() {
 
                         <Globe
                             className="w-full h-full"
-                            config={{
-                                width: 1200,
-                                height: 1200,
-                                devicePixelRatio: 2,
-                                phi: 0,
-                                theta: 0.25,
-                                diffuse: 1.2,
-                                mapSamples: 24000,
-                                markerColor: [0.96, 0.5, 0.2],
-                            }}
+                            config={GLOBE_CONFIG}
                         />
 
                         {/* Event Feed Overlay */}

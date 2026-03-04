@@ -106,7 +106,7 @@ export function SystemGraphic() {
                 <div className="lg:grid lg:grid-cols-12 gap-12 relative">
 
                     {/* STICKY GRAPHIC (Right Side / Bottom on Mobile) */}
-                    <div className="hidden lg:flex lg:col-span-7 lg:col-start-6 lg:order-2 h-[calc(100vh-4rem)] sticky top-20 items-center justify-center pointer-events-none select-none z-10">
+                    <div className="hidden lg:flex lg:col-span-7 lg:col-start-6 lg:order-2 h-[calc(100dvh-4rem)] sticky top-20 items-center justify-center pointer-events-none select-none z-10">
                         <BentoGrid activeCards={STEPS[activeStepIdx].activeCards} />
                     </div>
 
