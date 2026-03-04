@@ -10,6 +10,10 @@ layout: "knowledge-base"
 
 With bookings, users can reserve equipment for designated periods. Assets or kits added to a booking are assigned to a custodian during the specified timeframe. During this period, items receive a "Checked out" status and become unavailable for overlapping bookings. This system prevents conflicts and ensures equipment availability when needed.
 
+
+![Shelf application screenshot](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b8d0c921086b59bb326_6596adf030fe552d1b6734fb_availability-team.png)
+
+![Shelf application screenshot](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df5fc_65d383e7d05509c1a13f7fc8_booking-reserved.jpeg)
 ## Required Booking Information
 
 A booking requires four essential components:
@@ -25,34 +29,50 @@ A booking requires four essential components:
 
 The booking is being configured. To proceed, you must fill in the Name, Start/End dates, and Custodian. You can then add assets or kits and perform a **Reserve** action. Deletion is still possible at this stage.
 
+
+![1. Draft](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df604_65d35f2c8403d367e0033e7e_Draft.png)
 ### 2. Reserved
 
 The booking is fully configured. Assets become unavailable for overlapping bookings. The booking period is in the future and hasn't been checked out yet -- assets retain an **Available** status. Administrators can still take or assign custody. Options include **Check-out**, **Delete**, or **Cancel**.
 
+
+![2. Reserved](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df607_65d35f406742ee28457b7e19_Reserved.png)
 ### 3. Ongoing
 
 The **Check-out** action has been performed. Assets now have a **Checked out** status and are in the custodian's possession. Administrators cannot take or assign custody during this phase. A **Check-in** action moves the booking to **Completed**. You can also **Delete** or **Cancel**.
 
+
+![3. Ongoing](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df61a_65d35f49a8a6b96788073a9a_Ongoing.png)
 ### 4. Overdue
 
 The booking's end date/time has passed without check-in. The system automatically changes the status to **Overdue**. Assets remain **Checked out**, potentially creating conflicts with other bookings. Perform **Check-in** to complete the booking, or **Delete** or **Cancel** it.
 
+
+![4. Overdue](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df5f6_65d35f539f6080fa571477f0_Overdue.png)
 ### 5. Completed
 
 Assets have been returned and **Checked in**. The booking status changes to **Completed**, and asset statuses return to **Available**. You can now **Delete** or **Archive** the booking.
 
+
+![5. Completed](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df617_65d35f5e180a8e89af8537ca_Completed.png)
 ### 6. Archived
 
 Completed bookings can be archived to organize the index. Archived bookings are hidden in the default view but accessible via dropdown filter selection.
 
+
+![6. Archived](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df601_65d35f6bb87992c450b1222a_Archived.png)
 ### 7. Cancelled
 
 Equipment managers can cancel non-completed bookings when they're no longer needed. Cancelled bookings remain logged but are hidden from the default index view.
 
+
+![7. Cancelled](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df60c_65d35f74d1c82111d989ab3a_Cancelled.png)
 ## Notification Emails
 
 The system sends automated emails to custodians and administrators at key stages:
 
+
+![Notification mails](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df613_65d385967cb728f10d4946fe_booking-email.jpeg)
 - **Confirmation**: Sent when a booking reaches Reserved status
 - **Check-out Reminder**: Sent 1 hour before the Start date/time
 - **Check-in Reminder**: Sent 1 hour before the End date/time

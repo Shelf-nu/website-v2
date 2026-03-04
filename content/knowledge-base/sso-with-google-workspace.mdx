@@ -10,22 +10,34 @@ layout: "knowledge-base"
 
 Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). To set up SSO with Google Workspace, follow these steps:
 
+
+![8.3: Allow Groups Access to Shelf App](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de21_6672da65782fc2f0513a7dba_Allow%2520Groups%2520Access%2520to%2520Shelf%2520App.jpeg)
+
+![8.4: Map Groups to App Attributes](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de37_6672da74295a827c7ff85aaf_Map%2520Groups%2520to%2520App%2520Attributes.jpeg)
 ### Step 1: Open the Google Workspace Web and Mobile Apps Console
 
 Navigate to the Google Workspace console.
 
+
+![Step 9: Map Google Workspace Groups Inside Shelf](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de34_6672da88a64640ce48d1b8c2_Map%2520Google%2520Workspace%2520Groups%2520Inside%2520Shelf.jpeg)
 ### Step 2: Choose "Add custom SAML app"
 
 From the **Add app** button in the toolbar choose **Add custom SAML app**.
 
+
+![Step 2: Choose &quot;Add custom SAML app&quot;](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de2b_6672d9f67fb6133dcdfca2b5_Choose%2520_Add%2520custom%2520SAML%2520app_.jpeg)
 ### Step 3: Fill Out App Details
 
 The information you enter here is for visibility into your Google Workspace. You can choose any values you like. Optionally enter a description.
 
+
+![Step 3: Fill out app details](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de16_6672da0b6e498cdbd43e66bf_Fill%2520out%2520app%2520details.jpeg)
 ### Step 4: Download IdP Metadata
 
 This is a very important step. Click on **DOWNLOAD METADATA** and save the file that was downloaded.
 
+
+![Step 4: Download IdP metadata](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de27_6672da17baa76b36eea123a4_Download%2520IdP%2520metadata.jpeg)
 It is very important to send this file to your support contact at Shelf to complete the SSO setup process. If you are not sure where to send this file, you can always reach us at hello@shelf.nu.
 
 > **Important:** Check the expiration date of the certificate in the metadata. Ensure there is at least 1 year left before it expires, and mark the date in your calendar to remind yourself to update the certificate without causing downtime for your users.
@@ -34,6 +46,8 @@ It is very important to send this file to your support contact at Shelf to compl
 
 Configure the Service Provider Details on the next screen:
 
+
+![Step 5: Add Service Provider Details](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de3b_6672da29efc448a20f6a5ff9_Add%2520Service%2520Provider%2520Details.jpeg)
 | Detail | Value |
 |--------|-------|
 | ACS URL | `https://nmmqcuiasekdacmhwsxk.supabase.co/auth/v1/sso/saml/acs` |
@@ -45,6 +59,8 @@ Configure the Service Provider Details on the next screen:
 
 Attribute mappings allow Shelf to get information about your Google Workspace users on each login.
 
+
+![Step 6: Configure Attribute Mapping](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de24_6672da3441b272ed85ba673f_Configure%2520Attribute%2520Mapping.jpeg)
 All attribute mappings are required. If in doubt, replicate the same config as shown in the documentation.
 
 > **NOTE:** You will come back to this step at a later stage once you have your groups created and users assigned.
@@ -97,6 +113,8 @@ Make sure to add all groups that you want to access Shelf. The **App attribute**
 
 Once you have the groups ready, you need to add their names in the workspace settings inside Shelf. If you have multiple workspaces, you will need to map each one.
 
+
+![8.1: Create Your Groups in Google Workspace](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de30_6672da5488296a3d362dcb7a_Create%2520Your%2520Groups%2520in%2520Google%2520Workspace.jpeg)
 Go to the workspace settings and place the name of the ADMIN and SELF SERVICE groups.
 
 > **Important:** Those fields are case sensitive. The name should be placed exactly as the group name is in Google Workspace.

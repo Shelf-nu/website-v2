@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Frontmatter } from "@/lib/content/schema";
 import { PageHeader } from "./shared/page-header";
 import { RelatedContent } from "./shared/related-content";
@@ -7,6 +8,79 @@ import { Container } from "@/components/ui/container";
 import { CTA } from "@/components/sections/cta";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, MessageSquare, Check, Minus } from "lucide-react";
+import { CompatibilityChecker } from "@/components/ui/compatibility-checker";
+
+/** Maps competitor slug → logo file in public/logos/ */
+const COMPETITOR_LOGOS: Record<string, string> = {
+    cheqroom: "/logos/cheqroom.png",
+    sortly: "/logos/sortly.svg",
+    "snipe-it": "/logos/snipe-it.png",
+    "asset-panda": "/logos/asset-panda.svg",
+    "asset-tiger": "/logos/asset-tiger.svg",
+    "asset-guru": "/logos/asset-guru.webp",
+    "asset-infinity": "/logos/asset-infinity.webp",
+    "blue-tally": "/logos/blue-tally.jpeg",
+    "brite-check": "/logos/brite-check.svg",
+    ezofficeinventory: "/logos/ezofficeinventory.webp",
+    gocodes: "/logos/gocodes.png",
+    hardcat: "/logos/hardcat.svg",
+    hector: "/logos/hector.svg",
+    itemit: "/logos/itemit.png",
+    "share-my-toolbox": "/logos/share-my-toolbox.jpeg",
+    timly: "/logos/timly.svg",
+    upkeep: "/logos/upkeep.svg",
+    wasp: "/logos/wasp.jpeg",
+    webcheckout: "/logos/webcheckout.jpeg",
+};
+
+function CompetitorVsShelf({ competitor, slug }: { competitor: string; slug: string }) {
+    const competitorLogo = COMPETITOR_LOGOS[slug];
+
+    return (
+        <div className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-8 sm:p-10 shadow-lg">
+            <div className="flex items-center justify-center gap-6 sm:gap-10">
+                {/* Competitor logo */}
+                <div className="flex flex-col items-center gap-3 min-w-0">
+                    <div className="flex items-center justify-center h-16 w-28 sm:h-20 sm:w-36 rounded-xl bg-white border border-border/30 p-3 shadow-sm">
+                        {competitorLogo ? (
+                            <Image
+                                src={competitorLogo}
+                                alt={competitor}
+                                width={120}
+                                height={60}
+                                className="h-full w-auto object-contain max-w-full"
+                            />
+                        ) : (
+                            <span className="text-sm font-bold text-foreground truncate">{competitor}</span>
+                        )}
+                    </div>
+                    <span className="text-xs font-medium text-muted-foreground">{competitor}</span>
+                </div>
+
+                {/* VS divider */}
+                <div className="flex flex-col items-center gap-1">
+                    <span className="text-xl sm:text-2xl font-bold text-muted-foreground/60 italic">
+                        vs.
+                    </span>
+                </div>
+
+                {/* Shelf logo */}
+                <div className="flex flex-col items-center gap-3 min-w-0">
+                    <div className="flex items-center justify-center h-16 w-28 sm:h-20 sm:w-36 rounded-xl bg-white border-2 border-orange-200 p-3 shadow-sm shadow-orange-500/10">
+                        <Image
+                            src="/logo-light.png"
+                            alt="Shelf"
+                            width={120}
+                            height={60}
+                            className="h-full w-auto object-contain max-w-full"
+                        />
+                    </div>
+                    <span className="text-xs font-semibold text-orange-600">Shelf</span>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 interface LayoutProps {
     frontmatter: Frontmatter;
@@ -14,8 +88,9 @@ interface LayoutProps {
 }
 
 export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
-    const competitor = frontmatter.competitor || frontmatter.title.replace(" Alternative", "");
+    const competitor = frontmatter.competitor || frontmatter.title.replace(/^(?:The #\d+\s+)?(.+?)\s+Alternative.*$/, "$1");
     const slugifiedCompetitor = competitor.toLowerCase().replace(/\s+/g, "_");
+    const competitorSlug = frontmatter.canonicalUrl?.replace("/alternatives/", "") || slugifiedCompetitor.replace(/_/g, "-");
 
     return (
         <>
@@ -25,6 +100,7 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                     title={frontmatter.title}
                     description={frontmatter.description}
                     heroTagline={`Shelf vs ${competitor}`}
+                    heroContent={<CompetitorVsShelf competitor={competitor} slug={competitorSlug} />}
                 >
                     <div className="flex flex-col sm:flex-row gap-4 mt-4">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white" asChild>
@@ -156,6 +232,11 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                             <p className="text-xs text-muted-foreground/60 mt-3">
                                 Feature availability for {competitor} may vary by plan. We encourage you to verify on their website.
                             </p>
+                        </div>
+
+                        {/* Compatibility Checker */}
+                        <div className="mt-16 max-w-xl">
+                            <CompatibilityChecker competitor={competitor} />
                         </div>
 
                         {/* Mobile CTA (shown below content on small screens) */}

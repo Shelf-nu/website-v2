@@ -8,9 +8,10 @@ interface PageHeaderProps {
     heroTagline?: string;
     children?: React.ReactNode;
     image?: string;
+    heroContent?: React.ReactNode;
 }
 
-export function PageHeader({ title, description, heroTagline, children, image }: PageHeaderProps) {
+export function PageHeader({ title, description, heroTagline, children, image, heroContent }: PageHeaderProps) {
     // Default placeholder if no image is provided
     const displayImage = image || "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop";
 
@@ -42,20 +43,27 @@ export function PageHeader({ title, description, heroTagline, children, image }:
                             {children}
                         </div>
 
-                        {/* Visual Enhancement Image */}
+                        {/* Visual Enhancement — custom content or default image */}
                         <div className="relative mt-8 lg:mt-0 hidden lg:block">
-                            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/10 border border-border/50 aspect-[4/3] transform rotate-2 hover:rotate-0 transition-all duration-700">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src={displayImage}
-                                    alt=""
-                                    className="object-cover w-full h-full"
-                                />
-                                {/* Overlay gradient for text readability if needed, though mostly stylistic here */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 to-transparent mix-blend-overlay" />
-                            </div>
-                            {/* Decorative backing */}
-                            <div className="absolute -inset-4 bg-zinc-900/5 rounded-[2rem] -z-10 rotate-[-2deg]" />
+                            {heroContent ? (
+                                <div className="flex items-center justify-center h-full">
+                                    {heroContent}
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-900/10 border border-border/50 aspect-[4/3] transform rotate-2 hover:rotate-0 transition-all duration-700">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={displayImage}
+                                            alt=""
+                                            className="object-cover w-full h-full"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 to-transparent mix-blend-overlay" />
+                                    </div>
+                                    {/* Decorative backing */}
+                                    <div className="absolute -inset-4 bg-zinc-900/5 rounded-[2rem] -z-10 rotate-[-2deg]" />
+                                </>
+                            )}
                         </div>
                     </div>
                 </ScrollReveal>
