@@ -15,6 +15,7 @@ Marketing website for [Shelf.nu](https://shelf.nu), an open-source asset managem
 - **Search**: Pagefind (static search index, Cmd+K dialog)
 - **Content**: MDX via next-mdx-remote (blog, KB, case studies, etc.)
 - **Animation**: Framer Motion
+- **Analytics**: Cloudflare Web Analytics (traffic) + Supabase custom events (conversions)
 - **Linting**: ESLint 9
 
 ## Key commands
@@ -32,6 +33,7 @@ npm run lint          # ESLint
 src/
 ├── app/(marketing)/     # All pages (about, blog, demo, pricing, tools, etc.)
 ├── components/
+│   ├── analytics/       # Analytics tracker, tracked link, 404 tracker
 │   ├── ui/              # Radix-based design system (button, card, dialog, etc.)
 │   ├── forms/           # Demo form (client-only, fetches to external endpoint)
 │   ├── search/          # Pagefind search dialog + wrapper component
@@ -79,12 +81,54 @@ out/                     # Build output (static HTML + pagefind index)
 - Dark mode supported via next-themes + CSS variables.
 - `cn()` utility from `@/lib/utils` for merging classnames.
 
+### Analytics
+
+Two-layer analytics, both free:
+
+1. **Cloudflare Web Analytics** — automatic page views, visitors, referrers, countries, Core Web Vitals
+2. **Supabase custom events** — CTA clicks, form submissions, search queries, scroll depth, content changes
+
+**Tracked events** (via `trackEvent()` from `@/lib/analytics`):
+- `page_view` — every route change (with referrer, UTM params)
+- `session_start` — once per page load (landing page, referrer, UTMs)
+- `signup_click` — "Sign up free" button clicks (navbar, hero, pricing)
+- `demo_form_submit` — demo form success (with full attribution: landing page, journey, UTMs)
+- `pricing_cta` — pricing card button clicks (with plan ID + billing period)
+- `search_query` — search terms (3+ chars, with result count)
+- `scroll_depth` — 25/50/75/100% milestones
+- `time_on_page` — seconds spent (on navigation away)
+- `404_hit` — broken inbound links (path + referrer)
+
+**CLI commands** (for querying data from Claude Code):
+```bash
+node scripts/analytics.mjs summary      [--days 7]    # Full dashboard
+node scripts/analytics.mjs traffic      [--days 30]   # Visitors, views, trend
+node scripts/analytics.mjs top-pages    [--days 30]   # Page ranking
+node scripts/analytics.mjs conversions  [--days 7]    # Event counts
+node scripts/analytics.mjs searches     [--days 30]   # Search queries
+node scripts/analytics.mjs referrers    [--days 30]   # Traffic sources
+node scripts/analytics.mjs attribution  [--days 30]   # Demo form journey
+node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
+```
+
+**Content changelog** — `scripts/snapshot-content.mjs` runs at build time on production deploys. Compares page titles/descriptions against last snapshot in Supabase and logs changes to `content_changelog` table. Ask "did our title change affect traffic?" and get before/after analysis.
+
+**Adding new tracked events**:
+- In client components: `import { trackEvent } from "@/lib/analytics"; trackEvent("event_name", { key: "value" })`
+- In server components: use `<TrackedLink>` from `@/components/analytics/tracked-link`
+
 ## Environment variables
 
 | Variable | Scope | Purpose |
 |----------|-------|---------|
 | `NEXT_PUBLIC_FORM_ENDPOINT` | Client | Supabase Edge Function URL for form submissions |
 | `NEXT_PUBLIC_APP_URL` | Client | Base URL for SEO/sitemap (defaults to https://shelf.nu) |
+| `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` | Client | Cloudflare Web Analytics site token |
+| `NEXT_PUBLIC_ANALYTICS_ENDPOINT` | Client | Supabase Edge Function URL for analytics events |
+| `CF_API_TOKEN` | Server/CLI | Cloudflare API token (Analytics:Read scope, for CLI queries) |
+| `CF_SITE_TAG` | Server/CLI | Cloudflare Web Analytics site tag (for API queries) |
+| `SUPABASE_URL` | Server/CLI | Supabase project URL (for analytics CLI + content snapshot) |
+| `SUPABASE_SERVICE_KEY` | Server/CLI | Supabase service role key (for analytics CLI + content snapshot) |
 
 ## CI/CD
 
@@ -98,6 +142,10 @@ Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.y
 - `CLOUDFLARE_API_TOKEN` — Cloudflare API token with Pages edit permission
 - `CLOUDFLARE_ACCOUNT_ID` — Cloudflare account ID
 - `NEXT_PUBLIC_FORM_ENDPOINT` — Supabase Edge Function URL for form submissions
+- `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` — Cloudflare Web Analytics site token
+- `NEXT_PUBLIC_ANALYTICS_ENDPOINT` — Supabase Edge Function URL for analytics events
+- `SUPABASE_URL` — Supabase project URL (for content snapshot)
+- `SUPABASE_SERVICE_KEY` — Supabase service role key (for content snapshot)
 
 **Optional GitHub variable**:
 - `NEXT_PUBLIC_APP_URL` — Base URL for SEO (defaults to `https://shelf.nu`)

@@ -43,6 +43,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
 
 import { TopBanner } from "@/components/layout/top-banner";
 import { SearchDialog } from "@/components/search/search-dialog";
@@ -515,7 +516,7 @@ export function Navbar() {
                             >
                                 Log in
                             </Link>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup">
+                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup" onClick={() => trackEvent("signup_click", { location: "navbar" })}>
                                 <Button
                                     size="sm"
                                     className="bg-orange-600 hover:bg-orange-700 text-white ring-1 ring-orange-500/20 transition-all hover:shadow-md hover:shadow-orange-500/10"
@@ -700,6 +701,7 @@ export function Navbar() {
                                 <Link
                                     href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup"
                                     className="block w-full"
+                                    onClick={() => trackEvent("signup_click", { location: "navbar_mobile" })}
                                 >
                                     <Button className="w-full justify-center bg-orange-600 hover:bg-orange-700 text-white">
                                         Sign up free

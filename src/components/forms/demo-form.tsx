@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
+import { trackEvent, getLandingPage, getPagesViewed, getUtmParams } from "@/lib/analytics";
 
 /* ------------------------------------------------------------------ */
 /*  Needs options (multi-select checkboxes)                            */
@@ -167,6 +168,14 @@ export function DemoForm() {
         // Submit to external endpoint
         if (!FORM_ENDPOINT) {
             // No endpoint configured — show success anyway (dev/static fallback)
+            const utm = getUtmParams();
+            trackEvent("demo_form_submit", {
+                landing_page: getLandingPage(),
+                pages_viewed: getPagesViewed().join(" → "),
+                team_size: result.data.teamSize,
+                heard_about: result.data.heardAbout,
+                ...utm,
+            });
             setSuccess(true);
             return;
         }
@@ -202,6 +211,14 @@ export function DemoForm() {
             const data = await res.json();
 
             if (data.success) {
+                const utm = getUtmParams();
+                trackEvent("demo_form_submit", {
+                    landing_page: getLandingPage(),
+                    pages_viewed: getPagesViewed().join(" → "),
+                    team_size: result.data.teamSize,
+                    heard_about: result.data.heardAbout,
+                    ...utm,
+                });
                 setSuccess(true);
                 return;
             }

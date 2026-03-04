@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { AnalyticsTracker } from "@/components/analytics/analytics-tracker";
 
 export default function MarketingLayout({
     children,
@@ -8,6 +9,7 @@ export default function MarketingLayout({
 }) {
     return (
         <div className="flex min-h-screen flex-col">
+            <AnalyticsTracker />
             <div data-pagefind-ignore>
                 <Navbar />
             </div>

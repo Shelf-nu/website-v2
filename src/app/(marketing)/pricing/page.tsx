@@ -18,6 +18,7 @@ import { TrustedBy } from "@/components/sections/trusted-by";
 import { ArrowRight, Quote, Star } from "lucide-react";
 import Image from "next/image";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { trackEvent } from "@/lib/analytics";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -215,13 +216,13 @@ export default function PricingPage() {
 
                             <CardFooter className="pt-2 pb-5 px-5 mt-auto flex flex-col gap-3">
                                 <Button className={`w-full h-12 text-base font-semibold shadow-sm ${plan.popular ? 'shadow-orange-500/25' : ''}`} variant={plan.popular ? "default" : "outline"} asChild>
-                                    <Link href={plan.href}>
+                                    <Link href={plan.href} onClick={() => trackEvent("pricing_cta", { plan: plan.id, cta: plan.cta, billing: isYearly ? "yearly" : "monthly" })}>
                                         {plan.cta}
                                     </Link>
                                 </Button>
                                 {plan.secondaryCta && (
                                     <Button className="w-full h-12 text-base font-semibold shadow-sm" variant="outline" asChild>
-                                        <Link href={plan.secondaryCta.href}>
+                                        <Link href={plan.secondaryCta.href} onClick={() => trackEvent("pricing_cta", { plan: plan.id, cta: plan.secondaryCta!.text, billing: isYearly ? "yearly" : "monthly" })}>
                                             {plan.secondaryCta.text}
                                         </Link>
                                     </Button>
@@ -255,12 +256,12 @@ export default function PricingPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 text-base shadow-lg shadow-orange-600/20" asChild>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup">
+                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup" onClick={() => trackEvent("signup_click", { location: "pricing_bottom" })}>
                                 Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
                         <Button size="lg" variant="outline" className="h-12 px-8 text-base" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo">
+                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo" onClick={() => trackEvent("signup_click", { location: "pricing_bottom_demo" })}>
                                 Book a Demo
                             </Link>
                         </Button>

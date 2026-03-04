@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { VideoLightbox } from "@/components/ui/video-lightbox";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Pill } from "@/components/ui/pill";
@@ -96,9 +97,9 @@ export function Hero({
                         <div className="flex flex-col items-center gap-4">
                             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                                 <Button size="lg" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-500/20" asChild>
-                                    <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=homepage_hero_signup">
+                                    <TrackedLink href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=homepage_hero_signup" eventName="signup_click" eventProps={{ location: "hero" }}>
                                         Sign up free
-                                    </Link>
+                                    </TrackedLink>
                                 </Button>
                                 <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
                                     <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=homepage_hero_demo">
