@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { SkipToContent } from "@/components/layout/skip-to-content";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CrispChat } from "@/components/chat/crisp-chat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -101,6 +102,7 @@ export default function RootLayout({
             {children}
           </div>
         </ThemeProvider>
+        <CrispChat />
       </body>
     </html>
   );

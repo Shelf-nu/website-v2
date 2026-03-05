@@ -124,6 +124,7 @@ node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
 | `NEXT_PUBLIC_FORM_ENDPOINT` | Client | Supabase Edge Function URL for form submissions |
 | `NEXT_PUBLIC_APP_URL` | Client | Base URL for SEO/sitemap (defaults to https://shelf.nu) |
 | `NEXT_PUBLIC_ANALYTICS_ENDPOINT` | Client | Supabase Edge Function URL for analytics events |
+| `NEXT_PUBLIC_CRISP_WEBSITE_ID` | Client | Crisp live chat website ID |
 | `CF_API_TOKEN` | Server/CLI | Cloudflare API token (Analytics:Read scope, for CLI queries) |
 | `CF_SITE_TAG` | Server/CLI | Cloudflare Web Analytics site tag (for API queries) |
 | `SUPABASE_URL` | Server/CLI | Supabase project URL (for analytics CLI + content snapshot) |
@@ -142,6 +143,7 @@ Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.y
 - `CLOUDFLARE_ACCOUNT_ID` — Cloudflare account ID
 - `NEXT_PUBLIC_FORM_ENDPOINT` — Supabase Edge Function URL for form submissions
 - `NEXT_PUBLIC_ANALYTICS_ENDPOINT` — Supabase Edge Function URL for analytics events
+- `NEXT_PUBLIC_CRISP_WEBSITE_ID` — Crisp live chat website ID
 - `SUPABASE_URL` — Supabase project URL (for content snapshot)
 - `SUPABASE_SERVICE_KEY` — Supabase service role key (for content snapshot)
 
