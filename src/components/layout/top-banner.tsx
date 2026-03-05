@@ -9,7 +9,7 @@ export function TopBanner() {
                 <div className="flex items-center gap-2">
                     <span className="font-bold text-foreground tracking-tight">Shelf™</span>
                     <span className="opacity-40">|</span>
-                    <span className="opacity-80 hidden sm:inline font-normal">everything has a place.</span>
+                    <span className="opacity-90 hidden sm:inline font-normal">everything has a place.</span>
                 </div>
 
                 <div className="flex items-center gap-4 sm:gap-6">

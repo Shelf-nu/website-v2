@@ -12,7 +12,7 @@ const CASE_STUDIES = [
     {
         slug: "ces-70k-recovery",
         company: "CES Utility Solutions",
-        logo: "/logos/ces-utility.jpeg",
+        logo: "/logos/ces-utility.webp",
         stat: "$70K",
         statLabel: "in equipment recovered",
         headline:
@@ -22,7 +22,7 @@ const CASE_STUDIES = [
     {
         slug: "bullstv",
         company: "Chicago Bulls",
-        logo: "/logos/chicago-bulls.png",
+        logo: "/logos/chicago-bulls.webp",
         stat: "Hours saved",
         statLabel: "every single week",
         headline:
@@ -32,7 +32,7 @@ const CASE_STUDIES = [
     {
         slug: "haarp",
         company: "HAARP",
-        logo: "/logos/haarp.png",
+        logo: "/logos/haarp.webp",
         stat: "7 universities",
         statLabel: "under one system",
         headline:
@@ -42,7 +42,7 @@ const CASE_STUDIES = [
     {
         slug: "eastern-michigan-university",
         company: "Eastern Michigan University",
-        logo: "/logos/eastern-michigan-university.png",
+        logo: "/logos/eastern-michigan-university.webp",
         stat: "Streamlined",
         statLabel: "student workflows",
         headline:
@@ -52,7 +52,7 @@ const CASE_STUDIES = [
     {
         slug: "fabel-film-double-bookings",
         company: "Fabel Film",
-        logo: "/logos/fabel-film.jpg",
+        logo: "/logos/fabel-film.webp",
         stat: "Zero",
         statLabel: "double bookings",
         headline:

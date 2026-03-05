@@ -5,22 +5,37 @@
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const CORS_HEADERS = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-};
+const ALLOWED_ORIGINS = [
+    "https://www.shelf.nu",
+    "https://shelf.nu",
+    "http://localhost:3000",
+];
+
+function getCorsHeaders(req: Request): Record<string, string> {
+    const origin = req.headers.get("Origin") || "";
+    const allowedOrigin = ALLOWED_ORIGINS.includes(origin)
+        ? origin
+        : ALLOWED_ORIGINS[0];
+    return {
+        "Access-Control-Allow-Origin": allowedOrigin,
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Credentials": "true",
+    };
+}
 
 Deno.serve(async (req) => {
+    const corsHeaders = getCorsHeaders(req);
+
     // Handle CORS preflight
     if (req.method === "OPTIONS") {
-        return new Response(null, { status: 204, headers: CORS_HEADERS });
+        return new Response(null, { status: 204, headers: corsHeaders });
     }
 
     if (req.method !== "POST") {
         return new Response(JSON.stringify({ error: "Method not allowed" }), {
             status: 405,
-            headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
     }
 
@@ -33,7 +48,7 @@ Deno.serve(async (req) => {
                 JSON.stringify({ error: "event_name is required" }),
                 {
                     status: 400,
-                    headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+                    headers: { ...corsHeaders, "Content-Type": "application/json" },
                 },
             );
         }
@@ -58,14 +73,14 @@ Deno.serve(async (req) => {
                 JSON.stringify({ error: "Failed to store event" }),
                 {
                     status: 500,
-                    headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+                    headers: { ...corsHeaders, "Content-Type": "application/json" },
                 },
             );
         }
 
         return new Response(JSON.stringify({ success: true }), {
             status: 200,
-            headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
     } catch (err) {
         console.error("Parse error:", err);
@@ -73,7 +88,7 @@ Deno.serve(async (req) => {
             JSON.stringify({ error: "Invalid request body" }),
             {
                 status: 400,
-                headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+                headers: { ...corsHeaders, "Content-Type": "application/json" },
             },
         );
     }

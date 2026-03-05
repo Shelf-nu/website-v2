@@ -22,13 +22,13 @@ const competitors = [
     },
     {
         name: "Snipe-IT",
-        logo: "/logos/snipe-it.png",
+        logo: "/logos/snipe-it.webp",
         description: "Want something more modern than open source legacy software?",
         slug: "snipe-it"
     },
     {
         name: "Cheqroom",
-        logo: "/logos/cheqroom.png",
+        logo: "/logos/cheqroom.webp",
         description: "Looking for a cleaner UI and faster booking workflows?",
         slug: "cheqroom"
     },
