@@ -16,24 +16,24 @@ export const metadata: Metadata = {
 // Map competitor slugs to their logo files
 const competitorLogos: Record<string, string> = {
     "asset-panda": "/logos/asset-panda.svg",
-    "snipe-it": "/logos/snipe-it.png",
-    cheqroom: "/logos/cheqroom.png",
+    "snipe-it": "/logos/snipe-it.webp",
+    cheqroom: "/logos/cheqroom.webp",
     sortly: "/logos/sortly.svg",
     upkeep: "/logos/upkeep.svg",
     "asset-guru": "/logos/asset-guru.webp",
     "asset-infinity": "/logos/asset-infinity.webp",
     "asset-tiger": "/logos/asset-tiger.svg",
-    "blue-tally": "/logos/blue-tally.jpeg",
+    "blue-tally": "/logos/blue-tally.webp",
     "brite-check": "/logos/brite-check.svg",
     ezofficeinventory: "/logos/ezofficeinventory.webp",
-    gocodes: "/logos/gocodes.png",
+    gocodes: "/logos/gocodes.webp",
     hardcat: "/logos/hardcat.svg",
     hector: "/logos/hector.svg",
-    itemit: "/logos/itemit.png",
-    "share-my-toolbox": "/logos/share-my-toolbox.jpeg",
+    itemit: "/logos/itemit.webp",
+    "share-my-toolbox": "/logos/share-my-toolbox.webp",
     timly: "/logos/timly.svg",
-    wasp: "/logos/wasp.jpeg",
-    webcheckout: "/logos/webcheckout.jpeg",
+    wasp: "/logos/wasp.webp",
+    webcheckout: "/logos/webcheckout.webp",
 };
 
 export default function AlternativesIndexPage() {

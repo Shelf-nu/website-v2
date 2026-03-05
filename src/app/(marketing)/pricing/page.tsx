@@ -22,11 +22,11 @@ import { trackEvent } from "@/lib/analytics";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
-    { name: "Chicago Bulls", logo: "/logos/chicago-bulls.png" },
-    { name: "Kent State University", logo: "/logos/kent-state.png" },
-    { name: "UC Berkeley", logo: "/logos/berkeley.png" },
-    { name: "USS Midway Museum", logo: "/logos/uss-midway-museum.png" },
-    { name: "University of Missouri", logo: "/logos/university-of-missouri.png" },
+    { name: "Chicago Bulls", logo: "/logos/chicago-bulls.webp" },
+    { name: "Kent State University", logo: "/logos/kent-state.webp" },
+    { name: "UC Berkeley", logo: "/logos/berkeley.webp" },
+    { name: "USS Midway Museum", logo: "/logos/uss-midway-museum.webp" },
+    { name: "University of Missouri", logo: "/logos/university-of-missouri.webp" },
 ];
 
 // Helper to convert structured data back to the list format for the card view
@@ -130,7 +130,7 @@ export default function PricingPage() {
                     </div>
                     <a href="https://www.g2.com/products/shelf-asset-management/reviews" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border/50 hover:bg-muted/50 transition-colors group mt-4">
                         <div className="relative h-5 w-5">
-                            <Image src="/logos/g2-logo.png" alt="G2 Logo" fill className="object-contain" />
+                            <Image src="/logos/g2-logo.webp" alt="G2 Logo" fill sizes="20px" className="object-contain" />
                         </div>
                         <div className="flex gap-0.5">
                             {[1, 2, 3, 4, 5].map((i) => (

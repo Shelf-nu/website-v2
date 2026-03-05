@@ -16,7 +16,7 @@ export function Footer() {
                         </div>
                         <p className="text-sm font-semibold text-foreground mb-2">We&apos;re here to help</p>
                         <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                            There are no stupid questions. For pre-sales questions, existing customers who need a hand, or other inquiries, <Link href="/contact" className="text-orange-600 hover:text-orange-700 transition-colors">contact us</Link> and we&apos;ll get back to you within the same business day.
+                            There are no stupid questions. For pre-sales questions, existing customers who need a hand, or other inquiries, <Link href="/contact" className="text-orange-600 hover:text-orange-700 transition-colors underline underline-offset-2">contact us</Link> and we&apos;ll get back to you within the same business day.
                         </p>
                     </div>
                     <div>
@@ -79,18 +79,18 @@ export function Footer() {
                 </div>
 
                 <div className="border-t border-border/40 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-muted-foreground/60">
+                    <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-muted-foreground/80">
                         <p>&copy; {new Date().getFullYear()} Shelf Asset Management, Inc.</p>
                         <span className="hidden sm:inline">·</span>
                         <p>1111b South Governors Avenue, STE 6801, Dover, DE 19904</p>
                     </div>
                     <div className="flex items-center space-x-5">
                         <ThemeToggle />
-                        <Link href="https://github.com/Shelf-nu/shelf.nu" className="text-muted-foreground/60 hover:text-orange-600 transition-colors">
+                        <Link href="https://github.com/Shelf-nu/shelf.nu" className="text-muted-foreground/80 hover:text-orange-600 transition-colors">
                             <span className="sr-only">GitHub</span>
                             <Github className="h-4.5 w-4.5" />
                         </Link>
-                        <Link href="https://www.linkedin.com/company/shelf-inc/" className="text-muted-foreground/60 hover:text-orange-600 transition-colors">
+                        <Link href="https://www.linkedin.com/company/shelf-inc/" className="text-muted-foreground/80 hover:text-orange-600 transition-colors">
                             <span className="sr-only">LinkedIn</span>
                             <Linkedin className="h-4.5 w-4.5" />
                         </Link>

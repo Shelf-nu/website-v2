@@ -12,25 +12,25 @@ import { CompatibilityChecker } from "@/components/ui/compatibility-checker";
 
 /** Maps competitor slug → logo file in public/logos/ */
 const COMPETITOR_LOGOS: Record<string, string> = {
-    cheqroom: "/logos/cheqroom.png",
+    cheqroom: "/logos/cheqroom.webp",
     sortly: "/logos/sortly.svg",
-    "snipe-it": "/logos/snipe-it.png",
+    "snipe-it": "/logos/snipe-it.webp",
     "asset-panda": "/logos/asset-panda.svg",
     "asset-tiger": "/logos/asset-tiger.svg",
     "asset-guru": "/logos/asset-guru.webp",
     "asset-infinity": "/logos/asset-infinity.webp",
-    "blue-tally": "/logos/blue-tally.jpeg",
+    "blue-tally": "/logos/blue-tally.webp",
     "brite-check": "/logos/brite-check.svg",
     ezofficeinventory: "/logos/ezofficeinventory.webp",
-    gocodes: "/logos/gocodes.png",
+    gocodes: "/logos/gocodes.webp",
     hardcat: "/logos/hardcat.svg",
     hector: "/logos/hector.svg",
-    itemit: "/logos/itemit.png",
-    "share-my-toolbox": "/logos/share-my-toolbox.jpeg",
+    itemit: "/logos/itemit.webp",
+    "share-my-toolbox": "/logos/share-my-toolbox.webp",
     timly: "/logos/timly.svg",
     upkeep: "/logos/upkeep.svg",
-    wasp: "/logos/wasp.jpeg",
-    webcheckout: "/logos/webcheckout.jpeg",
+    wasp: "/logos/wasp.webp",
+    webcheckout: "/logos/webcheckout.webp",
 };
 
 function CompetitorVsShelf({ competitor, slug }: { competitor: string; slug: string }) {

@@ -28,9 +28,10 @@ export function LogoGrid({ items }: LogoGridProps) {
                     <a href="https://www.g2.com/products/shelf-asset-management/reviews" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border/50 hover:bg-muted/50 transition-colors group">
                         <div className="relative h-6 w-6">
                             <Image
-                                src="/logos/g2-logo.png"
+                                src="/logos/g2-logo.webp"
                                 alt="G2 Logo"
                                 fill
+                                sizes="24px"
                                 className="object-contain"
                             />
                         </div>
@@ -56,6 +57,7 @@ export function LogoGrid({ items }: LogoGridProps) {
                                     src={item.logo}
                                     alt={item.name}
                                     fill
+                                    sizes="160px"
                                     className="object-contain"
                                 />
                             </div>

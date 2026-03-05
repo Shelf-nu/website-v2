@@ -16,7 +16,7 @@ interface HeroProps {
 }
 
 export function Hero({
-    heroImageDesktop = "/images/hero_dashboard_v3.png",
+    heroImageDesktop = "/images/hero_dashboard_v3.webp",
     heroImageMobile
 }: HeroProps) {
     return (
@@ -120,7 +120,7 @@ export function Hero({
                 <div className="mt-16 sm:mt-20 relative mx-auto max-w-5xl">
                     <ScrollReveal width="100%" delay={0.5}>
                         <VideoLightbox videoId="RHs9nBpXuuE">
-                            <div className="relative group cursor-pointer transition-transform duration-700 ease-out hover:scale-[1.01]">
+                            <div role="button" tabIndex={0} className="relative group cursor-pointer transition-transform duration-700 ease-out hover:scale-[1.01]">
                                 <Image
                                     src={heroImageDesktop}
                                     alt="Shelf Asset Management — asset index with QR codes and labels"

@@ -207,7 +207,9 @@ export function SearchDialog() {
             <button
                 onClick={() => setOpen(true)}
                 className="flex items-center gap-2 rounded-lg border border-border/60 bg-muted/40 px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted/70 hover:text-foreground transition-colors"
-                aria-label="Search (Cmd+K)"
+                aria-label="Search"
+                aria-haspopup="dialog"
+                aria-expanded={open}
             >
                 <Search className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">Search</span>

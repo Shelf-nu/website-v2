@@ -51,7 +51,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "ces-utility",
         name: "CES Utility Solutions",
-        logo: "/logos/ces-utility.jpeg",
+        logo: "/logos/ces-utility.webp",
         caseStudySlug: "ces-70k-recovery",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -61,7 +61,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "fabel-film",
         name: "Fabel Film",
-        logo: "/logos/fabel-film.jpg",
+        logo: "/logos/fabel-film.webp",
         caseStudySlug: "fabel-film-double-bookings",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -74,7 +74,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "haarp",
         name: "HAARP",
-        logo: "/logos/haarp.png",
+        logo: "/logos/haarp.webp",
         caseStudySlug: "haarp",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -84,7 +84,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "resq",
         name: "ResQ",
-        logo: "/logos/resq.jpg",
+        logo: "/logos/resq.webp",
         caseStudySlug: "resq-contact-center",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -95,7 +95,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "eastern-michigan-university",
         name: "Eastern Michigan University",
-        logo: "/logos/eastern-michigan-university.png",
+        logo: "/logos/eastern-michigan-university.webp",
         caseStudySlug: "eastern-michigan-university",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -107,7 +107,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "universal-music",
         name: "Universal Music",
-        logo: "/logos/universal-music.png",
+        logo: "/logos/universal-music.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Entertainment",
@@ -116,7 +116,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "nokia",
         name: "Nokia",
-        logo: "/logos/nokia.png",
+        logo: "/logos/nokia.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Telecommunications",
@@ -134,7 +134,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "british-airways",
         name: "British Airways",
-        logo: "/logos/british-airways.png",
+        logo: "/logos/british-airways.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Aviation",
@@ -143,7 +143,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "chicago-bulls",
         name: "Chicago Bulls",
-        logo: "/logos/chicago-bulls.png",
+        logo: "/logos/chicago-bulls.webp",
         caseStudySlug: "bullstv",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -156,7 +156,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "arup",
         name: "Arup",
-        logo: "/logos/arup.png",
+        logo: "/logos/arup.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Engineering",
@@ -165,7 +165,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "feadship",
         name: "Feadship Royal Dutch Shipyards",
-        logo: "/logos/feadship.jpg",
+        logo: "/logos/feadship.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Maritime",
@@ -174,7 +174,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "purdue-university",
         name: "Purdue University",
-        logo: "/logos/purdue-university.png",
+        logo: "/logos/purdue-university.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Education",
@@ -183,7 +183,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "berkeley",
         name: "Berkeley University of California",
-        logo: "/logos/berkeley.png",
+        logo: "/logos/berkeley.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Education",
@@ -192,7 +192,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "florida-state",
         name: "Florida State University",
-        logo: "/logos/florida-state.jpg",
+        logo: "/logos/florida-state.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Education",
@@ -201,7 +201,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "sea-shepherd",
         name: "Sea Shepherd",
-        logo: "/logos/sea-shepherd.jpg",
+        logo: "/logos/sea-shepherd.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Conservation",
@@ -210,7 +210,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "sunrun",
         name: "Sunrun",
-        logo: "/logos/sunrun.jpg",
+        logo: "/logos/sunrun.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Renewable Energy",
@@ -219,7 +219,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "laerdal-medical",
         name: "Laerdal Medical",
-        logo: "/logos/laerdal-medical.png",
+        logo: "/logos/laerdal-medical.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Medical Equipment",
@@ -230,7 +230,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "ak-film-it",
         name: "AK Film It!",
-        logo: "/logos/ak-film-it.jpg",
+        logo: "/logos/ak-film-it.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -241,7 +241,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "arcca",
         name: "Arcca",
-        logo: "/logos/arcca.png",
+        logo: "/logos/arcca.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Engineering",
@@ -249,7 +249,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "arrelano-associates",
         name: "Arellano Associates",
-        logo: "/logos/arrelano-associates.png",
+        logo: "/logos/arrelano-associates.webp",
         caseStudySlug: "arellano-associates",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -261,7 +261,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "berkeys",
         name: "Berkeys",
-        logo: "/logos/berkeys.png",
+        logo: "/logos/berkeys.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Home Services",
@@ -272,7 +272,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "big-slate-media",
         name: "Big Slate Media",
-        logo: "/logos/big-slate-media.png",
+        logo: "/logos/big-slate-media.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -280,7 +280,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "biltmore-church",
         name: "Biltmore Church",
-        logo: "/logos/biltmore-church.png",
+        logo: "/logos/biltmore-church.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Religious Organization",
@@ -288,14 +288,14 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "bl",
         name: "BL",
-        logo: "/logos/bl.png",
+        logo: "/logos/bl.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },
     {
         id: "black-owl",
         name: "Black Owl",
-        logo: "/logos/black-owl.png",
+        logo: "/logos/black-owl.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -303,7 +303,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "brunt-workwear",
         name: "Brunt Workwear",
-        logo: "/logos/brunt-workwear.jpg",
+        logo: "/logos/brunt-workwear.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Workwear",
@@ -311,7 +311,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "capital-crewing",
         name: "Capital Crewing",
-        logo: "/logos/capital-crewing.png",
+        logo: "/logos/capital-crewing.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -319,7 +319,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "cbi-consultants",
         name: "CBI Consultants",
-        logo: "/logos/cbi-consultants.png",
+        logo: "/logos/cbi-consultants.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Consulting",
@@ -327,7 +327,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "classic-teleproductions",
         name: "Classic Teleproductions",
-        logo: "/logos/classic-teleproductions.png",
+        logo: "/logos/classic-teleproductions.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -335,7 +335,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "data-plus-communications",
         name: "Data Plus Communications",
-        logo: "/logos/data-plus-communications.png",
+        logo: "/logos/data-plus-communications.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Telecommunications",
@@ -351,7 +351,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "elements-studio",
         name: "Elements Studio",
-        logo: "/logos/elements-studio.png",
+        logo: "/logos/elements-studio.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -359,7 +359,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "funke",
         name: "Funke",
-        logo: "/logos/funke.png",
+        logo: "/logos/funke.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media",
@@ -367,7 +367,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "fwht",
         name: "FWHT",
-        logo: "/logos/fwht.png",
+        logo: "/logos/fwht.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Legal",
@@ -375,7 +375,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "houston-parks-board",
         name: "Houston Parks Board",
-        logo: "/logos/houston-parks-board.png",
+        logo: "/logos/houston-parks-board.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Government",
@@ -383,7 +383,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "ideative",
         name: "Ideative",
-        logo: "/logos/ideative.png",
+        logo: "/logos/ideative.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Creative Agency",
@@ -391,7 +391,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "kansas-city-art-institute",
         name: "Kansas City Art Institute",
-        logo: "/logos/kcai.png",
+        logo: "/logos/kcai.webp",
         caseStudySlug: "kcai",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -400,7 +400,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "lifeway-mobility",
         name: "Lifeway Mobility",
-        logo: "/logos/lifeway-mobility.png",
+        logo: "/logos/lifeway-mobility.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Healthcare",
@@ -408,7 +408,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "london-mep",
         name: "London MEP",
-        logo: "/logos/london-mep.png",
+        logo: "/logos/london-mep.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Engineering",
@@ -416,7 +416,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "merit-street-media",
         name: "Merit Street Media",
-        logo: "/logos/merit-street-media.png",
+        logo: "/logos/merit-street-media.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media",
@@ -424,21 +424,21 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "misti",
         name: "misti",
-        logo: "/logos/misti.png",
+        logo: "/logos/misti.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },
     {
         id: "niche",
         name: "niche",
-        logo: "/logos/niche.jpg",
+        logo: "/logos/niche.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },
     {
         id: "ocadu",
         name: "OCAD University",
-        logo: "/logos/ocadu.png",
+        logo: "/logos/ocadu.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -446,7 +446,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "oral-roberts-university",
         name: "Oral Roberts University",
-        logo: "/logos/oral-roberts-university.png",
+        logo: "/logos/oral-roberts-university.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -454,7 +454,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "ovoko",
         name: "Ovoko",
-        logo: "/logos/ovoko.png",
+        logo: "/logos/ovoko.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Automotive",
@@ -462,7 +462,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "project-vision",
         name: "Project Vision",
-        logo: "/logos/project-vision.png",
+        logo: "/logos/project-vision.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Nonprofit",
@@ -470,7 +470,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "reason-magazine",
         name: "Reason Magazine",
-        logo: "/logos/reason-magazine.png",
+        logo: "/logos/reason-magazine.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media",
@@ -494,7 +494,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "scape",
         name: "SCAPE Landscape Architecture",
-        logo: "/logos/scape.png",
+        logo: "/logos/scape.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Architecture",
@@ -502,7 +502,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "shirogumi",
         name: "Shirogumi",
-        logo: "/logos/shirogumi.png",
+        logo: "/logos/shirogumi.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -510,7 +510,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "smith-college",
         name: "Smith College",
-        logo: "/logos/smith-college.jpg",
+        logo: "/logos/smith-college.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -518,14 +518,14 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "summit",
         name: "Summit",
-        logo: "/logos/summit.png",
+        logo: "/logos/summit.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },
     {
         id: "sun-solar",
         name: "Sun Solar",
-        logo: "/logos/sun-solar.png",
+        logo: "/logos/sun-solar.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Renewable Energy",
@@ -533,14 +533,14 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "the-visa",
         name: "The Visa",
-        logo: "/logos/the-visa.png",
+        logo: "/logos/the-visa.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },
     {
         id: "truespeed",
         name: "Truespeed",
-        logo: "/logos/truespeed.png",
+        logo: "/logos/truespeed.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Telecommunications",
@@ -548,7 +548,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "university-of-melbourne",
         name: "University of Melbourne",
-        logo: "/logos/university-of-melbourne.jpg",
+        logo: "/logos/university-of-melbourne.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -564,14 +564,14 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "up-to-you",
         name: "UP TO YOU",
-        logo: "/logos/up-to-you.jpg",
+        logo: "/logos/up-to-you.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },
     {
         id: "kent-state-university",
         name: "Kent State University",
-        logo: "/logos/kent-state.png",
+        logo: "/logos/kent-state.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -579,7 +579,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "university-of-missouri",
         name: "University of Missouri",
-        logo: "/logos/university-of-missouri.png",
+        logo: "/logos/university-of-missouri.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -587,7 +587,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "uss-midway-museum",
         name: "USS Midway Museum",
-        logo: "/logos/uss-midway-museum.png",
+        logo: "/logos/uss-midway-museum.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Museum",
@@ -595,7 +595,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "valuetainment",
         name: "Valuetainment",
-        logo: "/logos/valuetainment.png",
+        logo: "/logos/valuetainment.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media",
@@ -603,7 +603,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "village-cinemas",
         name: "Village Cinemas",
-        logo: "/logos/village-cinemas.jpg",
+        logo: "/logos/village-cinemas.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Entertainment",
@@ -611,7 +611,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "volstate",
         name: "Volstate Community College",
-        logo: "/logos/volstate.png",
+        logo: "/logos/volstate.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -619,7 +619,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "wagner-meinert",
         name: "Wagner Meinert",
-        logo: "/logos/wagner-meinert.png",
+        logo: "/logos/wagner-meinert.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Engineering",

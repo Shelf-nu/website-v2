@@ -44,6 +44,12 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  /* WCAG AA compliant orange overrides (white text contrast ≥ 4.5:1) */
+  /* orange-600: #cc3d00 → 4.96:1 contrast with white */
+  /* orange-700: #a83500 → 6.62:1 contrast with white */
+  --color-orange-600: #cc3d00;
+  --color-orange-700: #a83500;
 }
 
 :root {
@@ -51,7 +57,7 @@
   --background: hsl(0 0% 100%);
   --foreground: hsl(0 0% 9%);
 
-  --primary: hsl(24 90% 50%);
+  --primary: #cc3d00;
   --primary-foreground: hsl(0 0% 98%);
 
   --secondary: hsl(40 5% 96%);
@@ -80,7 +86,7 @@
   --border: hsl(40 5% 92%);
   --border-subtle: hsl(0 0% 92%);
   --input: hsl(40 5% 92%);
-  --ring: hsl(24 90% 50%);
+  --ring: #cc3d00;
   --grid-line: hsl(0 0% 50% / 0.07);
 
   --radius: 0.5rem;
@@ -90,7 +96,7 @@
   --background: hsl(240 10% 3.9%);
   --foreground: hsl(0 0% 98%);
 
-  --primary: hsl(24 90% 50%);
+  --primary: #cc3d00;
   --primary-foreground: hsl(0 0% 98%);
 
   --secondary: hsl(240 3.7% 15.9%);
@@ -119,7 +125,7 @@
   --border: hsl(240 3.7% 15.9%);
   --border-subtle: hsl(240 4% 16%);
   --input: hsl(240 3.7% 15.9%);
-  --ring: hsl(24 90% 50%);
+  --ring: #cc3d00;
   --grid-line: hsl(0 0% 80% / 0.07);
 }
 
