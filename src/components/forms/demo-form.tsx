@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import { trackEvent, getLandingPage, getPagesViewed, getUtmParams } from "@/lib/analytics";
+import { enrichCrispWithLead } from "@/lib/crisp";
 
 /* ------------------------------------------------------------------ */
 /*  Needs options (multi-select checkboxes)                            */
@@ -176,6 +177,7 @@ export function DemoForm() {
                 heard_about: result.data.heardAbout,
                 ...utm,
             });
+            enrichCrispWithLead(result.data);
             setSuccess(true);
             return;
         }
@@ -219,6 +221,7 @@ export function DemoForm() {
                     heard_about: result.data.heardAbout,
                     ...utm,
                 });
+                enrichCrispWithLead(result.data);
                 setSuccess(true);
                 return;
             }
