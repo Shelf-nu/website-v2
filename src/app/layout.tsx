@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { SkipToContent } from "@/components/layout/skip-to-content";
 import { ThemeProvider } from "@/components/theme-provider";
-
-const cfAnalyticsToken = process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -104,14 +101,6 @@ export default function RootLayout({
             {children}
           </div>
         </ThemeProvider>
-        {cfAnalyticsToken && (
-          <Script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={`{"token":"${cfAnalyticsToken}"}`}
-            strategy="afterInteractive"
-          />
-        )}
       </body>
     </html>
   );

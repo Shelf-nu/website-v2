@@ -85,7 +85,7 @@ out/                     # Build output (static HTML + pagefind index)
 
 Two-layer analytics, both free:
 
-1. **Cloudflare Web Analytics** — automatic page views, visitors, referrers, countries, Core Web Vitals
+1. **Cloudflare Web Analytics** — auto-injected by CF Pages (no manual beacon needed), tracks page views, visitors, referrers, countries, Core Web Vitals
 2. **Supabase custom events** — CTA clicks, form submissions, search queries, scroll depth, content changes
 
 **Tracked events** (via `trackEvent()` from `@/lib/analytics`):
@@ -123,7 +123,6 @@ node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
 |----------|-------|---------|
 | `NEXT_PUBLIC_FORM_ENDPOINT` | Client | Supabase Edge Function URL for form submissions |
 | `NEXT_PUBLIC_APP_URL` | Client | Base URL for SEO/sitemap (defaults to https://shelf.nu) |
-| `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` | Client | Cloudflare Web Analytics site token |
 | `NEXT_PUBLIC_ANALYTICS_ENDPOINT` | Client | Supabase Edge Function URL for analytics events |
 | `CF_API_TOKEN` | Server/CLI | Cloudflare API token (Analytics:Read scope, for CLI queries) |
 | `CF_SITE_TAG` | Server/CLI | Cloudflare Web Analytics site tag (for API queries) |
@@ -142,7 +141,6 @@ Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.y
 - `CLOUDFLARE_API_TOKEN` — Cloudflare API token with Pages edit permission
 - `CLOUDFLARE_ACCOUNT_ID` — Cloudflare account ID
 - `NEXT_PUBLIC_FORM_ENDPOINT` — Supabase Edge Function URL for form submissions
-- `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` — Cloudflare Web Analytics site token
 - `NEXT_PUBLIC_ANALYTICS_ENDPOINT` — Supabase Edge Function URL for analytics events
 - `SUPABASE_URL` — Supabase project URL (for content snapshot)
 - `SUPABASE_SERVICE_KEY` — Supabase service role key (for content snapshot)
