@@ -113,7 +113,12 @@ node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
 node scripts/analytics.mjs gsc-summary    [--days 30] # GSC overview + quick wins
 node scripts/analytics.mjs gsc-queries    [--days 30] # Top search queries (clicks, impr, CTR, pos)
 node scripts/analytics.mjs gsc-pages      [--days 30] # Top pages by search performance
+node scripts/analytics.mjs experiments                        # Show all SEO experiments + auto-pull results
+node scripts/analytics.mjs experiments capture-baseline <id>  # Capture baseline GSC metrics for an experiment
+node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed (starts evaluation timer)
 ```
+
+**SEO experiments** — `data/seo-experiments.json` tracks title/description/redirect experiments with before/after GSC metrics. The `experiments` CLI auto-pulls results after the evaluation window (default 14 days). Workflow: plan experiment → capture baseline → make change → deploy → wait → check results → record learnings.
 
 **Content changelog** — `scripts/snapshot-content.mjs` runs at build time on production deploys. Compares page titles/descriptions against last snapshot in Supabase and logs changes to `content_changelog` table. Ask "did our title change affect traffic?" and get before/after analysis.
 

@@ -1,0 +1,320 @@
+{
+  "experiments": [
+    {
+      "id": "exp-001",
+      "page": "/barcode-scanner",
+      "field": "redirect",
+      "before": "/barcode-scanner → /features (generic, irrelevant target)",
+      "after": "/barcode-scanner → /tools/qr-code-decoder (specific, relevant tool)",
+      "hypothesis": "Redirecting to a relevant tool page instead of generic /features should recover click-through from users searching for barcode/QR scanning tools",
+      "baseline": {
+        "clicks": 27,
+        "impressions": 1662,
+        "ctr": 1.62,
+        "position": 15.7,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": "2026-03-06T10:03:00.951Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-03-06",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "redirect-fix",
+        "emergency"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-002",
+      "page": "/",
+      "field": "title",
+      "before": "The Open Source Asset Tracking Platform | Shelf Asset Management",
+      "after": "Open Source Asset Management Software — Free for Teams | Shelf Asset Management",
+      "hypothesis": "8,248 monthly impressions for 'asset management software' with 0.0% CTR. Current title says 'Asset Tracking' not 'Asset Management' and doesn't mention 'free'. Matching the search intent + adding 'free' should lift CTR.",
+      "baseline": {
+        "clicks": 397,
+        "impressions": 50319,
+        "ctr": 0.79,
+        "position": 16,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": "2026-03-06T10:03:01.666Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-03-06",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "move-1"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-003",
+      "page": "/solutions/asset-tracking",
+      "field": "description",
+      "before": "Track equipment across people, locations, and workflows with QR-first simplicity, custody logging, and modern workflows.",
+      "after": "Track who has what, where it is, and when it's due back. QR scanning, custody logs, and booking calendars — free for individuals, open source.",
+      "hypothesis": "5,372 impressions at 0.2% CTR and pos 30.9. More conversational tone + mentioning 'free' and 'open source' in the meta description should make the listing more clickable and differentiate from paid competitors.",
+      "baseline": {
+        "clicks": 7,
+        "impressions": 2830,
+        "ctr": 0.25,
+        "position": 30.3,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": "2026-03-06T10:03:02.688Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-03-06",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "description-rewrite",
+        "move-1"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-004",
+      "page": "/solutions/equipment-check-in",
+      "field": "title",
+      "before": "Equipment Check-In/Check-Out Software | Shelf",
+      "after": "Equipment Check-In & Check-Out Software — QR Scan, Track, Return | Shelf",
+      "hypothesis": "6,877 impressions at 0.4% CTR and pos 19.0. Adding action verbs (scan, track, return) makes the listing more compelling and concrete in search results vs the generic current title.",
+      "baseline": {
+        "clicks": 10,
+        "impressions": 3529,
+        "ctr": 0.28,
+        "position": 19.2,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": "2026-03-06T10:03:03.623Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-03-06",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "move-1"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-005",
+      "page": "/tools/macrs-depreciation-calculator",
+      "field": "new-page",
+      "before": "No page exists — /macrs-depreciation-calculator redirects to generic /tools",
+      "after": "Build dedicated interactive MACRS depreciation calculator tool page",
+      "hypothesis": "8,320 monthly impressions going to a generic /tools page. Building a dedicated calculator should capture this traffic and feed users into the Shelf funnel via CTAs.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 21,
+      "tags": [
+        "new-page",
+        "move-3",
+        "calculator"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-006",
+      "page": "/tools/equipment-depreciation-calculator",
+      "field": "new-page",
+      "before": "No page exists — /equipment-depreciation-calculator redirects to generic /tools",
+      "after": "Build dedicated interactive equipment depreciation calculator tool page",
+      "hypothesis": "7,494 monthly impressions going to generic /tools. Dedicated page with straight-line depreciation calculator should capture this traffic.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 21,
+      "tags": [
+        "new-page",
+        "move-3",
+        "calculator"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-007",
+      "page": "/tools/salvage-value-calculator",
+      "field": "new-page",
+      "before": "No page exists — /salvage-value-calculator redirects to generic /tools",
+      "after": "Build dedicated interactive salvage value calculator tool page",
+      "hypothesis": "8,163 monthly impressions going to generic /tools. Dedicated calculator page should capture this high-volume traffic.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 21,
+      "tags": [
+        "new-page",
+        "move-3",
+        "calculator"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-008",
+      "page": "/alternatives/snipe-it",
+      "field": "title",
+      "before": "Snipe-IT Alternative — Modern Open-Source Asset Management | Shelf",
+      "after": "Snipe-IT vs Shelf — Which Open Source Asset Manager Fits Your Team? (2026)",
+      "hypothesis": "1,522 impressions at 0.9% CTR, pos 10.0. The 'vs' format with a year tag performs better for comparison queries — makes the listing feel like a current, objective comparison rather than biased marketing.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-02-20",
+          "2026-03-06"
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "move-2",
+        "alternatives"
+      ],
+      "learnings": ""
+    }
+  ]
+}
