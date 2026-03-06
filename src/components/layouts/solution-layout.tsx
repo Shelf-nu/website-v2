@@ -12,16 +12,16 @@ import { ArrowRight } from "lucide-react";
 // Map solution slugs to their most relevant case study slugs
 const solutionCaseStudyMap: Record<string, string[]> = {
     "asset-tracking": ["ces-70k-recovery", "resq-contact-center", "haarp"],
-    "camera-equipment-check-out": ["fabel-film-double-bookings", "bullstv", "kcai"],
+    "camera-equipment-check-out": ["fabel-film-double-bookings", "kcai", "arellano-associates"],
     "educational-resource-management": ["kcai", "eastern-michigan-university", "haarp"],
     "equipment-check-in": ["fabel-film-double-bookings", "eastern-michigan-university", "arellano-associates"],
-    "equipment-reservations": ["fabel-film-double-bookings", "bullstv", "eastern-michigan-university"],
+    "equipment-reservations": ["fabel-film-double-bookings", "arellano-associates", "eastern-michigan-university"],
     "fixed-asset-tracking": ["ces-70k-recovery", "haarp", "resq-contact-center"],
     "it-asset-management": ["resq-contact-center", "kcai"],
     "mobile-asset-auditing": ["ces-70k-recovery", "haarp", "resq-contact-center"],
     "tool-tracking": ["ces-70k-recovery", "arellano-associates"],
     "open-source-asset-management": ["ces-70k-recovery", "kcai", "haarp"],
-    "equipment-management": ["bullstv", "ces-70k-recovery", "resq-contact-center"],
+    "equipment-management": ["ces-70k-recovery", "fabel-film-double-bookings", "resq-contact-center"],
 };
 
 interface LayoutProps {

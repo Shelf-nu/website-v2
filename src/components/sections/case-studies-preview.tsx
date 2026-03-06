@@ -20,14 +20,14 @@ const CASE_STUDIES = [
         industry: "Utility Infrastructure",
     },
     {
-        slug: "bullstv",
-        company: "Chicago Bulls",
-        logo: "/logos/chicago-bulls.webp",
-        stat: "Hours saved",
-        statLabel: "every single week",
+        slug: "arellano-associates",
+        company: "Arellano Associates",
+        logo: "/logos/arrelano-associates.webp",
+        stat: "Real-time",
+        statLabel: "equipment visibility",
         headline:
-            "BullsTV eliminated gear chaos and double bookings across their in-house production team.",
-        industry: "Professional Sports",
+            "Replaced Outlook chaos with real-time equipment availability across simultaneous community events.",
+        industry: "Community Outreach",
     },
     {
         slug: "haarp",
