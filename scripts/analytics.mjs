@@ -17,6 +17,10 @@
  *   node scripts/analytics.mjs gsc-pages     [--days 30]
  *   node scripts/analytics.mjs gsc-summary   [--days 30]
  *
+ *   node scripts/analytics.mjs experiments                        # Show all experiments
+ *   node scripts/analytics.mjs experiments capture-baseline <id>  # Capture baseline GSC metrics
+ *   node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed
+ *
  * Env vars required:
  *   CF_API_TOKEN       — Cloudflare API token with Analytics:Read scope
  *   CF_SITE_TAG        — Cloudflare Web Analytics site tag
@@ -29,7 +33,7 @@
 import { config } from "dotenv";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 config({ path: resolve(root, ".env.local") });
@@ -543,20 +547,26 @@ async function getGscClient() {
     return google.searchconsole({ version: "v1", auth });
 }
 
-async function gscQuery(dimensions, startDate, endDate, rowLimit = 25) {
+async function gscQuery(dimensions, startDate, endDate, rowLimit = 25, filters = null) {
     const client = await getGscClient();
     if (!client) return null;
+
+    const requestBody = {
+        startDate,
+        endDate,
+        dimensions,
+        rowLimit,
+        dataState: "all",
+    };
+
+    if (filters) {
+        requestBody.dimensionFilterGroups = [{ filters }];
+    }
 
     try {
         const res = await client.searchanalytics.query({
             siteUrl: GSC_SITE_URL,
-            requestBody: {
-                startDate,
-                endDate,
-                dimensions,
-                rowLimit,
-                dataState: "all",
-            },
+            requestBody,
         });
         return res.data.rows || [];
     } catch (err) {
@@ -694,6 +704,191 @@ async function cmdGscSummary() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  SEO Experiments                                                    */
+/* ------------------------------------------------------------------ */
+
+const EXPERIMENTS_FILE = resolve(root, "data", "seo-experiments.json");
+
+function loadExperiments() {
+    try {
+        return JSON.parse(readFileSync(EXPERIMENTS_FILE, "utf-8"));
+    } catch {
+        console.error("⚠️  Could not read data/seo-experiments.json");
+        return { experiments: [] };
+    }
+}
+
+function saveExperiments(data) {
+    writeFileSync(EXPERIMENTS_FILE, JSON.stringify(data, null, 2) + "\n", "utf-8");
+}
+
+async function gscPageMetrics(pagePath, startDate, endDate) {
+    const pageUrl = pagePath.startsWith("http")
+        ? pagePath
+        : `https://www.shelf.nu${pagePath}`;
+
+    const rows = await gscQuery(
+        ["page"],
+        startDate,
+        endDate,
+        1,
+        [{ dimension: "page", operator: "equals", expression: pageUrl }],
+    );
+
+    if (!rows || rows.length === 0) return null;
+    const r = rows[0];
+    return {
+        clicks: r.clicks,
+        impressions: r.impressions,
+        ctr: parseFloat((r.ctr * 100).toFixed(2)),
+        position: parseFloat(r.position.toFixed(1)),
+    };
+}
+
+async function cmdExperiments() {
+    const subcmd = args[1];
+
+    if (subcmd === "capture-baseline") {
+        const expId = args[2];
+        if (!expId) {
+            console.error("Usage: experiments capture-baseline <exp-id>");
+            process.exit(1);
+        }
+        const data = loadExperiments();
+        const exp = data.experiments.find(e => e.id === expId);
+        if (!exp) {
+            console.error(`Experiment "${expId}" not found.`);
+            process.exit(1);
+        }
+        console.log(`\n📐 Capturing baseline for ${exp.id} (${exp.page})...`);
+        const [start, end] = exp.baseline.dateRange;
+        const metrics = await gscPageMetrics(exp.page, start, end);
+        if (metrics) {
+            exp.baseline.clicks = metrics.clicks;
+            exp.baseline.impressions = metrics.impressions;
+            exp.baseline.ctr = metrics.ctr;
+            exp.baseline.position = metrics.position;
+            exp.baseline.capturedAt = new Date().toISOString();
+            saveExperiments(data);
+            console.log(`  ✅ Baseline saved: ${metrics.clicks} clicks | ${metrics.impressions.toLocaleString()} impr | ${metrics.ctr}% CTR | pos ${metrics.position}`);
+        } else {
+            console.log("  ⚠️  No GSC data found for this page/date range.");
+        }
+        return;
+    }
+
+    if (subcmd === "deploy") {
+        const expId = args[2];
+        if (!expId) {
+            console.error("Usage: experiments deploy <exp-id>");
+            process.exit(1);
+        }
+        const data = loadExperiments();
+        const exp = data.experiments.find(e => e.id === expId);
+        if (!exp) {
+            console.error(`Experiment "${expId}" not found.`);
+            process.exit(1);
+        }
+        exp.status = "active";
+        exp.deployedAt = dateStr(new Date());
+        saveExperiments(data);
+        console.log(`\n🚀 ${exp.id} marked as deployed (${exp.deployedAt}). Will evaluate after ${exp.evaluateAfterDays} days.`);
+        return;
+    }
+
+    // Default: show all experiments
+    const data = loadExperiments();
+    const experiments = data.experiments;
+
+    if (experiments.length === 0) {
+        console.log("\n📋 No experiments found in data/seo-experiments.json");
+        return;
+    }
+
+    console.log(`\n🧪 SEO Experiments\n${"=".repeat(70)}`);
+
+    let updated = false;
+
+    for (const exp of experiments) {
+        const statusIcon = {
+            planned: "📝",
+            active: "🔬",
+            evaluating: "📊",
+            completed: "✅",
+            abandoned: "❌",
+        }[exp.status] || "❓";
+
+        const daysSinceDeploy = exp.deployedAt
+            ? Math.floor((Date.now() - new Date(exp.deployedAt).getTime()) / (1000 * 60 * 60 * 24))
+            : null;
+
+        console.log(`\n${statusIcon} [${exp.id.toUpperCase()}] ${exp.page}  [${exp.field}]  STATUS: ${exp.status}${daysSinceDeploy !== null ? ` (day ${daysSinceDeploy} of ${exp.evaluateAfterDays})` : ""}`);
+        console.log(`  Hypothesis: ${exp.hypothesis}`);
+        console.log(`  Before: "${exp.before}"`);
+        console.log(`  After:  "${exp.after}"`);
+
+        // Show baseline if captured
+        if (exp.baseline.capturedAt) {
+            const b = exp.baseline;
+            console.log(`  BASELINE (${b.dateRange[0]} → ${b.dateRange[1]}):  ${b.clicks} clicks  |  ${b.impressions?.toLocaleString()} impr  |  ${b.ctr}% CTR  |  pos ${b.position}`);
+        }
+
+        // Auto-pull results for active experiments past their evaluation window
+        if (exp.status === "active" && exp.deployedAt && daysSinceDeploy >= exp.evaluateAfterDays) {
+            const resultStart = exp.deployedAt;
+            const resultEnd = dateStr(new Date());
+            console.log(`  ⏳ Auto-pulling results (${resultStart} → ${resultEnd})...`);
+
+            const metrics = await gscPageMetrics(exp.page, resultStart, resultEnd);
+            if (metrics) {
+                exp.result.clicks = metrics.clicks;
+                exp.result.impressions = metrics.impressions;
+                exp.result.ctr = metrics.ctr;
+                exp.result.position = metrics.position;
+                exp.result.dateRange = [resultStart, resultEnd];
+                exp.result.capturedAt = new Date().toISOString();
+                exp.status = "evaluating";
+                updated = true;
+            }
+        }
+
+        // Show results comparison if available
+        if (exp.result.capturedAt) {
+            const r = exp.result;
+            console.log(`  RESULT   (${r.dateRange[0]} → ${r.dateRange[1]}):  ${r.clicks} clicks  |  ${r.impressions?.toLocaleString()} impr  |  ${r.ctr}% CTR  |  pos ${r.position}`);
+
+            if (exp.baseline.capturedAt) {
+                const b = exp.baseline;
+                const clicksDelta = b.clicks ? `${((r.clicks - b.clicks) / b.clicks * 100).toFixed(0)}%` : "n/a";
+                const imprDelta = b.impressions ? `${((r.impressions - b.impressions) / b.impressions * 100).toFixed(0)}%` : "n/a";
+                const ctrDelta = b.ctr ? `${((r.ctr - b.ctr) / b.ctr * 100).toFixed(0)}%` : "n/a";
+                const posDelta = b.position ? (r.position - b.position).toFixed(1) : "n/a";
+                console.log(`  CHANGE:  ${clicksDelta} clicks  |  ${imprDelta} impr  |  ${ctrDelta} CTR  |  ${posDelta > 0 ? "+" : ""}${posDelta} pos`);
+            }
+        } else if (exp.status === "active" && exp.deployedAt) {
+            const evalDate = new Date(new Date(exp.deployedAt).getTime() + exp.evaluateAfterDays * 24 * 60 * 60 * 1000);
+            console.log(`  RESULT:  pending — evaluates ${dateStr(evalDate)}`);
+        }
+
+        if (exp.learnings) {
+            console.log(`  💡 Learnings: ${exp.learnings}`);
+        }
+    }
+
+    if (updated) {
+        saveExperiments(data);
+        console.log("\n💾 Updated experiment results saved to data/seo-experiments.json");
+    }
+
+    // Summary stats
+    const planned = experiments.filter(e => e.status === "planned").length;
+    const active = experiments.filter(e => e.status === "active").length;
+    const evaluating = experiments.filter(e => e.status === "evaluating").length;
+    const completed = experiments.filter(e => e.status === "completed").length;
+    console.log(`\n📈 Summary: ${planned} planned | ${active} active | ${evaluating} evaluating | ${completed} completed\n`);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Router                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -709,6 +904,7 @@ const COMMANDS = {
     "gsc-queries": cmdGscQueries,
     "gsc-pages": cmdGscPages,
     "gsc-summary": cmdGscSummary,
+    experiments: cmdExperiments,
 };
 
 const fn = COMMANDS[command];

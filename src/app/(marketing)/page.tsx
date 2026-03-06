@@ -10,8 +10,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { getHomePageLogosForGrid } from "@/data/customer-logos";
 
 export const metadata = {
-    title: "The Open Source Asset Tracking Platform",
-    description: "Shelf is the asset management platform for modern teams. Track equipment, bookings, and inventory with a clean, open source tool.",
+    title: "Open Source Asset Management Software — Free for Teams",
+    description: "Shelf is the open source asset management platform for modern teams. Track equipment, bookings, and inventory — free for individuals, no credit card required.",
 };
 
 export default function HomePage() {
