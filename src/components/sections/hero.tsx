@@ -32,7 +32,7 @@ export function Hero({
                     <ScrollReveal width="100%" delay={0.1}>
                         <div className="mb-8 flex justify-center">
                             <Pill
-                                href="/migrate"
+                                href="/case-studies"
                                 icon={
                                     <>
                                         <span className="font-semibold">New</span>
@@ -40,7 +40,7 @@ export function Hero({
                                     </>
                                 }
                             >
-                                Check out our latest Migration Guides
+                                See how teams use Shelf
                                 <span className="ml-2 font-semibold text-orange-600">
                                     &rarr;
                                 </span>
