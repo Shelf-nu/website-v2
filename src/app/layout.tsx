@@ -64,10 +64,6 @@ export const metadata: Metadata = {
     site: "@shelf_nu",
     images: ["https://shelf.nu/og.webp"],
   },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
   robots: {
     index: true,
     follow: true,
