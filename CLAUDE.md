@@ -83,10 +83,11 @@ out/                     # Build output (static HTML + pagefind index)
 
 ### Analytics
 
-Two-layer analytics, both free:
+Three-layer analytics, all free:
 
 1. **Cloudflare Web Analytics** — auto-injected by CF Pages (no manual beacon needed), tracks page views, visitors, referrers, countries, Core Web Vitals
 2. **Supabase custom events** — CTA clicks, form submissions, search queries, scroll depth, content changes
+3. **Google Search Console** — search queries, impressions, CTR, average position (how people find the site)
 
 **Tracked events** (via `trackEvent()` from `@/lib/analytics`):
 - `page_view` — every route change (with referrer, UTM params)
@@ -109,6 +110,9 @@ node scripts/analytics.mjs searches     [--days 30]   # Search queries
 node scripts/analytics.mjs referrers    [--days 30]   # Traffic sources
 node scripts/analytics.mjs attribution  [--days 30]   # Demo form journey
 node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
+node scripts/analytics.mjs gsc-summary    [--days 30] # GSC overview + quick wins
+node scripts/analytics.mjs gsc-queries    [--days 30] # Top search queries (clicks, impr, CTR, pos)
+node scripts/analytics.mjs gsc-pages      [--days 30] # Top pages by search performance
 ```
 
 **Content changelog** — `scripts/snapshot-content.mjs` runs at build time on production deploys. Compares page titles/descriptions against last snapshot in Supabase and logs changes to `content_changelog` table. Ask "did our title change affect traffic?" and get before/after analysis.
@@ -129,6 +133,8 @@ node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
 | `CF_SITE_TAG` | Server/CLI | Cloudflare Web Analytics site tag (for API queries) |
 | `SUPABASE_URL` | Server/CLI | Supabase project URL (for analytics CLI + content snapshot) |
 | `SUPABASE_SERVICE_KEY` | Server/CLI | Supabase service role key (for analytics CLI + content snapshot) |
+| `GSC_KEY_FILE` | Server/CLI | Path to Google Search Console service account JSON key |
+| `GSC_SITE_URL` | Server/CLI | GSC property URL (e.g. `sc-domain:shelf.nu`) |
 
 ## CI/CD
 

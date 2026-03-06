@@ -13,14 +13,27 @@
  *   node scripts/analytics.mjs content-changes [--days 30]
  *   node scripts/analytics.mjs attribution  [--days 30]
  *
+ *   node scripts/analytics.mjs gsc-queries   [--days 30]
+ *   node scripts/analytics.mjs gsc-pages     [--days 30]
+ *   node scripts/analytics.mjs gsc-summary   [--days 30]
+ *
  * Env vars required:
  *   CF_API_TOKEN       — Cloudflare API token with Analytics:Read scope
  *   CF_SITE_TAG        — Cloudflare Web Analytics site tag
  *   SUPABASE_URL       — Supabase project URL
  *   SUPABASE_SERVICE_KEY — Supabase service role key
+ *   GSC_KEY_FILE       — Path to Google Search Console service account JSON key
+ *   GSC_SITE_URL       — GSC property URL (e.g. sc-domain:shelf.nu)
  */
 
-import "dotenv/config";
+import { config } from "dotenv";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+import { readFileSync } from "fs";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const root = resolve(__dirname, "..");
+config({ path: resolve(root, ".env.local") });
+config({ path: resolve(root, ".env") }); // fallback
 
 /* ------------------------------------------------------------------ */
 /*  Config                                                             */
@@ -30,6 +43,9 @@ const CF_API_TOKEN = process.env.CF_API_TOKEN;
 const CF_SITE_TAG = process.env.CF_SITE_TAG;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
+const GSC_KEY_FILE = process.env.GSC_KEY_FILE;
+const GSC_SITE_URL = process.env.GSC_SITE_URL;
 
 const args = process.argv.slice(2);
 const command = args[0] || "summary";
@@ -78,9 +94,9 @@ async function cfQuery(query, variables = {}) {
 
 async function getTraffic(startDate, endDate) {
     const query = `
-        query ($siteTag: string!, $since: string!, $until: string!) {
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
             viewer {
-                accounts(filter: {}) {
+                accounts(filter: { accountTag: $accountTag }) {
                     rumPageloadEventsAdaptiveGroups(
                         filter: { AND: [
                             { siteTag: $siteTag },
@@ -96,14 +112,14 @@ async function getTraffic(startDate, endDate) {
             }
         }
     `;
-    return cfQuery(query, { siteTag: CF_SITE_TAG, since: startDate, until: endDate });
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
 }
 
 async function getTopPages(startDate, endDate, limit = 15) {
     const query = `
-        query ($siteTag: string!, $since: string!, $until: string!) {
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
             viewer {
-                accounts(filter: {}) {
+                accounts(filter: { accountTag: $accountTag }) {
                     rumPageloadEventsAdaptiveGroups(
                         filter: { AND: [
                             { siteTag: $siteTag },
@@ -114,20 +130,20 @@ async function getTopPages(startDate, endDate, limit = 15) {
                         orderBy: [count_DESC]
                     ) {
                         count
-                        dimensions { path }
+                        dimensions { requestPath }
                     }
                 }
             }
         }
     `;
-    return cfQuery(query, { siteTag: CF_SITE_TAG, since: startDate, until: endDate });
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
 }
 
 async function getReferrers(startDate, endDate, limit = 10) {
     const query = `
-        query ($siteTag: string!, $since: string!, $until: string!) {
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
             viewer {
-                accounts(filter: {}) {
+                accounts(filter: { accountTag: $accountTag }) {
                     rumPageloadEventsAdaptiveGroups(
                         filter: { AND: [
                             { siteTag: $siteTag },
@@ -144,7 +160,7 @@ async function getReferrers(startDate, endDate, limit = 10) {
             }
         }
     `;
-    return cfQuery(query, { siteTag: CF_SITE_TAG, since: startDate, until: endDate });
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
 }
 
 /* ------------------------------------------------------------------ */
@@ -286,7 +302,7 @@ async function cmdSummary() {
         if (pages.length > 0) {
             console.log("\nTOP PAGES BY VIEWS");
             for (const p of pages) {
-                console.log(`  ${pad(p.dimensions?.path || "(unknown)", 45)} ${rpad(p.count.toLocaleString(), 8)}`);
+                console.log(`  ${pad(p.dimensions?.requestPath || p.dimensions?.path || "(unknown)", 45)} ${rpad(p.count.toLocaleString(), 8)}`);
             }
         }
     }
@@ -370,7 +386,7 @@ async function cmdTopPages() {
 
     const pages = data.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
     for (const p of pages) {
-        console.log(`  ${pad(p.dimensions?.path || "(unknown)", 50)} ${rpad(p.count.toLocaleString(), 8)}`);
+        console.log(`  ${pad(p.dimensions?.requestPath || p.dimensions?.path || "(unknown)", 50)} ${rpad(p.count.toLocaleString(), 8)}`);
     }
     console.log("");
 }
@@ -417,7 +433,7 @@ async function cmdReferrers() {
 
     const refs = data.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
     for (const r of refs) {
-        console.log(`  ${pad(r.dimensions?.refererHost || "(direct)", 35)} ${rpad(r.count.toLocaleString(), 8)}`);
+        console.log(`  ${pad(r.dimensions?.refererHost || r.dimensions?.referrerHost || "(direct)", 35)} ${rpad(r.count.toLocaleString(), 8)}`);
     }
     console.log("");
 }
@@ -501,6 +517,183 @@ async function cmdAttribution() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Google Search Console                                              */
+/* ------------------------------------------------------------------ */
+
+async function getGscClient() {
+    if (!GSC_KEY_FILE || !GSC_SITE_URL) {
+        console.log("⚠️  GSC_KEY_FILE and GSC_SITE_URL required for Search Console data.");
+        return null;
+    }
+
+    const keyPath = resolve(root, GSC_KEY_FILE);
+    let keyData;
+    try {
+        keyData = JSON.parse(readFileSync(keyPath, "utf-8"));
+    } catch {
+        console.log(`⚠️  Cannot read GSC key file at ${keyPath}`);
+        return null;
+    }
+
+    const { google } = await import("googleapis");
+    const auth = new google.auth.GoogleAuth({
+        credentials: keyData,
+        scopes: ["https://www.googleapis.com/auth/webmasters.readonly"],
+    });
+    return google.searchconsole({ version: "v1", auth });
+}
+
+async function gscQuery(dimensions, startDate, endDate, rowLimit = 25) {
+    const client = await getGscClient();
+    if (!client) return null;
+
+    try {
+        const res = await client.searchanalytics.query({
+            siteUrl: GSC_SITE_URL,
+            requestBody: {
+                startDate,
+                endDate,
+                dimensions,
+                rowLimit,
+                dataState: "all",
+            },
+        });
+        return res.data.rows || [];
+    } catch (err) {
+        console.error("GSC API error:", err.message);
+        return null;
+    }
+}
+
+async function cmdGscQueries() {
+    console.log(`\n🔎 GSC Top Queries — Last ${days} Days\n${"=".repeat(65)}`);
+    const rows = await gscQuery(["query"], dateStr(since), dateStr(now), 25);
+    if (!rows) return;
+    if (rows.length === 0) {
+        console.log("  No search query data yet.");
+        return;
+    }
+
+    console.log(`  ${pad("Query", 40)} ${rpad("Clicks", 7)} ${rpad("Impr", 7)} ${rpad("CTR", 7)} ${rpad("Pos", 5)}`);
+    console.log(`  ${"-".repeat(40)} ${"-".repeat(7)} ${"-".repeat(7)} ${"-".repeat(7)} ${"-".repeat(5)}`);
+    for (const row of rows) {
+        const query = row.keys[0];
+        console.log(
+            `  ${pad(query.length > 40 ? query.slice(0, 37) + "..." : query, 40)} ` +
+            `${rpad(row.clicks, 7)} ` +
+            `${rpad(row.impressions, 7)} ` +
+            `${rpad((row.ctr * 100).toFixed(1) + "%", 7)} ` +
+            `${rpad(row.position.toFixed(1), 5)}`
+        );
+    }
+    console.log("");
+}
+
+async function cmdGscPages() {
+    console.log(`\n📄 GSC Top Pages — Last ${days} Days\n${"=".repeat(70)}`);
+    const rows = await gscQuery(["page"], dateStr(since), dateStr(now), 25);
+    if (!rows) return;
+    if (rows.length === 0) {
+        console.log("  No page data yet.");
+        return;
+    }
+
+    console.log(`  ${pad("Page", 45)} ${rpad("Clicks", 7)} ${rpad("Impr", 7)} ${rpad("CTR", 7)} ${rpad("Pos", 5)}`);
+    console.log(`  ${"-".repeat(45)} ${"-".repeat(7)} ${"-".repeat(7)} ${"-".repeat(7)} ${"-".repeat(5)}`);
+    for (const row of rows) {
+        const page = row.keys[0].replace(/^https?:\/\/(www\.)?shelf\.nu/, "") || "/";
+        console.log(
+            `  ${pad(page.length > 45 ? page.slice(0, 42) + "..." : page, 45)} ` +
+            `${rpad(row.clicks, 7)} ` +
+            `${rpad(row.impressions, 7)} ` +
+            `${rpad((row.ctr * 100).toFixed(1) + "%", 7)} ` +
+            `${rpad(row.position.toFixed(1), 5)}`
+        );
+    }
+    console.log("");
+}
+
+async function cmdGscSummary() {
+    console.log(`\n🌐 GSC Summary — Last ${days} Days\n${"=".repeat(65)}`);
+
+    // Overall totals
+    const rows = await gscQuery(["date"], dateStr(since), dateStr(now), 1000);
+    if (!rows) return;
+
+    let totalClicks = 0, totalImpressions = 0, totalCtr = 0, totalPos = 0;
+    for (const row of rows) {
+        totalClicks += row.clicks;
+        totalImpressions += row.impressions;
+    }
+    if (rows.length > 0) {
+        totalCtr = totalClicks / totalImpressions;
+        totalPos = rows.reduce((sum, r) => sum + r.position, 0) / rows.length;
+    }
+
+    // Previous period for comparison
+    const prevRows = await gscQuery(["date"], dateStr(prevSince), dateStr(since), 1000);
+    let prevClicks = 0, prevImpressions = 0;
+    if (prevRows) {
+        for (const row of prevRows) {
+            prevClicks += row.clicks;
+            prevImpressions += row.impressions;
+        }
+    }
+
+    console.log("\n  OVERVIEW");
+    console.log(`  Clicks:       ${rpad(totalClicks.toLocaleString(), 10)}${delta(totalClicks, prevClicks)}`);
+    console.log(`  Impressions:  ${rpad(totalImpressions.toLocaleString(), 10)}${delta(totalImpressions, prevImpressions)}`);
+    console.log(`  Avg CTR:      ${(totalCtr * 100).toFixed(1)}%`);
+    console.log(`  Avg Position: ${totalPos.toFixed(1)}`);
+
+    // Top 10 queries
+    const topQueries = await gscQuery(["query"], dateStr(since), dateStr(now), 10);
+    if (topQueries?.length) {
+        console.log("\n  TOP QUERIES");
+        for (const row of topQueries) {
+            console.log(
+                `    ${pad(row.keys[0].length > 35 ? row.keys[0].slice(0, 32) + "..." : row.keys[0], 35)} ` +
+                `${rpad(row.clicks, 5)} clicks  ${rpad(row.impressions, 6)} impr  pos ${row.position.toFixed(1)}`
+            );
+        }
+    }
+
+    // Top 10 pages
+    const topPages = await gscQuery(["page"], dateStr(since), dateStr(now), 10);
+    if (topPages?.length) {
+        console.log("\n  TOP PAGES");
+        for (const row of topPages) {
+            const page = row.keys[0].replace(/^https?:\/\/(www\.)?shelf\.nu/, "") || "/";
+            console.log(
+                `    ${pad(page.length > 35 ? page.slice(0, 32) + "..." : page, 35)} ` +
+                `${rpad(row.clicks, 5)} clicks  ${rpad(row.impressions, 6)} impr  pos ${row.position.toFixed(1)}`
+            );
+        }
+    }
+
+    // Quick wins: high impressions, low CTR, position 5-20
+    const opportunities = await gscQuery(["query"], dateStr(since), dateStr(now), 100);
+    if (opportunities?.length) {
+        const quickWins = opportunities
+            .filter(r => r.impressions >= 10 && r.ctr < 0.05 && r.position >= 5 && r.position <= 20)
+            .sort((a, b) => b.impressions - a.impressions)
+            .slice(0, 10);
+
+        if (quickWins.length > 0) {
+            console.log("\n  🎯 QUICK WINS (high impressions, low CTR, pos 5-20)");
+            for (const row of quickWins) {
+                console.log(
+                    `    ${pad(row.keys[0].length > 35 ? row.keys[0].slice(0, 32) + "..." : row.keys[0], 35)} ` +
+                    `pos ${rpad(row.position.toFixed(1), 5)}  ${rpad(row.impressions, 5)} impr  CTR ${(row.ctr * 100).toFixed(1)}%`
+                );
+            }
+        }
+    }
+
+    console.log("");
+}
+
+/* ------------------------------------------------------------------ */
 /*  Router                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -513,6 +706,9 @@ const COMMANDS = {
     referrers: cmdReferrers,
     "content-changes": cmdContentChanges,
     attribution: cmdAttribution,
+    "gsc-queries": cmdGscQueries,
+    "gsc-pages": cmdGscPages,
+    "gsc-summary": cmdGscSummary,
 };
 
 const fn = COMMANDS[command];

@@ -21,7 +21,13 @@
 
 import fs from "fs";
 import path from "path";
-import "dotenv/config";
+import { config } from "dotenv";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const root = resolve(__dirname, "..");
+config({ path: resolve(root, ".env.local") });
+config({ path: resolve(root, ".env") }); // fallback
 
 const OUT_DIR = "out";
 const SUPABASE_URL = process.env.SUPABASE_URL;
