@@ -43,6 +43,7 @@ const CF_API_TOKEN = process.env.CF_API_TOKEN;
 const CF_SITE_TAG = process.env.CF_SITE_TAG;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
 const GSC_KEY_FILE = process.env.GSC_KEY_FILE;
 const GSC_SITE_URL = process.env.GSC_SITE_URL;
 
@@ -93,9 +94,9 @@ async function cfQuery(query, variables = {}) {
 
 async function getTraffic(startDate, endDate) {
     const query = `
-        query ($siteTag: string!, $since: string!, $until: string!) {
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
             viewer {
-                accounts(filter: {}) {
+                accounts(filter: { accountTag: $accountTag }) {
                     rumPageloadEventsAdaptiveGroups(
                         filter: { AND: [
                             { siteTag: $siteTag },
@@ -111,14 +112,14 @@ async function getTraffic(startDate, endDate) {
             }
         }
     `;
-    return cfQuery(query, { siteTag: CF_SITE_TAG, since: startDate, until: endDate });
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
 }
 
 async function getTopPages(startDate, endDate, limit = 15) {
     const query = `
-        query ($siteTag: string!, $since: string!, $until: string!) {
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
             viewer {
-                accounts(filter: {}) {
+                accounts(filter: { accountTag: $accountTag }) {
                     rumPageloadEventsAdaptiveGroups(
                         filter: { AND: [
                             { siteTag: $siteTag },
@@ -129,20 +130,20 @@ async function getTopPages(startDate, endDate, limit = 15) {
                         orderBy: [count_DESC]
                     ) {
                         count
-                        dimensions { path }
+                        dimensions { requestPath }
                     }
                 }
             }
         }
     `;
-    return cfQuery(query, { siteTag: CF_SITE_TAG, since: startDate, until: endDate });
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
 }
 
 async function getReferrers(startDate, endDate, limit = 10) {
     const query = `
-        query ($siteTag: string!, $since: string!, $until: string!) {
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
             viewer {
-                accounts(filter: {}) {
+                accounts(filter: { accountTag: $accountTag }) {
                     rumPageloadEventsAdaptiveGroups(
                         filter: { AND: [
                             { siteTag: $siteTag },
@@ -159,7 +160,7 @@ async function getReferrers(startDate, endDate, limit = 10) {
             }
         }
     `;
-    return cfQuery(query, { siteTag: CF_SITE_TAG, since: startDate, until: endDate });
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
 }
 
 /* ------------------------------------------------------------------ */
@@ -301,7 +302,7 @@ async function cmdSummary() {
         if (pages.length > 0) {
             console.log("\nTOP PAGES BY VIEWS");
             for (const p of pages) {
-                console.log(`  ${pad(p.dimensions?.path || "(unknown)", 45)} ${rpad(p.count.toLocaleString(), 8)}`);
+                console.log(`  ${pad(p.dimensions?.requestPath || p.dimensions?.path || "(unknown)", 45)} ${rpad(p.count.toLocaleString(), 8)}`);
             }
         }
     }
@@ -385,7 +386,7 @@ async function cmdTopPages() {
 
     const pages = data.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
     for (const p of pages) {
-        console.log(`  ${pad(p.dimensions?.path || "(unknown)", 50)} ${rpad(p.count.toLocaleString(), 8)}`);
+        console.log(`  ${pad(p.dimensions?.requestPath || p.dimensions?.path || "(unknown)", 50)} ${rpad(p.count.toLocaleString(), 8)}`);
     }
     console.log("");
 }
@@ -432,7 +433,7 @@ async function cmdReferrers() {
 
     const refs = data.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
     for (const r of refs) {
-        console.log(`  ${pad(r.dimensions?.refererHost || "(direct)", 35)} ${rpad(r.count.toLocaleString(), 8)}`);
+        console.log(`  ${pad(r.dimensions?.refererHost || r.dimensions?.referrerHost || "(direct)", 35)} ${rpad(r.count.toLocaleString(), 8)}`);
     }
     console.log("");
 }
