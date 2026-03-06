@@ -31,7 +31,7 @@
       },
       "status": "active",
       "startDate": "2026-03-06",
-      "deployedAt": null,
+      "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
       "tags": [
         "redirect-fix",
@@ -70,7 +70,7 @@
       },
       "status": "active",
       "startDate": "2026-03-06",
-      "deployedAt": null,
+      "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
       "tags": [
         "title-rewrite",
@@ -109,7 +109,7 @@
       },
       "status": "active",
       "startDate": "2026-03-06",
-      "deployedAt": null,
+      "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
       "tags": [
         "description-rewrite",
@@ -148,7 +148,7 @@
       },
       "status": "active",
       "startDate": "2026-03-06",
-      "deployedAt": null,
+      "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
       "tags": [
         "title-rewrite",
