@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, CheckCircle2, MessageSquare, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 interface LayoutProps {
     frontmatter: Frontmatter;
@@ -83,14 +84,22 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                                         </p>
                                         <div className="space-y-3">
                                             <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                                                <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=kb_sidebar_signup">
+                                                <TrackedLink
+                                                    href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=kb_sidebar_signup"
+                                                    eventName="signup_click"
+                                                    eventProps={{ location: "kb_sidebar" }}
+                                                >
                                                     Get started free
-                                                </Link>
+                                                </TrackedLink>
                                             </Button>
                                             <Button variant="outline" className="w-full" asChild>
-                                                <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=kb_sidebar_demo">
+                                                <TrackedLink
+                                                    href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=kb_sidebar_demo"
+                                                    eventName="signup_click"
+                                                    eventProps={{ location: "kb_sidebar_demo" }}
+                                                >
                                                     <MessageSquare className="mr-2 h-4 w-4" /> Talk to sales
-                                                </Link>
+                                                </TrackedLink>
                                             </Button>
                                         </div>
                                     </div>
@@ -153,14 +162,22 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 justify-center">
                                 <Button className="bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                                    <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=kb_mobile_signup">
+                                    <TrackedLink
+                                        href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=kb_mobile_signup"
+                                        eventName="signup_click"
+                                        eventProps={{ location: "kb_mobile" }}
+                                    >
                                         Get started free <ArrowRight className="ml-1 h-4 w-4" />
-                                    </Link>
+                                    </TrackedLink>
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=kb_mobile_demo">
+                                    <TrackedLink
+                                        href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=kb_mobile_demo"
+                                        eventName="signup_click"
+                                        eventProps={{ location: "kb_mobile_demo" }}
+                                    >
                                         Book a demo
-                                    </Link>
+                                    </TrackedLink>
                                 </Button>
                             </div>
                         </div>

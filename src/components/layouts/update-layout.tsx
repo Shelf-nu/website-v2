@@ -6,6 +6,7 @@ import { ArrowLeft, ExternalLink, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
+import { CTA } from "@/components/sections/cta";
 
 interface LayoutProps {
     frontmatter: Frontmatter;
@@ -120,6 +121,7 @@ export function UpdateLayout({ frontmatter, children }: LayoutProps) {
                     </div>
                 </Container>
             </main>
+            <CTA />
         </div>
     );
 }

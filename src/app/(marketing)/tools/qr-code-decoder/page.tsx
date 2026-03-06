@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/container';
 import Link from 'next/link';
 import { ArrowRight, Box, Tag, FileText, CheckCircle2 } from 'lucide-react';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
     title: 'Free QR Code Decoder for Asset Labels | Shelf',
@@ -192,6 +193,8 @@ export default function QrDecoderPage() {
 
                     </Container>
                 </section>
+
+                <CTA />
             </div>
         </PagefindWrapper>
     );

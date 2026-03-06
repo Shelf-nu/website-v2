@@ -1,4 +1,4 @@
-import { LucideIcon, Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone, ArrowLeftRight, Home } from "lucide-react";
+import { LucideIcon, Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone, ArrowLeftRight, Home, Globe } from "lucide-react";
 
 export const solutionIcons: Record<string, LucideIcon> = {
     "asset-tracking": LinkIcon,
@@ -11,6 +11,8 @@ export const solutionIcons: Record<string, LucideIcon> = {
     "equipment-check-in": ArrowLeftRight,
     "mobile-asset-auditing": Smartphone,
     "home-inventory-management": Home,
+    "open-source-asset-management": Globe,
+    "equipment-management": Settings,
 };
 
 export const solutions = [
@@ -34,7 +36,7 @@ export const solutions = [
     },
     {
         title: "Fixed Asset Tracking",
-        description: "Depreciation and lifecycle management.",
+        description: "High-value equipment lifecycle tracking.",
         icon: BarChart2,
         href: "/solutions/fixed-asset-tracking"
     },
@@ -73,5 +75,17 @@ export const solutions = [
         description: "Track household items with QR tags.",
         icon: Home,
         href: "/solutions/home-inventory-management"
+    },
+    {
+        title: "Open Source Asset Management",
+        description: "Self-host or use our cloud. AGPL licensed.",
+        icon: Globe,
+        href: "/solutions/open-source-asset-management"
+    },
+    {
+        title: "Equipment Management",
+        description: "Track, schedule, and manage shared gear.",
+        icon: Settings,
+        href: "/solutions/equipment-management"
     }
 ];

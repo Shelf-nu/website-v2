@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight } from "lucide-react";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 export function CTA() {
     return (
@@ -20,14 +20,22 @@ export function CTA() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button size="lg" variant="secondary" className="bg-white text-neutral-900 hover:bg-neutral-200 h-12 px-8" asChild>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=global_bottom_cta_signup">
+                            <TrackedLink
+                                href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=global_bottom_cta_signup"
+                                eventName="signup_click"
+                                eventProps={{ location: "global_bottom_cta" }}
+                            >
                                 Get Started for Free <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
+                            </TrackedLink>
                         </Button>
                         <Button size="lg" variant="outline" className="text-white border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:text-white h-12 px-8" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=global_bottom_cta_demo">
+                            <TrackedLink
+                                href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=global_bottom_cta_demo"
+                                eventName="signup_click"
+                                eventProps={{ location: "global_bottom_cta_demo" }}
+                            >
                                 Book a demo
-                            </Link>
+                            </TrackedLink>
                         </Button>
                     </div>
                 </ScrollReveal>

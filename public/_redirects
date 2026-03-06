@@ -105,13 +105,13 @@
 /glossary/rfid-asset-tracking /glossary 301
 /glossary/total-cost-of-ownership-tco /glossary 301
 
-# --- Calculator pages → /tools ---
-/depreciation-calculator /tools 301
-/equipment-depreciation-calculator /tools 301
-/fixed-asset-depreciation-calculator /tools 301
-/macrs-depreciation-calculator /tools 301
-/salvage-value-calculator /tools 301
-/roi-calculator /tools 301
+# --- Calculator pages → dedicated tool pages ---
+/depreciation-calculator /tools/equipment-depreciation-calculator 301
+/equipment-depreciation-calculator /tools/equipment-depreciation-calculator 301
+/fixed-asset-depreciation-calculator /tools/equipment-depreciation-calculator 301
+/macrs-depreciation-calculator /tools/macrs-depreciation-calculator 301
+/salvage-value-calculator /tools/salvage-value-calculator 301
+/roi-calculator /tools/asset-roi-calculator 301
 
 # --- Product/tool pages ---
 /asset-tags /tools/asset-label-designer 301

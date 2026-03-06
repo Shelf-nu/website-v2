@@ -7,6 +7,7 @@ import { Frontmatter } from "@/lib/content/schema";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import { ShareButton } from "@/components/blog/share-button";
 import { formatCategoryLabel, formatDate } from "@/lib/utils";
+import { CTA } from "@/components/sections/cta";
 
 function formatAuthorName(author: string): string {
     // Convert slug-style "carlos-virreira" to "Carlos Virreira"
@@ -110,6 +111,11 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                     <aside className="hidden lg:block lg:col-span-3 lg:col-start-10 h-full">
                         <BlogSidebar />
                     </aside>
+                </div>
+
+                {/* CTA Section */}
+                <div className="mt-16 lg:col-span-12">
+                    <CTA />
                 </div>
 
                 {/* Read Next Section */}

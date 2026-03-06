@@ -9,6 +9,7 @@ import { CTA } from "@/components/sections/cta";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, MessageSquare, Check, Minus } from "lucide-react";
 import { CompatibilityChecker } from "@/components/ui/compatibility-checker";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 /** Maps competitor slug → logo file in public/logos/ */
 const COMPETITOR_LOGOS: Record<string, string> = {
@@ -87,10 +88,26 @@ interface LayoutProps {
     children: React.ReactNode;
 }
 
+const DEFAULT_COMPARISON_ROWS = [
+    { feature: "Free plan with unlimited assets", shelf: true as const, competitor: "varies" as const },
+    { feature: "Open source & self-hostable", shelf: true as const, competitor: false as const },
+    { feature: "QR codes with custom branded labels", shelf: true as const, competitor: "varies" as const },
+    { feature: "Custody tracking with PDF agreements", shelf: true as const, competitor: "varies" as const },
+    { feature: "Equipment bookings & reservations", shelf: true as const, competitor: "varies" as const },
+    { feature: "Kit-aware check-in/check-out", shelf: true as const, competitor: "varies" as const },
+    { feature: "Location hierarchy (up to 12 levels)", shelf: true as const, competitor: "varies" as const },
+    { feature: "CSV import from any tool", shelf: true as const, competitor: "varies" as const },
+    { feature: "Works on any device (PWA)", shelf: true as const, competitor: "varies" as const },
+    { feature: "No credit card to start", shelf: true as const, competitor: "varies" as const },
+];
+
 export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
     const competitor = frontmatter.competitor || frontmatter.title.replace(/^(?:The #\d+\s+)?(.+?)\s+Alternative.*$/, "$1");
     const slugifiedCompetitor = competitor.toLowerCase().replace(/\s+/g, "_");
     const competitorSlug = frontmatter.canonicalUrl?.replace("/alternatives/", "") || slugifiedCompetitor.replace(/_/g, "-");
+
+    // Use frontmatter comparison data if available, otherwise use defaults
+    const comparisonRows = (frontmatter.comparisonTable as { feature: string; shelf: boolean | "varies"; competitor: boolean | "varies" }[] | undefined) || DEFAULT_COMPARISON_ROWS;
 
     return (
         <>
@@ -104,14 +121,22 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                 >
                     <div className="flex flex-col sm:flex-row gap-4 mt-4">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                            <Link href={`https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=alt_${slugifiedCompetitor}_hero`}>
+                            <TrackedLink
+                                href={`https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=alt_${slugifiedCompetitor}_hero`}
+                                eventName="signup_click"
+                                eventProps={{ location: `alt_${slugifiedCompetitor}_hero` }}
+                            >
                                 Try Shelf free <ArrowRight className="ml-1 h-4 w-4" />
-                            </Link>
+                            </TrackedLink>
                         </Button>
                         <Button size="lg" variant="outline" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_hero_demo">
+                            <TrackedLink
+                                href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_hero_demo"
+                                eventName="signup_click"
+                                eventProps={{ location: `alt_${slugifiedCompetitor}_hero_demo` }}
+                            >
                                 Book a demo
-                            </Link>
+                            </TrackedLink>
                         </Button>
                     </div>
                 </PageHeader>
@@ -137,14 +162,22 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                                         </p>
                                         <div className="space-y-3">
                                             <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                                                <Link href={`https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=alt_${slugifiedCompetitor}_sidebar`}>
+                                                <TrackedLink
+                                                    href={`https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=alt_${slugifiedCompetitor}_sidebar`}
+                                                    eventName="signup_click"
+                                                    eventProps={{ location: `alt_${slugifiedCompetitor}_sidebar` }}
+                                                >
                                                     Get started free
-                                                </Link>
+                                                </TrackedLink>
                                             </Button>
                                             <Button variant="outline" className="w-full" asChild>
-                                                <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_sidebar_demo">
+                                                <TrackedLink
+                                                    href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_sidebar_demo"
+                                                    eventName="signup_click"
+                                                    eventProps={{ location: `alt_${slugifiedCompetitor}_sidebar_demo` }}
+                                                >
                                                     <MessageSquare className="mr-2 h-4 w-4" /> Talk to us
-                                                </Link>
+                                                </TrackedLink>
                                             </Button>
                                         </div>
                                     </div>
@@ -197,22 +230,16 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {[
-                                            { feature: "Free plan with unlimited assets", shelf: true, competitor: "varies" },
-                                            { feature: "Open source codebase", shelf: true, competitor: false },
-                                            { feature: "QR codes & labels built in", shelf: true, competitor: "varies" },
-                                            { feature: "CSV import from any tool", shelf: true, competitor: "varies" },
-                                            { feature: "Bookings & reservations", shelf: true, competitor: "varies" },
-                                            { feature: "Custody tracking", shelf: true, competitor: "varies" },
-                                            { feature: "No credit card to start", shelf: true, competitor: "varies" },
-                                        ].map((row) => (
+                                        {comparisonRows.map((row) => (
                                             <tr key={row.feature} className="border-b border-border/30 last:border-0">
                                                 <td className="py-3 px-4 text-muted-foreground">{row.feature}</td>
                                                 <td className="py-3 px-4 text-center">
-                                                    {row.shelf ? (
+                                                    {row.shelf === true ? (
                                                         <Check className="h-4 w-4 text-orange-600 mx-auto" />
-                                                    ) : (
+                                                    ) : row.shelf === false ? (
                                                         <Minus className="h-4 w-4 text-muted-foreground/40 mx-auto" />
+                                                    ) : (
+                                                        <span className="text-xs text-muted-foreground/60">Varies</span>
                                                     )}
                                                 </td>
                                                 <td className="py-3 px-4 text-center">
@@ -249,14 +276,22 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 justify-center">
                                 <Button className="bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                                    <Link href={`https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=alt_${slugifiedCompetitor}_mobile`}>
+                                    <TrackedLink
+                                        href={`https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=alt_${slugifiedCompetitor}_mobile`}
+                                        eventName="signup_click"
+                                        eventProps={{ location: `alt_${slugifiedCompetitor}_mobile` }}
+                                    >
                                         Get started free <ArrowRight className="ml-1 h-4 w-4" />
-                                    </Link>
+                                    </TrackedLink>
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_mobile_demo">
+                                    <TrackedLink
+                                        href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_mobile_demo"
+                                        eventName="signup_click"
+                                        eventProps={{ location: `alt_${slugifiedCompetitor}_mobile_demo` }}
+                                    >
                                         Book a demo
-                                    </Link>
+                                    </TrackedLink>
                                 </Button>
                             </div>
                         </div>
