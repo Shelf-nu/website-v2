@@ -197,6 +197,26 @@ export default function AssetRoiCalculatorPage() {
                     </Container>
                 </section>
 
+                {/* Related Solutions */}
+                <section className="py-16 border-t border-border/40">
+                    <Container>
+                        <div className="max-w-3xl mx-auto">
+                            <h2 className="text-2xl font-bold text-foreground mb-4">Related Solutions</h2>
+                            <p className="text-muted-foreground mb-8">Explore how Shelf helps teams track and manage equipment.</p>
+                            <div className="grid sm:grid-cols-2 gap-4">
+                                <Link href="/solutions/asset-tracking" className="group rounded-xl border border-border/50 p-5 hover:border-orange-200 hover:shadow-sm transition-all">
+                                    <h3 className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">Asset Tracking Software</h3>
+                                    <p className="text-sm text-muted-foreground">Track who has what, where it is, and when it is due back.</p>
+                                </Link>
+                                <Link href="/solutions/equipment-management" className="group rounded-xl border border-border/50 p-5 hover:border-orange-200 hover:shadow-sm transition-all">
+                                    <h3 className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">Equipment Management Software</h3>
+                                    <p className="text-sm text-muted-foreground">Track, schedule, and maintain equipment across teams and locations.</p>
+                                </Link>
+                            </div>
+                        </div>
+                    </Container>
+                </section>
+
                 <CTA />
             </div>
         </PagefindWrapper>

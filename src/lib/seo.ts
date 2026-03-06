@@ -184,3 +184,95 @@ export function articleJsonLd(
         },
     };
 }
+
+/* ------------------------------------------------------------------ */
+/*  FAQ JSON-LD                                                        */
+/* ------------------------------------------------------------------ */
+
+export interface FaqItem {
+    question: string;
+    answer: string;
+}
+
+/**
+ * Renders a FAQPage JSON-LD object for rich snippet eligibility.
+ * Pass an array of { question, answer } pairs.
+ */
+export function faqJsonLd(items: FaqItem[]): Record<string, unknown> {
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+            },
+        })),
+    };
+}
+
+/**
+ * Extracts FAQ question/answer pairs from MDX content.
+ * Supports two patterns:
+ *   1. ### Heading questions under a ## FAQ section
+ *   2. **Bold** questions with answers on the next line(s)
+ * Strips markdown formatting from answers for clean JSON-LD.
+ */
+export function extractFaqsFromMdx(mdxSource: string): FaqItem[] {
+    const faqs: FaqItem[] = [];
+
+    // Find the FAQ section (## FAQ, ## FAQs, ## Frequently Asked Questions)
+    const faqSectionMatch = mdxSource.match(
+        /^##\s+(?:FAQ|FAQs|Frequently Asked Questions)\s*$/m
+    );
+    if (!faqSectionMatch || faqSectionMatch.index === undefined) return faqs;
+
+    // Get content from FAQ heading to the next ## heading or end of file
+    const faqStart = faqSectionMatch.index + faqSectionMatch[0].length;
+    const nextSectionMatch = mdxSource.slice(faqStart).match(/^## /m);
+    const faqContent = nextSectionMatch
+        ? mdxSource.slice(faqStart, faqStart + nextSectionMatch.index!)
+        : mdxSource.slice(faqStart);
+
+    // Pattern 1: ### Question heading followed by paragraph(s)
+    const h3Pattern = /^###\s+(.+?)\s*\n([\s\S]*?)(?=\n###\s|\n---|\n## |$)/gm;
+    let match;
+    while ((match = h3Pattern.exec(faqContent)) !== null) {
+        const question = match[1].trim();
+        const answer = stripMarkdown(match[2].trim());
+        if (question && answer) {
+            faqs.push({ question, answer });
+        }
+    }
+
+    // Pattern 2: **Bold question?** followed by answer text
+    if (faqs.length === 0) {
+        const boldPattern = /\*\*(.+?\?)\*\*\s*\n([\s\S]*?)(?=\n\*\*|\n---|\n## |$)/gm;
+        while ((match = boldPattern.exec(faqContent)) !== null) {
+            const question = match[1].trim();
+            const answer = stripMarkdown(match[2].trim());
+            if (question && answer) {
+                faqs.push({ question, answer });
+            }
+        }
+    }
+
+    return faqs;
+}
+
+/** Strip markdown syntax for clean plain-text output in JSON-LD */
+function stripMarkdown(text: string): string {
+    return text
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // [link text](url) → link text
+        .replace(/!\[.*?\]\(.*?\)/g, "")           // images
+        .replace(/#{1,6}\s/g, "")                  // headings
+        .replace(/\*\*([^*]+)\*\*/g, "$1")         // bold
+        .replace(/\*([^*]+)\*/g, "$1")             // italic
+        .replace(/`([^`]+)`/g, "$1")               // inline code
+        .replace(/\n{2,}/g, " ")                   // collapse paragraphs
+        .replace(/\n/g, " ")                       // collapse line breaks
+        .replace(/\s{2,}/g, " ")                   // collapse spaces
+        .trim();
+}

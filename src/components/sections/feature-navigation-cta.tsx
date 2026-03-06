@@ -8,16 +8,17 @@ import { CheckCircle2, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const FEATURE_LINKS = [
-    { label: "Asset Tracking", href: "/solutions/asset-tracking" },
+    { label: "Asset Tracking Software", href: "/solutions/asset-tracking" },
+    { label: "Equipment Management", href: "/solutions/equipment-management" },
+    { label: "Equipment Checkout", href: "/solutions/equipment-check-in" },
+    { label: "Equipment Reservations", href: "/solutions/equipment-reservations" },
     { label: "Custody & Checkouts", href: "/features/custody" },
     { label: "Bookings", href: "/features/bookings" },
-    { label: "Dashboard", href: "/features/dashboard" },
     { label: "Location Tracking", href: "/features/location-tracking" },
-    { label: "Asset Reminders", href: "/features/asset-reminders" },
     { label: "Kits", href: "/features/kits" },
     { label: "Workspaces", href: "/features/workspaces" },
-    { label: "Asset Search", href: "/features/asset-search" },
-    { label: "Calendar", href: "/features/calendar" },
+    { label: "Dashboard", href: "/features/dashboard" },
+    { label: "Asset Reminders", href: "/features/asset-reminders" },
     { label: "SSO (SAML / SCIM)", href: "/pricing" },
 ];
 
