@@ -27,6 +27,16 @@ export function formatDate(input: string | number): string {
     });
 }
 
+/** Format a number as USD currency. */
+export function formatCurrency(value: number, decimals = 0): string {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+    }).format(value);
+}
+
 /** Convert a kebab-case category slug to a human-readable label.
  *  e.g. "asset-tracking-management" → "Asset Tracking Management" */
 export function formatCategoryLabel(slug: string): string {

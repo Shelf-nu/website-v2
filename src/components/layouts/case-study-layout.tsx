@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, MapPin, Users, ExternalLink } from "lucide-react";
 import Image from "next/image";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 interface LayoutProps {
     frontmatter: Frontmatter;
@@ -216,10 +217,22 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
                                     <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-900/10" asChild>
-                                        <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_signup">Get Started Free</Link>
+                                        <TrackedLink
+                                            href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_signup"
+                                            eventName="signup_click"
+                                            eventProps={{ location: "case_study_bottom" }}
+                                        >
+                                            Get Started Free
+                                        </TrackedLink>
                                     </Button>
                                     <Button size="lg" variant="outline" className="border-orange-200 text-orange-800 hover:bg-orange-100" asChild>
-                                        <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_demo">Book Demo</Link>
+                                        <TrackedLink
+                                            href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_demo"
+                                            eventName="signup_click"
+                                            eventProps={{ location: "case_study_bottom_demo" }}
+                                        >
+                                            Book Demo
+                                        </TrackedLink>
                                     </Button>
                                 </div>
                             </div>

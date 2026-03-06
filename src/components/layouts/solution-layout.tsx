@@ -20,6 +20,8 @@ const solutionCaseStudyMap: Record<string, string[]> = {
     "it-asset-management": ["resq-contact-center", "kcai"],
     "mobile-asset-auditing": ["ces-70k-recovery", "haarp", "resq-contact-center"],
     "tool-tracking": ["ces-70k-recovery", "arellano-associates"],
+    "open-source-asset-management": ["ces-70k-recovery", "kcai", "haarp"],
+    "equipment-management": ["bullstv", "ces-70k-recovery", "resq-contact-center"],
 };
 
 interface LayoutProps {

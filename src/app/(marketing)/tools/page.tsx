@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, QrCode, PenTool, Tag } from 'lucide-react';
+import { ArrowRight, QrCode, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3 } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { Badge } from '@/components/ui/badge';
 import { Pill } from "@/components/ui/pill";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
     title: 'Free Tools for Asset Management | Shelf',
@@ -29,7 +30,31 @@ const tools = [
         description: "Generate high-density QR codes (PNG & SVG) optimized for industrial asset labels.",
         icon: PenTool,
         href: "/tools/qr-code-generator",
-    }
+    },
+    {
+        title: "Equipment Depreciation Calculator",
+        description: "Calculate depreciation using 4 methods (Straight-Line, Declining Balance, DDB, Sum-of-Years). Compare side-by-side.",
+        icon: Calculator,
+        href: "/tools/equipment-depreciation-calculator",
+    },
+    {
+        title: "MACRS Depreciation Calculator",
+        description: "IRS tax depreciation with official Publication 946 rates. GDS & ADS systems, all property classes.",
+        icon: DollarSign,
+        href: "/tools/macrs-depreciation-calculator",
+    },
+    {
+        title: "Salvage Value Calculator",
+        description: "Estimate equipment residual value with industry benchmarks for computers, vehicles, furniture, and more.",
+        icon: TrendingDown,
+        href: "/tools/salvage-value-calculator",
+    },
+    {
+        title: "Asset ROI Calculator",
+        description: "Quantify the cost of poor asset tracking: ghost assets, productivity loss, shrinkage, and duplicate purchases.",
+        icon: BarChart3,
+        href: "/tools/asset-roi-calculator",
+    },
 ];
 
 export default function ToolsIndexPage() {
@@ -89,6 +114,7 @@ export default function ToolsIndexPage() {
                     </div>
                 </Container>
             </section>
+            <CTA />
         </div>
         </PagefindWrapper>
     );

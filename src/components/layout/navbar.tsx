@@ -509,6 +509,8 @@ export function Navbar() {
                     {/* Right — CTAs */}
                     <div className="flex items-center gap-3">
                         <SearchDialog />
+
+                        {/* Desktop: Login + Signup */}
                         <div className="hidden sm:flex items-center gap-3">
                             <Link
                                 href="https://app.shelf.nu/login"
@@ -525,6 +527,20 @@ export function Navbar() {
                                 </Button>
                             </Link>
                         </div>
+
+                        {/* Mobile: Compact signup (always visible, not buried in menu) */}
+                        <Link
+                            href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_mobile_signup"
+                            className="sm:hidden"
+                            onClick={() => trackEvent("signup_click", { location: "navbar_mobile_persistent" })}
+                        >
+                            <Button
+                                size="sm"
+                                className="bg-orange-600 hover:bg-orange-700 text-white text-xs h-8 px-3"
+                            >
+                                Sign up free
+                            </Button>
+                        </Link>
 
                         {/* Mobile Menu Toggle */}
                         <button
