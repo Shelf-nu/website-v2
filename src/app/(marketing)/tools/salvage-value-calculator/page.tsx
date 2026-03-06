@@ -188,6 +188,26 @@ export default function SalvageValueCalculatorPage() {
                     </Container>
                 </section>
 
+                {/* Related Solutions */}
+                <section className="py-16 border-t border-border/40">
+                    <Container>
+                        <div className="max-w-3xl mx-auto">
+                            <h2 className="text-2xl font-bold text-foreground mb-4">Related Solutions</h2>
+                            <p className="text-muted-foreground mb-8">Track equipment value and lifecycle with Shelf.</p>
+                            <div className="grid sm:grid-cols-2 gap-4">
+                                <Link href="/solutions/equipment-management" className="group rounded-xl border border-border/50 p-5 hover:border-orange-200 hover:shadow-sm transition-all">
+                                    <h3 className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">Equipment Management Software</h3>
+                                    <p className="text-sm text-muted-foreground">Track, schedule, and maintain equipment across teams and locations.</p>
+                                </Link>
+                                <Link href="/solutions/fixed-asset-tracking" className="group rounded-xl border border-border/50 p-5 hover:border-orange-200 hover:shadow-sm transition-all">
+                                    <h3 className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">Fixed Asset Tracking Software</h3>
+                                    <p className="text-sm text-muted-foreground">Track high-value equipment across locations with custody logs and service reminders.</p>
+                                </Link>
+                            </div>
+                        </div>
+                    </Container>
+                </section>
+
                 <CTA />
             </div>
         </PagefindWrapper>
