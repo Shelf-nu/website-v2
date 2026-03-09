@@ -57,6 +57,7 @@ const daysIdx = args.indexOf("--days");
 const days = daysIdx >= 0 ? parseInt(args[daysIdx + 1], 10) || 7 : 7;
 
 const now = new Date();
+const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
 const since = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
 const prevSince = new Date(since.getTime() - days * 24 * 60 * 60 * 1000);
 
@@ -104,7 +105,7 @@ async function getTraffic(sinceDate, untilDate) {
         WHERE event = '$pageview'
           AND timestamp >= '${sinceDate}'
           AND timestamp < '${untilDate}'
-          AND properties.$host = 'shelf.nu'
+          AND properties.$host IN ('shelf.nu', 'www.shelf.nu')
     `);
     if (!rows || rows.length === 0) return { pageviews: 0, sessions: 0 };
     return { pageviews: rows[0][0] || 0, sessions: rows[0][1] || 0 };
@@ -119,7 +120,7 @@ async function getTopPages(sinceDate, untilDate, limit = 15) {
         WHERE event = '$pageview'
           AND timestamp >= '${sinceDate}'
           AND timestamp < '${untilDate}'
-          AND properties.$host = 'shelf.nu'
+          AND properties.$host IN ('shelf.nu', 'www.shelf.nu')
         GROUP BY path
         ORDER BY views DESC
         LIMIT ${limit}
@@ -136,7 +137,7 @@ async function getReferrers(sinceDate, untilDate, limit = 10) {
         WHERE event = '$pageview'
           AND timestamp >= '${sinceDate}'
           AND timestamp < '${untilDate}'
-          AND properties.$host = 'shelf.nu'
+          AND properties.$host IN ('shelf.nu', 'www.shelf.nu')
         GROUP BY referrer
         ORDER BY views DESC
         LIMIT ${limit}
@@ -249,7 +250,7 @@ async function cmdSummary() {
     console.log(`\n📊 Shelf.nu — Last ${days} Days\n${"=".repeat(50)}`);
 
     // Traffic from PostHog
-    const traffic = await getTraffic(dateStr(since), dateStr(now));
+    const traffic = await getTraffic(dateStr(since), dateStr(tomorrow));
     const prevTraffic = await getTraffic(dateStr(prevSince), dateStr(since));
 
     console.log("\nTRAFFIC");
@@ -257,7 +258,7 @@ async function cmdSummary() {
     console.log(`  Sessions:    ${rpad(traffic.sessions.toLocaleString(), 10)}${delta(traffic.sessions, prevTraffic.sessions)}`);
 
     // Conversions from PostHog
-    const counts = await getEventCounts(dateStr(since), dateStr(now));
+    const counts = await getEventCounts(dateStr(since), dateStr(tomorrow));
     const prevCounts = await getEventCounts(dateStr(prevSince), dateStr(since));
 
     console.log("\nCONVERSIONS");
@@ -269,7 +270,7 @@ async function cmdSummary() {
     }
 
     // Top pages from PostHog
-    const topPages = await getTopPages(dateStr(since), dateStr(now), 10);
+    const topPages = await getTopPages(dateStr(since), dateStr(tomorrow), 10);
     if (topPages.length > 0) {
         console.log("\nTOP PAGES BY VIEWS");
         for (const [path, views] of topPages) {
@@ -278,7 +279,7 @@ async function cmdSummary() {
     }
 
     // Search queries from PostHog
-    const searches = await getCustomEvents("search_query", dateStr(since), dateStr(now));
+    const searches = await getCustomEvents("search_query", dateStr(since), dateStr(tomorrow));
     if (searches.length > 0) {
         const queryCounts = {};
         for (const [props] of searches) {
@@ -296,12 +297,12 @@ async function cmdSummary() {
     const scrollRows = await phQuery(`
         SELECT
             properties.page_path as path,
-            toInt32(properties.depth) as depth,
+            toInt(properties.depth) as depth,
             count() as cnt
         FROM events
         WHERE event = 'scroll_depth'
           AND timestamp >= '${dateStr(since)}'
-          AND timestamp < '${dateStr(now)}'
+          AND timestamp < '${dateStr(tomorrow)}'
         GROUP BY path, depth
         ORDER BY path, depth
     `);
@@ -318,8 +319,8 @@ async function cmdSummary() {
             FROM events
             WHERE event = '$pageview'
               AND timestamp >= '${dateStr(since)}'
-              AND timestamp < '${dateStr(now)}'
-              AND properties.$host = 'shelf.nu'
+              AND timestamp < '${dateStr(tomorrow)}'
+              AND properties.$host IN ('shelf.nu', 'www.shelf.nu')
             GROUP BY path
         `);
         const pageViews = {};
@@ -350,7 +351,7 @@ async function cmdSummary() {
 
 async function cmdTraffic() {
     console.log(`\n📈 Traffic — Last ${days} Days\n${"=".repeat(40)}`);
-    const traffic = await getTraffic(dateStr(since), dateStr(now));
+    const traffic = await getTraffic(dateStr(since), dateStr(tomorrow));
     const prev = await getTraffic(dateStr(prevSince), dateStr(since));
 
     console.log(`  Page views:  ${traffic.pageviews.toLocaleString()}${delta(traffic.pageviews, prev.pageviews)}`);
@@ -360,7 +361,7 @@ async function cmdTraffic() {
 
 async function cmdTopPages() {
     console.log(`\n📄 Top Pages — Last ${days} Days\n${"=".repeat(50)}`);
-    const pages = await getTopPages(dateStr(since), dateStr(now));
+    const pages = await getTopPages(dateStr(since), dateStr(tomorrow));
     for (const [path, views] of pages) {
         console.log(`  ${pad(path || "/", 50)} ${rpad(views.toLocaleString(), 8)}`);
     }
@@ -369,7 +370,7 @@ async function cmdTopPages() {
 
 async function cmdConversions() {
     console.log(`\n🎯 Conversions — Last ${days} Days\n${"=".repeat(40)}`);
-    const counts = await getEventCounts(dateStr(since), dateStr(now));
+    const counts = await getEventCounts(dateStr(since), dateStr(tomorrow));
     const prevCounts = await getEventCounts(dateStr(prevSince), dateStr(since));
 
     const events = ["signup_click", "demo_form_submit", "pricing_cta", "search_query", "404_hit", "scroll_depth", "chat_opened"];
@@ -383,7 +384,7 @@ async function cmdConversions() {
 
 async function cmdSearches() {
     console.log(`\n🔍 Search Queries — Last ${days} Days\n${"=".repeat(50)}`);
-    const rows = await getCustomEvents("search_query", dateStr(since), dateStr(now));
+    const rows = await getCustomEvents("search_query", dateStr(since), dateStr(tomorrow));
     if (rows.length === 0) {
         console.log("  No search data yet.");
         return;
@@ -404,7 +405,7 @@ async function cmdSearches() {
 
 async function cmdReferrers() {
     console.log(`\n🔗 Referrers — Last ${days} Days\n${"=".repeat(50)}`);
-    const refs = await getReferrers(dateStr(since), dateStr(now));
+    const refs = await getReferrers(dateStr(since), dateStr(tomorrow));
     for (const [referrer, views] of refs) {
         console.log(`  ${pad(referrer, 35)} ${rpad(views.toLocaleString(), 8)}`);
     }
@@ -431,7 +432,7 @@ async function cmdContentChanges() {
 
 async function cmdAttribution() {
     console.log(`\n🔄 Demo Form Attribution — Last ${days} Days\n${"=".repeat(50)}`);
-    const rows = await getCustomEvents("demo_form_submit", dateStr(since), dateStr(now));
+    const rows = await getCustomEvents("demo_form_submit", dateStr(since), dateStr(tomorrow));
     if (rows.length === 0) {
         console.log("  No demo submissions in this period.");
         return;
@@ -545,7 +546,7 @@ async function gscQuery(dimensions, startDate, endDate, rowLimit = 25, filters =
 
 async function cmdGscQueries() {
     console.log(`\n🔎 GSC Top Queries — Last ${days} Days\n${"=".repeat(65)}`);
-    const rows = await gscQuery(["query"], dateStr(since), dateStr(now), 25);
+    const rows = await gscQuery(["query"], dateStr(since), dateStr(tomorrow), 25);
     if (!rows) return;
     if (rows.length === 0) {
         console.log("  No search query data yet.");
@@ -569,7 +570,7 @@ async function cmdGscQueries() {
 
 async function cmdGscPages() {
     console.log(`\n📄 GSC Top Pages — Last ${days} Days\n${"=".repeat(70)}`);
-    const rows = await gscQuery(["page"], dateStr(since), dateStr(now), 25);
+    const rows = await gscQuery(["page"], dateStr(since), dateStr(tomorrow), 25);
     if (!rows) return;
     if (rows.length === 0) {
         console.log("  No page data yet.");
@@ -595,7 +596,7 @@ async function cmdGscSummary() {
     console.log(`\n🌐 GSC Summary — Last ${days} Days\n${"=".repeat(65)}`);
 
     // Overall totals
-    const rows = await gscQuery(["date"], dateStr(since), dateStr(now), 1000);
+    const rows = await gscQuery(["date"], dateStr(since), dateStr(tomorrow), 1000);
     if (!rows) return;
 
     let totalClicks = 0, totalImpressions = 0, totalCtr = 0, totalPos = 0;
@@ -625,7 +626,7 @@ async function cmdGscSummary() {
     console.log(`  Avg Position: ${totalPos.toFixed(1)}`);
 
     // Top 10 queries
-    const topQueries = await gscQuery(["query"], dateStr(since), dateStr(now), 10);
+    const topQueries = await gscQuery(["query"], dateStr(since), dateStr(tomorrow), 10);
     if (topQueries?.length) {
         console.log("\n  TOP QUERIES");
         for (const row of topQueries) {
@@ -637,7 +638,7 @@ async function cmdGscSummary() {
     }
 
     // Top 10 pages
-    const topPages = await gscQuery(["page"], dateStr(since), dateStr(now), 10);
+    const topPages = await gscQuery(["page"], dateStr(since), dateStr(tomorrow), 10);
     if (topPages?.length) {
         console.log("\n  TOP PAGES");
         for (const row of topPages) {
@@ -650,7 +651,7 @@ async function cmdGscSummary() {
     }
 
     // Quick wins: high impressions, low CTR, position 5-20
-    const opportunities = await gscQuery(["query"], dateStr(since), dateStr(now), 100);
+    const opportunities = await gscQuery(["query"], dateStr(since), dateStr(tomorrow), 100);
     if (opportunities?.length) {
         const quickWins = opportunities
             .filter(r => r.impressions >= 10 && r.ctr < 0.05 && r.position >= 5 && r.position <= 20)
