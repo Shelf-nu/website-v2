@@ -7,14 +7,18 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const CASE_STUDY_LINKS = [
-    { label: "CES — $70K Equipment Recovery", href: "/case-studies/ces-70k-recovery" },
-    { label: "Fabel Film — Zero Double Bookings", href: "/case-studies/fabel-film-double-bookings" },
-    { label: "ResQ — 4,000+ Devices Tracked", href: "/case-studies/resq-contact-center" },
-    { label: "HAARP — 7 Universities, 1 System", href: "/case-studies/haarp" },
-    { label: "Eastern Michigan University", href: "/case-studies/eastern-michigan-university" },
-    { label: "Arellano Associates", href: "/case-studies/arellano-associates" },
-    { label: "Kansas City Art Institute", href: "/case-studies/kcai" },
+const FEATURE_LINKS = [
+    { label: "Bookings", href: "/features/bookings" },
+    { label: "Custody", href: "/features/custody" },
+    { label: "Audits", href: "/features/audits" },
+    { label: "Location Tracking", href: "/features/location-tracking" },
+    { label: "Asset Pages", href: "/features/asset-pages" },
+    { label: "Kits", href: "/features/kits" },
+    { label: "Calendar", href: "/features/calendar" },
+    { label: "Dashboard", href: "/features/dashboard" },
+    { label: "Asset Search", href: "/features/asset-search" },
+    { label: "Asset Reminders", href: "/features/asset-reminders" },
+    { label: "Workspaces", href: "/features/workspaces" },
 ];
 
 export function FeatureNavigationCTA() {
@@ -26,15 +30,15 @@ export function FeatureNavigationCTA() {
             <Container className="relative text-center">
                 <ScrollReveal width="100%">
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                        See how teams use <span className="text-orange-600">Shelf</span>
+                        Explore <span className="text-orange-600">Shelf</span> features
                     </h2>
                     <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-                        From recovering $70K in lost equipment to eliminating double bookings — real stories from real teams.
+                        From bookings and custody to audits and location tracking — everything you need to manage your assets.
                     </p>
 
                     <div className="flex justify-center mb-16">
                         <Button size="lg" className="h-14 px-8 text-lg rounded-full shadow-xl shadow-orange-500/20 bg-orange-600 hover:bg-orange-700 text-white transition-all hover:scale-105" asChild>
-                            <Link href="/pricing">
+                            <Link href="/features">
                                 Start managing your assets now
                             </Link>
                         </Button>
@@ -42,30 +46,30 @@ export function FeatureNavigationCTA() {
 
                     <div className="max-w-4xl mx-auto">
                         <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
-                            {CASE_STUDY_LINKS.map((study, i) => (
+                            {FEATURE_LINKS.map((feature, i) => (
                                 <motion.div
-                                    key={study.label}
+                                    key={feature.label}
                                     initial={{ opacity: 0, y: 10 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.05 }}
                                 >
                                     <Link
-                                        href={study.href}
+                                        href={feature.href}
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border hover:border-orange-200 hover:bg-orange-50/50 transition-colors text-sm font-medium text-muted-foreground hover:text-orange-700"
                                     >
                                         <ArrowRight className="h-4 w-4 text-orange-500" />
-                                        {study.label}
+                                        {feature.label}
                                     </Link>
                                 </motion.div>
                             ))}
                         </div>
 
                         <Link
-                            href="/case-studies"
+                            href="/features"
                             className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors group"
                         >
-                            View all case studies
+                            View all features
                             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                     </div>
