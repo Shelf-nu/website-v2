@@ -1,23 +1,13 @@
 /**
- * Lightweight analytics — sends custom events to a Supabase Edge Function.
+ * Analytics — thin wrapper around PostHog for custom event tracking.
  *
- * - Uses `navigator.sendBeacon()` (fire-and-forget, non-blocking)
- * - Generates a random session ID per page load (no cookies, no fingerprinting)
- * - Silently no-ops if the endpoint is unavailable or in dev mode
+ * PostHog autocaptures pageviews, pageleaves, and clicks.
+ * This module is for explicit custom events (demo form, pricing CTA, etc.)
  */
 
-const ANALYTICS_ENDPOINT = process.env.NEXT_PUBLIC_ANALYTICS_ENDPOINT || "";
+import posthog from "posthog-js";
 
-/* One random session ID per page load (not persisted across navigations) */
-let sessionId: string | undefined;
-function getSessionId(): string {
-    if (!sessionId) {
-        sessionId = Math.random().toString(36).slice(2) + Date.now().toString(36);
-    }
-    return sessionId;
-}
-
-/* Session-level state for attribution */
+/* Session-level state for attribution (used by demo form) */
 let landingPage: string | undefined;
 const pagesViewed: string[] = [];
 
@@ -30,7 +20,7 @@ export function getPagesViewed(): string[] {
 }
 
 /**
- * Track a custom analytics event.
+ * Track a custom analytics event via PostHog.
  *
  * @param name  - Event name (e.g. "signup_click", "demo_form_submit")
  * @param props - Optional key-value properties to attach
@@ -40,7 +30,6 @@ export function trackEvent(
     props?: Record<string, string>,
 ): void {
     if (typeof window === "undefined") return;
-    if (!ANALYTICS_ENDPOINT) return;
 
     // Capture landing page on first event
     if (!landingPage) {
@@ -53,22 +42,11 @@ export function trackEvent(
         pagesViewed.push(currentPath);
     }
 
-    const payload = {
-        event_name: name,
+    posthog.capture(name, {
         page_path: currentPath,
-        properties: props || {},
-        session_id: getSessionId(),
         referrer: document.referrer || "",
-    };
-
-    try {
-        const blob = new Blob([JSON.stringify(payload)], {
-            type: "application/json",
-        });
-        navigator.sendBeacon(ANALYTICS_ENDPOINT, blob);
-    } catch {
-        // Silently fail — analytics should never break the site
-    }
+        ...props,
+    });
 }
 
 /**

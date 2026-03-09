@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Analytics CLI — query Cloudflare Web Analytics + Supabase custom events.
+ * Analytics CLI — query PostHog + Supabase content changelog + Google Search Console.
  *
  * Usage:
  *   node scripts/analytics.mjs summary      [--days 7]
@@ -22,12 +22,12 @@
  *   node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed
  *
  * Env vars required:
- *   CF_API_TOKEN       — Cloudflare API token with Analytics:Read scope
- *   CF_SITE_TAG        — Cloudflare Web Analytics site tag
- *   SUPABASE_URL       — Supabase project URL
- *   SUPABASE_SERVICE_KEY — Supabase service role key
- *   GSC_KEY_FILE       — Path to Google Search Console service account JSON key
- *   GSC_SITE_URL       — GSC property URL (e.g. sc-domain:shelf.nu)
+ *   POSTHOG_PERSONAL_API_KEY — PostHog personal API key (for querying)
+ *   POSTHOG_PROJECT_ID       — PostHog project ID (default: 336438)
+ *   SUPABASE_URL             — Supabase project URL (for content changelog only)
+ *   SUPABASE_SERVICE_KEY     — Supabase service role key (for content changelog only)
+ *   GSC_KEY_FILE             — Path to Google Search Console service account JSON key
+ *   GSC_SITE_URL             — GSC property URL (e.g. sc-domain:shelf.nu)
  */
 
 import { config } from "dotenv";
@@ -43,11 +43,11 @@ config({ path: resolve(root, ".env") }); // fallback
 /*  Config                                                             */
 /* ------------------------------------------------------------------ */
 
-const CF_API_TOKEN = process.env.CF_API_TOKEN;
-const CF_SITE_TAG = process.env.CF_SITE_TAG;
+const POSTHOG_API_KEY = process.env.POSTHOG_PERSONAL_API_KEY;
+const POSTHOG_PROJECT_ID = process.env.POSTHOG_PROJECT_ID || "336438";
+const POSTHOG_HOST = "https://us.posthog.com";
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
 const GSC_KEY_FILE = process.env.GSC_KEY_FILE;
 const GSC_SITE_URL = process.env.GSC_SITE_URL;
 
@@ -65,115 +65,125 @@ function dateStr(d) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Cloudflare GraphQL                                                 */
+/*  PostHog HogQL API                                                  */
 /* ------------------------------------------------------------------ */
 
-async function cfQuery(query, variables = {}) {
-    if (!CF_API_TOKEN || !CF_SITE_TAG) {
-        console.log("⚠️  CF_API_TOKEN and CF_SITE_TAG required for Cloudflare data.");
+async function phQuery(hogql) {
+    if (!POSTHOG_API_KEY) {
+        console.log("⚠️  POSTHOG_PERSONAL_API_KEY required for PostHog data.");
         return null;
     }
 
-    const res = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+    const res = await fetch(`${POSTHOG_HOST}/api/projects/${POSTHOG_PROJECT_ID}/query/`, {
         method: "POST",
         headers: {
-            Authorization: `Bearer ${CF_API_TOKEN}`,
+            Authorization: `Bearer ${POSTHOG_API_KEY}`,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ query, variables }),
+        body: JSON.stringify({
+            query: { kind: "HogQLQuery", query: hogql },
+        }),
     });
 
     if (!res.ok) {
-        console.error("CF API error:", res.status, await res.text());
+        const text = await res.text();
+        console.error("PostHog API error:", res.status, text.slice(0, 500));
         return null;
     }
 
     const json = await res.json();
-    if (json.errors?.length) {
-        console.error("CF GraphQL errors:", JSON.stringify(json.errors, null, 2));
-        return null;
+    return json.results || [];
+}
+
+async function getTraffic(sinceDate, untilDate) {
+    const rows = await phQuery(`
+        SELECT
+            count() as pageviews,
+            count(DISTINCT "$session_id") as sessions
+        FROM events
+        WHERE event = '$pageview'
+          AND timestamp >= '${sinceDate}'
+          AND timestamp < '${untilDate}'
+          AND properties.$host = 'shelf.nu'
+    `);
+    if (!rows || rows.length === 0) return { pageviews: 0, sessions: 0 };
+    return { pageviews: rows[0][0] || 0, sessions: rows[0][1] || 0 };
+}
+
+async function getTopPages(sinceDate, untilDate, limit = 15) {
+    const rows = await phQuery(`
+        SELECT
+            properties.$pathname as path,
+            count() as views
+        FROM events
+        WHERE event = '$pageview'
+          AND timestamp >= '${sinceDate}'
+          AND timestamp < '${untilDate}'
+          AND properties.$host = 'shelf.nu'
+        GROUP BY path
+        ORDER BY views DESC
+        LIMIT ${limit}
+    `);
+    return rows || [];
+}
+
+async function getReferrers(sinceDate, untilDate, limit = 10) {
+    const rows = await phQuery(`
+        SELECT
+            if(properties.$referring_domain = '', '(direct)', properties.$referring_domain) as referrer,
+            count() as views
+        FROM events
+        WHERE event = '$pageview'
+          AND timestamp >= '${sinceDate}'
+          AND timestamp < '${untilDate}'
+          AND properties.$host = 'shelf.nu'
+        GROUP BY referrer
+        ORDER BY views DESC
+        LIMIT ${limit}
+    `);
+    return rows || [];
+}
+
+async function getEventCounts(sinceDate, untilDate) {
+    const rows = await phQuery(`
+        SELECT event, count() as cnt
+        FROM events
+        WHERE timestamp >= '${sinceDate}'
+          AND timestamp < '${untilDate}'
+          AND event NOT LIKE '$%'
+        GROUP BY event
+        ORDER BY cnt DESC
+    `);
+    if (!rows) return {};
+    const counts = {};
+    for (const [name, cnt] of rows) {
+        counts[name] = cnt;
     }
-    return json.data;
+    return counts;
 }
 
-async function getTraffic(startDate, endDate) {
-    const query = `
-        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
-            viewer {
-                accounts(filter: { accountTag: $accountTag }) {
-                    rumPageloadEventsAdaptiveGroups(
-                        filter: { AND: [
-                            { siteTag: $siteTag },
-                            { date_geq: $since },
-                            { date_leq: $until }
-                        ] }
-                        limit: 1
-                    ) {
-                        count
-                        sum { visits }
-                    }
-                }
-            }
-        }
-    `;
-    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
-}
-
-async function getTopPages(startDate, endDate, limit = 15) {
-    const query = `
-        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
-            viewer {
-                accounts(filter: { accountTag: $accountTag }) {
-                    rumPageloadEventsAdaptiveGroups(
-                        filter: { AND: [
-                            { siteTag: $siteTag },
-                            { date_geq: $since },
-                            { date_leq: $until }
-                        ] }
-                        limit: ${limit}
-                        orderBy: [count_DESC]
-                    ) {
-                        count
-                        dimensions { requestPath }
-                    }
-                }
-            }
-        }
-    `;
-    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
-}
-
-async function getReferrers(startDate, endDate, limit = 10) {
-    const query = `
-        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
-            viewer {
-                accounts(filter: { accountTag: $accountTag }) {
-                    rumPageloadEventsAdaptiveGroups(
-                        filter: { AND: [
-                            { siteTag: $siteTag },
-                            { date_geq: $since },
-                            { date_leq: $until }
-                        ] }
-                        limit: ${limit}
-                        orderBy: [count_DESC]
-                    ) {
-                        count
-                        dimensions { refererHost }
-                    }
-                }
-            }
-        }
-    `;
-    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: startDate, until: endDate });
+async function getCustomEvents(eventName, sinceDate, untilDate) {
+    const rows = await phQuery(`
+        SELECT
+            properties,
+            timestamp
+        FROM events
+        WHERE event = '${eventName}'
+          AND timestamp >= '${sinceDate}'
+          AND timestamp < '${untilDate}'
+        ORDER BY timestamp DESC
+        LIMIT 1000
+    `);
+    return rows || [];
 }
 
 /* ------------------------------------------------------------------ */
-/*  Supabase REST                                                      */
+/*  Supabase REST (content changelog only)                             */
 /* ------------------------------------------------------------------ */
 
 async function supabaseQuery(table, params = "") {
     if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
-        console.log("⚠️  SUPABASE_URL and SUPABASE_SERVICE_KEY required for event data.");
+        console.log("⚠️  SUPABASE_URL and SUPABASE_SERVICE_KEY required for content data.");
         return null;
     }
 
@@ -195,33 +205,6 @@ async function supabaseQuery(table, params = "") {
     const count = res.headers.get("content-range")?.split("/")[1];
     const data = await res.json();
     return { data, total: count ? parseInt(count) : data.length };
-}
-
-async function getEvents(eventName, sinceDate) {
-    const params = new URLSearchParams({
-        event_name: `eq.${eventName}`,
-        "created_at": `gte.${sinceDate.toISOString()}`,
-        order: "created_at.desc",
-        limit: "1000",
-    });
-    return supabaseQuery("analytics_events", params.toString());
-}
-
-async function getEventCounts(sinceDate) {
-    const params = new URLSearchParams({
-        "created_at": `gte.${sinceDate.toISOString()}`,
-        select: "event_name",
-        order: "created_at.desc",
-        limit: "10000",
-    });
-    const result = await supabaseQuery("analytics_events", params.toString());
-    if (!result) return {};
-
-    const counts = {};
-    for (const row of result.data) {
-        counts[row.event_name] = (counts[row.event_name] || 0) + 1;
-    }
-    return counts;
 }
 
 async function getContentChanges(sinceDate) {
@@ -265,58 +248,41 @@ function rpad(str, len) {
 async function cmdSummary() {
     console.log(`\n📊 Shelf.nu — Last ${days} Days\n${"=".repeat(50)}`);
 
-    // Traffic from Cloudflare
+    // Traffic from PostHog
     const traffic = await getTraffic(dateStr(since), dateStr(now));
     const prevTraffic = await getTraffic(dateStr(prevSince), dateStr(since));
 
-    if (traffic) {
-        const accounts = traffic.viewer?.accounts?.[0];
-        const prevAccounts = prevTraffic?.viewer?.accounts?.[0];
-        const groups = accounts?.rumPageloadEventsAdaptiveGroups?.[0];
-        const prevGroups = prevAccounts?.rumPageloadEventsAdaptiveGroups?.[0];
+    console.log("\nTRAFFIC");
+    console.log(`  Page views:  ${rpad(traffic.pageviews.toLocaleString(), 10)}${delta(traffic.pageviews, prevTraffic.pageviews)}`);
+    console.log(`  Sessions:    ${rpad(traffic.sessions.toLocaleString(), 10)}${delta(traffic.sessions, prevTraffic.sessions)}`);
 
-        const views = groups?.count || 0;
-        const visits = groups?.sum?.visits || 0;
-        const prevViews = prevGroups?.count || 0;
-        const prevVisits = prevGroups?.sum?.visits || 0;
+    // Conversions from PostHog
+    const counts = await getEventCounts(dateStr(since), dateStr(now));
+    const prevCounts = await getEventCounts(dateStr(prevSince), dateStr(since));
 
-        console.log("\nTRAFFIC");
-        console.log(`  Page views:  ${rpad(views.toLocaleString(), 10)}${delta(views, prevViews)}`);
-        console.log(`  Visits:      ${rpad(visits.toLocaleString(), 10)}${delta(visits, prevVisits)}`);
+    console.log("\nCONVERSIONS");
+    const events = ["signup_click", "demo_form_submit", "pricing_cta"];
+    for (const e of events) {
+        const c = counts[e] || 0;
+        const p = prevCounts[e] || 0;
+        console.log(`  ${pad(e, 22)} ${rpad(c, 6)}${delta(c, p)}`);
     }
 
-    // Conversions from Supabase
-    const counts = await getEventCounts(since);
-    const prevCounts = await getEventCounts(prevSince);
-
-    if (Object.keys(counts).length > 0) {
-        console.log("\nCONVERSIONS");
-        const events = ["signup_click", "demo_form_submit", "pricing_cta"];
-        for (const e of events) {
-            const c = counts[e] || 0;
-            const p = prevCounts[e] || 0;
-            console.log(`  ${pad(e, 22)} ${rpad(c, 6)}${delta(c, p)}`);
-        }
-    }
-
-    // Top pages from Cloudflare
+    // Top pages from PostHog
     const topPages = await getTopPages(dateStr(since), dateStr(now), 10);
-    if (topPages) {
-        const pages = topPages.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
-        if (pages.length > 0) {
-            console.log("\nTOP PAGES BY VIEWS");
-            for (const p of pages) {
-                console.log(`  ${pad(p.dimensions?.requestPath || p.dimensions?.path || "(unknown)", 45)} ${rpad(p.count.toLocaleString(), 8)}`);
-            }
+    if (topPages.length > 0) {
+        console.log("\nTOP PAGES BY VIEWS");
+        for (const [path, views] of topPages) {
+            console.log(`  ${pad(path || "/", 45)} ${rpad(views.toLocaleString(), 8)}`);
         }
     }
 
-    // Search queries from Supabase
-    const searches = await getEvents("search_query", since);
-    if (searches?.data?.length) {
+    // Search queries from PostHog
+    const searches = await getCustomEvents("search_query", dateStr(since), dateStr(now));
+    if (searches.length > 0) {
         const queryCounts = {};
-        for (const e of searches.data) {
-            const q = e.properties?.query || "";
+        for (const [props] of searches) {
+            const q = props?.query || "";
             if (q) queryCounts[q] = (queryCounts[q] || 0) + 1;
         }
         const sorted = Object.entries(queryCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
@@ -326,32 +292,45 @@ async function cmdSummary() {
         }
     }
 
-    // Scroll depth summary
-    const scrolls = await getEvents("scroll_depth", since);
-    if (scrolls?.data?.length) {
-        const pathDepths = {};
-        for (const e of scrolls.data) {
-            const path = e.page_path || "";
-            const depth = parseInt(e.properties?.depth || "0");
-            if (!pathDepths[path]) pathDepths[path] = { max: 0, count: 0 };
-            if (depth === 100) pathDepths[path].count++;
-            pathDepths[path].max = Math.max(pathDepths[path].max, depth);
+    // Scroll depth from PostHog
+    const scrollRows = await phQuery(`
+        SELECT
+            properties.page_path as path,
+            toInt32(properties.depth) as depth,
+            count() as cnt
+        FROM events
+        WHERE event = 'scroll_depth'
+          AND timestamp >= '${dateStr(since)}'
+          AND timestamp < '${dateStr(now)}'
+        GROUP BY path, depth
+        ORDER BY path, depth
+    `);
+    if (scrollRows && scrollRows.length > 0) {
+        // Aggregate: for each path, count 100% scrolls vs total pageviews
+        const pathComplete = {};
+        for (const [path, depth, cnt] of scrollRows) {
+            if (depth === 100) pathComplete[path] = (pathComplete[path] || 0) + cnt;
         }
 
-        // Show pages with best/worst completion rates
+        // Get pageview counts per path
+        const pvRows = await phQuery(`
+            SELECT properties.$pathname as path, count() as views
+            FROM events
+            WHERE event = '$pageview'
+              AND timestamp >= '${dateStr(since)}'
+              AND timestamp < '${dateStr(now)}'
+              AND properties.$host = 'shelf.nu'
+            GROUP BY path
+        `);
         const pageViews = {};
-        const pvData = await getEvents("page_view", since);
-        if (pvData?.data) {
-            for (const e of pvData.data) {
-                const p = e.page_path || "";
-                pageViews[p] = (pageViews[p] || 0) + 1;
-            }
+        if (pvRows) {
+            for (const [path, views] of pvRows) pageViews[path] = views;
         }
 
-        const engagement = Object.entries(pathDepths)
-            .map(([path, data]) => ({
+        const engagement = Object.entries(pathComplete)
+            .map(([path, completes]) => ({
                 path,
-                completionRate: pageViews[path] ? data.count / pageViews[path] : 0,
+                completionRate: pageViews[path] ? completes / pageViews[path] : 0,
                 views: pageViews[path] || 0,
             }))
             .filter(e => e.views >= 3)
@@ -371,36 +350,29 @@ async function cmdSummary() {
 
 async function cmdTraffic() {
     console.log(`\n📈 Traffic — Last ${days} Days\n${"=".repeat(40)}`);
-    const data = await getTraffic(dateStr(since), dateStr(now));
+    const traffic = await getTraffic(dateStr(since), dateStr(now));
     const prev = await getTraffic(dateStr(prevSince), dateStr(since));
-    if (!data) return;
 
-    const groups = data.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups?.[0];
-    const prevGroups = prev?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups?.[0];
-
-    console.log(`  Page views:  ${groups?.count?.toLocaleString() || 0}${delta(groups?.count || 0, prevGroups?.count || 0)}`);
-    console.log(`  Visits:      ${groups?.sum?.visits?.toLocaleString() || 0}${delta(groups?.sum?.visits || 0, prevGroups?.sum?.visits || 0)}`);
+    console.log(`  Page views:  ${traffic.pageviews.toLocaleString()}${delta(traffic.pageviews, prev.pageviews)}`);
+    console.log(`  Sessions:    ${traffic.sessions.toLocaleString()}${delta(traffic.sessions, prev.sessions)}`);
     console.log("");
 }
 
 async function cmdTopPages() {
     console.log(`\n📄 Top Pages — Last ${days} Days\n${"=".repeat(50)}`);
-    const data = await getTopPages(dateStr(since), dateStr(now));
-    if (!data) return;
-
-    const pages = data.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
-    for (const p of pages) {
-        console.log(`  ${pad(p.dimensions?.requestPath || p.dimensions?.path || "(unknown)", 50)} ${rpad(p.count.toLocaleString(), 8)}`);
+    const pages = await getTopPages(dateStr(since), dateStr(now));
+    for (const [path, views] of pages) {
+        console.log(`  ${pad(path || "/", 50)} ${rpad(views.toLocaleString(), 8)}`);
     }
     console.log("");
 }
 
 async function cmdConversions() {
     console.log(`\n🎯 Conversions — Last ${days} Days\n${"=".repeat(40)}`);
-    const counts = await getEventCounts(since);
-    const prevCounts = await getEventCounts(prevSince);
+    const counts = await getEventCounts(dateStr(since), dateStr(now));
+    const prevCounts = await getEventCounts(dateStr(prevSince), dateStr(since));
 
-    const events = ["signup_click", "demo_form_submit", "pricing_cta", "search_query", "404_hit"];
+    const events = ["signup_click", "demo_form_submit", "pricing_cta", "search_query", "404_hit", "scroll_depth", "chat_opened"];
     for (const e of events) {
         const c = counts[e] || 0;
         const p = prevCounts[e] || 0;
@@ -411,15 +383,15 @@ async function cmdConversions() {
 
 async function cmdSearches() {
     console.log(`\n🔍 Search Queries — Last ${days} Days\n${"=".repeat(50)}`);
-    const result = await getEvents("search_query", since);
-    if (!result?.data?.length) {
+    const rows = await getCustomEvents("search_query", dateStr(since), dateStr(now));
+    if (rows.length === 0) {
         console.log("  No search data yet.");
         return;
     }
 
     const queryCounts = {};
-    for (const e of result.data) {
-        const q = e.properties?.query || "";
+    for (const [props] of rows) {
+        const q = props?.query || "";
         if (q) queryCounts[q] = (queryCounts[q] || 0) + 1;
     }
 
@@ -432,12 +404,9 @@ async function cmdSearches() {
 
 async function cmdReferrers() {
     console.log(`\n🔗 Referrers — Last ${days} Days\n${"=".repeat(50)}`);
-    const data = await getReferrers(dateStr(since), dateStr(now));
-    if (!data) return;
-
-    const refs = data.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
-    for (const r of refs) {
-        console.log(`  ${pad(r.dimensions?.refererHost || r.dimensions?.referrerHost || "(direct)", 35)} ${rpad(r.count.toLocaleString(), 8)}`);
+    const refs = await getReferrers(dateStr(since), dateStr(now));
+    for (const [referrer, views] of refs) {
+        console.log(`  ${pad(referrer, 35)} ${rpad(views.toLocaleString(), 8)}`);
     }
     console.log("");
 }
@@ -462,22 +431,21 @@ async function cmdContentChanges() {
 
 async function cmdAttribution() {
     console.log(`\n🔄 Demo Form Attribution — Last ${days} Days\n${"=".repeat(50)}`);
-    const result = await getEvents("demo_form_submit", since);
-    if (!result?.data?.length) {
+    const rows = await getCustomEvents("demo_form_submit", dateStr(since), dateStr(now));
+    if (rows.length === 0) {
         console.log("  No demo submissions in this period.");
         return;
     }
 
-    console.log(`  Total submissions: ${result.data.length}\n`);
+    console.log(`  Total submissions: ${rows.length}\n`);
 
-    // Landing page breakdown
     const landingPages = {};
     const referrers = {};
     const heardAbout = {};
-    for (const e of result.data) {
-        const lp = e.properties?.landing_page || "(unknown)";
-        const ref = e.properties?.utm_source || e.referrer || "(direct)";
-        const ha = e.properties?.heard_about || "(not specified)";
+    for (const [props] of rows) {
+        const lp = props?.landing_page || "(unknown)";
+        const ref = props?.utm_source || props?.referrer || "(direct)";
+        const ha = props?.heard_about || "(not specified)";
         landingPages[lp] = (landingPages[lp] || 0) + 1;
         referrers[ref] = (referrers[ref] || 0) + 1;
         heardAbout[ha] = (heardAbout[ha] || 0) + 1;
@@ -486,24 +454,24 @@ async function cmdAttribution() {
     console.log("  TOP LANDING PAGES → DEMO");
     const sortedLP = Object.entries(landingPages).sort((a, b) => b[1] - a[1]).slice(0, 5);
     for (const [page, count] of sortedLP) {
-        console.log(`    ${pad(page, 45)} ${count} (${pct(count, result.data.length)})`);
+        console.log(`    ${pad(page, 45)} ${count} (${pct(count, rows.length)})`);
     }
 
     console.log("\n  TOP REFERRERS → DEMO");
     const sortedRef = Object.entries(referrers).sort((a, b) => b[1] - a[1]).slice(0, 5);
     for (const [ref, count] of sortedRef) {
-        console.log(`    ${pad(ref, 45)} ${count} (${pct(count, result.data.length)})`);
+        console.log(`    ${pad(ref, 45)} ${count} (${pct(count, rows.length)})`);
     }
 
     console.log("\n  HOW THEY HEARD ABOUT US");
     const sortedHA = Object.entries(heardAbout).sort((a, b) => b[1] - a[1]).slice(0, 5);
     for (const [source, count] of sortedHA) {
-        console.log(`    ${pad(source, 45)} ${count} (${pct(count, result.data.length)})`);
+        console.log(`    ${pad(source, 45)} ${count} (${pct(count, rows.length)})`);
     }
 
     // Journey paths
-    const paths = result.data
-        .map(e => e.properties?.pages_viewed)
+    const paths = rows
+        .map(([props]) => props?.pages_viewed)
         .filter(Boolean);
     if (paths.length > 0) {
         console.log("\n  COMMON PATHS TO DEMO");

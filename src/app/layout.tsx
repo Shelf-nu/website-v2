@@ -6,6 +6,7 @@ import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { SkipToContent } from "@/components/layout/skip-to-content";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CrispChat } from "@/components/chat/crisp-chat";
+import { PostHogProvider } from "@/components/analytics/posthog-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -91,13 +92,15 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <ThemeProvider>
-          <SkipToContent />
-          <ScrollToTop />
-          <div id="main-content">
-            {children}
-          </div>
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider>
+            <SkipToContent />
+            <ScrollToTop />
+            <div id="main-content">
+              {children}
+            </div>
+          </ThemeProvider>
+        </PostHogProvider>
         <CrispChat />
       </body>
     </html>

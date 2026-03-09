@@ -15,7 +15,7 @@ Marketing website for [Shelf.nu](https://shelf.nu), an open-source asset managem
 - **Search**: Pagefind (static search index, Cmd+K dialog)
 - **Content**: MDX via next-mdx-remote (blog, KB, case studies, etc.)
 - **Animation**: Framer Motion
-- **Analytics**: Cloudflare Web Analytics (traffic) + Supabase custom events (conversions)
+- **Analytics**: PostHog (product analytics, autocapture, session replay) + Cloudflare Web Analytics (backup) + GSC (search)
 - **Linting**: ESLint 9
 
 ## Key commands
@@ -85,20 +85,20 @@ out/                     # Build output (static HTML + pagefind index)
 
 Three-layer analytics, all free:
 
-1. **Cloudflare Web Analytics** — auto-injected by CF Pages (no manual beacon needed), tracks page views, visitors, referrers, countries, Core Web Vitals
-2. **Supabase custom events** — CTA clicks, form submissions, search queries, scroll depth, content changes
+1. **PostHog** (primary) — product analytics with autocapture (pageviews, clicks, form submits), session replay, heatmaps, web vitals. Custom events for specific tracking. Queried via HogQL API from CLI.
+2. **Cloudflare Web Analytics** — auto-injected by CF Pages (backup traffic data, Core Web Vitals)
 3. **Google Search Console** — search queries, impressions, CTR, average position (how people find the site)
 
-**Tracked events** (via `trackEvent()` from `@/lib/analytics`):
-- `page_view` — every route change (with referrer, UTM params)
-- `session_start` — once per page load (landing page, referrer, UTMs)
+**PostHog autocaptures**: `$pageview`, `$pageleave` (with time on page), `$autocapture` (clicks, form submits), web vitals.
+
+**Custom events** (via `trackEvent()` from `@/lib/analytics` → `posthog.capture()`):
 - `signup_click` — "Sign up free" button clicks (navbar, hero, pricing)
 - `demo_form_submit` — demo form success (with full attribution: landing page, journey, UTMs)
 - `pricing_cta` — pricing card button clicks (with plan ID + billing period)
 - `search_query` — search terms (3+ chars, with result count)
 - `scroll_depth` — 25/50/75/100% milestones
-- `time_on_page` — seconds spent (on navigation away)
 - `404_hit` — broken inbound links (path + referrer)
+- `chat_opened` / `chat_message_sent` — Crisp chat interactions
 
 **CLI commands** (for querying data from Claude Code):
 ```bash
@@ -132,12 +132,13 @@ node scripts/analytics.mjs experiments deploy <id>            # Mark experiment 
 |----------|-------|---------|
 | `NEXT_PUBLIC_FORM_ENDPOINT` | Client | Supabase Edge Function URL for form submissions |
 | `NEXT_PUBLIC_APP_URL` | Client | Base URL for SEO/sitemap (defaults to https://shelf.nu) |
-| `NEXT_PUBLIC_ANALYTICS_ENDPOINT` | Client | Supabase Edge Function URL for analytics events |
+| `NEXT_PUBLIC_POSTHOG_KEY` | Client | PostHog project API key (for client-side tracking) |
+| `NEXT_PUBLIC_POSTHOG_HOST` | Client | PostHog ingest host (https://us.i.posthog.com) |
 | `NEXT_PUBLIC_CRISP_WEBSITE_ID` | Client | Crisp live chat website ID |
-| `CF_API_TOKEN` | Server/CLI | Cloudflare API token (Analytics:Read scope, for CLI queries) |
-| `CF_SITE_TAG` | Server/CLI | Cloudflare Web Analytics site tag (for API queries) |
-| `SUPABASE_URL` | Server/CLI | Supabase project URL (for analytics CLI + content snapshot) |
-| `SUPABASE_SERVICE_KEY` | Server/CLI | Supabase service role key (for analytics CLI + content snapshot) |
+| `POSTHOG_PERSONAL_API_KEY` | Server/CLI | PostHog personal API key (for CLI queries via HogQL) |
+| `POSTHOG_PROJECT_ID` | Server/CLI | PostHog project ID (default: 336438) |
+| `SUPABASE_URL` | Server/CLI | Supabase project URL (for content snapshot) |
+| `SUPABASE_SERVICE_KEY` | Server/CLI | Supabase service role key (for content snapshot) |
 | `GSC_KEY_FILE` | Server/CLI | Path to Google Search Console service account JSON key |
 | `GSC_SITE_URL` | Server/CLI | GSC property URL (e.g. `sc-domain:shelf.nu`) |
 
@@ -153,7 +154,7 @@ Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.y
 - `CLOUDFLARE_API_TOKEN` — Cloudflare API token with Pages edit permission
 - `CLOUDFLARE_ACCOUNT_ID` — Cloudflare account ID
 - `NEXT_PUBLIC_FORM_ENDPOINT` — Supabase Edge Function URL for form submissions
-- `NEXT_PUBLIC_ANALYTICS_ENDPOINT` — Supabase Edge Function URL for analytics events
+- `NEXT_PUBLIC_POSTHOG_KEY` — PostHog project API key
 - `NEXT_PUBLIC_CRISP_WEBSITE_ID` — Crisp live chat website ID
 - `SUPABASE_URL` — Supabase project URL (for content snapshot)
 - `SUPABASE_SERVICE_KEY` — Supabase service role key (for content snapshot)
