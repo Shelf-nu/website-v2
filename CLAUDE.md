@@ -162,8 +162,16 @@ Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.y
 **Optional GitHub variable**:
 - `NEXT_PUBLIC_APP_URL` — Base URL for SEO (defaults to `https://shelf.nu`)
 
+## Deployment rules
+
+1. **Never push directly to main.** Always create a feature branch and open a PR. No exceptions.
+2. **New env vars = verify secrets first.** If a change adds or depends on a new `NEXT_PUBLIC_*` or server env var, confirm the corresponding GitHub secret exists BEFORE merging. The build bakes `NEXT_PUBLIC_*` values at build time — a missing secret means the feature silently ships broken.
+3. **Verify production after deploy.** After a deploy, check the live site to confirm the change actually works. A green CI check only means the build succeeded, not that the feature is functional. For analytics: check real events flowing. For UI: check the live page.
+4. **Never claim something is working without evidence.** If you can't verify it, say so.
+
 ## Things to avoid
 
+- Don't push directly to main — always use a branch + PR.
 - Don't add `"use server"` directives — breaks static export.
 - Don't add API routes (`app/api/`) — not supported in static export.
 - Don't use `next/headers` or `next/cookies` — server-only APIs.
