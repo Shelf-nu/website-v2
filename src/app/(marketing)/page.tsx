@@ -12,6 +12,9 @@ import { getHomePageLogosForGrid } from "@/data/customer-logos";
 export const metadata = {
     title: "Open Source Asset Management Software — Free for Teams",
     description: "Shelf is the open source asset management platform for modern teams. Track equipment, bookings, and inventory — free for individuals, no credit card required.",
+    alternates: {
+        canonical: "https://www.shelf.nu",
+    },
 };
 
 export default function HomePage() {
