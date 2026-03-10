@@ -59,11 +59,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/terms", priority: 0.3 },
         { path: "/privacy", priority: 0.3 },
         { path: "/security", priority: 0.4 },
+        // About & Product
+        { path: "/about", priority: 0.7 },
+        { path: "/product", priority: 0.8 },
         // Tools
         { path: "/tools", priority: 0.6 },
         { path: "/tools/qr-code-generator", priority: 0.6 },
         { path: "/tools/qr-code-decoder", priority: 0.5 },
         { path: "/tools/asset-label-designer", priority: 0.5 },
+        { path: "/tools/macrs-depreciation-calculator", priority: 0.7 },
+        { path: "/tools/equipment-depreciation-calculator", priority: 0.7 },
+        { path: "/tools/salvage-value-calculator", priority: 0.7 },
+        { path: "/tools/asset-roi-calculator", priority: 0.6 },
     ].map(({ path, priority }) => ({
         url: `${baseUrl}${path}`,
         lastModified: new Date(),
