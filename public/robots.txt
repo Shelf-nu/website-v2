@@ -2,3 +2,8 @@ User-agent: *
 Allow: /
 
 Sitemap: https://shelf.nu/sitemap.xml
+
+# LLM context files
+# https://llmstxt.org
+# llms.txt: concise overview for AI assistants
+# llms-full.txt: detailed version with full feature descriptions
