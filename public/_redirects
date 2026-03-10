@@ -4,6 +4,9 @@
 # Format: old-path new-path status-code
 # =============================================================================
 
+# --- www → non-www (fixes duplicate content across domains) ---
+https://www.shelf.nu/* https://shelf.nu/:splat 301
+
 # --- Legal page renames ---
 /privacy-policy /privacy 301
 /terms-conditions /terms 301
@@ -14,6 +17,7 @@
 /case-studies/from-outlook-chaos-to-real-time-clarity-how-arellano-associates-transformed-event-equipment-management /case-studies/arellano-associates 301
 /case-studies/how-ces-recovered-70k-of-field-equipment-using-shelf-qr-labels /case-studies/ces-70k-recovery 301
 /case-studies/kansas-city-art-institute-cheqroom-migration /case-studies/kcai 301
+/case-studies/from-memory-to-mastery-how-fabel-film-stopped-double-bookings-and-reclaimed-30-minutes-per-production /case-studies/fabel-film-double-bookings 301
 
 # --- Knowledge base slug renames ---
 /knowledge-base/advanced-asset-index /knowledge-base/advanced-asset-index-complete-guide 301
@@ -25,6 +29,8 @@
 /knowledge-base/sequential-asset-ids-simplified-asset-identification /knowledge-base/sequential-asset-ids-simplifying-asset-identification 301
 /knowledge-base/use-case-scenarios-explaing-our-bookings-feature /knowledge-base/use-case-scenarios-explaining-our-bookings-feature 301
 /knowledge-base/working-hours-workspace /knowledge-base/working-hours-set-operating-schedules-for-your-workspace 301
+/knowledge-base/customize-your-qr-code-display-choose-between-qr-ids-and-sequential-asset-numbers /knowledge-base/change-asset-label-information 301
+/knowledge-base-categories /knowledge-base 301
 
 # --- Missing blog posts → /blog ---
 /blog/coming-soon-seamless-equipment-booking-with-shelf /blog 301
@@ -86,11 +92,22 @@
 /industries/public-relations-agencies /industries 301
 /industries/textile-clothing-manufacturing /industries 301
 
-# --- Solution slug rename ---
+# --- Solution slug renames ---
 /solutions/it-asset-tracking /solutions/it-asset-management 301
+/solutions/equipment-check-out /solutions/equipment-check-in 301
+/solutions/equipment-checkin /solutions/equipment-check-in 301
+/solutions/equipment-checkout /solutions/equipment-check-in 301
+/solutions/camera-equipment-tracking /solutions/camera-equipment-check-out 301
+/solutions/camera-equipment-checkout /solutions/camera-equipment-check-out 301
+/solutions/qr-asset-labels /tools/asset-label-designer 301
+/solutions/custody /features/custody 301
 
-# --- Missing feature ---
+# --- Missing features ---
 /features/signed-custody /features/custody 301
+/features/qr-codes /features/asset-pages 301
+
+# --- Missing root-level pages ---
+/bookings /features/bookings 301
 
 # --- Missing glossary terms → /glossary ---
 /glossary/asset-lifecycle /glossary 301
