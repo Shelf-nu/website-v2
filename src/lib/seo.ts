@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Frontmatter } from "./content/schema";
 import { ContentType } from "./mdx";
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://shelf.nu";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
 
 /* ------------------------------------------------------------------ */
 /*  Shared generateMetadata builder for every MDX content type         */

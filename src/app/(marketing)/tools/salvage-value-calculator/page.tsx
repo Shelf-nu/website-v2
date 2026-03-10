@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
         "Estimate equipment salvage value with industry benchmarks for computers, vehicles, furniture, medical equipment, and more. Visual timeline and category comparison. Free, no signup.",
     alternates: {
-        canonical: "https://shelf.nu/tools/salvage-value-calculator",
+        canonical: "https://www.shelf.nu/tools/salvage-value-calculator",
     },
 };
 

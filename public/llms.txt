@@ -6,29 +6,29 @@ Shelf helps teams track physical assets — equipment, tools, devices, kits — 
 
 ## Key Links
 
-- [Homepage](https://shelf.nu)
-- [Features](https://shelf.nu/features)
-- [Pricing](https://shelf.nu/pricing)
-- [Book a Demo](https://shelf.nu/demo)
+- [Homepage](https://www.shelf.nu)
+- [Features](https://www.shelf.nu/features)
+- [Pricing](https://www.shelf.nu/pricing)
+- [Book a Demo](https://www.shelf.nu/demo)
 - [Sign Up Free](https://app.shelf.nu/join)
 - [Documentation](https://docs.shelf.nu)
 - [GitHub Repository](https://github.com/Shelf-nu/shelf.nu)
-- [Blog](https://shelf.nu/blog)
-- [Contact](https://shelf.nu/contact)
+- [Blog](https://www.shelf.nu/blog)
+- [Contact](https://www.shelf.nu/contact)
 
 ## Features
 
-- [Bookings](https://shelf.nu/features/bookings): Conflict-free equipment reservations that keep teams coordinated and ensure shared resources are available when needed.
-- [Custody](https://shelf.nu/features/custody): Track who is responsible for each asset at every moment, with a clear audit trail and effortless handovers.
-- [Audits](https://shelf.nu/features/audits): Run physical inventory audits with structured scan workflows, automatic found/missing/unexpected detection, and exportable reports.
-- [Location Tracking](https://shelf.nu/features/location-tracking): Know where every asset is — rooms, buildings, job sites, vehicles — with quick updates and clear visibility.
-- [Asset Pages](https://shelf.nu/features/asset-pages): Rich detail pages for every asset — photos, custom fields, location history, availability status, notes, and QR tags.
-- [Kits](https://shelf.nu/features/kits): Group equipment and accessories so everything stays together — cameras with lenses, tools with components, and devices with chargers.
-- [Calendar](https://shelf.nu/features/calendar): Visual booking calendar with month, week, and day views for complete asset availability at a glance.
-- [Dashboard](https://shelf.nu/features/dashboard): A real-time view of bookings, custody, overdue items, and asset usage — giving teams clarity at a glance.
-- [Asset Search](https://shelf.nu/features/asset-search): Full-database search across all asset fields — find any item by name, custodian, category, status, or custom field.
-- [Asset Reminders](https://shelf.nu/features/asset-reminders): Automated reminders for returns, inspections, rentals, and maintenance events — keeping teams proactive and compliant.
-- [Workspaces](https://shelf.nu/features/workspaces): Organize assets and permissions across departments or teams, giving each group control while keeping administrators in sync.
+- [Bookings](https://www.shelf.nu/features/bookings): Conflict-free equipment reservations that keep teams coordinated and ensure shared resources are available when needed.
+- [Custody](https://www.shelf.nu/features/custody): Track who is responsible for each asset at every moment, with a clear audit trail and effortless handovers.
+- [Audits](https://www.shelf.nu/features/audits): Run physical inventory audits with structured scan workflows, automatic found/missing/unexpected detection, and exportable reports.
+- [Location Tracking](https://www.shelf.nu/features/location-tracking): Know where every asset is — rooms, buildings, job sites, vehicles — with quick updates and clear visibility.
+- [Asset Pages](https://www.shelf.nu/features/asset-pages): Rich detail pages for every asset — photos, custom fields, location history, availability status, notes, and QR tags.
+- [Kits](https://www.shelf.nu/features/kits): Group equipment and accessories so everything stays together — cameras with lenses, tools with components, and devices with chargers.
+- [Calendar](https://www.shelf.nu/features/calendar): Visual booking calendar with month, week, and day views for complete asset availability at a glance.
+- [Dashboard](https://www.shelf.nu/features/dashboard): A real-time view of bookings, custody, overdue items, and asset usage — giving teams clarity at a glance.
+- [Asset Search](https://www.shelf.nu/features/asset-search): Full-database search across all asset fields — find any item by name, custodian, category, status, or custom field.
+- [Asset Reminders](https://www.shelf.nu/features/asset-reminders): Automated reminders for returns, inspections, rentals, and maintenance events — keeping teams proactive and compliant.
+- [Workspaces](https://www.shelf.nu/features/workspaces): Organize assets and permissions across departments or teams, giving each group control while keeping administrators in sync.
 
 ## Pricing
 
@@ -39,51 +39,51 @@ Shelf helps teams track physical assets — equipment, tools, devices, kits — 
 
 ## Solutions
 
-- [Asset Tracking](https://shelf.nu/solutions/asset-tracking)
-- [Equipment Management](https://shelf.nu/solutions/equipment-management)
-- [Equipment Reservations](https://shelf.nu/solutions/equipment-reservations)
-- [Equipment Checkout Software](https://shelf.nu/solutions/equipment-check-in)
-- [Camera Equipment Check-Out](https://shelf.nu/solutions/camera-equipment-check-out)
-- [Fixed Asset Tracking](https://shelf.nu/solutions/fixed-asset-tracking)
-- [IT Asset Tracking](https://shelf.nu/solutions/it-asset-tracking)
-- [Tool Tracking](https://shelf.nu/solutions/tool-tracking)
-- [Mobile Asset Auditing](https://shelf.nu/solutions/mobile-asset-auditing)
-- [Open Source Asset Management](https://shelf.nu/solutions/open-source-asset-management)
-- [Home Inventory Management](https://shelf.nu/solutions/home-inventory-management)
-- [Educational Resource Management](https://shelf.nu/solutions/educational-resource-management)
+- [Asset Tracking](https://www.shelf.nu/solutions/asset-tracking)
+- [Equipment Management](https://www.shelf.nu/solutions/equipment-management)
+- [Equipment Reservations](https://www.shelf.nu/solutions/equipment-reservations)
+- [Equipment Checkout Software](https://www.shelf.nu/solutions/equipment-check-in)
+- [Camera Equipment Check-Out](https://www.shelf.nu/solutions/camera-equipment-check-out)
+- [Fixed Asset Tracking](https://www.shelf.nu/solutions/fixed-asset-tracking)
+- [IT Asset Tracking](https://www.shelf.nu/solutions/it-asset-tracking)
+- [Tool Tracking](https://www.shelf.nu/solutions/tool-tracking)
+- [Mobile Asset Auditing](https://www.shelf.nu/solutions/mobile-asset-auditing)
+- [Open Source Asset Management](https://www.shelf.nu/solutions/open-source-asset-management)
+- [Home Inventory Management](https://www.shelf.nu/solutions/home-inventory-management)
+- [Educational Resource Management](https://www.shelf.nu/solutions/educational-resource-management)
 
 ## Industries
 
-- [Construction](https://shelf.nu/industries/construction): Track tools, equipment, and job-site gear with mobile-first workflows.
-- [Education](https://shelf.nu/industries/education): Manage shared equipment — AV gear, cameras, laptops, lab resources — with simple workflows for students and staff.
-- [IT & Technology](https://shelf.nu/industries/it-technology): Track laptops, loaner devices, peripherals, and shared equipment with QR-first workflows and custody tracking.
-- [Media & Production](https://shelf.nu/industries/media-production): Manage cameras, lighting gear, audio kits, and accessories with workflows designed for real-world shoots.
+- [Construction](https://www.shelf.nu/industries/construction): Track tools, equipment, and job-site gear with mobile-first workflows.
+- [Education](https://www.shelf.nu/industries/education): Manage shared equipment — AV gear, cameras, laptops, lab resources — with simple workflows for students and staff.
+- [IT & Technology](https://www.shelf.nu/industries/it-technology): Track laptops, loaner devices, peripherals, and shared equipment with QR-first workflows and custody tracking.
+- [Media & Production](https://www.shelf.nu/industries/media-production): Manage cameras, lighting gear, audio kits, and accessories with workflows designed for real-world shoots.
 
 ## Case Studies
 
-- [CES Utility Solutions](https://shelf.nu/case-studies/ces-70k-recovery): Recovered $70K of drone equipment using QR labels.
-- [Fabel Film](https://shelf.nu/case-studies/fabel-film-double-bookings): Eliminated double bookings entirely.
-- [ResQ](https://shelf.nu/case-studies/resq-contact-center): Managing 4,000+ contact center assets across multiple sites.
-- [HAARP](https://shelf.nu/case-studies/haarp): Managing multi-university research assets in the Alaskan Arctic.
-- [Eastern Michigan University](https://shelf.nu/case-studies/eastern-michigan-university): Theatre and media equipment management.
-- [Arellano Associates](https://shelf.nu/case-studies/arellano-associates): Transformed event equipment management from Outlook chaos to real-time clarity.
-- [Kansas City Art Institute](https://shelf.nu/case-studies/kcai): Seamless migration from Cheqroom to Shelf.
+- [CES Utility Solutions](https://www.shelf.nu/case-studies/ces-70k-recovery): Recovered $70K of drone equipment using QR labels.
+- [Fabel Film](https://www.shelf.nu/case-studies/fabel-film-double-bookings): Eliminated double bookings entirely.
+- [ResQ](https://www.shelf.nu/case-studies/resq-contact-center): Managing 4,000+ contact center assets across multiple sites.
+- [HAARP](https://www.shelf.nu/case-studies/haarp): Managing multi-university research assets in the Alaskan Arctic.
+- [Eastern Michigan University](https://www.shelf.nu/case-studies/eastern-michigan-university): Theatre and media equipment management.
+- [Arellano Associates](https://www.shelf.nu/case-studies/arellano-associates): Transformed event equipment management from Outlook chaos to real-time clarity.
+- [Kansas City Art Institute](https://www.shelf.nu/case-studies/kcai): Seamless migration from Cheqroom to Shelf.
 
 ## Free Tools
 
-- [MACRS Depreciation Calculator](https://shelf.nu/tools/macrs-depreciation-calculator)
-- [Equipment Depreciation Calculator](https://shelf.nu/tools/equipment-depreciation-calculator)
-- [Salvage Value Calculator](https://shelf.nu/tools/salvage-value-calculator)
-- [Asset ROI Calculator](https://shelf.nu/tools/asset-roi-calculator)
-- [QR Code Generator](https://shelf.nu/tools/qr-code-generator)
-- [QR Code Decoder](https://shelf.nu/tools/qr-code-decoder)
-- [Asset Label Designer](https://shelf.nu/tools/asset-label-designer)
+- [MACRS Depreciation Calculator](https://www.shelf.nu/tools/macrs-depreciation-calculator)
+- [Equipment Depreciation Calculator](https://www.shelf.nu/tools/equipment-depreciation-calculator)
+- [Salvage Value Calculator](https://www.shelf.nu/tools/salvage-value-calculator)
+- [Asset ROI Calculator](https://www.shelf.nu/tools/asset-roi-calculator)
+- [QR Code Generator](https://www.shelf.nu/tools/qr-code-generator)
+- [QR Code Decoder](https://www.shelf.nu/tools/qr-code-decoder)
+- [Asset Label Designer](https://www.shelf.nu/tools/asset-label-designer)
 
 ## About
 
 Shelf is led by Carlos Virreira and Nikolay Bonev, supported by an open-source community. The platform is open-source with no vendor lock-in — you can verify the code, self-host, or use the managed cloud. Built with feedback from real users in education, logistics, media production, and technology.
 
-- [About Page](https://shelf.nu/about)
-- [Security](https://shelf.nu/security)
-- [Terms](https://shelf.nu/terms)
-- [Privacy](https://shelf.nu/privacy)
+- [About Page](https://www.shelf.nu/about)
+- [Security](https://www.shelf.nu/security)
+- [Terms](https://www.shelf.nu/terms)
+- [Privacy](https://www.shelf.nu/privacy)

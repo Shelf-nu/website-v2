@@ -3,7 +3,7 @@ import { getAllContent, ContentType } from "@/lib/mdx";
 
 export const dynamic = "force-static";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://shelf.nu";
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
 
 /* ------------------------------------------------------------------ */
 /*  Helper: build entries for a given MDX content type                 */

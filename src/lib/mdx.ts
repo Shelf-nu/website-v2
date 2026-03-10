@@ -56,7 +56,7 @@ export function getContentBySlug(type: ContentType, slug: string): MDXContent {
 
         layout: data.layout || type.replace(/s$/, ''), // Simple heuristic: features -> feature
 
-        canonicalUrl: data.canonicalUrl || `https://shelf.nu/${type}/${realSlug}`,
+        canonicalUrl: data.canonicalUrl || `https://www.shelf.nu/${type}/${realSlug}`,
 
         seo: data.seo || {
             title: data.title || 'Shelf',
