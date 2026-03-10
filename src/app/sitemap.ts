@@ -88,7 +88,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const useCases = contentEntries("use-cases", "/use-cases", { changeFrequency: "monthly", priority: 0.7 });
     const concepts = contentEntries("concepts", "/concepts", { changeFrequency: "monthly", priority: 0.5 });
     const glossary = contentEntries("glossary", "/glossary", { changeFrequency: "monthly", priority: 0.6 });
-    const updates = contentEntries("updates", "/updates", { changeFrequency: "weekly", priority: 0.6 });
+    // Note: individual /updates/* pages are noindexed (thin changelog content)
+    // so they are excluded from the sitemap. The /updates index page is still
+    // included in staticRoutes above.
     const knowledgeBase = contentEntries("knowledge-base", "/knowledge-base", { changeFrequency: "monthly", priority: 0.6 });
 
     return [
@@ -102,7 +104,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...useCases,
         ...concepts,
         ...glossary,
-        ...updates,
         ...knowledgeBase,
     ];
 }

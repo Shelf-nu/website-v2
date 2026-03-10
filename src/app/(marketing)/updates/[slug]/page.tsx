@@ -23,7 +23,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const { slug } = await params;
     try {
         const { frontmatter } = getContentBySlug("updates", slug);
-        return buildContentMetadata(slug, frontmatter, "updates");
+        const metadata = buildContentMetadata(slug, frontmatter, "updates");
+        // Update pages are thin changelog entries — noindex to avoid
+        // wasting crawl budget and hurting site quality signals.
+        metadata.robots = { index: false, follow: true };
+        return metadata;
     } catch {
         return { title: "Update Not Found" };
     }
