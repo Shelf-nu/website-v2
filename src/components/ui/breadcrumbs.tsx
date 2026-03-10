@@ -46,13 +46,13 @@ export function Breadcrumbs({ className }: { className?: string }) {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://shelf.nu"
+                "item": "https://www.shelf.nu"
             },
             ...segments.map((segment, index) => ({
                 "@type": "ListItem",
                 "position": index + 2,
                 "name": formatLabel(segment),
-                "item": `https://shelf.nu/${segments.slice(0, index + 1).join("/")}`
+                "item": `https://www.shelf.nu/${segments.slice(0, index + 1).join("/")}`
             }))
         ]
     };

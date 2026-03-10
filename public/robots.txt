@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shelf.nu/sitemap.xml
+Sitemap: https://www.shelf.nu/sitemap.xml
 
 # LLM context files
 # https://llmstxt.org

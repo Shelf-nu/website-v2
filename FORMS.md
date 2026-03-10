@@ -26,7 +26,7 @@ If `NEXT_PUBLIC_FORM_ENDPOINT` is not set, the form shows success without submit
   "email": "jane@company.com",
   "company": "Acme Inc.",
   "message": "Tell us about your use case...",
-  "sourceUrl": "https://shelf.nu/demo?utm_source=google",
+  "sourceUrl": "https://www.shelf.nu/demo?utm_source=google",
   "utmSource": "google",
   "utmMedium": "cpc",
   "utmCampaign": "",

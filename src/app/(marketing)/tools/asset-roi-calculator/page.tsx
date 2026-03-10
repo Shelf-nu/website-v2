@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
         "Calculate the annual cost of poor asset tracking: ghost assets, productivity loss, shrinkage, and duplicate purchases. Compare with Shelf to see your ROI. Free, no signup.",
     alternates: {
-        canonical: "https://shelf.nu/tools/asset-roi-calculator",
+        canonical: "https://www.shelf.nu/tools/asset-roi-calculator",
     },
 };
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     description:
         "See what's new in Shelf. A timeline of every product improvement, new feature, and platform update since day one.",
     alternates: {
-        canonical: "https://shelf.nu/updates",
+        canonical: "https://www.shelf.nu/updates",
     },
 };
 

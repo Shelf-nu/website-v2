@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
         "Calculate equipment depreciation using Straight-Line, Declining Balance, Double Declining, or Sum-of-Years methods. Full year-by-year schedule with comparison chart. Free, no signup.",
     alternates: {
-        canonical: "https://shelf.nu/tools/equipment-depreciation-calculator",
+        canonical: "https://www.shelf.nu/tools/equipment-depreciation-calculator",
     },
 };
 

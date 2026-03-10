@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Free Asset Label Designer (Scan-Safe) | Shelf',
     description: 'Design and download professional, scan-safe QR asset labels. Optimized for high contrast and durability. Exports to PNG, SVG, and PDF.',
     alternates: {
-        canonical: 'https://shelf.nu/tools/asset-label-designer'
+        canonical: 'https://www.shelf.nu/tools/asset-label-designer'
     }
 };
 

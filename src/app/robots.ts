@@ -15,6 +15,6 @@ export default function robots(): MetadataRoute.Robots {
                 allow: "/",
             }
         ],
-        sitemap: "https://shelf.nu/sitemap.xml",
+        sitemap: "https://www.shelf.nu/sitemap.xml",
     };
 }

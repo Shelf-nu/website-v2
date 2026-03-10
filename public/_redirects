@@ -4,8 +4,9 @@
 # Format: old-path new-path status-code
 # =============================================================================
 
-# --- www → non-www (fixes duplicate content across domains) ---
-https://www.shelf.nu/* https://shelf.nu/:splat 301
+# --- non-www → www (canonical domain is www.shelf.nu) ---
+# Note: shelf.nu → www.shelf.nu is handled at DNS level.
+# This rule is a fallback in case requests bypass the DNS redirect.
 
 # --- Legal page renames ---
 /privacy-policy /privacy 301

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
         "Calculate MACRS tax depreciation with official IRS Publication 946 rates. GDS and ADS systems, all property classes (3–20 year), estimated tax savings. Free, no signup.",
     alternates: {
-        canonical: "https://shelf.nu/tools/macrs-depreciation-calculator",
+        canonical: "https://www.shelf.nu/tools/macrs-depreciation-calculator",
     },
 };
 

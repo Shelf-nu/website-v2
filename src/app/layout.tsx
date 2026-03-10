@@ -19,9 +19,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shelf.nu"),
+  metadataBase: new URL("https://www.shelf.nu"),
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_APP_URL || "https://shelf.nu",
+    canonical: process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu",
   },
   title: {
     default: "Shelf | Open Source Asset Management Software",
@@ -38,18 +38,18 @@ export const metadata: Metadata = {
     "QR code tracking",
     "shelf.nu"
   ],
-  authors: [{ name: "Shelf Team", url: "https://shelf.nu" }],
+  authors: [{ name: "Shelf Team", url: "https://www.shelf.nu" }],
   creator: "Shelf",
   openGraph: {
     title: "Shelf | Open Source Asset Management",
     description: "Track anything, anywhere, with anyone. The open source alternative for modern asset tracking.",
-    url: "https://shelf.nu",
+    url: "https://www.shelf.nu",
     siteName: "Shelf",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://shelf.nu/og.webp",
+        url: "https://www.shelf.nu/og.webp",
         width: 1200,
         height: 630,
         alt: "Shelf Asset Management Interface",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     description: "Modern open source asset tracking for teams. Star us on GitHub.",
     creator: "@shelf_nu",
     site: "@shelf_nu",
-    images: ["https://shelf.nu/og.webp"],
+    images: ["https://www.shelf.nu/og.webp"],
   },
   robots: {
     index: true,
