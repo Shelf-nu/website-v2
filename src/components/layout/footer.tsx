@@ -20,7 +20,7 @@ export function Footer() {
                         </p>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold mb-6 text-foreground tracking-tight">Product</h3>
+                        <p className="text-sm font-semibold mb-6 text-foreground tracking-tight">Product</p>
                         <ul className="space-y-3.5 text-sm">
                             <li><Link href="/features" className="hover:text-orange-600 transition-colors">Features</Link></li>
                             <li><Link href="/pricing" className="text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors">Pricing</Link></li>
@@ -31,7 +31,7 @@ export function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold mb-6 text-foreground tracking-tight">Solutions</h3>
+                        <p className="text-sm font-semibold mb-6 text-foreground tracking-tight">Solutions</p>
                         <ul className="space-y-3.5 text-sm">
                             <li><Link href="/solutions" className="hover:text-orange-600 transition-colors font-medium text-foreground">All Solutions</Link></li>
                             <li><Link href="/solutions/asset-tracking" className="hover:text-orange-600 transition-colors">Asset Tracking</Link></li>
@@ -43,7 +43,7 @@ export function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold mb-6 text-foreground tracking-tight">Compare</h3>
+                        <p className="text-sm font-semibold mb-6 text-foreground tracking-tight">Compare</p>
                         <ul className="space-y-3.5 text-sm">
                             <li><Link href="/alternatives" className="hover:text-orange-600 transition-colors font-medium text-foreground">All Alternatives</Link></li>
                             <li><Link href="/alternatives/cheqroom" className="hover:text-orange-600 transition-colors">Shelf vs Cheqroom</Link></li>
@@ -55,7 +55,7 @@ export function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold mb-6 text-foreground tracking-tight">Resources</h3>
+                        <p className="text-sm font-semibold mb-6 text-foreground tracking-tight">Resources</p>
                         <ul className="space-y-3.5 text-sm">
                             <li><Link href="/blog" className="hover:text-orange-600 transition-colors">Blog</Link></li>
                             <li><Link href="/knowledge-base" className="hover:text-orange-600 transition-colors">Knowledge Base</Link></li>
@@ -67,7 +67,7 @@ export function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold mb-6 text-foreground tracking-tight">Company</h3>
+                        <p className="text-sm font-semibold mb-6 text-foreground tracking-tight">Company</p>
                         <ul className="space-y-3.5 text-sm">
                             <li><Link href="/about" className="hover:text-orange-600 transition-colors">About</Link></li>
                             <li><Link href="/contact" className="hover:text-orange-600 transition-colors">Contact</Link></li>
