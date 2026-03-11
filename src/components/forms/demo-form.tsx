@@ -346,7 +346,7 @@ export function DemoForm() {
                 heard_about: result.data.heardAbout || "",
                 ...utm,
             });
-            enrichCrispWithLead(result.data);
+            enrichCrispWithLead({ ...result.data, heardAbout: result.data.heardAbout || "" });
             setSuccess(true);
             return;
         }
@@ -388,7 +388,7 @@ export function DemoForm() {
                     heard_about: result.data.heardAbout || "",
                     ...utm,
                 });
-                enrichCrispWithLead(result.data);
+                enrichCrispWithLead({ ...result.data, heardAbout: result.data.heardAbout || "" });
                 setSuccess(true);
                 return;
             }
