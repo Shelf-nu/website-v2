@@ -28,7 +28,7 @@ export function ColorPalette() {
     };
 
     return (
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {COLORS.map((color) => (
                 <button
                     key={color.hex}

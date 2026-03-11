@@ -10,8 +10,8 @@ personas:
   - "it"
   - "education"
 canonicalUrl: "/alternatives/asset-guru"
-date: "2025-01-01"
-updated: "2025-01-01"
+date: "2026-01-01"
+updated: "2026-03-11"
 seo:
   title: "Asset Guru Alternative — Open-Source Equipment Management | Shelf"
   description: "Evaluating AssetGuru? Compare approval-heavy enterprise workflows with Shelf's scan-to-act equipment tracking approach."
@@ -20,25 +20,44 @@ seo:
 
 # AssetGuru Alternative
 
-AssetGuru positions itself as an enterprise-grade asset management platform with multi-level approval workflows, procurement tracking, and compliance-oriented audit trails. Teams exploring alternatives often find that layered approval chains slow down day-to-day equipment operations, especially when gear needs to move quickly between people and locations.
+Asset.Guru is a cloud-based fixed asset management platform founded in 2014 and headquartered in Sydney, Australia. It grew out of the accounting and compliance space, and that heritage is clear: Asset.Guru is strongest in depreciation calculations, financial reporting, and integration with accounting systems like Xero, QuickBooks Online, and NetSuite. Teams evaluating alternatives typically need faster day-to-day equipment operations—check-outs, bookings, kit management—rather than depreciation journals and fixed asset registers.
 
 ---
 
-## Overview: AssetGuru vs Shelf
+## Overview: Asset.Guru vs Shelf
 
-AssetGuru caters to organizations that require formal approval gates before assets can be checked out, transferred, or retired. Its strength lies in governance—ensuring every asset movement passes through the right stakeholders.
+Asset.Guru offers three tiers: Micro Edition Plus ($99/month for up to 500 assets and 3 users), Starter Edition ($179/month for up to 1,000 assets and 10 users), and Enterprise Edition (custom pricing for 5,000+ assets and 50 users). Critically, check-in/check-out functionality is only available on the Starter Edition and above, meaning the entry-level plan lacks the most basic equipment circulation feature. Asset.Guru also does not offer a public API, limiting integration and automation possibilities.
 
-Shelf focuses on operational velocity. Instead of routing every check-out through approval chains, Shelf gives teams instant scan-to-act workflows where custody transfers, bookings, and returns happen in seconds. Governance is handled through visibility—audit trails, custody logs, and workspace-level permissions—rather than bottleneck-creating approval queues.
+Shelf focuses on what happens when people interact with equipment every day. Instead of treating assets primarily as financial line items to depreciate, Shelf's QR-first approach makes every interaction intentional: scan to check out, scan to return, scan to see who booked it next. Shelf is also open source, so teams can inspect the codebase, self-host for free, or extend functionality without vendor dependency. All features are available on every plan—no critical capabilities locked behind higher tiers.
+
+---
+
+## Quick Comparison
+
+| Capability | Asset.Guru | Shelf |
+|---|---|---|
+| **Primary focus** | Depreciation, financial reporting, fixed asset register | Equipment check-out, booking, custody |
+| **Pricing** | From $99/month (500 assets, 3 users) | Free (self-hosted) or managed cloud |
+| **Check-in/check-out** | Starter Edition and above only ($179/month) | Available on all plans |
+| **Equipment booking** | Not a core feature | Built-in with conflict prevention |
+| **Kit management** | Individual asset tracking only | Kit-aware booking and verification |
+| **Depreciation tracking** | Yes — automated with accounting sync | No — operational focus |
+| **Accounting integration** | Xero, QuickBooks Online, NetSuite | No native accounting sync |
+| **API access** | No public API available | Yes — open source with full API |
+| **Open source** | No — proprietary SaaS | Yes — full codebase available |
+| **User limits** | 3–50 depending on plan | Unlimited users |
+| **Mobile experience** | iOS app available | Mobile-first QR scanning, any browser |
+| **Multi-team workspaces** | Divisional structure | Separated workspaces per department |
 
 ---
 
 ## Where Shelf Takes a Different Approach
 
-### 1. Speed Over Approval Gates
+### 1. Operational Equipment Tracking vs Financial Asset Registers
 
-AssetGuru requires requests to pass through one or more approvers before equipment changes hands. This works well for procurement but creates friction for daily equipment operations.
+Asset.Guru was built for the finance team. Its core value proposition is knowing what assets your organization owns, what they cost, what they are worth today, and how depreciation affects your tax position. This is valuable for accounting—but it does not solve the daily operational question of who has the laptop, when the projector is coming back, or whether the camera kit is available next Tuesday.
 
-Shelf lets teams check out and return gear instantly via QR scan. Every transaction is logged automatically, giving managers full visibility without forcing staff to wait for approval on routine operations.
+Shelf was built for the operations team. Every feature is designed around equipment circulation: who has it, when it is due back, who needs it next, and whether all the pieces came back. Financial tracking and operational tracking are different problems, and trying to solve both with an accounting-first tool leaves operations underserved.
 
 See: [Custody](/features/custody)
 
@@ -46,9 +65,11 @@ See: [Custody](/features/custody)
 
 ---
 
-### 2. QR-First Field Operations
+### 2. Check-Out Without Tier Restrictions
 
-Shelf treats QR codes as the operational interface. Staff scan a code to see availability, check out an item, transfer custody, or flag an issue. No desktop login required, no approval forms to fill out.
+Asset.Guru's check-in/check-out feature is locked behind the Starter Edition at $179/month. Teams on the Micro Edition Plus plan—the most affordable tier—cannot assign equipment to staff or track who has what. This means the most fundamental equipment operation requires upgrading before you can even start.
+
+Shelf includes check-in and check-out on every plan, including the free self-hosted option. There is no feature gating on core equipment workflows. A team of five and a team of five hundred both get the same custody tracking, the same QR scanning, and the same audit trail.
 
 See: [Location Tracking](/features/location-tracking)
 
@@ -56,9 +77,11 @@ See: [Location Tracking](/features/location-tracking)
 
 ---
 
-### 3. Native Booking with Conflict Prevention
+### 3. Purpose-Built Booking and Reservations
 
-AssetGuru scheduling relies on approval workflows—someone requests an asset, a manager approves, and the reservation is confirmed. Shelf handles this with a real-time booking calendar that prevents double-bookings automatically, eliminating the approval bottleneck for reservations.
+Asset.Guru focuses on tracking asset ownership and location, but it does not offer a dedicated booking and reservation system. If a team needs to schedule shared equipment—conference room AV gear, pool vehicles, camera kits—they need to manage that outside the platform or rely on manual coordination.
+
+Shelf's booking system is designed for high-frequency shared equipment environments: real-time availability calendars, automatic double-booking prevention, and multi-day reservation support. This matters for film productions scheduling camera packages, universities managing student gear loans, or IT teams coordinating laptop pools.
 
 See: [Bookings](/features/bookings)
 
@@ -66,9 +89,11 @@ See: [Bookings](/features/bookings)
 
 ---
 
-### 4. Kit-Level Management
+### 4. Kit Tracking and Component Verification
 
-Shelf tracks kits as logical groups—a camera body, two lenses, a tripod, and a case travel together as a single bookable unit. AssetGuru tracks assets individually, which means kit-based workflows require manual coordination.
+Asset.Guru tracks assets as individual records in a register. If you manage a camera kit with a body, three lenses, batteries, and a tripod, those are five separate entries with no inherent relationship between them. Grouping and verifying them as a unit requires manual effort.
+
+Shelf groups related equipment into kits that are booked, checked out, and verified as a single unit. When a kit comes back missing a lens cap or a battery charger, Shelf flags the discrepancy before the next user picks it up. This prevents the slow bleed of accessories that plagues shared equipment operations.
 
 See: [Kits](/features/kits)
 
@@ -76,37 +101,75 @@ See: [Kits](/features/kits)
 
 ---
 
-### 5. Open-Source Transparency
+### 5. Unlimited Users vs Seat-Based Limits
 
-Shelf is open source. Teams can inspect the code, verify how data is handled, and contribute improvements. Enterprise platforms like AssetGuru operate as closed systems where feature requests enter a backlog with no visibility into prioritization.
+Asset.Guru caps users by plan: 3 on Micro Edition Plus, 10 on Starter, and 50 on Enterprise. For organizations where dozens or hundreds of people need to check out equipment—schools, production companies, multi-site operations—these limits either force an expensive upgrade or leave most staff unable to self-serve.
 
----
+Shelf includes unlimited users on all plans. Students, freelancers, field staff, and temporary workers can all participate in equipment workflows without consuming a seat license. This is particularly important for education and media production environments where the user base fluctuates.
 
-## When Teams Choose Shelf Instead of AssetGuru
+See: [Workspaces](/features/workspaces)
 
-- **Operations teams frustrated by approval delays**: Equipment that sits in a queue while waiting for approval creates downtime
-- **Education departments with high equipment turnover**: Students and staff need gear fast, not after a three-step approval chain
-- **Media teams managing kit-based workflows**: Kits need to be booked and tracked as units, not as individual line items
-- **IT departments wanting lightweight check-out**: Laptop and device distribution should take seconds, not hours
-- **Multi-location teams needing workspace separation**: Each site manages its own inventory without cross-department approval complexity
+![Workspaces overview showing separate inventories for different departments](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/workspaces.jpg)
 
 ---
 
-## When AssetGuru May Be a Better Fit
+### 6. Open Source and API Access
 
-- **Procurement-heavy organizations**: Teams that need purchase order tracking, vendor management, and procurement approval workflows
-- **Regulatory compliance environments**: Industries where every asset movement must be formally approved before it happens
-- **Large enterprises with dedicated asset managers**: Organizations with full-time staff managing approval queues
+Asset.Guru is a closed-source platform with no public API. Teams cannot build custom integrations, automate workflows with external tools, or export data programmatically. Feature requests enter a backlog with no visibility into prioritization or timelines. Reviewers have noted that support documentation does not always cover every scenario.
+
+Shelf is open source with transparent pricing. The full codebase is available for inspection, self-hosting, or extension. Teams can build integrations, automate reporting, or connect Shelf to existing toolchains. There is no vendor lock-in—your data and your deployment are yours.
+
+---
+
+### 7. QR-First Field Operations
+
+Asset.Guru supports barcode and serial number scanning for asset identification, but its workflow is centered on the desktop interface and asset register. Field operations—checking out gear on a loading dock, verifying returns in a gear room—require navigating to the right record and updating it through the platform.
+
+Shelf treats QR codes as the operational interface. Staff scan a code to see availability, check out an item, transfer custody, or flag an issue. No desktop login required, no navigating through asset registers. Every smartphone becomes a scanner, and every interaction is logged automatically.
+
+See: [Custom Fields](/features/custom-fields)
+
+![Custom fields showing tailored asset information](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/custom-fields.jpg)
+
+---
+
+## When Teams Choose Shelf Instead of Asset.Guru
+
+Teams often choose Shelf over Asset.Guru when their daily operations center on equipment circulation rather than financial asset accounting:
+
+- **Equipment moves between people daily**: Check-outs, returns, and transfers happen constantly, and the tool needs to keep up without tier restrictions
+- **Budget is constrained**: Asset.Guru's Starter plan at $179/month with 10 user seats adds up quickly; Shelf's self-hosted option is free with unlimited users
+- **Kits need to stay complete**: Production, education, and field teams managing grouped equipment need kit-level workflows that track components together
+- **Multiple departments share one platform**: Workspaces let IT, facilities, and media teams operate independently without seat-license contention
+- **Non-technical users need to participate**: Students, freelancers, and field staff can scan a QR code without training or a platform login
+- **Integration matters**: Teams that need API access for automation, reporting, or connecting with other systems need a platform that supports it
+- **Open source is a requirement**: Data sovereignty, self-hosting capability, and codebase transparency are priorities
+
+---
+
+## When Asset.Guru May Be a Better Fit
+
+Asset.Guru has genuine strengths that matter for certain use cases:
+
+- **Depreciation and financial reporting**: Organizations that need automated depreciation calculations, tax compliance reporting, and amortization schedules will find Asset.Guru's accounting-first approach more mature. Its depreciation calculators are designed for regulatory compliance and integrate directly with general ledger systems.
+- **Accounting system integration**: Teams deeply embedded in Xero, QuickBooks Online, or NetSuite who want automatic depreciation journals and draft asset imports flowing between systems will benefit from Asset.Guru's native connectors.
+- **Fixed asset register compliance**: Industries where auditors need a formal fixed asset register with book value, tax value, and disposal tracking—Asset.Guru is purpose-built for this requirement.
+- **Small teams with simple needs**: An organization with fewer than 500 assets, three users, and a primary need for knowing what they own and what it is worth may find Asset.Guru's Micro Edition Plus sufficient at $99/month.
+
+Both platforms manage assets, but they solve different problems. Asset.Guru is strongest when depreciation tracking, tax compliance, and accounting integration drive the decision. Shelf is strongest when equipment circulation, custody accountability, and booking workflows are the daily reality.
+
+If your team spends more time tracking who has the gear than calculating what the gear is worth, Shelf is likely the better fit.
 
 ---
 
 ## Case Studies
 
-See how teams use Shelf to move faster:
+See how teams operate with QR-first equipment workflows:
 
 - [CES Utility Solutions — $70K Equipment Recovery](/case-studies/ces-70k-recovery)
-- [HAARP — Research Equipment Accountability](/case-studies/haarp)
+- [ResQ Contact Center — 4,000+ Devices Across Multiple Sites](/case-studies/resq-contact-center)
 - [Fabel Film — Eliminating Double Bookings](/case-studies/fabel-film-double-bookings)
+- [Eastern Michigan University — Theatre Equipment Management](/case-studies/eastern-michigan-university)
 
 ---
 
@@ -114,4 +177,5 @@ See how teams use Shelf to move faster:
 
 - [Asset Tracking](/solutions/asset-tracking)
 - [Equipment Check-In](/solutions/equipment-check-in)
+- [Fixed Asset Tracking](/solutions/fixed-asset-tracking)
 - [IT Asset Management](/solutions/it-asset-management)

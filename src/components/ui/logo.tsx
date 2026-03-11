@@ -16,15 +16,12 @@ import {
     ContextMenuLabel,
 } from "@/components/ui/context-menu";
 import { Download, Home } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export function Logo({ className = "" }: Omit<LogoProps, "showText" | "variant">) {
-    const router = useRouter();
-
     return (
         <div className={`flex items-center gap-2 ${className}`}>
-            <ContextMenu modal={false}>
-                <ContextMenuTrigger>
+            <ContextMenu>
+                <ContextMenuTrigger asChild>
                     <div className="relative flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity">
                         <Image
                             src="/logo-light.png"
@@ -45,14 +42,22 @@ export function Logo({ className = "" }: Omit<LogoProps, "showText" | "variant">
                     </div>
                 </ContextMenuTrigger>
                 <ContextMenuContent className="w-56">
-                    <ContextMenuLabel>Brand Assets</ContextMenuLabel>
+                    <ContextMenuLabel>Brand Center</ContextMenuLabel>
                     <ContextMenuSeparator />
-                    <ContextMenuItem onClick={() => router.push("/brand-assets")}>
+                    <ContextMenuItem
+                        onSelect={() => {
+                            window.location.href = "/brand-assets";
+                        }}
+                    >
                         <Download className="mr-2 h-4 w-4" />
-                        Brand Guidelines
+                        Brand Center
                     </ContextMenuItem>
                     <ContextMenuSeparator />
-                    <ContextMenuItem onClick={() => router.push("/")}>
+                    <ContextMenuItem
+                        onSelect={() => {
+                            window.location.href = "/";
+                        }}
+                    >
                         <Home className="mr-2 h-4 w-4" />
                         Home Page
                     </ContextMenuItem>

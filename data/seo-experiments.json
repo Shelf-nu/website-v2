@@ -161,7 +161,7 @@
       "page": "/tools/macrs-depreciation-calculator",
       "field": "new-page",
       "before": "No page exists — /macrs-depreciation-calculator redirects to generic /tools",
-      "after": "Build dedicated interactive MACRS depreciation calculator tool page",
+      "after": "Built dedicated interactive MACRS depreciation calculator tool page with 301 redirect",
       "hypothesis": "8,320 monthly impressions going to a generic /tools page. Building a dedicated calculator should capture this traffic and feed users into the Shelf funnel via CTAs.",
       "baseline": {
         "clicks": null,
@@ -175,33 +175,33 @@
         "capturedAt": null
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 138,
+        "impressions": 9452,
+        "ctr": 1.5,
+        "position": 11.6,
         "dateRange": [
-          null,
-          null
+          "2026-02-09",
+          "2026-03-11"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-03-11T00:00:00.000Z"
       },
-      "status": "planned",
-      "startDate": null,
-      "deployedAt": null,
+      "status": "completed",
+      "startDate": "2026-02-28",
+      "deployedAt": "2026-02-28",
       "evaluateAfterDays": 21,
       "tags": [
         "new-page",
         "move-3",
         "calculator"
       ],
-      "learnings": ""
+      "learnings": "Page built in PR #14. GSC (30d): 138 clicks, 9,452 impr, 1.5% CTR, pos 11.6. Top query: 'macrs depreciation calculator' (25 clicks, pos 6.6). PostHog: 26 views/14d. GSC still reports old URL — 301 working but not yet re-indexed."
     },
     {
       "id": "exp-006",
       "page": "/tools/equipment-depreciation-calculator",
       "field": "new-page",
       "before": "No page exists — /equipment-depreciation-calculator redirects to generic /tools",
-      "after": "Build dedicated interactive equipment depreciation calculator tool page",
+      "after": "Built dedicated interactive equipment depreciation calculator tool page with 301 redirect",
       "hypothesis": "7,494 monthly impressions going to generic /tools. Dedicated page with straight-line depreciation calculator should capture this traffic.",
       "baseline": {
         "clicks": null,
@@ -215,33 +215,33 @@
         "capturedAt": null
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 27,
+        "impressions": 7950,
+        "ctr": 0.3,
+        "position": 16.8,
         "dateRange": [
-          null,
-          null
+          "2026-02-09",
+          "2026-03-11"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-03-11T00:00:00.000Z"
       },
-      "status": "planned",
-      "startDate": null,
-      "deployedAt": null,
+      "status": "completed",
+      "startDate": "2026-02-28",
+      "deployedAt": "2026-02-28",
       "evaluateAfterDays": 21,
       "tags": [
         "new-page",
         "move-3",
         "calculator"
       ],
-      "learnings": ""
+      "learnings": "Page built in PR #14. GSC (30d): 27 clicks, 7,950 impr, 0.3% CTR, pos 16.8. Weakest performer of the 3 calculators — deeper position and lower CTR. May benefit from title/description optimization. PostHog: 7 views/14d."
     },
     {
       "id": "exp-007",
       "page": "/tools/salvage-value-calculator",
       "field": "new-page",
       "before": "No page exists — /salvage-value-calculator redirects to generic /tools",
-      "after": "Build dedicated interactive salvage value calculator tool page",
+      "after": "Built dedicated interactive salvage value calculator tool page with 301 redirect",
       "hypothesis": "8,163 monthly impressions going to generic /tools. Dedicated calculator page should capture this high-volume traffic.",
       "baseline": {
         "clicks": null,
@@ -255,26 +255,26 @@
         "capturedAt": null
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 73,
+        "impressions": 8358,
+        "ctr": 0.9,
+        "position": 9.3,
         "dateRange": [
-          null,
-          null
+          "2026-02-09",
+          "2026-03-11"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-03-11T00:00:00.000Z"
       },
-      "status": "planned",
-      "startDate": null,
-      "deployedAt": null,
+      "status": "completed",
+      "startDate": "2026-02-28",
+      "deployedAt": "2026-02-28",
       "evaluateAfterDays": 21,
       "tags": [
         "new-page",
         "move-3",
         "calculator"
       ],
-      "learnings": ""
+      "learnings": "Page built in PR #14. GSC (30d): 73 clicks, 8,358 impr, 0.9% CTR, pos 9.3. Best CTR of the 3 calculators. Top query: 'salvage value calculator' (22 clicks, pos 2.2). PostHog: 8 views/14d."
     },
     {
       "id": "exp-008",
@@ -284,15 +284,15 @@
       "after": "Snipe-IT vs Shelf — Which Open Source Asset Manager Fits Your Team? (2026)",
       "hypothesis": "1,522 impressions at 0.9% CTR, pos 10.0. The 'vs' format with a year tag performs better for comparison queries — makes the listing feel like a current, objective comparison rather than biased marketing.",
       "baseline": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 5,
+        "impressions": 808,
+        "ctr": 0.62,
+        "position": 9.1,
         "dateRange": [
           "2026-02-20",
           "2026-03-06"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-03-11T08:53:47.389Z"
       },
       "result": {
         "clicks": null,
@@ -305,14 +305,54 @@
         ],
         "capturedAt": null
       },
-      "status": "planned",
-      "startDate": null,
+      "status": "active",
+      "startDate": "2026-03-11",
       "deployedAt": null,
       "evaluateAfterDays": 14,
       "tags": [
         "title-rewrite",
         "move-2",
         "alternatives"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-009",
+      "page": "/tools/asset-label-designer",
+      "field": "title",
+      "before": "Free Asset Label Designer (Scan-Safe) | Shelf",
+      "after": "Free Asset Tag Maker & Label Designer | Shelf",
+      "hypothesis": "128 clicks/30d from /asset-tag-maker (18K impr, pos 24.8) + 'asset tag generator free' (7 clicks, 19.4% CTR). Current title says 'Label Designer' but searchers use 'asset tag' terminology. Matching search intent should lift CTR on tag-related queries.",
+      "baseline": {
+        "clicks": 128,
+        "impressions": 18024,
+        "ctr": 0.7,
+        "position": 24.8,
+        "dateRange": [
+          "2026-02-09",
+          "2026-03-11"
+        ],
+        "capturedAt": "2026-03-11T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-03-11",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "search-intent",
+        "tools"
       ],
       "learnings": ""
     }

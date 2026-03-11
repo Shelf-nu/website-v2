@@ -10,8 +10,8 @@ personas:
   - "operations"
   - "education"
 canonicalUrl: "/alternatives/hector"
-date: "2025-01-01"
-updated: "2025-01-01"
+date: "2026-01-01"
+updated: "2026-03-11"
 seo:
   title: "Hector Alternative — Modern Open-Source Asset Management | Shelf"
   description: "Evaluating Hector? Compare enterprise equipment tracking with Shelf’s QR-first approach to bookings, custody, and kits."
@@ -20,23 +20,45 @@ seo:
 
 # Hector Alternative
 
-Hector is an equipment tracking platform aimed at enterprise and institutional environments, offering check-out management, maintenance scheduling, and audit reporting. Teams evaluating alternatives often want faster day-to-day workflows, stronger booking capabilities, and a more intuitive experience for the staff members who actually handle equipment.
+Hector is a cloud-based asset management platform built by a small team in Quebec City, Canada. Founded in 2011, it covers the full asset lifecycle—loan tracking, maintenance scheduling, depreciation, and software license management—with pricing based on how many assets you register. The platform supports English, French, and German, and targets IT teams, educational institutions, construction companies, and healthcare organizations.
+
+Teams evaluating alternatives typically want a more flexible deployment model, stronger booking and kit workflows, or an open-source codebase they can inspect and self-host.
 
 ---
 
 ## Overview: Hector vs Shelf
 
-Hector provides a structured environment for tracking equipment across enterprise organizations. Its focus on administrative oversight includes features for depreciation tracking, vendor management, and maintenance scheduling—capabilities geared toward asset managers and procurement teams.
+Hector is a proprietary SaaS tool designed for organizations that need centralized control over asset inventories. It tracks assets from acquisition through disposal, with modules for preventive maintenance (CMMS), software license management, depreciation calculations, and equipment loans. Pricing starts at around $46/month for 250 assets and scales with your inventory—up to $1,200+/month at 10,000 assets on the mid-tier plan. There is no free tier; a 15-day trial is available.
 
-Shelf is designed for the operational layer of equipment management. Its focus is the daily interaction between people and gear: scanning a QR code to check something out, booking a camera kit for next week, transferring custody when shifts change, and verifying every component comes back. Shelf makes these moments frictionless.
+Shelf is open-source asset management software focused on the operational layer: custody handoffs, equipment bookings, kit management, and QR-driven workflows. Shelf offers a free tier for individuals, a Team plan at $67/month with unlimited users and assets, and the option to self-host from the public GitHub repository. Where Hector emphasizes lifecycle administration, Shelf emphasizes the daily movement of equipment between people and places.
 
 ---
 
 ## Where Shelf Takes a Different Approach
 
-### 1. User-Facing Simplicity
+### 1. Open Source vs Proprietary SaaS
 
-Hector’s interface is built for administrators managing enterprise inventories. Shelf’s interface serves both administrators and end users—the student borrowing a laptop, the technician grabbing a tool, the coordinator reserving a projector. Everyone interacts through the same simple QR-based workflow.
+Hector is closed-source software available only as a cloud service. You cannot inspect the code, audit security practices, or run it on your own infrastructure. If Hector's servers go down or the company changes direction, your asset data lives entirely within their platform.
+
+Shelf is fully open source—organizations can review every line of code, self-host on their own servers, and modify the platform to fit internal requirements. The entire codebase is available on GitHub. For teams in government, healthcare, or education where data sovereignty or procurement policies require open-source software, this is a fundamental difference.
+
+---
+
+### 2. Predictable Pricing vs Per-Asset Billing
+
+Hector charges based on the number of assets registered in the system across three tiers (Shield, Armor, Castle). This means your bill grows as your inventory grows—adding 500 assets to your catalog could significantly increase your monthly cost, regardless of how many people use the system. There is also a one-time setup fee, and no permanent free plan.
+
+Shelf uses flat-rate pricing: the Team plan at $67/month includes unlimited users and unlimited assets. Whether you track 200 items or 20,000, the price stays the same. Shelf also offers a free tier for individuals getting started. For organizations with large inventories, the pricing model difference compared to Hector's per-asset billing can be substantial.
+
+See: [Pricing](/pricing)
+
+---
+
+### 3. QR-First Workflows vs Dashboard Navigation
+
+Hector supports barcode and QR code scanning through its mobile app (available on Android and iOS), primarily for identifying assets during audits and check-outs. The platform can generate barcodes in formats like UPC, EAN, and 2D codes. However, the core workflow still centers on navigating the web dashboard to manage loans and returns.
+
+Shelf treats the QR label on the physical asset as the primary interface. Scanning a Shelf QR code immediately opens the asset’s full context—availability, custody history, booking options, and action buttons—on any device with a camera. No app download required. This makes check-out and return a five-second interaction rather than a multi-step dashboard operation.
 
 See: [Custody](/features/custody)
 
@@ -44,19 +66,11 @@ See: [Custody](/features/custody)
 
 ---
 
-### 2. QR Scan as the Primary Interface
+### 4. Purpose-Built Booking System
 
-Hector relies on dashboard navigation and search to manage equipment. Shelf makes the QR label on the equipment itself the entry point—scan it and the system presents exactly what you need: availability, booking options, custody actions, and history.
+Hector includes a loan management module that tracks which items are checked out, to whom, and for how long. It handles the logistics of lending but is not designed for scheduling shared resources in advance.
 
-See: [Location Tracking](/features/location-tracking)
-
-![Location tracking showing asset positions across sites](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/location-tracking.jpg)
-
----
-
-### 3. Real-Time Booking with Conflict Prevention
-
-Hector offers reservation features, but Shelf’s booking system is purpose-built for high-frequency shared equipment environments. The calendar shows real-time availability, prevents double-bookings automatically, and handles recurring reservations for production schedules and academic terms.
+Shelf has a dedicated booking system built for environments where equipment is reserved ahead of time—production studios, university equipment rooms, shared tool cribs. The calendar shows real-time availability, prevents double-bookings automatically, and supports recurring reservations for academic terms or weekly production schedules.
 
 See: [Bookings](/features/bookings)
 
@@ -64,9 +78,11 @@ See: [Bookings](/features/bookings)
 
 ---
 
-### 4. Kit Management with Component Tracking
+### 5. Kit Management with Component Verification
 
-Enterprise tools often track assets as individual records in a database. Shelf adds a kit layer—grouping related equipment into units that are booked, checked out, and verified together. Missing a cable from a returned kit? Shelf flags it immediately.
+Hector tracks assets as individual records in its inventory. If you lend out a camera with two lenses, a battery pack, and a tripod, each item is a separate loan entry.
+
+Shelf groups related items into kits. Book a camera kit, and all its components are reserved together. Return it, and Shelf verifies that every piece came back. A missing lens or cable is flagged immediately—not discovered during the next audit cycle.
 
 See: [Kits](/features/kits)
 
@@ -74,35 +90,62 @@ See: [Kits](/features/kits)
 
 ---
 
-### 5. Open Source and Transparent
+### 6. Multi-Team Workspaces
 
-Hector is proprietary enterprise software. Shelf is open source, allowing organizations to review the code, verify security practices, and self-host if their policies require it.
+Hector provides role-based access and SSO integration (including Active Directory sync), which works well for controlling who can view and manage assets within a single inventory. All users share the same asset pool.
+
+Shelf goes further with workspaces—fully separated inventories for different departments, programs, or locations. IT, media, facilities, and education teams each get their own asset catalog, their own booking calendars, and their own reporting, while the organization maintains a unified view across all teams. This is particularly valuable for universities and multi-site organizations where different groups manage entirely different types of equipment.
+
+See: [Workspaces](/features/workspaces)
+
+![Workspaces overview showing separate inventories for different departments](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/workspaces.jpg)
+
+---
+
+### 7. Location Tracking Across Sites
+
+Hector records asset locations as a data field in each asset record—useful for static inventories, but reliant on someone manually updating the field when equipment moves.
+
+Shelf treats location as a dynamic property—updated automatically through custody transfers, QR scans, and check-in events. You get a real-time view of where equipment is across all your sites, not just a static label that may be weeks out of date. For organizations managing equipment across multiple buildings or campuses, this provides significantly better visibility.
+
+See: [Location Tracking](/features/location-tracking)
+
+![Location tracking showing asset positions across sites](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/location-tracking.jpg)
 
 ---
 
 ## When Teams Choose Shelf Instead of Hector
 
-- **Universities and schools**: Students and staff need a simple, intuitive interface they can use without training
-- **Media and production teams**: Kit-based workflows with booking and component verification are daily necessities
-- **IT departments distributing devices**: Fast QR-based check-out is more efficient than navigating an enterprise dashboard
-- **Multi-department organizations**: Workspaces give each team autonomy while maintaining organizational visibility
-- **Teams wanting rapid deployment**: Get operational in days, not weeks of enterprise configuration
+Teams tend to choose Shelf over Hector when:
+
+- **Open-source requirements matter**: Government agencies, universities, and security-conscious organizations that need source code access or self-hosting capability
+- **Inventory is large but the team is small**: A 10-person team tracking 5,000 assets pays far less on Shelf’s per-seat model than on Hector’s per-asset billing
+- **Equipment moves frequently**: Environments where gear is checked out, returned, and re-assigned daily benefit from QR-first workflows over dashboard-centric management
+- **Booking shared resources is a core need**: Production studios, media departments, and equipment rooms need forward-looking reservation calendars, not just loan tracking
+- **Kits need to stay together**: Teams lending out multi-component equipment sets (camera kits, tool kits, AV setups) need kit-aware tracking with return verification
+- **Multiple departments share a platform**: Organizations that want department-level autonomy with organizational oversight through workspaces
+- **End users need zero training**: Shelf’s QR-scan interface means students, technicians, and coordinators can check out equipment without learning a dashboard—reducing onboarding friction to nearly zero
 
 ---
 
 ## When Hector May Be a Better Fit
 
-- **Organizations needing vendor and procurement management**: Teams that want asset tracking tightly integrated with purchasing workflows
-- **Maintenance-heavy environments**: Operations where scheduled preventive maintenance is a primary concern
-- **Enterprise compliance requirements**: Organizations with strict reporting needs tied to asset depreciation and lifecycle
+Hector may be a stronger choice when:
+
+- **CMMS and preventive maintenance are the priority**: Hector’s built-in maintenance scheduling module is designed for environments where tracking service intervals, work orders, and equipment health is the primary concern—think HVAC systems, fleet vehicles, or manufacturing equipment
+- **Software license management is needed**: Hector includes a dedicated module for tracking software licenses, renewal dates, and compliance—a capability Shelf does not focus on
+- **Depreciation and financial reporting drive the workflow**: Organizations whose asset management is primarily an accounting function (tracking book value, calculating depreciation, preparing for audits) may find Hector’s financial modules more directly aligned
+- **Active Directory sync is essential**: Hector’s native AD integration and user synchronization may appeal to Windows-centric IT environments that want automatic user provisioning
+- **Cloud-only deployment is preferred**: Teams that do not want to manage infrastructure and prefer a fully managed SaaS experience may appreciate Hector’s turnkey approach
 
 ---
 
 ## Case Studies
 
-See how teams streamline equipment operations:
+See how teams use Shelf for the kinds of equipment workflows that Hector users often need:
 
 - [Eastern Michigan University — Theatre Equipment Management](/case-studies/eastern-michigan-university)
+- [KCAI — Art College Equipment Tracking](/case-studies/kcai)
 - [Fabel Film — Eliminating Double Bookings](/case-studies/fabel-film-double-bookings)
 - [CES Utility Solutions — $70K Equipment Recovery](/case-studies/ces-70k-recovery)
 
@@ -113,3 +156,5 @@ See how teams streamline equipment operations:
 - [Asset Tracking](/solutions/asset-tracking)
 - [Educational Resource Management](/solutions/educational-resource-management)
 - [Equipment Check-In](/solutions/equipment-check-in)
+- [IT Asset Management](/solutions/it-asset-management)
+- [Open Source Asset Management](/solutions/open-source-asset-management)
