@@ -82,7 +82,7 @@ export function Hero({
                     {/* Main Heading */}
                     <ScrollReveal width="100%" delay={0.2}>
                         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-5 leading-[1.08]">
-                            The equipment platform your team <span className="text-orange-600">will actually use.</span>
+                            The open-source asset management software your team <span className="text-orange-600">will actually use.</span>
                         </h1>
                     </ScrollReveal>
 
