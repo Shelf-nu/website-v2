@@ -10,8 +10,8 @@ personas:
   - "facilities"
   - "it"
 canonicalUrl: "/alternatives/upkeep"
-date: "2025-01-01"
-updated: "2025-01-01"
+date: "2026-01-01"
+updated: "2026-03-11"
 seo:
   title: "UpKeep Alternative — Asset Tracking Without Maintenance Bloat | Shelf"
   description: "UpKeep is a CMMS with deep maintenance capabilities. Shelf focuses on fast equipment tracking, custody, bookings, and movement workflows. Compare the differences."
@@ -20,46 +20,64 @@ seo:
 
 # UpKeep Alternative
 
-UpKeep is a leading CMMS (Computerized Maintenance Management System) designed for teams with structured work orders, preventive maintenance schedules, and technician coordination. Some organizations explore alternatives when they need simpler day-to-day equipment tracking without the overhead of full CMMS administration.
+UpKeep is a Los Angeles-based CMMS (Computerized Maintenance Management System) founded in 2016 by Ryan Chan, who built the product after experiencing firsthand how painful maintenance workflows were while working as a process engineer at a manufacturing plant. Backed by $50M in venture funding from Y Combinator, Insight Partners, and Emergence Capital, UpKeep has grown to serve over 4,000 companies with a mobile-first approach to work orders, preventive maintenance, and technician coordination. Teams evaluating alternatives typically find that UpKeep's depth in maintenance management comes with complexity and per-user costs that don't fit when the real need is straightforward equipment tracking, check-outs, and bookings.
 
 ---
 
 ## Overview: UpKeep vs Shelf
 
-UpKeep and Shelf serve different operational needs:
+UpKeep offers four tiers: Lite ($20/user/month), Starter ($45/user/month), Professional ($75/user/month), and Business+ (custom pricing). Per-user pricing means costs scale directly with team size. A 25-person operations team on the Starter plan pays over $13,000/year before adding IoT sensors or advanced analytics. Core features like AI-powered insights and advanced reporting are reserved for higher tiers, which reviewers on Capterra and G2 frequently note as a friction point for smaller organizations.
 
-**UpKeep** belongs to the **CMMS** category. It focuses on work orders, asset maintenance scheduling, technician workflows, compliance tracking, and service documentation. It's built for environments where structured maintenance processes are central to operations.
+Shelf takes a fundamentally different approach. Instead of managing maintenance tickets and technician schedules, Shelf focuses on what happens when people interact with equipment: who checked it out, where it went, when it's due back, and who needs it next. Shelf is also open source, so teams can self-host for free or use the managed cloud service without per-user scaling concerns.
 
-**Shelf** belongs to the **equipment tracking and operations** category. It focuses on check-outs, custody, bookings, locations, and kits. It's built for environments where equipment moves frequently between people and places—and where speed and simplicity matter.
+---
 
-Both platforms are valuable, but they solve different problems.
+## Quick Comparison
+
+| Capability | UpKeep | Shelf |
+|---|---|---|
+| **Primary focus** | Work orders, preventive maintenance, technician dispatch | Equipment check-out, booking, custody, location |
+| **Pricing model** | Per user/month (from $20) | Free (self-hosted) or managed cloud |
+| **Work order management** | Core feature with checklists, photos, time logging | Not a focus — built for equipment workflows |
+| **Preventive maintenance** | Automated schedules, meter-based triggers, IoT alerts | No — maintenance scheduling is not the use case |
+| **Equipment booking** | Not a core feature | Built-in with conflict prevention |
+| **Kit management** | Individual asset records only | Kit-aware booking and return verification |
+| **IoT / sensor integration** | Yes — wireless sensors with auto-work-order creation | No — QR-first, no hardware needed |
+| **Parts inventory** | Yes — purchase orders, stock tracking, reorder alerts | No — focused on equipment, not consumables |
+| **Open source** | No — proprietary SaaS | Yes — full codebase available |
+| **Per-user pricing** | Yes — every user adds cost | No — unlimited users |
+| **Mobile experience** | Native iOS/Android app | Mobile-first web app, no install required |
+| **Multi-team workspaces** | Single inventory with roles | Separated workspaces per department |
 
 ---
 
 ## Where Shelf Takes a Different Approach
 
-### 1. Lightweight and Workflow-First
+### 1. Equipment Circulation vs Maintenance Tickets
 
-Shelf requires no heavy configuration. It's designed for teams with shared gear and frequent equipment movement—where the priority is tracking who has what and when it's coming back, not managing maintenance tickets.
+UpKeep is built around work orders. A technician receives a request, logs parts and labor, closes the ticket, and the maintenance manager reviews KPIs. That workflow makes sense in manufacturing plants, facilities with HVAC systems, and fleet operations where preventive maintenance scheduling drives the business.
 
-The focus is on daily operations: check-outs, custody transfers, location updates, and booking schedules.
+But many teams don't manage maintenance at all. They manage equipment movement: laptops going out to new hires, cameras booked for productions, AV gear checked out for events, tools moving between job sites. For these teams, UpKeep's work order system is overhead they pay for but never use. Shelf is built specifically for this circulation pattern: check-out, track custody, return, repeat.
 
----
+See: [Custody](/features/custody)
 
-### 2. Fast QR-Based Actions
-
-Shelf uses QR codes as the primary interface for equipment operations. Scan to check out, scan to return, scan to update location—all in seconds, on any device.
-
-See: [Custody](/features/custody)  
-See: [Location Tracking](/features/location-tracking)
-
-![Location tracking showing asset positions across sites](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/location-tracking.jpg)
+![Custody tracking showing who is responsible for each asset](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/custodians.jpg)
 
 ---
 
-### 3. Built-In Bookings and Reservations
+### 2. Flat Pricing vs Per-User Scaling
 
-Shelf includes native booking functionality for scheduling shared equipment. Users can reserve items ahead of time with conflict-free scheduling—no separate systems required.
+UpKeep's per-user pricing creates a direct tension: the more people who need to interact with equipment, the higher the bill. For a 50-person team on the Starter plan, that's $27,000/year. Organizations often respond by limiting who gets access, which defeats the purpose of having a system that tracks accountability across the team. Review sites surface this complaint regularly, with users noting that costs escalate quickly when advanced features require tier upgrades.
+
+Shelf includes unlimited users on all plans. The equipment room manager, the field technician, the department head checking availability, and the intern picking up a loaner laptop all participate without adding line items to the invoice. This is particularly important for education and media environments where dozens of users interact with shared gear.
+
+---
+
+### 3. Purpose-Built Booking and Reservations
+
+UpKeep schedules maintenance events: inspections, PM routines, sensor-triggered alerts. What it does not provide is a reservation system for shared equipment. If three production teams need the same camera package next week, UpKeep has no native way to manage that conflict.
+
+Shelf's booking system handles exactly this: real-time availability calendars, automatic double-booking prevention, and multi-day reservation support. Film crews scheduling camera packages, universities managing student gear loans, and IT teams coordinating laptop pools all rely on booking-first workflows that UpKeep was never designed to support.
 
 See: [Bookings](/features/bookings)
 
@@ -67,9 +85,11 @@ See: [Bookings](/features/bookings)
 
 ---
 
-### 4. Kits for Real-World Gear
+### 4. Kit Tracking and Component Verification
 
-Shelf tracks accessories and components with parent-child relationships. Book a camera kit, and all its accessories follow. Return it, and Shelf flags what's missing.
+UpKeep tracks assets as individual records with maintenance histories. If you manage a video production kit with a camera body, three lenses, a wireless mic, batteries, and a tripod, those are six separate items in UpKeep with no inherent grouping for check-out purposes.
+
+Shelf bundles related equipment into kits that are booked, checked out, and verified as a single unit. When a kit returns missing an SD card or a battery charger, Shelf flags the discrepancy before the next user picks it up. This prevents the slow bleed of accessories that plagues high-turnover shared equipment operations, something a maintenance-focused CMMS has no mechanism to address.
 
 See: [Kits](/features/kits)
 
@@ -77,9 +97,23 @@ See: [Kits](/features/kits)
 
 ---
 
-### 5. Multi-Department Use
+### 5. QR-First Simplicity vs CMMS Complexity
 
-Education, IT, media, and field teams can all use Shelf without complicated setup. Each department manages its own equipment while administrators retain visibility across the organization.
+UpKeep reviewers consistently praise its mobile app and ease of use relative to legacy CMMS platforms. But even an accessible CMMS carries inherent complexity: work order categories, priority levels, technician assignments, parts logs, and compliance documentation. For teams that just need to track who has what, that structure becomes noise.
+
+Shelf uses QR codes as the primary interface. Scan to check out, scan to return, scan to see the full custody history. Any smartphone becomes a scanner with no app installation required. A student borrowing a laptop, a contractor picking up tools, or an event coordinator grabbing AV gear can complete the transaction in seconds without CMMS training.
+
+See: [Location Tracking](/features/location-tracking)
+
+![Location tracking showing asset positions across sites](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/location-tracking.jpg)
+
+---
+
+### 6. Multi-Department Workspaces
+
+UpKeep organizes assets in a single inventory with role-based permissions. This works well for a dedicated maintenance department but becomes cumbersome when IT, facilities, media production, and education programs all need independent equipment management within the same organization.
+
+Shelf uses workspaces to separate inventories by department, program, or location. Each team manages their own equipment independently, while administrators retain organization-level visibility. No cross-department clutter, no permission matrix to maintain.
 
 See: [Workspaces](/features/workspaces)
 
@@ -87,38 +121,50 @@ See: [Workspaces](/features/workspaces)
 
 ---
 
-## When Shelf Is a Better Fit than UpKeep
+### 7. Open Source and Data Ownership
 
-Shelf may be a better fit when your operational needs focus on equipment movement rather than maintenance scheduling:
+UpKeep is proprietary SaaS with no self-hosting option. Your asset data, maintenance records, and operational history live on UpKeep's infrastructure under their terms. If you leave, you export what they allow.
 
-- **Shared equipment with frequent check-outs**: Gear that moves between users daily or weekly
-- **Media, AV, or education teams**: Fast check-out workflows without administrative overhead
-- **IT teams loaning laptops or carts**: Simple custody tracking without work order complexity
-- **Field teams tracking tools between sites**: QR-based handoffs during shifts and site changes
-- **Teams that don't need work order management**: Equipment tracking without maintenance ticketing
+Shelf is fully open source. Teams can inspect the codebase, self-host on their own infrastructure, and extend functionality without waiting for vendor roadmap decisions. For organizations with data sovereignty requirements or IT policies that prohibit third-party-hosted operational data, this is a deciding factor rather than a nice-to-have.
 
 ---
 
-## When UpKeep May Be the Better Fit
+## When Teams Choose Shelf Instead of UpKeep
 
-UpKeep may be a better choice when maintenance is central to your operations:
+Teams choose Shelf over UpKeep when their daily operations center on equipment circulation rather than maintenance management:
 
-- **Maintenance-heavy environments**: Teams with structured PM schedules and repair workflows
-- **Organizations with technicians and work orders**: Environments where service requests, assignments, and completion tracking are essential
-- **Facilities teams needing compliance and service logs**: Operations that require detailed maintenance documentation for audits and compliance
+- **Equipment moves more than it breaks**: The primary workflow is check-outs, returns, and transfers rather than repairs and inspections
+- **Per-user costs don't scale**: UpKeep's pricing model becomes prohibitive when 30+ people need system access for basic equipment interactions
+- **Booking is the bottleneck**: Scheduling shared gear is a daily challenge, not an occasional convenience
+- **Kits need to stay complete**: Production, education, and field teams managing grouped equipment need component-level tracking on return
+- **Multiple departments share one platform**: IT, facilities, and media teams need independent workspaces rather than a single CMMS inventory
+- **Non-technical users participate daily**: Students, contractors, and field staff can scan a QR code without CMMS onboarding
+- **Open source matters**: Data sovereignty, self-hosting capability, and codebase transparency are organizational requirements
 
-If your primary challenge is managing maintenance processes, a CMMS like UpKeep is purpose-built for that work.
+---
+
+## When UpKeep May Be a Better Fit
+
+UpKeep has genuine strengths that make it the right choice for specific operational profiles:
+
+- **Maintenance-driven operations**: Manufacturing plants, food and beverage facilities, and property management companies with structured PM schedules, compliance requirements, and technician coordination will find UpKeep's work order engine far more capable than anything Shelf offers
+- **IoT sensor monitoring**: If assets need 24/7 automated condition monitoring with sensor-triggered work orders (vibration, temperature, runtime hours), UpKeep's IoT integration addresses this directly
+- **Parts and inventory management**: Teams that need to track spare parts stock levels, automate purchase orders, and associate parts consumption with specific work orders have a genuine need UpKeep serves
+- **Technician dispatch and labor tracking**: Organizations with dedicated maintenance staff who need assignment routing, time logging, and wrench-time analytics benefit from UpKeep's technician-focused workflow
+- **Regulatory compliance documentation**: Industries requiring auditable maintenance records for OSHA, FDA, or ISO compliance will find UpKeep's documentation and reporting more mature for that purpose
+
+Both platforms manage assets, but they solve different operational problems. UpKeep excels when the question is "when does this asset need service and who will do the work?" Shelf excels when the question is "who has this equipment and when is it coming back?"
 
 ---
 
 ## Case Studies
 
-See how teams use Shelf for equipment operations:
+See how teams operate with equipment-first workflows:
 
 - [CES Utility Solutions — $70K Equipment Recovery](/case-studies/ces-70k-recovery)
+- [ResQ Contact Center — 4,000+ Devices Across Multiple Sites](/case-studies/resq-contact-center)
+- [HAARP — Research Equipment Accountability](/case-studies/haarp)
 - [Fabel Film — Eliminating Double Bookings](/case-studies/fabel-film-double-bookings)
-- [Eastern Michigan University — Theatre Equipment Management](/case-studies/eastern-michigan-university)
-- [ResQ Contact Center — Improved Accountability](/case-studies/resq-contact-center)
 
 ---
 
@@ -127,4 +173,4 @@ See how teams use Shelf for equipment operations:
 - [Asset Tracking](/solutions/asset-tracking)
 - [Equipment Reservations](/solutions/equipment-reservations)
 - [IT Asset Tracking](/solutions/it-asset-management)
-
+- [Tool Tracking](/solutions/tool-tracking)

@@ -29,8 +29,8 @@ export default function HomePage() {
 
             <FAQSection />
             <ScaleBlock />
-            <FeatureNavigationCTA />
             <CaseStudiesPreview />
+            <FeatureNavigationCTA />
         </>
     );
 }

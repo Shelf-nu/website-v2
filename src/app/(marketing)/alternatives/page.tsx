@@ -2,10 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllContent } from "@/lib/mdx";
 import { Container } from "@/components/ui/container";
+import { Badge } from "@/components/ui/badge";
 import { Metadata } from "next";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight, ArrowLeftRight } from "lucide-react";
 import { CTA } from "@/components/sections/cta";
+import { getCompetitorAdvantages } from "@/data/competitor-advantages";
 
 export const metadata: Metadata = {
     title: "Shelf Alternatives & Comparisons | Shelf",
@@ -64,6 +66,7 @@ export default function AlternativesIndexPage() {
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {alternatives.map((alt, index) => {
                             const logo = competitorLogos[alt.slug];
+                            const advantages = getCompetitorAdvantages(alt.slug);
                             return (
                                 <ScrollReveal key={alt.slug} delay={index * 0.04}>
                                     <Link
@@ -101,6 +104,30 @@ export default function AlternativesIndexPage() {
                                             <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
                                                 {alt.frontmatter.description}
                                             </p>
+
+                                            {/* Competitive advantage pills */}
+                                            {advantages.length > 0 && (
+                                                <div className="mt-3">
+                                                    <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600/70 dark:text-emerald-400/70 mb-1.5">
+                                                        Where Shelf wins
+                                                    </p>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                    {advantages.map((adv) => {
+                                                        const AdvIcon = adv.icon;
+                                                        return (
+                                                            <Badge
+                                                                key={adv.id}
+                                                                variant="secondary"
+                                                                className="bg-emerald-50 text-emerald-700 border-emerald-100/50 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-800/30 font-medium text-[11px] px-2 py-0.5 gap-1"
+                                                            >
+                                                                <AdvIcon className="h-3 w-3" />
+                                                                {adv.label}
+                                                            </Badge>
+                                                        );
+                                                    })}
+                                                    </div>
+                                                </div>
+                                            )}
 
                                             <div className="mt-4 flex items-center text-sm font-medium text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 Read comparison{" "}

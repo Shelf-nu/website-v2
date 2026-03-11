@@ -48,7 +48,7 @@ export default function ResourcesPage() {
                         </p>
                         <div className="mt-auto pt-4 w-full sm:w-auto">
                             <Button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                                <a href="mailto:sales@shelf.nu">Talk to sales</a>
+                                <a href="mailto:hello@shelf.nu">Talk to sales</a>
                             </Button>
                         </div>
                     </Card>

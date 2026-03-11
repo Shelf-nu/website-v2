@@ -23,7 +23,7 @@ export function Footer() {
                         <h3 className="text-sm font-semibold mb-6 text-foreground tracking-tight">Product</h3>
                         <ul className="space-y-3.5 text-sm">
                             <li><Link href="/features" className="hover:text-orange-600 transition-colors">Features</Link></li>
-                            <li><Link href="/pricing" className="hover:text-orange-600 transition-colors">Pricing</Link></li>
+                            <li><Link href="/pricing" className="text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors">Pricing</Link></li>
                             <li><Link href="/demo" className="hover:text-orange-600 transition-colors">Book a Demo</Link></li>
                             <li><Link href="/case-studies" className="hover:text-orange-600 transition-colors">Case Studies</Link></li>
                             <li><Link href="/customers" className="hover:text-orange-600 transition-colors">Customers</Link></li>

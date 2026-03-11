@@ -109,7 +109,7 @@ export default function DemoPage() {
                             <CardHeader className="space-y-1">
                                 <CardTitle className="text-2xl">Book your demo</CardTitle>
                                 <CardDescription>
-                                    Fill out the form below and we&apos;ll be in touch shortly.
+                                    Takes about 60 seconds. We&apos;ll be in touch shortly.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>

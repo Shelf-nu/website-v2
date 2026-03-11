@@ -9,6 +9,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Pill } from "@/components/ui/pill";
 import { Play } from "lucide-react";
 import { MigrationDropdown } from "@/components/sections/migration-dropdown";
+import { getHeroLogos } from "@/data/customer-logos";
 
 interface HeroProps {
     heroImageDesktop?: string;
@@ -27,10 +28,10 @@ export function Hero({
 
             <Container className="relative">
                 {/* Centered Content Stack */}
-                <div className="max-w-3xl mx-auto text-center relative z-20">
+                <div className="max-w-4xl mx-auto text-center relative z-20">
                     {/* Announcement Badge */}
                     <ScrollReveal width="100%" delay={0.1}>
-                        <div className="mb-8 flex justify-center">
+                        <div className="mb-6 flex justify-center">
                             <Pill
                                 href="/case-studies"
                                 icon={
@@ -50,7 +51,7 @@ export function Hero({
 
                     {/* Testimonials */}
                     <ScrollReveal width="100%" delay={0.15}>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 max-w-lg mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 max-w-lg mx-auto">
                             <div>
                                 <div className="flex gap-1 mb-2 justify-center text-orange-500">
                                     {[...Array(5)].map((_, i) => (
@@ -80,14 +81,14 @@ export function Hero({
 
                     {/* Main Heading */}
                     <ScrollReveal width="100%" delay={0.2}>
-                        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-[1.1]">
+                        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-5 leading-[1.08]">
                             The equipment platform your team <span className="text-orange-600">will actually use.</span>
                         </h1>
                     </ScrollReveal>
 
                     {/* Subheading */}
                     <ScrollReveal width="100%" delay={0.3}>
-                        <p className="mx-auto max-w-xl text-lg leading-relaxed text-muted-foreground mb-10">
+                        <p className="mx-auto max-w-xl text-lg leading-relaxed text-muted-foreground mb-8">
                             Stop wrestling with spreadsheets and per-user pricing. Shelf is the fast, open-source way to track gear, manage bookings, and prevent double-bookings.
                         </p>
                     </ScrollReveal>
@@ -115,6 +116,28 @@ export function Hero({
                         </div>
                     </ScrollReveal>
                 </div>
+
+                {/* Hero Logo Marquee */}
+                <ScrollReveal width="100%" delay={0.45}>
+                    <div className="mt-10 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                        <div
+                            className="flex gap-12 sm:gap-16 flex-nowrap animate-marquee"
+                            style={{ "--marquee-duration": "25s" } as React.CSSProperties}
+                        >
+                            {[...getHeroLogos(), ...getHeroLogos()].map((logo, i) => (
+                                <div key={`${logo.id}-${i}`} className="relative h-7 w-20 flex-shrink-0 flex items-center justify-center">
+                                    <Image
+                                        src={logo.logo}
+                                        alt={logo.name}
+                                        fill
+                                        className="object-contain opacity-35 grayscale"
+                                        sizes="80px"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </ScrollReveal>
 
                 {/* Dashboard Image — Full-Width Below */}
                 <div className="mt-16 sm:mt-20 relative mx-auto max-w-5xl">

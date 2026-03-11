@@ -11,6 +11,62 @@ import { ArrowRight, CheckCircle2, MessageSquare, Check, Minus } from "lucide-re
 import { CompatibilityChecker } from "@/components/ui/compatibility-checker";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 
+/* ------------------------------------------------------------------ */
+/*  Cross-linking: competitor groups for "Also Compare" section        */
+/* ------------------------------------------------------------------ */
+
+type CompetitorGroup = "open-source" | "simple" | "enterprise" | "cmms" | "niche";
+
+const COMPETITOR_GROUPS: Record<string, { group: CompetitorGroup; label: string }> = {
+    "snipe-it":          { group: "open-source", label: "Snipe-IT" },
+    hector:              { group: "open-source", label: "Hector" },
+    sortly:              { group: "simple",      label: "Sortly" },
+    "asset-tiger":       { group: "simple",      label: "Asset Tiger" },
+    "blue-tally":        { group: "simple",      label: "BlueTally" },
+    itemit:              { group: "simple",      label: "Itemit" },
+    gocodes:             { group: "simple",      label: "GoCodes" },
+    "asset-panda":       { group: "enterprise",  label: "Asset Panda" },
+    ezofficeinventory:   { group: "enterprise",  label: "EZOfficeInventory" },
+    "asset-infinity":    { group: "enterprise",  label: "Asset Infinity" },
+    hardcat:             { group: "enterprise",  label: "Hardcat" },
+    "asset-guru":        { group: "enterprise",  label: "Asset Guru" },
+    timly:               { group: "enterprise",  label: "Timly" },
+    upkeep:              { group: "cmms",        label: "UpKeep" },
+    limble:              { group: "cmms",        label: "Limble" },
+    "brite-check":       { group: "cmms",        label: "BriteCheck" },
+    cheqroom:            { group: "niche",       label: "Cheqroom" },
+    webcheckout:         { group: "niche",       label: "WebCheckout" },
+    "share-my-toolbox":  { group: "niche",       label: "ShareMyToolbox" },
+    wasp:                { group: "niche",       label: "Wasp Barcode" },
+};
+
+/** Adjacent groups that share buyer intent */
+const ADJACENT_GROUPS: Record<CompetitorGroup, CompetitorGroup[]> = {
+    "open-source": ["simple", "enterprise"],
+    simple:        ["open-source", "niche"],
+    enterprise:    ["cmms", "open-source"],
+    cmms:          ["enterprise", "simple"],
+    niche:         ["simple", "cmms"],
+};
+
+/** Pick up to `count` related competitors for cross-linking */
+function getRelatedCompetitors(currentSlug: string, count = 5): { slug: string; label: string }[] {
+    const current = COMPETITOR_GROUPS[currentSlug];
+    if (!current) return [];
+
+    const sameGroup = Object.entries(COMPETITOR_GROUPS)
+        .filter(([slug, c]) => slug !== currentSlug && c.group === current.group)
+        .map(([slug, c]) => ({ slug, label: c.label }));
+
+    const adjacentGroupIds = ADJACENT_GROUPS[current.group] || [];
+    const adjacent = Object.entries(COMPETITOR_GROUPS)
+        .filter(([slug, c]) => slug !== currentSlug && adjacentGroupIds.includes(c.group))
+        .map(([slug, c]) => ({ slug, label: c.label }));
+
+    // Prioritize same group first, then fill with adjacent
+    return [...sameGroup, ...adjacent].slice(0, count);
+}
+
 /** Maps competitor slug → logo file in public/logos/ */
 const COMPETITOR_LOGOS: Record<string, string> = {
     cheqroom: "/logos/cheqroom.webp",
@@ -297,6 +353,59 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                         </div>
                     </Container>
                 </main>
+
+                {/* Also Compare — cross-link to related alternatives */}
+                {(() => {
+                    const related = getRelatedCompetitors(competitorSlug);
+                    if (related.length === 0) return null;
+                    return (
+                        <section className="border-t bg-muted/20">
+                            <Container className="py-16">
+                                <h2 className="text-2xl font-bold text-foreground mb-2">Also compare</h2>
+                                <p className="text-muted-foreground mb-8">
+                                    Evaluating alternatives? See how Shelf stacks up against similar tools.
+                                </p>
+                                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                                    {related.map((r) => {
+                                        const logo = COMPETITOR_LOGOS[r.slug];
+                                        return (
+                                            <Link
+                                                key={r.slug}
+                                                href={`/alternatives/${r.slug}`}
+                                                className="group flex flex-col items-center gap-3 rounded-xl border border-border/50 bg-card p-5 hover:border-orange-200 hover:shadow-md transition-all"
+                                            >
+                                                <div className="flex items-center justify-center h-10 w-24 rounded-lg bg-white border border-border/30 p-2">
+                                                    {logo ? (
+                                                        <Image
+                                                            src={logo}
+                                                            alt={r.label}
+                                                            width={80}
+                                                            height={32}
+                                                            className="h-full w-auto object-contain"
+                                                        />
+                                                    ) : (
+                                                        <span className="text-xs font-bold text-foreground truncate">{r.label}</span>
+                                                    )}
+                                                </div>
+                                                <span className="text-sm font-medium text-foreground group-hover:text-orange-600 transition-colors">
+                                                    Shelf vs {r.label}
+                                                </span>
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                                <div className="mt-6 text-center">
+                                    <Link
+                                        href="/alternatives"
+                                        className="text-sm font-medium text-orange-600 hover:text-orange-700 transition-colors"
+                                    >
+                                        View all comparisons →
+                                    </Link>
+                                </div>
+                            </Container>
+                        </section>
+                    );
+                })()}
 
                 <CTA />
 

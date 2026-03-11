@@ -653,6 +653,23 @@ export function getTestimonialLogos() {
     return CUSTOMER_LOGOS.filter((l) => l.quote);
 }
 
+/** Curated high-recognition logos for the hero section logo strip */
+export function getHeroLogos() {
+    const heroIds = [
+        "nokia",
+        "british-airways",
+        "chicago-bulls",
+        "berkeley",
+        "universal-music",
+        "virgin-hyperloop",
+        "purdue-university",
+        "arup",
+    ];
+    return heroIds
+        .map((id) => CUSTOMER_LOGOS.find((l) => l.id === id))
+        .filter(Boolean) as CustomerLogo[];
+}
+
 /** All logos grouped by industry */
 export function getLogosByIndustry() {
     const grouped: Record<string, CustomerLogo[]> = {};

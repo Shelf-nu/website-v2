@@ -7,8 +7,8 @@ import { CTA } from '@/components/sections/cta';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
-    title: 'Free Asset Label Designer (Scan-Safe) | Shelf',
-    description: 'Design and download professional, scan-safe QR asset labels. Optimized for high contrast and durability. Exports to PNG, SVG, and PDF.',
+    title: 'Free Asset Tag Maker & Label Designer | Shelf',
+    description: 'Create and print professional asset tags with QR codes. Free online tag generator — exports to PNG, SVG, and PDF. No signup required.',
     alternates: {
         canonical: 'https://www.shelf.nu/tools/asset-label-designer'
     }
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function AssetLabelDesignerPage() {
     return (
-        <PagefindWrapper type="Page" title="Free Asset Label Designer (Scan-Safe)" keywords="asset label designer create labels design labels">
+        <PagefindWrapper type="Page" title="Free Asset Tag Maker & Label Designer" keywords="asset tag maker asset tags label designer asset label generator create tags">
         <div className="min-h-screen font-sans">
             {/* Custom Header with Grid Pattern */}
             <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">
@@ -30,10 +30,10 @@ export default function AssetLabelDesignerPage() {
                             <ArrowRight className="h-3 w-3 mr-1 rotate-180" /> Back to Tools
                         </Link>
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-foreground">
-                            Free Asset Label Designer
+                            Free Asset Tag Maker
                         </h1>
                         <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                            Generate durable, scan-safe QR labels for your equipment. No signup required. Optimized for industrial clarity and easy printing.
+                            Create durable, scan-safe QR asset tags for your equipment. Free online generator — no signup required. Export to PNG, SVG, or PDF.
                         </p>
                     </div>
                 </Container>
