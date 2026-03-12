@@ -36,6 +36,7 @@ const competitorLogos: Record<string, string> = {
     timly: "/logos/timly.svg",
     wasp: "/logos/wasp.webp",
     webcheckout: "/logos/webcheckout.webp",
+    reftab: "/logos/reftab_darkfont.png",
 };
 
 export default function AlternativesIndexPage() {

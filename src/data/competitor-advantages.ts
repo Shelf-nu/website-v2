@@ -98,6 +98,8 @@ const competitorAdvantages: Record<string, string[]> = {
   timly: ["lower-cost", "no-hardware", "open-source"],
   wasp: ["modern-ux", "faster-setup", "open-source"],
   webcheckout: ["modern-ux", "qr-first", "open-source"],
+  spreadsheets: ["qr-first", "bookings", "unlimited-users"],
+  reftab: ["bookings", "open-source", "flat-pricing"],
 };
 
 /** Resolve advantage IDs to full AdvantageType objects for a competitor */

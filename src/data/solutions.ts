@@ -1,4 +1,4 @@
-import { LucideIcon, Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone, ArrowLeftRight, Home, Globe } from "lucide-react";
+import { LucideIcon, Link as LinkIcon, Settings, Code2, BarChart2, Layers, BookOpen, Smartphone, ArrowLeftRight, Home, Globe, MapPin, Wrench } from "lucide-react";
 
 export const solutionIcons: Record<string, LucideIcon> = {
     "asset-tracking": LinkIcon,
@@ -13,6 +13,8 @@ export const solutionIcons: Record<string, LucideIcon> = {
     "home-inventory-management": Home,
     "open-source-asset-management": Globe,
     "equipment-management": Settings,
+    "multi-location-asset-tracking": MapPin,
+    "maintenance-tracking": Wrench,
 };
 
 export const solutions = [
@@ -87,5 +89,17 @@ export const solutions = [
         description: "Track, schedule, and manage shared gear.",
         icon: Settings,
         href: "/solutions/equipment-management"
+    },
+    {
+        title: "Multi-Location Tracking",
+        description: "Track equipment across sites and warehouses.",
+        icon: MapPin,
+        href: "/solutions/multi-location-asset-tracking"
+    },
+    {
+        title: "Maintenance Tracking",
+        description: "Schedule service and track equipment upkeep.",
+        icon: Wrench,
+        href: "/solutions/maintenance-tracking"
     }
 ];
