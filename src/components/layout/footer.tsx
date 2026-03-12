@@ -40,6 +40,9 @@ export function Footer() {
                             <li><Link href="/solutions/equipment-reservations" className="hover:text-orange-600 transition-colors">Equipment Reservations</Link></li>
                             <li><Link href="/solutions/fixed-asset-tracking" className="hover:text-orange-600 transition-colors">Fixed Asset Tracking</Link></li>
                             <li><Link href="/solutions/educational-resource-management" className="hover:text-orange-600 transition-colors">Education</Link></li>
+                            <li><Link href="/solutions/equipment-check-in" className="hover:text-orange-600 transition-colors">Equipment Check-In/Out</Link></li>
+                            <li><Link href="/solutions/multi-location-asset-tracking" className="hover:text-orange-600 transition-colors">Multi-Location Tracking</Link></li>
+                            <li><Link href="/solutions/maintenance-tracking" className="hover:text-orange-600 transition-colors">Maintenance Tracking</Link></li>
                         </ul>
                     </div>
                     <div>
@@ -49,9 +52,10 @@ export function Footer() {
                             <li><Link href="/alternatives/cheqroom" className="hover:text-orange-600 transition-colors">Shelf vs Cheqroom</Link></li>
                             <li><Link href="/alternatives/sortly" className="hover:text-orange-600 transition-colors">Shelf vs Sortly</Link></li>
                             <li><Link href="/alternatives/asset-panda" className="hover:text-orange-600 transition-colors">Shelf vs Asset Panda</Link></li>
-                            <li><Link href="/alternatives/asset-tiger" className="hover:text-orange-600 transition-colors">Shelf vs Asset Tiger</Link></li>
+                            <li><Link href="/alternatives/reftab" className="hover:text-orange-600 transition-colors">Shelf vs Reftab</Link></li>
                             <li><Link href="/alternatives/snipe-it" className="hover:text-orange-600 transition-colors">Shelf vs Snipe-IT</Link></li>
                             <li><Link href="/alternatives/ezofficeinventory" className="hover:text-orange-600 transition-colors">Shelf vs EZOffice</Link></li>
+                            <li><Link href="/alternatives/spreadsheets" className="hover:text-orange-600 transition-colors">Shelf vs Spreadsheets</Link></li>
                         </ul>
                     </div>
                     <div>

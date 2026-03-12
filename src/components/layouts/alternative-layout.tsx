@@ -88,6 +88,7 @@ const COMPETITOR_LOGOS: Record<string, string> = {
     upkeep: "/logos/upkeep.svg",
     wasp: "/logos/wasp.webp",
     webcheckout: "/logos/webcheckout.webp",
+    reftab: "/logos/reftab_darkfont.png",
 };
 
 function CompetitorVsShelf({ competitor, slug }: { competitor: string; slug: string }) {

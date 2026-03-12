@@ -24,6 +24,8 @@ import {
     Smartphone,
     ArrowRight,
     Wrench,
+    MapPin,
+    ArrowLeftRight,
 } from "lucide-react";
 import { useState, useEffect, startTransition } from "react";
 import {
@@ -405,6 +407,33 @@ export function Navbar() {
                                                                 workflows for
                                                                 studios.
                                                             </ListItem>
+                                                            <ListItem
+                                                                href="/solutions/equipment-check-in"
+                                                                title="Equipment Check-In/Out"
+                                                                icon={
+                                                                    ArrowLeftRight
+                                                                }
+                                                            >
+                                                                QR-based
+                                                                lending
+                                                                workflows.
+                                                            </ListItem>
+                                                            <ListItem
+                                                                href="/solutions/multi-location-asset-tracking"
+                                                                title="Multi-Location Tracking"
+                                                                icon={MapPin}
+                                                            >
+                                                                Track equipment
+                                                                across sites.
+                                                            </ListItem>
+                                                            <ListItem
+                                                                href="/solutions/maintenance-tracking"
+                                                                title="Maintenance Tracking"
+                                                                icon={Wrench}
+                                                            >
+                                                                Schedule service
+                                                                and upkeep.
+                                                            </ListItem>
                                                         </ul>
                                                     </div>
                                                 </Container>
@@ -655,6 +684,15 @@ export function Navbar() {
                                     </MobileLink>
                                     <MobileLink href="/solutions/camera-equipment-check-out">
                                         Video Production & AV
+                                    </MobileLink>
+                                    <MobileLink href="/solutions/equipment-check-in">
+                                        Equipment Check-In/Out
+                                    </MobileLink>
+                                    <MobileLink href="/solutions/multi-location-asset-tracking">
+                                        Multi-Location Tracking
+                                    </MobileLink>
+                                    <MobileLink href="/solutions/maintenance-tracking">
+                                        Maintenance Tracking
                                     </MobileLink>
                                 </nav>
                             </div>
