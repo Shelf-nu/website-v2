@@ -20,9 +20,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.shelf.nu"),
-  alternates: {
-    canonical: process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu",
-  },
+  // canonical is set per-page, not globally — a root-level canonical
+  // makes every page claim to be the homepage, hurting SEO.
   title: {
     default: "Shelf | Open Source Asset Management Software",
     template: "%s | Shelf Asset Management",
