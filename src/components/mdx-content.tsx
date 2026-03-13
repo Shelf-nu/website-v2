@@ -3,6 +3,7 @@ import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { ImageZoom } from "@/components/ui/image-zoom";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -49,11 +50,10 @@ const components = {
         <Link className="font-medium text-foreground underline decoration-orange-500/30 decoration-2 underline-offset-4 hover:decoration-orange-500 transition-all" {...(props as ComponentPropsWithoutRef<typeof Link>)} />
     ),
     img: (props: HtmlProps<"img">) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-            className="rounded-xl border border-border/50 bg-muted shadow-sm my-8"
+        <ImageZoom
+            src={props.src}
             alt={props.alt}
-            {...props}
+            className="rounded-xl border border-border/50 bg-muted shadow-sm w-full"
         />
     ),
     hr: (props: HtmlProps<"hr">) => <hr className="my-8 md:my-12 border-border/40" {...props} />,
