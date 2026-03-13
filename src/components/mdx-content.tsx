@@ -51,7 +51,7 @@ const components = {
     ),
     img: (props: HtmlProps<"img">) => (
         <ImageZoom
-            src={props.src}
+            src={typeof props.src === "string" ? props.src : undefined}
             alt={props.alt}
             className="rounded-xl border border-border/50 bg-muted shadow-sm w-full"
         />
