@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CTA } from "@/components/sections/cta";
-import { ArrowRight, HardHat, GraduationCap, Monitor, Video, Layers } from "lucide-react";
+import { ArrowRight, HardHat, GraduationCap, Monitor, Video, FlaskConical, Layers } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 const industryIcons: Record<string, LucideIcon> = {
     "construction": HardHat,
     "education": GraduationCap,
+    "engineering": FlaskConical,
     "it": Monitor,
     "media-production": Video,
 };
