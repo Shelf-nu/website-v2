@@ -11,6 +11,7 @@ import { LucideIcon } from "lucide-react";
 export const metadata: Metadata = {
     title: "Industries - Shelf",
     description: "Shelf for every industry — tailored asset management solutions for your sector.",
+    alternates: { canonical: "https://www.shelf.nu/industries" },
 };
 
 const industryIcons: Record<string, LucideIcon> = {

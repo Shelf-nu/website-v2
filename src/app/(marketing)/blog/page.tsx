@@ -5,6 +5,7 @@ import { BlogFeed } from "@/components/blog/blog-feed";
 export const metadata: Metadata = {
     title: "Blog - Shelf Asset Management",
     description: "Insights, guides, and product updates from the Shelf team.",
+    alternates: { canonical: "https://www.shelf.nu/blog" },
 };
 
 export default function BlogIndexPage() {

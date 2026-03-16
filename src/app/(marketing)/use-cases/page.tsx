@@ -11,6 +11,7 @@ import { LucideIcon } from "lucide-react";
 export const metadata: Metadata = {
     title: "Use Cases - Shelf",
     description: "Explore real-world examples of Shelf in action across teams and workflows.",
+    alternates: { canonical: "https://www.shelf.nu/use-cases" },
 };
 
 const useCaseIcons: Record<string, LucideIcon> = {

@@ -11,6 +11,7 @@ import { LucideIcon } from "lucide-react";
 export const metadata: Metadata = {
     title: "Asset Management Glossary | Shelf",
     description: "Clear definitions for asset tagging, check-in/check-out, ghost assets, preventive maintenance, and other key equipment management terms.",
+    alternates: { canonical: "https://www.shelf.nu/glossary" },
 };
 
 const termIcons: Record<string, LucideIcon> = {

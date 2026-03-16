@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: "Customers - Shelf",
     description:
         "Over 3,000 teams worldwide trust Shelf to track and manage their assets. See testimonials, case studies, and the companies that rely on Shelf.",
+    alternates: { canonical: "https://www.shelf.nu/customers" },
 };
 
 export default function CustomersPage() {

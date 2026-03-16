@@ -11,6 +11,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 export const metadata: Metadata = {
     title: "Book a Demo - Shelf Asset Management",
     description: "See how Shelf can help your team track assets effortlessly.",
+    alternates: { canonical: "https://www.shelf.nu/demo" },
 };
 
 export default function DemoPage() {

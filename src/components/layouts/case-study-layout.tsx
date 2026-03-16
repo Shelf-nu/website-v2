@@ -1,6 +1,6 @@
 import { Frontmatter } from "@/lib/content/schema";
 import { RelatedContent } from "./shared/related-content";
-import { SeoHead } from "./shared/seo-head";
+
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,6 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
 
     return (
         <>
-            <SeoHead frontmatter={frontmatter} />
             <div className="flex min-h-screen flex-col">
                 {/* ================================================================
                     CASE STUDY HERO — Custom header (not generic PageHeader)

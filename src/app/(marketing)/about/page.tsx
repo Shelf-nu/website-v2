@@ -11,6 +11,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 export const metadata: Metadata = {
     title: "About Us - Shelf Asset Management",
     description: "Shelf is an open-source platform for tracking and managing physical assets.",
+    alternates: { canonical: "https://www.shelf.nu/about" },
 };
 
 export default function AboutPage() {

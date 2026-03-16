@@ -11,6 +11,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 export const metadata: Metadata = {
     title: "Resources - Shelf Asset Management",
     description: "Get help, contact support, or read our documentation.",
+    alternates: { canonical: "https://www.shelf.nu/resources" },
 };
 
 export default function ResourcesPage() {

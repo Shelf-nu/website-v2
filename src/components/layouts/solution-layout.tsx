@@ -1,7 +1,7 @@
 import { Frontmatter } from "@/lib/content/schema";
 import { HeroWithSocialProof } from "./shared/hero-with-social-proof";
 import { RelatedContent } from "./shared/related-content";
-import { SeoHead } from "./shared/seo-head";
+
 import { Container } from "@/components/ui/container";
 import { CTA } from "@/components/sections/cta";
 import { getAllContent } from "@/lib/mdx";
@@ -40,7 +40,6 @@ export function SolutionLayout({ frontmatter, children }: LayoutProps) {
 
     return (
         <>
-            <SeoHead frontmatter={frontmatter} />
             <div className="flex min-h-screen flex-col">
                 <HeroWithSocialProof
                     title={frontmatter.title}

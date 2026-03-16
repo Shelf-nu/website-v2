@@ -12,6 +12,7 @@ import { ArrowRight, Layers } from "lucide-react";
 export const metadata: Metadata = {
     title: "Solutions - Shelf Asset Management",
     description: "Tailored asset management workflows for your industry.",
+    alternates: { canonical: "https://www.shelf.nu/solutions" },
 };
 
 export default function SolutionsPage() {

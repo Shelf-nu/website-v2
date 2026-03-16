@@ -8,6 +8,7 @@ import { Frontmatter } from "@/lib/content/schema";
 export const metadata = {
     title: "Terms and Conditions | Shelf Asset Management",
     description: "Understand how Shelf collects, stores and protects your organization's asset information and personal data.",
+    alternates: { canonical: "https://www.shelf.nu/terms" },
 };
 
 export default async function TermsPage() {

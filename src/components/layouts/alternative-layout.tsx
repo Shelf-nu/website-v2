@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Frontmatter } from "@/lib/content/schema";
 import { PageHeader } from "./shared/page-header";
 import { RelatedContent } from "./shared/related-content";
-import { SeoHead } from "./shared/seo-head";
+
 import { Container } from "@/components/ui/container";
 import { CTA } from "@/components/sections/cta";
 import { Button } from "@/components/ui/button";
@@ -168,7 +168,6 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
 
     return (
         <>
-            <SeoHead frontmatter={frontmatter} />
             <div className="flex min-h-screen flex-col">
                 <PageHeader
                     title={frontmatter.title}

@@ -13,6 +13,7 @@ import { CTA } from "@/components/sections/cta";
 export const metadata = {
     title: "Migrate to Shelf - Switch from Any Tool or Spreadsheet",
     description: "Switch from spreadsheets, Asset Panda, Snipe-IT, Cheqroom, or any asset management tool. Import your data to Shelf in minutes with CSV.",
+    alternates: { canonical: "https://www.shelf.nu/migrate" },
 };
 
 /* ------------------------------------------------------------------ */
