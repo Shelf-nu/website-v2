@@ -37,32 +37,8 @@ export function Breadcrumbs({ className }: { className?: string }) {
 
     const segments = pathname.split("/").filter(Boolean);
 
-    // Generate JSON-LD Schema
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://www.shelf.nu"
-            },
-            ...segments.map((segment, index) => ({
-                "@type": "ListItem",
-                "position": index + 2,
-                "name": formatLabel(segment),
-                "item": `https://www.shelf.nu/${segments.slice(0, index + 1).join("/")}`
-            }))
-        ]
-    };
-
     return (
         <nav aria-label="Breadcrumb" className={cn("flex items-center text-[13px] text-caption mb-6", className)}>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
 
             <ol className="flex items-center gap-1.5 flex-wrap">
                 <li>

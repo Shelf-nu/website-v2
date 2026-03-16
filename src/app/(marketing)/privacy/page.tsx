@@ -8,6 +8,7 @@ import { Frontmatter } from "@/lib/content/schema";
 export const metadata = {
     title: "Privacy Policy | Shelf Asset Management",
     description: "Understand how Shelf collects, stores and protects your organization's asset information and personal data.",
+    alternates: { canonical: "https://www.shelf.nu/privacy" },
 };
 
 export default function PrivacyPage() {

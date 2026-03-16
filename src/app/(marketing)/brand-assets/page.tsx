@@ -9,6 +9,7 @@ import { AnchorNav } from "@/components/brand/anchor-nav";
 export const metadata = {
     title: "Brand Center - Shelf Asset Management",
     description: "Official Shelf logos, colors, typography, and usage guidelines. Everything you need to represent Shelf correctly.",
+    alternates: { canonical: "https://www.shelf.nu/brand-assets" },
 };
 
 const LOGO_VARIANTS = [

@@ -12,6 +12,7 @@ import { ArrowRight, Layers } from "lucide-react";
 export const metadata: Metadata = {
     title: "Features - Shelf Asset Management",
     description: "The complete operating system for physical asset management. Track, manage, and scale your equipment operations.",
+    alternates: { canonical: "https://www.shelf.nu/features" },
 };
 
 export default function FeaturesPage() {

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     title: "Knowledge Base - Shelf Asset Management",
     description:
         "Guides, tutorials, and how-to articles to help you get the most out of Shelf.",
+    alternates: { canonical: "https://www.shelf.nu/knowledge-base" },
 };
 
 export default function KnowledgeBasePage() {

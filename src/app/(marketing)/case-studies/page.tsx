@@ -11,6 +11,7 @@ import { TestimonialsSection } from "@/components/sections/case-studies/testimon
 export const metadata: Metadata = {
     title: "Customers - Shelf",
     description: "See how leading teams use Shelf to track assets and streamline operations.",
+    alternates: { canonical: "https://www.shelf.nu/case-studies" },
 };
 
 export default function CaseStudiesIndexPage() {

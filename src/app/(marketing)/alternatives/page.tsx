@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: "Shelf Alternatives & Comparisons | Shelf",
     description:
         "Compare Shelf to other asset management solutions. See feature-by-feature breakdowns of why teams switch to Shelf.",
+    alternates: { canonical: "https://www.shelf.nu/alternatives" },
 };
 
 // Map competitor slugs to their logo files

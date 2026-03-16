@@ -8,6 +8,7 @@ import { Frontmatter } from "@/lib/content/schema";
 export const metadata = {
     title: "Security | Shelf Asset Management",
     description: "At Shelf, we prioritize the security of your data and have implemented robust measures to protect your information.",
+    alternates: { canonical: "https://www.shelf.nu/security" },
 };
 
 export default function SecurityPage() {

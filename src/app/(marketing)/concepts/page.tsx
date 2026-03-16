@@ -11,6 +11,7 @@ import { LucideIcon } from "lucide-react";
 export const metadata: Metadata = {
     title: "Asset Management Concepts | Shelf",
     description: "Explore core frameworks like the asset lifecycle and circular economy — and how they apply to modern equipment management.",
+    alternates: { canonical: "https://www.shelf.nu/concepts" },
 };
 
 const conceptData: Record<string, {

@@ -10,6 +10,7 @@ import { CTA } from "@/components/sections/cta";
 export const metadata: Metadata = {
     title: 'Free Tools for Asset Management | Shelf',
     description: 'Free utilities for asset tracking teams. Decode QR codes, generate labels, and manage equipment more efficiently.',
+    alternates: { canonical: "https://www.shelf.nu/tools" },
 };
 
 const tools = [
