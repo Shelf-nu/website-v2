@@ -1,5 +1,5 @@
 import { Frontmatter } from "@/lib/content/schema";
-import { SeoHead } from "./shared/seo-head";
+
 import { Container } from "@/components/ui/container";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, CheckCircle2, MessageSquare, BookOpen } from "lucide-react";
@@ -16,7 +16,6 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
 
     return (
         <>
-            <SeoHead frontmatter={frontmatter} />
             <div className="flex min-h-screen flex-col">
                 {/* Breadcrumbs + Header */}
                 <div className="border-b border-border/40 bg-muted/20">
