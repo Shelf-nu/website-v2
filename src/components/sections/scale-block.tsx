@@ -1,12 +1,21 @@
 "use client";
 
 import { Container } from "@/components/ui/container";
-import { Globe } from "@/components/ui/globe";
+import dynamic from "next/dynamic";
 import NumberFlow from '@number-flow/react';
 import { GlobeEventFeed } from "@/components/sections/scale/globe-event-feed";
 
 import { useRef, useState, useEffect, startTransition } from "react";
 import { useInView } from "framer-motion";
+
+const Globe = dynamic(() => import("@/components/ui/globe").then(mod => mod.Globe), {
+    ssr: false,
+    loading: () => (
+        <div className="w-full h-full flex items-center justify-center">
+            <div className="w-48 h-48 rounded-full bg-orange-100/20 dark:bg-orange-900/10 animate-pulse" />
+        </div>
+    ),
+});
 
 const GLOBE_CONFIG = {
     width: 1200,
@@ -15,7 +24,7 @@ const GLOBE_CONFIG = {
     phi: 0,
     theta: 0.25,
     diffuse: 1.2,
-    mapSamples: 24000,
+    mapSamples: 12000,
     markerColor: [0.96, 0.5, 0.2] as [number, number, number],
 };
 

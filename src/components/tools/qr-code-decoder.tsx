@@ -115,6 +115,7 @@ export function QrCodeDecoder() {
                                 <button
                                     onClick={handleReset}
                                     className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-20"
+                                    aria-label="Clear uploaded image"
                                 >
                                     <X className="h-5 w-5" />
                                 </button>
