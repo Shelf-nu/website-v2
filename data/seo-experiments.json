@@ -29,7 +29,7 @@
         ],
         "capturedAt": null
       },
-      "status": "active",
+      "status": "evaluating",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -37,7 +37,7 @@
         "redirect-fix",
         "emergency"
       ],
-      "learnings": ""
+      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 10 clicks, 508 impr, 2.0% CTR, pos 9.2. vs baseline: CTR +23% (1.62→2.0), position improved 15.7→9.2. Impressions down (seasonal or Google re-evaluating). Redirect working as intended."
     },
     {
       "id": "exp-002",
@@ -68,7 +68,7 @@
         ],
         "capturedAt": null
       },
-      "status": "active",
+      "status": "evaluating",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -76,7 +76,7 @@
         "title-rewrite",
         "move-1"
       ],
-      "learnings": ""
+      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 465 clicks, 35,073 impr, 1.3% CTR, pos 13.0. vs baseline: CTR +65% (0.79→1.3), position improved 16→13. Strong signal — 'Asset Management Software' + 'Free' in title is working. Homepage is the highest-leverage page."
     },
     {
       "id": "exp-003",
@@ -107,7 +107,7 @@
         ],
         "capturedAt": null
       },
-      "status": "active",
+      "status": "evaluating",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -115,7 +115,7 @@
         "description-rewrite",
         "move-1"
       ],
-      "learnings": ""
+      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 14 clicks, 2,012 impr, 0.7% CTR, pos 16.1. vs baseline: CTR +180% (0.25→0.7), position improved dramatically 30.3→16.1. Conversational description + 'free' + 'open source' is a winning formula. Biggest position jump of batch 1."
     },
     {
       "id": "exp-004",
@@ -146,7 +146,7 @@
         ],
         "capturedAt": null
       },
-      "status": "active",
+      "status": "evaluating",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -154,7 +154,7 @@
         "title-rewrite",
         "move-1"
       ],
-      "learnings": ""
+      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 19 clicks, 2,839 impr, 0.7% CTR, pos 10.9. vs baseline: CTR +150% (0.28→0.7), position improved 19.2→10.9. Action verbs in title working. Page moved from page 2 to page 1."
     },
     {
       "id": "exp-005",
@@ -307,14 +307,14 @@
       },
       "status": "active",
       "startDate": "2026-03-11",
-      "deployedAt": null,
+      "deployedAt": "2026-03-11",
       "evaluateAfterDays": 14,
       "tags": [
         "title-rewrite",
         "move-2",
         "alternatives"
       ],
-      "learnings": ""
+      "learnings": "Title change was deployed in PR #33. Code already live — marking deployedAt retroactively."
     },
     {
       "id": "exp-009",
@@ -347,12 +347,125 @@
       },
       "status": "active",
       "startDate": "2026-03-11",
-      "deployedAt": null,
+      "deployedAt": "2026-03-11",
       "evaluateAfterDays": 14,
       "tags": [
         "title-rewrite",
         "search-intent",
         "tools"
+      ],
+      "learnings": "Title change was deployed in PR #33. Code already live — marking deployedAt retroactively."
+    },
+    {
+      "id": "exp-010",
+      "page": "/solutions/equipment-management",
+      "field": "title+description",
+      "before": "Title: 'Equipment Management Software — Free QR Tracking & Scheduling | Shelf' / Desc: 'Free equipment management software with QR scanning, custody tracking, booking calendars, and location management. Open source. Used by 3,000+ teams.'",
+      "after": "Title: 'Free Equipment Management Software — Open Source | Shelf' / Desc: 'Manage shared equipment with QR scanning, booking calendars, and custody tracking. Free for individuals, no per-asset pricing. Open source — used by 3,000+ teams.'",
+      "hypothesis": "SERP analysis: Page 1 for 'equipment management software' is all paid enterprise tools (ToolSense, Fleetio, Cheqroom, Samsara). None are free/open-source. Leading with 'Free' and 'no per-asset pricing' differentiates from every competitor on page 1. Batch 1 learnings: 'free' + 'open source' in descriptions drove +150-180% CTR lifts.",
+      "baseline": {
+        "clicks": 5,
+        "impressions": 1041,
+        "ctr": 0.4,
+        "position": 12.4,
+        "dateRange": [
+          "2026-02-17",
+          "2026-03-19"
+        ],
+        "capturedAt": "2026-03-19T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-19",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "description-rewrite",
+        "move-2",
+        "serp-informed"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-011",
+      "page": "/solutions/open-source-asset-management",
+      "field": "description",
+      "before": "Free, open-source asset management with QR tracking, custody logs, and booking calendars. Sign up and start tracking in minutes. AGPL licensed. 3,000+ teams.",
+      "after": "Free, open-source asset management — cloud-hosted or self-host. QR tracking, custody logs, and booking calendars. No DevOps required to start. AGPL licensed. 3,000+ teams.",
+      "hypothesis": "SERP analysis: Snipe-IT dominates 'open source asset management' at #1 but is self-host only (requires PHP/MySQL setup). Our cloud+self-host option is unique. Highlighting 'cloud-hosted or self-host' and 'No DevOps required' differentiates from Snipe-IT and GLPI. CTR already 3.3% — targeting position improvement via relevance signal.",
+      "baseline": {
+        "clicks": 22,
+        "impressions": 676,
+        "ctr": 3.3,
+        "position": 8.2,
+        "dateRange": [
+          "2026-02-17",
+          "2026-03-19"
+        ],
+        "capturedAt": "2026-03-19T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-19",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "description-rewrite",
+        "move-2",
+        "serp-informed"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-012",
+      "page": "/solutions/camera-equipment-check-out",
+      "field": "title+description",
+      "before": "Title: 'Camera Equipment Check-Out Software — QR Checkout for Film & Media | Shelf' / Desc: 'Free camera equipment checkout software for film programs and media teams. QR scanning, booking calendars, kit tracking. Open source. Used by 3,000+ teams.'",
+      "after": "Title: 'Camera Equipment Checkout Software — Free for Film & Media Teams | Shelf' / Desc: 'Free camera gear checkout for film programs, media departments, and production houses. QR scan, book, track custody — no sign-out sheets. Open source. 3,000+ teams.'",
+      "hypothesis": "3,988 impr (30d), 0.6% CTR, pos 18.1. Leading with 'Free' in title (batch 1 learning). Description uses active language ('scan, book, track') and pain point ('no sign-out sheets') — mirrors exp-004 success with action verbs (+150% CTR). 'Camera gear' adds keyword variation.",
+      "baseline": {
+        "clicks": 22,
+        "impressions": 3988,
+        "ctr": 0.6,
+        "position": 18.1,
+        "dateRange": [
+          "2026-02-17",
+          "2026-03-19"
+        ],
+        "capturedAt": "2026-03-19T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-19",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "description-rewrite",
+        "move-2",
+        "serp-informed"
       ],
       "learnings": ""
     }
