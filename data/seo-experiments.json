@@ -468,6 +468,396 @@
         "serp-informed"
       ],
       "learnings": ""
+    },
+    {
+      "id": "exp-013",
+      "page": "/solutions/asset-tracking",
+      "field": "title+description",
+      "before": "Title: 'Asset Tracking Software — Free QR Scanning & Custody Tracking | Shelf' / Desc: 'Free asset tracking software with QR scanning, custody logs, booking calendars, and location tracking. Open source. Used by 3,000+ teams to track 450,000+ assets.'",
+      "after": "Title: 'Free Asset Tracking Software — Open Source QR Scanning | Shelf' / Desc: 'Free asset tracking software with QR scanning, custody logs, and location tracking. Unlimited assets, open source. Used by 3,000+ teams.'",
+      "hypothesis": "5,339 impr, 0.4% CTR, pos 23.9. Two changes: (1) Lead with 'Free' — batch 1 proved this lifts CTR. (2) Remove 'booking calendars' from description — bookings is a Team plan feature ($67/mo), not free. Replaced with 'Unlimited assets' which IS true on free tier. Truthfulness fix + CTR optimization.",
+      "baseline": {
+        "clicks": 24,
+        "impressions": 5339,
+        "ctr": 0.4,
+        "position": 23.9,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "truthfulness-fix", "batch-2", "serp-informed"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-014",
+      "page": "/solutions/it-asset-management",
+      "field": "title+description",
+      "before": "Title: 'IT Asset Management Software — Free Device Tracking for IT Teams | Shelf' / Desc: 'Free IT asset management software with QR scanning, custody tracking, and device lifecycle management. Track laptops, tablets, and peripherals across hybrid teams. Open source.'",
+      "after": "Title: 'IT Asset Management Software — Free, Open Source | Shelf' / Desc: 'Free, open-source IT asset management. QR scanning, custody tracking, and device lifecycle management for laptops, tablets, and peripherals. Self-host or cloud. AGPL licensed.'",
+      "hypothesis": "Removed 'for IT Teams' from title — free tier is single-user, not teams. Removed 'across hybrid teams' from description — same misleading implication. Added 'Self-host or cloud' to differentiate from Snipe-IT (#1 SERP) which is self-host only. SERP: Snipe-IT dominates, Shelf already has 2 results — need clearer differentiation.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "truthfulness-fix", "batch-2", "serp-informed"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-015",
+      "page": "/solutions/fixed-asset-tracking",
+      "field": "title",
+      "before": "Fixed Asset Tracking Software — Free QR-Based Lifecycle Tracking | Shelf",
+      "after": "Free Fixed Asset Tracking Software — QR Labels & Lifecycle Management | Shelf",
+      "hypothesis": "1,082 impr, 1.4% CTR, pos 15.8. Leading with 'Free' (batch 1 learning). SERP dominated by accounting tools (Sage, Intuit, MIP) — Shelf differentiates as operational tracking with QR labels. Shelf already #3, pushing for #1-2.",
+      "baseline": {
+        "clicks": 15,
+        "impressions": 1082,
+        "ctr": 1.4,
+        "position": 15.8,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "batch-2", "serp-informed"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-016",
+      "page": "/solutions/tool-tracking",
+      "field": "title+description",
+      "before": "Title: 'Tool Tracking Software — Free QR-Based Field Tracking | Shelf' / Desc: 'Free tool tracking software for field teams. QR scanning, custody chains, and location tracking across job sites, trucks, and crews. Open source. 3,000+ teams.'",
+      "after": "Title: 'Free Tool Tracking Software — QR Scan, Assign, Track | Shelf' / Desc: 'Free tool tracking software with QR scanning, custody chains, and location tracking across job sites, trucks, and crews. Open source. Start with one user, scale to your whole team.'",
+      "hypothesis": "SERP dominated by construction-specific tools (ToolHound, ShareMyToolbox, TOOLTRIBE). Shelf is broader. Changes: (1) Lead with 'Free' (batch 1). (2) Action verbs 'Scan, Assign, Track' (exp-004 +150%). (3) Fixed 'for field teams' → 'Start with one user, scale to your whole team' — honest about free tier being single-user while showing growth path.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "truthfulness-fix", "batch-2", "serp-informed"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-017",
+      "page": "/alternatives/sortly",
+      "field": "title",
+      "before": "Sortly Alternative — Equipment Tracking Beyond Inventory Lists | Shelf",
+      "after": "Sortly Alternative (2026) — Equipment Tracking Beyond Inventory Lists | Shelf",
+      "hypothesis": "1,894 impr, 1.7% CTR, pos 6.4. Already #2 behind G2. Every competitor on SERP has year tags (G2 'in 2026', Capterra '2026', Software Advice '2026'). Adding (2026) signals freshness and matches the pattern users expect for comparison queries.",
+      "baseline": {
+        "clicks": 32,
+        "impressions": 1894,
+        "ctr": 1.7,
+        "position": 6.4,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "batch-2", "serp-informed", "alternatives"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-018",
+      "page": "/solutions/equipment-reservations",
+      "field": "title+description",
+      "before": "Title: 'Equipment Reservation Software — Free Booking & Scheduling | Shelf' / Desc: 'Free equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. 3,000+ teams.'",
+      "after": "Title: 'Equipment Reservation Software — Prevent Double-Bookings | Shelf' / Desc: 'Equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. No per-asset fees.'",
+      "hypothesis": "Already #1 for 'equipment reservation software'. TRUTHFULNESS FIX: Removed 'Free' from title and description — bookings/reservations is a Team plan feature ($67/mo), NOT available on free tier. Replaced with value prop 'Prevent Double-Bookings' and 'No per-asset fees' which are both true.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "truthfulness-fix", "batch-2"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-019",
+      "page": "/solutions/educational-resource-management",
+      "field": "title+description",
+      "before": "Title: 'Educational Resource Management Software | Shelf' / Desc: 'Track cameras, laptops, AV gear, maker tools, and lab equipment across departments with simple QR-based workflows.'",
+      "after": "Title: 'Educational Equipment Tracking Software — QR-Based Campus Management | Shelf' / Desc: 'Track cameras, laptops, AV gear, and lab equipment across departments and campuses. QR scanning, custody logs, and booking calendars. Open source, free to start.'",
+      "hypothesis": "Current title is generic with no keywords for discovery. New title adds 'Equipment Tracking' (searchable) + 'Campus Management' (matches education persona). Description adds 'open source, free to start' which drove +150-180% CTR in batch 1.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "batch-2"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-020",
+      "page": "/solutions/multi-location-asset-tracking",
+      "field": "description",
+      "before": "Free multi-location asset tracking software. Track equipment across offices, warehouses, campuses, and job sites with QR scanning and real-time location updates. Open source.",
+      "after": "Track equipment across offices, warehouses, campuses, and job sites from one dashboard. QR scanning, location transfers, and custody tracking. Free to start, open source.",
+      "hypothesis": "New page (2026-03-12), establishing baseline. Changed 'Free multi-location...' to 'Track equipment... from one dashboard' — leads with the benefit (unified visibility) rather than claiming the whole product is free. 'Free to start' is accurate (free tier includes locations). Multi-location tracking IS free on the free tier.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["description-rewrite", "batch-2"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-021",
+      "page": "/solutions/maintenance-tracking",
+      "field": "description",
+      "before": "Free maintenance tracking for equipment teams. Schedule preventive maintenance, log service history, and get automatic reminders — without CMMS complexity. Open source.",
+      "after": "Lightweight maintenance tracking — not a full CMMS. Schedule preventive maintenance, log service history, and get automatic reminders. Open source, free to start.",
+      "hypothesis": "TRUTHFULNESS FIX: Removed 'for equipment teams' (free tier is single-user). Replaced with 'Lightweight maintenance tracking — not a full CMMS' which is the page's actual positioning and differentiates from UpKeep/Limble/Fiix on SERP. 'Free to start' is accurate.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["description-rewrite", "truthfulness-fix", "batch-2"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-022",
+      "page": "/solutions/home-inventory-management",
+      "field": "title+description",
+      "before": "Title: 'Home Inventory Management Software | Tag & Track Belongings | Shelf' / Desc: 'Tag and track your household items with QR codes. Perfect for insurance documentation, moving, and organization.'",
+      "after": "Title: 'Free Home Inventory App — QR Tag & Track Everything You Own | Shelf' / Desc: 'Free home inventory software. Tag belongings with QR codes, track by room and location, attach photos and receipts. Perfect for insurance claims, moves, and estate planning.'",
+      "hypothesis": "Home inventory is a perfect free-tier use case (single user managing personal belongings). 'Free' is 100% accurate here. Added 'App' to match mobile-first search intent. Expanded description with specific use cases (insurance claims, estate planning) to match long-tail queries.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "batch-2"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-023",
+      "page": "/solutions/mobile-asset-auditing",
+      "field": "title+description",
+      "before": "Title: 'Mobile Asset Auditing Software | Scan & Audit On-The-Go | Shelf' / Desc: 'Audit inventory from your phone or tablet. Scan QR labels, verify locations, and generate compliance reports in the field.'",
+      "after": "Title: 'Mobile Asset Audit Software — Scan QR Labels from Any Phone | Shelf' / Desc: 'Audit assets from any phone or tablet. Scan QR labels, verify locations, update records, and generate compliance reports on the go. Free to start, open source.'",
+      "hypothesis": "Current title uses pipe separators (old pattern). New title uses em dash (consistent with site). 'from Any Phone' emphasizes no-app-needed advantage. Added 'Free to start, open source' to description (batch 1 winning formula).",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "batch-2"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-024",
+      "page": "/alternatives/spreadsheets",
+      "field": "description",
+      "before": "Replace Excel and Google Sheets for equipment tracking. Shelf gives you QR scanning, automatic custody logs, booking calendars, and real-time availability — free to start.",
+      "after": "Replace Excel and Google Sheets for equipment tracking. QR scanning, automatic custody logs, and real-time availability — no more version conflicts. Free to start, open source.",
+      "hypothesis": "Removed 'booking calendars' from feature list (Team-only feature, misleading in 'free to start' context). Added 'no more version conflicts' — the #1 pain point of spreadsheet users. Added 'open source' (batch 1 winning signal).",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["description-rewrite", "truthfulness-fix", "batch-2"],
+      "learnings": ""
+    },
+    {
+      "id": "exp-025",
+      "page": "/features/bookings",
+      "field": "title+description",
+      "before": "Title: 'Equipment Booking & Reservation Software | Shelf' / Desc: 'Schedule equipment without conflicts using Shelf's simple booking workflows for cameras, tools, laptops, and shared resources.'",
+      "after": "Title: 'Equipment Booking Software — Conflict-Free Reservations | Shelf' / Desc: 'Reserve equipment without double-bookings. Visual booking calendar, availability checking, and pull-list PDFs for cameras, tools, laptops, and shared gear.'",
+      "hypothesis": "1,111 impr, 1.9% CTR, pos 10.4. Title uses old pipe format; updated to em dash (consistent). 'Conflict-Free Reservations' is a stronger value prop than '& Reservation Software'. Description adds specific features (visual calendar, pull-list PDFs) instead of generic 'simple booking workflows'. No 'Free' claim — bookings is a paid feature.",
+      "baseline": {
+        "clicks": 21,
+        "impressions": 1111,
+        "ctr": 1.9,
+        "position": 10.4,
+        "dateRange": ["2026-02-17", "2026-03-19"],
+        "capturedAt": "2026-03-20T00:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [null, null],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-03-20",
+      "deployedAt": null,
+      "evaluateAfterDays": 14,
+      "tags": ["title-rewrite", "description-rewrite", "batch-2"],
+      "learnings": ""
     }
   ]
 }
