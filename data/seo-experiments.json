@@ -399,8 +399,8 @@
       "page": "/solutions/open-source-asset-management",
       "field": "description",
       "before": "Free, open-source asset management with QR tracking, custody logs, and booking calendars. Sign up and start tracking in minutes. AGPL licensed. 3,000+ teams.",
-      "after": "Free, open-source asset management — cloud-hosted or self-host. QR tracking, custody logs, and booking calendars. No DevOps required to start. AGPL licensed. 3,000+ teams.",
-      "hypothesis": "SERP analysis: Snipe-IT dominates 'open source asset management' at #1 but is self-host only (requires PHP/MySQL setup). Our cloud+self-host option is unique. Highlighting 'cloud-hosted or self-host' and 'No DevOps required' differentiates from Snipe-IT and GLPI. CTR already 3.3% — targeting position improvement via relevance signal.",
+      "after": "Free, open-source asset management — cloud-hosted or self-host. QR tracking, custody logs, and booking calendars. Start tracking in minutes, no setup required. AGPL licensed. 3,000+ teams.",
+      "hypothesis": "SERP analysis: Snipe-IT dominates 'open source asset management' at #1 but is self-host only (requires PHP/MySQL setup). Our cloud+self-host option is unique. Replaced jargon 'No DevOps required' with clearer 'Start tracking in minutes, no setup required'. CTR already 3.3% — targeting position improvement via relevance signal.",
       "baseline": {
         "clicks": 22,
         "impressions": 676,
@@ -436,8 +436,8 @@
       "page": "/solutions/camera-equipment-check-out",
       "field": "title+description",
       "before": "Title: 'Camera Equipment Check-Out Software — QR Checkout for Film & Media | Shelf' / Desc: 'Free camera equipment checkout software for film programs and media teams. QR scanning, booking calendars, kit tracking. Open source. Used by 3,000+ teams.'",
-      "after": "Title: 'Camera Equipment Checkout Software — Free for Film & Media Teams | Shelf' / Desc: 'Free camera gear checkout for film programs, media departments, and production houses. QR scan, book, track custody — no sign-out sheets. Open source. 3,000+ teams.'",
-      "hypothesis": "3,988 impr (30d), 0.6% CTR, pos 18.1. Leading with 'Free' in title (batch 1 learning). Description uses active language ('scan, book, track') and pain point ('no sign-out sheets') — mirrors exp-004 success with action verbs (+150% CTR). 'Camera gear' adds keyword variation.",
+      "after": "Title: 'Camera Equipment Checkout Software — QR Scan & Book | Shelf' / Desc: 'Camera gear checkout for film programs, media departments, and production houses. QR scan, book, track custody — no sign-out sheets. Open source, free to start. 3,000+ teams.'",
+      "hypothesis": "3,988 impr (30d), 0.6% CTR, pos 18.1. Removed misleading 'Free for Teams' (free tier is single-user). Kept action verbs ('scan, book, track') and pain point ('no sign-out sheets') from exp-004 success (+150% CTR). 'Free to start' is accurate — free tier exists for individuals.",
       "baseline": {
         "clicks": 22,
         "impressions": 3988,
