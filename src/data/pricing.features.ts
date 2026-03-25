@@ -664,6 +664,31 @@ export const pricingFeatures: PricingFeature[] = [
             enterprise: "Add-on — 7-day free trial",
         },
     },
+    {
+        id: "barcodes",
+        category: "Add-ons",
+        name: "Barcodes",
+        description:
+            "Scan and manage Code128, Code39, Data Matrix, and EAN-13 barcodes alongside Shelf QR codes. Attach multiple barcodes per asset and scan any format from the built-in camera scanner.",
+        availability: {
+            free: "limited",
+            plus: "limited",
+            team: "limited",
+            enterprise: "limited",
+        },
+        internalAvailability: {
+            free: "limited",
+            tier_1: "limited",
+            tier_2: "limited",
+            custom: "limited",
+        },
+        metadata: {
+            free: "Add-on — 7-day free trial",
+            plus: "Add-on — 7-day free trial",
+            team: "Add-on — 7-day free trial",
+            enterprise: "Add-on — 7-day free trial",
+        },
+    },
 
     // ============================================================================
     // INTEGRATIONS
