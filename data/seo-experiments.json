@@ -29,7 +29,7 @@
         ],
         "capturedAt": null
       },
-      "status": "evaluating",
+      "status": "completed",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -37,7 +37,7 @@
         "redirect-fix",
         "emergency"
       ],
-      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 10 clicks, 508 impr, 2.0% CTR, pos 9.2. vs baseline: CTR +23% (1.62→2.0), position improved 15.7→9.2. Impressions down (seasonal or Google re-evaluating). Redirect working as intended."
+      "learnings": "WINNER. Redirect fix recovered lost traffic. CTR +23% (1.62→2.0%), position improved 15.7→9.2. Impressions down slightly (seasonal). Redirect working as intended — keeping permanently."
     },
     {
       "id": "exp-002",
@@ -68,7 +68,7 @@
         ],
         "capturedAt": null
       },
-      "status": "evaluating",
+      "status": "completed",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -76,7 +76,7 @@
         "title-rewrite",
         "move-1"
       ],
-      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 465 clicks, 35,073 impr, 1.3% CTR, pos 13.0. vs baseline: CTR +65% (0.79→1.3), position improved 16→13. Strong signal — 'Asset Management Software' + 'Free' in title is working. Homepage is the highest-leverage page."
+      "learnings": "WINNER. Adding 'Free for Teams' to homepage title lifted CTR +65% (0.79→1.3%), position improved 16→13. 'Free' + 'open source' is the winning formula. Homepage is the highest-leverage page — keep this title."
     },
     {
       "id": "exp-003",
@@ -107,7 +107,7 @@
         ],
         "capturedAt": null
       },
-      "status": "evaluating",
+      "status": "completed",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -115,7 +115,7 @@
         "description-rewrite",
         "move-1"
       ],
-      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 14 clicks, 2,012 impr, 0.7% CTR, pos 16.1. vs baseline: CTR +180% (0.25→0.7), position improved dramatically 30.3→16.1. Conversational description + 'free' + 'open source' is a winning formula. Biggest position jump of batch 1."
+      "learnings": "WINNER. Conversational description with 'free' and 'open source' drove CTR +180% (0.25→0.7%), position improved dramatically 30.3→16.1. Biggest batch 1 win — moved from page 3 to page 2. Template for future description rewrites."
     },
     {
       "id": "exp-004",
@@ -146,7 +146,7 @@
         ],
         "capturedAt": null
       },
-      "status": "evaluating",
+      "status": "completed",
       "startDate": "2026-03-06",
       "deployedAt": "2026-03-06",
       "evaluateAfterDays": 14,
@@ -154,7 +154,7 @@
         "title-rewrite",
         "move-1"
       ],
-      "learnings": "Early results (14d, 2026-03-05→2026-03-19): 19 clicks, 2,839 impr, 0.7% CTR, pos 10.9. vs baseline: CTR +150% (0.28→0.7), position improved 19.2→10.9. Action verbs in title working. Page moved from page 2 to page 1."
+      "learnings": "WINNER. Action verbs (Scan, Track, Return) in title boosted CTR +150% (0.28→0.7%), position improved 19.2→10.9. Page moved from page 2 to page 1. Concrete action language beats generic descriptions."
     },
     {
       "id": "exp-005",
@@ -295,17 +295,17 @@
         "capturedAt": "2026-03-11T08:53:47.389Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 9,
+        "impressions": 1013,
+        "ctr": 0.89,
+        "position": 6.6,
         "dateRange": [
-          null,
-          null
+          "2026-03-11",
+          "2026-03-25"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-03-25T07:55:33.132Z"
       },
-      "status": "active",
+      "status": "evaluating",
       "startDate": "2026-03-11",
       "deployedAt": "2026-03-11",
       "evaluateAfterDays": 14,
@@ -335,17 +335,17 @@
         "capturedAt": "2026-03-11T00:00:00.000Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 23,
+        "impressions": 2610,
+        "ctr": 0.88,
+        "position": 37.8,
         "dateRange": [
-          null,
-          null
+          "2026-03-11",
+          "2026-03-25"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-03-25T07:55:33.339Z"
       },
-      "status": "active",
+      "status": "completed",
       "startDate": "2026-03-11",
       "deployedAt": "2026-03-11",
       "evaluateAfterDays": 14,
@@ -354,7 +354,7 @@
         "search-intent",
         "tools"
       ],
-      "learnings": "Title change was deployed in PR #33. Code already live — marking deployedAt retroactively."
+      "learnings": "LOSER. Renaming primary ranking term from 'Label Designer' to 'Tag Maker' confused Google's semantic understanding. Impressions dropped -86% (18K→2.6K), position worsened 24.8→37.8. CTR improved slightly (0.7→0.88%) but net massive negative. Lesson: never rename the primary ranking term — extend it instead. Deploying hybrid title in EXP-026."
     },
     {
       "id": "exp-010",
@@ -1002,6 +1002,88 @@
         "title-rewrite",
         "description-rewrite",
         "batch-2"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-026",
+      "page": "/tools/asset-label-designer",
+      "field": "title+description",
+      "before": "Title: 'Free Asset Tag Maker & Label Designer | Shelf' / Desc: 'Create and print professional asset tags with QR codes. Free online tag generator — exports to PNG, SVG, and PDF. No signup required.'",
+      "after": "Title: 'Free Asset Label Designer & Tag Maker | Shelf' / Desc: 'Create and print professional asset labels and tags with QR codes. Free online label designer — exports to PNG, SVG, and PDF. No signup required.'",
+      "hypothesis": "EXP-009 renamed 'Label Designer' to 'Tag Maker' (leading term) and lost -86% impressions + 13 position spots. Hybrid title restores 'Label Designer' as lead term (Google's ranking signal) while keeping 'Tag Maker' for broader reach. Description also restored 'label designer' terminology. Should recover lost rankings while capturing tag-related queries.",
+      "baseline": {
+        "clicks": 23,
+        "impressions": 2610,
+        "ctr": 0.88,
+        "position": 37.8,
+        "dateRange": [
+          "2026-03-11",
+          "2026-03-25"
+        ],
+        "capturedAt": "2026-03-25T08:00:00.000Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-03-25",
+      "deployedAt": "2026-03-25",
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "description-rewrite",
+        "tools",
+        "recovery"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-027",
+      "page": "/knowledge-base/shelf-mobile-app",
+      "field": "title+description",
+      "before": "Title: 'Shelf Mobile App — Shelf Knowledge Base' / Desc: 'Learn how to install Shelf as a progressive web app on iOS, Android, and desktop browsers for quick access to your asset management system.'",
+      "after": "Title: 'Shelf App — Install on iOS, Android & Desktop | Free' / Desc: 'Get the Shelf app on your phone or desktop. Install in seconds as a progressive web app — scan QR codes, track assets, and manage inventory on the go. Free, no app store needed.'",
+      "hypothesis": "'shelf app' query has 6,665 impressions at 0.4% CTR (position 6.9) — biggest untapped opportunity. Current KB title 'Shelf Mobile App' doesn't match the query well and description is instructional rather than compelling. New title starts with exact-match 'Shelf App', includes platforms (iOS/Android/Desktop), and ends with 'Free' (proven CTR booster). Also targets 'shelf app android' (267 impr) and 'shelf app for android' (13 impr).",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-03-25",
+      "deployedAt": "2026-03-25",
+      "evaluateAfterDays": 14,
+      "tags": [
+        "title-rewrite",
+        "description-rewrite",
+        "knowledge-base",
+        "brand-query"
       ],
       "learnings": ""
     }

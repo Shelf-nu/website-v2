@@ -7,8 +7,8 @@ import { CTA } from '@/components/sections/cta';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
-    title: 'Free Asset Tag Maker & Label Designer | Shelf',
-    description: 'Create and print professional asset tags with QR codes. Free online tag generator — exports to PNG, SVG, and PDF. No signup required.',
+    title: 'Free Asset Label Designer & Tag Maker | Shelf',
+    description: 'Create and print professional asset labels and tags with QR codes. Free online label designer — exports to PNG, SVG, and PDF. No signup required.',
     alternates: {
         canonical: 'https://www.shelf.nu/tools/asset-label-designer'
     }
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function AssetLabelDesignerPage() {
     return (
-        <PagefindWrapper type="Page" title="Free Asset Tag Maker & Label Designer" keywords="asset tag maker asset tags label designer asset label generator create tags">
+        <PagefindWrapper type="Page" title="Free Asset Label Designer & Tag Maker" keywords="asset label designer asset tag maker asset tags label generator create labels create tags">
         <div className="min-h-screen font-sans">
             {/* Custom Header with Grid Pattern */}
             <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">
