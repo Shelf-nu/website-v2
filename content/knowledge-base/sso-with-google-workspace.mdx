@@ -2,7 +2,7 @@
 title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Enterprise or Organization plan only."
 category: "Workspaces"
-date: "2026-03-24"
+date: "2026-03-26"
 layout: "knowledge-base"
 ---
 
@@ -128,6 +128,27 @@ It often helps to ask them to log out of their Google account and log back in.
 Ask them to enter the domain in the Login with SSO page.
 
 If sign in is not working correctly, reach out to your support contact at Shelf.
+
+---
+
+## Personal Workspaces and SSO
+
+When you sign in via SSO, your **personal workspace is hidden** — you only see the team workspaces your administrator has assigned to you. This ensures SSO-managed users always operate in the correct organizational workspace rather than their personal space.
+
+### No Workspace Assigned?
+
+If your SSO account has not been assigned to any team workspace, you will see a **"No workspace assigned"** page after login.
+
+![No workspace assigned page shown to SSO users with no team org](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/nopersonalworkspaceassigned.png)
+
+This happens when:
+
+- You've just signed up via SSO for the first time and your administrator hasn't assigned you to a group yet
+- Your group access has been revoked by an administrator
+
+**What to do:** Contact your IT administrator and ask them to assign you to the appropriate workspace group in your identity provider (e.g., Google Workspace). Once assigned, log out and log back in — Shelf will redirect you to your workspace automatically.
+
+> **Note:** Your personal workspace still exists in the background, but it is not accessible while you are signed in via SSO.
 
 ---
 
