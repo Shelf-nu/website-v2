@@ -46,6 +46,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
+import { useIsSignedIn } from "@/hooks/use-is-signed-in";
 
 import { TopBanner } from "@/components/layout/top-banner";
 import { SearchDialog } from "@/components/search/search-dialog";
@@ -152,6 +153,7 @@ export function Navbar() {
         });
     }, [pathname]);
 
+    const isSignedIn = useIsSignedIn();
     const [navState, setNavState] = useState<string>("");
 
     // Lock body scroll when menu is open (iOS Safari–safe)
@@ -539,37 +541,65 @@ export function Navbar() {
                     <div className="flex items-center gap-3">
                         <SearchDialog />
 
-                        {/* Desktop: Login + Signup */}
+                        {/* Desktop: Login + Signup OR Go to app */}
                         <div className="hidden sm:flex items-center gap-3">
+                            {isSignedIn ? (
+                                <Link href="https://app.shelf.nu">
+                                    <Button
+                                        size="sm"
+                                        className="bg-orange-600 hover:bg-orange-700 text-white ring-1 ring-orange-500/20 transition-all hover:shadow-md hover:shadow-orange-500/10"
+                                    >
+                                        Go to app
+                                        <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                                    </Button>
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link
+                                        href="https://app.shelf.nu/login"
+                                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        Log in
+                                    </Link>
+                                    <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup" onClick={() => trackEvent("signup_click", { location: "navbar" })}>
+                                        <Button
+                                            size="sm"
+                                            className="bg-orange-600 hover:bg-orange-700 text-white ring-1 ring-orange-500/20 transition-all hover:shadow-md hover:shadow-orange-500/10"
+                                        >
+                                            Sign up free
+                                        </Button>
+                                    </Link>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Mobile: Compact CTA (always visible, not buried in menu) */}
+                        {isSignedIn ? (
                             <Link
-                                href="https://app.shelf.nu/login"
-                                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                href="https://app.shelf.nu"
+                                className="sm:hidden"
                             >
-                                Log in
-                            </Link>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup" onClick={() => trackEvent("signup_click", { location: "navbar" })}>
                                 <Button
                                     size="sm"
-                                    className="bg-orange-600 hover:bg-orange-700 text-white ring-1 ring-orange-500/20 transition-all hover:shadow-md hover:shadow-orange-500/10"
+                                    className="bg-orange-600 hover:bg-orange-700 text-white text-xs h-8 px-3"
+                                >
+                                    Go to app
+                                </Button>
+                            </Link>
+                        ) : (
+                            <Link
+                                href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_mobile_signup"
+                                className="sm:hidden"
+                                onClick={() => trackEvent("signup_click", { location: "navbar_mobile_persistent" })}
+                            >
+                                <Button
+                                    size="sm"
+                                    className="bg-orange-600 hover:bg-orange-700 text-white text-xs h-8 px-3"
                                 >
                                     Sign up free
                                 </Button>
                             </Link>
-                        </div>
-
-                        {/* Mobile: Compact signup (always visible, not buried in menu) */}
-                        <Link
-                            href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_mobile_signup"
-                            className="sm:hidden"
-                            onClick={() => trackEvent("signup_click", { location: "navbar_mobile_persistent" })}
-                        >
-                            <Button
-                                size="sm"
-                                className="bg-orange-600 hover:bg-orange-700 text-white text-xs h-8 px-3"
-                            >
-                                Sign up free
-                            </Button>
-                        </Link>
+                        )}
 
                         {/* Mobile Menu Toggle */}
                         <button
@@ -743,26 +773,40 @@ export function Navbar() {
 
                             {/* CTAs */}
                             <div className="pt-4 space-y-3">
-                                <Link
-                                    href="https://app.shelf.nu/login"
-                                    className="block w-full"
-                                >
-                                    <Button
-                                        variant="outline"
-                                        className="w-full justify-center"
+                                {isSignedIn ? (
+                                    <Link
+                                        href="https://app.shelf.nu"
+                                        className="block w-full"
                                     >
-                                        Log in
-                                    </Button>
-                                </Link>
-                                <Link
-                                    href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup"
-                                    className="block w-full"
-                                    onClick={() => trackEvent("signup_click", { location: "navbar_mobile" })}
-                                >
-                                    <Button className="w-full justify-center bg-orange-600 hover:bg-orange-700 text-white">
-                                        Sign up free
-                                    </Button>
-                                </Link>
+                                        <Button className="w-full justify-center bg-orange-600 hover:bg-orange-700 text-white">
+                                            Go to app
+                                            <ArrowRight className="ml-1.5 h-4 w-4" />
+                                        </Button>
+                                    </Link>
+                                ) : (
+                                    <>
+                                        <Link
+                                            href="https://app.shelf.nu/login"
+                                            className="block w-full"
+                                        >
+                                            <Button
+                                                variant="outline"
+                                                className="w-full justify-center"
+                                            >
+                                                Log in
+                                            </Button>
+                                        </Link>
+                                        <Link
+                                            href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=navbar_signup"
+                                            className="block w-full"
+                                            onClick={() => trackEvent("signup_click", { location: "navbar_mobile" })}
+                                        >
+                                            <Button className="w-full justify-center bg-orange-600 hover:bg-orange-700 text-white">
+                                                Sign up free
+                                            </Button>
+                                        </Link>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </motion.div>
