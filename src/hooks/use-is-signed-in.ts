@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 
 /**
  * Detects whether the current browser likely has an active Shelf session
@@ -10,12 +10,11 @@ import { useState, useEffect } from "react";
  * We don't care if the session is actually valid — if it expired,
  * the app will handle the redirect to login.
  */
-export function useIsSignedIn(): boolean | null {
-  const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    setIsSignedIn(document.cookie.includes("user-prefs="));
-  }, []);
+const noop = () => () => {};
+const getSnapshot = () => document.cookie.includes("user-prefs=");
+const getServerSnapshot = () => false;
 
-  return isSignedIn;
+export function useIsSignedIn(): boolean {
+  return useSyncExternalStore(noop, getSnapshot, getServerSnapshot);
 }
