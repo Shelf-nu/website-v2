@@ -125,13 +125,15 @@ See: [Asset Search](/features/asset-search)
 
 ---
 
-### 7. Granular Booking Notification Control
+### 7. Booking-Centric Notification Management
 
-In Cheqroom, booking notifications follow fixed rules tied to roles and reservation status. There is no mechanism to reduce notification noise for admins who do not manage every booking, add a specific person to a single checkout, or designate an operations lead who should receive everything.
+Both Cheqroom and Shelf let admins configure who receives booking notifications. Cheqroom's approach is rule-based: administrators go to **Settings > Notifications** and build notification rules — choose a trigger (new reservation, check-out due, overdue, etc.), pick the delivery channel (Email, SMS, Slack, Webhooks), and specify recipients. It is a powerful, flexible system, particularly well-suited for teams that need SMS alerts or Slack routing.
 
-Shelf's booking notification system is fully configurable. Workspace admins set defaults in **Settings > Bookings**: toggle whether booking creators are automatically notified, control whether all admins receive a broadcast on new reservations, and build an "always notify" list for people who need complete visibility. On individual bookings, anyone can add per-booking recipients — the department head who needs to know about one specific high-value checkout, for instance.
+Shelf takes a different approach. Notification recipients are configured directly on bookings and at the workspace level alongside other booking settings — not in a separate notifications area. When creating or editing a booking, anyone can add per-booking recipients right in the booking form. Workspace-level defaults (notify booking creator, always-notify user list, admin broadcast) live in **Settings > Bookings** next to working hours and other booking configuration.
 
-The result is less inbox noise for uninvolved admins and better coverage for the people who actually care about each booking.
+Admins with Owner or Admin role also see a **notification preview** in the booking form — a real-time summary of exactly who will receive emails for that booking, grouped by reason (custodian, creator, always-notified, per-booking recipients, admin broadcast), before the booking is saved.
+
+The practical difference: Cheqroom's notification system is powerful but separate from the booking workflow. Shelf's is embedded directly in it.
 
 See: [Bookings](/features/bookings)
 
