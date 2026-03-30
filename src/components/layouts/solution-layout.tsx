@@ -1,6 +1,5 @@
 import { Frontmatter } from "@/lib/content/schema";
 import { HeroWithSocialProof } from "./shared/hero-with-social-proof";
-import { RelatedContent } from "./shared/related-content";
 
 import { Container } from "@/components/ui/container";
 import { CTA } from "@/components/sections/cta";
@@ -110,8 +109,6 @@ export function SolutionLayout({ frontmatter, children }: LayoutProps) {
                 )}
 
                 <CTA />
-
-                {frontmatter.related && <RelatedContent related={frontmatter.related} />}
             </div>
         </>
     );
