@@ -1,0 +1,27 @@
+---
+title: "Granular Booking Email Notifications"
+description: "Workspace admins can now configure exactly who receives booking notification emails — with workspace-level defaults, an always-notify user list, and per-booking recipient overrides."
+date: "2026-03-30"
+layout: "update"
+readMoreUrl: "/knowledge-base/booking-notification-settings"
+---
+
+Shelf's booking notification system has been completely reworked to give admins precise control over who gets emailed and when.
+
+Previously, booking notifications followed a fixed, all-or-nothing pattern: the custodian received all events, and all admins received a notification on new reservation requests. There was no way to reduce admin noise or add other people who needed to stay informed. Crucially, the booking **creator** received nothing — even when booking equipment on behalf of someone else.
+
+With this update, workspace admins can configure notifications at two levels:
+
+**Workspace defaults** (Settings > Bookings > Email Notification Recipients):
+- **Notify booking creator** — On by default. The user who created a booking now receives all notification emails for it (checkout reminder, overdue, completed, etc.).
+- **Notify all admins on new booking requests** — On by default, preserving current behavior. Admins receive the reservation broadcast but not subsequent lifecycle emails unless they are explicitly attached to the booking.
+- **Always notify these users** — A user picker for adding specific people (such as an equipment manager or operations lead) who receive all booking notifications workspace-wide.
+
+**Per-booking recipients** (on the booking create/edit form):
+- An optional **Notification recipients** field lets you add specific users to receive all notifications for a single booking — useful for high-priority checkouts where a department head or extra stakeholder needs visibility.
+
+For Admin and Owner users, the booking form now includes a **notification preview** showing exactly who will be notified and why, before saving.
+
+Recipients are deduplicated — no one receives the same email twice even if they appear in multiple layers. The person performing an action is excluded from the immediate notification (they already know what they did), but scheduled reminders still reach everyone.
+
+Existing workspaces keep their current behavior by default — no configuration changes are needed unless you want to adjust the new settings.

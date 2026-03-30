@@ -1,0 +1,108 @@
+---
+title: "Booking Notification Settings"
+description: "Control who receives booking email notifications at the workspace level and per booking. Configure creator notifications, admin broadcasts, always-notify users, and per-booking recipients."
+category: "Bookings & Custody"
+date: "2026-03-30"
+layout: "knowledge-base"
+---
+
+Shelf lets you control exactly who receives email notifications for booking events — at both the workspace level (default rules for all bookings) and per individual booking. This prevents notification noise for admins who don't need to track every booking, while ensuring the right people stay informed.
+
+## How Notification Recipients Are Resolved
+
+For every booking email, Shelf determines recipients by combining these layers in order:
+
+1. **Custodian** — Always notified for all booking events. This cannot be turned off.
+2. **Workspace defaults** — Configured in **Settings > Bookings**, applied to every booking unless overridden.
+3. **Per-booking recipients** — Specific users added on an individual booking, in addition to workspace defaults.
+
+Recipients are deduplicated before sending — no one receives the same email twice even if they appear in multiple layers.
+
+## Workspace-Level Notification Settings
+
+Go to **Settings > Bookings** and scroll to the **Email Notification Recipients** section to configure workspace-wide defaults.
+
+<!-- TODO: Add screenshot showing the Email Notification Recipients section in Settings > Bookings -->
+
+### Notify Booking Creator
+
+**Default: On**
+
+When enabled, the user who created a booking receives all email notifications for that booking (if they are not already the custodian). This ensures that anyone who books equipment on behalf of someone else stays informed about checkout reminders, overdue notices, and completion.
+
+To disable this for your workspace, toggle **Notify booking creator** off in **Settings > Bookings**.
+
+### Notify All Admins on New Booking Requests
+
+**Default: On**
+
+When enabled, all users with **Admin** or **Owner** role receive a notification when a booking is reserved. This is a one-time broadcast for the reservation event only — admins do **not** receive subsequent lifecycle emails (checkout reminders, check-in reminders, overdue notices, completed, or cancelled) unless they are explicitly added as a notification recipient on the booking or are in the Always Notify list.
+
+The purpose of this setting is to alert the admin team that a new booking needs attention. Once someone takes ownership or processes the booking, only people explicitly attached to it continue to receive emails.
+
+**When to turn this off:** If your workspace has many admins and you want to reduce notification noise, disable this toggle and use the **Always Notify** list below to target the specific people who should receive new booking alerts.
+
+### Always Notify These Users
+
+**Default: Empty**
+
+Add specific users who should receive all booking email notifications for every booking in the workspace — not just the reservation, but every update (checkout, checkin, overdue, completed, cancelled, extended, deleted).
+
+Use this for people who need complete visibility across all bookings, such as an equipment manager, office manager, or operations lead. This setting is additive — it works alongside (not instead of) the other notification settings above.
+
+To add a user:
+1. Go to **Settings > Bookings**
+2. Click **+ Add user** in the Always Notify section
+3. Search for the user by name or email
+4. Click **Save**
+
+## Per-Booking Notification Recipients
+
+When creating or editing a booking, you can add specific users to receive notifications for that booking only — in addition to workspace defaults.
+
+Use this for bookings that need extra attention from people not already covered by workspace settings. For example, a high-value equipment checkout that a department head should know about, or a complex booking where multiple people need to stay coordinated.
+
+<!-- TODO: Add screenshot showing the Notification recipients section in the booking create/edit form -->
+
+### Adding Recipients to a Booking
+
+1. Open an existing booking or start creating a new one
+2. Scroll to the **Notification recipients** section (optional, collapsible)
+3. Click **+ Add recipient** and search for users by name or email
+4. The selected users will receive all email notifications for this booking
+
+### Notification Preview
+
+If you have Admin or Owner role, the booking form shows a **notification preview** — a real-time summary of everyone who will receive emails for the booking, grouped by reason:
+
+- Custodian
+- Creator (if workspace setting is on)
+- Always-notify users (if configured)
+- Added recipients (if any)
+- Admin broadcast note for the reservation event
+
+Base-role and Self-Service users do not see the full recipient list.
+
+## Complete Notification Matrix
+
+| Booking Event | Custodian | Creator (if on) | All Admins (if on) | Always-Notify Users | Per-Booking Recipients |
+|---|---|---|---|---|---|
+| Reserved | Always | Yes | **Yes** | Yes | Yes |
+| Checkout Reminder | Always | Yes | No | Yes | Yes |
+| Checkin Reminder | Always | Yes | No | Yes | Yes |
+| Overdue | Always | Yes | No | Yes | Yes |
+| Completed | Always | Yes | No | Yes | Yes |
+| Cancelled | Always | Yes | No | Yes | Yes |
+| Extended | Always | Yes | No | Yes | Yes |
+| Updated | Always | Yes | No | Yes | Yes |
+| Deleted | Always | Yes | No | Yes | Yes |
+
+**Note:** The All Admins column applies to the reservation event only. This is intentional — it is a broadcast signal that a new booking needs attention. Subsequent lifecycle events are targeted to specific people attached to the booking.
+
+**Note:** The person performing an action does not receive an email about it (they already know what they did). This exclusion does not apply to scheduled reminders (checkout reminder, checkin reminder, overdue) — those are sent to all recipients regardless.
+
+## Related Articles
+
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
+- [How to Create a Booking](/knowledge-base/how-to-create-a-booking)
+- [Activity Logs for Bookings](/knowledge-base/activity-logs-for-bookings)
