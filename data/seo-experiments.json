@@ -305,7 +305,7 @@
         ],
         "capturedAt": "2026-03-25T07:55:33.132Z"
       },
-      "status": "evaluating",
+      "status": "completed",
       "startDate": "2026-03-11",
       "deployedAt": "2026-03-11",
       "evaluateAfterDays": 14,
@@ -314,7 +314,7 @@
         "move-2",
         "alternatives"
       ],
-      "learnings": "Title change was deployed in PR #33. Code already live — marking deployedAt retroactively."
+      "learnings": "WINNER. 'vs' format with year tag lifted CTR +44% (0.62→0.89%), position improved 9.1→6.6, clicks +80% (5→9), impressions +25% (808→1013). Comparison-style titles with year tags work well for /alternatives pages — apply to future alternative page experiments."
     },
     {
       "id": "exp-009",
