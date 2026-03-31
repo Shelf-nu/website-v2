@@ -7,7 +7,7 @@ Every content page on the website, mapped back to the code concepts it reference
 ### 3a: Feature Pages (content/features/) → Code
 
 | # | Feature Page | Website Title | Primary Code Concept(s) | Route(s) | Models | Notes |
-|---|-------------|--------------|------------------------|----------|--------|----- -|
+|---|-------------|--------------|------------------------|----------|--------|-------|
 | 1 | `asset-pages.mdx` | Asset Pages | Asset detail view | `assets.$assetId.overview.tsx` | `Asset`, `Note`, `CustomField`, `Qr`, `Custody` | Describes: photos, custom fields, custody history, location history, QR label, notes |
 | 2 | `asset-reminders.mdx` | Asset Reminders | Reminder scheduling | `reminders._index.tsx`, `assets.$assetId.reminders.tsx` | `AssetReminder`, `TeamMember` | Describes: time-based alerts, email notifications, maintenance scheduling |
 | 3 | `asset-search.mdx` | Asset Search | Asset index search | `assets._index.tsx` | `Asset`, `AssetCustomFieldValue` | Describes: multi-field search, custom field search, instant results |
