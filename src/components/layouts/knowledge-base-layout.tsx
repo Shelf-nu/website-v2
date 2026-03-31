@@ -2,6 +2,7 @@ import { Frontmatter } from "@/lib/content/schema";
 
 import { Container } from "@/components/ui/container";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight, ArrowRight, CheckCircle2, MessageSquare, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TrackedLink } from "@/components/analytics/tracked-link";
@@ -20,29 +21,42 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                 {/* Breadcrumbs + Header */}
                 <div className="border-b border-border/40 bg-muted/20">
                     <Container className="pt-28 pb-10 md:pt-36 md:pb-14">
-                        <nav className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6">
-                            <Link
-                                href="/knowledge-base"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Knowledge Base
-                            </Link>
-                            <ChevronRight className="h-3.5 w-3.5" />
-                            <Link
-                                href={`/knowledge-base?category=${encodeURIComponent(category)}`}
-                                className="text-foreground font-medium truncate hover:text-orange-600 transition-colors"
-                            >
-                                {category}
-                            </Link>
-                        </nav>
-                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-3">
-                            {frontmatter.title}
-                        </h1>
-                        {frontmatter.description && (
-                            <p className="text-lg text-muted-foreground max-w-2xl">
-                                {frontmatter.description}
-                            </p>
-                        )}
+                        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                            <div className="min-w-0">
+                                <nav className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6">
+                                    <Link
+                                        href="/knowledge-base"
+                                        className="hover:text-foreground transition-colors"
+                                    >
+                                        Knowledge Base
+                                    </Link>
+                                    <ChevronRight className="h-3.5 w-3.5" />
+                                    <Link
+                                        href={`/knowledge-base?category=${encodeURIComponent(category)}`}
+                                        className="text-foreground font-medium truncate hover:text-orange-600 transition-colors"
+                                    >
+                                        {category}
+                                    </Link>
+                                </nav>
+                                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-3">
+                                    {frontmatter.title}
+                                </h1>
+                                {frontmatter.description && (
+                                    <p className="text-lg text-muted-foreground max-w-2xl">
+                                        {frontmatter.description}
+                                    </p>
+                                )}
+                            </div>
+                            <div className="hidden md:block flex-shrink-0">
+                                <Image
+                                    src="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/decorational.png"
+                                    alt=""
+                                    width={280}
+                                    height={175}
+                                    className="w-56 lg:w-64 h-auto opacity-90"
+                                />
+                            </div>
+                        </div>
                     </Container>
                 </div>
 
