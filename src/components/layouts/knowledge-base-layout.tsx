@@ -53,6 +53,7 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                                     alt=""
                                     width={280}
                                     height={175}
+                                    unoptimized
                                     className="w-56 lg:w-64 h-auto opacity-90"
                                 />
                             </div>
