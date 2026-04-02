@@ -59,6 +59,16 @@ const CASE_STUDIES = [
             "Went from managing gear in one person's head to a system the whole team trusts.",
         industry: "Video Production",
     },
+    {
+        slug: "kcai",
+        company: "Kansas City Art Institute",
+        logo: "/logos/kcai.webp",
+        stat: "Seamless",
+        statLabel: "migration from Cheqroom",
+        headline:
+            "Migrated their Media Center from Cheqroom to Shelf without disrupting student equipment checkout.",
+        industry: "Art & Design Education",
+    },
 ];
 
 function CaseStudyCard({
@@ -74,7 +84,7 @@ function CaseStudyCard({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
-            className={`lg:col-span-2 ${index === 3 ? "lg:col-start-2" : ""}`}
+            className="lg:col-span-2"
         >
             <Link
                 href={`/case-studies/${study.slug}`}
@@ -152,7 +162,7 @@ export function CaseStudiesPreview() {
                     </div>
                 </ScrollReveal>
 
-                {/* Uniform grid: 3 top + 2 bottom centered */}
+                {/* Uniform grid: 3 + 3 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5 mb-14">
                     {CASE_STUDIES.map((study, i) => (
                         <CaseStudyCard key={study.slug} study={study} index={i} />

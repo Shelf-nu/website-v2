@@ -17,6 +17,10 @@ function formatAuthorName(author: string): string {
         .join(" ");
 }
 
+const AUTHOR_IMAGES: Record<string, string> = {
+    "carlos-virreira": "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/carlos_virreira.png",
+};
+
 interface RelatedPost {
     slug: string;
     frontmatter: Frontmatter;
@@ -70,8 +74,17 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
 
                             {/* Author Block */}
                             <div className="flex items-center justify-center lg:justify-start gap-4 border-y border-border py-6">
-                                <div className="h-12 w-12 rounded-full bg-orange-100 flex items-center justify-center text-lg font-bold text-orange-700 overflow-hidden relative">
-                                    {frontmatter.author ? formatAuthorName(frontmatter.author).charAt(0) : 'S'}
+                                <div className="h-12 w-12 rounded-full bg-orange-100 flex items-center justify-center text-lg font-bold text-orange-700 overflow-hidden relative flex-shrink-0">
+                                    {frontmatter.author && AUTHOR_IMAGES[frontmatter.author] ? (
+                                        <Image
+                                            src={AUTHOR_IMAGES[frontmatter.author]}
+                                            alt={formatAuthorName(frontmatter.author)}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    ) : (
+                                        frontmatter.author ? formatAuthorName(frontmatter.author).charAt(0) : 'S'
+                                    )}
                                 </div>
                                 <div className="text-left">
                                     <div className="font-semibold text-foreground">{frontmatter.author ? formatAuthorName(frontmatter.author) : "Shelf Team"}</div>
