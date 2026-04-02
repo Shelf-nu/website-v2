@@ -60,7 +60,7 @@ const CASE_STUDIES = [
         industry: "Video Production",
     },
     {
-        slug: "kansas-city-art-institute-cheqroom-migration",
+        slug: "kcai",
         company: "Kansas City Art Institute",
         logo: "/logos/kcai.webp",
         stat: "Seamless",
