@@ -17,7 +17,7 @@ export function SummaryBox({ title = "In This Section", children }: SummaryBoxPr
                     {title}
                 </span>
             </div>
-            <div className="px-5 py-4 text-[0.95rem] leading-relaxed text-muted-foreground [&>p]:mt-2 [&>p:first-child]:mt-0 [&>ul]:mt-2 [&>ul]:ml-4 [&>ul]:list-disc [&>li]:mt-1.5 [&>li]:text-muted-foreground">
+            <div className="px-5 py-4 text-[0.95rem] leading-relaxed text-muted-foreground [&>p]:mt-2 [&>p:first-child]:mt-0 [&>ul]:mt-2 [&>ul]:ml-4 [&>ul]:list-disc [&>ul>li]:mt-1.5 [&>ul>li]:text-muted-foreground [&>ol>li]:mt-1.5 [&>ol>li]:text-muted-foreground">
                 {children}
             </div>
         </div>
