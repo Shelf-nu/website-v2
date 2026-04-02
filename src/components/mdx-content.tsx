@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageZoom } from "@/components/ui/image-zoom";
+import { Callout } from "@/components/mdx/callout";
+import { StatBlock } from "@/components/mdx/stat-block";
+import { PullQuote } from "@/components/mdx/pull-quote";
+import { SummaryBox } from "@/components/mdx/summary-box";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -92,6 +96,10 @@ const components = {
     Button,
     Link,
     Image,
+    Callout,
+    StatBlock,
+    PullQuote,
+    SummaryBox,
 };
 
 export function MDXContent({ source }: { source: string }) {
