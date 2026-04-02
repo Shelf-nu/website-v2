@@ -4,7 +4,8 @@
 
 - Google March 2026 **core update** (Mar 27) and **spam update** (Mar 24) are still settling
 - Our approach: earn positions through genuine quality, not volume or tricks
-- Everything we ship should pass the test: "Would a school administrator bookmark this?"
+- Everything we ship should pass the test: "Would the person landing on this page find it genuinely useful for their specific situation?"
+- Shelf serves 10+ verticals — education (29% of pipeline), media/production (17%), manufacturing (9%), professional services (9%), field service (9%), IT (11%), and more. Content must reflect this breadth.
 
 ## Guiding Principles
 
@@ -33,22 +34,23 @@
 
 ---
 
-### Experiment 2: "Best Equipment Management Software for Schools" Comparison Page
+### Experiment 2: Honest Comparison Page — "Best Equipment Management Software"
 
-**Hypothesis:** School administrators searching for "best equipment management software for schools" or "equipment checkout software for schools" currently land on Asset Panda's self-serving comparison page. A fair, honest comparison page from Shelf would capture this high-intent traffic.
+**Hypothesis:** People searching "best equipment management software" or "best asset tracking software 2026" currently land on Asset Panda's self-serving comparison page. A fair, honest comparison from Shelf — covering multiple use cases (education, media/production, field operations, IT) — would capture high-intent traffic across all our verticals.
 
 **What to do:**
 - [ ] Create a comparison page covering: Shelf, Cheqroom, Sortly, Snipe-IT, EZOfficeInventory, Asset Panda, Reftab
 - [ ] For each tool: honest summary of strengths, weaknesses, pricing, and who it's best for
-- [ ] Include a clear comparison table (features, pricing, open source, education-specific)
+- [ ] Include a clear comparison table (features, pricing, open source, booking/checkout, industry fit)
 - [ ] Be genuinely fair — name things competitors do better than us where true
-- [ ] Link to our education page and case studies as proof, not as sales pitches
+- [ ] Cover multiple buyer contexts: education, production companies, field teams, IT departments
+- [ ] Link to relevant case studies and industry pages as proof, not as pitches
 
 **How to measure:** GSC impressions and clicks for "best equipment management software" cluster. Track position over 30 days.
 
 **Risk level:** Low. Honest comparison content is rewarded by Google's helpful content system. Self-serving listicles where you rank yourself #1 on every axis are not. We'll be honest.
 
-**Quality check:** Before publishing, ask: "Would a school administrator trust this comparison, or would they feel sold to?"
+**Quality check:** Before publishing, ask: "Would a production company in Singapore AND a school in Kansas both find this useful?"
 
 ---
 
@@ -73,10 +75,11 @@
 **Hypothesis:** Long-tail searches like "student equipment checkout system" or "loaner laptop tracking system" have lower competition and higher intent than broad terms. Dedicated use case pages can capture this traffic.
 
 **What to do:**
-- [ ] Create 2-3 focused use case pages (500-800 words each):
-  - "Student Equipment Checkout System" — targets schools, describes the workflow, links to education content
-  - "Loaner Laptop Tracking" — targets IT departments and schools with 1:1 programs
-  - (Optional) "Construction Tool Checkout" — targets field operations
+- [ ] Create 2-3 focused use case pages (500-800 words each), selected from:
+  - "Student Equipment Checkout System" — targets schools (education vertical)
+  - "Production Equipment Tracking" — targets media/film companies (our #2 vertical by deal value)
+  - "Loaner Laptop Tracking" — targets IT departments across all industries
+  - "Construction Tool Checkout" — targets field operations
 - [ ] Each page: specific pain point, how Shelf solves it, one case study reference, CTA
 - [ ] Internal links to/from relevant solutions pages and blog posts
 
