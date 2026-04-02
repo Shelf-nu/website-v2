@@ -19,9 +19,12 @@ const components = {
     ),
     h2: (props: HtmlProps<"h2">) => {
         const id = props.id || props.children?.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+        if (!id) {
+            return <h2 className="mt-12 scroll-m-20 border-b border-border/40 pb-2 text-3xl font-semibold tracking-tight first:mt-0">{props.children}</h2>;
+        }
         return (
             <HeadingAnchor
-                id={id || ""}
+                id={id}
                 as="h2"
                 className="mt-12 scroll-m-20 border-b border-border/40 pb-2 text-3xl font-semibold tracking-tight first:mt-0"
             >
@@ -31,9 +34,12 @@ const components = {
     },
     h3: (props: HtmlProps<"h3">) => {
         const id = props.id || props.children?.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+        if (!id) {
+            return <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">{props.children}</h3>;
+        }
         return (
             <HeadingAnchor
-                id={id || ""}
+                id={id}
                 as="h3"
                 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight"
             >
