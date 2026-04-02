@@ -52,7 +52,7 @@ Before comparing tools, it helps to understand that "equipment management softwa
 **3. Maintenance and operations platforms (CMMS)** — built for scheduling maintenance, tracking work orders, and managing equipment health. Best for facilities, manufacturing, fleet management.
 *Tools: EZOfficeInventory (bridges categories 2 and 3), Asset Panda (bridges categories 1 and 2)*
 
-If you need equipment booking and checkout, comparing Shelf to a CMMS tool is apples to oranges. If you need maintenance scheduling, Shelf isn't the right fit. Knowing your category narrows the field immediately.
+If you need equipment booking and checkout, comparing Shelf to a CMMS tool is apples to oranges. If full preventive maintenance with work orders is your primary need, you need a tool in category 3. Knowing your category narrows the field immediately.
 
 ---
 
@@ -62,19 +62,19 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 
 | | Shelf | Cheqroom | Sortly | Snipe-IT | EZO | Asset Panda | Reftab |
 |---|---|---|---|---|---|---|---|
-| **Free plan** | Yes (unlimited assets, 1 user) | No (trial only) | Yes (100 items, 1 user) | Yes (self-hosted) | No (trial only) | No (trial only) | Yes (25 assets) |
-| **Team pricing** | $99/mo flat (unlimited users) | Per-admin pricing | $49-$299/mo (user + item caps) | $40-$250/mo (hosted) | ~$40-65/mo (per item tier) | $50-75/user/mo (min 5 users) | ~$3.50-6/user/mo |
+| **Free plan** | Yes (unlimited assets, 1 user) | No (trial only) | Yes (100 items, 1 user) | Yes (self-hosted) | No (trial only) | No (trial only) | Yes (50 assets) |
+| **Team pricing** | $67/mo flat (unlimited users) | Per-admin pricing | $49-$299/mo (user + item caps) | $40-$250/mo (hosted) | ~$40-65/mo (per item tier) | $50-75/user/mo (min 5 users) | ~$3.50-6/user/mo |
 | **Pricing model** | Flat per workspace | Per admin seat | Per user + item cap | Free self-host or hosted | Per item count | Per user | Per user + asset tier |
 | **Open source** | Yes (AGPL) | No | No | Yes (AGPL) | No | No | No |
 | **Self-host option** | Yes | No | No | Yes | No | No | No |
 | **QR-first design** | Yes | Has QR | Has QR | Has QR | Has QR | Has barcode/QR | Has QR |
-| **Booking / reservations** | Yes | Yes | No | No | Yes | Yes | No |
+| **Booking / reservations** | Yes | Yes | No | No | Yes | Yes | Yes |
 | **Custody chain** | Yes | Yes | Folder-based | Basic assign | Basic | Yes (with signatures) | Basic assign |
-| **Kit management** | Yes | Yes | No | No | Limited | No | No |
-| **Maintenance / CMMS** | No | No | No | No | Yes | Limited | No |
+| **Kit management** | Yes | Yes | No | No | Limited | No | Yes (paid plans) |
+| **Maintenance / CMMS** | Tracking, not full CMMS | No | No | No | Yes | Limited | Yes (Business tier) |
 | **Depreciation tracking** | No | No | No | Yes | Yes | Yes | No |
 | **License tracking** | No | No | No | Yes | No | No | Limited |
-| **Native mobile app** | PWA (any browser) | Yes (iOS/Android) | Yes (iOS/Android) | No | Yes (iOS/Android) | Yes (iOS/Android) | Limited |
+| **Native mobile app** | PWA (any browser) | Yes (iOS/Android) | Yes (iOS/Android) | No | Yes (iOS/Android) | Yes (iOS/Android) | Yes (iOS/Android) |
 | **Best for** | Schools, media, shared equipment | AV/media production | Simple visual inventory | IT asset lifecycle | Mid-market operations | Customizable enterprise | Small IT teams |
 
 ---
@@ -86,7 +86,7 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 **What it is:** An open-source equipment management platform built around QR code scanning, equipment booking, and custody tracking. Shelf is what we make — so take this section with that context.
 
 **Strengths:**
-- **Flat pricing with unlimited users** — $99/month for the Team plan covers your entire organization. No per-seat fees. This matters most for schools and large teams where dozens of people need checkout access.
+- **Flat pricing with unlimited users** — $67/month for the Team plan covers your entire organization. No per-seat fees. This matters most for schools and large teams where dozens of people need checkout access.
 - **QR-first workflow** — scanning is the primary interaction, not data entry. Students, staff, and field workers pick it up without training.
 - **Equipment booking** — visual calendar with conflict prevention. Reserve shared gear ahead of time.
 - **Kit management** — bundle a camera with its lens, battery, and SD card. Missing components are flagged at check-in.
@@ -94,7 +94,7 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 - **Free plan** — unlimited assets for one user. Genuinely usable, not a demo.
 
 **Limitations — where we'll be honest:**
-- **No maintenance/CMMS features** — Shelf doesn't track work orders, preventive maintenance schedules, or equipment health metrics. If that's your primary need, look at EZOfficeInventory or a dedicated CMMS.
+- **Maintenance tracking, not full CMMS** — Shelf offers asset reminders, service history logging, and custom maintenance fields — but it does not have work orders, parts inventory, or technician dispatching. If full CMMS is your primary need, look at EZOfficeInventory or a dedicated maintenance platform.
 - **No depreciation or fixed asset accounting** — Shelf tracks operational use, not financial lifecycle. Snipe-IT or Asset Panda are better if depreciation reporting is required.
 - **No native mobile app** — Shelf is a progressive web app that works in any browser. It scans QR codes natively, but some teams prefer a dedicated app.
 - **No help desk integrations** — no Zendesk, Jira, or ServiceNow connectors. EZOfficeInventory has these.
@@ -102,7 +102,7 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 
 **Best for:** Schools and universities (unlimited users, no per-seat cost), media and production companies (booking + kits), operations teams managing shared equipment, anyone who values open source and pricing transparency.
 
-**Pricing:** Free (1 user, unlimited assets) → Team $99/mo (unlimited users) → Enterprise (custom). [See pricing →](/pricing)
+**Pricing:** Free (1 user, unlimited assets) → Plus $34/mo (1 user, more features) → Team $67/mo (unlimited users) → Enterprise (custom). [See pricing →](/pricing)
 
 [Full details →](/)
 
@@ -242,26 +242,27 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 
 ### Reftab
 
-**What it is:** A lightweight IT asset tracking tool for small teams. Reftab is simple, affordable, and focused on the basics: tracking hardware, assigning it to users, and maintaining an inventory.
+**What it is:** An IT-focused asset tracking tool that has expanded beyond basic inventory into reservations, kit management, and maintenance. Reftab offers a solid feature set at an affordable per-user price point.
 
 **Strengths:**
-- **Simple and affordable** — easy to get started, low per-user pricing for small teams.
+- **Affordable per-user pricing** — low entry cost for small to mid-size teams.
+- **Reservations and calendar** — equipment booking with calendar views, included on all plans including free.
+- **Kit bundles** — group related items into templates (available on paid plans).
 - **Active Directory / LDAP integration** — pulls users from your directory.
-- **QR and barcode scanning** — basic scanning for asset lookup.
-- **API access** — REST API available for custom integrations.
-- **Free tier** — 25 assets for one user.
+- **Native mobile apps** — iOS and Android apps for scanning and asset management.
+- **Maintenance and work orders** — available on Business tier.
+- **API access** — REST API for custom integrations.
+- **Free tier** — 50 assets with reservations and mobile app access.
 
 **Limitations:**
-- **No booking or reservation system** — like Snipe-IT, you can assign but not schedule.
-- **Limited feature depth** — no maintenance, limited reporting, fewer integrations than larger competitors.
-- **Small team behind it** — slower feature development, smaller community, less documentation.
+- **Smaller ecosystem** — fewer integrations, smaller community, and less documentation than larger competitors.
 - **Asset caps by tier** — growth forces tier upgrades.
-- **No kit management** — items tracked individually.
+- **IT-focused positioning** — less content and fewer workflows tailored to non-IT use cases (education, media, field operations).
 - **Closed source** — no self-hosting option.
 
-**Best for:** Small IT teams (1-20 people) who need straightforward hardware tracking. Budget-conscious organizations that want something simpler than Snipe-IT without the self-hosting requirement.
+**Best for:** Small to mid-size IT teams that need affordable asset tracking with reservations and maintenance. Organizations that want more features than basic inventory tools but don't need enterprise-scale customization.
 
-**Pricing:** Free (25 assets) → Team ~$3.50/user/month → Business ~$6/user/month → Enterprise (custom).
+**Pricing:** Free (50 assets) → Team ~$3.50/user/month → Business ~$6/user/month → Enterprise (custom). Verify current plans at [reftab.com/pricing](https://www.reftab.com/pricing).
 
 [Read full Shelf vs Reftab comparison →](/alternatives/reftab)
 
@@ -315,7 +316,7 @@ Your priorities: tracking hardware lifecycle (procurement → deployment → dep
 - **Best for IT lifecycle management:** Snipe-IT — free, open source, depreciation, licenses, consumables, LDAP. The most complete IT asset tool on this list.
 - **If you need both IT tracking and equipment checkout:** Shelf for the operational layer (checkout, booking) + Snipe-IT for the lifecycle layer. Some teams use both.
 - **If you need help desk integration:** EZOfficeInventory — Zendesk and Jira connectors
-- **For small IT teams wanting simplicity:** Reftab — affordable, straightforward, AD integration
+- **For small IT teams wanting simplicity with reservations:** Reftab — affordable, includes booking calendar, AD integration, mobile apps
 
 </SummaryBox>
 
@@ -352,7 +353,7 @@ We built Shelf for teams that need equipment checkout, booking, and custody trac
 
 Before you trial anything, answer three questions:
 
-1. **Do you need booking/reservations?** If yes, your options are Shelf, Cheqroom, EZO, or Asset Panda. The others don't have it.
+1. **Do you need booking/reservations?** If yes, your options are Shelf, Cheqroom, EZO, Asset Panda, or Reftab. Sortly and Snipe-IT don't have it.
 2. **How many people need access?** If it's more than 10, per-user pricing (Asset Panda, Reftab) and per-admin pricing (Cheqroom) add up fast. Flat pricing (Shelf) and free self-hosting (Snipe-IT) don't.
 3. **What's your technical capacity?** If you have a sysadmin who can manage a server, Snipe-IT's free self-hosting is compelling. If you want zero setup, a cloud-hosted SaaS (Shelf, Cheqroom, Sortly, EZO) is the right path.
 
