@@ -168,15 +168,6 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         priority: 12,
     },
     {
-        id: "purdue-university",
-        name: "Purdue University",
-        logo: "/logos/purdue-university.webp",
-        showOnHomePage: true,
-        showInTrustedBy: true,
-        industry: "Education",
-        priority: 13,
-    },
-    {
         id: "berkeley",
         name: "Berkeley University of California",
         logo: "/logos/berkeley.webp",
@@ -662,7 +653,6 @@ export function getHeroLogos() {
         "berkeley",
         "universal-music",
         "virgin-hyperloop",
-        "purdue-university",
         "arup",
     ];
     return heroIds
