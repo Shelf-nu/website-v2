@@ -18,6 +18,7 @@ export function IndustryLayout({ frontmatter, children }: LayoutProps) {
                     title={frontmatter.title}
                     description={frontmatter.description}
                     heroTagline={frontmatter.industry ? `${frontmatter.industry} Solutions` : undefined}
+                    image={frontmatter.image}
                 />
 
                 <main className="flex-1">
