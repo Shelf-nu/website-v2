@@ -8,6 +8,7 @@ import { Callout } from "@/components/mdx/callout";
 import { StatBlock } from "@/components/mdx/stat-block";
 import { PullQuote } from "@/components/mdx/pull-quote";
 import { SummaryBox } from "@/components/mdx/summary-box";
+import { HeadingAnchor } from "@/components/mdx/heading-anchor";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -17,19 +18,28 @@ const components = {
         <h2 className="mt-8 scroll-m-20 text-4xl font-bold tracking-tight text-foreground lg:text-5xl" {...props} />
     ),
     h2: (props: HtmlProps<"h2">) => {
-        // Generate ID from text content if not provided
         const id = props.id || props.children?.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
         return (
-            <h2
-                id={id}
+            <HeadingAnchor
+                id={id || ""}
+                as="h2"
                 className="mt-12 scroll-m-20 border-b border-border/40 pb-2 text-3xl font-semibold tracking-tight first:mt-0"
-                {...props}
-            />
+            >
+                {props.children}
+            </HeadingAnchor>
         );
     },
     h3: (props: HtmlProps<"h3">) => {
         const id = props.id || props.children?.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-        return <h3 id={id} className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight" {...props} />;
+        return (
+            <HeadingAnchor
+                id={id || ""}
+                as="h3"
+                className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight"
+            >
+                {props.children}
+            </HeadingAnchor>
+        );
     },
     h4: (props: HtmlProps<"h4">) => (
         <h4 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight" {...props} />
