@@ -1,0 +1,11 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last maintenance,type:date;cf:Operational status,type:option;cf:Is mobile,type:boolean
+NCR RealPOS XR8;All-in-one POS terminal;POS Systems;checkout,terminal;Checkout Area 1;2500;Store Manager;NCRXR8-001;NCR;03/15/2022;03/14/2025;04/10/2023;Operational;no
+Zebra DS9908 Scanner;Hybrid handheld/hands-free scanner;Scanners;barcode,checkout;Checkout Area 2;300;Assistant Manager;ZEBDS9908-002;Zebra;09/22/2022;09/21/2025;04/15/2023;Operational;yes
+Lozier Gondola Shelving;Double-sided gondola shelving unit;Store Fixtures;shelving,display;Aisle 3;800;Store Manager;LOZGOND-003;Lozier;11/10/2021;11/09/2026;03/20/2023;Operational;no
+Star Micronics mC-Print3;Thermal receipt printer;POS Peripherals;printer,checkout;Checkout Area 1;250;IT Specialist;STARMC3-004;Star Micronics;05/05/2023;05/04/2026;05/05/2023;New;no
+Madix Maxi Line Display Case;Refrigerated display case;Store Fixtures;refrigeration,display;Produce Section;5000;Maintenance Supervisor;MADMAXL-005;Madix;07/18/2020;07/17/2025;04/02/2023;Operational;no
+Elo I-Series 2.0;Interactive touchscreen kiosk;Kiosks;digital signage,interactive;Store Entrance;1500;IT Specialist;ELOIS2-006;Elo Touch Solutions;01/30/2022;01/29/2025;04/05/2023;Operational;no
+Hantle T4000 ATM;Automated Teller Machine;Financial Services;ATM,cash;Store Entrance;3500;Store Manager;HANT4000-007;Hantle;08/12/2021;08/11/2026;04/12/2023;Operational;no
+Hussmann Q2;Medium-temp merchandiser;Store Fixtures;refrigeration,display;Dairy Section;7000;Maintenance Supervisor;HUSSQ2-008;Hussmann;06/25/2022;06/24/2027;03/30/2023;Operational;no
+Datalogic Magellan 9800i;Multi-plane scanner scale;Scanners;checkout,scale;Checkout Area 3;1200;Assistant Manager;DATM9800-009;Datalogic;04/03/2023;04/02/2026;04/03/2023;New;no
+Masterack ShelfStaxx;Modular shelving system;Store Fixtures;shelving,storage;Stockroom;600;Store Manager;MASSHELF-010;Masterack;10/11/2021;10/10/2026;04/08/2023;Operational;no

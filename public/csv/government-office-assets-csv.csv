@@ -1,0 +1,6 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last maintenance,type:date;cf:Operational status,type:option;cf:Is ergonomic,type:boolean
+Dell OptiPlex 7090;Desktop computer for office use;IT Equipment;computer,desktop;Office 101;1200;IT Department;DELL7090-001;Dell;03/15/2022;03/14/2025;04/10/2023;Operational;no
+Herman Miller Aeron Chair;Ergonomic office chair;Furniture;chair,ergonomic;Office 102;1000;Facilities Manager;HMAERON-002;Herman Miller;09/22/2021;09/21/2026;04/15/2023;Operational;yes
+Lenovo ThinkPad X1 Carbon;Ultrabook for mobile workers;IT Equipment;laptop,mobile;IT Department;1500;IT Manager;LNVX1C-003;Lenovo;11/10/2022;11/09/2025;03/20/2023;Operational;yes
+HON Ignition 2.0 Task Chair;Adjustable office chair;Furniture;chair,adjustable;Office 103;300;Facilities Manager;HONIGN2-004;HON;05/05/2023;05/04/2028;05/05/2023;New;yes
+Xerox VersaLink C7000;Color laser printer;IT Equipment;printer,color;Print Room;2500;IT Department;XRXC7000-005;Xerox;07/18/2020;07/17/2023;04/02/2023;Operational;no

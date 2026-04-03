@@ -1,0 +1,6 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last service,type:date;cf:Operational status,type:option;cf:Is insured,type:boolean
+RED DSMC2 HELIUM 8K;High-end digital cinema camera;Cameras;cinema,8K;Equipment Room;50000;Head Cinematographer;REDH8K-001;RED Digital Cinema;03/15/2021;03/14/2024;04/10/2023;Operational;yes
+ARRI SkyPanel S60-C;LED soft light panel;Lighting;LED,soft light;Studio A;5500;Lighting Director;ARRIS60C-002;ARRI;09/22/2022;09/21/2025;04/15/2023;Operational;yes
+Sennheiser MKH 416;Short shotgun microphone;Audio;microphone,shotgun;Audio Room;1000;Sound Engineer;SENMKH416-003;Sennheiser;11/10/2021;11/09/2024;03/20/2023;Operational;yes
+DJI Inspire 2;Professional cinematography drone;Cameras;drone,aerial;Equipment Room;3000;Drone Operator;DJIINSP2-004;DJI;05/05/2023;05/04/2025;05/05/2023;New;yes
+Blackmagic ATEM 2 M/E Production Studio 4K;Live production switcher;Video Processing;switcher,live production;Control Room;3500;Technical Director;BMATEM2ME-005;Blackmagic Design;07/18/2022;07/17/2025;04/02/2023;Operational;yes

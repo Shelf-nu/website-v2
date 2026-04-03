@@ -1,0 +1,11 @@
+title;description;category;tags;location;valuation;custodian;cf:Serial number,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last maintenance,type:date;cf:Operational status,type:option;cf:Fuel type,type:option
+John Deere 8R 410 Tractor;Large row crop tractor;Tractors;tractor,crop;Field A;350000;Farm Manager;1JD8R410-001;John Deere;03/15/2021;03/14/2026;04/10/2023;Operational;Diesel
+Case IH 8250 Axial-Flow Combine;Grain harvesting combine;Harvesters;combine,grain;Equipment Shed;500000;Harvest Manager;CASEIH8250-002;Case IH;09/22/2020;09/21/2025;08/15/2022;Operational;Diesel
+Kubota M7-172 Tractor;Mid-size utility tractor;Tractors;tractor,utility;Field B;120000;Assistant Farm Manager;KM7172-003;Kubota;11/10/2022;11/09/2027;03/20/2023;Operational;Diesel
+Great Plains YP-2425A Planter;24-row yield-pro planter;Planters;planter,row crop;Equipment Shed;180000;Planting Manager;GPYP2425A-004;Great Plains;05/05/2023;05/04/2028;05/05/2023;New;N/A
+New Holland T7.315 Tractor;Heavy-duty tractor;Tractors;tractor,heavy duty;Field C;275000;Farm Manager;NHT7315-005;New Holland;07/18/2019;07/17/2024;04/02/2023;Operational;Diesel
+Hagie STS16 Sprayer;Self-propelled sprayer;Sprayers;sprayer,pesticide;Chemical Storage;400000;Crop Protection Specialist;HSTS16-006;Hagie;01/30/2022;01/29/2027;03/15/2023;Operational;Diesel
+Kinze 3665 Blue Drive Planter;Electric drive row crop planter;Planters;planter,electric drive;Equipment Shed;150000;Planting Manager;K3665BD-007;Kinze;08/12/2021;08/11/2026;04/12/2023;Operational;N/A
+Vermeer 605N Baler;Round hay baler;Balers;baler,hay;Field D;75000;Forage Manager;V605N-008;Vermeer;06/25/2020;06/24/2025;05/30/2023;Operational;N/A
+Fendt 1050 Vario Tractor;High-horsepower tractor;Tractors;tractor,high power;Field A;450000;Farm Manager;F1050V-009;Fendt;04/03/2023;04/02/2028;04/03/2023;New;Diesel
+Valley 8000 series Center Pivot;Irrigation system;Irrigation;irrigation,center pivot;Field B;100000;Irrigation Specialist;V8000CP-010;Valley;10/11/2018;10/10/2023;06/08/2023;Operational;Electric

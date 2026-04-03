@@ -1,0 +1,46 @@
+title;description;category;tags;location;valuation;custodian;cf:Serial number,type:text;cf:Brand,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last maintenance,type:date;cf:Operational status,type:option;cf:Is portable,type:boolean
+Dell Latitude 7420 Laptop;"14"" business laptop with Intel i7 processor";Computers;laptop,business;Main Office;1200;John Smith;DL7420-001;Dell;01/15/2023;01/14/2026;06/30/2023;Operational;yes
+HP EliteDesk 800 G6;Desktop workstation for design team;Computers;desktop,workstation;Design Lab;1500;Emily Johnson;HPE800-002;HP;03/22/2022;03/21/2025;05/15/2023;Operational;no
+"Apple iMac 27"" Retina 5K";High-performance desktop for creative work;Computers;desktop,creative;Marketing Dept;2200;Michael Brown;IMAC5K-003;Apple;11/05/2022;11/04/2025;07/01/2023;Operational;no
+Lenovo ThinkPad X1 Carbon;Ultralight business laptop;Computers;laptop,business;Sales Office;1400;Sarah Davis;TPX1C-004;Lenovo;02/18/2023;02/17/2026;08/10/2023;Operational;yes
+Cisco Catalyst 9300 Switch;48-port network switch;Networking;switch,enterprise;Server Room;5500;Tech Team;CC9300-005;Cisco;09/30/2021;09/29/2024;04/15/2023;Operational;no
+Ubiquiti UniFi AP AC Pro;Wireless access point;Networking;wifi,access point;Floor 2;180;Tech Team;UAPAC-006;Ubiquiti;05/12/2022;05/11/2025;03/20/2023;Operational;no
+Dell PowerEdge R740 Server;Rack server for database applications;Servers;server,database;Server Room;6800;Admin Team;DPE740-007;Dell;07/03/2021;07/02/2024;06/01/2023;Operational;no
+HP Color LaserJet Pro MFP;Multifunction color laser printer;Printers;printer,color,laser;Print Room;650;Office Manager;HPCLJ-008;HP;10/25/2022;10/24/2025;05/30/2023;Operational;no
+Microsoft Surface Pro 8;2-in-1 tablet for mobile workers;Computers;tablet,mobile;Field Office;1100;Lisa Wilson;MSP8-009;Microsoft;04/07/2023;04/06/2026;07/15/2023;Operational;yes
+Synology DS1821+ NAS;Network attached storage for file sharing;Storage;nas,file server;IT Office;1000;Tech Team;SYN1821-010;Synology;12/11/2022;12/10/2025;06/20/2023;Operational;no
+"LG 34"" UltraWide Monitor";Widescreen monitor for productivity;Peripherals;monitor,widescreen;Main Office;450;Various;LG34UW-011;LG;08/19/2022;08/18/2025;08/19/2022;Operational;no
+Logitech MX Master 3 Mouse;Ergonomic wireless mouse;Peripherals;mouse,wireless;Various;90;Various;LGMX3-012;Logitech;06/30/2023;06/29/2026;06/30/2023;Operational;yes
+APC Smart-UPS 1500VA;Uninterruptible power supply;Power;ups,battery backup;Server Room;800;Tech Team;APC1500-013;APC;11/28/2021;11/27/2024;04/10/2023;Operational;no
+Polycom RealPresence Group 500;Video conferencing system;A/V Equipment;video conference;Conference Room A;4000;IT Manager;PRCG500-014;Polycom;01/05/2022;01/04/2025;03/15/2023;Operational;no
+Netgear Nighthawk X10 Router;High-performance WiFi router;Networking;router,wifi;Guest Area;350;Tech Team;NNX10-015;Netgear;09/14/2022;09/13/2025;05/01/2023;Operational;no
+Samsung 980 PRO 1TB SSD;High-speed solid state drive;Components;ssd,storage;IT Stock;200;Tech Team;S980P-016;Samsung;03/03/2023;03/02/2026;03/03/2023;New;yes
+Epson WorkForce Pro WF-C5790;Business inkjet printer;Printers;printer,inkjet;Marketing Dept;400;Marketing Manager;EWFP-017;Epson;07/22/2022;07/21/2025;04/30/2023;Operational;no
+Jabra Evolve 75 Headset;Wireless noise-cancelling headset;Peripherals;headset,wireless;Various;200;Various;JE75-018;Jabra;05/09/2023;05/08/2026;05/09/2023;Operational;yes
+Veeam Backup & Replication;Backup software license;Software;backup,license;Server Room;1200;Admin Team;VBR-019;Veeam;02/28/2023;02/27/2024;02/28/2023;Operational;no
+Fortinet FortiGate 100F;Next-gen firewall appliance;Security;firewall,network security;Server Room;2500;Security Team;FFG100F-020;Fortinet;10/17/2021;10/16/2024;06/15/2023;Operational;no
+Yubico YubiKey 5 NFC;Hardware security key;Security;security key,2fa;IT Office;50;Security Team;YK5NFC-021;Yubico;04/25/2023;04/24/2026;04/25/2023;Operational;yes
+ASUS ProArt PA32UCX-PK Monitor;Professional 4K HDR monitor;Peripherals;monitor,4k,hdr;Design Lab;5000;Lead Designer;APPA32-022;ASUS;08/07/2022;08/06/2025;08/07/2022;Operational;no
+Corsair Vengeance LPX 32GB RAM;High-performance DDR4 RAM;Components;ram,memory;IT Stock;150;Tech Team;CVLPX32-023;Corsair;06/11/2023;06/10/2026;06/11/2023;New;yes
+Fluke Networks DSX-8000 CableAnalyzer;Cable certification tester;Tools;network tester,cable analyzer;IT Office;12000;Network Team;FNDSX8K-024;Fluke Networks;12/03/2021;12/02/2024;07/01/2023;Operational;yes
+VMware vSphere 7 Enterprise Plus;Virtualization software license;Software;vmware,virtualization,license;Server Room;5500;Admin Team;VMV7EP-025;VMware;03/18/2023;03/17/2024;03/18/2023;Operational;no
+Aruba Instant On AP22;WiFi 6 access point;Networking;wifi,access point;Floor 3;200;Tech Team;AIAP22-026;Aruba;09/05/2022;09/04/2025;05/20/2023;Operational;no
+Plantronics Voyager 5200 UC;Bluetooth headset;Peripherals;headset,bluetooth;Various;120;Various;PV5200-027;Plantronics;01/30/2023;01/29/2026;01/30/2023;Operational;yes
+WD Red Pro 14TB NAS HDD;High-capacity NAS hard drive;Components;hdd,storage;IT Stock;450;Tech Team;WDRP14TB-028;Western Digital;11/12/2022;11/11/2025;11/12/2022;New;yes
+Adobe Creative Cloud License;Software suite for creative work;Software;adobe,creative cloud,license;Design Lab;600;Creative Team;ADCC-029;Adobe;05/01/2023;04/30/2024;05/01/2023;Operational;no
+Tripp Lite 42U Rack Enclosure;Server rack cabinet;Infrastructure;rack,server cabinet;Server Room;1500;Tech Team;TL42U-030;Tripp Lite;07/14/2021;07/13/2024;07/14/2021;Operational;no
+Microsoft Surface Hub 2S;Interactive whiteboard for collaboration;A/V Equipment;surface hub,collaboration;Conference Room B;9000;IT Manager;MSH2S-031;Microsoft;02/09/2022;02/08/2025;04/01/2023;Operational;no
+SonicWall TZ370 Firewall;Small business firewall;Security;firewall,network security;Branch Office;700;Security Team;SWTZ370-032;SonicWall;10/20/2022;10/19/2025;06/10/2023;Operational;no
+Crucial MX500 2TB SSD;SATA SSD for workstations;Components;ssd,storage;IT Stock;180;Tech Team;CMX500-033;Crucial;04/15/2023;04/14/2026;04/15/2023;New;yes
+Acronis Cyber Protect License;Backup and cybersecurity software;Software;acronis,backup,security,license;Server Room;800;Admin Team;ACP-034;Acronis;08/28/2022;08/27/2023;08/28/2022;Operational;no
+"LG 86"" 4K UHD Display";Large format display for presentations;A/V Equipment;display,4k;Auditorium;3000;Facilities Team;LG86UHD-035;LG;06/05/2022;06/04/2025;03/10/2023;Operational;no
+Raspberry Pi 4 Model B;Single-board computer for IoT projects;Computers;raspberry pi,iot,development;R&D Lab;75;Dev Team;RPI4B-036;Raspberry Pi;12/19/2022;12/18/2025;12/19/2022;Operational;yes
+Anker PowerConf S3 Speakerphone;Bluetooth conference speaker;A/V Equipment;speakerphone,bluetooth;Various;130;Various;APS3-037;Anker;03/07/2023;03/06/2026;03/07/2023;Operational;yes
+Neat Bar;All-in-one video conferencing device;A/V Equipment;video conference,collaboration;Huddle Room;2000;IT Manager;NB-038;Neat;09/25/2022;09/24/2025;05/15/2023;Operational;no
+Seagate IronWolf 16TB NAS HDD;High-capacity NAS hard drive;Components;hdd,storage;IT Stock;480;Tech Team;SGIW16TB-039;Seagate;01/08/2023;01/07/2026;01/08/2023;New;yes
+Zabbix Enterprise License;Network monitoring software;Software;zabbix,monitoring,license;Server Room;3000;Network Team;ZEL-040;Zabbix;07/01/2022;06/30/2023;07/01/2022;Operational;no
+iStorage diskAshur PRO2 SSD 1TB;Encrypted portable SSD;Storage;ssd,encrypted;Security Office;400;Security Team;IDAP2-041;iStorage;11/30/2022;11/29/2025;11/30/2022;Operational;yes
+Ergotron WorkFit-TX Standing Desk Converter;Sit-stand desk converter;Furniture;ergotron,standing desk,ergonomics;Various;400;Various;EWFTX-042;Ergotron;05/17/2023;05/16/2026;05/17/2023;Operational;no
+Synology RS1221+ RackStation;Rackmount NAS for data backup;Storage;nas,backup;Server Room;1400;Admin Team;SRS1221-043;Synology;02/14/2022;02/13/2025;06/30/2023;Operational;no
+Nvidia Quadro RTX 4000;Professional graphics card;Components;gpu,graphics;Design Lab;900;Lead Designer;NQRTX4K-044;Nvidia;08/10/2022;08/09/2025;08/10/2022;Operational;no
+Crestron TS-1070 Touch Screen;Wall-mounted control panel;A/V Equipment;touchscreen,control panel;Conference Rooms;1000;Facilities Team;CTS1070-045;Crestron;04/03/2023;04/02/2026;07/15/2023;Operational;no

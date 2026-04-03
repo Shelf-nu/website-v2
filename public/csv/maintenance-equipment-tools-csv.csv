@@ -1,0 +1,6 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last calibration,type:date;cf:Operational status,type:option;cf:Requires certification,type:boolean
+Fluke 287 Multimeter;True RMS Electronics Multimeter;Test Equipment;multimeter,electrical;Electrical Shop;450;Lead Electrician;F287M-001;Fluke;03/15/2022;03/14/2025;04/10/2023;Operational;no
+Milwaukee M18 Drill Driver;Cordless drill/driver combo;Power Tools;drill,cordless;Tool Crib;250;Maintenance Supervisor;MM18DD-002;Milwaukee;09/22/2021;09/21/2024;04/15/2023;Operational;no
+Ridgid K-400 Drain Cleaner;Drum machine for pipe cleaning;Plumbing Tools;drain cleaner,plumbing;Plumbing Shop;700;Lead Plumber;RK400DC-003;Ridgid;11/10/2022;11/09/2025;03/20/2023;Operational;yes
+Flir E6-XT Thermal Imaging Camera;Infrared camera for diagnostics;Diagnostic Tools;thermal,imaging;Maintenance Office;2500;Facility Manager;FLRE6XT-004;Flir;05/05/2023;05/04/2026;05/05/2023;New;yes
+Hilti TE 70-ATC/AVR Rotary Hammer Drill;SDS Max combihammer;Power Tools;hammer drill,concrete;Tool Crib;900;Maintenance Technician;HTE70-005;Hilti;07/18/2021;07/17/2024;04/02/2023;Operational;no
