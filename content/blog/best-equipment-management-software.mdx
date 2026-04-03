@@ -60,22 +60,92 @@ If you need equipment booking and checkout, comparing Shelf to a CMMS tool is ap
 
 Prices are based on publicly available information as of April 2026. SaaS pricing changes — verify on each vendor's site before making decisions.
 
-| | Shelf | Cheqroom | Sortly | Snipe-IT | EZO | Asset Panda | Reftab |
-|---|---|---|---|---|---|---|---|
-| **Free plan** | Yes (unlimited assets, 1 user) | No (demo request only) | Yes (100 items, 1 user) | Yes (self-hosted) | No (trial only) | No (trial only) | Yes (50 assets, unlimited users) |
-| **Paid pricing** | $67/mo flat (unlimited users) | From $184/admin/mo | $49-$299/mo (user + item caps) | $40-$250/mo (hosted) | From $40/mo (250 items) | ~$50/user/mo (min 5 users) | From $31.25/mo (by asset count) |
-| **Pricing model** | Flat per workspace | Per admin seat | Per user + item cap | Free self-host or hosted | Per item count | Per user | Per asset count (unlimited users) |
-| **Open source** | Yes (AGPL) | No | No | Yes (AGPL) | No | No | No |
-| **Self-host option** | Yes | No | No | Yes | No | No | No |
-| **QR-first design** | Yes | Has QR | Has QR | Has QR | Has QR | Has barcode/QR | Has QR |
-| **Booking / reservations** | Yes | Yes | No | No | Yes | Yes | Yes |
-| **Custody chain** | Yes | Yes | Folder-based | Basic assign | Basic | Yes (with signatures) | Basic assign |
-| **Kit management** | Yes | Yes | No | No | Limited | No | Yes (paid plans) |
-| **Maintenance / CMMS** | Tracking, not full CMMS | No | No | No | Add-on (separate fee) | Limited | Yes (Business tier) |
-| **Depreciation tracking** | No | No | No | Yes | Yes | Yes | No |
-| **License tracking** | No | No | No | Yes | No | No | Limited |
-| **Native mobile app** | PWA (any browser) | Yes (iOS/Android) | Yes (iOS/Android) | No | Yes (iOS/Android) | Yes (iOS/Android) | Yes (iOS/Android) |
-| **Best for** | Schools, media, shared equipment | AV/media production | Simple visual inventory | IT asset lifecycle | Mid-market operations | Customizable enterprise | IT teams (unlimited users) |
+<ComparisonTable
+  headers={["Shelf", "Cheqroom", "Sortly", "Snipe-IT", "EZO", "Asset Panda", "Reftab"]}
+  rows={[
+    {
+      label: "Free plan",
+      values: [
+        "Yes (unlimited assets, 1 user)",
+        { value: "No", warning: "No free plan or trial. Must request a demo to test the software." },
+        "Yes (100 items, 1 user)",
+        "Yes (self-hosted)",
+        "Trial only",
+        "Trial only",
+        "Yes (50 assets, unlimited users)"
+      ]
+    },
+    {
+      label: "Paid pricing",
+      values: [
+        { value: "$67/mo flat", link: "/pricing" },
+        { value: "From $184/admin/mo", warning: "Minimum admin counts apply but aren't disclosed upfront. Core tier limited to 1 location with no reporting or custom roles." },
+        { value: "$49–$299/mo", warning: "Caps on both items and users per tier. Multiple reviewers report steep renewal price hikes after year one." },
+        "$40–$250/mo (hosted)",
+        { value: "From $40/mo (250 items)", warning: "Scales steeply with items: $40/mo for 250 → $136/mo for 1,500. 'Unlimited users' subject to fair-use policy." },
+        { value: "~$50/user/mo", warning: "Now behind 'Request Quote' wall. Historical floor: $50/user/mo, minimum 5 users ($3,000/year)." },
+        "From $31.25/mo"
+      ]
+    },
+    {
+      label: "Pricing model",
+      values: [
+        "Flat per workspace",
+        "Per admin seat",
+        "Per user + item cap",
+        "Free self-host or hosted",
+        "Per item count",
+        "Per user",
+        "Per asset count (unlimited users)"
+      ]
+    },
+    { label: "Open source", values: [true, false, false, true, false, false, false] },
+    { label: "Self-host option", values: [true, false, false, true, false, false, false] },
+    {
+      label: "QR-first design",
+      values: ["Yes", "Has QR", "Has QR", "Has QR", "Has QR", "Has barcode/QR", "Has QR"]
+    },
+    { label: "Booking / reservations", values: [true, true, false, false, true, true, true] },
+    {
+      label: "Custody chain",
+      values: ["Yes", "Yes", "Folder-based", "Basic assign", "Basic", "Yes (with signatures)", "Basic assign"]
+    },
+    {
+      label: "Kit management",
+      values: [true, true, false, false, "Limited", false, "Paid plans"]
+    },
+    {
+      label: "Maintenance / CMMS",
+      values: [
+        "Tracking, not full CMMS",
+        false,
+        false,
+        false,
+        { value: "Add-on", warning: "Maintenance is priced separately per admin user — not included in base plans." },
+        "Limited",
+        "Business tier"
+      ]
+    },
+    { label: "Depreciation tracking", values: [false, false, false, true, true, true, false] },
+    { label: "License tracking", values: [false, false, false, true, false, false, "Limited"] },
+    {
+      label: "Native mobile app",
+      values: ["PWA (any browser)", "Yes (iOS/Android)", "Yes (iOS/Android)", false, "Yes (iOS/Android)", "Yes (iOS/Android)", "Yes (iOS/Android)"]
+    },
+    {
+      label: "Best for",
+      values: [
+        "Schools, media, shared equipment",
+        "AV/media production",
+        "Simple visual inventory",
+        "IT asset lifecycle",
+        "Mid-market operations",
+        "Customizable enterprise",
+        "IT teams (unlimited users)"
+      ]
+    }
+  ]}
+/>
 
 ---
 
