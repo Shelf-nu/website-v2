@@ -1,0 +1,6 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last update,type:date;cf:Operational status,type:option;cf:Is encrypted,type:boolean
+"MacBook Pro 16""";Laptop for software developers;Computers;laptop,development;Remote;2500;John Smith;MBP16-001;Apple;2022-03-15;2025-03-14;2023-04-10;Operational;yes
+iPhone 13 Pro;Smartphone for executives;Mobile Devices;phone,iOS;Office;1000;Sarah Johnson;IP13P-002;Apple;2022-09-22;2024-09-21;2023-04-15;Operational;yes
+Dell XPS 15;Laptop for designers;Computers;laptop,design;Office;1800;Michael Brown;DXPS15-003;Dell;2021-11-10;2024-11-09;2023-03-20;Operational;yes
+"iPad Pro 12.9""";Tablet for sales team;Mobile Devices;tablet,iOS;Remote;900;Emily Davis;IPADP129-004;Apple;2023-05-05;2025-05-04;2023-05-05;New;yes
+Lenovo ThinkPad X1 Carbon;Ultrabook for management;Computers;laptop,business;Office;1600;David Wilson;LTPX1C-005;Lenovo;2022-07-18;2025-07-17;2023-04-02;Operational;yes

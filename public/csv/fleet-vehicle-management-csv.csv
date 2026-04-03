@@ -1,0 +1,6 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last service,type:date;cf:Operational status,type:option;cf:Fuel type,type:option
+Freightliner Cascadia;Class 8 semi-truck;Heavy Duty;truck,long-haul;Warehouse A;120000;Fleet Manager;FTCS-001;Freightliner;2020-03-15;2025-03-14;2023-04-10;Operational;Diesel
+Ford Transit Connect;Compact cargo van;Light Commercial;van,delivery;Distribution Center;25000;Dispatch Manager;FTCON-002;Ford;2022-09-22;2027-09-21;2023-04-15;Operational;Gasoline
+Volvo VNR Electric;Electric semi-truck;Heavy Duty;truck,electric;Charging Station;180000;Sustainability Manager;VVNRE-003;Volvo;2021-11-10;2026-11-09;2023-03-20;Operational;Electric
+Mercedes-Benz Sprinter;Large cargo van;Light Commercial;van,delivery;Warehouse B;45000;Fleet Manager;MBSPR-004;Mercedes-Benz;2023-05-05;2028-05-04;2023-05-05;New;Diesel
+Peterbilt 579;Class 8 semi-truck;Heavy Duty;truck,long-haul;Truck Yard;135000;Maintenance Supervisor;PT579-005;Peterbilt;2021-07-18;2026-07-17;2023-04-02;Operational;Diesel

@@ -1,0 +1,6 @@
+title;description;category;tags;location;valuation;custodian;cf:License ID,type:text;cf:Vendor,type:option;cf:Purchase date,type:date;cf:Expiry date,type:date;cf:Last renewal,type:date;cf:License type,type:option;cf:Number of seats,type:text
+Adobe Creative Cloud;Suite of creative software;Design Software;creative,suite;Design Department;15000;IT Manager;ADCC-001;Adobe;2023-03-15;2024-03-14;2023-03-15;Subscription;25
+Microsoft 365 E3;Productivity and collaboration suite;Office Software;productivity,cloud;Company-wide;50000;IT Director;MSO365E3-002;Microsoft;2022-09-22;2023-09-21;2022-09-22;Subscription;500
+AutoCAD;2D and 3D CAD software;Engineering Software;CAD,design;Engineering Department;10000;CAD Manager;ACAD-003;Autodesk;2022-11-10;2023-11-09;2022-11-10;Perpetual;20
+Salesforce Sales Cloud;CRM platform;CRM Software;sales,cloud;Sales Department;30000;Sales Operations Manager;SFSC-004;Salesforce;2023-05-05;2024-05-04;2023-05-05;Subscription;100
+VMware vSphere;Virtualization platform;IT Infrastructure;virtualization,datacenter;IT Department;40000;Infrastructure Manager;VMVS-005;VMware;2022-07-18;2023-07-17;2022-07-18;Perpetual;10

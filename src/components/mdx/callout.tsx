@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const variants = {
     takeaway: {
         icon: Lightbulb,
-        border: "border-orange-500",
+        border: "border-orange-600",
         bg: "bg-orange-50/60 dark:bg-orange-950/20",
         iconColor: "text-orange-600",
         title: "Key Takeaway",
@@ -56,7 +56,7 @@ export function Callout({ type = "takeaway", title, children }: CalloutProps) {
                     {title || v.title}
                 </span>
             </div>
-            <div className="text-[0.95rem] leading-relaxed text-foreground/80 [&>p]:mt-2 [&>p:first-child]:mt-0 [&>ul]:mt-2 [&>ul]:ml-4 [&>ul]:list-disc [&>li]:mt-1">
+            <div className="text-[0.95rem] leading-relaxed text-foreground/80 [&>p]:mt-2 [&>p:first-child]:mt-0 [&>ul]:mt-2 [&>ul]:ml-4 [&>ul]:list-disc [&>ul>li]:mt-1 [&>ol>li]:mt-1">
                 {children}
             </div>
         </div>
