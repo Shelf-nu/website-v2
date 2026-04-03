@@ -52,19 +52,26 @@ function CellContent({ value }: { value: CellValue }) {
 
     if (typeof value === "object" && value !== null) {
         return (
-            <span className="inline-flex items-start gap-1">
-                {value.link ? (
-                    <a
-                        href={value.link}
-                        className="text-orange-600 hover:underline"
-                        onClick={() => trackEvent("comparison_link_click", { href: value.link ?? "" })}
-                    >
-                        {value.value}
-                    </a>
-                ) : (
-                    <span>{value.value}</span>
+            <span className="inline-flex flex-col items-center gap-1">
+                <span className="inline-flex items-start gap-1">
+                    {value.link ? (
+                        <a
+                            href={value.link}
+                            className="text-orange-600 hover:underline"
+                            onClick={() => trackEvent("comparison_link_click", { href: value.link ?? "" })}
+                        >
+                            {value.value}
+                        </a>
+                    ) : (
+                        <span>{value.value}</span>
+                    )}
+                    {value.warning && <WarningTooltip text={value.warning} />}
+                </span>
+                {value.warning && (
+                    <span className="text-[0.65rem] leading-tight text-amber-700 dark:text-amber-400 max-w-[140px]">
+                        {value.warning}
+                    </span>
                 )}
-                {value.warning && <WarningTooltip text={value.warning} />}
             </span>
         );
     }
@@ -82,7 +89,7 @@ export function ComparisonTable({ headers, rows }: ComparisonTableProps) {
             <table className="w-full text-sm">
                 <thead>
                     <tr className="bg-muted/50">
-                        <th className="text-left px-4 py-3 font-semibold text-foreground border-b border-border/60 sticky left-0 bg-muted/50 min-w-[140px]">
+                        <th className="text-left px-4 py-3 font-semibold text-foreground border-b border-border/60 sticky left-0 z-20 bg-muted/95 backdrop-blur-sm min-w-[140px] shadow-[2px_0_8px_-2px_rgba(0,0,0,0.1)]">
                             Feature
                         </th>
                         {headers.map((header, i) => (
@@ -111,7 +118,7 @@ export function ComparisonTable({ headers, rows }: ComparisonTableProps) {
                                     : "bg-muted/20"
                             )}
                         >
-                            <td className="px-4 py-3 font-medium text-foreground sticky left-0 bg-inherit">
+                            <td className={cn("px-4 py-3 font-medium text-foreground sticky left-0 z-10 shadow-[2px_0_8px_-2px_rgba(0,0,0,0.1)]", rowIdx % 2 === 0 ? "bg-white dark:bg-zinc-950" : "bg-zinc-50 dark:bg-zinc-900")}>
                                 {row.label}
                             </td>
                             {headers.map((_, colIdx) => {
