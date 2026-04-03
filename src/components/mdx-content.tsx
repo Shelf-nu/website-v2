@@ -9,6 +9,7 @@ import { StatBlock } from "@/components/mdx/stat-block";
 import { PullQuote } from "@/components/mdx/pull-quote";
 import { SummaryBox } from "@/components/mdx/summary-box";
 import { HeadingAnchor } from "@/components/mdx/heading-anchor";
+import { ComparisonTable } from "@/components/mdx/comparison-table";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -116,6 +117,7 @@ const components = {
     StatBlock,
     PullQuote,
     SummaryBox,
+    ComparisonTable,
 };
 
 export function MDXContent({ source }: { source: string }) {

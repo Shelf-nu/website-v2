@@ -2,6 +2,7 @@
 
 import { useEffect, useState, startTransition } from "react";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 interface TocItem {
     id: string;
@@ -140,6 +141,31 @@ export function BlogSidebar() {
                 </div>
             )}
 
+            {/* Conversion Card */}
+            <div className="rounded-xl border border-orange-200/60 bg-orange-50/40 dark:border-orange-900/30 dark:bg-orange-950/20 p-5 space-y-3">
+                <p className="text-sm font-semibold text-foreground">
+                    Try Shelf free
+                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                    Unlimited assets, QR scanning, custody tracking. No credit card required.
+                </p>
+                <a
+                    href="https://app.shelf.nu/join?utm_source=blog&utm_medium=sidebar&utm_campaign=cta"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-600 hover:text-orange-700 transition-colors"
+                >
+                    Sign up free
+                    <ArrowRight className="h-3 w-3" />
+                </a>
+                <div className="border-t border-orange-200/40 dark:border-orange-900/20 pt-3">
+                    <a
+                        href="/demo"
+                        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        Or book a demo
+                        <ArrowRight className="h-3 w-3" />
+                    </a>
+                </div>
+            </div>
         </div>
     );
 }
