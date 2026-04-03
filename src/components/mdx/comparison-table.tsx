@@ -57,7 +57,7 @@ function CellContent({ value }: { value: CellValue }) {
                     <a
                         href={value.link}
                         className="text-orange-600 hover:underline"
-                        onClick={() => trackEvent("comparison_link_click", { href: value.link })}
+                        onClick={() => trackEvent("comparison_link_click", { href: value.link ?? "" })}
                     >
                         {value.value}
                     </a>
