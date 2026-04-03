@@ -3,6 +3,7 @@
 import { useEffect, useState, startTransition } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface TocItem {
     id: string;
@@ -152,6 +153,7 @@ export function BlogSidebar() {
                 <a
                     href="https://app.shelf.nu/join?utm_source=blog&utm_medium=sidebar&utm_campaign=cta"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-600 hover:text-orange-700 transition-colors"
+                    onClick={() => trackEvent("signup_click", { source: "blog_sidebar" })}
                 >
                     Sign up free
                     <ArrowRight className="h-3 w-3" />
@@ -160,6 +162,7 @@ export function BlogSidebar() {
                     <a
                         href="/demo"
                         className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                        onClick={() => trackEvent("demo_click", { source: "blog_sidebar" })}
                     >
                         Or book a demo
                         <ArrowRight className="h-3 w-3" />
