@@ -1,11 +1,11 @@
 title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last inspection,type:date;cf:Operational status,type:option;cf:Is mobile,type:boolean
-Caterpillar 320 Excavator;20-ton hydraulic excavator;Heavy Equipment;excavator,earthmoving;Project Site A;250000;Equipment Manager;CAT320-001;Caterpillar;05/15/2021;05/14/2026;04/10/2023;Operational;yes
-Bobcat T590 Compact Track Loader;Compact track loader for tight spaces;Loaders;loader,compact;Equipment Yard;65000;Site Supervisor;BOBT590-002;Bobcat;09/22/2022;09/21/2027;04/15/2023;Operational;yes
-DEWALT DCN660D1 Cordless Nailer;16GA Cordless Finish Nailer;Power Tools;nailer,cordless;Tool Storage;400;Tool Manager;DWDCN660-003;DEWALT;03/10/2023;03/09/2025;03/10/2023;New;yes
-Genie S-65 Telescopic Boom Lift;65 ft telescopic boom lift;Aerial Equipment;boom lift,aerial;Project Site B;120000;Safety Officer;GENS65-004;Genie;11/05/2020;11/04/2025;03/20/2023;Operational;yes
-Hilti TE 3000-AVR Breaker;Electric breaker for demolition;Power Tools;breaker,demolition;Tool Storage;3000;Tool Manager;HILTE3000-005;Hilti;07/18/2022;07/17/2024;04/02/2023;Operational;yes
-JLG 1930ES Scissor Lift;19 ft electric scissor lift;Aerial Equipment;scissor lift,aerial;Project Site C;15000;Safety Officer;JLG1930ES-006;JLG;01/30/2021;01/29/2026;04/05/2023;Operational;yes
-Komatsu PC360LC-11 Excavator;36-ton hydraulic excavator;Heavy Equipment;excavator,earthmoving;Project Site B;350000;Equipment Manager;KOMPC360-007;Komatsu;08/12/2019;08/11/2024;04/12/2023;Operational;yes
-Multiquip MQ62TDD Trash Pump;Diesel-powered trash pump;Pumps;pump,dewatering;Equipment Yard;3500;Site Supervisor;MQTDD-008;Multiquip;06/25/2022;06/24/2025;03/30/2023;Operational;yes
-Topcon GT-1001 Total Station;Robotic total station for surveying;Surveying Equipment;total station,surveying;Survey Office;25000;Chief Surveyor;TCGT1001-009;Topcon;04/03/2023;04/02/2028;04/03/2023;New;yes
-Wacker Neuson WP1550AW Plate Compactor;Reversible plate compactor;Compaction Equipment;plate compactor,soil;Equipment Yard;2500;Site Supervisor;WNWP1550-010;Wacker Neuson;10/11/2021;10/10/2024;04/08/2023;Operational;yes
+Caterpillar 320 Excavator;20-ton hydraulic excavator;Heavy Equipment;excavator,earthmoving;Project Site A;250000;Equipment Manager;CAT320-001;Caterpillar;2021-05-15;2026-05-14;2023-04-10;Operational;yes
+Bobcat T590 Compact Track Loader;Compact track loader for tight spaces;Loaders;loader,compact;Equipment Yard;65000;Site Supervisor;BOBT590-002;Bobcat;2022-09-22;2027-09-21;2023-04-15;Operational;yes
+DEWALT DCN660D1 Cordless Nailer;16GA Cordless Finish Nailer;Power Tools;nailer,cordless;Tool Storage;400;Tool Manager;DWDCN660-003;DEWALT;2023-03-10;2025-03-09;2023-03-10;New;yes
+Genie S-65 Telescopic Boom Lift;65 ft telescopic boom lift;Aerial Equipment;boom lift,aerial;Project Site B;120000;Safety Officer;GENS65-004;Genie;2020-11-05;2025-11-04;2023-03-20;Operational;yes
+Hilti TE 3000-AVR Breaker;Electric breaker for demolition;Power Tools;breaker,demolition;Tool Storage;3000;Tool Manager;HILTE3000-005;Hilti;2022-07-18;2024-07-17;2023-04-02;Operational;yes
+JLG 1930ES Scissor Lift;19 ft electric scissor lift;Aerial Equipment;scissor lift,aerial;Project Site C;15000;Safety Officer;JLG1930ES-006;JLG;2021-01-30;2026-01-29;2023-04-05;Operational;yes
+Komatsu PC360LC-11 Excavator;36-ton hydraulic excavator;Heavy Equipment;excavator,earthmoving;Project Site B;350000;Equipment Manager;KOMPC360-007;Komatsu;2019-08-12;2024-08-11;2023-04-12;Operational;yes
+Multiquip MQ62TDD Trash Pump;Diesel-powered trash pump;Pumps;pump,dewatering;Equipment Yard;3500;Site Supervisor;MQTDD-008;Multiquip;2022-06-25;2025-06-24;2023-03-30;Operational;yes
+Topcon GT-1001 Total Station;Robotic total station for surveying;Surveying Equipment;total station,surveying;Survey Office;25000;Chief Surveyor;TCGT1001-009;Topcon;2023-04-03;2028-04-02;2023-04-03;New;yes
+Wacker Neuson WP1550AW Plate Compactor;Reversible plate compactor;Compaction Equipment;plate compactor,soil;Equipment Yard;2500;Site Supervisor;WNWP1550-010;Wacker Neuson;2021-10-11;2024-10-10;2023-04-08;Operational;yes

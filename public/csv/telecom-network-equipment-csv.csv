@@ -1,11 +1,11 @@
 title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last maintenance,type:date;cf:Operational status,type:option;cf:Is redundant,type:boolean
-Cisco ASR 9000 Series;Aggregation Services Router;Routers;core,aggregation;Data Center A;150000;Network Operations Manager;CASR9K-001;Cisco;03/15/2021;03/14/2026;04/10/2023;Operational;yes
-Juniper MX960;Universal Routing Platform;Routers;edge,carrier;Network Core;200000;Senior Network Engineer;JMX960-002;Juniper Networks;09/22/2022;09/21/2027;04/15/2023;Operational;yes
-Nokia 7750 SR-14s;Service Router;Routers;service provider,edge;Data Center B;180000;Network Operations Manager;N7750SR14-003;Nokia;11/10/2021;11/09/2026;03/20/2023;Operational;yes
-Ciena 6500 Packet-Optical Platform;Converged Packet Optical Platform;Optical Transport;DWDM,OTN;Central Office;250000;Optical Network Specialist;C6500POP-004;Ciena;05/05/2023;05/04/2028;05/05/2023;New;no
-Ericsson Router 6000;5G Cell Site Router;Routers;5G,cell site;Cell Tower A;50000;Field Operations Technician;ER6000-005;Ericsson;07/18/2020;07/17/2025;04/02/2023;Operational;no
-Huawei OptiXtrans OSN 9800;OTN/DWDM Platform;Optical Transport;OTN,DWDM;Network Core;300000;Optical Network Specialist;HOOSN9800-006;Huawei;01/30/2022;01/29/2027;04/05/2023;Operational;yes
-Arista 7280R3 Series;Universal Leaf and IP Storage Switch;Switches;data center,leaf;Data Center A;80000;Data Center Network Engineer;A7280R3-007;Arista Networks;08/12/2021;08/11/2026;04/12/2023;Operational;yes
-CommScope RUCKUS T750;Outdoor Wi-Fi 6 Access Point;Wireless;Wi-Fi,outdoor;Public Park;2000;Wireless Network Engineer;CRUCK750-008;CommScope;06/25/2022;06/24/2025;03/30/2023;Operational;no
-Infinera GX G30;Compact Modular Platform;Optical Transport;DCI,metro;Metro Network;150000;Optical Network Specialist;IGXG30-009;Infinera;04/03/2023;04/02/2028;04/03/2023;New;no
-F5 VIPRION 4800;Application Delivery Controller;Load Balancers;ADC,traffic management;Data Center B;120000;Senior Network Engineer;F5VIP4800-010;F5 Networks;10/11/2021;10/10/2026;04/08/2023;Operational;yes
+Cisco ASR 9000 Series;Aggregation Services Router;Routers;core,aggregation;Data Center A;150000;Network Operations Manager;CASR9K-001;Cisco;2021-03-15;2026-03-14;2023-04-10;Operational;yes
+Juniper MX960;Universal Routing Platform;Routers;edge,carrier;Network Core;200000;Senior Network Engineer;JMX960-002;Juniper Networks;2022-09-22;2027-09-21;2023-04-15;Operational;yes
+Nokia 7750 SR-14s;Service Router;Routers;service provider,edge;Data Center B;180000;Network Operations Manager;N7750SR14-003;Nokia;2021-11-10;2026-11-09;2023-03-20;Operational;yes
+Ciena 6500 Packet-Optical Platform;Converged Packet Optical Platform;Optical Transport;DWDM,OTN;Central Office;250000;Optical Network Specialist;C6500POP-004;Ciena;2023-05-05;2028-05-04;2023-05-05;New;no
+Ericsson Router 6000;5G Cell Site Router;Routers;5G,cell site;Cell Tower A;50000;Field Operations Technician;ER6000-005;Ericsson;2020-07-18;2025-07-17;2023-04-02;Operational;no
+Huawei OptiXtrans OSN 9800;OTN/DWDM Platform;Optical Transport;OTN,DWDM;Network Core;300000;Optical Network Specialist;HOOSN9800-006;Huawei;2022-01-30;2027-01-29;2023-04-05;Operational;yes
+Arista 7280R3 Series;Universal Leaf and IP Storage Switch;Switches;data center,leaf;Data Center A;80000;Data Center Network Engineer;A7280R3-007;Arista Networks;2021-08-12;2026-08-11;2023-04-12;Operational;yes
+CommScope RUCKUS T750;Outdoor Wi-Fi 6 Access Point;Wireless;Wi-Fi,outdoor;Public Park;2000;Wireless Network Engineer;CRUCK750-008;CommScope;2022-06-25;2025-06-24;2023-03-30;Operational;no
+Infinera GX G30;Compact Modular Platform;Optical Transport;DCI,metro;Metro Network;150000;Optical Network Specialist;IGXG30-009;Infinera;2023-04-03;2028-04-02;2023-04-03;New;no
+F5 VIPRION 4800;Application Delivery Controller;Load Balancers;ADC,traffic management;Data Center B;120000;Senior Network Engineer;F5VIP4800-010;F5 Networks;2021-10-11;2026-10-10;2023-04-08;Operational;yes
