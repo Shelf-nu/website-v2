@@ -166,7 +166,7 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 **Limitations — where we'll be honest:**
 - **Maintenance tracking, not full CMMS** — Shelf offers asset reminders, service history logging, and custom maintenance fields — but it does not have work orders, parts inventory, or technician dispatching. If full CMMS is your primary need, look at EZOfficeInventory or a dedicated maintenance platform.
 - **No depreciation or fixed asset accounting** — Shelf tracks operational use, not financial lifecycle. Snipe-IT or Asset Panda are better if depreciation reporting is required.
-- **No native mobile app** — Shelf is a progressive web app that works in any browser. It scans QR codes natively, but some teams prefer a dedicated app.
+- **No native mobile app** — Shelf is a Progressive Web App (PWA). You can scan QR codes via your browser, but if your team relies on offline-mode scanning in areas without WiFi, or wants the absolute fastest native camera integration, Cheqroom or Reftab will beat us on mobile experience.
 - **No help desk integrations** — no Zendesk, Jira, or ServiceNow connectors. EZOfficeInventory has these.
 - **Smaller ecosystem** — Shelf has fewer integrations and a smaller community than tools that have been on the market for 10+ years.
 
@@ -190,7 +190,7 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 - **Education case studies** — they serve real universities (Portland State, CUNY, UT Arlington) and understand higher-ed workflows.
 
 **Limitations:**
-- **Expensive per-admin pricing** — plans start at $184/admin/month (Core), scaling to $275 (Business) and $367 (Enterprise). The Core tier is limited to 1 location and strips out custom roles, reporting, and document generation. Minimum admin counts apply but aren't disclosed upfront.
+- **Expensive per-admin pricing** — plans start at $184/admin/month (Core), scaling to $275 (Business) and $367 (Enterprise). The cheapest Core tier is artificially restricted: locked to exactly 1 location, with custom roles, reporting, and document generation stripped out to force upgrades to the $275/month Business tier. Minimum admin counts apply but aren't disclosed upfront.
 - **No free trial or free plan** — you must request a demo to test the software. This is a significant barrier compared to tools you can try immediately.
 - **Closed source** — no self-hosting option, no code transparency.
 - **Reporting limitations** — multiple reviewers note reporting is basic and not easily customizable. Reporting is unavailable on the Core tier entirely.
@@ -219,7 +219,7 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 - **No equipment booking or reservations** — this is the critical gap. Sortly cannot schedule who gets what equipment and when. If you need to prevent double-bookings, Sortly is not the right tool.
 - **"Check-out" is a folder move** — Sortly has a check-in/check-out feature, but it works by moving an item to a folder representing a person. There are no due dates, no return reminders, no availability calendar.
 - **No kit management** — items are tracked individually. You can't bundle a camera with its accessories.
-- **Item and user caps on every plan** — the most common complaint. You start at 100 items (free), 500 (Advanced), 2,000 (Ultra). Growth forces tier upgrades.
+- **Item and user caps on every plan** — the most common complaint. You start at 100 items (free). Even on their $299/month Premium tier, you are strictly capped at 8 users and 5,000 items. If you need 10 people to just view inventory, you're forced into custom enterprise pricing.
 - **Price increase complaints** — multiple reviewers report significant renewal price hikes after the first year.
 
 **Best for:** Small businesses that need a simple, visual catalog of what they own and where it is. Homeowners tracking valuables. Teams where "what do we have?" is a bigger question than "who has it right now?"
@@ -326,7 +326,7 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 - **Free tier** — 50 assets with reservations, calendars, and mobile app access.
 
 **Limitations:**
-- **Per-asset pricing** — Free covers 50 assets, Starter ($31.25/mo) and Business ($125/mo) scale by asset count. Large inventories get expensive.
+- **Per-asset pricing hits hard at scale** — Free covers 50 assets, Starter ($31.25/mo) and Business ($125/mo) scale by asset count. Because pricing is strictly per-asset, organizations with large volumes of low-value items (cables, adapters, accessories, chairs) blow through tiers fast. If you track 5,000 items, you'll be deep into enterprise pricing. Shelf flat-rates assets, so you aren't punished for tracking the small stuff.
 - **Smaller ecosystem** — fewer integrations, smaller community, and less documentation than larger competitors.
 - **IT-focused positioning** — less content and fewer workflows tailored to non-IT use cases (education, media, field operations).
 - **Closed source** — no self-hosting option.
@@ -426,7 +426,8 @@ Before you trial anything, answer three questions:
 
 1. **Do you need booking/reservations?** If yes, your options are Shelf, Cheqroom, EZO, Asset Panda, or Reftab. Sortly and Snipe-IT don't have it.
 2. **How many people need access?** If it's more than 10, per-user pricing (Asset Panda) and per-admin pricing (Cheqroom at $184+/admin) add up fast. Flat pricing (Shelf), unlimited users (Reftab), and free self-hosting (Snipe-IT) don't penalize team size.
-3. **What's your technical capacity?** If you have a sysadmin who can manage a server, Snipe-IT's free self-hosting is compelling. If you want zero setup, a cloud-hosted SaaS (Shelf, Cheqroom, Sortly, EZO) is the right path.
+3. **How much time do you have to set this up?** Sortly and Shelf can be operational in an afternoon. Asset Panda is known for requiring weeks of complex workflow configuration before you can scan your first item. EZO sits in between. If you need to be tracking equipment by Friday, eliminate the tools that need a multi-week implementation.
+4. **What's your technical capacity?** If you have a sysadmin who can manage a server, Snipe-IT's free self-hosting is compelling. If you want zero setup, a cloud-hosted SaaS (Shelf, Cheqroom, Sortly, EZO) is the right path.
 
 </Callout>
 
