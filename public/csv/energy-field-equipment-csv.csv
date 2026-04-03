@@ -1,0 +1,11 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last inspection,type:date;cf:Operational status,type:option;cf:Hazardous area rated,type:boolean
+Siemens SGT-800;Industrial gas turbine;Power Generation;turbine,gas;Power Plant A;15000000;Plant Manager;SSGT800-001;Siemens;03/15/2020;03/14/2030;04/10/2023;Operational;yes
+ABB RelionÂ® 670 Series;Substation automation and control system;Substation Equipment;protection,control;Substation B;100000;Substation Engineer;ABBR670-002;ABB;09/22/2022;09/21/2027;04/15/2023;Operational;yes
+Schneider Electric RM6;Medium voltage switchgear;Switchgear;medium voltage,distribution;Distribution Center;75000;Electrical Engineer;SERM6-003;Schneider Electric;11/10/2021;11/09/2031;03/20/2023;Operational;yes
+Vestas V150-4.2 MW;Wind turbine;Renewable Energy;wind,turbine;Wind Farm C;4500000;Wind Farm Manager;VV150-004;Vestas;05/05/2023;05/04/2028;05/05/2023;New;yes
+Schweitzer SEL-411L;Advanced line differential protection relay;Protection Systems;relay,transmission;Transmission Tower 7;15000;Protection Engineer;SEL411L-005;Schweitzer Engineering Laboratories;07/18/2020;07/17/2025;04/02/2023;Operational;yes
+GE LM6000 PF+;Aeroderivative gas turbine;Power Generation;turbine,gas;Power Plant B;20000000;Plant Manager;GELM6K-006;General Electric;01/30/2022;01/29/2032;04/05/2023;Operational;yes
+Mitsubishi Electric Power T&D;Power transformer;Transformers;transformer,transmission;Substation A;2000000;Substation Engineer;MEPT1000-007;Mitsubishi Electric;08/12/2021;08/11/2041;04/12/2023;Operational;yes
+SMA Sunny Central 2750-EV;Solar inverter;Renewable Energy;solar,inverter;Solar Farm D;150000;Solar Farm Technician;SMASC2750-008;SMA Solar Technology;06/25/2022;06/24/2027;03/30/2023;Operational;yes
+Yokogawa CENTUM VP;Distributed control system;Control Systems;DCS,automation;Control Room;500000;Control Systems Engineer;YCVP-009;Yokogawa;04/03/2023;04/02/2028;04/03/2023;New;no
+Altec AC45-127S;Bucket truck;Field Equipment;truck,maintenance;Maintenance Depot;250000;Fleet Manager;AAC45127S-010;Altec;10/11/2021;10/10/2026;04/08/2023;Operational;no

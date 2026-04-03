@@ -1,0 +1,11 @@
+title;description;category;tags;location;valuation;custodian;cf:Asset ID,type:text;cf:Manufacturer,type:option;cf:Purchase date,type:date;cf:Warranty expiry,type:date;cf:Last maintenance,type:date;cf:Operational status,type:option;cf:Requires sterilization,type:boolean
+Philips Azurion 7 C20;Interventional X-ray system;Imaging;x-ray,interventional;Catheterization Lab;1200000;Radiology Director;PAZ7C20-001;Philips;03/15/2021;03/14/2026;04/10/2023;Operational;no
+GE Carescape B850 Monitor;Patient monitoring system;Patient Monitoring;vital signs,ICU;Intensive Care Unit;35000;ICU Head Nurse;GECSB850-002;GE Healthcare;09/22/2022;09/21/2027;04/15/2023;Operational;no
+Stryker 1588 AIM 4K Platform;4K visualization system for endoscopy;Endoscopy;4K,visualization;Operating Room 3;80000;Surgical Services Manager;S1588AIM-003;Stryker;11/10/2022;11/09/2027;03/20/2023;Operational;yes
+Medtronic Puritan Bennett 980;Ventilator for critical care;Respiratory;ventilator,ICU;Intensive Care Unit;40000;Respiratory Therapy Lead;MPBV980-004;Medtronic;05/05/2023;05/04/2028;05/05/2023;New;no
+Siemens MAGNETOM Sola;1.5T MRI scanner;Imaging;MRI,diagnostic;Radiology Department;2000000;Radiology Director;SMS1.5T-005;Siemens Healthineers;07/18/2020;07/17/2025;04/02/2023;Operational;no
+Hill-Rom Progressa Bed System;ICU bed with advanced features;Patient Care;bed,ICU;Intensive Care Unit;30000;ICU Head Nurse;HRPBS-006;Hill-Rom;01/30/2022;01/29/2027;04/05/2023;Operational;no
+Olympus EVIS X1 CV-1500;Endoscopy video imaging system;Endoscopy;imaging,gastroenterology;Endoscopy Suite;75000;Endoscopy Department Head;OEX1CV1500-007;Olympus;08/12/2021;08/11/2026;04/12/2023;Operational;yes
+Fresenius 5008S CorDiax;Hemodialysis machine;Dialysis;hemodialysis,renal;Dialysis Center;25000;Nephrology Department Head;F5008SCDX-008;Fresenius Medical Care;06/25/2022;06/24/2027;03/30/2023;Operational;no
+Hologic Selenia Dimensions;3D mammography system;Imaging;mammography,women's health;Breast Imaging Center;350000;Radiology Director;HSD3D-009;Hologic;04/03/2023;04/02/2028;04/03/2023;New;no
+Getinge Flow-i C40 Anesthesia System;Anesthesia delivery system;Anesthesiology;anesthesia,surgery;Operating Room 2;100000;Anesthesiology Department Head;GFIC40-010;Getinge;10/11/2021;10/10/2026;04/08/2023;Operational;yes
