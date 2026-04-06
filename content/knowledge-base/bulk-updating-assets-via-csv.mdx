@@ -1,0 +1,115 @@
+---
+title: "Bulk Updating Assets via CSV"
+description: "Use the Update Existing Assets workflow to edit asset records in bulk — export to CSV, make changes in Excel or Google Sheets, preview every diff, then apply."
+category: "Assets"
+date: "2026-04-06"
+layout: "knowledge-base"
+---
+
+The **Update Existing Assets** feature lets you edit any number of asset records at once using a CSV file. The workflow has three stages: upload your edited CSV, preview every change in a spreadsheet-style diff, and confirm to apply.
+
+This is useful when you need to reassign dozens of assets to a new location, correct category assignments across your inventory, or update custom field values for a large group of assets without editing them one by one.
+
+## Before You Start
+
+- You need **Admin** or **Owner** role to update assets in bulk.
+- CSV import must be available on your plan (same requirement as creating new assets via CSV).
+- You can update up to **1,000 assets per file**. For larger inventories, split your CSV into multiple files.
+
+---
+
+## Step 1: Export Your Assets
+
+Start with a CSV export from your Asset Index — this ensures every row has the identifier columns Shelf needs to match records.
+
+1. Navigate to **Assets** in your workspace.
+2. (Optional) Apply filters to narrow down to the assets you want to update.
+3. Select the assets using the checkboxes, or click **Select all**.
+4. Click **Export** to download a CSV file.
+
+> **Important:** Your export must include the **Asset ID** or **ID** column. Shelf uses these values to match each row in your edited CSV back to the correct asset record. Exports from the Asset Index include these columns automatically.
+
+---
+
+## Step 2: Edit in Excel or Google Sheets
+
+Open the exported CSV in your preferred spreadsheet application and make your changes.
+
+**What you can update:**
+- Name
+- Category
+- Location
+- Tags
+- Valuation
+- Available to Book (Yes / No)
+- Custom fields — Text, Boolean, Date, Option, Number, Currency
+
+**What is intentionally excluded (v1):**
+- **Description** — multiline text loses formatting during CSV export
+- **Status** — managed through its own workflow
+- **Kit** and **Custody** — have dedicated assignment flows
+
+These columns are safely skipped if present in your file; they will not cause errors or overwrite existing values.
+
+**Empty cells clear existing values.** If an asset currently has a category and you leave that cell blank in your CSV, the category will be removed after applying. Fields that were already empty remain unchanged. Name and boolean fields cannot be cleared.
+
+**Tips:**
+- Keep the **Asset ID** and **ID** columns exactly as exported — do not edit them.
+- Boolean fields accept `yes`, `no`, `true`, `false` (case-insensitive, whitespace-tolerant).
+- Date fields require `YYYY-MM-DD` format.
+- Categories, locations, and tags that do not yet exist in your workspace will be **created automatically** when you apply.
+
+---
+
+## Step 3: Upload and Preview
+
+1. Navigate to **Assets → Import → Update existing**.
+2. Upload your edited CSV file (or paste the CSV content directly).
+3. Click **Analyze file**.
+
+Shelf analyzes your file and shows a **spreadsheet-style preview** of every change before anything is saved:
+
+- Each row shows the asset name alongside every field that will change, with the old and new values side by side.
+- **Validation warnings** are shown for fields with bad date formats, invalid numbers, or unrecognized values.
+- **Unrecognized columns** (ones that do not map to any known field or custom field) are listed separately — they will be ignored, not rejected.
+- You can click **Re-analyze** to re-process the file after adjusting it.
+
+If the file has no identifier column (`Asset ID` or `ID`), or contains no data rows, Shelf will show an error before reaching the preview stage.
+
+---
+
+## Step 4: Confirm and Apply
+
+1. Review the preview carefully.
+2. Type **I AGREE** in the confirmation field.
+3. Click **Apply changes**.
+
+Shelf applies the changes and shows a **results page** with a summary of what succeeded and what failed (if any rows encountered errors, they are listed individually and the rest still apply). You can download a CSV report of the results.
+
+---
+
+## Frequently Asked Questions
+
+### What happens if a row has an unrecognized asset ID?
+
+Rows that cannot be matched to an existing asset are skipped and listed in the results report as unmatched.
+
+### Can I update assets across multiple locations or categories in one file?
+
+Yes. There is no restriction on how many different locations, categories, or tags appear in a single file.
+
+### What if I only want to update one field on hundreds of assets?
+
+Include only the identifier column and the one field you want to change. Leave all other columns out of the file or leave them blank.
+
+### What if an apply partially fails?
+
+Shelf uses partial failure handling — if one asset hits a constraint error (for example, a kit location conflict), the other assets in the file still update successfully.
+
+---
+
+## Related
+
+- [Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) — for adding new assets via CSV
+- [Export / Exporting Workspace Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf) — for creating the export that feeds this workflow
+- [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf) — for bulk-updating a single field without CSV
