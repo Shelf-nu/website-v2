@@ -6,7 +6,7 @@ date: "2026-04-06"
 layout: "knowledge-base"
 ---
 
-The **Update Existing Assets** feature lets you edit any number of asset records at once using a CSV file. The workflow has three stages: upload your edited CSV, preview every change in a spreadsheet-style diff, and confirm to apply.
+The **Update Existing Assets** feature lets you edit up to 1,000 asset records per file using a CSV. The workflow has three stages: upload your edited CSV, preview every change in a spreadsheet-style diff, and confirm to apply.
 
 This is useful when you need to reassign dozens of assets to a new location, correct category assignments across your inventory, or update custom field values for a large group of assets without editing them one by one.
 
@@ -100,7 +100,7 @@ Yes. There is no restriction on how many different locations, categories, or tag
 
 ### What if I only want to update one field on hundreds of assets?
 
-Include only the identifier column and the one field you want to change. Leave all other columns out of the file or leave them blank.
+Include only the identifier column and the one field you want to change. **Omit all other columns entirely** — do not include them with blank cells, because a present column with a blank cell will clear that field's existing value.
 
 ### What if an apply partially fails?
 

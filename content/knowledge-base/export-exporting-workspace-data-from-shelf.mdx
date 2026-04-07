@@ -62,6 +62,8 @@ The exported CSV file can be used for:
 
 ### Bulk Updating via Export + Re-Import
 
-A common workflow is to export a filtered selection of assets, edit the CSV in a spreadsheet application, and re-upload it to update all the records at once. The **Update Existing Assets** feature handles this with a preview step that shows every field change before anything is saved.
+A common workflow is to export a filtered selection of assets from the **Asset Index**, edit the CSV in a spreadsheet application, and re-upload it to update all the records at once. The **Update Existing Assets** feature handles this with a preview step that shows every field change before anything is saved.
+
+> **Important:** Only use **Asset Index exports** for re-import updates — not the Workspace Backup CSV from Settings. Backup exports include internal fields not intended for re-import, and uploading one as an update file can corrupt data. The [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) also notes this restriction.
 
 See: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv)
