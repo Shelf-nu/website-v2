@@ -3,9 +3,32 @@
  *
  * PostHog autocaptures pageviews, pageleaves, and clicks.
  * This module is for explicit custom events (demo form, pricing CTA, etc.)
+ *
+ * posthog-js is imported lazily on first use so it doesn't end up in the
+ * initial bundle (~175KB). Events fired before the library loads are queued.
  */
 
-import posthog from "posthog-js";
+type PostHogLike = { capture: (name: string, props?: Record<string, string>) => void };
+
+let posthogClient: PostHogLike | null = null;
+let loadingPromise: Promise<PostHogLike> | null = null;
+const eventQueue: Array<{ name: string; props?: Record<string, string> }> = [];
+
+function getPostHog(): Promise<PostHogLike> {
+    if (posthogClient) return Promise.resolve(posthogClient);
+    if (!loadingPromise) {
+        loadingPromise = import("posthog-js").then(({ default: ph }) => {
+            posthogClient = ph;
+            // Flush queued events
+            for (const evt of eventQueue) {
+                ph.capture(evt.name, evt.props);
+            }
+            eventQueue.length = 0;
+            return ph;
+        });
+    }
+    return loadingPromise;
+}
 
 /* Session-level state for attribution (used by demo form) */
 let landingPage: string | undefined;
@@ -42,11 +65,19 @@ export function trackEvent(
         pagesViewed.push(currentPath);
     }
 
-    posthog.capture(name, {
+    const eventProps = {
         page_path: currentPath,
         referrer: document.referrer || "",
         ...props,
-    });
+    };
+
+    if (posthogClient) {
+        posthogClient.capture(name, eventProps);
+    } else {
+        // Queue and trigger lazy load
+        eventQueue.push({ name, props: eventProps });
+        getPostHog();
+    }
 }
 
 /**

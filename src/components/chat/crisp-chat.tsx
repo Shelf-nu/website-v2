@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import Script from "next/script";
 import {
   configureCrispTheme,
   updateCrispSessionData,
@@ -12,13 +11,35 @@ import { trackEvent } from "@/lib/analytics";
 
 const CRISP_WEBSITE_ID = process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID;
 
+/**
+ * Deferred Crisp Chat — loads the SDK after the browser is idle (or after 4s
+ * on Safari which lacks requestIdleCallback), keeping it off the critical path.
+ */
 export function CrispChat() {
   const pathname = usePathname();
   const initialized = useRef(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  /* ---- Defer loading until browser is idle ---- */
+  useEffect(() => {
+    if (!CRISP_WEBSITE_ID) return;
+
+    const schedule = typeof requestIdleCallback === "function"
+      ? requestIdleCallback
+      : (cb: () => void) => setTimeout(cb, 4000);
+
+    const id = schedule(() => setShouldLoad(true));
+
+    return () => {
+      if (typeof cancelIdleCallback === "function" && typeof id === "number") {
+        cancelIdleCallback(id);
+      }
+    };
+  }, []);
 
   /* ---- One-time setup: theme, dark mode observer, analytics bridge ---- */
   useEffect(() => {
-    if (!CRISP_WEBSITE_ID || initialized.current) return;
+    if (!CRISP_WEBSITE_ID || !shouldLoad || initialized.current) return;
     initialized.current = true;
 
     // Initialize Crisp globals (queued commands replay once SDK loads)
@@ -49,8 +70,14 @@ export function CrispChat() {
       trackEvent("chat_message_sent", { page: window.location.pathname });
     }]);
 
+    // Inject the Crisp script now
+    const script = document.createElement("script");
+    script.src = "https://client.crisp.chat/l.js";
+    script.async = true;
+    document.head.appendChild(script);
+
     return () => observer.disconnect();
-  }, []);
+  }, [shouldLoad]);
 
   /* ---- On every route change: update session data + segments ---- */
   useEffect(() => {
@@ -66,13 +93,5 @@ export function CrispChat() {
     ]]]);
   }, [pathname]);
 
-  if (!CRISP_WEBSITE_ID) return null;
-
-  return (
-    <Script
-      id="crisp-widget"
-      strategy="afterInteractive"
-      src="https://client.crisp.chat/l.js"
-    />
-  );
+  return null;
 }

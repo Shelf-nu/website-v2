@@ -27,13 +27,7 @@ import {
     MapPin,
     ArrowLeftRight,
 } from "lucide-react";
-import { useState, useEffect, startTransition } from "react";
-import {
-    AnimatePresence,
-    motion,
-    useScroll,
-    useMotionValueEvent,
-} from "framer-motion";
+import { useState, useEffect, useCallback, startTransition } from "react";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -133,18 +127,17 @@ export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [showTopBanner, setShowTopBanner] = useState(true);
     const [hasScrolled, setHasScrolled] = useState(false);
-    const { scrollY } = useScroll();
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        const shouldShowBanner = latest < 50;
-        if (shouldShowBanner !== showTopBanner) {
-            setShowTopBanner(shouldShowBanner);
-        }
-        const scrolled = latest > 10;
-        if (scrolled !== hasScrolled) {
-            setHasScrolled(scrolled);
-        }
-    });
+    const handleScroll = useCallback(() => {
+        const y = window.scrollY;
+        setShowTopBanner(y < 50);
+        setHasScrolled(y > 10);
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [handleScroll]);
 
     // Close mobile menu when route changes
     useEffect(() => {
@@ -179,32 +172,22 @@ export function Navbar() {
     return (
         <header className="fixed top-0 z-50 w-full flex flex-col transition-all duration-300">
             {/* Backdrop overlay when mega menu is open */}
-            <AnimatePresence>
-                {navState && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.15 }}
-                        className="fixed inset-0 bg-black/5 z-[-1]"
-                    />
+            <div
+                className={cn(
+                    "fixed inset-0 bg-black/5 z-[-1] transition-opacity duration-150",
+                    navState ? "opacity-100" : "opacity-0 pointer-events-none"
                 )}
-            </AnimatePresence>
+            />
 
             {/* Top Banner */}
-            <AnimatePresence>
-                {showTopBanner && (
-                    <motion.div
-                        initial={{ height: "auto", opacity: 1 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                    >
-                        <TopBanner />
-                    </motion.div>
+            <div
+                className={cn(
+                    "overflow-hidden transition-all duration-300 ease-in-out",
+                    showTopBanner ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
                 )}
-            </AnimatePresence>
+            >
+                <TopBanner />
+            </div>
 
             {/* Main Nav Bar */}
             <div
@@ -621,18 +604,10 @@ export function Navbar() {
             {/* ============================================================ */}
             {/*  Mobile Menu                                                  */}
             {/* ============================================================ */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{
-                            duration: 0.25,
-                            ease: [0.25, 0.1, 0.25, 1],
-                        }}
-                        className="fixed inset-0 z-[55] bg-background md:hidden overflow-y-auto border-t border-border/40"
-                    >
+            {isOpen && (
+                <div
+                    className="fixed inset-0 z-[55] bg-background md:hidden overflow-y-auto border-t border-border/40 animate-in fade-in slide-in-from-top-2 duration-250"
+                >
                         {/* Mobile menu header with close */}
                         <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-background border-b border-border/40">
                             <Link href="/" onClick={() => setIsOpen(false)}>
@@ -809,9 +784,8 @@ export function Navbar() {
                                 )}
                             </div>
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                </div>
+            )}
         </header>
     );
 }
