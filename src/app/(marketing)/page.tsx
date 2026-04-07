@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/hero";
 import { LogoGrid } from "@/components/sections/logo-grid";
 import { JsonLd } from "@/components/seo/json-ld";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { getHomePageLogosForGrid } from "@/data/customer-logos";
 
 const FounderLetter = dynamic(() => import("@/components/sections/founder-letter").then(m => m.FounderLetter));
@@ -20,18 +21,17 @@ export const metadata = {
 
 export default function HomePage() {
     return (
-        <>
+        <PagefindWrapper type="Page" title="Shelf — Open Source Asset Management Software" keywords="asset management equipment tracking inventory open source shelf">
             <JsonLd />
             <Hero />
 
             <LogoGrid items={getHomePageLogosForGrid()} />
             <FounderLetter />
 
-
             <FAQSection />
             <ScaleBlock />
             <CaseStudiesPreview />
             <FeatureNavigationCTA />
-        </>
+        </PagefindWrapper>
     );
 }
