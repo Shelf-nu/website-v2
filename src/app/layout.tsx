@@ -85,9 +85,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://us.i.posthog.com" />
-        <link rel="preconnect" href="https://us-assets.i.posthog.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://client.crisp.chat" crossOrigin="anonymous" />
+        {/* Preconnect hints removed — Crisp and PostHog are now deferred
+            until idle, so early preconnects would be wasted connections. */}
       </head>
       <body
         className={cn(
