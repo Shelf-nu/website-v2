@@ -62,7 +62,7 @@ const step1Schema = z.object({
 const step2Schema = z.object({
     needs: z.array(z.string()).min(1, "Please select at least one option"),
     message: z.string().min(1, "Please tell us how we can help"),
-    heardAbout: z.string().optional(),
+    heardAbout: z.string().min(1, "Please let us know how you found us"),
 });
 
 /* Full schema for final submission */
@@ -74,7 +74,7 @@ const demoFormSchema = z.object({
     teamSize: z.string().min(1, "Please select your team size"),
     equipment: z.string().min(1, "Please tell us what equipment you manage"),
     needs: z.array(z.string()).min(1, "Please select at least one option"),
-    heardAbout: z.string().optional(),
+    heardAbout: z.string().min(1, "Please let us know how you found us"),
     message: z.string().min(1, "Please tell us how we can help"),
 });
 
@@ -636,7 +636,7 @@ export function DemoForm() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="heardAbout">How did you hear about us?</Label>
+                                    <Label htmlFor="heardAbout">How did you hear about us?<Required /></Label>
                                     <Input
                                         id="heardAbout"
                                         name="heardAbout"
@@ -644,6 +644,7 @@ export function DemoForm() {
                                         value={formData.heardAbout}
                                         onChange={(e) => updateField("heardAbout", e.target.value)}
                                     />
+                                    <FieldError error={fieldErrors.heardAbout} />
                                 </div>
                             </>
                         )}
