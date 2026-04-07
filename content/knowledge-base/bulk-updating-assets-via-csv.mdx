@@ -27,6 +27,8 @@ Start with a CSV export from your Asset Index — this ensures every row has the
 3. Select the assets using the checkboxes, or click **Select all**.
 4. Click **Export** to download a CSV file.
 
+![Selecting assets in the Asset Index to export for bulk update](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/selecttoexport.jpg)
+
 > **Important:** Your export must include the **Asset ID** or **ID** column. Shelf uses these values to match each row in your edited CSV back to the correct asset record. Exports from the Asset Index include these columns automatically.
 
 ---
@@ -69,6 +71,8 @@ These columns are safely skipped if present in your file; they will not cause er
 
 Shelf analyzes your file and shows a **spreadsheet-style preview** of every change before anything is saved:
 
+![Spreadsheet-style preview showing old and new values side by side before applying](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/updatechecker.jpg)
+
 - Each row shows the asset name alongside every field that will change, with the old and new values side by side.
 - **Validation warnings** are shown for fields with bad date formats, invalid numbers, or unrecognized values.
 - **Unrecognized columns** (ones that do not map to any known field or custom field) are listed separately — they will be ignored, not rejected.
@@ -83,6 +87,8 @@ If the file has no identifier column (`Asset ID` or `ID`), or contains no data r
 1. Review the preview carefully.
 2. Type **I AGREE** in the confirmation field.
 3. Click **Apply changes**.
+
+![Confirmation dialog requiring "I AGREE" before bulk changes are applied](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/updateconfirmation-2.jpg)
 
 Shelf applies the changes and shows a **results page** with a summary of what succeeded and what failed (if any rows encountered errors, they are listed individually and the rest still apply). You can download a CSV report of the results.
 
