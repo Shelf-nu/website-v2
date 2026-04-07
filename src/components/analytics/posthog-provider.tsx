@@ -40,8 +40,10 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         });
 
         return () => {
-            if (typeof cancelIdleCallback === "function" && typeof id === "number") {
-                cancelIdleCallback(id);
+            if (typeof requestIdleCallback === "function") {
+                cancelIdleCallback(id as number);
+            } else {
+                clearTimeout(id as ReturnType<typeof setTimeout>);
             }
         };
     }, []);

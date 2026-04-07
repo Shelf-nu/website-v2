@@ -125,8 +125,13 @@ function HighlightCard({
 export function Navbar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
-    const [showTopBanner, setShowTopBanner] = useState(true);
-    const [hasScrolled, setHasScrolled] = useState(false);
+    // Initialize from current scroll position so back/forward/reload are correct
+    const [showTopBanner, setShowTopBanner] = useState(() =>
+        typeof window !== "undefined" ? window.scrollY < 50 : true
+    );
+    const [hasScrolled, setHasScrolled] = useState(() =>
+        typeof window !== "undefined" ? window.scrollY > 10 : false
+    );
 
     const handleScroll = useCallback(() => {
         const y = window.scrollY;
@@ -179,12 +184,14 @@ export function Navbar() {
                 )}
             />
 
-            {/* Top Banner */}
+            {/* Top Banner — inert when collapsed so hidden links are
+                not reachable via keyboard and the ping animation stops */}
             <div
                 className={cn(
                     "overflow-hidden transition-all duration-300 ease-in-out",
                     showTopBanner ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
                 )}
+                {...(!showTopBanner && { inert: true, "aria-hidden": true })}
             >
                 <TopBanner />
             </div>
