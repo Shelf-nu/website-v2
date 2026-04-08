@@ -277,8 +277,8 @@ export default function BrandAssetsPage() {
                             <p className="text-sm text-muted-foreground mb-1">Need something specific?</p>
                             <p className="text-sm text-muted-foreground">
                                 For custom assets, co-branding requests, or press inquiries, reach out at{" "}
-                                <a href="mailto:hello@shelf.nu" className="text-orange-600 hover:text-orange-700 font-medium transition-colors">
-                                    hello@shelf.nu
+                                <a href={"mailto:hello" + String.fromCharCode(64) + "shelf.nu"} className="text-orange-600 hover:text-orange-700 font-medium transition-colors">
+                                    {"hello" + String.fromCharCode(64) + "shelf.nu"}
                                 </a>
                             </p>
                         </div>

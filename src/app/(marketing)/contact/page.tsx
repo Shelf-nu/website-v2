@@ -46,8 +46,8 @@ export default function ContactPage() {
                                     </Link>
                                 </Button>
                                 <div className="text-center">
-                                    <Link href="mailto:carlos@shelf.nu" className="text-sm text-orange-600 hover:text-orange-700 font-medium">
-                                        carlos@shelf.nu
+                                    <Link href={"mailto:carlos" + String.fromCharCode(64) + "shelf.nu"} className="text-sm text-orange-600 hover:text-orange-700 font-medium">
+                                        {"carlos" + String.fromCharCode(64) + "shelf.nu"}
                                     </Link>
                                     <p className="text-xs text-muted-foreground mt-1">Carlos Virreira, CEO</p>
                                 </div>
@@ -65,7 +65,7 @@ export default function ContactPage() {
                             </p>
                             <div className="space-y-3">
                                 <Button variant="outline" asChild className="w-full">
-                                    <Link href="mailto:support@shelf.nu">
+                                    <Link href={"mailto:support" + String.fromCharCode(64) + "shelf.nu"}>
                                         Email support
                                     </Link>
                                 </Button>

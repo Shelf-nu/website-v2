@@ -178,7 +178,7 @@ export default function AboutPage() {
                             </Button>
                         </div>
                         <p className="mt-8 text-caption text-sm">
-                            Need help? <Link href="mailto:hello@shelf.nu" className="text-heading font-medium hover:underline">Contact our team</Link>
+                            Need help? <Link href={"mailto:hello" + String.fromCharCode(64) + "shelf.nu"} className="text-heading font-medium hover:underline">Contact our team</Link>
                         </p>
                     </div>
                 </Container>

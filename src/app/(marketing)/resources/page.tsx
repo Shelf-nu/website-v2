@@ -49,7 +49,7 @@ export default function ResourcesPage() {
                         </p>
                         <div className="mt-auto pt-4 w-full sm:w-auto">
                             <Button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                                <a href="mailto:hello@shelf.nu">Talk to sales</a>
+                                <a href={"mailto:hello" + String.fromCharCode(64) + "shelf.nu"}>Talk to sales</a>
                             </Button>
                         </div>
                     </Card>
@@ -65,7 +65,7 @@ export default function ResourcesPage() {
                         </p>
                         <div className="mt-auto pt-4 w-full sm:w-auto">
                             <Button variant="outline" className="w-full sm:w-auto" asChild>
-                                <a href="mailto:support@shelf.nu">Get support</a>
+                                <a href={"mailto:support" + String.fromCharCode(64) + "shelf.nu"}>Get support</a>
                             </Button>
                         </div>
                     </Card>
