@@ -1,6 +1,7 @@
 import { getAllContent } from "@/lib/mdx";
 import { Metadata } from "next";
 import { UpdatesFeed } from "@/components/updates/updates-feed";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "Product Updates - Shelf Asset Management",
@@ -14,5 +15,9 @@ export const metadata: Metadata = {
 export default function UpdatesPage() {
     const allUpdates = getAllContent("updates");
 
-    return <UpdatesFeed updates={allUpdates} />;
+    return (
+        <PagefindWrapper type="Page" title="Product Updates — Shelf" keywords="updates changelog new features product improvements">
+            <UpdatesFeed updates={allUpdates} />
+        </PagefindWrapper>
+    );
 }

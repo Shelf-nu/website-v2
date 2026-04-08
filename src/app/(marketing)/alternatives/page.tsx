@@ -8,6 +8,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight, ArrowLeftRight } from "lucide-react";
 import { CTA } from "@/components/sections/cta";
 import { getCompetitorAdvantages } from "@/data/competitor-advantages";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "Shelf Alternatives & Comparisons | Shelf",
@@ -44,8 +45,9 @@ export default function AlternativesIndexPage() {
     const alternatives = getAllContent("alternatives");
 
     return (
-        <div className="flex min-h-screen flex-col">
-            {/* Hero */}
+        <PagefindWrapper type="Page" title="Shelf Alternatives & Comparisons" keywords="alternatives comparisons compare switch asset management">
+            <div className="flex min-h-screen flex-col">
+                {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden">
                 <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
                 <Container className="text-center relative z-10">
@@ -160,7 +162,8 @@ export default function AlternativesIndexPage() {
                 </Container>
             </section>
 
-            <CTA />
-        </div>
+                <CTA />
+            </div>
+        </PagefindWrapper>
     );
 }
