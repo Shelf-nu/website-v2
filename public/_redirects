@@ -106,6 +106,7 @@
 # --- Missing features ---
 /features/signed-custody /features/custody 301
 /features/qr-codes /features/asset-pages 301
+/features/custom-fields /knowledge-base/custom-field-types-in-shelf 301
 
 # --- Missing root-level pages ---
 /bookings /features/bookings 301

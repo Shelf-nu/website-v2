@@ -22,6 +22,7 @@ export function Footer() {
                     <div>
                         <p className="text-sm font-semibold mb-6 text-foreground tracking-tight">Product</p>
                         <ul className="space-y-3.5 text-sm">
+                            <li><Link href="/product" className="hover:text-orange-600 transition-colors">Product</Link></li>
                             <li><Link href="/features" className="hover:text-orange-600 transition-colors">Features</Link></li>
                             <li><Link href="/pricing" className="text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors">Pricing</Link></li>
                             <li><Link href="/demo" className="hover:text-orange-600 transition-colors">Book a Demo</Link></li>
@@ -61,6 +62,7 @@ export function Footer() {
                     <div>
                         <p className="text-sm font-semibold mb-6 text-foreground tracking-tight">Resources</p>
                         <ul className="space-y-3.5 text-sm">
+                            <li><Link href="/resources" className="hover:text-orange-600 transition-colors font-medium text-foreground">All Resources</Link></li>
                             <li><Link href="/blog" className="hover:text-orange-600 transition-colors">Blog</Link></li>
                             <li><Link href="/knowledge-base" className="hover:text-orange-600 transition-colors">Knowledge Base</Link></li>
                             <li><Link href="/glossary" className="hover:text-orange-600 transition-colors">Glossary</Link></li>
