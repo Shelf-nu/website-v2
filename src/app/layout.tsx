@@ -7,6 +7,7 @@ import { SkipToContent } from "@/components/layout/skip-to-content";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CrispChat } from "@/components/chat/crisp-chat";
 import { PostHogProvider } from "@/components/analytics/posthog-provider";
+import { ReducedMotionConfig } from "@/components/ui/reduced-motion-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -96,13 +97,15 @@ export default function RootLayout({
         )}
       >
         <PostHogProvider>
-          <ThemeProvider>
-            <SkipToContent />
-            <ScrollToTop />
-            <div id="main-content">
-              {children}
-            </div>
-          </ThemeProvider>
+          <ReducedMotionConfig>
+            <ThemeProvider>
+              <SkipToContent />
+              <ScrollToTop />
+              <div id="main-content">
+                {children}
+              </div>
+            </ThemeProvider>
+          </ReducedMotionConfig>
         </PostHogProvider>
         <CrispChat />
       </body>

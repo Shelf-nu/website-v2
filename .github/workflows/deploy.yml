@@ -24,6 +24,20 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
+      - name: React Doctor health check
+        run: |
+          RAW="$(npx -y react-doctor@0.0.31 . --score)"
+          SCORE="$(printf '%s' "$RAW" | grep -Eo '[0-9]+' | tail -1)"
+          if [ -z "$SCORE" ]; then
+            echo "::error::Unable to parse React Doctor score from: $RAW"
+            exit 1
+          fi
+          echo "React Doctor score: $SCORE/100"
+          if [ "$SCORE" -lt 90 ]; then
+            echo "::error::React Doctor score $SCORE is below threshold of 90"
+            npx -y react-doctor@0.0.31 . --verbose
+            exit 1
+          fi
       - run: npm run build
         env:
           NEXT_PUBLIC_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORM_ENDPOINT }}
