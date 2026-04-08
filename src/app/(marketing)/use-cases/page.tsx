@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CTA } from "@/components/sections/cta";
 import { ArrowRight, Video, Monitor, Wrench, Layers } from "lucide-react";
 import { LucideIcon } from "lucide-react";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "Use Cases - Shelf",
@@ -24,15 +25,16 @@ export default function UseCasesIndexPage() {
     const useCases = getAllContent("use-cases");
 
     return (
-        <div className="flex min-h-screen flex-col relative overflow-hidden">
-            {/* Ambient Background */}
-            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-            <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
+        <PagefindWrapper type="Page" title="Use Cases — Shelf" keywords="use cases workflows examples asset tracking">
+            <div className="flex min-h-screen flex-col relative overflow-hidden">
+                {/* Ambient Background */}
+                <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+                <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
-            <Container className="py-24 md:py-32 relative">
-                <div className="max-w-3xl mx-auto text-center mb-20">
-                    <ScrollReveal width="100%">
-                        <Badge variant="secondary" className="mb-4 bg-orange-50 text-orange-700 border-orange-100/50">Use Cases</Badge>
+                <Container className="py-24 md:py-32 relative">
+                    <div className="max-w-3xl mx-auto text-center mb-20">
+                        <ScrollReveal width="100%">
+                            <Badge variant="secondary" className="mb-4 bg-orange-50 text-orange-700 border-orange-100/50">Use Cases</Badge>
                         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
                             Shelf <span className="text-orange-600">in action</span>
                         </h1>
@@ -69,7 +71,8 @@ export default function UseCasesIndexPage() {
                 </div>
             </Container>
 
-            <CTA />
-        </div>
+                <CTA />
+            </div>
+        </PagefindWrapper>
     );
 }

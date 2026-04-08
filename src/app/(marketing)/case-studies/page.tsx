@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { CaseStudyCard } from "@/components/sections/case-studies/case-study-card";
 import { LogoWall } from "@/components/sections/case-studies/logo-wall";
 import { TestimonialsSection } from "@/components/sections/case-studies/testimonials-section";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
     title: "Customers - Shelf",
@@ -36,9 +37,10 @@ export default function CaseStudiesIndexPage() {
     });
 
     return (
-        <div className="flex min-h-screen flex-col">
+        <PagefindWrapper type="Page" title="Case Studies — Shelf Customers" keywords="case studies customers testimonials success stories">
+            <div className="flex min-h-screen flex-col">
 
-            {/* 1. Header Section */}
+                {/* 1. Header Section */}
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
                 <Container className="text-center relative z-10">
@@ -121,6 +123,7 @@ export default function CaseStudiesIndexPage() {
                 </Container>
             </section>
 
-        </div>
+            </div>
+        </PagefindWrapper>
     );
 }
