@@ -249,8 +249,9 @@
 }
 
 /* Accessibility: respect users who prefer reduced motion (WCAG 2.3.3).
-   Disables CSS animations/transitions and tells framer-motion to skip
-   animations via the universal selector override. */
+   Disables CSS animations and transitions. Framer-motion JS animations
+   are handled separately via MotionConfig reducedMotion="user" in the
+   root layout (see src/components/ui/reduced-motion-config.tsx). */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
