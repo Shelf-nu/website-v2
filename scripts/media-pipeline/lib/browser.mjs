@@ -1,8 +1,10 @@
 import { getShelfCredentials } from "./env.mjs";
 
-// Use Playwright from shelf-main where browsers are already installed
+// Use Playwright from shelf-main or a custom path (set SHELF_MAIN_PATH env var)
 import { createRequire } from "node:module";
-const require = createRequire("/Users/macwhale/Documents/shelf-main/package.json");
+import { resolve } from "node:path";
+const shelfMainPath = resolve(process.env.SHELF_MAIN_PATH || "../shelf-main");
+const require = createRequire(`${shelfMainPath}/package.json`);
 const { chromium } = require("playwright");
 
 const VIEWPORT = { width: 1440, height: 900 };

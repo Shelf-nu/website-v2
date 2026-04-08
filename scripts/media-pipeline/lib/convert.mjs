@@ -1,8 +1,8 @@
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { basename, dirname, join } from "node:path";
 
 /**
- * Convert PNG screenshot to WebP.
+ * Convert PNG screenshot to WebP using cwebp.
  * @param {string} pngPath
  * @returns {string} Path to the WebP file
  */
@@ -10,7 +10,7 @@ export function toWebP(pngPath) {
   const dir = dirname(pngPath);
   const name = basename(pngPath, ".png");
   const webpPath = join(dir, `${name}.webp`);
-  execSync(`cwebp -q 85 "${pngPath}" -o "${webpPath}"`, {
+  execFileSync("cwebp", ["-q", "85", pngPath, "-o", webpPath], {
     stdio: "pipe",
   });
   return webpPath;
@@ -29,16 +29,20 @@ export function toVideoFormats(webmPath) {
   const optimizedWebm = join(dir, `${name}-opt.webm`);
 
   // MP4 (H.264) — broad compatibility
-  execSync(
-    `ffmpeg -i "${webmPath}" -c:v libx264 -preset slow -crf 23 -an -pix_fmt yuv420p -movflags +faststart "${mp4Path}" -y`,
-    { stdio: "pipe" }
-  );
+  execFileSync("ffmpeg", [
+    "-i", webmPath,
+    "-c:v", "libx264", "-preset", "slow", "-crf", "23",
+    "-an", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+    mp4Path, "-y",
+  ], { stdio: "pipe" });
 
   // WebM (VP9) — smaller file for modern browsers
-  execSync(
-    `ffmpeg -i "${webmPath}" -c:v libvpx-vp9 -crf 30 -b:v 0 -an "${optimizedWebm}" -y`,
-    { stdio: "pipe" }
-  );
+  execFileSync("ffmpeg", [
+    "-i", webmPath,
+    "-c:v", "libvpx-vp9", "-crf", "30", "-b:v", "0",
+    "-an",
+    optimizedWebm, "-y",
+  ], { stdio: "pipe" });
 
   return { mp4: mp4Path, webm: optimizedWebm };
 }

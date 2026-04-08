@@ -1,9 +1,20 @@
+// macOS-only: reads secrets from the macOS Keychain via the `security` CLI.
+// On other platforms, set equivalent environment variables instead.
+
 import { execSync } from "node:child_process";
 
 function fromKeychain(service) {
-  return execSync(`security find-generic-password -s "${service}" -w`, {
-    encoding: "utf-8",
-  }).trim();
+  try {
+    return execSync(`security find-generic-password -s "${service}" -w`, {
+      encoding: "utf-8",
+      stdio: ["pipe", "pipe", "pipe"],
+    }).trim();
+  } catch {
+    throw new Error(
+      `Missing Keychain entry "${service}". Add it with:\n` +
+      `  security add-generic-password -s "${service}" -a "$USER" -w "YOUR_VALUE"`
+    );
+  }
 }
 
 export function getSupabaseConfig() {

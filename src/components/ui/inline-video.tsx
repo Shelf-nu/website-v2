@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useCallback } from "react"
+import { cn } from "@/lib/utils"
 
 interface InlineVideoProps {
   mp4: string
@@ -18,15 +19,24 @@ export function InlineVideo({ mp4, webm, alt, poster }: InlineVideoProps) {
     if (!video) return
     if (video.paused) {
       video.play()
-      setPaused(false)
     } else {
       video.pause()
-      setPaused(true)
     }
   }, [])
 
   return (
-    <div className="group relative my-8 cursor-pointer" onClick={togglePlay}>
+    <div
+      role="button"
+      tabIndex={0}
+      className="group relative my-8 cursor-pointer"
+      onClick={togglePlay}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          togglePlay()
+        }
+      }}
+    >
       <video
         ref={videoRef}
         autoPlay
@@ -35,7 +45,9 @@ export function InlineVideo({ mp4, webm, alt, poster }: InlineVideoProps) {
         playsInline
         poster={poster}
         aria-label={alt}
-        className="rounded-xl border border-border/50 bg-muted shadow-sm w-full"
+        className={cn("rounded-xl border border-border/50 bg-muted shadow-sm w-full")}
+        onPause={() => setPaused(true)}
+        onPlay={() => setPaused(false)}
       >
         {webm && <source src={webm} type="video/webm" />}
         <source src={mp4} type="video/mp4" />

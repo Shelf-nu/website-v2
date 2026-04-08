@@ -33,6 +33,7 @@ async function main() {
   console.log(`Working in: ${tmpDir}`);
 
   const browser = await launchBrowser();
+  try {
   const context = await createContext(browser);
   const page = await context.newPage();
   page.setDefaultTimeout(60000);
@@ -174,8 +175,6 @@ async function main() {
     await clearAll(clipPage);
   });
 
-  await browser.close();
-
   // ── Convert ────────────────────────────────────────────────────────
   console.log("🔄 Converting screenshots to WebP...");
   const webp1 = toWebP(shot1);
@@ -206,6 +205,10 @@ async function main() {
   console.log(`  ![Workspace settings CSV download](${urls.settingsCsv})`);
   console.log("\nVideo clip:");
   console.log(`  <InlineVideo mp4="${urls.clipMp4}" webm="${urls.clipWebm}" alt="Walkthrough of exporting assets from Shelf" />`);
+
+  } finally {
+    await browser.close();
+  }
 }
 
 main().catch((err) => {
