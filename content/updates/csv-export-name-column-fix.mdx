@@ -1,0 +1,11 @@
+---
+title: "CSV Export Now Always Includes Asset Name"
+description: "A regression introduced alongside bulk CSV updates has been fixed — the asset name column is now guaranteed to appear as the first column in every CSV export."
+date: "2026-04-08"
+image: "/images/updates/better-csv-imports.jpg"
+layout: "update"
+---
+
+A recent update introduced a regression where CSV exports from the Asset Index would silently omit the **Name** column under certain workspace column configurations. This has been fixed — the asset name is now guaranteed to appear as the first column in every export, regardless of your custom column settings.
+
+If you exported assets between April 6–8, 2026 and noticed a missing name column, re-export and you will see it restored. This also ensures the exported file works correctly with the [Bulk Update Existing Assets](/knowledge-base/bulk-updating-assets-via-csv) workflow, which relies on the name column being present.
