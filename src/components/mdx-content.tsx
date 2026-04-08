@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageZoom } from "@/components/ui/image-zoom";
+import { InlineVideo } from "@/components/ui/inline-video";
 import { Callout } from "@/components/mdx/callout";
 import { StatBlock } from "@/components/mdx/stat-block";
 import { PullQuote } from "@/components/mdx/pull-quote";
@@ -118,6 +119,7 @@ const components = {
     PullQuote,
     SummaryBox,
     ComparisonTable,
+    InlineVideo,
 };
 
 export function MDXContent({ source }: { source: string }) {
