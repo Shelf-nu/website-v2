@@ -93,7 +93,7 @@ async function main() {
       await clipPage.waitForTimeout(2500);
       await clearAll(clipPage);
 
-      await notes.click({ force: true }).catch(() => {});
+      await notes.click({ force: true }).catch((e) => console.warn("⚠️  Notes click failed:", e.message));
       await clipPage.waitForTimeout(2000);
     }
 
