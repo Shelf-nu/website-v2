@@ -3,6 +3,8 @@
 /**
  * Capture annotated screenshots and video for:
  * content/knowledge-base/configure-what-self-service-and-base-users-can-see.mdx
+ *
+ * Shows: Settings → General → Permissions section with all toggles visible
  */
 
 import { mkdtemp } from "node:fs/promises";
@@ -16,6 +18,18 @@ import { initAnnotations, highlight, callout, caption, chapterCard, clearAll } f
 
 const BUCKET_PREFIX = "knowledgebase";
 
+/** Scroll to Permissions heading and position it near top of viewport */
+async function scrollToPermissions(page) {
+  const heading = await page.locator('text=Permissions').first();
+  if (heading) {
+    await heading.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+    // Nudge up so heading is visible at top with toggles below
+    await page.evaluate(() => window.scrollBy(0, -60));
+    await page.waitForTimeout(500);
+  }
+}
+
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-permissions-"));
   console.log(`Working in: ${tmpDir}`);
@@ -28,42 +42,28 @@ async function main() {
   page.setDefaultTimeout(60000);
   await loginToShelf(page);
 
-  // ── Screenshot 1: Settings → General → Permissions section ─────────
-  console.log("📸 Capturing permissions settings...");
+  // ── Screenshot 1: Permissions section with heading visible ─────────
+  console.log("📸 Capturing permissions section...");
   await navigateTo(page, "/settings/general");
+  await scrollToPermissions(page);
   await initAnnotations(page);
 
-  // Scroll to the Permissions section
-  const permSection = await page.$('text=Permissions');
-  if (permSection) {
-    await permSection.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500);
-    await page.evaluate(() => window.scrollBy(0, -100));
-    await page.waitForTimeout(500);
-  }
-
   await highlight(page, "text:Permissions", { padding: 8 });
-  await callout(page, "text:Permissions", "Control what Self Service and Base users can see — custody and booking visibility", {
+  await callout(page, "text:Permissions", "Control what Self Service and Base users can see", {
     label: "Permissions",
     side: "right",
   });
-  await caption(page, "Settings → General → Permissions — toggle visibility for custody and bookings");
-
+  await caption(page, "Settings → General → Scroll down to the Permissions section");
   const shot1 = await screenshot(page, join(tmpDir, "permissions-settings.png"));
   await clearAll(page);
 
-  // ── Screenshot 2: Scroll to show the actual toggles ────────────────
-  console.log("📸 Capturing permission toggles...");
-  // Scroll further to show the toggle switches
-  const viewCustody = await page.$('text=View custody');
-  if (viewCustody) {
-    await viewCustody.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500);
-    await page.evaluate(() => window.scrollBy(0, -50));
-    await page.waitForTimeout(500);
-  }
+  // ── Screenshot 2: Scroll further to show all toggles clearly ───────
+  console.log("📸 Capturing all permission toggles...");
+  // Scroll past the heading to show the actual toggles
+  await page.evaluate(() => window.scrollBy(0, 200));
+  await page.waitForTimeout(800);
   await initAnnotations(page);
-  await caption(page, "Toggle each permission on or off for Self Service and Base users independently");
+  await caption(page, "Toggle each permission independently for Self Service and Base users");
   const shot2 = await screenshot(page, join(tmpDir, "permissions-toggles.png"));
   await clearAll(page);
   await context.close();
@@ -75,18 +75,12 @@ async function main() {
 
     await navigateTo(clipPage, "/settings/general");
     await initAnnotations(clipPage);
-    await caption(clipPage, "Go to Settings → General to find the Permissions section");
+    await caption(clipPage, "Go to Settings → General");
     await clipPage.waitForTimeout(2500);
     await clearAll(clipPage);
 
-    // Smooth scroll to Permissions section
-    const perm = await clipPage.$('text=Permissions');
-    if (perm) {
-      await perm.scrollIntoViewIfNeeded();
-      await clipPage.waitForTimeout(500);
-      await clipPage.evaluate(() => window.scrollBy(0, -100));
-      await clipPage.waitForTimeout(1000);
-    }
+    // Smooth scroll to Permissions
+    await scrollToPermissions(clipPage);
 
     await initAnnotations(clipPage);
     await highlight(clipPage, "text:Permissions", { padding: 8 });
@@ -98,16 +92,19 @@ async function main() {
     await clearAll(clipPage);
 
     // Scroll to show toggles
-    const vc = await clipPage.$('text=View custody');
-    if (vc) {
-      await vc.scrollIntoViewIfNeeded();
-      await clipPage.waitForTimeout(500);
-      await clipPage.evaluate(() => window.scrollBy(0, -50));
-      await clipPage.waitForTimeout(500);
-    }
+    await clipPage.evaluate(async () => {
+      const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const scroll = (delta, dur) => new Promise((resolve) => {
+        const start = window.scrollY, t0 = performance.now();
+        const s = (now) => { const p = Math.min((now - t0) / dur, 1); window.scrollTo(0, start + delta * ease(p)); p < 1 ? requestAnimationFrame(s) : resolve(); };
+        requestAnimationFrame(s);
+      });
+      await scroll(250, 1200);
+    });
+    await clipPage.waitForTimeout(800);
 
     await initAnnotations(clipPage);
-    await caption(clipPage, "Use these toggles to control custody and booking visibility per user role");
+    await caption(clipPage, "Toggle custody and booking visibility per user role — changes apply immediately");
     await clipPage.waitForTimeout(4000);
     await clearAll(clipPage);
   });
@@ -126,11 +123,6 @@ async function main() {
   urls.webm = await upload(webm, `${BUCKET_PREFIX}/permissions-flow.webm`);
 
   Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-
-  console.log("\n📋 URLs for MDX:");
-  console.log(`  ![Permissions settings](${urls.settings})`);
-  console.log(`  ![Permission toggles](${urls.toggles})`);
-  console.log(`  <InlineVideo mp4="${urls.mp4}" webm="${urls.webm}" alt="Walkthrough of configuring user permissions in Shelf" />`);
 
   } finally { await browser.close(); }
 }

@@ -3,6 +3,8 @@
 /**
  * Capture annotated screenshots and video for:
  * content/knowledge-base/adding-additional-fields-to-assets.mdx
+ *
+ * Shows: Custom Fields settings, create field flow, fields on asset edit form
  */
 
 import { mkdtemp } from "node:fs/promises";
@@ -32,54 +34,82 @@ async function main() {
   console.log("📸 Capturing Custom Fields settings...");
   await navigateTo(page, "/settings/custom-fields");
   await initAnnotations(page);
-
-  await callout(page, "text:Custom fields", "Manage all custom fields for your workspace here", {
-    label: "Settings",
-    side: "right",
-  });
-  await caption(page, "Settings → Custom Fields — add, edit, or deactivate custom fields for your assets");
-
+  await caption(page, "Settings → Custom Fields — manage all custom fields for your workspace");
   const shot1 = await screenshot(page, join(tmpDir, "custom-fields-settings.png"));
   await clearAll(page);
-  await context.close();
 
-  // ── Screenshot 2: New Asset form showing custom fields ─────────────
-  console.log("📸 Capturing New Asset form...");
-  const ctx2 = await createContext(browser);
-  const page2 = await ctx2.newPage();
-  page2.setDefaultTimeout(60000);
-  await loginToShelf(page2);
-  await navigateTo(page2, "/assets/new");
-  await initAnnotations(page2);
-
+  // ── Screenshot 2: Edit an existing asset and scroll to custom fields
+  console.log("📸 Capturing asset edit form with custom fields...");
+  // Navigate to an asset and click edit
+  await navigateTo(page, "/assets");
+  const firstAsset = await page.locator('table a, [role="row"] a').first();
+  if (firstAsset) {
+    await firstAsset.click();
+    await page.waitForTimeout(3000);
+  }
   // Scroll down to show custom fields section
-  await page2.evaluate(() => window.scrollTo({ top: 400, behavior: "instant" }));
-  await page2.waitForTimeout(1000);
-
-  await caption(page2, "New Asset form — custom fields appear alongside default fields");
-  const shot2 = await screenshot(page2, join(tmpDir, "custom-fields-new-asset.png"));
-  await clearAll(page2);
-  await ctx2.close();
+  await page.evaluate(async () => {
+    const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const scroll = (target, dur) => new Promise((resolve) => {
+      const start = window.scrollY, diff = target - start, t0 = performance.now();
+      const s = (now) => { const p = Math.min((now - t0) / dur, 1); window.scrollTo(0, start + diff * ease(p)); p < 1 ? requestAnimationFrame(s) : resolve(); };
+      requestAnimationFrame(s);
+    });
+    await scroll(600, 1200);
+  });
+  await page.waitForTimeout(1000);
+  await initAnnotations(page);
+  await caption(page, "Asset detail page — scroll down to see custom fields on any asset");
+  const shot2 = await screenshot(page, join(tmpDir, "custom-fields-on-asset.png"));
+  await clearAll(page);
+  await context.close();
 
   // ── Video clip ─────────────────────────────────────────────────────
   console.log("🎬 Recording custom fields walkthrough...");
   const clipPath = await recordClip(browser, async (clipPage) => {
-    await chapterCard(clipPage, "Custom Fields", "Add Extra Data Fields to Your Assets", 3000);
+    // Chapter 1: Settings
+    await chapterCard(clipPage, "Step 1", "Configure Custom Fields in Settings", 3000);
 
-    // Show settings page
     await navigateTo(clipPage, "/settings/custom-fields");
     await initAnnotations(clipPage);
-    await caption(clipPage, "Go to Settings → Custom Fields to manage your fields");
-    await clipPage.waitForTimeout(3000);
+    await caption(clipPage, "Go to Settings → Custom Fields");
+    await clipPage.waitForTimeout(2500);
     await clearAll(clipPage);
 
-    // Navigate to new asset to show fields in action
-    await chapterCard(clipPage, "In Action", "Custom Fields on the Asset Form", 2500);
+    // Highlight and click "New custom field" or "Add" button
+    const addBtn = await clipPage.locator('a:has-text("New custom field"), button:has-text("New custom field"), a:has-text("new"), button:has-text("new")').first();
+    if (addBtn) {
+      await initAnnotations(clipPage);
+      await highlight(clipPage, "text:New custom field", { spotlight: true, padding: 8 });
+      await callout(clipPage, "text:New custom field", "Create a new field for your assets", {
+        label: "Add Field",
+        side: "bottom",
+      });
+      await clipPage.waitForTimeout(2500);
+      await clearAll(clipPage);
 
-    await navigateTo(clipPage, "/assets/new");
-    await initAnnotations(clipPage);
+      await addBtn.click().catch(() => {});
+      await clipPage.waitForTimeout(3000);
 
-    // Smooth scroll to show fields
+      // Show the create form/modal
+      await initAnnotations(clipPage);
+      await caption(clipPage, "Set field name, type, required/optional, and help text");
+      await clipPage.waitForTimeout(3500);
+      await clearAll(clipPage);
+    }
+
+    // Chapter 2: Fields on asset
+    await chapterCard(clipPage, "Step 2", "Custom Fields Appear on Your Assets", 2500);
+
+    // Navigate to an asset to show fields
+    await navigateTo(clipPage, "/assets");
+    const asset = await clipPage.locator('table a, [role="row"] a').first();
+    if (asset) {
+      await asset.click();
+      await clipPage.waitForTimeout(3000);
+    }
+
+    // Scroll down to custom fields
     await clipPage.evaluate(async () => {
       const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       const scroll = (target, dur) => new Promise((resolve) => {
@@ -87,14 +117,13 @@ async function main() {
         const s = (now) => { const p = Math.min((now - t0) / dur, 1); window.scrollTo(0, start + diff * ease(p)); p < 1 ? requestAnimationFrame(s) : resolve(); };
         requestAnimationFrame(s);
       });
-      await scroll(400, 1500);
-      await new Promise(r => setTimeout(r, 800));
-      await scroll(0, 1200);
+      await scroll(600, 1500);
     });
     await clipPage.waitForTimeout(500);
 
-    await caption(clipPage, "Custom fields appear on the New Asset form — fill them just like default fields");
-    await clipPage.waitForTimeout(3500);
+    await initAnnotations(clipPage);
+    await caption(clipPage, "Custom fields appear on asset pages — edit them just like default fields");
+    await clipPage.waitForTimeout(4000);
     await clearAll(clipPage);
   });
 
@@ -107,7 +136,7 @@ async function main() {
   console.log("☁️  Uploading...");
   const urls = {};
   urls.settings = await upload(webp1, `${BUCKET_PREFIX}/custom-fields-settings.webp`);
-  urls.newAsset = await upload(webp2, `${BUCKET_PREFIX}/custom-fields-new-asset.webp`);
+  urls.onAsset = await upload(webp2, `${BUCKET_PREFIX}/custom-fields-on-asset.webp`);
   urls.mp4 = await upload(mp4, `${BUCKET_PREFIX}/custom-fields-flow.mp4`);
   urls.webm = await upload(webm, `${BUCKET_PREFIX}/custom-fields-flow.webm`);
 
@@ -115,7 +144,7 @@ async function main() {
 
   console.log("\n📋 URLs for MDX:");
   console.log(`  ![Custom Fields settings](${urls.settings})`);
-  console.log(`  ![New Asset form with custom fields](${urls.newAsset})`);
+  console.log(`  ![Custom fields on asset page](${urls.onAsset})`);
   console.log(`  <InlineVideo mp4="${urls.mp4}" webm="${urls.webm}" alt="Walkthrough of adding custom fields to assets in Shelf" />`);
 
   } finally { await browser.close(); }

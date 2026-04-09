@@ -117,16 +117,15 @@ export function InlineVideo({ mp4, webm, alt, poster }: InlineVideoProps) {
         "group relative my-8 transition-transform duration-300 ease-out",
         expanded ? "cursor-zoom-out" : ""
       )}
-      onClick={expanded ? handleCollapse : undefined}
     >
       {/* Video element */}
       <div
         role="button"
         tabIndex={0}
-        className="cursor-pointer"
-        onClick={expanded ? undefined : togglePlay}
+        className={expanded ? "" : "cursor-pointer"}
+        onClick={expanded ? (e) => e.stopPropagation() : togglePlay}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
+          if (!expanded && (e.key === "Enter" || e.key === " ")) {
             e.preventDefault()
             togglePlay()
           }
@@ -136,8 +135,9 @@ export function InlineVideo({ mp4, webm, alt, poster }: InlineVideoProps) {
           ref={videoRef}
           autoPlay
           loop
-          muted
+          muted={!expanded}
           playsInline
+          controls={expanded}
           poster={poster}
           aria-label={alt}
           className={cn(
@@ -151,6 +151,19 @@ export function InlineVideo({ mp4, webm, alt, poster }: InlineVideoProps) {
           <source src={mp4} type="video/mp4" />
         </video>
       </div>
+
+      {/* Close button when expanded */}
+      {expanded && (
+        <button
+          onClick={(e) => { e.stopPropagation(); handleCollapse(); }}
+          className="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-gray-700 shadow-lg hover:bg-white"
+          aria-label="Close expanded video"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      )}
 
       {/* Play overlay when paused */}
       {paused && !expanded && (

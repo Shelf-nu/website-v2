@@ -3,6 +3,8 @@
 /**
  * Capture annotated screenshots and video for:
  * content/knowledge-base/admin-notes-on-team-members.mdx
+ *
+ * Shows: Team list, member profile Notes tab, actually typing + saving a note
  */
 
 import { mkdtemp } from "node:fs/promises";
@@ -32,34 +34,30 @@ async function main() {
   console.log("📸 Capturing Team settings...");
   await navigateTo(page, "/settings/team");
   await initAnnotations(page);
-
-  await caption(page, "Settings → Team — click on a team member's name to open their profile");
+  await caption(page, "Settings → Team — click a team member's name to open their profile");
   const shot1 = await screenshot(page, join(tmpDir, "admin-notes-team-list.png"));
   await clearAll(page);
 
-  // ── Screenshot 2: Click first team member to see their profile ─────
-  console.log("📸 Capturing team member profile...");
-  // Find and click a team member link
+  // ── Screenshot 2: Click first member → Notes tab ───────────────────
+  console.log("📸 Capturing team member profile with Notes...");
   const memberLinks = await page.$$('table a, [role="row"] a');
   if (memberLinks.length > 0) {
     await memberLinks[0].click();
     await page.waitForTimeout(3000);
   }
-  await initAnnotations(page);
-
-  // Try to find and click the Notes tab
-  const notesTab = await page.$('text=Notes');
+  // Click Notes tab
+  const notesTab = await page.locator('a:has-text("Notes"), button:has-text("Notes")').first();
   if (notesTab) {
     await notesTab.click({ force: true }).catch(() => {});
     await page.waitForTimeout(2000);
   }
-
-  await caption(page, "Team member profile — select the Notes tab to view and add admin notes");
+  await initAnnotations(page);
+  await caption(page, "Notes tab — private notes visible only to admins and owners");
   const shot2 = await screenshot(page, join(tmpDir, "admin-notes-profile.png"));
   await clearAll(page);
   await context.close();
 
-  // ── Video clip ─────────────────────────────────────────────────────
+  // ── Video clip — navigate to team, open profile, type a note ───────
   console.log("🎬 Recording admin notes walkthrough...");
   const clipPath = await recordClip(browser, async (clipPage) => {
     await chapterCard(clipPage, "Admin Notes", "Add Private Notes to Team Members", 3000);
@@ -67,40 +65,72 @@ async function main() {
     // Show team page
     await navigateTo(clipPage, "/settings/team");
     await initAnnotations(clipPage);
-    await caption(clipPage, "Navigate to Settings → Team to see all team members");
-    await clipPage.waitForTimeout(3000);
+    await caption(clipPage, "Navigate to Settings → Team");
+    await clipPage.waitForTimeout(2500);
     await clearAll(clipPage);
 
     // Click a team member
     const members = await clipPage.$$('table a, [role="row"] a');
     if (members.length > 0) {
+      await initAnnotations(clipPage);
+      await caption(clipPage, "Click on a team member's name to open their profile");
+      await clipPage.waitForTimeout(1500);
+      await clearAll(clipPage);
+
       await members[0].click();
       await clipPage.waitForTimeout(3000);
     }
 
-    await initAnnotations(clipPage);
-    await caption(clipPage, "Click a team member's name to open their profile");
-    await clipPage.waitForTimeout(2500);
-    await clearAll(clipPage);
-
     // Click Notes tab
-    const notes = await clipPage.$('text=Notes');
+    const notes = await clipPage.locator('a:has-text("Notes"), button:has-text("Notes")').first();
     if (notes) {
       await initAnnotations(clipPage);
       await highlight(clipPage, "text:Notes", { spotlight: true, padding: 6 });
-      await callout(clipPage, "text:Notes", "Private notes visible only to admins and owners", {
+      await callout(clipPage, "text:Notes", "Private notes — only visible to admins and owners", {
         label: "Notes Tab",
         side: "bottom",
       });
-      await clipPage.waitForTimeout(3000);
+      await clipPage.waitForTimeout(2500);
+      await clearAll(clipPage);
 
       await notes.click({ force: true }).catch(() => {});
       await clipPage.waitForTimeout(2000);
+    }
+
+    // Type a note
+    await chapterCard(clipPage, "Adding a Note", "Type and Save a Private Note", 2500);
+
+    // Find the "Leave a note" input
+    const noteInput = await clipPage.locator('input[placeholder="Leave a note"]').first();
+    if (noteInput) {
+      await initAnnotations(clipPage);
+      await highlight(clipPage, 'input[placeholder="Leave a note"]', { spotlight: true, padding: 6 });
+      await clipPage.waitForTimeout(1500);
       await clearAll(clipPage);
 
+      await noteInput.click();
+      await clipPage.waitForTimeout(500);
+
+      // Type with natural cadence
+      const noteText = "Equipment training completed. Ready for field assignments.";
+      for (const char of noteText) {
+        await clipPage.keyboard.type(char);
+        await clipPage.waitForTimeout(40 + Math.random() * 30);
+      }
+      await clipPage.waitForTimeout(1500);
+
       await initAnnotations(clipPage);
-      await caption(clipPage, "Type your note and click Save — only admins and owners can see these");
-      await clipPage.waitForTimeout(3500);
+      await caption(clipPage, "Type your note and press Enter or click Save");
+      await clipPage.waitForTimeout(2500);
+      await clearAll(clipPage);
+
+      // Submit the note
+      await clipPage.keyboard.press("Enter");
+      await clipPage.waitForTimeout(2500);
+
+      await initAnnotations(clipPage);
+      await caption(clipPage, "Note saved — only admins and owners can see this");
+      await clipPage.waitForTimeout(3000);
       await clearAll(clipPage);
     }
   });
@@ -119,11 +149,6 @@ async function main() {
   urls.webm = await upload(webm, `${BUCKET_PREFIX}/admin-notes-flow.webm`);
 
   Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-
-  console.log("\n📋 URLs for MDX:");
-  console.log(`  ![Team settings page](${urls.teamList})`);
-  console.log(`  ![Team member profile with Notes tab](${urls.profile})`);
-  console.log(`  <InlineVideo mp4="${urls.mp4}" webm="${urls.webm}" alt="Walkthrough of adding admin notes to team members in Shelf" />`);
 
   } finally { await browser.close(); }
 }
