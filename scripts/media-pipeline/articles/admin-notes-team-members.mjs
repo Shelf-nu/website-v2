@@ -42,16 +42,15 @@ async function main() {
   console.log("📸 Capturing Carlos's profile with Notes tab...");
   // Click on Carlos's profile link
   const carlosLink = page.locator('a:has-text("Carlos Virreiracarlos@virreira.com"), a[href*="45a7f1d5"]').first();
-  if (await carlosLink.count() > 0) {
-    await carlosLink.click();
-    await page.waitForTimeout(3000);
-  }
+  if (await carlosLink.count() === 0) throw new Error("Carlos profile link not found on /settings/team");
+  await carlosLink.click();
+  await page.waitForTimeout(3000);
+
   // Click Notes tab
   const notesTab = page.locator('a:has-text("Notes"), button:has-text("Notes")').first();
-  if (await notesTab.count() > 0) {
-    await notesTab.click({ force: true }).catch(() => {});
-    await page.waitForTimeout(2000);
-  }
+  if (await notesTab.count() === 0) throw new Error("Notes tab not found on Carlos's profile");
+  await notesTab.click({ force: true });
+  await page.waitForTimeout(2000);
   await initAnnotations(page);
   await caption(page, "Notes tab — private notes visible only to admins and owners");
   const shot2 = await screenshot(page, join(tmpDir, "admin-notes-profile.png"));
@@ -77,14 +76,14 @@ async function main() {
     await clearAll(clipPage);
 
     const carlos = clipPage.locator('a:has-text("Carlos Virreiracarlos@virreira.com"), a[href*="45a7f1d5"]').first();
-    if (await carlos.count() > 0) {
-      await carlos.click();
-      await clipPage.waitForTimeout(3000);
-    }
+    if (await carlos.count() === 0) throw new Error("Carlos not found in clip flow");
+    await carlos.click();
+    await clipPage.waitForTimeout(3000);
 
     // Click Notes tab
     const notes = clipPage.locator('a:has-text("Notes"), button:has-text("Notes")').first();
-    if (await notes.count() > 0) {
+    if (await notes.count() === 0) throw new Error("Notes tab not found in clip flow");
+    {
       await initAnnotations(clipPage);
       await highlight(clipPage, "text:Notes", { spotlight: true, padding: 6 });
       await callout(clipPage, "text:Notes", "Private notes — only visible to admins and owners", {

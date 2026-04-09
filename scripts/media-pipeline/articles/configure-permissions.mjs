@@ -72,6 +72,11 @@ async function main() {
     await page.waitForTimeout(800);
   }
   await initAnnotations(page);
+  await highlight(page, "text:View custody", { padding: 8 });
+  await callout(page, "text:View custody", "Enable or disable custody and booking visibility per role", {
+    label: "Permission Toggles",
+    side: "right",
+  });
   await caption(page, "Toggle each permission independently for Self Service and Base users");
   const shot2 = await screenshot(page, join(tmpDir, "permissions-toggles.png"));
   await clearAll(page);
@@ -113,6 +118,11 @@ async function main() {
     await clipPage.waitForTimeout(800);
 
     await initAnnotations(clipPage);
+    await highlight(clipPage, "text:View custody", { padding: 8 });
+    await callout(clipPage, "text:View custody", "Configure custody and booking visibility for each role", {
+      label: "Permission Toggles",
+      side: "right",
+    });
     await caption(clipPage, "Toggle custody and booking visibility per user role — changes apply immediately");
     await clipPage.waitForTimeout(4000);
     await clearAll(clipPage);
