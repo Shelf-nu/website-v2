@@ -47,8 +47,8 @@ async function main() {
   }
 
   await initAnnotations(page);
-  await highlight(page, 'text:Barcodes (3)', { padding: 8 });
-  await callout(page, 'text:Barcodes (3)', "Each asset can have multiple barcodes — Code128, Code39, DataMatrix, or EAN-13", {
+  await highlight(page, 'textStartsWith:Barcodes (', { padding: 8 });
+  await callout(page, 'textStartsWith:Barcodes (', "Each asset can have multiple barcodes — Code 128, Code 39, DataMatrix, or EAN-13", {
     label: "Barcodes",
     side: "right",
   });
@@ -116,8 +116,8 @@ async function main() {
     }
 
     await initAnnotations(clipPage);
-    await highlight(clipPage, 'text:Barcodes (3)', { padding: 8 });
-    await callout(clipPage, 'text:Barcodes (3)', "Existing barcodes on this asset — Code128, DataMatrix, EAN-13", {
+    await highlight(clipPage, 'textStartsWith:Barcodes (', { padding: 8 });
+    await callout(clipPage, 'textStartsWith:Barcodes (', "Existing barcodes on this asset — Code 128, DataMatrix, EAN-13", {
       label: "Barcodes",
       side: "right",
     });

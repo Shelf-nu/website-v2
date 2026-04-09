@@ -100,15 +100,28 @@ export async function initAnnotations(page) {
 export async function highlight(page, selector, options = {}) {
   await page.evaluate(
     ({ selector, spotlight, padding }) => {
-      const el = selector.startsWith("text:")
-        ? Array.from(document.querySelectorAll("*")).find(
-            (e) =>
-              e.textContent?.trim() === selector.slice(5) &&
-              e.offsetParent !== null &&
-              e.getBoundingClientRect().width > 0 &&
-              e.getBoundingClientRect().width < 500
-          )
-        : document.querySelector(selector);
+      let el;
+      if (selector.startsWith("textStartsWith:")) {
+        const prefix = selector.slice(15);
+        el = Array.from(document.querySelectorAll("*")).find(
+          (e) =>
+            e.textContent?.trim().startsWith(prefix) &&
+            e.children.length === 0 &&
+            e.offsetParent !== null &&
+            e.getBoundingClientRect().width > 0 &&
+            e.getBoundingClientRect().width < 500
+        );
+      } else if (selector.startsWith("text:")) {
+        el = Array.from(document.querySelectorAll("*")).find(
+          (e) =>
+            e.textContent?.trim() === selector.slice(5) &&
+            e.offsetParent !== null &&
+            e.getBoundingClientRect().width > 0 &&
+            e.getBoundingClientRect().width < 500
+        );
+      } else {
+        el = document.querySelector(selector);
+      }
       if (!el) return;
 
       const rect = el.getBoundingClientRect();
@@ -144,15 +157,28 @@ export async function highlight(page, selector, options = {}) {
 export async function callout(page, selector, text, options = {}) {
   await page.evaluate(
     ({ selector, text, label, side, color }) => {
-      const el = selector.startsWith("text:")
-        ? Array.from(document.querySelectorAll("*")).find(
-            (e) =>
-              e.textContent?.trim() === selector.slice(5) &&
-              e.offsetParent !== null &&
-              e.getBoundingClientRect().width > 0 &&
-              e.getBoundingClientRect().width < 500
-          )
-        : document.querySelector(selector);
+      let el;
+      if (selector.startsWith("textStartsWith:")) {
+        const prefix = selector.slice(15);
+        el = Array.from(document.querySelectorAll("*")).find(
+          (e) =>
+            e.textContent?.trim().startsWith(prefix) &&
+            e.children.length === 0 &&
+            e.offsetParent !== null &&
+            e.getBoundingClientRect().width > 0 &&
+            e.getBoundingClientRect().width < 500
+        );
+      } else if (selector.startsWith("text:")) {
+        el = Array.from(document.querySelectorAll("*")).find(
+          (e) =>
+            e.textContent?.trim() === selector.slice(5) &&
+            e.offsetParent !== null &&
+            e.getBoundingClientRect().width > 0 &&
+            e.getBoundingClientRect().width < 500
+        );
+      } else {
+        el = document.querySelector(selector);
+      }
       if (!el) return;
 
       const rect = el.getBoundingClientRect();
@@ -265,15 +291,28 @@ export async function callout(page, selector, text, options = {}) {
 export async function step(page, selector, number, options = {}) {
   await page.evaluate(
     ({ selector, number, side }) => {
-      const el = selector.startsWith("text:")
-        ? Array.from(document.querySelectorAll("*")).find(
-            (e) =>
-              e.textContent?.trim() === selector.slice(5) &&
-              e.offsetParent !== null &&
-              e.getBoundingClientRect().width > 0 &&
-              e.getBoundingClientRect().width < 500
-          )
-        : document.querySelector(selector);
+      let el;
+      if (selector.startsWith("textStartsWith:")) {
+        const prefix = selector.slice(15);
+        el = Array.from(document.querySelectorAll("*")).find(
+          (e) =>
+            e.textContent?.trim().startsWith(prefix) &&
+            e.children.length === 0 &&
+            e.offsetParent !== null &&
+            e.getBoundingClientRect().width > 0 &&
+            e.getBoundingClientRect().width < 500
+        );
+      } else if (selector.startsWith("text:")) {
+        el = Array.from(document.querySelectorAll("*")).find(
+          (e) =>
+            e.textContent?.trim() === selector.slice(5) &&
+            e.offsetParent !== null &&
+            e.getBoundingClientRect().width > 0 &&
+            e.getBoundingClientRect().width < 500
+        );
+      } else {
+        el = document.querySelector(selector);
+      }
       if (!el) return;
 
       const rect = el.getBoundingClientRect();
