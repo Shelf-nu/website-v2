@@ -15,11 +15,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const ARTICLES = {
   "export-workspace-data": "articles/export-workspace-data.mjs",
-  // Future articles:
-  // "understanding-custom-property-ids": "articles/understanding-custom-property-ids.mjs",
-  // "understanding-pdf-agreements": "articles/understanding-pdf-agreements.mjs",
-  // "how-to-add-assets": "articles/how-to-add-assets.mjs",
-  // "how-to-upgrade-to-team": "articles/how-to-upgrade-to-team.mjs",
+  "adding-additional-fields": "articles/adding-additional-fields.mjs",
+  "admin-notes-team-members": "articles/admin-notes-team-members.mjs",
+  "understanding-sorting": "articles/understanding-sorting.mjs",
+  "configure-permissions": "articles/configure-permissions.mjs",
 };
 
 const slug = process.argv[2];
