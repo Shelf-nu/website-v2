@@ -46,8 +46,8 @@ async function main() {
     await page.waitForTimeout(3000);
   }
   // Click Notes tab
-  const notesTab = await page.locator('a:has-text("Notes"), button:has-text("Notes")').first();
-  if (notesTab) {
+  const notesTab = page.locator('a:has-text("Notes"), button:has-text("Notes")').first();
+  if (await notesTab.count() > 0) {
     await notesTab.click({ force: true }).catch(() => {});
     await page.waitForTimeout(2000);
   }
@@ -82,8 +82,8 @@ async function main() {
     }
 
     // Click Notes tab
-    const notes = await clipPage.locator('a:has-text("Notes"), button:has-text("Notes")').first();
-    if (notes) {
+    const notes = clipPage.locator('a:has-text("Notes"), button:has-text("Notes")').first();
+    if (await notes.count() > 0) {
       await initAnnotations(clipPage);
       await highlight(clipPage, "text:Notes", { spotlight: true, padding: 6 });
       await callout(clipPage, "text:Notes", "Private notes — only visible to admins and owners", {
@@ -101,8 +101,8 @@ async function main() {
     await chapterCard(clipPage, "Adding a Note", "Type and Save a Private Note", 2500);
 
     // Find the "Leave a note" input
-    const noteInput = await clipPage.locator('input[placeholder="Leave a note"]').first();
-    if (noteInput) {
+    const noteInput = clipPage.locator('input[placeholder="Leave a note"]').first();
+    if (await noteInput.count() > 0) {
       await initAnnotations(clipPage);
       await highlight(clipPage, 'input[placeholder="Leave a note"]', { spotlight: true, padding: 6 });
       await clipPage.waitForTimeout(1500);
