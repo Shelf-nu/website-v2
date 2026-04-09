@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 40" fill="none">
+  <rect width="135" height="40" rx="6" fill="#000"/>
+  <rect x="0.5" y="0.5" width="134" height="39" rx="5.5" stroke="#A6A6A6" stroke-opacity="0.3"/>
+  <!-- Play triangle -->
+  <path d="M14.54 11.66l8.2 4.74c.36.21.58.6.58 1.01v.18c0 .41-.22.8-.58 1.01l-8.2 4.74c-.36.21-.81.21-1.17 0-.36-.21-.58-.6-.58-1.01V12.67c0-.41.22-.8.58-1.01.36-.21.81-.21 1.17 0z" fill="none"/>
+  <g transform="translate(10, 8)">
+    <!-- Play Store icon simplified -->
+    <path d="M4.07 0.68C3.78 0.4 3.33 0.38 3.02 0.56L12.2 9.95 15.15 6.93 4.07 0.68z" fill="#00D2FF"/>
+    <path d="M17.19 8.57L14.03 6.74 10.87 10.03 14.07 13.32 17.19 11.52C18.16 10.97 18.16 9.12 17.19 8.57z" fill="#FFBC00"/>
+    <path d="M3.02 0.56C2.82 0.68 2.7 0.91 2.7 1.18V18.9C2.7 19.17 2.82 19.4 3.03 19.52L12.18 10.03 3.02 0.56z" fill="#00F076"/>
+    <path d="M3.03 19.52C3.33 19.7 3.78 19.68 4.07 19.41L15.12 13.17 12.18 10.03 3.03 19.52z" fill="#F33E61"/>
+  </g>
+  <!-- Text -->
+  <text x="33" y="14" fill="white" font-family="-apple-system, system-ui, sans-serif" font-size="7" letter-spacing="0.05em">GET IT ON</text>
+  <text x="33" y="27.5" fill="white" font-family="-apple-system, system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="-0.01em">Google Play</text>
+</svg>

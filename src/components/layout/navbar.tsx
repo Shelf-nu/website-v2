@@ -51,8 +51,8 @@ import { SearchDialog } from "@/components/search/search-dialog";
 
 const ListItem = React.forwardRef<
     React.ElementRef<typeof Link>,
-    React.ComponentPropsWithoutRef<typeof Link> & { icon?: React.ElementType }
->(({ className, title, children, icon: Icon, ...props }, ref) => {
+    React.ComponentPropsWithoutRef<typeof Link> & { icon?: React.ElementType; badge?: string }
+>(({ className, title, children, icon: Icon, badge, ...props }, ref) => {
     return (
         <li>
             <NavigationMenuLink asChild>
@@ -72,6 +72,11 @@ const ListItem = React.forwardRef<
                     <div className="space-y-1 pt-0.5">
                         <div className="text-sm font-medium leading-none text-foreground">
                             {title}
+                            {badge && (
+                                <span className="ml-2 inline-flex items-center rounded-full bg-orange-100 px-1.5 py-0.5 text-[10px] font-semibold text-orange-700 dark:bg-orange-950/50 dark:text-orange-300">
+                                    {badge}
+                                </span>
+                            )}
                         </div>
                         <p className="text-xs leading-snug text-muted-foreground line-clamp-2">
                             {children}
@@ -309,6 +314,16 @@ export function Navbar() {
                                                             >
                                                                 Find any asset
                                                                 instantly.
+                                                            </ListItem>
+                                                            <ListItem
+                                                                href="/mobile-app"
+                                                                title="Mobile App"
+                                                                icon={Smartphone}
+                                                                badge="Beta"
+                                                            >
+                                                                Scan, audit &amp;
+                                                                manage from the
+                                                                field.
                                                             </ListItem>
                                                         </ul>
                                                     </div>
@@ -663,6 +678,12 @@ export function Navbar() {
                                     </MobileLink>
                                     <MobileLink href="/features/asset-search">
                                         Asset Search
+                                    </MobileLink>
+                                    <MobileLink href="/mobile-app">
+                                        Mobile App
+                                        <span className="ml-2 inline-flex items-center rounded-full bg-orange-100 px-1.5 py-0.5 text-[10px] font-semibold text-orange-700 dark:bg-orange-950/50 dark:text-orange-300">
+                                            Beta
+                                        </span>
                                     </MobileLink>
                                 </nav>
                             </div>
