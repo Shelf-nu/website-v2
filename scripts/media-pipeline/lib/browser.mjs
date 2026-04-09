@@ -3,7 +3,7 @@ import { getShelfCredentials } from "./env.mjs";
 // Use Playwright from shelf-main or a custom path (set SHELF_MAIN_PATH env var)
 import { createRequire } from "node:module";
 import { resolve } from "node:path";
-const shelfMainPath = resolve(process.env.SHELF_MAIN_PATH || "../shelf-main");
+const shelfMainPath = resolve(process.env.SHELF_MAIN_PATH || "/Users/macwhale/Documents/shelf-main");
 const require = createRequire(`${shelfMainPath}/package.json`);
 const { chromium } = require("playwright");
 

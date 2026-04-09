@@ -318,6 +318,46 @@ export async function caption(page, text, stepNumber) {
 }
 
 /**
+ * Show a full-screen chapter card (dark background, title, subtitle).
+ * Used to separate sections in video recordings.
+ */
+export async function chapterCard(page, title, subtitle, duration = 3000) {
+  await page.evaluate(
+    ({ title, subtitle }) => {
+      const card = document.createElement("div");
+      card.className = "sa-annotation";
+      card.style.cssText =
+        "position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;";
+      card.innerHTML = `
+        <div style="text-align:center;opacity:0;transform:translateY(16px);transition:all 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s;">
+          <div style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#ea580c;margin-bottom:14px;">${title}</div>
+          <div style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:36px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1.3;max-width:600px;">${subtitle}</div>
+        </div>
+      `;
+      document.body.appendChild(card);
+      requestAnimationFrame(() => {
+        card.style.opacity = "1";
+        card.querySelector("div > div").style.opacity = "1";
+        card.querySelector("div > div").style.transform = "translateY(0)";
+      });
+    },
+    { title, subtitle }
+  );
+  await page.waitForTimeout(duration);
+
+  // Fade out
+  await page.evaluate(() => {
+    const cards = document.querySelectorAll('.sa-annotation[style*="inset:0"]');
+    cards.forEach((c) => (c.style.opacity = "0"));
+  });
+  await page.waitForTimeout(500);
+  await page.evaluate(() => {
+    const cards = document.querySelectorAll('.sa-annotation[style*="inset:0"]');
+    cards.forEach((c) => c.remove());
+  });
+}
+
+/**
  * Remove all annotations from the page.
  */
 export async function clearAll(page) {

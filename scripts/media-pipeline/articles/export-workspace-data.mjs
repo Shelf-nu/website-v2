@@ -23,6 +23,7 @@ import {
   callout,
   step,
   caption,
+  chapterCard,
   clearAll,
 } from "../lib/annotate.mjs";
 
@@ -112,14 +113,14 @@ async function main() {
   const clipPath = await recordClip(browser, async (clipPage) => {
     await initAnnotations(clipPage);
 
-    // Scene 1: Assets page intro
+    // ── CHAPTER 1: Export Selected Assets ──────────────────────────
+    await chapterCard(clipPage, "Method 1", "Export a Selection of Assets", 3500);
+
+    // Show the assets page
     await navigateTo(clipPage, "/assets");
     await initAnnotations(clipPage);
-    await caption(clipPage, "Navigate to Assets to see your full inventory");
-    await clipPage.waitForTimeout(2500);
-    await clearAll(clipPage);
 
-    // Smooth scroll through assets
+    // Smooth scroll through the list
     await clipPage.evaluate(async () => {
       const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       const scroll = (target, dur) => new Promise((resolve) => {
@@ -133,23 +134,20 @@ async function main() {
     });
     await clipPage.waitForTimeout(600);
 
-    // Highlight export button
-    await initAnnotations(clipPage);
+    // Highlight the Export selection button
     await highlight(clipPage, "text:Export selection", { spotlight: true, padding: 8 });
-    await callout(clipPage, "text:Export selection", "Select assets, then export as CSV", {
-      label: "Step 1",
+    await callout(clipPage, "text:Export selection", "Select specific assets, then export them as CSV", {
+      label: "Export Selection",
       side: "bottom",
     });
-    await clipPage.waitForTimeout(3500);
+    await caption(clipPage, "Select the assets you need → click Export selection → download CSV");
+    await clipPage.waitForTimeout(4000);
     await clearAll(clipPage);
 
-    // Transition caption
-    await initAnnotations(clipPage);
-    await caption(clipPage, "For a full workspace backup, go to Settings...");
-    await clipPage.waitForTimeout(2000);
-    await clearAll(clipPage);
+    // ── CHAPTER 2: Full Database Export ──────────────────────────────
+    await chapterCard(clipPage, "Method 2", "Full Asset Database Backup", 3500);
 
-    // Scene 2: Settings page
+    // Navigate to settings
     await navigateTo(clipPage, "/settings/general");
     await initAnnotations(clipPage);
     await clipPage.waitForTimeout(800);
@@ -164,13 +162,13 @@ async function main() {
     });
     await clipPage.waitForTimeout(1500);
 
-    // Spotlight Download CSV
+    // Spotlight the Download CSV button
     await highlight(clipPage, 'a[href*=".csv"]', { spotlight: true, padding: 10 });
-    await callout(clipPage, 'a[href*=".csv"]', "Full workspace backup as CSV", {
-      label: "Step 2",
+    await callout(clipPage, 'a[href*=".csv"]', "Downloads every asset in your workspace as a complete CSV backup", {
+      label: "Full Backup",
       side: "right",
     });
-    await caption(clipPage, "Settings → General → Asset backup → Download CSV");
+    await caption(clipPage, "Settings → General → Asset backup → Download CSV for a complete export");
     await clipPage.waitForTimeout(4000);
     await clearAll(clipPage);
   });
