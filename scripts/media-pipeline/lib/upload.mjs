@@ -17,7 +17,7 @@ const MIME_TYPES = {
  * @param {string} bucketPath - Path within the bucket (e.g. "knowledgebase/export-assets-list.webp")
  * @returns {Promise<string>} Public URL of the uploaded file
  */
-export async function upload(localPath, bucketPath) {
+export async function upload(localPath, bucketPath, retries = 3) {
   const { url, serviceKey, bucket } = getSupabaseConfig();
   const ext = extname(localPath).toLowerCase();
   const mimeType = MIME_TYPES[ext];
@@ -27,22 +27,33 @@ export async function upload(localPath, bucketPath) {
   }
 
   const fileBuffer = await readFile(localPath);
-
   const endpoint = `${url}/storage/v1/object/${bucket}/${bucketPath}`;
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${serviceKey}`,
-      "Content-Type": mimeType,
-      "x-upsert": "true",
-    },
-    body: fileBuffer,
-  });
 
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`Upload failed (${res.status}): ${errorText}`);
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${serviceKey}`,
+          "Content-Type": mimeType,
+          "x-upsert": "true",
+        },
+        body: fileBuffer,
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Upload failed (${res.status}): ${errorText}`);
+      }
+
+      return `${url}/storage/v1/object/public/${bucket}/${bucketPath}`;
+    } catch (err) {
+      if (attempt < retries) {
+        console.log(`    ⚠️  Upload attempt ${attempt} failed, retrying in 2s...`);
+        await new Promise((r) => setTimeout(r, 2000));
+      } else {
+        throw err;
+      }
+    }
   }
-
-  return `${url}/storage/v1/object/public/${bucket}/${bucketPath}`;
 }
