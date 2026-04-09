@@ -67,38 +67,63 @@ async function main() {
   await navigateTo(page, "/settings/general");
   await initAnnotations(page);
 
-  // Scroll so the Download CSV button is visible and centered
+  // Scroll to the Download CSV button — try both window and any scrollable parent
   await page.evaluate(() => {
     const csvLink = Array.from(document.querySelectorAll("a")).find((a) =>
       a.href?.includes(".csv")
     );
-    if (csvLink) {
-      csvLink.scrollIntoView({ behavior: "instant", block: "center" });
-    }
-  });
-  // Wait for scroll to settle, then verify position
-  await page.waitForTimeout(500);
-  await page.evaluate(() => {
-    const csvLink = Array.from(document.querySelectorAll("a")).find((a) =>
-      a.href?.includes(".csv")
-    );
-    if (csvLink) {
-      const rect = csvLink.getBoundingClientRect();
-      // If still not in the middle third, force scroll
-      if (rect.top > 600 || rect.top < 200) {
-        const absoluteTop = rect.top + window.scrollY;
-        window.scrollTo({ top: absoluteTop - 400, behavior: "instant" });
+    if (!csvLink) return;
+
+    // First, scroll the window
+    const absoluteTop = csvLink.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: absoluteTop - 300, behavior: "instant" });
+
+    // Also try scrolling any scrollable parent container
+    let parent = csvLink.parentElement;
+    while (parent) {
+      const style = getComputedStyle(parent);
+      if (
+        style.overflow === "auto" || style.overflow === "scroll" ||
+        style.overflowY === "auto" || style.overflowY === "scroll"
+      ) {
+        const parentRect = parent.getBoundingClientRect();
+        const linkRect = csvLink.getBoundingClientRect();
+        parent.scrollTop += linkRect.top - parentRect.top - 300;
+        break;
       }
+      parent = parent.parentElement;
     }
   });
   await page.waitForTimeout(1000);
+
+  // Verify the button is actually visible, if not use a more aggressive approach
+  const csvVisible = await page.evaluate(() => {
+    const csvLink = Array.from(document.querySelectorAll("a")).find((a) =>
+      a.href?.includes(".csv")
+    );
+    if (!csvLink) return false;
+    const rect = csvLink.getBoundingClientRect();
+    return rect.top > 50 && rect.top < 600;
+  });
+
+  if (!csvVisible) {
+    // Use Playwright's built-in scrollIntoView which handles all scroll containers
+    const csvEl = await page.$('a[href*=".csv"]');
+    if (csvEl) {
+      await csvEl.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(500);
+      // Now nudge up so the button isn't at the very edge
+      await page.evaluate(() => window.scrollBy(0, -200));
+      await page.waitForTimeout(500);
+    }
+  }
 
   // Spotlight the Download CSV button
   const csvSelector = 'a[href*=".csv"]';
   await highlight(page, csvSelector, { spotlight: true, padding: 10 });
   await callout(page, csvSelector, "Downloads a complete backup of every asset in your workspace as a CSV file.", {
     label: "Full Backup",
-    side: "right",
+    side: "bottom",
   });
 
   await caption(page, "Settings → General → Asset backup → Download CSV for a complete workspace export", "2");
@@ -152,21 +177,33 @@ async function main() {
     await initAnnotations(clipPage);
     await clipPage.waitForTimeout(800);
 
-    // Smooth scroll to CSV section
-    await clipPage.evaluate(() => {
+    // Smooth scroll to CSV section — position button in upper third
+    await clipPage.evaluate(async () => {
       const csvLink = Array.from(document.querySelectorAll("a")).find(a => a.href?.includes(".csv"));
       if (csvLink) {
-        const section = csvLink.closest("div")?.parentElement || csvLink.parentElement;
-        if (section) section.scrollIntoView({ behavior: "smooth", block: "center" });
+        const absoluteTop = csvLink.getBoundingClientRect().top + window.scrollY;
+        const targetScroll = absoluteTop - 150;
+        // Smooth scroll using easing
+        const start = window.scrollY, diff = targetScroll - start;
+        const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        await new Promise((resolve) => {
+          const t0 = performance.now();
+          const step = (now) => {
+            const p = Math.min((now - t0) / 1500, 1);
+            window.scrollTo(0, start + diff * ease(p));
+            p < 1 ? requestAnimationFrame(step) : resolve();
+          };
+          requestAnimationFrame(step);
+        });
       }
     });
-    await clipPage.waitForTimeout(1500);
+    await clipPage.waitForTimeout(1000);
 
     // Spotlight the Download CSV button
     await highlight(clipPage, 'a[href*=".csv"]', { spotlight: true, padding: 10 });
     await callout(clipPage, 'a[href*=".csv"]', "Downloads every asset in your workspace as a complete CSV backup", {
       label: "Full Backup",
-      side: "right",
+      side: "bottom",
     });
     await caption(clipPage, "Settings → General → Asset backup → Download CSV for a complete export");
     await clipPage.waitForTimeout(4000);
