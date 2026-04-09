@@ -9,7 +9,7 @@ import { FAQSection } from "@/components/sections/faq";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { QuickWaitlistForm, WaitlistForm } from "@/components/forms/waitlist-form";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
-import { ArrowRight, Check, ArrowRight as Arrow, Apple, Smartphone as AndroidIcon } from "lucide-react";
+import { ArrowRight, Check, Apple, Smartphone as AndroidIcon } from "lucide-react";
 import {
     mobileAppFeatures,
     builtForApp,
@@ -56,6 +56,7 @@ export default function MobileAppPage() {
                             height={1800}
                             className="w-full h-auto"
                             priority
+                            unoptimized
                             sizes="(max-width: 1280px) 480px, 550px"
                         />
                     </div>
@@ -204,7 +205,7 @@ export default function MobileAppPage() {
                                 <ul className="space-y-2.5">
                                     {bestOnWeb.map((item) => (
                                         <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                                            <Arrow className="h-4 w-4 mt-0.5 shrink-0 opacity-40" />
+                                            <ArrowRight className="h-4 w-4 mt-0.5 shrink-0 opacity-40" />
                                             {item}
                                         </li>
                                     ))}
@@ -241,6 +242,7 @@ export default function MobileAppPage() {
                                     width={150}
                                     height={50}
                                     className="h-[50px] w-auto opacity-80 grayscale-[30%] group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                                    unoptimized
                                 />
                                 <span className="absolute -top-2 -right-2 rounded-full bg-orange-600 px-2 py-0.5 text-[9px] font-bold text-white shadow-sm">
                                     BETA SOON
@@ -256,6 +258,7 @@ export default function MobileAppPage() {
                                     width={168}
                                     height={50}
                                     className="h-[50px] w-auto opacity-80 grayscale-[30%] group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                                    unoptimized
                                 />
                                 <span className="absolute -top-2 -right-2 rounded-full bg-muted border border-border-subtle px-2 py-0.5 text-[9px] font-bold text-muted-foreground shadow-sm">
                                     COMING NEXT

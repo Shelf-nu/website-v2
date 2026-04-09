@@ -58,37 +58,6 @@ export const mobileAppFeatures: MobileAppFeature[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  How it works steps                                                 */
-/* ------------------------------------------------------------------ */
-
-export interface HowItWorksStep {
-    number: number;
-    title: string;
-    description: string;
-}
-
-export const howItWorksSteps: HowItWorksStep[] = [
-    {
-        number: 1,
-        title: "Log in with your Shelf account",
-        description:
-            "Same credentials, same organizations. No separate signup.",
-    },
-    {
-        number: 2,
-        title: "Scan or browse",
-        description:
-            "Point your camera at any QR code or barcode, or search and filter your assets.",
-    },
-    {
-        number: 3,
-        title: "Take action",
-        description:
-            "Complete audits, hand off custody, process bookings. Everything syncs back to Shelf instantly.",
-    },
-];
-
-/* ------------------------------------------------------------------ */
 /*  Built-for comparison columns                                       */
 /* ------------------------------------------------------------------ */
 
@@ -108,32 +77,6 @@ export const bestOnWeb = [
     "User/role management and permissions",
     "Reporting, analytics, and exports",
     "Integrations (Slack, webhooks, etc.)",
-];
-
-/* ------------------------------------------------------------------ */
-/*  Role access                                                        */
-/* ------------------------------------------------------------------ */
-
-export interface RoleAccess {
-    role: string;
-    description: string;
-}
-
-export const roleAccess: RoleAccess[] = [
-    {
-        role: "Admin / Owner",
-        description:
-            "Full access — create assets, edit, assign custody, run audits, process bookings.",
-    },
-    {
-        role: "Self-Service",
-        description:
-            "Manage your own custody, process bookings, scan for audits.",
-    },
-    {
-        role: "Base",
-        description: "View assets, bookings, and audits (read-only).",
-    },
 ];
 
 /* ------------------------------------------------------------------ */

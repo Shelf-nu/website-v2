@@ -24,7 +24,7 @@ const fullSchema = z.object({
     email: z.string().email("Please enter a valid email"),
     company: z.string().optional(),
     platform: z.enum(["ios", "android", "both"], {
-        required_error: "Please select a platform",
+        error: "Please select a platform",
     }),
     existingUser: z.boolean(),
 });
@@ -97,10 +97,13 @@ export function QuickWaitlistForm({ className }: { className?: string }) {
             });
             const data = await res.json();
             if (data.success) {
-                trackEvent("mobile_app_waitlist_submit", { type: "quick", ...utm });
+                trackEvent("mobile_app_waitlist_submit", { type: "quick", success: "true", ...utm });
+            } else {
+                trackEvent("mobile_app_waitlist_submit", { type: "quick", success: "false", ...utm });
             }
             setSuccess(true);
         } catch {
+            trackEvent("mobile_app_waitlist_submit", { type: "quick", success: "error", ...utm });
             setSuccess(true);
         } finally {
             setPending(false);
