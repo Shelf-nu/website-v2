@@ -38,11 +38,12 @@ async function main() {
   const shot1 = await screenshot(page, join(tmpDir, "admin-notes-team-list.png"));
   await clearAll(page);
 
-  // ── Screenshot 2: Click first member → Notes tab ───────────────────
-  console.log("📸 Capturing team member profile with Notes...");
-  const memberLinks = await page.$$('table a, [role="row"] a');
-  if (memberLinks.length > 0) {
-    await memberLinks[0].click();
+  // ── Screenshot 2: Navigate to Carlos's profile → Notes tab ──────────
+  console.log("📸 Capturing Carlos's profile with Notes tab...");
+  // Click on Carlos's profile link
+  const carlosLink = page.locator('a:has-text("Carlos Virreiracarlos@virreira.com"), a[href*="45a7f1d5"]').first();
+  if (await carlosLink.count() > 0) {
+    await carlosLink.click();
     await page.waitForTimeout(3000);
   }
   // Click Notes tab
@@ -69,15 +70,15 @@ async function main() {
     await clipPage.waitForTimeout(2500);
     await clearAll(clipPage);
 
-    // Click a team member
-    const members = await clipPage.$$('table a, [role="row"] a');
-    if (members.length > 0) {
-      await initAnnotations(clipPage);
-      await caption(clipPage, "Click on a team member's name to open their profile");
-      await clipPage.waitForTimeout(1500);
-      await clearAll(clipPage);
+    // Click Carlos's profile
+    await initAnnotations(clipPage);
+    await caption(clipPage, "Click on a team member's name to open their profile");
+    await clipPage.waitForTimeout(1500);
+    await clearAll(clipPage);
 
-      await members[0].click();
+    const carlos = clipPage.locator('a:has-text("Carlos Virreiracarlos@virreira.com"), a[href*="45a7f1d5"]').first();
+    if (await carlos.count() > 0) {
+      await carlos.click();
       await clipPage.waitForTimeout(3000);
     }
 

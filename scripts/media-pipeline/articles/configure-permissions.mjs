@@ -57,11 +57,20 @@ async function main() {
   const shot1 = await screenshot(page, join(tmpDir, "permissions-settings.png"));
   await clearAll(page);
 
-  // ── Screenshot 2: Scroll further to show all toggles clearly ───────
+  // ── Screenshot 2: Scroll to show the actual toggle switches ─────────
   console.log("📸 Capturing all permission toggles...");
-  // Scroll past the heading to show the actual toggles
-  await page.evaluate(() => window.scrollBy(0, 200));
-  await page.waitForTimeout(800);
+  // Find the first toggle switch and center it
+  const firstToggle = page.locator('text=View custody').first();
+  if (await firstToggle.count() > 0) {
+    await firstToggle.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+    await page.evaluate(() => window.scrollBy(0, -120));
+    await page.waitForTimeout(500);
+  } else {
+    // Fallback: scroll well past the Permissions heading
+    await page.evaluate(() => window.scrollBy(0, 400));
+    await page.waitForTimeout(800);
+  }
   await initAnnotations(page);
   await caption(page, "Toggle each permission independently for Self Service and Base users");
   const shot2 = await screenshot(page, join(tmpDir, "permissions-toggles.png"));
