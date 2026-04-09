@@ -45,7 +45,7 @@ function Required() {
     return <span className="text-red-500 ml-0.5">*</span>;
 }
 
-const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT || "";
+const FORM_ENDPOINT = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT || "";
 
 const PLATFORM_OPTIONS = [
     { value: "ios", label: "iOS" },
