@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 
 const FEATURE_LINKS = [
@@ -19,7 +19,8 @@ const FEATURE_LINKS = [
     { label: "Asset Search", href: "/features/asset-search" },
     { label: "Asset Reminders", href: "/features/asset-reminders" },
     { label: "Workspaces", href: "/features/workspaces" },
-];
+    { label: "Mobile App", href: "/mobile-app", badge: "Coming Soon" },
+] as const;
 
 export function FeatureNavigationCTA() {
     return (
@@ -56,10 +57,23 @@ export function FeatureNavigationCTA() {
                                 >
                                     <Link
                                         href={feature.href}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border hover:border-orange-200 hover:bg-orange-50/50 transition-colors text-sm font-medium text-muted-foreground hover:text-orange-700"
+                                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${
+                                            "badge" in feature && feature.badge
+                                                ? "bg-orange-50/80 border-orange-200 text-orange-700 hover:bg-orange-100 dark:bg-orange-950/30 dark:border-orange-800 dark:text-orange-300"
+                                                : "bg-secondary/50 border-border hover:border-orange-200 hover:bg-orange-50/50 text-muted-foreground hover:text-orange-700"
+                                        }`}
                                     >
-                                        <ArrowRight className="h-4 w-4 text-orange-500" />
+                                        {"badge" in feature && feature.badge ? (
+                                            <Smartphone className="h-4 w-4 text-orange-500" />
+                                        ) : (
+                                            <ArrowRight className="h-4 w-4 text-orange-500" />
+                                        )}
                                         {feature.label}
+                                        {"badge" in feature && feature.badge && (
+                                            <span className="rounded-full bg-orange-600 px-1.5 py-0.5 text-[9px] font-bold text-white leading-none">
+                                                {feature.badge}
+                                            </span>
+                                        )}
                                     </Link>
                                 </motion.div>
                             ))}
