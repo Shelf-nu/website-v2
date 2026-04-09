@@ -1,0 +1,125 @@
+---
+title: "Why We're Building the Shelf Mobile App"
+description: >-
+  We've always believed in web-first. We still do. But field operations need
+  something the browser can't fully deliver. Here's why we're building a native
+  companion app — and what it will (and won't) do.
+layout: blog
+canonicalUrl: >-
+  /blog/why-were-building-the-shelf-mobile-app
+date: "2026-04-09"
+updated: "2026-04-09"
+author: carlos-virreira
+category: product-updates
+seo:
+  title: "Why We're Building the Shelf Mobile App — Web-First, Field-Ready"
+  description: >-
+    Shelf has always been web-first. We still believe in that. But for field
+    audits, barcode scanning, and custody handoffs, native is better. Here's
+    our thinking — and how to get early access.
+  keywords:
+    - shelf mobile app
+    - shelf app
+    - shelf app android
+    - shelf native app
+    - asset management mobile app
+    - shelf companion app
+    - shelf field operations
+  noindex: false
+image: "/images/mobile-app/hero-hand.png"
+---
+
+# Why We're Building the Shelf Mobile App
+
+We've always been web-first at Shelf. The entire platform runs in the browser. You can manage assets, assign custody, run bookings, and even scan QR codes from any phone with a camera — no app store, no install, no updates to manage.
+
+We still believe in that approach. For 90% of asset management, the browser is the right tool.
+
+But we've been listening to our users, and there's a 10% that the browser can't fully serve.
+
+---
+
+## The Gap We Kept Hearing About
+
+The same feedback kept coming up in support tickets, community threads, and demo calls:
+
+- **"I'm in a warehouse with spotty Wi-Fi. The page keeps reloading."**
+- **"I need to scan 200 assets for an audit. The browser scanner is fine for one-offs but it's not fast enough for batch work."**
+- **"When is Shelf coming to Android?"** — one of our most searched queries, week after week.
+
+These aren't feature requests for a shinier UI. They're operational problems. Teams in the field — on job sites, in warehouses, across campuses — need something that works when the network doesn't, scans barcodes at speed, and feels like a tool built for their hands.
+
+The browser is incredible for managing assets at a desk. But field operations deserve a purpose-built tool.
+
+---
+
+## What the App Is (and Isn't)
+
+This is important. The Shelf mobile app is not a replacement for the web app. It's a **companion** — a field tool that works alongside the command center.
+
+**What the app is built for:**
+
+- QR and barcode scanning (Code128, EAN-13, DataMatrix — not just Shelf QR labels)
+- Running audits on-site with offline scan persistence
+- Custody handoffs — assign and release equipment in bulk
+- Booking checkouts and checkins at the point of use
+- Quick asset lookups and dashboard monitoring
+
+**What stays on the web app:**
+
+- Creating and configuring audits
+- Bulk asset imports and complex edits
+- Custom field setup and administration
+- User and role management
+- Reporting, analytics, and exports
+- Integrations (Slack, webhooks, and more)
+
+The framing is simple: **the app is your field tool, the web app is your command center.** They work together. Your data is the same, your login is the same, your organizations are the same. The app just gives your field team a faster, more reliable way to do the physical work.
+
+---
+
+## Why Native Instead of Improving the PWA?
+
+Fair question. We already have a [progressive web app](/knowledge-base/shelf-mobile-app) that you can install on your home screen. It works well for day-to-day access. So why go native?
+
+Three reasons:
+
+**1. Camera performance.** Browser-based barcode scanning has inherent limitations — slower autofocus, no access to advanced camera APIs, and inconsistent behavior across devices. A native scanner can process Code128, EAN-13, and DataMatrix barcodes at the speed field teams need for batch audits.
+
+**2. Offline persistence.** PWAs can cache pages, but they can't reliably queue writes and sync them later. The native app saves audit scans to the device and syncs when you reconnect. If you're scanning 200 assets in a basement with no signal, your work isn't lost.
+
+**3. The experience ceiling.** Haptic feedback on scan. Instant launch from a home screen quick action. Background sync. Push notifications when a booking is ready. These things matter when a tool is in your hands eight hours a day. The browser can approximate some of them. Native delivers all of them.
+
+We're not abandoning the web. We're adding a specialized tool for the context where native genuinely outperforms the browser.
+
+---
+
+## What We're Building With
+
+The app is built with Expo and React Native — cross-platform, so we ship for iOS and Android from a single codebase. It connects to the same Shelf backend via dedicated API endpoints. Your data doesn't move to a different system. The app is a new interface to the same source of truth.
+
+We've already completed 40+ end-to-end test flows covering authentication, assets, audits, bookings, custody, and scanning. The app respects the same role-based access control as the web app — what you can do depends on your role (Admin, Self-Service, or Base).
+
+---
+
+## Timeline and Access
+
+**iOS TestFlight beta comes first.** Android follows shortly after.
+
+We're starting with a closed beta because we want real feedback from real field operations before we go wide. If you scan assets on job sites, run audits in warehouses, or manage equipment checkouts across a campus — you're exactly who we want testing this.
+
+<Callout type="takeaway" title="Join the Founding Testers">
+
+We're looking for teams who use Shelf in the field to help us shape the app. You get early access, a direct line to the team, and your feedback drives what ships. [Join the beta waitlist →](/mobile-app)
+
+</Callout>
+
+---
+
+## What This Means for Shelf
+
+This is not a pivot. Shelf is and will remain a web-first platform. The vast majority of asset management — imports, configuration, reporting, team management — happens at a desk, and the browser is the right tool for that.
+
+But we've heard our users loud and clear: field operations need something the browser can't fully deliver. So we're building it. Purpose-built, honest about what it does and doesn't do, and shaped by the people who will actually use it.
+
+If that's you — [join the waitlist](/mobile-app). We'd love your help building this.
