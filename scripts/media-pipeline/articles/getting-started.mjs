@@ -108,7 +108,8 @@ async function main() {
       const link = document.querySelector('table a[href^="/assets/"]');
       return link ? link.getAttribute("href") : null;
     });
-    if (clipAssetHref) await navigateTo(clipPage, clipAssetHref);
+    if (!clipAssetHref) throw new Error("No asset found for QR code chapter in clip flow");
+    await navigateTo(clipPage, clipAssetHref);
     await initAnnotations(clipPage);
     await caption(clipPage, "Each asset gets a QR code — download or print labels to stick on your equipment");
     await clipPage.waitForTimeout(3500);

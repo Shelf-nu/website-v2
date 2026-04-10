@@ -88,7 +88,8 @@ async function main() {
       const link = document.querySelector('table a[href^="/kits/"]');
       return link ? link.getAttribute("href") : null;
     });
-    if (clipKitHref) await navigateTo(clipPage, clipKitHref);
+    if (!clipKitHref) throw new Error("No kit found for clip flow; aborting video run");
+    await navigateTo(clipPage, clipKitHref);
     await clipPage.waitForTimeout(2000);
 
     await initAnnotations(clipPage);
