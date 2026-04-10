@@ -5,7 +5,7 @@
  * content/knowledge-base/kits.mdx
  */
 
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { launchBrowser, createContext, loginToShelf, navigateTo } from "../lib/browser.mjs";
@@ -15,6 +15,14 @@ import { upload } from "../lib/upload.mjs";
 import { initAnnotations, highlight, callout, caption, chapterCard, clearAll } from "../lib/annotate.mjs";
 
 const BUCKET_PREFIX = "knowledgebase";
+
+/** Find the first kit href on a Kits index page. */
+async function getFirstKitHref(page) {
+  return page.evaluate(() => {
+    const link = document.querySelector('table a[href^="/kits/"]');
+    return link ? link.getAttribute("href") : null;
+  });
+}
 
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-kits-"));
@@ -43,12 +51,7 @@ async function main() {
 
   // ── Screenshot 2: Kit detail page (find kit dynamically) ───────────
   console.log("📸 Capturing kit detail page...");
-  // Find the first kit anchor on the page (most assets visible)
-  const firstKitHref = await page.evaluate(() => {
-    const links = Array.from(document.querySelectorAll('table a[href^="/kits/"]'));
-    // Pick the kit with the highest asset count if visible, otherwise first
-    return links.length > 0 ? links[0].getAttribute("href") : null;
-  });
+  const firstKitHref = await getFirstKitHref(page);
   if (!firstKitHref) throw new Error("No kits found in workspace");
   await navigateTo(page, firstKitHref);
 
@@ -84,10 +87,7 @@ async function main() {
 
     // Look up the first kit dynamically (avoid hardcoded IDs)
     await navigateTo(clipPage, "/kits");
-    const clipKitHref = await clipPage.evaluate(() => {
-      const link = document.querySelector('table a[href^="/kits/"]');
-      return link ? link.getAttribute("href") : null;
-    });
+    const clipKitHref = await getFirstKitHref(clipPage);
     if (!clipKitHref) throw new Error("No kit found for clip flow; aborting video run");
     await navigateTo(clipPage, clipKitHref);
     await clipPage.waitForTimeout(2000);
@@ -132,7 +132,10 @@ async function main() {
 
   Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
 
-  } finally { await browser.close(); }
+  } finally {
+    await browser.close();
+    await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
+  }
 }
 
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

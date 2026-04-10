@@ -5,7 +5,7 @@
  * content/knowledge-base/how-to-add-assets-to-your-inventory.mdx
  */
 
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { launchBrowser, createContext, loginToShelf, navigateTo } from "../lib/browser.mjs";
@@ -133,7 +133,10 @@ async function main() {
 
   Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
 
-  } finally { await browser.close(); }
+  } finally {
+    await browser.close();
+    await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
+  }
 }
 
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });
