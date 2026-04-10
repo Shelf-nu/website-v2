@@ -3,28 +3,61 @@ title: "Alternative Barcodes (Barcode, Datamatrix, QR Code)"
 description: "Learn about Shelf's alternative barcode feature that extends beyond standard QR codes, enabling organizations to integrate multiple barcode formats into their asset tracking systems."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-03-25"
+updated: "2026-04-09"
 layout: "knowledge-base"
 ---
 
 Shelf's alternative barcode feature extends beyond the standard QR codes automatically generated for assets and kits. This paid add-on enables organizations to integrate multiple barcode formats into their asset tracking systems.
 
+<InlineVideo
+  mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/barcodes-flow.mp4"
+  webm="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/barcodes-flow.webm"
+  alt="How to generate Code 128 barcodes in Shelf"
+/>
+
 ## Supported Barcode Types
 
 The feature supports four barcode types:
 
-
-![What Are Alternative Barcodes?](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/6880d4f342eaa82a6d1f2b14_New%20Code%20Types.jpg)
-
-![Method 1: Type It In](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/6880d83cc591b1c79a499ef5_Type%20it%20in.jpg)
-
-![Method 2: Scan Existing Barcodes](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/6880d797688912bebfb7dadf_Add%20barcode%20to%20asset.jpg)
-
-![Multiple Barcodes Per Asset](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/6880d86593fbe5d5ed2f1923_Your%20asset%20page.jpg)
-- **Code128**: 4-40 characters including letters, numbers, and symbols
+- **Code 128**: 4-40 characters including letters, numbers, and symbols
 - **Code39**: 4-43 alphanumeric characters
 - **Data Matrix**: 4-100 characters, printable at extremely small sizes
 - **EAN-13**: 13-digit numeric codes matching retail product standards
+
+## How to Generate Code 128 Barcodes
+
+To generate a Code 128 barcode for an asset:
+
+1. Open any asset in your workspace
+2. In the right sidebar, find the code selector dropdown and the **+** button next to it
+3. Click the **+** button to open the "Add barcode to asset" dialog
+4. **Barcode Type** defaults to Code 128 — change it if you need a different format
+5. Enter your barcode value (4-40 characters — letters, numbers, and symbols like `ABC-123`)
+6. Click **Add Barcode**
+
+The barcode is generated and saved immediately. It appears in the **Barcodes** section of the asset page and can be scanned with any barcode scanner.
+
+![Add barcode modal — select Code 128 and enter your value](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/barcodes-add-modal.webp)
+
+You can also add barcodes by **scanning existing physical barcodes** using a device camera. The system automatically detects the barcode type and value during scanning.
+
+![Click the + button next to the code selector to add a barcode](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/barcodes-add-button.webp)
+
+## Barcodes on Your Assets
+
+Once added, barcodes appear in the **Barcodes** section at the bottom of each asset page. You can attach multiple barcodes of different types to a single asset — there is no limit.
+
+![Asset page showing multiple barcodes — DataMatrix, Code 128, and EAN-13](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/barcodes-on-asset.webp)
+
+## Migrating Barcodes from Another System
+
+If you are migrating from another asset manager and want to keep your existing barcodes:
+
+1. **Export your barcodes** from your current system as a CSV
+2. **Import via CSV** — Shelf's [CSV import](/knowledge-base/importing-assets-to-shelf-csv-guide) supports adding barcodes in bulk, enabling you to bring hundreds of barcodes simultaneously
+3. Each barcode must be **unique** across your workspace — duplicates will be flagged during import
+
+This makes it straightforward to switch from tools that use Code 128 or other barcode formats without losing your existing identifiers.
 
 ## Primary Use Cases
 
@@ -33,14 +66,7 @@ Organizations implement alternative barcodes to:
 - Maintain existing barcode systems while adopting Shelf
 - Facilitate departmental preferences for different code formats
 - Preserve manufacturer identification codes
-- Support space-constrained labeling scenarios
-
-## Implementation Methods
-
-Users can add barcodes through two approaches:
-
-1. **Manual entry**: Type codes directly into the asset barcodes section
-2. **Camera scanning**: Scan existing physical barcodes using a device camera. The system automatically detects barcode type and value during scanning.
+- Support space-constrained labeling scenarios (Data Matrix is ideal for small labels)
 
 ## Operational Features
 
