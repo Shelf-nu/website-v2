@@ -13,7 +13,11 @@
     "search:verify": "node scripts/verify-pagefind.mjs out/pagefind",
     "search:dev": "rm -rf public/pagefind && cp -r out/pagefind public/pagefind",
     "start": "npx serve out",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:perf": "playwright test",
+    "test:perf:ui": "playwright test --ui",
+    "test:perf:webkit": "playwright test --project=webkit",
+    "lhci": "lhci autorun"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.10",
@@ -50,6 +54,9 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@next/bundle-analyzer": "^16.2.3",
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
     "@types/qrcode": "^1.5.6",
@@ -61,6 +68,7 @@
     "eslint-config-next": "^16.0.7",
     "pagefind": "^1.4.0",
     "postcss": "^8.5.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "web-vitals": "^5.2.0"
   }
 }

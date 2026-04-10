@@ -1,0 +1,104 @@
+name: Perf regression gate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: perf-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  perf:
+    name: Lighthouse + Playwright (WebKit-first)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps webkit chromium
+
+      - name: Build site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: https://www.shelf.nu
+          NEXT_PUBLIC_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORM_ENDPOINT || 'https://example.com/noop' }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY || 'phc_placeholder' }}
+          NEXT_PUBLIC_CRISP_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_CRISP_WEBSITE_ID || 'placeholder' }}
+
+      - name: Run Lighthouse CI
+        run: npx lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        continue-on-error: false
+
+      - name: Serve built site for Playwright
+        run: |
+          npx serve out -l 4173 &
+          sleep 3
+          curl -sf http://localhost:4173/ > /dev/null || (echo "server not up" && exit 1)
+
+      - name: Run Playwright perf tests
+        run: npx playwright test
+        env:
+          CI: "true"
+          PERF_SKIP_SERVER: "true"
+          PERF_BASE_URL: "http://localhost:4173"
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-perf-report
+          path: |
+            perf/results/
+            playwright-report/
+          retention-days: 30
+
+      - name: Comment PR with perf summary
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const resultsPath = 'perf/results/latest.json';
+            if (!fs.existsSync(resultsPath)) {
+              console.log('No Playwright results file found');
+              return;
+            }
+            const data = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+            const stats = data.stats || {};
+
+            const lines = [
+              '## ⚡ Perf regression gate',
+              '',
+              `- ✅ Passed: **${stats.expected ?? 0}**`,
+              `- ❌ Failed: **${stats.unexpected ?? 0}**`,
+              `- ⚠️ Flaky:  **${stats.flaky ?? 0}**`,
+              `- ⏭️ Skipped: **${stats.skipped ?? 0}**`,
+              '',
+              `Duration: ${((stats.duration ?? 0) / 1000).toFixed(1)}s`,
+              '',
+              'Full Playwright HTML report uploaded as `playwright-perf-report` artifact.',
+              'Lighthouse-CI posts a separate comment if `LHCI_GITHUB_APP_TOKEN` is configured.',
+            ];
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: lines.join('\n'),
+            });
