@@ -41,29 +41,20 @@ async function main() {
   const shot1 = await screenshot(page, join(tmpDir, "kits-index.png"));
   await clearAll(page);
 
-  // ── Screenshot 2: Kit detail page (existing kit with assets) ───────
+  // ── Screenshot 2: Kit detail page (find kit dynamically) ───────────
   console.log("📸 Capturing kit detail page...");
-  // Click on a kit that has multiple assets
-  const kitLink = page.locator('a:has-text("Basic Video Production Kit")').first();
-  if (await kitLink.count() === 0) throw new Error("Basic Video Production Kit not found");
-  await kitLink.click();
-  await page.waitForTimeout(3000);
+  // Find the first kit anchor on the page (most assets visible)
+  const firstKitHref = await page.evaluate(() => {
+    const links = Array.from(document.querySelectorAll('table a[href^="/kits/"]'));
+    // Pick the kit with the highest asset count if visible, otherwise first
+    return links.length > 0 ? links[0].getAttribute("href") : null;
+  });
+  if (!firstKitHref) throw new Error("No kits found in workspace");
+  await navigateTo(page, firstKitHref);
 
   await initAnnotations(page);
   await caption(page, "A kit page shows all included assets, a single QR code, and the current custodian");
   const shot2 = await screenshot(page, join(tmpDir, "kits-detail.png"));
-  await clearAll(page);
-
-  // ── Screenshot 3: Kit overview tab showing more details ────────────
-  console.log("📸 Capturing kit Overview tab...");
-  const overviewTab = page.locator('a:has-text("Overview"), button:has-text("Overview")').first();
-  if (await overviewTab.count() > 0) {
-    await overviewTab.click().catch(() => {});
-    await page.waitForTimeout(2000);
-  }
-  await initAnnotations(page);
-  await caption(page, "The Overview tab shows the kit description, image, and total asset count");
-  const shot3 = await screenshot(page, join(tmpDir, "kits-overview.png"));
   await clearAll(page);
   await context.close();
 
@@ -91,8 +82,13 @@ async function main() {
     // Click into an existing kit
     await chapterCard(clipPage, "Inside a Kit", "One Unit, One QR Code, Many Assets", 2500);
 
-    // Navigate directly to the kit instead of clicking through (avoids annotation overlay issues)
-    await navigateTo(clipPage, "/kits/clx3baakg001qu5dlfmcgreqj/assets");
+    // Look up the first kit dynamically (avoid hardcoded IDs)
+    await navigateTo(clipPage, "/kits");
+    const clipKitHref = await clipPage.evaluate(() => {
+      const link = document.querySelector('table a[href^="/kits/"]');
+      return link ? link.getAttribute("href") : null;
+    });
+    if (clipKitHref) await navigateTo(clipPage, clipKitHref);
     await clipPage.waitForTimeout(2000);
 
     await initAnnotations(clipPage);
@@ -124,14 +120,12 @@ async function main() {
   console.log("🔄 Converting...");
   const webp1 = toWebP(shot1);
   const webp2 = toWebP(shot2);
-  const webp3 = toWebP(shot3);
   const { mp4, webm } = toVideoFormats(clipPath);
 
   console.log("☁️  Uploading...");
   const urls = {};
   urls.index = await upload(webp1, `${BUCKET_PREFIX}/kits-index.webp`);
   urls.detail = await upload(webp2, `${BUCKET_PREFIX}/kits-detail.webp`);
-  urls.overview = await upload(webp3, `${BUCKET_PREFIX}/kits-overview.webp`);
   urls.mp4 = await upload(mp4, `${BUCKET_PREFIX}/kits-flow.mp4`);
   urls.webm = await upload(webm, `${BUCKET_PREFIX}/kits-flow.webm`);
 

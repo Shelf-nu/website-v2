@@ -4,7 +4,7 @@
  * Capture annotated screenshots and video for:
  * content/knowledge-base/getting-started.mdx
  *
- * Multi-step journey: workspace overview → assets → kits → team
+ * Multi-step journey: workspace overview → assets → QR-code asset detail → team
  */
 
 import { mkdtemp } from "node:fs/promises";
@@ -53,7 +53,14 @@ async function main() {
 
   // ── Screenshot 3: Asset detail showing QR code (Step 3: QR labels) ──
   console.log("📸 Capturing asset with QR code...");
-  await navigateTo(page, "/assets/clxegs5z300592gmoqiem28qy");
+  // Look up the first asset dynamically so this works across workspaces
+  await navigateTo(page, "/assets");
+  const firstAssetHref = await page.evaluate(() => {
+    const link = document.querySelector('table a[href^="/assets/"]');
+    return link ? link.getAttribute("href") : null;
+  });
+  if (!firstAssetHref) throw new Error("No assets found in workspace");
+  await navigateTo(page, firstAssetHref);
   await initAnnotations(page);
   await caption(page, "Step 3 — Each asset gets a unique QR code you can print and stick on the equipment");
   const shot3 = await screenshot(page, join(tmpDir, "gs-qr-code.png"));
@@ -95,7 +102,13 @@ async function main() {
 
     // Step 3: QR codes
     await chapterCard(clipPage, "Step 3", "Print QR Code Labels", 2500);
-    await navigateTo(clipPage, "/assets/clxegs5z300592gmoqiem28qy");
+    // Look up first asset dynamically
+    await navigateTo(clipPage, "/assets");
+    const clipAssetHref = await clipPage.evaluate(() => {
+      const link = document.querySelector('table a[href^="/assets/"]');
+      return link ? link.getAttribute("href") : null;
+    });
+    if (clipAssetHref) await navigateTo(clipPage, clipAssetHref);
     await initAnnotations(clipPage);
     await caption(clipPage, "Each asset gets a QR code — download or print labels to stick on your equipment");
     await clipPage.waitForTimeout(3500);
