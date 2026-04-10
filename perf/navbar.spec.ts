@@ -89,6 +89,54 @@ test.describe("Navbar — menu + scroll regression gate", () => {
     await page.goto(HOMEPAGE);
     await waitForVitalsSettle(page, 1000);
 
+    // Install two measurements:
+    //
+    //   1. Long-task observer (Chromium only — WebKit doesn't support this
+    //      entry type). Gives total main-thread blocking time >50ms tasks.
+    //
+    //   2. rAF frame-duration recorder (all browsers). Captures every frame's
+    //      duration during the recording window so we can compute max-frame,
+    //      dropped frames (>16.67ms = below 60fps), and total jank budget.
+    //      This is the metric that actually shows backdrop-filter cost on
+    //      WebKit since long-task API isn't available there.
+    await page.evaluate(() => {
+      type W = {
+        __longTasks: Array<{ duration: number; startTime: number }>;
+        __frameDurations: number[];
+        __rafRecording: boolean;
+      };
+      const w = window as unknown as W;
+      w.__longTasks = [];
+      w.__frameDurations = [];
+      w.__rafRecording = false;
+      try {
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            w.__longTasks.push({ duration: entry.duration, startTime: entry.startTime });
+          }
+        }).observe({ entryTypes: ["longtask"] });
+      } catch {
+        // WebKit <17.4 doesn't support longtask PerformanceObserver — not fatal.
+      }
+    });
+
+    // Start the rAF frame recorder right before scrolling begins.
+    await page.evaluate(() => {
+      type W = { __frameDurations: number[]; __rafRecording: boolean };
+      const w = window as unknown as W;
+      w.__frameDurations = [];
+      w.__rafRecording = true;
+      let prev = performance.now();
+      const tick = () => {
+        if (!w.__rafRecording) return;
+        const now = performance.now();
+        w.__frameDurations.push(now - prev);
+        prev = now;
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+
     const { delta } = await measureCLSDelta(page, async () => {
       // Scroll in 200px increments, matching realistic user scroll speed.
       // page.mouse.wheel is unsupported on mobile WebKit, so use window.scrollBy
@@ -98,6 +146,12 @@ test.describe("Navbar — menu + scroll regression gate", () => {
         await page.waitForTimeout(60);
       }
     }, 800);
+
+    // Stop recording and drain one more frame.
+    await page.evaluate(() => {
+      (window as unknown as { __rafRecording: boolean }).__rafRecording = false;
+    });
+    await page.waitForTimeout(100);
 
     const vitals = await readVitals(page);
     if (vitals.clsEntries.length > 0) {
@@ -112,7 +166,33 @@ test.describe("Navbar — menu + scroll regression gate", () => {
         );
     }
 
+    const longTasks = await page.evaluate(
+      () => (window as unknown as { __longTasks?: Array<{ duration: number; startTime: number }> }).__longTasks ?? [],
+    );
+    const longTaskTotalMs = longTasks.reduce((sum, t) => sum + t.duration, 0);
+    const longTaskMaxMs = longTasks.reduce((max, t) => Math.max(max, t.duration), 0);
+
+    const frameDurations = await page.evaluate(
+      () => (window as unknown as { __frameDurations?: number[] }).__frameDurations ?? [],
+    );
+    // Drop the first frame (tick setup is noisy) and compute stats.
+    const frames = frameDurations.slice(1);
+    const frameCount = frames.length;
+    const maxFrameMs = frames.reduce((max, d) => Math.max(max, d), 0);
+    const avgFrameMs = frameCount > 0 ? frames.reduce((s, d) => s + d, 0) / frameCount : 0;
+    const droppedFrames = frames.filter((d) => d > 16.67).length;
+    const jankBudgetMs = frames
+      .filter((d) => d > 16.67)
+      .reduce((sum, d) => sum + (d - 16.67), 0);
+
+    console.log(
+      `[scroll-longtasks] count=${longTasks.length} total=${longTaskTotalMs.toFixed(0)}ms max=${longTaskMaxMs.toFixed(0)}ms`,
+    );
+    console.log(
+      `[scroll-frames] n=${frameCount} avg=${avgFrameMs.toFixed(1)}ms max=${maxFrameMs.toFixed(1)}ms dropped=${droppedFrames} jank=${jankBudgetMs.toFixed(0)}ms`,
+    );
     console.log(`[scroll-cls] delta=${delta}`);
+
     expect(
       delta,
       `CLS delta from scrolling homepage (budget ${SCROLL_CLS_BUDGET})`,
