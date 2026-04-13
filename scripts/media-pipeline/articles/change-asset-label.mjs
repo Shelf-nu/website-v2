@@ -1,12 +1,6 @@
 #!/usr/bin/env node
-
-/**
- * Capture annotated screenshots and video for:
- * content/knowledge-base/change-asset-label.mdx
- *
- * QR Code Display settings and how labels appear on asset detail pages
- */
-
+/** Capture for: change-asset-label-information.mdx
+ * Shows: Settings → General → QR Code Display dropdown + asset detail with QR label */
 import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
@@ -15,110 +9,90 @@ import { screenshot, recordClip } from "../lib/capture.mjs";
 import { toWebP, toVideoFormats } from "../lib/convert.mjs";
 import { upload } from "../lib/upload.mjs";
 import { initAnnotations, highlight, callout, caption, chapterCard, clearAll } from "../lib/annotate.mjs";
-
 const BUCKET_PREFIX = "knowledgebase";
 
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-asset-label-"));
   console.log(`Working in: ${tmpDir}`);
-
   const browser = await launchBrowser();
   try {
+    const ctx = await createContext(browser);
+    const page = await ctx.newPage();
+    page.setDefaultTimeout(60000);
+    await loginToShelf(page);
 
-  const context = await createContext(browser);
-  const page = await context.newPage();
-  page.setDefaultTimeout(60000);
-  await loginToShelf(page);
-
-  // ── Screenshot 1: Settings → General → QR Code Display section ──────
-  console.log("📸 Capturing QR Code Display settings...");
-  await navigateTo(page, "/settings/general");
-  await page.evaluate(() => {
-    const headings = document.querySelectorAll("h2, h3, h4, label");
-    for (const h of headings) {
-      if (h.textContent?.toLowerCase().includes("qr") || h.textContent?.toLowerCase().includes("label")) {
-        h.scrollIntoView({ behavior: "instant", block: "start" });
-        break;
-      }
+    // Shot 1: Settings → General → QR Code Display section highlighted
+    console.log("📸 Capturing QR Code Display settings...");
+    await navigateTo(page, "/settings/general");
+    // Scroll to QR Code Display
+    const qrSection = page.locator('text=QR Code Display').first();
+    if (await qrSection.count() > 0) {
+      await qrSection.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(300);
+      await page.evaluate(() => window.scrollBy(0, -80));
+      await page.waitForTimeout(500);
     }
-  });
-  await page.waitForTimeout(300);
-  await initAnnotations(page);
-  await highlight(page, "textStartsWith:QR", { padding: 8 });
-  await caption(page, "Go to Settings → General and scroll to QR Code Display to customize your asset labels");
-  const shot1 = await screenshot(page, join(tmpDir, "asset-label-1.png"));
-  await clearAll(page);
+    await initAnnotations(page);
+    await highlight(page, "text:QR Code Display", { spotlight: true, padding: 8 });
+    await callout(page, "text:QR Code Display", "Choose what ID appears on your QR labels — the QR Code ID or the Sequential Asset Number (SAM ID)", { label: "Label Config", side: "right" });
+    await caption(page, "Settings → General → QR Code Display — choose between QR Code ID or SAM ID on your asset labels");
+    const shot1 = await screenshot(page, join(tmpDir, "asset-label-1.png"));
+    await clearAll(page);
 
-  // ── Screenshot 2: Asset detail page showing QR label in sidebar ─────
-  console.log("📸 Capturing asset detail with QR label...");
-  await navigateTo(page, "/assets");
-  const firstAssetHref = await page.evaluate(() => {
-    const link = document.querySelector('table a[href^="/assets/"], a[href^="/assets/"]');
-    return link ? link.getAttribute("href") : null;
-  });
-  if (!firstAssetHref) throw new Error("No assets found in workspace");
-  await navigateTo(page, firstAssetHref);
-  await initAnnotations(page);
-  await caption(page, "The QR label appears in the asset sidebar — it reflects your display settings");
-  const shot2 = await screenshot(page, join(tmpDir, "asset-label-2.png"));
-  await clearAll(page);
-  await context.close();
-
-  // ── Video clip: asset label walkthrough ─────────────────────────────
-  console.log("🎬 Recording asset label walkthrough...");
-  const clipPath = await recordClip(browser, async (clipPage) => {
-    await chapterCard(clipPage, "Asset Labels", "Customize Your QR Code Display", 3000);
-
-    await navigateTo(clipPage, "/settings/general");
-    await clipPage.evaluate(() => {
-      const headings = document.querySelectorAll("h2, h3, h4, label");
-      for (const h of headings) {
-        if (h.textContent?.toLowerCase().includes("qr") || h.textContent?.toLowerCase().includes("label")) {
-          h.scrollIntoView({ behavior: "instant", block: "start" });
-          break;
-        }
-      }
-    });
-    await clipPage.waitForTimeout(300);
-    await initAnnotations(clipPage);
-    await caption(clipPage, "Settings → General → QR Code Display controls what appears on your labels");
-    await clipPage.waitForTimeout(3000);
-    await clearAll(clipPage);
-
-    await chapterCard(clipPage, "Preview", "See the Label on an Asset", 2500);
-    // Look up first asset dynamically
-    await navigateTo(clipPage, "/assets");
-    const clipAssetHref = await clipPage.evaluate(() => {
-      const link = document.querySelector('table a[href^="/assets/"], a[href^="/assets/"]');
+    // Shot 2: Asset detail showing the QR label in the sidebar
+    console.log("📸 Capturing asset QR label...");
+    await navigateTo(page, "/assets");
+    const assetHref = await page.evaluate(() => {
+      const link = document.querySelector('table a[href^="/assets/"]');
       return link ? link.getAttribute("href") : null;
     });
-    if (clipAssetHref) {
-      await navigateTo(clipPage, clipAssetHref);
-    }
-    await initAnnotations(clipPage);
-    await caption(clipPage, "The asset detail sidebar shows your customized QR label");
-    await clipPage.waitForTimeout(3500);
-    await clearAll(clipPage);
-  });
+    if (!assetHref) throw new Error("No assets found");
+    await navigateTo(page, assetHref);
+    await initAnnotations(page);
+    await caption(page, "The QR label in the sidebar shows your chosen identifier — download or print it directly from here");
+    const shot2 = await screenshot(page, join(tmpDir, "asset-label-2.png"));
+    await clearAll(page);
+    await ctx.close();
 
-  // ── Convert + Upload ───────────────────────────────────────────────
-  console.log("🔄 Converting...");
-  const webp1 = toWebP(shot1);
-  const webp2 = toWebP(shot2);
-  const { mp4, webm } = toVideoFormats(clipPath);
+    // Video
+    console.log("🎬 Recording...");
+    const clipPath = await recordClip(browser, async (cp) => {
+      await chapterCard(cp, "Asset Labels", "Choose What Appears on Your QR Codes", 3000);
+      await navigateTo(cp, "/settings/general");
+      const qr = cp.locator('text=QR Code Display').first();
+      if (await qr.count() > 0) {
+        await qr.scrollIntoViewIfNeeded();
+        await cp.waitForTimeout(300);
+        await cp.evaluate(() => window.scrollBy(0, -80));
+        await cp.waitForTimeout(500);
+      }
+      await initAnnotations(cp);
+      await highlight(cp, "text:QR Code Display", { spotlight: true, padding: 8 });
+      await callout(cp, "text:QR Code Display", "Switch between QR Code ID and SAM ID", { label: "Config", side: "right" });
+      await caption(cp, "Settings → General → QR Code Display — choose the identifier shown on asset labels");
+      await cp.waitForTimeout(4000);
+      await clearAll(cp);
 
-  console.log("☁️  Uploading...");
-  const urls = {};
-  urls.shot1 = await upload(webp1, `${BUCKET_PREFIX}/asset-label-1.webp`);
-  urls.shot2 = await upload(webp2, `${BUCKET_PREFIX}/asset-label-2.webp`);
-  urls.mp4 = await upload(mp4, `${BUCKET_PREFIX}/asset-label-flow.mp4`);
-  urls.webm = await upload(webm, `${BUCKET_PREFIX}/asset-label-flow.webm`);
-  Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
+      await chapterCard(cp, "On the Asset", "See Your Label in the Sidebar", 2500);
+      await navigateTo(cp, "/assets");
+      const href = await cp.evaluate(() => document.querySelector('table a[href^="/assets/"]')?.getAttribute("href"));
+      if (href) await navigateTo(cp, href);
+      await initAnnotations(cp);
+      await caption(cp, "The QR label in the right sidebar reflects your chosen display setting — download or print it here");
+      await cp.waitForTimeout(3500);
+      await clearAll(cp);
+    });
 
-  } finally {
-    await browser.close();
-    await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
-  }
+    console.log("🔄 Converting...");
+    const webp1 = toWebP(shot1); const webp2 = toWebP(shot2);
+    const { mp4, webm } = toVideoFormats(clipPath);
+    console.log("☁️  Uploading...");
+    const urls = {};
+    urls.a = await upload(webp1, `${BUCKET_PREFIX}/asset-label-1.webp`);
+    urls.b = await upload(webp2, `${BUCKET_PREFIX}/asset-label-2.webp`);
+    urls.c = await upload(mp4, `${BUCKET_PREFIX}/asset-label-flow.mp4`);
+    urls.d = await upload(webm, `${BUCKET_PREFIX}/asset-label-flow.webm`);
+    Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
+  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
-
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });
