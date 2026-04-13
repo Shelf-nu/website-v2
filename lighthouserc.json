@@ -21,7 +21,6 @@
     },
     "assert": {
       "assertions": {
-        "_comment": "Budgets calibrated for GitHub Actions ubuntu-latest (2-core shared VM). Local M-series Macs score ~20 points higher on category metrics than CI hardware. Category scores demoted to warn for now since they're noisy composites across slow CI runners; Phase 5 will ratchet them with real calibration data. Specific metrics (LCP/CLS/TBT) stay as errors with CI-realistic thresholds — those are the user-visible ones.",
         "categories:performance": ["warn", { "minScore": 0.65 }],
         "categories:accessibility": ["warn", { "minScore": 0.9 }],
         "categories:best-practices": ["warn", { "minScore": 0.9 }],

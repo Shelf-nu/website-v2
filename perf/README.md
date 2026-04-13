@@ -66,6 +66,29 @@ once the current-production baseline is stable.
   3 runs per URL) and asserts against budgets in `lighthouserc.json`.
 - Both feed into the PR comment + Phase 1 baseline report.
 
+## How the `lighthouserc.json` budgets are calibrated
+
+Budgets target the **GitHub Actions `ubuntu-latest` runner** (2-core shared VM),
+not a local developer laptop. A local M-series Mac scores ~20 points higher on
+category metrics than the CI hardware even with `cpuSlowdownMultiplier: 1`.
+Key calibration decisions:
+
+- **Category scores** (performance/a11y/best-practices/seo) are all `warn`,
+  not `error`. These are noisy composites that vary by runner CPU. Phase 5
+  will re-introduce them as `error` once there's enough multi-run data to
+  set a defensible floor.
+- **Specific metrics** that are hardware-comparable stay as `error`:
+  - CLS max 0.1 — hardware-independent, real user-visible number
+  - LCP max 3500 ms — loose enough for CI, tight enough to catch regressions
+  - TBT max 1500 ms — CI has ~3-5x slower CPU than dev machines
+- FCP and Speed Index are `warn` — they compound with other metrics in the
+  category score, so gating on them adds noise without adding signal.
+
+Do not add non-audit keys (like `_comment` or `_metadata`) inside the
+`ci.assert.assertions` object — LHCI treats every key there as a Lighthouse
+audit ID and fails validation when it can't find a matching audit. Put
+explanatory text here instead.
+
 ## Gotchas
 
 - **web-vitals IIFE path**: `capture-vitals.ts` reads the bundle via
