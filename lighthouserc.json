@@ -1,7 +1,6 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "npx --yes serve out -l 4173",
       "url": [
         "http://localhost:4173/",
         "http://localhost:4173/pricing",
