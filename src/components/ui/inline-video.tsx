@@ -142,16 +142,19 @@ export function InlineVideo({ mp4, webm, alt, poster, aspectRatio = "16/10" }: I
           controls={expanded}
           poster={poster}
           aria-label={alt}
+          width={1440}
+          height={900}
           style={{ aspectRatio }}
           className={cn(
-            "rounded-xl border border-border/50 bg-muted shadow-sm w-full",
+            "rounded-xl border border-border/50 bg-muted shadow-sm w-full h-auto",
             expanded && "!rounded-lg !border-0 !shadow-2xl"
           )}
           onPause={() => setPaused(true)}
           onPlay={() => setPaused(false)}
         >
-          {webm && <source src={webm} type="video/webm" />}
+          {/* MP4 first — Safari doesn't support WebM and the fallback causes a reflow */}
           <source src={mp4} type="video/mp4" />
+          {webm && <source src={webm} type="video/webm" />}
         </video>
       </div>
 
