@@ -12,7 +12,20 @@ interface InlineVideoProps {
   aspectRatio?: string
 }
 
+const INTRINSIC_WIDTH = 1440
+
+function computeHeight(ratio: string): number {
+  const parts = ratio.split("/")
+  if (parts.length === 2) {
+    const w = parseFloat(parts[0])
+    const h = parseFloat(parts[1])
+    if (w > 0 && h > 0) return Math.round(INTRINSIC_WIDTH * (h / w))
+  }
+  return 900 // fallback for 16/10
+}
+
 export function InlineVideo({ mp4, webm, alt, poster, aspectRatio = "16/10" }: InlineVideoProps) {
+  const intrinsicHeight = computeHeight(aspectRatio)
   const [paused, setPaused] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -142,8 +155,8 @@ export function InlineVideo({ mp4, webm, alt, poster, aspectRatio = "16/10" }: I
           controls={expanded}
           poster={poster}
           aria-label={alt}
-          width={1440}
-          height={900}
+          width={INTRINSIC_WIDTH}
+          height={intrinsicHeight}
           style={{ aspectRatio }}
           className={cn(
             "rounded-xl border border-border/50 bg-muted shadow-sm w-full h-auto",
