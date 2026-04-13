@@ -15,6 +15,13 @@ jobs:
     name: Lighthouse + Playwright (WebKit-first)
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # Needed so the "Comment PR with perf summary" step can POST a comment.
+    # Default GITHUB_TOKEN is read-only on this repo; without this block
+    # the step fails with 403 "Resource not accessible by integration".
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
 
     steps:
       - uses: actions/checkout@v4
@@ -39,17 +46,31 @@ jobs:
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY || 'phc_placeholder' }}
           NEXT_PUBLIC_CRISP_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_CRISP_WEBSITE_ID || 'placeholder' }}
 
+      # One static server for both LHCI and Playwright. Previous iteration
+      # had LHCI's startServerCommand + a separate workflow serve step, which
+      # double-bound :4173 and hung because LHCI's default ready-pattern
+      # ('listening') doesn't match `npx serve`'s actual output
+      # ('Accepting connections'). Starting serve ourselves sidesteps both.
+      - name: Start static server on :4173
+        run: |
+          npx --yes serve out -l 4173 > /tmp/serve.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:4173/ > /dev/null; then
+              echo "server up after ${i}s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "server failed to start within 30s"
+          cat /tmp/serve.log
+          exit 1
+
       - name: Run Lighthouse CI
         run: npx lhci autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        timeout-minutes: 15
         continue-on-error: false
-
-      - name: Serve built site for Playwright
-        run: |
-          npx serve out -l 4173 &
-          sleep 3
-          curl -sf http://localhost:4173/ > /dev/null || (echo "server not up" && exit 1)
 
       - name: Run Playwright perf tests
         run: npx playwright test
