@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "date": "2026-04-10",
+    "target": "https://www.shelf.nu",
+    "method": "Playwright + web-vitals v5 (IIFE injected)",
+    "harness": "perf/*.spec.ts on branch audit/perf-jank",
+    "notes": "Captured against live production CDN (not a local build). Headless browsers only — real Safari.app not tested."
+  },
+  "chromium_desktop": {
+    "navbar": {
+      "mega_menu_product_open_ms": 1417,
+      "scroll_cls_delta": 0.0029,
+      "scroll_cls_top_source": "DIV.w-full.transition-all (top-banner collapse container)"
+    },
+    "search": {
+      "dialog_open_ms": 1044,
+      "first_results_ms": 6066,
+      "cold_load_includes": "pagefind.js fetch + parse + index init"
+    },
+    "blog_sidebar": {
+      "initial_load_cls": 0,
+      "deep_link_cls_delta": 0,
+      "toc_click_cls_delta": 0,
+      "note": "CLS is zero in headless chromium — the reported 'blinking' symptom does not reproduce here. Either Safari-specific, paint-level flicker (not CLS), or needs different viewport/scenario."
+    },
+    "blog_post_load": {
+      "LCP_ms": 318,
+      "FCP_ms": 318,
+      "TTFB_ms": 126,
+      "CLS": 0
+    }
+  },
+  "mobile_safari_iphone_14": {
+    "navbar": {
+      "mobile_menu_open_ms": 86,
+      "scroll_cls_delta": 0
+    },
+    "search": {
+      "dialog_open_ms": 85,
+      "first_results_ms": 434
+    },
+    "blog_post_load": {
+      "LCP_ms": 475,
+      "FCP_ms": 373,
+      "TTFB_ms": 65,
+      "CLS": 0
+    },
+    "note": "Dramatically faster than desktop chromium (16x on menu, 14x on search first-results). Suggests the jank is desktop-specific — mobile users aren't affected."
+  },
+  "webkit_desktop": {
+    "blog_post_load": {
+      "LCP_ms": 318,
+      "FCP_ms": 318,
+      "TTFB_ms": 126,
+      "CLS": 0,
+      "note": "Same numbers as chromium for initial load. Headless WebKit did not reproduce the Safari-reported blinking anchors — Phase 3 will use Playwright MCP (interactive mode) and real Safari.app video capture to see the actual symptom."
+    }
+  },
+  "budgets_set": {
+    "description": "Starter budgets = current production + safety margin. Ratchet down as fixes land.",
+    "mega_menu_open_ms": 2000,
+    "mobile_menu_open_ms": 1500,
+    "scroll_cls_delta": 0.05,
+    "blog_load_cls": 0.1,
+    "deep_link_cls_delta": 0.1,
+    "toc_click_cls_delta": 0.1,
+    "search_dialog_open_ms": 2000,
+    "search_first_results_ms": 8000
+  },
+  "targets_post_fix": {
+    "description": "Aspirational — what the numbers should look like after the punch-list fixes land. Phase 5 will ratchet budgets toward these.",
+    "mega_menu_open_ms": 300,
+    "search_first_results_ms": 800,
+    "scroll_cls_delta": 0.01,
+    "deep_link_cls_delta": 0.02
+  }
+}
