@@ -8,9 +8,11 @@ interface InlineVideoProps {
   webm?: string
   alt: string
   poster?: string
+  /** Aspect ratio to reserve space before video loads (prevents CLS). Default: "16/10" (1440x900 captures). */
+  aspectRatio?: string
 }
 
-export function InlineVideo({ mp4, webm, alt, poster }: InlineVideoProps) {
+export function InlineVideo({ mp4, webm, alt, poster, aspectRatio = "16/10" }: InlineVideoProps) {
   const [paused, setPaused] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -140,6 +142,7 @@ export function InlineVideo({ mp4, webm, alt, poster }: InlineVideoProps) {
           controls={expanded}
           poster={poster}
           aria-label={alt}
+          style={{ aspectRatio }}
           className={cn(
             "rounded-xl border border-border/50 bg-muted shadow-sm w-full",
             expanded && "!rounded-lg !border-0 !shadow-2xl"
