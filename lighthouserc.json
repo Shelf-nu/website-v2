@@ -1,13 +1,13 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./out",
+      "startServerCommand": "npx --yes serve out -l 4173",
       "url": [
-        "http://localhost/",
-        "http://localhost/pricing",
-        "http://localhost/blog/all-you-need-to-know-about-qr-codes",
-        "http://localhost/features/workspaces",
-        "http://localhost/best-equipment-management-software"
+        "http://localhost:4173/",
+        "http://localhost:4173/pricing",
+        "http://localhost:4173/blog/all-you-need-to-know-about-qr-codes",
+        "http://localhost:4173/features/workspaces",
+        "http://localhost:4173/mobile-app"
       ],
       "numberOfRuns": 3,
       "settings": {
