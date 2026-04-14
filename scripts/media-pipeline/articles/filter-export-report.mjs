@@ -45,17 +45,22 @@ async function main() {
     const shot1 = await screenshot(page, join(tmpDir, "filter-export-1.png"));
     await clearAll(page);
 
-    // Shot 2: Highlight the Export selection button
-    console.log("📸 Capturing Export selection...");
-    // Close filter by clicking Filter again or navigating
+    // Shot 2: Select all assets then highlight Export selection (it lights up with count)
+    console.log("📸 Capturing Export selection with assets selected...");
     await navigateTo(page, "/assets");
+    // Click the header checkbox to select all visible assets
+    const headerCheckbox = await page.$('thead input[type="checkbox"], thead th:first-child');
+    if (headerCheckbox) {
+      await headerCheckbox.click();
+      await page.waitForTimeout(1000);
+    }
     await initAnnotations(page);
     await highlight(page, "text:Export selection", { spotlight: true, padding: 8 });
-    await callout(page, "text:Export selection", "After filtering and selecting assets, click Export selection to download as CSV", {
+    await callout(page, "text:Export selection", "With assets selected, Export selection shows the count and becomes active — click to download CSV", {
       label: "Export",
       side: "bottom",
     });
-    await caption(page, "Step 2 — Select the filtered assets and click Export selection to download as CSV");
+    await caption(page, "Step 2 — Select assets (click the Name header to select all), then click Export selection");
     const shot2 = await screenshot(page, join(tmpDir, "filter-export-2.png"));
     await clearAll(page);
     await context.close();

@@ -59,7 +59,7 @@ async function main() {
       await cp.waitForTimeout(3500);
       await clearAll(cp);
 
-      await chapterCard(cp, "Set a Reminder", "From the Asset Actions Menu", 2500);
+      await chapterCard(cp, "Set a Reminder", "From the Actions Dropdown on Any Asset Page", 2500);
       await navigateTo(cp, "/assets");
       const href = await cp.evaluate(() => document.querySelector('table a[href^="/assets/"]')?.getAttribute("href"));
       if (href) await navigateTo(cp, href);

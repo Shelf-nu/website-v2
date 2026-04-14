@@ -56,25 +56,19 @@ async function main() {
 
       // Show asset detail with SAM ID
       await navigateTo(cp, "/assets");
+      await cp.waitForTimeout(2000);
       const href = await cp.evaluate(() => {
         const link = document.querySelector('table a[href^="/assets/"]');
         return link ? link.getAttribute("href") : null;
       });
-      if (href) await navigateTo(cp, href);
+      if (!href) throw new Error("No assets found for sequential IDs clip");
+      await navigateTo(cp, href);
+      await cp.waitForTimeout(2000);
       await initAnnotations(cp);
       await highlight(cp, "text:Asset ID", { padding: 8 });
-      await callout(cp, "text:Asset ID", "SAM-0042 — auto-assigned sequential ID", { label: "Asset ID", side: "right" });
+      await callout(cp, "text:Asset ID", "SAM-0042 — auto-assigned when the asset was created", { label: "Asset ID", side: "right" });
       await caption(cp, "Every asset gets a unique sequential ID — SAM-0001, SAM-0002, and so on");
       await cp.waitForTimeout(4000);
-      await clearAll(cp);
-
-      // Show it's searchable
-      await chapterCard(cp, "Searchable", "Find Assets by Their ID", 2500);
-      await navigateTo(cp, "/assets");
-      await initAnnotations(cp);
-      await highlight(cp, "text:Search assets", { padding: 6 });
-      await caption(cp, "Search by Asset ID — type SAM-0042 to find any asset instantly");
-      await cp.waitForTimeout(3500);
       await clearAll(cp);
     });
 

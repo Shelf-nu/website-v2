@@ -5,11 +5,6 @@ import { launchBrowser, createContext, loginToShelf, VIEWPORT } from "./browser.
 
 /**
  * Take a screenshot of the current page or a specific element.
- * @param {import('playwright').Page} page
- * @param {string} outputPath - Where to save the PNG
- * @param {object} [options]
- * @param {string} [options.selector] - CSS selector to screenshot a specific element
- * @param {boolean} [options.fullPage] - Capture full scrollable page
  */
 export async function screenshot(page, outputPath, options = {}) {
   if (options.selector) {
@@ -24,22 +19,30 @@ export async function screenshot(page, outputPath, options = {}) {
 }
 
 /**
- * Record a short video clip by running actions in a fresh context with recordVideo.
- * @param {import('playwright').Browser} browser
- * @param {function(import('playwright').Page): Promise<void>} actionFn - Actions to perform during recording
- * @returns {Promise<string>} Path to the recorded .webm file
+ * Record a short video clip. Login happens OFF-camera by saving browser
+ * state from a non-recording context, then replaying it into the recording
+ * context so the video starts on the first real page, not the login screen.
  */
 export async function recordClip(browser, actionFn) {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-clip-"));
 
+  // Step 1: Login in a throwaway context and capture cookies
+  const authContext = await createContext(browser);
+  const authPage = await authContext.newPage();
+  authPage.setDefaultTimeout(60000);
+  await loginToShelf(authPage);
+  const storageState = await authContext.storageState();
+  await authContext.close();
+
+  // Step 2: Create recording context with auth cookies pre-loaded (no login on camera)
   const context = await createContext(browser, {
     recordVideo: { dir: tmpDir, size: VIEWPORT },
+    storageState,
   });
 
   const page = await context.newPage();
   page.setDefaultTimeout(60000);
 
-  await loginToShelf(page);
   await actionFn(page);
 
   // Must close context to finalize the video file

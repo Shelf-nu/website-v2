@@ -44,9 +44,9 @@ async function main() {
     console.log("📸 Capturing working hours section...");
     await scrollToWorkingHours(page);
     await initAnnotations(page);
-    await highlight(page, "text:Working hours", { padding: 8 });
-    await callout(page, "text:Working hours", "Enable working hours to limit when bookings can be made — set start/end times per day", { label: "Working Hours", side: "right" });
-    await caption(page, "Working hours — enable the toggle to set your workspace's operating schedule and limit booking times");
+    await highlight(page, "text:Enable working hours", { spotlight: true, padding: 8 });
+    await callout(page, "text:Enable working hours", "Flip this toggle to ON — then configure start/end times for each day of the week", { label: "Enable", side: "right" });
+    await caption(page, "Working hours — enable the toggle, then set your schedule. Bookings outside these hours will be blocked.");
     const shot2 = await screenshot(page, join(tmpDir, "working-hours-2.png"));
     await clearAll(page);
     await ctx.close();
@@ -64,9 +64,9 @@ async function main() {
       // Scroll to working hours
       await scrollToWorkingHours(cp);
       await initAnnotations(cp);
-      await highlight(cp, "text:Working hours", { padding: 8 });
-      await callout(cp, "text:Working hours", "Enable to set operating hours per day", { label: "Working Hours", side: "right" });
-      await caption(cp, "Enable the toggle to configure start/end times for each day — bookings will be restricted to these hours");
+      await highlight(cp, "text:Enable working hours", { spotlight: true, padding: 8 });
+      await callout(cp, "text:Enable working hours", "Flip this toggle ON to activate working hours", { label: "Enable", side: "right" });
+      await caption(cp, "Enable working hours → set start/end times per day → bookings outside these hours are blocked");
       await cp.waitForTimeout(4500);
       await clearAll(cp);
     });

@@ -27,9 +27,9 @@ async function main() {
     page.setDefaultTimeout(60000);
     await loginToShelf(page);
 
-    // Shot 1: Simple mode — highlight the "Advanced" link at bottom-right
+    // Shot 1: Simple mode — force simple mode via URL, highlight the "Advanced" link
     console.log("📸 Capturing simple mode with Advanced link...");
-    await navigateTo(page, "/assets");
+    await navigateTo(page, "/assets?mode=simple");
     await initAnnotations(page);
     await highlight(page, "text:Advanced", { spotlight: true, padding: 6 });
     await callout(page, "text:Advanced", "Click Advanced to unlock column configuration, shared filters, and availability view", {
@@ -56,7 +56,7 @@ async function main() {
     console.log("🎬 Recording enable-advanced walkthrough...");
     const clipPath = await recordClip(browser, async (clipPage) => {
       await chapterCard(clipPage, "Simple Mode", "Your Default Asset Index", 2500);
-      await navigateTo(clipPage, "/assets");
+      await navigateTo(clipPage, "/assets?mode=simple");
       await initAnnotations(clipPage);
       await highlight(clipPage, "text:Advanced", { spotlight: true, padding: 6 });
       await callout(clipPage, "text:Advanced", "Click here to switch to Advanced", { label: "Advanced", side: "top" });
