@@ -63,8 +63,21 @@ export function Globe({ className, config }: GlobeProps) {
         const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
         setPrefersReducedMotion(mq.matches);
         const onChange = () => setPrefersReducedMotion(mq.matches);
-        mq.addEventListener("change", onChange);
-        return () => mq.removeEventListener("change", onChange);
+
+        // MediaQueryList.addEventListener is Safari 14+ (Sept 2020). Older
+        // Safari versions expose the deprecated addListener/removeListener
+        // API. Falling back keeps Safari 13 and earlier from throwing on
+        // mount and breaking the whole Globe component — which matters
+        // specifically for this codebase because our Safari-first audit
+        // explicitly targets Safari users.
+        if (typeof mq.addEventListener === "function") {
+            mq.addEventListener("change", onChange);
+            return () => mq.removeEventListener("change", onChange);
+        }
+        // Legacy Safari <14 path — addListener/removeListener are deprecated
+        // but still present on pre-14 MediaQueryList implementations.
+        mq.addListener(onChange);
+        return () => mq.removeListener(onChange);
     }, []);
 
     // Only animate when the canvas is (close to) visible. 200px rootMargin
