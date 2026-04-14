@@ -3,6 +3,22 @@ name: Perf regression gate
 on:
   pull_request:
     branches: [main]
+    # Skip content-only PRs (MDX edits, blog posts, image uploads, docs) —
+    # they can't introduce perf regressions. Only run when code, deps, build
+    # config, tests, or static assets (which affect LCP) actually change.
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'perf/**'
+      - 'next.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'lighthouserc.json'
+      - 'tsconfig.json'
+      - 'postcss.config.mjs'
+      - 'eslint.config.mjs'
+      - '.nvmrc'
+      - '.github/workflows/perf.yml'
   push:
     branches: [main]
 
@@ -11,18 +27,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  perf:
-    name: Lighthouse + Playwright (WebKit-first)
+  # Two jobs run in parallel — wall time = max(lhci, playwright) instead of sum.
+  # Each does its own build (~1-2min) rather than sharing via artifact, since
+  # parallel runners mean the duplicate build is free in wall time.
+  lhci:
+    name: Lighthouse CI
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    # Needed so the "Comment PR with perf summary" step can POST a comment.
-    # Default GITHUB_TOKEN is read-only on this repo; without this block
-    # the step fails with 403 "Resource not accessible by integration".
+    timeout-minutes: 15
     permissions:
       contents: read
-      pull-requests: write
-      issues: write
-
     steps:
       - uses: actions/checkout@v4
 
@@ -35,9 +48,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps webkit chromium
-
       - name: Build site
         run: npm run build
         env:
@@ -46,11 +56,6 @@ jobs:
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY || 'phc_placeholder' }}
           NEXT_PUBLIC_CRISP_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_CRISP_WEBSITE_ID || 'placeholder' }}
 
-      # One static server for both LHCI and Playwright. Previous iteration
-      # had LHCI's startServerCommand + a separate workflow serve step, which
-      # double-bound :4173 and hung because LHCI's default ready-pattern
-      # ('listening') doesn't match `npx serve`'s actual output
-      # ('Accepting connections'). Starting serve ourselves sidesteps both.
       - name: Start static server on :4173
         run: |
           npx --yes serve out -l 4173 > /tmp/serve.log 2>&1 &
@@ -66,14 +71,95 @@ jobs:
           exit 1
 
       - name: Run Lighthouse CI
-        run: npx lhci autorun
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # PR-time: 1 run per URL is enough to pass/fail a gate.
+            # Cuts LHCI wall time by ~65% vs 3 runs.
+            echo "PR context — running LHCI with numberOfRuns=1"
+            npx lhci autorun --collect.numberOfRuns=1
+          else
+            # main-branch push: full 3-run measurement for ratcheting
+            # budgets in Phase 5. Noise averaging matters for authoritative
+            # baselines, less so for pass/fail gates.
+            echo "Main branch push — running LHCI with full 3 runs"
+            npx lhci autorun
+          fi
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-        timeout-minutes: 15
-        continue-on-error: false
 
+  playwright:
+    name: Playwright (WebKit + Chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Cache the downloaded browser binaries (~200MB) across runs so we
+      # don't re-download WebKit + Chromium every PR. Keyed on the pinned
+      # Playwright version from package-lock — cache invalidates only when
+      # Playwright itself is bumped.
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright browsers (cache miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps webkit chromium
+
+      - name: Install Playwright system deps only (cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps webkit chromium
+
+      - name: Build site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: https://www.shelf.nu
+          NEXT_PUBLIC_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORM_ENDPOINT || 'https://example.com/noop' }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY || 'phc_placeholder' }}
+          NEXT_PUBLIC_CRISP_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_CRISP_WEBSITE_ID || 'placeholder' }}
+
+      - name: Start static server on :4173
+        run: |
+          npx --yes serve out -l 4173 > /tmp/serve.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:4173/ > /dev/null; then
+              echo "server up after ${i}s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "server failed to start within 30s"
+          cat /tmp/serve.log
+          exit 1
+
+      # CI skips the mobile-safari project by selecting only webkit + chromium
+      # explicitly. iPhone 14 numbers in baseline measurements were already
+      # fast (86ms mega menu, 434ms search first-result) — the jank is
+      # desktop-specific, and mobile adds ~1-2min of CI time for data that
+      # doesn't change the gate outcome. Local `npm run test:perf` still
+      # runs all 3 projects via the playwright.config.ts defaults.
       - name: Run Playwright perf tests
-        run: npx playwright test
+        run: npx playwright test --project=webkit --project=chromium
         env:
           CI: "true"
           PERF_SKIP_SERVER: "true"
