@@ -95,6 +95,25 @@ Do not add non-audit keys (like `_comment` or `_metadata`) inside the
 audit ID and fails validation when it can't find a matching audit. Put
 explanatory text here instead.
 
+## Bundle analysis (`npm run analyze`)
+
+To see what's in the shipped JS bundles — tree-shake opportunities, heavy
+deps, duplicated modules, route-level weight:
+
+```bash
+# Interactive web UI at http://localhost:4000
+npm run analyze
+
+# Or write the report to disk without starting a server
+npm run analyze -- -o
+# → .next/diagnostics/analyze/
+```
+
+Uses Next 16's native `next experimental-analyze` (Turbopack-compatible).
+The older `@next/bundle-analyzer` package is intentionally *not* installed
+because Shelf builds with Turbopack and that package prints "not compatible
+with Turbopack builds, no report will be generated" and silently does nothing.
+
 ## Gotchas
 
 - **web-vitals IIFE path**: `capture-vitals.ts` reads the bundle via

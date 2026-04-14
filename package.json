@@ -17,7 +17,8 @@
     "test:perf": "playwright test",
     "test:perf:ui": "playwright test --ui",
     "test:perf:webkit": "playwright test --project=webkit",
-    "lhci": "lhci autorun"
+    "lhci": "lhci autorun",
+    "analyze": "next experimental-analyze"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.10",
@@ -55,7 +56,6 @@
   },
   "devDependencies": {
     "@lhci/cli": "^0.15.1",
-    "@next/bundle-analyzer": "^16.2.3",
     "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
