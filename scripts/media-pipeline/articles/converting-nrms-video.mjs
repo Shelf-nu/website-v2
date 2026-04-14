@@ -29,7 +29,7 @@ async function main() {
     const dotsBtnClicked = await page.evaluate(() => {
       const rows = Array.from(document.querySelectorAll('table tbody tr'));
       if (rows.length > 0) {
-        const btn = rows[0].querySelector('button, [aria-haspopup]');
+        const btn = rows[0].querySelector('td:last-child button, td:last-child [aria-haspopup]');
         if (btn) { btn.click(); return true; }
       }
       return false;
@@ -68,7 +68,7 @@ async function main() {
       const clicked = await cp.evaluate(() => {
         const rows = Array.from(document.querySelectorAll('table tbody tr'));
         if (rows.length > 0) {
-          const btn = rows[0].querySelector('button, [aria-haspopup]');
+          const btn = rows[0].querySelector('td:last-child button, td:last-child [aria-haspopup]');
           if (btn) { btn.click(); return true; }
         }
         return false;

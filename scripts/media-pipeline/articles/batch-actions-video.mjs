@@ -55,12 +55,13 @@ async function main() {
 
       // Select all
       const h = await cp.$('thead th:first-child');
-      if (h) await h.click();
+      if (!h) throw new Error("Header checkbox not found in clip flow");
+      await h.click();
       await cp.waitForTimeout(1500);
 
       await initAnnotations(cp);
       await highlight(cp, "text:Export selection", { padding: 6 });
-      await caption(cp, "20 assets selected — Export selection and Actions buttons are now active");
+      await caption(cp, "Assets selected — Export selection and Actions buttons are now active");
       await cp.waitForTimeout(3000);
       await clearAll(cp);
 
@@ -69,10 +70,12 @@ async function main() {
       await navigateTo(cp, "/assets");
       await cp.waitForTimeout(1000);
       const h2 = await cp.$('thead th:first-child');
-      if (h2) await h2.click();
+      if (!h2) throw new Error("Header checkbox not found in Actions chapter");
+      await h2.click();
       await cp.waitForTimeout(1000);
       const ab = cp.locator('button:has-text("Actions")').first();
-      if (await ab.count() > 0) await ab.click();
+      if (await ab.count() === 0) throw new Error("Actions button not found in clip");
+      await ab.click();
       await cp.waitForTimeout(1500);
 
       await initAnnotations(cp);
