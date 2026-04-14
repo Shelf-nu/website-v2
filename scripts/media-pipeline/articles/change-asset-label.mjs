@@ -39,7 +39,7 @@ async function main() {
     const shot1 = await screenshot(page, join(tmpDir, "asset-label-1.png"));
     await clearAll(page);
 
-    // Shot 2: Asset detail showing the QR label in the sidebar
+    // Shot 2: Asset detail — scroll right sidebar to show QR label with the ID visible
     console.log("📸 Capturing asset QR label...");
     await navigateTo(page, "/assets");
     const assetHref = await page.evaluate(() => {
@@ -48,8 +48,14 @@ async function main() {
     });
     if (!assetHref) throw new Error("No assets found");
     await navigateTo(page, assetHref);
+    // Scroll down so the QR code label in the sidebar is fully visible with the ID text below it
+    await page.evaluate(() => window.scrollTo({ top: 300, behavior: 'instant' }));
+    await page.waitForTimeout(1000);
     await initAnnotations(page);
-    await caption(page, "The QR label in the sidebar shows your chosen identifier — download or print it directly from here");
+    // Highlight the Shelf QR Code dropdown which shows the ID type
+    await highlight(page, "text:Shelf QR Code", { spotlight: true, padding: 8 });
+    await callout(page, "text:Shelf QR Code", "This label shows the identifier you chose in Settings — QR Code ID or SAM ID", { label: "Your Label", side: "left" });
+    await caption(page, "The QR label on the asset sidebar reflects your QR Code Display setting — download or print from here");
     const shot2 = await screenshot(page, join(tmpDir, "asset-label-2.png"));
     await clearAll(page);
     await ctx.close();
@@ -77,9 +83,14 @@ async function main() {
       await navigateTo(cp, "/assets");
       const href = await cp.evaluate(() => document.querySelector('table a[href^="/assets/"]')?.getAttribute("href"));
       if (href) await navigateTo(cp, href);
+      await cp.waitForTimeout(1500);
+      // Scroll to show the QR label clearly
+      await cp.evaluate(() => window.scrollTo({ top: 300, behavior: 'smooth' }));
+      await cp.waitForTimeout(1500);
       await initAnnotations(cp);
-      await caption(cp, "The QR label in the right sidebar reflects your chosen display setting — download or print it here");
-      await cp.waitForTimeout(3500);
+      await highlight(cp, "text:Shelf QR Code", { spotlight: true, padding: 8 });
+      await caption(cp, "The label shows your chosen ID — scroll down to see the full QR code with the identifier beneath it");
+      await cp.waitForTimeout(4000);
       await clearAll(cp);
     });
 

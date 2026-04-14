@@ -31,25 +31,16 @@ async function main() {
     const shot1 = await screenshot(page, join(tmpDir, "sublocations-1.png"));
     await clearAll(page);
 
-    // Shot 2: Click into a location that has children to show detail
-    console.log("📸 Capturing location detail with children...");
-    // Find a location with child count > 0 — Studio B has 2 children from recon
-    const locHref = await page.evaluate(() => {
-      const rows = Array.from(document.querySelectorAll('table tbody tr'));
-      for (const row of rows) {
-        const childCell = row.querySelector('td:nth-child(5)');
-        if (childCell && parseInt(childCell.textContent) > 0) {
-          const link = row.querySelector('a[href*="/locations/"]');
-          return link ? link.getAttribute('href') : null;
-        }
-      }
-      return null;
-    });
-    if (locHref) {
-      await navigateTo(page, locHref);
+    // Shot 2: Hover on a parent location pill to show the popover with children
+    console.log("📸 Capturing parent location popover...");
+    // Find a parent location pill (like "Meander 901" or "Studio A") and hover it
+    const parentPill = page.locator('table td a[href*="/locations/"]').first();
+    if (await parentPill.count() > 0) {
+      await parentPill.hover();
+      await page.waitForTimeout(1500);
     }
     await initAnnotations(page);
-    await caption(page, "Location detail — see all assets at this location and its child locations");
+    await caption(page, "Hover on a parent location to see its children — the hierarchy is visible at a glance");
     const shot2 = await screenshot(page, join(tmpDir, "sublocations-2.png"));
     await clearAll(page);
     await ctx.close();
@@ -66,13 +57,14 @@ async function main() {
       await cp.waitForTimeout(3500);
       await clearAll(cp);
 
-      // Scroll to show all locations
-      await cp.evaluate(async () => {
-        await new Promise(r => { window.scrollTo({ top: 300, behavior: 'smooth' }); setTimeout(r, 1200); });
-        await new Promise(r => { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(r, 1000); });
-      });
+      // Hover on a parent location pill to show popover
+      const pill = cp.locator('table td a[href*="/locations/"]').first();
+      if (await pill.count() > 0) {
+        await pill.hover();
+        await cp.waitForTimeout(2000);
+      }
       await initAnnotations(cp);
-      await caption(cp, "Studio B → Gear Room, Audio Booth. Studio A → Post-Production Suite, Control Room.");
+      await caption(cp, "Hover on a parent location to see its children — Studio B → Gear Room, Audio Booth");
       await cp.waitForTimeout(4000);
       await clearAll(cp);
     });
