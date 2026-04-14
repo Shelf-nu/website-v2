@@ -1,7 +1,7 @@
 "use client";
 
 import createGlobe from "cobe";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMotionValue, useSpring } from "framer-motion";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,23 @@ interface GlobeProps {
     config?: GlobeConfig;
 }
 
+/**
+ * Interactive rotating globe (cobe + WebGL) with two performance gates so
+ * it doesn't block the main thread on pages where it's off-screen:
+ *
+ *   1. IntersectionObserver — cobe only initializes when the canvas is
+ *      within 200px of the viewport. On the homepage the globe lives in
+ *      ScaleBlock below the fold, so during initial load + hydration it
+ *      never starts animating. Previously the cobe render loop fired
+ *      on every rAF from mount, contributing ~39s of TBT on slow CI
+ *      hardware (measured in docs/perf-audit/baseline-2026-04-10.md).
+ *
+ *   2. prefers-reduced-motion — when set, auto-rotation is disabled. The
+ *      globe still renders (interactable via drag) but doesn't animate
+ *      continuously. Honors OS-level accessibility preference.
+ */
 export function Globe({ className, config }: GlobeProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const pointerInteracting = useRef<number | null>(null);
     const pointerInteractionMovement = useRef(0);
@@ -37,7 +53,61 @@ export function Globe({ className, config }: GlobeProps) {
     const { resolvedTheme } = useTheme();
     const isDark = resolvedTheme === "dark";
 
+    const [isVisible, setIsVisible] = useState(false);
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+    // Honor OS-level reduced-motion preference. Matches the MotionConfig
+    // reducedMotion="user" wiring in src/app/layout.tsx for framer-motion.
     useEffect(() => {
+        if (typeof window === "undefined") return;
+        const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+        setPrefersReducedMotion(mq.matches);
+        const onChange = () => setPrefersReducedMotion(mq.matches);
+
+        // MediaQueryList.addEventListener is Safari 14+ (Sept 2020). Older
+        // Safari versions expose the deprecated addListener/removeListener
+        // API. Falling back keeps Safari 13 and earlier from throwing on
+        // mount and breaking the whole Globe component — which matters
+        // specifically for this codebase because our Safari-first audit
+        // explicitly targets Safari users.
+        if (typeof mq.addEventListener === "function") {
+            mq.addEventListener("change", onChange);
+            return () => mq.removeEventListener("change", onChange);
+        }
+        // Legacy Safari <14 path — addListener/removeListener are deprecated
+        // but still present on pre-14 MediaQueryList implementations.
+        mq.addListener(onChange);
+        return () => mq.removeListener(onChange);
+    }, []);
+
+    // Only animate when the canvas is (close to) visible. 200px rootMargin
+    // so the globe is already rendering by the time the user scrolls to it
+    // — avoids a "pop in" without paying the TBT cost when it's offscreen.
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el || typeof IntersectionObserver === "undefined") {
+            setIsVisible(true); // Degrade gracefully on very old browsers
+            return;
+        }
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    setIsVisible(entry.isIntersecting);
+                }
+            },
+            { rootMargin: "200px" },
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        // Gate 1: don't start the cobe render loop until the globe is
+        // actually about to be visible. This is the big TBT win for pages
+        // where the globe lives below the fold (homepage ScaleBlock).
+        if (!isVisible) return;
+        if (!canvasRef.current) return;
+
         let phi = 0;
         let width = 0;
 
@@ -75,9 +145,10 @@ export function Globe({ className, config }: GlobeProps) {
                 { location: [-33.8688, 151.2093] as [number, number], size: 0.05 },
             ],
             onRender: (state: Record<string, unknown>) => {
-                // Interactive rotation
-                if (!pointerInteracting.current) {
-                    phi += 0.003; // Auto-rotate
+                // Gate 2: only auto-rotate when the user hasn't opted out
+                // of motion. Manual drag interaction still works either way.
+                if (!prefersReducedMotion && !pointerInteracting.current) {
+                    phi += 0.003;
                 }
                 state.phi = phi + springR.get();
                 state.width = width * 2;
@@ -85,8 +156,6 @@ export function Globe({ className, config }: GlobeProps) {
             },
             ...config,
         };
-
-        if (!canvasRef.current) return;
 
         const globe = createGlobe(canvasRef.current, globeConfig);
 
@@ -100,10 +169,11 @@ export function Globe({ className, config }: GlobeProps) {
             window.removeEventListener('resize', onResize);
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- springR is a stable MotionValue ref, read imperatively in onRender
-    }, [config, isDark]);
+    }, [config, isDark, isVisible, prefersReducedMotion]);
 
     return (
         <div
+            ref={containerRef}
             className={cn(
                 "relative flex h-full w-full items-center justify-center overflow-hidden",
                 className
@@ -144,4 +214,3 @@ export function Globe({ className, config }: GlobeProps) {
         </div>
     );
 }
-
