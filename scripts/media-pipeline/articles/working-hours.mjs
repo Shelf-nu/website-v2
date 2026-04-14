@@ -14,19 +14,19 @@ const BUCKET_PREFIX = "knowledgebase";
 /** Scroll to Working hours heading on the bookings settings page */
 async function scrollToWorkingHours(page) {
   const wh = page.locator('h3:has-text("Working hours")').first();
-  if (await wh.count() > 0) {
-    await wh.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(300);
-    await page.evaluate(() => window.scrollBy(0, -80));
-    await page.waitForTimeout(500);
-  }
+  if (await wh.count() === 0) throw new Error("Working hours heading not found on bookings settings page");
+  await wh.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(300);
+  await page.evaluate(() => window.scrollBy(0, -80));
+  await page.waitForTimeout(500);
 }
 
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-working-hours-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -81,6 +81,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/working-hours-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/working-hours-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

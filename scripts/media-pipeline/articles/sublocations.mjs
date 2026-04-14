@@ -14,8 +14,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-sublocations-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -35,10 +36,9 @@ async function main() {
     console.log("📸 Capturing parent location popover...");
     // Find a parent location pill (like "Meander 901" or "Studio A") and hover it
     const parentPill = page.locator('table td a[href*="/locations/"]').first();
-    if (await parentPill.count() > 0) {
-      await parentPill.hover();
-      await page.waitForTimeout(1500);
-    }
+    if (await parentPill.count() === 0) throw new Error("No location links found in locations table");
+    await parentPill.hover();
+    await page.waitForTimeout(1500);
     await initAnnotations(page);
     await caption(page, "Hover on a parent location to see its children — the hierarchy is visible at a glance");
     const shot2 = await screenshot(page, join(tmpDir, "sublocations-2.png"));
@@ -59,10 +59,9 @@ async function main() {
 
       // Hover on a parent location pill to show popover
       const pill = cp.locator('table td a[href*="/locations/"]').first();
-      if (await pill.count() > 0) {
-        await pill.hover();
-        await cp.waitForTimeout(2000);
-      }
+      if (await pill.count() === 0) throw new Error("No location links found in locations table (video clip)");
+      await pill.hover();
+      await cp.waitForTimeout(2000);
       await initAnnotations(cp);
       await caption(cp, "Hover on a parent location to see its children — Studio B → Gear Room, Audio Booth");
       await cp.waitForTimeout(4000);
@@ -79,6 +78,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/sublocations-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/sublocations-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

@@ -14,8 +14,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-reminders-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -37,10 +38,9 @@ async function main() {
     await navigateTo(page, assetHref);
     // Open the Actions dropdown
     const actionsBtn = page.locator('button:has-text("Actions")').first();
-    if (await actionsBtn.count() > 0) {
-      await actionsBtn.click();
-      await page.waitForTimeout(1500);
-    }
+    if (await actionsBtn.count() === 0) throw new Error("Actions button not found on asset detail page");
+    await actionsBtn.click();
+    await page.waitForTimeout(1500);
     await initAnnotations(page);
     await highlight(page, "text:Set reminder", { padding: 6 });
     await callout(page, "text:Set reminder", "Set a reminder for this asset — choose a date, message, and which team members to notify", { label: "Set Reminder", side: "left" });
@@ -62,13 +62,13 @@ async function main() {
       await chapterCard(cp, "Set a Reminder", "From the Actions Dropdown on Any Asset Page", 2500);
       await navigateTo(cp, "/assets");
       const href = await cp.evaluate(() => document.querySelector('table a[href^="/assets/"]')?.getAttribute("href"));
-      if (href) await navigateTo(cp, href);
+      if (!href) throw new Error("No assets found for reminders video clip");
+      await navigateTo(cp, href);
       await cp.waitForTimeout(1000);
       const ab = cp.locator('button:has-text("Actions")').first();
-      if (await ab.count() > 0) {
-        await ab.click();
-        await cp.waitForTimeout(1500);
-      }
+      if (await ab.count() === 0) throw new Error("Actions button not found on asset detail page (video clip)");
+      await ab.click();
+      await cp.waitForTimeout(1500);
       await initAnnotations(cp);
       await highlight(cp, "text:Set reminder", { padding: 6 });
       await callout(cp, "text:Set reminder", "Create a scheduled reminder", { label: "Reminder", side: "left" });
@@ -87,6 +87,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/reminders-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/reminders-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

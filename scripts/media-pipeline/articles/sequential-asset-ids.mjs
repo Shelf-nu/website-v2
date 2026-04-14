@@ -14,8 +14,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-sequential-ids-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -82,6 +83,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/sequential-ids-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/sequential-ids-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

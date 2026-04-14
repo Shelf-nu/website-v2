@@ -20,8 +20,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-enable-advanced-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const context = await createContext(browser);
     const page = await context.newPage();
     page.setDefaultTimeout(60000);
@@ -87,7 +88,7 @@ async function main() {
     urls.webm = await upload(webm, `${BUCKET_PREFIX}/enable-advanced-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
   } finally {
-    await browser.close();
+    if (browser) await browser.close();
     await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
   }
 }

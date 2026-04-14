@@ -20,8 +20,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-advanced-index-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const context = await createContext(browser);
     const page = await context.newPage();
     page.setDefaultTimeout(60000);
@@ -44,10 +45,9 @@ async function main() {
     // Shot 2: Filter panel open with column selector
     console.log("📸 Capturing filter panel...");
     const filterBtn = await page.locator('button:has-text("Filter")').first();
-    if (await filterBtn.count() > 0) {
-      await filterBtn.click();
-      await page.waitForTimeout(2000);
-    }
+    if (await filterBtn.count() === 0) throw new Error("Filter button not found on advanced index page");
+    await filterBtn.click();
+    await page.waitForTimeout(2000);
     await initAnnotations(page);
     await callout(page, "text:Add filter", "Add filters by any column — Category, Location, Status, Tags, Custom Fields", {
       label: "Filters",
@@ -77,10 +77,9 @@ async function main() {
       await navigateTo(clipPage, "/assets?mode=advanced");
       await clipPage.waitForTimeout(1000);
       const fb = await clipPage.locator('button:has-text("Filter")').first();
-      if (await fb.count() > 0) {
-        await fb.click();
-        await clipPage.waitForTimeout(2000);
-      }
+      if (await fb.count() === 0) throw new Error("Filter button not found on advanced index page (video clip)");
+      await fb.click();
+      await clipPage.waitForTimeout(2000);
       await initAnnotations(clipPage);
       await caption(clipPage, "Add filters by any column — stack Category + Location + Status for precise results");
       await clipPage.waitForTimeout(3500);
@@ -109,7 +108,7 @@ async function main() {
     urls.webm = await upload(webm, `${BUCKET_PREFIX}/advanced-index-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
   } finally {
-    await browser.close();
+    if (browser) await browser.close();
     await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
   }
 }

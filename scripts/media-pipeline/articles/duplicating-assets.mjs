@@ -14,8 +14,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-duplicate-asset-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -39,10 +40,9 @@ async function main() {
     // Shot 2: Actions dropdown open with Duplicate highlighted
     console.log("📸 Capturing Actions dropdown with Duplicate...");
     const actionsBtn = page.locator('button:has-text("Actions")').first();
-    if (await actionsBtn.count() > 0) {
-      await actionsBtn.click();
-      await page.waitForTimeout(1500);
-    }
+    if (await actionsBtn.count() === 0) throw new Error("Actions button not found on asset detail page");
+    await actionsBtn.click();
+    await page.waitForTimeout(1500);
     await initAnnotations(page);
     await highlight(page, "text:Duplicate", { spotlight: true, padding: 6 });
     await callout(page, "text:Duplicate", "Creates copies of this asset — choose how many copies to make", { label: "Duplicate", side: "left" });
@@ -67,10 +67,9 @@ async function main() {
       await navigateTo(cp, assetHref);
       await cp.waitForTimeout(1000);
       const ab = cp.locator('button:has-text("Actions")').first();
-      if (await ab.count() > 0) {
-        await ab.click();
-        await cp.waitForTimeout(1500);
-      }
+      if (await ab.count() === 0) throw new Error("Actions button not found on asset detail page (video clip)");
+      await ab.click();
+      await cp.waitForTimeout(1500);
       await initAnnotations(cp);
       await highlight(cp, "text:Duplicate", { spotlight: true, padding: 6 });
       await callout(cp, "text:Duplicate", "Creates copies with a timestamped suffix", { label: "Duplicate", side: "left" });
@@ -89,6 +88,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/duplicate-asset-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/duplicate-asset-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

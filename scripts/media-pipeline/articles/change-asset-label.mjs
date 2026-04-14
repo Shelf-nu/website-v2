@@ -14,8 +14,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-asset-label-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -26,12 +27,11 @@ async function main() {
     await navigateTo(page, "/settings/general");
     // Scroll to QR Code Display
     const qrSection = page.locator('text=QR Code Display').first();
-    if (await qrSection.count() > 0) {
-      await qrSection.scrollIntoViewIfNeeded();
-      await page.waitForTimeout(300);
-      await page.evaluate(() => window.scrollBy(0, -80));
-      await page.waitForTimeout(500);
-    }
+    if (await qrSection.count() === 0) throw new Error("QR Code Display section not found on settings page");
+    await qrSection.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+    await page.evaluate(() => window.scrollBy(0, -80));
+    await page.waitForTimeout(500);
     await initAnnotations(page);
     await highlight(page, "text:QR Code Display", { spotlight: true, padding: 8 });
     await callout(page, "text:QR Code Display", "Choose what ID appears on your QR labels — the QR Code ID or the Sequential Asset Number (SAM ID)", { label: "Label Config", side: "right" });
@@ -66,12 +66,11 @@ async function main() {
       await chapterCard(cp, "Asset Labels", "Choose What Appears on Your QR Codes", 3000);
       await navigateTo(cp, "/settings/general");
       const qr = cp.locator('text=QR Code Display').first();
-      if (await qr.count() > 0) {
-        await qr.scrollIntoViewIfNeeded();
-        await cp.waitForTimeout(300);
-        await cp.evaluate(() => window.scrollBy(0, -80));
-        await cp.waitForTimeout(500);
-      }
+      if (await qr.count() === 0) throw new Error("QR Code Display section not found on settings page (video clip)");
+      await qr.scrollIntoViewIfNeeded();
+      await cp.waitForTimeout(300);
+      await cp.evaluate(() => window.scrollBy(0, -80));
+      await cp.waitForTimeout(500);
       await initAnnotations(cp);
       await highlight(cp, "text:QR Code Display", { spotlight: true, padding: 8 });
       await callout(cp, "text:QR Code Display", "Switch between QR Code ID and SAM ID", { label: "Config", side: "right" });
@@ -82,7 +81,8 @@ async function main() {
       await chapterCard(cp, "On the Asset", "See Your Label in the Sidebar", 2500);
       await navigateTo(cp, "/assets");
       const href = await cp.evaluate(() => document.querySelector('table a[href^="/assets/"]')?.getAttribute("href"));
-      if (href) await navigateTo(cp, href);
+      if (!href) throw new Error("No assets found for asset label video clip");
+      await navigateTo(cp, href);
       await cp.waitForTimeout(1500);
       // Scroll to show the QR label clearly
       await cp.evaluate(() => window.scrollTo({ top: 300, behavior: 'smooth' }));
@@ -104,6 +104,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/asset-label-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/asset-label-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

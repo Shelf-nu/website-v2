@@ -14,8 +14,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-changing-roles-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -33,12 +34,18 @@ async function main() {
 
     // Shot 2: Click the ⋮ menu on a non-owner user to show action options
     console.log("📸 Capturing actions menu...");
-    // Find the three-dots button on a non-owner user (Nikolay or Carlos)
-    const dotsBtn = await page.locator('table tbody tr:nth-child(2) button, table tbody tr:nth-child(2) [aria-haspopup]').last();
-    if (await dotsBtn.count() > 0) {
-      await dotsBtn.click();
-      await page.waitForTimeout(1500);
-    }
+    // Find the actions button on a non-Owner user row
+    const dotsBtnClicked = await page.evaluate(() => {
+      const rows = Array.from(document.querySelectorAll('table tbody tr'));
+      for (const row of rows) {
+        if (row.textContent.includes('Owner')) continue;
+        const btn = row.querySelector('button, [aria-haspopup]');
+        if (btn) { btn.click(); return true; }
+      }
+      return false;
+    });
+    if (!dotsBtnClicked) throw new Error("No non-Owner user row with actions button found");
+    await page.waitForTimeout(1500);
     await initAnnotations(page);
     await caption(page, "Click the ⋮ menu to see role management options — Revoke access changes the user to a Non-Registered Member");
     const shot2 = await screenshot(page, join(tmpDir, "changing-roles-2.png"));
@@ -59,12 +66,18 @@ async function main() {
       await chapterCard(cp, "Change a Role", "Use the Actions Menu", 2500);
       await navigateTo(cp, "/settings/team/users");
       await cp.waitForTimeout(1500);
-      // Click the dots menu
-      const dots = await cp.locator('table tbody tr:nth-child(2) button, table tbody tr:nth-child(2) [aria-haspopup]').last();
-      if (await dots.count() > 0) {
-        await dots.click();
-        await cp.waitForTimeout(1500);
-      }
+      // Click the dots menu on a non-Owner user row
+      const dotsClicked = await cp.evaluate(() => {
+        const rows = Array.from(document.querySelectorAll('table tbody tr'));
+        for (const row of rows) {
+          if (row.textContent.includes('Owner')) continue;
+          const btn = row.querySelector('button, [aria-haspopup]');
+          if (btn) { btn.click(); return true; }
+        }
+        return false;
+      });
+      if (!dotsClicked) throw new Error("No non-Owner user row with actions button found (video clip)");
+      await cp.waitForTimeout(1500);
       await initAnnotations(cp);
       await caption(cp, "The ⋮ menu lets you revoke access — the user becomes a Non-Registered Member, then re-invite with a new role");
       await cp.waitForTimeout(4000);
@@ -81,6 +94,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/changing-roles-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/changing-roles-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });

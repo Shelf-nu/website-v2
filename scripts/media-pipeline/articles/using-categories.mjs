@@ -13,8 +13,9 @@ const BUCKET_PREFIX = "knowledgebase";
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-categories-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const ctx = await createContext(browser);
     const page = await ctx.newPage();
     page.setDefaultTimeout(60000);
@@ -36,10 +37,9 @@ async function main() {
       const editLinks = Array.from(document.querySelectorAll('a[href*="/categories/"]')).filter(a => a.href.includes('edit'));
       return editLinks.length > 0 ? editLinks[0].href : null;
     });
-    if (editHref) {
-      await page.goto(editHref, { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(3000);
-    }
+    if (!editHref) throw new Error("No editable category found on categories page");
+    await page.goto(editHref, { waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(3000);
     await initAnnotations(page);
     await caption(page, "Edit a category — change name, description, and color. Click Save to update all assets using this category.");
     const shot2 = await screenshot(page, join(tmpDir, "categories-2.png"));
@@ -79,6 +79,6 @@ async function main() {
     urls.c = await upload(mp4, `${BUCKET_PREFIX}/categories-flow.mp4`);
     urls.d = await upload(webm, `${BUCKET_PREFIX}/categories-flow.webm`);
     Object.values(urls).forEach(u => console.log(`  ✅ ${u}`));
-  } finally { await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
+  } finally { if (browser) await browser.close(); await rm(tmpDir, { recursive: true, force: true }).catch(() => {}); }
 }
 main().catch((err) => { console.error("❌ Failed:", err); process.exit(1); });
