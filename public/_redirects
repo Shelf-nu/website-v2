@@ -126,6 +126,7 @@
 
 # --- Calculator pages → dedicated tool pages ---
 /depreciation-calculator /tools/equipment-depreciation-calculator 301
+/asset-depreciation-calculator /tools/equipment-depreciation-calculator 301
 /equipment-depreciation-calculator /tools/equipment-depreciation-calculator 301
 /fixed-asset-depreciation-calculator /tools/equipment-depreciation-calculator 301
 /macrs-depreciation-calculator /tools/macrs-depreciation-calculator 301
