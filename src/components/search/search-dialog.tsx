@@ -68,6 +68,10 @@ export function SearchDialog() {
     const pagefindRef = useRef<PagefindInstance | null>(null);
     const resultRefs = useRef<(HTMLAnchorElement | null)[]>([]);
     const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+    // Tracks whether the current pointer press started on the backdrop.
+    // Used to gate the Safari-synthesized-click close issue (see backdrop
+    // handler comments below).
+    const backdropPressActive = useRef(false);
 
     /* ---------- Lazy-load Pagefind on first open ---------- */
     const loadPagefind = useCallback(async () => {
@@ -222,10 +226,34 @@ export function SearchDialog() {
 
     return (
         <>
-            {/* Backdrop */}
+            {/* Backdrop — close on tap, but only when the press AND release
+                both happen on the backdrop itself.
+
+                Safari bug we saw: clicking the search button fires onClick
+                on the button → setOpen(true) → React mounts the backdrop
+                under the cursor → Safari then synthesizes a click on the
+                newly-mounted top element (the backdrop) when the user
+                releases the mouse → backdrop.onClick fires → setOpen(false)
+                → the dialog appears, flashes, and disappears. Other
+                browsers don't fire that synthesized click; Safari does.
+
+                Tracking pointerdown→pointerup pair gates the close behind
+                a real click that *started* on the backdrop. A click that
+                originated on the search button has its pointerdown on the
+                button (not backdrop), so the close handler is correctly
+                ignored. Tap-to-dismiss on the backdrop still works because
+                that genuinely starts and ends on the backdrop. */}
             <div
                 className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-150"
-                onClick={() => setOpen(false)}
+                onPointerDown={(e) => {
+                    backdropPressActive.current = e.target === e.currentTarget;
+                }}
+                onPointerUp={(e) => {
+                    if (backdropPressActive.current && e.target === e.currentTarget) {
+                        setOpen(false);
+                    }
+                    backdropPressActive.current = false;
+                }}
                 aria-hidden
             />
 
