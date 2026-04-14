@@ -65,7 +65,11 @@ async function main() {
       await clearAll(clipPage);
 
       await chapterCard(clipPage, "Timeline", "Asset Booking Calendar", 2500);
-      await navigateTo(clipPage, "/assets?view=availability");
+      // Click the actual toggle instead of URL navigation
+      await navigateTo(clipPage, "/assets");
+      await clipPage.waitForTimeout(1000);
+      const toggle = await clipPage.$('[aria-label="Switch to availability view"]');
+      if (toggle) await toggle.click();
       await clipPage.waitForTimeout(2000);
       await initAnnotations(clipPage);
       await caption(clipPage, "Each row is an asset — booking blocks appear on the timeline. Toggle Month, Week, or Day.");

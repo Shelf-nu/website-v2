@@ -28,11 +28,15 @@ export async function recordClip(browser, actionFn) {
 
   // Step 1: Login in a throwaway context and capture cookies
   const authContext = await createContext(browser);
-  const authPage = await authContext.newPage();
-  authPage.setDefaultTimeout(60000);
-  await loginToShelf(authPage);
-  const storageState = await authContext.storageState();
-  await authContext.close();
+  let storageState;
+  try {
+    const authPage = await authContext.newPage();
+    authPage.setDefaultTimeout(60000);
+    await loginToShelf(authPage);
+    storageState = await authContext.storageState();
+  } finally {
+    await authContext.close();
+  }
 
   // Step 2: Create recording context with auth cookies pre-loaded (no login on camera)
   const context = await createContext(browser, {
