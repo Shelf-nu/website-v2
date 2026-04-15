@@ -28,8 +28,7 @@ const KEEP_TMP = !!process.env.KEEP_TMP;
 
 // IDs captured during recon (2026-04-15). If demo data is reshuffled,
 // re-run recon and update these.
-const AUDIT_PENDING_ID = "cmnir9n060155qbi0wfh3gtdu"; // Studio B Audit
-const AUDIT_COMPLETED_ID = "cmmdognv10051qbibpsq5vbhu"; // Proof
+const AUDIT_ID = "cmnir9n060155qbi0wfh3gtdu"; // Studio B (Equipment Check) — single-audit narrative
 const ASSET_ID = "clxegs5z300592gmoqiem28qy"; // Nikon D3200
 
 /** Click a button by its exact visible text, best-effort. */
@@ -46,22 +45,18 @@ async function clickButtonText(page, text) {
 
 async function captureScreenshots(page, tmpDir, outputs) {
   const shots = [
-    // --- audits.mdx ---
+    // --- audits.mdx (all shots use the same audit for a coherent narrative) ---
     {
       name: "audits-list",
       go: async () => navigateTo(page, "/audits"),
     },
     {
-      name: "audits-overview-pending",
-      go: async () => navigateTo(page, `/audits/${AUDIT_PENDING_ID}/overview`),
-    },
-    {
-      name: "audits-overview-completed",
-      go: async () => navigateTo(page, `/audits/${AUDIT_COMPLETED_ID}/overview`),
+      name: "audits-overview",
+      go: async () => navigateTo(page, `/audits/${AUDIT_ID}/overview`),
     },
     {
       name: "audits-scan",
-      go: async () => navigateTo(page, `/audits/${AUDIT_COMPLETED_ID}/scan`),
+      go: async () => navigateTo(page, `/audits/${AUDIT_ID}/scan`),
     },
 
     // --- asset-search.mdx ---
@@ -138,43 +133,50 @@ async function captureScreenshots(page, tmpDir, outputs) {
 
 async function recordAuditsVideo(browser) {
   return recordClip(browser, async (cp) => {
+    // List
     await navigateTo(cp, "/audits");
     await cp.waitForTimeout(3500);
-    await navigateTo(cp, `/audits/${AUDIT_PENDING_ID}/overview`);
+    // Open the Studio B audit
+    await navigateTo(cp, `/audits/${AUDIT_ID}/overview`);
     await cp.waitForTimeout(3500);
-    // Scroll to asset list
+    // Scroll down to reveal the 19-asset list
     await cp.evaluate(() => window.scrollTo({ top: 500, behavior: "smooth" }));
     await cp.waitForTimeout(2500);
     await cp.evaluate(() => window.scrollTo({ top: 0, behavior: "smooth" }));
     await cp.waitForTimeout(1500);
-    // Jump to a completed audit to show the other end of the lifecycle
-    await navigateTo(cp, `/audits/${AUDIT_COMPLETED_ID}/overview`);
+    // Hop into the dedicated scan page
+    await navigateTo(cp, `/audits/${AUDIT_ID}/scan`);
     await cp.waitForTimeout(4000);
   });
 }
 
 async function recordSearchVideo(browser) {
+  // Showcases the global Quick Find command palette (⌘K) — searches across
+  // assets, audits, kits, bookings, locations, and team members at once.
   return recordClip(browser, async (cp) => {
     await navigateTo(cp, "/assets");
-    await cp.waitForTimeout(2000);
-    // Type into the search input character-by-character to show live filtering.
-    // The input submits on change — each keystroke refines results.
-    const input = await cp.$('input[name="s"]');
-    if (!input) throw new Error("Search input not found");
-    await input.click();
-    await cp.waitForTimeout(500);
-    for (const ch of "camera") {
-      await cp.keyboard.type(ch, { delay: 180 });
-    }
     await cp.waitForTimeout(2500);
-    // Open Saved Filters presets
+    // Open Quick Find via keyboard shortcut (the way users actually hit it)
+    await cp.keyboard.press("Meta+k");
+    await cp.waitForTimeout(1500);
+    // Ensure focus is on the Quick Find input before typing
     await cp.evaluate(() => {
-      const btn = Array.from(document.querySelectorAll("button")).find(
-        (b) => (b.innerText || "").trim().startsWith("Saved Filters")
+      const input = document.querySelector(
+        'input[placeholder*="Search assets, audits"]'
       );
-      btn?.click();
+      input?.focus();
     });
-    await cp.waitForTimeout(3000);
+    await cp.waitForTimeout(400);
+    for (const ch of "sony") {
+      await cp.keyboard.type(ch, { delay: 200 });
+    }
+    // Wait for async results (loading spinner → asset hits)
+    await cp.waitForTimeout(3500);
+    // Highlight arrow-key navigation through the results
+    await cp.keyboard.press("ArrowDown");
+    await cp.waitForTimeout(700);
+    await cp.keyboard.press("ArrowDown");
+    await cp.waitForTimeout(1500);
   });
 }
 
