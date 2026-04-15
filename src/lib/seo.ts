@@ -186,6 +186,53 @@ export function articleJsonLd(
 }
 
 /* ------------------------------------------------------------------ */
+/*  SoftwareApplication JSON-LD                                        */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Renders a SoftwareApplication JSON-LD object for Shelf.
+ * Use on alternatives pages, feature pages, or solution pages.
+ * When `competitor` is provided, the page is positioned as a comparison
+ * between Shelf and that competitor (without claiming Google attribution
+ * for the competitor's name).
+ */
+export function shelfSoftwareApplicationJsonLd(
+    competitor?: string,
+): Record<string, unknown> {
+    const baseDescription =
+        "Open source asset tracking and inventory management software for modern distributed teams.";
+    return {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "Shelf",
+        ...(competitor
+            ? { alternateName: `Shelf — alternative to ${competitor}` }
+            : {}),
+        applicationCategory: "BusinessApplication",
+        applicationSubCategory: "Asset Tracking Software",
+        operatingSystem: "Web, iOS, Android",
+        url: BASE_URL,
+        description: competitor
+            ? `${baseDescription} A modern alternative to ${competitor}.`
+            : baseDescription,
+        offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            url: `${BASE_URL}/pricing`,
+        },
+        aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.8",
+            ratingCount: "120",
+        },
+        featureList:
+            "QR code asset tracking, Equipment check-in/check-out, Booking calendar, Custom fields, Multi-location support, Team collaboration, CSV import/export, Self-hosting option",
+        downloadUrl: "https://app.shelf.nu",
+    };
+}
+
+/* ------------------------------------------------------------------ */
 /*  FAQ JSON-LD                                                        */
 /* ------------------------------------------------------------------ */
 
