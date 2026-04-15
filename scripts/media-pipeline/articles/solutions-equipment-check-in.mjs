@@ -24,6 +24,7 @@ const KEEP_TMP = !!process.env.KEEP_TMP;
 // IDs captured during recon (2026-04-15). If demo data shifts, re-recon.
 const KIT_ID = "clx3baakg001qu5dlfmcgreqj"; // Basic Video Production Kit (10 assets + QR)
 const ASSET_ID = "clxegs5z300592gmoqiem28qy"; // Nikon D3200 (rich custody history)
+const AVAILABLE_ASSET_ID = "clx2zl6eo008n102kf88bfvjd"; // Tascam DR-40X — Available, so Assign custody is actionable
 
 async function clickText(page, selector, text) {
   const ok = await page.evaluate(
@@ -42,16 +43,18 @@ async function clickText(page, selector, text) {
 
 async function captureScreenshots(page, tmpDir, pngs) {
   const shots = [
-    // Hero: the QR scanner page with the action dropdown open — shows
-    // "View asset / Assign custody / Release custody / Update location",
-    // which is literally the check-in / check-out UX.
+    // Hero: the Assign-custody modal overlaid on the full asset detail
+    // page. Concrete check-out UX — "assign custody of asset", pick a
+    // team member, click Confirm. Shows the QR code + asset data in the
+    // background for context.
     {
-      name: "equipment-check-in-scanner",
+      name: "equipment-check-in-assign-custody",
       go: async () => {
-        await navigateTo(page, "/scanner");
-        const ok = await clickText(page, "button", "Action:");
-        if (!ok) throw new Error("Scanner Action dropdown button not found");
-        await page.waitForTimeout(1500);
+        await navigateTo(
+          page,
+          `/assets/${AVAILABLE_ASSET_ID}/overview/assign-custody`
+        );
+        await page.waitForTimeout(2500);
       },
     },
     // Custody activity log — Nikon D3200 activity tab shows scans + custody
