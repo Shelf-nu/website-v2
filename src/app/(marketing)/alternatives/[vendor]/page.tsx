@@ -3,7 +3,13 @@ import { getContentBySlug, getContentSlugs } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx-content";
 import { Metadata } from "next";
-import { buildContentMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import {
+    buildContentMetadata,
+    breadcrumbJsonLd,
+    shelfSoftwareApplicationJsonLd,
+    extractFaqsFromMdx,
+    faqJsonLd,
+} from "@/lib/seo";
 import { StructuredData } from "@/components/seo/structured-data";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { Frontmatter } from "@/lib/content/schema";
@@ -42,15 +48,23 @@ export default async function AlternativePage({ params }: PageProps) {
 
     const Layout = resolveLayout(frontmatter.layout);
 
-    const jsonLd = breadcrumbJsonLd([
-        { name: "Home", href: "/" },
-        { name: "Alternatives", href: "/alternatives" },
-        { name: frontmatter.title, href: `/alternatives/${vendor}` },
-    ]);
+    const competitor = frontmatter.competitor || frontmatter.title;
+    const faqs = extractFaqsFromMdx(content);
+    const schemas: Record<string, unknown>[] = [
+        breadcrumbJsonLd([
+            { name: "Home", href: "/" },
+            { name: "Alternatives", href: "/alternatives" },
+            { name: frontmatter.title, href: `/alternatives/${vendor}` },
+        ]),
+        shelfSoftwareApplicationJsonLd(competitor),
+    ];
+    if (faqs.length > 0) {
+        schemas.push(faqJsonLd(faqs));
+    }
 
     return (
         <PagefindWrapper type="Alternative" title={frontmatter.title}>
-            <StructuredData data={jsonLd} />
+            <StructuredData data={schemas} />
             {/* eslint-disable-next-line react-hooks/static-components */}
             <Layout frontmatter={frontmatter}>
                 <MDXContent source={content} />
