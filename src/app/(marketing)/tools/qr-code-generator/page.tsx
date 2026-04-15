@@ -5,16 +5,49 @@ import { ArrowRight } from 'lucide-react';
 import { QrCodeGenerator } from '@/components/tools/qr-code-generator';
 import { CTA } from '@/components/sections/cta';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
-    // ... existing metadata ...
+    title: 'Free QR Code Generator (PNG & SVG) for Asset Labels | Shelf',
+    description: 'Create professional, high-resolution QR codes directly in your browser. Export to PNG or SVG. Perfect for asset tags, inventory labels, and equipment tracking. Free, no signup.',
+    alternates: {
+        canonical: 'https://www.shelf.nu/tools/qr-code-generator',
+    },
+    openGraph: {
+        title: 'Free QR Code Generator (PNG & SVG) for Asset Labels | Shelf',
+        description: 'Create professional, high-resolution QR codes directly in your browser. Export to PNG or SVG. Perfect for asset tags, inventory labels, and equipment tracking. Free, no signup.',
+    },
 };
 
 export default function QrCodeGeneratorPage() {
-    // ... existing logic ...
+    const jsonLd = buildToolPageJsonLd({
+        name: "Shelf QR Code Generator",
+        applicationCategory: "UtilitiesApplication",
+        url: "https://www.shelf.nu/tools/qr-code-generator",
+        description:
+            "Create professional, high-resolution QR codes in PNG and SVG directly in your browser. Free, no signup.",
+        faqs: [
+            {
+                question: "PNG vs SVG: Which should I choose?",
+                answer: "Use SVG for printing (posters, labels) as it stays sharp at any size. Use PNG for digital use (websites, emails) or quick office printing.",
+            },
+            {
+                question: "What data can I encode?",
+                answer: "You can encode text, URLs, Wi-Fi credentials, or vCards. For assets, we recommend encoding a unique URL (e.g., https://shelf.nu/a/123) so scanners open the item's details immediately.",
+            },
+            {
+                question: "Need a scanner?",
+                answer: "Try our free QR Code Decoder to test your generated codes directly in the browser.",
+            },
+        ],
+    });
 
     return (
         <PagefindWrapper type="Page" title="Free QR Code Generator (PNG & SVG)" keywords="qr code generator create qr code free qr generator">
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="min-h-screen font-sans">
             {/* ... script ... */}
 

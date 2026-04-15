@@ -5,6 +5,33 @@ import { ArrowRight } from "lucide-react";
 import { SalvageValueCalculator } from "@/components/tools/salvage-value-calculator";
 import { CTA } from "@/components/sections/cta";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
+
+const jsonLd = buildToolPageJsonLd({
+    name: "Shelf Salvage Value Calculator",
+    applicationCategory: "FinanceApplication",
+    url: "https://www.shelf.nu/tools/salvage-value-calculator",
+    description:
+        "Free salvage value calculator — estimate residual value for equipment at end of useful life using industry benchmarks by category.",
+    faqs: [
+        {
+            question: "How do I estimate salvage value?",
+            answer: "Check resale markets for similar equipment at the age you plan to retire it. Factor in condition, maintenance, and market demand. Our category benchmarks provide a starting point based on industry averages.",
+        },
+        {
+            question: "Can salvage value be zero?",
+            answer: "Yes. Some assets (especially technology) may have zero or near-zero salvage value if they become obsolete. For MACRS tax depreciation, salvage value is always treated as zero.",
+        },
+        {
+            question: "What's the difference between salvage and scrap value?",
+            answer: "Salvage value is what the asset is worth if sold as a working item. Scrap value is what the raw materials are worth if the asset is dismantled. Scrap value is typically much lower.",
+        },
+        {
+            question: "Should I use these benchmarks for accounting?",
+            answer: "These benchmarks are estimates based on general industry data. For financial statements and tax filings, consult your accountant who can consider your specific equipment, usage patterns, and applicable standards.",
+        },
+    ],
+});
 
 export const metadata: Metadata = {
     title: "Free Salvage Value Calculator — Equipment Residual Value Estimator | Shelf",
@@ -22,6 +49,10 @@ export default function SalvageValueCalculatorPage() {
             title="Free Salvage Value Calculator"
             keywords="salvage value calculator residual value calculator equipment salvage value scrap value"
         >
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="min-h-screen font-sans">
                 {/* Hero with Grid Pattern */}
                 <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">

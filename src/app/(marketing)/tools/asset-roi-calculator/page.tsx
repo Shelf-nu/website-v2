@@ -5,6 +5,33 @@ import { ArrowRight } from "lucide-react";
 import { AssetRoiCalculator } from "@/components/tools/asset-roi-calculator";
 import { CTA } from "@/components/sections/cta";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
+
+const jsonLd = buildToolPageJsonLd({
+    name: "Shelf Asset Tracking ROI Calculator",
+    applicationCategory: "FinanceApplication",
+    url: "https://www.shelf.nu/tools/asset-roi-calculator",
+    description:
+        "Free asset tracking ROI calculator — estimate the true cost of poor equipment management (losses, ghost assets, duplicate purchases) and the payback of switching to Shelf.",
+    faqs: [
+        {
+            question: "Are these default rates realistic?",
+            answer: "The defaults are conservative industry benchmarks. Many organizations find their actual rates are higher once they do a proper audit. Adjust the sliders to match your situation — every assumption is transparent and editable.",
+        },
+        {
+            question: "How does the Shelf comparison work?",
+            answer: "The comparison assumes Shelf helps recover 60% of your tracking-related losses (a conservative estimate). It then subtracts the annual cost of the selected Shelf plan to show net savings, ROI, and payback period.",
+        },
+        {
+            question: "What is a ghost asset?",
+            answer: "A ghost asset is any item that appears in your records but can't be physically located. Common causes include unrecorded disposals, theft, transfers between locations without updating records, and items that broke and were discarded without being written off.",
+        },
+        {
+            question: "Can I share this analysis?",
+            answer: "Yes. All inputs are saved in the URL, so you can copy the page link to share your exact scenario. You can also use the 'Copy Summary' button to get a plain text version for emails or reports.",
+        },
+    ],
+});
 
 export const metadata: Metadata = {
     title: "Free Asset Tracking ROI Calculator — Cost of Poor Equipment Management | Shelf",
@@ -22,6 +49,10 @@ export default function AssetRoiCalculatorPage() {
             title="Asset Tracking ROI Calculator"
             keywords="asset tracking ROI calculator equipment tracking savings cost of lost equipment"
         >
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="min-h-screen font-sans">
                 {/* Hero with Grid Pattern */}
                 <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">

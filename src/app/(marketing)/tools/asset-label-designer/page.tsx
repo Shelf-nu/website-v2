@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { AssetLabelDesigner } from '@/components/tools/asset-label-designer';
 import { CTA } from '@/components/sections/cta';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
     title: 'Free Asset Label Designer & Tag Maker | Shelf',
@@ -15,8 +16,20 @@ export const metadata: Metadata = {
 };
 
 export default function AssetLabelDesignerPage() {
+    const jsonLd = buildToolPageJsonLd({
+        name: "Shelf Asset Label Designer",
+        applicationCategory: "BusinessApplication",
+        url: "https://www.shelf.nu/tools/asset-label-designer",
+        description:
+            "Create and print professional asset labels and tags with QR codes. Exports to PNG, SVG, and PDF.",
+    });
+
     return (
         <PagefindWrapper type="Page" title="Free Asset Label Designer & Tag Maker" keywords="asset label designer asset tag maker asset tags label generator create labels create tags">
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="min-h-screen font-sans">
             {/* Custom Header with Grid Pattern */}
             <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">
