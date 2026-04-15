@@ -513,9 +513,9 @@ export function Navbar() {
                                                                 title="Free Tools"
                                                                 icon={Wrench}
                                                             >
-                                                                QR Code Decoder
-                                                                and other
-                                                                utilities.
+                                                                Barcode Scanner,
+                                                                calculators and
+                                                                more.
                                                             </ListItem>
                                                         </ul>
                                                     </div>
