@@ -15,8 +15,31 @@ export const metadata: Metadata = {
 };
 
 export default function AssetLabelDesignerPage() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "Shelf Asset Label Designer",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Any",
+                "url": "https://www.shelf.nu/tools/asset-label-designer",
+                "description": "Create and print professional asset labels and tags with QR codes. Exports to PNG, SVG, and PDF.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                }
+            }
+        ]
+    };
+
     return (
         <PagefindWrapper type="Page" title="Free Asset Label Designer & Tag Maker" keywords="asset label designer asset tag maker asset tags label generator create labels create tags">
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="min-h-screen font-sans">
             {/* Custom Header with Grid Pattern */}
             <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">

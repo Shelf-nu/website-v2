@@ -6,6 +6,62 @@ import { EquipmentDepreciationCalculator } from "@/components/tools/equipment-de
 import { CTA } from "@/components/sections/cta";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "SoftwareApplication",
+            "name": "Shelf Equipment Depreciation Calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "url": "https://www.shelf.nu/tools/equipment-depreciation-calculator",
+            "description": "Free equipment depreciation calculator — compare 4 methods (straight-line, declining balance, double declining, sum-of-years-digits) with full schedules.",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Which depreciation method should I use?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It depends on how your asset loses value. Straight-line works for most cases. Use an accelerated method (declining balance or double declining) for assets that lose value quickly in early years, like technology or vehicles. Toggle 'Compare all methods' above to see the difference."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is salvage value?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Salvage value (also called residual value) is what you expect the equipment to be worth at the end of its useful life. It could be the resale price, scrap value, or trade-in amount. Total depreciation equals purchase price minus salvage value."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is this calculator for tax purposes?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "This calculator uses standard accounting depreciation methods. For U.S. tax depreciation, the IRS requires MACRS (Modified Accelerated Cost Recovery System) with specific property classes and recovery periods. Always consult a tax professional for filing decisions."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do I determine useful life?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Useful life is how long you expect to use the equipment before replacing it. Common estimates: computers 3-5 years, vehicles 5-7 years, furniture 7-10 years, heavy equipment 10-15 years. The IRS publishes standard recovery periods for tax purposes."
+                    }
+                }
+            ]
+        }
+    ]
+};
+
 export const metadata: Metadata = {
     title: "Free Equipment Depreciation Calculator — 4 Methods Compared | Shelf",
     description:
@@ -22,6 +78,10 @@ export default function EquipmentDepreciationCalculatorPage() {
             title="Free Equipment Depreciation Calculator"
             keywords="equipment depreciation calculator straight line depreciation declining balance depreciation schedule"
         >
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="min-h-screen font-sans">
                 {/* Hero with Grid Pattern */}
                 <section className="relative overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">

@@ -39,6 +39,26 @@ export function JsonLd() {
                     "ratingValue": "4.8",
                     "ratingCount": "120"
                 },
+                "interactionStatistic": [
+                    {
+                        "@type": "InteractionCounter",
+                        "interactionType": "https://schema.org/LikeAction",
+                        "userInteractionCount": 2562,
+                        "name": "GitHub stars"
+                    },
+                    {
+                        "@type": "InteractionCounter",
+                        "interactionType": "https://schema.org/FollowAction",
+                        "userInteractionCount": 286,
+                        "name": "GitHub forks"
+                    },
+                    {
+                        "@type": "InteractionCounter",
+                        "interactionType": "https://schema.org/RegisterAction",
+                        "userInteractionCount": 15910,
+                        "name": "Registered users"
+                    }
+                ],
                 "author": {
                     "@id": "https://www.shelf.nu/#organization"
                 },
