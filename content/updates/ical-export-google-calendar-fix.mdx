@@ -1,0 +1,13 @@
+---
+title: "Booking Calendar Export Now Works with Google Calendar"
+description: "Fixed: .ics files exported from bookings now import correctly into Google Calendar and other RFC-compliant calendar apps."
+date: "2026-04-14"
+image: "/images/updates/add-bookings-to-calendar.jpg"
+layout: "update"
+---
+
+Booking events exported as `.ics` files now import correctly into Google Calendar, Apple Calendar, Outlook, and any other RFC 5545-compliant calendar app.
+
+Previously, an invalid `SEQUENCE` field in the exported file caused Google Calendar to silently reject imports. The exported file itself downloaded without error, but the event would never appear in the calendar. This has been fixed — calendar imports now work reliably.
+
+To export a booking to your calendar, open any non-draft booking and click the **Add to Calendar** button. This downloads an `.ics` file you can open to add the booking event — including the booking dates and a direct link back to the booking page — to any calendar app.
