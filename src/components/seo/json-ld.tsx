@@ -1,4 +1,5 @@
 import React from "react";
+import { interactionStats } from "@/data/interaction-stats";
 
 export function JsonLd() {
     const schema = {
@@ -39,32 +40,18 @@ export function JsonLd() {
                     "ratingValue": "4.8",
                     "ratingCount": "120"
                 },
-                "interactionStatistic": [
-                    {
-                        "@type": "InteractionCounter",
-                        "interactionType": "https://schema.org/LikeAction",
-                        "userInteractionCount": 2562,
-                        "name": "GitHub stars"
-                    },
-                    {
-                        "@type": "InteractionCounter",
-                        "interactionType": "https://schema.org/FollowAction",
-                        "userInteractionCount": 286,
-                        "name": "GitHub forks"
-                    },
-                    {
-                        "@type": "InteractionCounter",
-                        "interactionType": "https://schema.org/RegisterAction",
-                        "userInteractionCount": 15910,
-                        "name": "Registered users"
-                    }
-                ],
+                "interactionStatistic": interactionStats.map((stat) => ({
+                    "@type": "InteractionCounter",
+                    "interactionType": stat.interactionType,
+                    "userInteractionCount": stat.userInteractionCount,
+                    "name": stat.name
+                })),
                 "author": {
                     "@id": "https://www.shelf.nu/#organization"
                 },
                 "description": "Open source asset tracking and inventory management software for modern distributed teams.",
                 "applicationSubCategory": "Asset Tracking Software",
-                "featureList": "QR code asset tracking, Equipment check-in/check-out, Booking calendar, Custom fields, Multi-location support, Team collaboration, CSV import/export, API access, Self-hosting option",
+                "featureList": "QR code asset tracking, Equipment check-in/check-out, Booking calendar, Custom fields, Multi-location support, Team collaboration, CSV import/export, Self-hosting option",
                 "downloadUrl": "https://app.shelf.nu"
             },
             {

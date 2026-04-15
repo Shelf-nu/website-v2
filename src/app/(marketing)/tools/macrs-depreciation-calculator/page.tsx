@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { MacrsDepreciationCalculator } from "@/components/tools/macrs-depreciation-calculator";
 import { CTA } from "@/components/sections/cta";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
     title: "Free MACRS Depreciation Calculator — IRS Tables & Tax Savings | Shelf",
@@ -16,61 +17,31 @@ export const metadata: Metadata = {
 };
 
 export default function MacrsDepreciationCalculatorPage() {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
+    const jsonLd = buildToolPageJsonLd({
+        name: "Shelf MACRS Depreciation Calculator",
+        applicationCategory: "FinanceApplication",
+        url: "https://www.shelf.nu/tools/macrs-depreciation-calculator",
+        description:
+            "Calculate MACRS tax depreciation with official IRS Publication 946 rates. GDS and ADS systems, all property classes (3–20 year), estimated tax savings.",
+        faqs: [
             {
-                "@type": "SoftwareApplication",
-                "name": "Shelf MACRS Depreciation Calculator",
-                "applicationCategory": "FinanceApplication",
-                "operatingSystem": "Any",
-                "url": "https://www.shelf.nu/tools/macrs-depreciation-calculator",
-                "description": "Calculate MACRS tax depreciation with official IRS Publication 946 rates. GDS and ADS systems, all property classes (3–20 year), estimated tax savings.",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD"
-                }
+                question: "Which property class should I choose?",
+                answer: "The IRS assigns each type of property to a class. The most common are: 5-year (computers, vehicles, office equipment) and 7-year (office furniture, fixtures, most machinery). See IRS Publication 946 for the complete list.",
             },
             {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "Which property class should I choose?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "The IRS assigns each type of property to a class. The most common are: 5-year (computers, vehicles, office equipment) and 7-year (office furniture, fixtures, most machinery). See IRS Publication 946 for the complete list."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Why does a 5-year property have 6 years of depreciation?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Because of the half-year convention. MACRS assumes the asset was placed in service at the midpoint of Year 1, so you get a half-year of depreciation in Year 1 and the remaining half in Year 6."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "GDS or ADS — which should I use?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Most businesses should use GDS — it gives you faster deductions. ADS is required in specific situations (listed property used ≤50% for business, tax-exempt property, property used outside the U.S.). If you're unsure, consult your tax advisor."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What about Section 179 and bonus depreciation?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Section 179 and bonus depreciation allow you to deduct more in Year 1 (potentially the full cost). This calculator shows standard MACRS schedules without these elections. Consult a tax professional to determine if Section 179 or bonus depreciation applies to your situation."
-                        }
-                    }
-                ]
-            }
-        ]
-    };
+                question: "Why does a 5-year property have 6 years of depreciation?",
+                answer: "Because of the half-year convention. MACRS assumes the asset was placed in service at the midpoint of Year 1, so you get a half-year of depreciation in Year 1 and the remaining half in Year 6.",
+            },
+            {
+                question: "GDS or ADS — which should I use?",
+                answer: "Most businesses should use GDS — it gives you faster deductions. ADS is required in specific situations (listed property used ≤50% for business, tax-exempt property, property used outside the U.S.). If you're unsure, consult your tax advisor.",
+            },
+            {
+                question: "What about Section 179 and bonus depreciation?",
+                answer: "Section 179 and bonus depreciation allow you to deduct more in Year 1 (potentially the full cost). This calculator shows standard MACRS schedules without these elections. Consult a tax professional to determine if Section 179 or bonus depreciation applies to your situation.",
+            },
+        ],
+    });
 
     return (
         <PagefindWrapper

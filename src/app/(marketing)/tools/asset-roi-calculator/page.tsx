@@ -5,62 +5,33 @@ import { ArrowRight } from "lucide-react";
 import { AssetRoiCalculator } from "@/components/tools/asset-roi-calculator";
 import { CTA } from "@/components/sections/cta";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
+const jsonLd = buildToolPageJsonLd({
+    name: "Shelf Asset Tracking ROI Calculator",
+    applicationCategory: "FinanceApplication",
+    url: "https://www.shelf.nu/tools/asset-roi-calculator",
+    description:
+        "Free asset tracking ROI calculator — estimate the true cost of poor equipment management (losses, ghost assets, duplicate purchases) and the payback of switching to Shelf.",
+    faqs: [
         {
-            "@type": "SoftwareApplication",
-            "name": "Shelf Asset Tracking ROI Calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "url": "https://www.shelf.nu/tools/asset-roi-calculator",
-            "description": "Free asset tracking ROI calculator — estimate the true cost of poor equipment management (losses, ghost assets, duplicate purchases) and the payback of switching to Shelf.",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
+            question: "Are these default rates realistic?",
+            answer: "The defaults are conservative industry benchmarks. Many organizations find their actual rates are higher once they do a proper audit. Adjust the sliders to match your situation — every assumption is transparent and editable.",
         },
         {
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Are these default rates realistic?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "The defaults are conservative industry benchmarks. Many organizations find their actual rates are higher once they do a proper audit. Adjust the sliders to match your situation — every assumption is transparent and editable."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "How does the Shelf comparison work?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "The comparison assumes Shelf helps recover 60% of your tracking-related losses (a conservative estimate). It then subtracts the annual cost of the selected Shelf plan to show net savings, ROI, and payback period."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What is a ghost asset?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "A ghost asset is any item that appears in your records but can't be physically located. Common causes include unrecorded disposals, theft, transfers between locations without updating records, and items that broke and were discarded without being written off."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Can I share this analysis?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. All inputs are saved in the URL, so you can copy the page link to share your exact scenario. You can also use the 'Copy Summary' button to get a plain text version for emails or reports."
-                    }
-                }
-            ]
-        }
-    ]
-};
+            question: "How does the Shelf comparison work?",
+            answer: "The comparison assumes Shelf helps recover 60% of your tracking-related losses (a conservative estimate). It then subtracts the annual cost of the selected Shelf plan to show net savings, ROI, and payback period.",
+        },
+        {
+            question: "What is a ghost asset?",
+            answer: "A ghost asset is any item that appears in your records but can't be physically located. Common causes include unrecorded disposals, theft, transfers between locations without updating records, and items that broke and were discarded without being written off.",
+        },
+        {
+            question: "Can I share this analysis?",
+            answer: "Yes. All inputs are saved in the URL, so you can copy the page link to share your exact scenario. You can also use the 'Copy Summary' button to get a plain text version for emails or reports.",
+        },
+    ],
+});
 
 export const metadata: Metadata = {
     title: "Free Asset Tracking ROI Calculator — Cost of Poor Equipment Management | Shelf",

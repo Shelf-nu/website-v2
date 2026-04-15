@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { QrCodeGenerator } from '@/components/tools/qr-code-generator';
 import { CTA } from '@/components/sections/cta';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
     title: 'Free QR Code Generator (PNG & SVG) for Asset Labels | Shelf',
@@ -19,53 +20,27 @@ export const metadata: Metadata = {
 };
 
 export default function QrCodeGeneratorPage() {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
+    const jsonLd = buildToolPageJsonLd({
+        name: "Shelf QR Code Generator",
+        applicationCategory: "UtilitiesApplication",
+        url: "https://www.shelf.nu/tools/qr-code-generator",
+        description:
+            "Create professional, high-resolution QR codes in PNG and SVG directly in your browser. Free, no signup.",
+        faqs: [
             {
-                "@type": "SoftwareApplication",
-                "name": "Shelf QR Code Generator",
-                "applicationCategory": "UtilitiesApplication",
-                "operatingSystem": "Any",
-                "url": "https://www.shelf.nu/tools/qr-code-generator",
-                "description": "Create professional, high-resolution QR codes in PNG and SVG directly in your browser. Free, no signup.",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD"
-                }
+                question: "PNG vs SVG: Which should I choose?",
+                answer: "Use SVG for printing (posters, labels) as it stays sharp at any size. Use PNG for digital use (websites, emails) or quick office printing.",
             },
             {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "PNG vs SVG: Which should I choose?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Use SVG for printing (posters, labels) as it stays sharp at any size. Use PNG for digital use (websites, emails) or quick office printing."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What data can I encode?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "You can encode text, URLs, Wi-Fi credentials, or vCards. For assets, we recommend encoding a unique URL (e.g., https://shelf.nu/a/123) so scanners open the item's details immediately."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Need a scanner?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Try our free QR Code Decoder to test your generated codes directly in the browser."
-                        }
-                    }
-                ]
-            }
-        ]
-    };
+                question: "What data can I encode?",
+                answer: "You can encode text, URLs, Wi-Fi credentials, or vCards. For assets, we recommend encoding a unique URL (e.g., https://shelf.nu/a/123) so scanners open the item's details immediately.",
+            },
+            {
+                question: "Need a scanner?",
+                answer: "Try our free QR Code Decoder to test your generated codes directly in the browser.",
+            },
+        ],
+    });
 
     return (
         <PagefindWrapper type="Page" title="Free QR Code Generator (PNG & SVG)" keywords="qr code generator create qr code free qr generator">
