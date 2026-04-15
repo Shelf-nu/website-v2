@@ -9,16 +9,16 @@ import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
     title: 'Free Tools for Asset Management | Shelf',
-    description: 'Free utilities for asset tracking teams. Decode QR codes, generate labels, and manage equipment more efficiently.',
+    description: 'Free utilities for asset tracking teams. Scan barcodes (QR, UPC, Code 128, EAN), generate labels, run depreciation calculations, and manage equipment more efficiently.',
     alternates: { canonical: "https://www.shelf.nu/tools" },
 };
 
 const tools = [
     {
-        title: "QR Code Decoder",
-        description: "Decode QR codes from images instantly in your browser. No upload required.",
+        title: "Barcode Scanner",
+        description: "Scan QR, UPC, EAN, Code 128, Data Matrix and more from any image — instantly in your browser. No upload required.",
         icon: QrCode,
-        href: "/tools/qr-code-decoder",
+        href: "/tools/barcode-scanner",
     },
     {
         title: "Asset Label Designer",

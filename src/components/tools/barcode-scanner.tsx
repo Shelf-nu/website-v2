@@ -7,9 +7,9 @@ import { Upload, X, Copy, Check, Info, AlertCircle, Loader2, ArrowRight } from "
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
-import { decodeQrFromImage } from "@/lib/zxing/decodeImage";
+import { decodeBarcodeFromImage } from "@/lib/zxing/decodeImage";
 
-export function QrCodeDecoder() {
+export function BarcodeScanner() {
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [decodedText, setDecodedText] = useState<string | null>(null);
     const [isDecoding, setIsDecoding] = useState(false);
@@ -29,10 +29,10 @@ export function QrCodeDecoder() {
         setImageSrc(url);
 
         try {
-            const text = await decodeQrFromImage(file);
+            const text = await decodeBarcodeFromImage(file);
             setDecodedText(text);
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to decode QR code");
+            setError(err instanceof Error ? err.message : "Failed to decode barcode");
         } finally {
             setIsDecoding(false);
         }
@@ -107,7 +107,7 @@ export function QrCodeDecoder() {
                                 <div className="relative w-full aspect-square max-h-[400px]">
                                     <Image
                                         src={imageSrc}
-                                        alt="Uploaded QR Code"
+                                        alt="Uploaded barcode"
                                         fill
                                         className="object-contain"
                                     />

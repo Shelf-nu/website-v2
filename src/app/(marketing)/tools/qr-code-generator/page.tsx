@@ -88,7 +88,7 @@ export default function QrCodeGeneratorPage() {
                                 <div>
                                     <h3 className="font-semibold text-foreground mb-2">Need a scanner?</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Try our free <Link href="/tools/qr-code-decoder" className="text-orange-600 hover:underline">QR Code Decoder</Link> to test your generated codes directly in the browser.
+                                        Try our free <Link href="/tools/barcode-scanner" className="text-orange-600 hover:underline">Barcode Scanner</Link> to test your generated codes directly in the browser. Supports QR codes plus 1D formats like UPC and Code 128.
                                     </p>
                                 </div>
                             </div>

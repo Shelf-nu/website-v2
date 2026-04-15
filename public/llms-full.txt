@@ -201,7 +201,7 @@ Shelf provides detailed comparisons against these asset management platforms:
 - [Salvage Value Calculator](https://www.shelf.nu/tools/salvage-value-calculator): Estimate the residual value of assets at end of useful life.
 - [Asset ROI Calculator](https://www.shelf.nu/tools/asset-roi-calculator): Calculate return on investment for asset purchases.
 - [QR Code Generator](https://www.shelf.nu/tools/qr-code-generator): Generate free QR codes for any URL or text.
-- [QR Code Decoder](https://www.shelf.nu/tools/qr-code-decoder): Scan and decode QR codes from images.
+- [Barcode Scanner](https://www.shelf.nu/tools/barcode-scanner): Scan and decode 1D and 2D barcodes from images — QR, UPC, EAN, Code 128, Data Matrix, and more.
 - [Asset Label Designer](https://www.shelf.nu/tools/asset-label-designer): Design and print custom asset labels with QR codes.
 
 ---

@@ -65,7 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         // Tools
         { path: "/tools", priority: 0.6 },
         { path: "/tools/qr-code-generator", priority: 0.6 },
-        { path: "/tools/qr-code-decoder", priority: 0.5 },
+        { path: "/tools/barcode-scanner", priority: 0.6 },
         { path: "/tools/asset-label-designer", priority: 0.5 },
         { path: "/tools/macrs-depreciation-calculator", priority: 0.7 },
         { path: "/tools/equipment-depreciation-calculator", priority: 0.7 },

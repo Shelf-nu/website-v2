@@ -1,11 +1,13 @@
-import { BrowserQRCodeReader } from '@zxing/browser';
+import { BrowserMultiFormatReader } from '@zxing/browser';
 
 /**
- * Decodes a QR code from a strictly provided image file or URL.
+ * Decodes a barcode (1D or 2D) from a strictly provided image file or URL.
+ * Supports QR Code, Data Matrix, Aztec, PDF417 (2D) and UPC-A/E, EAN-8/13,
+ * Code 39, Code 93, Code 128, ITF, Codabar, RSS-14 (1D).
  * Returns the decoded text or throws a specific error.
  */
-export async function decodeQrFromImage(source: File | string): Promise<string> {
-    const codeReader = new BrowserQRCodeReader();
+export async function decodeBarcodeFromImage(source: File | string): Promise<string> {
+    const codeReader = new BrowserMultiFormatReader();
 
     try {
         let result;
@@ -27,16 +29,21 @@ export async function decodeQrFromImage(source: File | string): Promise<string> 
             return result.getText();
         }
 
-        throw new Error("No QR code found");
+        throw new Error("No barcode found");
     } catch (error) {
-        // ZXing throws generic errors, refine them for the UI
-        console.error("QR Decode Error:", error);
+        // ZXing throws generic errors; refine for the UI
+        console.error("Barcode Decode Error:", error);
         if (error instanceof Error) {
-            // Common ZXing "not found" errors or just general failures
-            if (error.message.includes("No MultiFormat Readers") || error.message.includes("No QR code found")) {
-                throw new Error("No QR code detected. Please ensure the image is clear and contains a valid QR code.");
+            // Common ZXing "not found" errors or general failures
+            if (
+                error.message.includes("No MultiFormat Readers") ||
+                error.message.includes("No barcode found") ||
+                error.message.includes("NotFoundException") ||
+                error.message.toLowerCase().includes("not found")
+            ) {
+                throw new Error("No barcode detected. Please ensure the image is clear and contains a valid 1D or 2D barcode (QR, UPC, Code 128, EAN, etc.).");
             }
         }
-        throw new Error("Could not decode image. It might be corrupted or the QR code is not readable.");
+        throw new Error("Could not decode image. It might be corrupted or the barcode is not readable.");
     }
 }

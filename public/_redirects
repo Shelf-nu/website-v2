@@ -137,7 +137,8 @@
 /asset-tags /tools/asset-label-designer 301
 /asset-tag-maker /tools/asset-label-designer 301
 /article-inserts /tools/asset-label-designer 301
-/barcode-scanner /tools/qr-code-decoder 301
+/barcode-scanner /tools/barcode-scanner 301
+/tools/qr-code-decoder /tools/barcode-scanner 301
 /csv-helper /knowledge-base/importing-assets-to-shelf-csv-guide 301
 /order-tags /tools/asset-label-designer 301
 

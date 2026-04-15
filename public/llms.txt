@@ -76,7 +76,7 @@ Shelf helps teams track physical assets — equipment, tools, devices, kits — 
 - [Salvage Value Calculator](https://www.shelf.nu/tools/salvage-value-calculator)
 - [Asset ROI Calculator](https://www.shelf.nu/tools/asset-roi-calculator)
 - [QR Code Generator](https://www.shelf.nu/tools/qr-code-generator)
-- [QR Code Decoder](https://www.shelf.nu/tools/qr-code-decoder)
+- [Barcode Scanner](https://www.shelf.nu/tools/barcode-scanner)
 - [Asset Label Designer](https://www.shelf.nu/tools/asset-label-designer)
 
 ## About
