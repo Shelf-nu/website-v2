@@ -227,7 +227,7 @@ export function shelfSoftwareApplicationJsonLd(
             ratingCount: "120",
         },
         featureList:
-            "QR code asset tracking, Equipment check-in/check-out, Booking calendar, Custom fields, Multi-location support, Team collaboration, CSV import/export, API access, Self-hosting option",
+            "QR code asset tracking, Equipment check-in/check-out, Booking calendar, Custom fields, Multi-location support, Team collaboration, CSV import/export, Self-hosting option",
         downloadUrl: "https://app.shelf.nu",
     };
 }
