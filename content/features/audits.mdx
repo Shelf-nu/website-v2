@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-04-02"
+updated: "2026-04-15"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Export PDF and CSV reports. Paid add-on with 7-day free trial."
@@ -28,6 +28,12 @@ seo:
 Audits let you verify that your physical inventory matches your records. Define which assets should be in a location, hand someone a phone, and let them scan. Shelf flags what was found, what is missing, and what showed up unexpectedly. When the audit is complete, export a PDF or CSV report.
 
 Audits is a paid add-on available on any Shelf plan, with a 7-day free trial to test it on your own inventory.
+
+<InlineVideo
+  mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-flow.mp4"
+  webm="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-flow.webm"
+  alt="Walkthrough of running an audit in Shelf — from the audit list to an in-progress session"
+/>
 
 ---
 
@@ -51,6 +57,8 @@ Regular audits close the gap between what your system says and what actually exi
 
 Create an audit session and select which assets to include. You can scope by location, category, team, or any combination. Shelf builds the expected asset list automatically from your existing records.
 
+![List of audit sessions in Shelf showing pending and completed audits](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-list.webp)
+
 ---
 
 ### 2. Assign and Scan
@@ -58,6 +66,8 @@ Create an audit session and select which assets to include. You can scope by loc
 Assign the audit to a team member. They open a dedicated scan page on any phone or tablet and start scanning QR labels. Each scan registers the asset as **Found**. No app download required.
 
 The scan page is purpose-built for audits — separate from regular check-in/check-out — so there is no confusion about what workflow is active.
+
+![Dedicated audit scan page with asset list and scanner / camera toggle](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
 
 ---
 
@@ -72,11 +82,15 @@ As scanning progresses, Shelf tracks four statuses in real time:
 
 Auditors can add notes and photos to any asset during the audit — documenting damage, wrong labels, or condition issues.
 
+![Audit overview showing live statistics — expected, found, missing, and unexpected counts](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-overview-pending.webp)
+
 ---
 
 ### 4. Complete and Report
 
 When scanning is finished, complete the audit. Shelf sends a summary email to the audit creator with counts of found, missing, and unexpected assets. Export the full results as a **PDF report** or **CSV file** for compliance documentation, insurance records, or internal review.
+
+![Completed audit overview with final statistics, timestamps, and archived audit images](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-overview-completed.webp)
 
 ---
 
