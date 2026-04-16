@@ -68,7 +68,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         industry: "Media Production",
         priority: 2,
         quote: "Double bookings is the reason I wanted to use Shelf. The moment I had to arrange a last-minute extra camera, I knew we needed a system.",
-        quoteAuthor: "Erik Stakenborg",
+        quoteAuthor: "Johannes van Beek",
         quoteRole: "Producer, Fabel Film",
     },
     {
