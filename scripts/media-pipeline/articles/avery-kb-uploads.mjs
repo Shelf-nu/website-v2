@@ -30,6 +30,11 @@ const files = [
         bucketName: "avery-custom-label-designs.webp",
         convertToWebP: true,
     },
+    {
+        source: "/Users/macwhale/Downloads/saveqrfromassetpage.jpg",
+        bucketName: "avery-bulk-download-qr.jpg",
+        convertToWebP: false,
+    },
 ];
 
 async function main() {
