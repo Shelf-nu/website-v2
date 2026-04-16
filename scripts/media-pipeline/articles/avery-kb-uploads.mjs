@@ -25,6 +25,11 @@ const files = [
         bucketName: "avery-qr-panel-ui.jpg",
         convertToWebP: false,
     },
+    {
+        source: "/Users/macwhale/Downloads/custom.png",
+        bucketName: "avery-custom-label-designs.webp",
+        convertToWebP: true,
+    },
 ];
 
 async function main() {
