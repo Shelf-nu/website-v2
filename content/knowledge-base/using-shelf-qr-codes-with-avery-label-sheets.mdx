@@ -19,11 +19,12 @@ Shelf exports **square PNG QR codes** (1:1 aspect ratio). Any Avery sheet with *
 
 ## Shelf's QR Download Specs
 
-- **Format**: PNG (raster, with transparent background handled for white sheets)
+- **Format**: PNG (raster image, standard format any design tool can import)
 - **Aspect ratio**: 1:1 square
 - **Filename**: `{asset-name}-{size}-shelf-qr-code-{qr-id}.png` — includes the QR ID so bulk downloads stay unique
-- **Scales cleanly**: the PNG resizes without quality loss on any of the label dimensions below
 - **Where**: on any asset page, right sidebar → **Download** button. For bulk, see [Step-by-step: Yes path](#step-by-step-yes-path) below.
+
+Scan readability at any specific print size depends on your printer, ink or toner, paper, and how small you print the code. Always run a test print (see below) before committing a full batch — we can't guarantee results on printers or materials we haven't tested.
 
 ![QR code panel on an asset page in Shelf — shows the preview with asset name and QR ID, plus Download and Print buttons](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/avery-qr-panel-ui.jpg)
 
@@ -31,15 +32,15 @@ Shelf exports **square PNG QR codes** (1:1 aspect ratio). Any Avery sheet with *
 
 ## Does Your Avery Sheet Fit?
 
-### Square sheets — plug and play
+### Square sheets — most direct fit
 
-These are the easiest fit. Drop the Shelf QR PNG into any square cell, print, done.
+The downloaded PNG goes into each square cell in your Avery template. Test-print one sheet before running the full batch ([see step 3 below](#3-drop-in-the-pngs-and-print-then-test)).
 
 | Avery SKU | Size | Labels per sheet | Best for |
 |---|---|---|---|
 | **6570** | 3/4" × 3/4" | 80 | Cables, adapters, small accessories |
 | **22806** | 1" × 1" | 63 | Hand tools, mobile devices |
-| **22805** | 1-1/2" × 1-1/2" | 24 | Laptops, cameras, most office equipment — the industry default |
+| **22805** | 1-1/2" × 1-1/2" | 24 | Laptops, cameras, most office equipment — a popular size for general use |
 | **22816** | 2" × 2" | 12 | Flight cases, heavy machinery, warehouse shelving |
 
 ### Round sheets — also fit
@@ -73,13 +74,13 @@ For any square or round Avery sheet:
 
 Avery's free online tool at [avery.com/design-print](https://www.avery.com/software/design-and-print/) lets you pick your SKU from a dropdown and lays out the grid automatically. Works in any browser, no install.
 
-### 3. Drop in the PNGs and print
+### 3. Drop in the PNGs and print — then test
 
 - Pick your SKU in Design & Print → blank template
 - For each cell, import one of the PNGs from your unzipped folder
 - Preview the sheet → print on the Avery stock you already have
 
-Most teams are printing within 10 minutes of the first export.
+**Always test-print one sheet before running your full batch.** Print one sheet, then scan several codes with your phone camera to confirm they read cleanly. Readability depends on your printer, toner or ink level, paper type, and the final print size — a test sheet catches any of those factors before you commit your full Avery stock. If codes don't scan, try a larger label size, fresh toner, or a crisper paper.
 
 ---
 
@@ -117,7 +118,7 @@ Those are roll-fed thermal printers — different workflow. Shelf supports them 
 
 ### Can I use Cricut or Silhouette cutting machines?
 
-Yes — treat the Shelf PNG as any other image asset in Cricut Design Space or Silhouette Studio. Print, then cut the shape you want.
+The Shelf QR download is a standard PNG, so you can import it into Cricut Design Space or Silhouette Studio like any other image. Capabilities and print quality vary by machine model — check your software's image-handling docs, and test one label before running a batch.
 
 ### Do you sell the Avery-compatible labels?
 
