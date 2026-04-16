@@ -1,0 +1,129 @@
+---
+title: "Using Shelf QR Codes with Avery Label Sheets"
+description: "Shelf exports square QR code images. Here is which Avery label sheets fit out of the box, which need a custom template, and the workflow for each."
+category: "Assets"
+date: "2026-04-16"
+updated: "2026-04-16"
+layout: "knowledge-base"
+---
+
+Shelf gives you a square QR code image. You bring the label sheet. This article explains which Avery sheets plug in directly, which need a custom template, and the workflow for each path.
+
+## The One-Line Truth
+
+Shelf exports **square PNG QR codes** (1:1 aspect ratio). Any Avery sheet with **square or round** label cells is a natural fit. Sheets with **rectangular** cells (address labels, shipping labels) work too, but they need a simple custom template so the code sits centered with room for the asset name.
+
+---
+
+## Shelf's QR Download Specs
+
+- **Format**: PNG (raster, with transparent background handled for white sheets)
+- **Aspect ratio**: 1:1 square
+- **Filename**: `{asset-name}-{size}-shelf-qr-code-{qr-id}.png` — includes the QR ID so bulk downloads stay unique
+- **Scales cleanly**: the PNG resizes without quality loss on any of the label dimensions below
+- **Where**: on any asset page, right sidebar → **Download** button. For bulk, see [Step-by-step: Yes path](#step-by-step-yes-path) below.
+
+---
+
+## Does Your Avery Sheet Fit?
+
+### Square sheets — plug and play
+
+These are the easiest fit. Drop the Shelf QR PNG into any square cell, print, done.
+
+| Avery SKU | Size | Labels per sheet | Best for |
+|---|---|---|---|
+| **6570** | 3/4" × 3/4" | 80 | Cables, adapters, small accessories |
+| **22806** | 1" × 1" | 63 | Hand tools, mobile devices |
+| **22805** | 1-1/2" × 1-1/2" | 24 | Laptops, cameras, most office equipment — the industry default |
+| **22816** | 2" × 2" | 12 | Flight cases, heavy machinery, warehouse shelving |
+
+### Round sheets — also fit
+
+Shelf's square QR comfortably sits inside round labels. Any Avery round SKU (for example **22807** at 1-2/3" diameter) works — trim the design around the code to the circle diameter in your template.
+
+### Rectangular sheets — need a custom template
+
+If you have address-label sheets (Avery **5160**, **5163**, **5167**, etc.), the QR won't fill the whole cell. You'll want a template that places the QR on the left or centered with the asset name or ID next to it. See [No path: custom template](#no-path-custom-template) below.
+
+> **Not listed?** Measure one cell on your sheet. If it's square or round, go to the yes path. If it's rectangular, go to the no path.
+
+---
+
+## Step-by-Step: Yes Path
+
+For any square or round Avery sheet:
+
+### 1. Export the QR codes
+
+**Single asset**: open the asset in Shelf → right sidebar → **Download**.
+
+**Multiple assets** ([see also](/knowledge-base/getting-started)):
+
+1. Go to the Assets index
+2. Select the assets you want to print (checkbox on each row, or the header checkbox for all)
+3. Click **Actions** → **Download QR codes**
+4. Shelf delivers a `.zip` of PNGs. Unzip into a folder.
+
+### 2. Open Avery Design & Print
+
+Avery's free online tool at [avery.com/design-print](https://www.avery.com/software/design-and-print/) lets you pick your SKU from a dropdown and lays out the grid automatically. Works in any browser, no install.
+
+### 3. Drop in the PNGs and print
+
+- Pick your SKU in Design & Print → blank template
+- For each cell, import one of the PNGs from your unzipped folder
+- Preview the sheet → print on the Avery stock you already have
+
+Most teams are printing within 10 minutes of the first export.
+
+---
+
+## No Path: Custom Template
+
+If your Avery sheet is rectangular — or you want branded labels with your logo, custom colors, and a layout that doesn't match anything Avery sells off the shelf — use **Unclaimed Codes**.
+
+In short: Shelf sells blank QR codes that aren't yet attached to an asset. You design a label template once (in Avery Design & Print, Canva, Illustrator, or any design tool), batch-produce hundreds of pre-printed labels, and "claim" each one when you apply it to a real asset.
+
+This is the right path when:
+
+- Your Avery sheet is rectangular and you want the QR + asset name + logo in one layout
+- You're labeling in the field at scale (construction, events, warehouses) where pre-producing is faster than generating per-asset
+- You need custom colors, logos, or durable material beyond what Avery offers
+
+Full walkthrough in the dedicated article: **[How to Print Custom Branded QR Code Labels with Shelf](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf)**.
+
+Or order ready-made labels directly at [store.shelf.nu](https://store.shelf.nu/?ref=kb_avery_article) if you'd rather skip the design step.
+
+---
+
+## FAQ
+
+### Can I print a mixed sheet — some QR codes plus some address labels?
+
+Yes, but not in Avery Design & Print's template mode. Set up the sheet in a design tool that supports free-form layouts (Canva, Google Slides using a sheet-sized canvas, Illustrator) and place each label by hand.
+
+### Does the QR need a human-readable ID under it?
+
+It's strongly recommended. Shelf's Download button produces the QR alone, so if you want the asset ID printed alongside, add it as a text field in Avery Design & Print below the QR. Our [label designer tool](/tools/asset-label-designer) auto-includes both.
+
+### What about DYMO, Brother, or Zebra label printers?
+
+Those are roll-fed thermal printers — different workflow. Shelf supports them directly in the app via the asset page Print button. See [change asset label information](/knowledge-base/change-asset-label-information).
+
+### Can I use Cricut or Silhouette cutting machines?
+
+Yes — treat the Shelf PNG as any other image asset in Cricut Design Space or Silhouette Studio. Print, then cut the shape you want.
+
+### Do you sell the Avery-compatible labels?
+
+Not directly. Buy Avery sheets wherever you'd normally get office supplies. If you want pre-printed, durable Shelf-branded labels (different material, not Avery paper), see [store.shelf.nu](https://store.shelf.nu/?ref=kb_avery_article).
+
+---
+
+## Related Articles
+
+- [How to Print Custom Branded QR Code Labels with Shelf](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) — the deep dive on Unclaimed Codes and custom templates
+- [Getting Started](/knowledge-base/getting-started) — where the bulk Download QR codes action lives
+- [Change Asset Label Information](/knowledge-base/change-asset-label-information) — choose whether labels show the Shelf QR ID or your own Asset ID
+- [Scanning an Asset](/knowledge-base/scanning-an-asset) — what happens after someone scans one of your printed labels
