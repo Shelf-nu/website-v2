@@ -1,13 +1,13 @@
 ---
-title: "Export / Exporting Workspace Data from Shelf"
-description: "Shelf provides multiple ways to export your asset data, giving you flexibility in managing and analyzing your inventory information."
-category: "Workspaces"
+title: "Exporting Data from Shelf"
+description: "Export asset data from Shelf as CSV — selected assets, filtered results, or a full workspace backup. Covers what's included, when to use each method, and common reporting scenarios."
+category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-08"
+updated: "2026-04-16"
 layout: "knowledge-base"
 ---
 
-Shelf provides multiple ways to export your asset data, giving you flexibility in managing and analyzing your inventory information. Whether you need to export your entire workspace or just a specific selection of assets, our export features help you get the data you need in CSV format.
+Shelf provides multiple ways to export asset data as CSV — whether you need a selection of items, a filtered view, or a full workspace backup. This guide covers all three methods, what each includes, and the reporting scenarios they're best for.
 
 <InlineVideo
   mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-flow.mp4"
@@ -15,63 +15,130 @@ Shelf provides multiple ways to export your asset data, giving you flexibility i
   alt="Walkthrough of exporting assets from Shelf"
 />
 
-## Export Methods
+---
+
+## Three Export Methods
 
 ### 1. Export Selected Assets
 
 - Navigate to the Assets index
-- Select the assets you want to export using the checkboxes
-- Click the **Export** button at the top of the asset list
-- Your selected assets will be downloaded as a CSV file
+- Select the assets you want using the checkboxes
+- Click **Export selection** at the top of the asset list
+- Your selected assets download as a CSV file
 
 ![Assets index showing the export toolbar](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-assets-index.webp)
 
-### 2. Asset Backup (Workspace Export)
+### 2. Export a Filtered View
 
-- Go to Workspace settings
-- Under the **General** tab, locate the **Download CSV** button
-- Click to download a complete backup of all workspace assets
+- Apply any filters in the Assets index (category, location, custodian, tags, status)
+- Click **Select all X entries** to include all matches across every page
+- Click **Export selection** to download the filtered CSV
 
+Filter-then-export is the most common reporting path — see [Common reporting scenarios](#common-reporting-scenarios) below. For the full filtering reference, see [Advanced Asset Index: Complete Guide](/knowledge-base/advanced-asset-index-complete-guide).
+
+### 3. Workspace Backup (full export)
+
+- Go to **Workspace Settings → General**
+- Click **Download CSV** to get a complete backup of every asset in the workspace
 
 ![Workspace settings showing the Download CSV button for asset backup](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-workspace-csv.webp)
-**Important Note:** QR codes are not included in the backup export. Due to the nature of how Shelf's QR codes work, they currently cannot be exported with assets because they have unique IDs. If you restore a backup, new QR codes will be generated for each asset. For backup restoration assistance, please contact our support team.
 
-### 3. Export Filtered Results
+> **Important**: QR codes are not included in the backup. Shelf's QR codes are tied to unique system IDs — if you restore a backup, the system issues new QR codes for the restored assets. Contact support if you need a full restoration.
 
-- Apply any filters you need in the Assets index (e.g., by category, location, tags)
-- Use the **Select all** option to select all filtered results
-- Click **Export** to download the filtered selection
+---
 
-## What is Included in the Export
+## What's Included in Each Export
 
-The CSV export includes comprehensive asset information:
+Selected and filtered exports include the columns currently visible in your view. Customize the columns by clicking the **Columns** control in the top-right and toggling which fields display.
 
-- Asset names
-- Descriptions
-- Categories
-- Tags
-- Locations
-- Valuations
-- Custom fields
-- Status information
-- Custody details
-- Activity history
+Typical fields included:
 
-## Using Exported Data
+- **Name**, **Description**, **Category**, **Tags**, **Location**
+- **Status** (Available, In custody, etc.)
+- **Custody** (the current custodian)
+- **QR ID** and **Asset ID / SAM ID**
+- **Value**, **Purchase date**, any other **custom fields** you've defined
+- **Activity history** (on selected exports; not on filtered views)
 
-The exported CSV file can be used for:
+The workspace backup is broader and includes internal fields not intended for re-import.
 
-- Data backup and archiving
-- Analysis in spreadsheet applications
-- Importing into other systems
-- Creating reports
-- Audit purposes
-- **Bulk updates** — edit records in Excel or Google Sheets and re-import to apply changes at scale
+---
 
-### Bulk Updating via Export + Re-Import
+## Common Reporting Scenarios
 
-A common workflow is to export a filtered selection of assets from the **Asset Index**, edit the CSV in a spreadsheet application, and re-upload it to update all the records at once. The **Update Existing Assets** feature handles this with a preview step that shows every field change before anything is saved.
+### Assets assigned to a specific custodian
 
-> **Important:** Only use **Asset Index exports** for re-import updates — not the Workspace Backup CSV from Settings. Backup exports include internal fields not intended for re-import, and uploading one as an update file can corrupt data. The [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) also notes this restriction.
+1. Click **Filter** → choose **Custody** → pick the person
+2. Select all filtered results
+3. **Export selection**
 
-See: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv)
+Useful for offboarding reports, asset recovery after a role change, or quarterly accountability reviews.
+
+### All assets in a given category
+
+1. **Filter** → **Category** → pick the category
+2. Select all → **Export selection**
+
+Useful for category-level financial reporting or insurance documentation.
+
+### Available assets in a specific location
+
+1. **Filter** → **Status** = `Available` AND **Location** = the site
+2. Select all → **Export selection**
+
+Useful for what-can-I-pick-up-today snapshots for teams planning on-site work.
+
+### Assets due for maintenance
+
+- If you track maintenance dates in a custom field, filter by that field
+- Alternatively, use tags (e.g. `needs-service`) and filter by tag
+- Export the list to drive a maintenance schedule
+
+See [Asset Reminders](/knowledge-base/asset-reminders) for setting up recurring maintenance notifications alongside your exports.
+
+---
+
+## Using Exports for Bulk Updates
+
+A common workflow: export a filtered selection, edit the CSV in Excel or Google Sheets, re-import to apply changes at scale. The **Update Existing Assets** feature handles this with a preview step that shows every field change before anything is saved.
+
+> **Important**: Only use **Asset Index exports** for re-import updates — not the Workspace Backup CSV. Backup exports include internal fields not intended for re-import, and uploading one as an update file can corrupt data.
+
+Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
+
+---
+
+## Troubleshooting
+
+**Getting unexpected results when filtering?**
+
+- Check for conflicting filters applied simultaneously
+- When filtering by custodian, remember registered users and Non-Registered Members (NRMs) are handled separately
+- Clear all filters and re-apply one at a time if results look wrong
+
+**Export missing columns you expect?**
+
+- Click the **Columns** control and verify the fields you want are enabled
+- Reorder columns before exporting — the CSV respects the current display order
+
+**Too much data to export at once?**
+
+- Narrow with filters before selecting
+- Export by location or category in separate passes
+
+---
+
+## Exporting Other Data Types
+
+- **Bookings** — separate export flow. See [Exporting Booking Information](/knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out).
+- **Audits** — export as PDF or CSV from the audit detail page (covered in the audit feature docs).
+- **Team members** — the Team page has its own export option for user lists.
+
+---
+
+## Related Articles
+
+- [Advanced Asset Index: Complete Guide](/knowledge-base/advanced-asset-index-complete-guide) — full filtering, sorting, and column reference
+- [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) — export + edit + re-import workflow
+- [Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) — the import side of the same workflow
+- [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf) — bulk changes without exporting

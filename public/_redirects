@@ -24,14 +24,29 @@
 /knowledge-base/advanced-asset-index /knowledge-base/advanced-asset-index-complete-guide 301
 /knowledge-base/adding-assets-to-a-booking /knowledge-base/adding-assets-and-kits-to-a-booking 301
 /knowledge-base/bookings-how-to-export-booking-information-and-assets /knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out 301
-/knowledge-base/change-asset-label-information-show-qr-id-or-sequential-id /knowledge-base/change-asset-label-information 301
+/knowledge-base/change-asset-label-information-show-qr-id-or-sequential-id /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
 /knowledge-base/custom-branded-qr-code-labels /knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf 301
 /knowledge-base/how-to-add-assets-to-your-inventory /knowledge-base/adding-new-assets 301
 /knowledge-base/how-to-prepare-a-spreadsheet-for-bulk-importing-assets /knowledge-base/importing-assets-to-shelf-csv-guide 301
-/knowledge-base/sequential-asset-ids-simplified-asset-identification /knowledge-base/sequential-asset-ids-simplifying-asset-identification 301
+
+# --- KB consolidation 2026-04: Asset Identifiers merge (3 → 1) ---
+/knowledge-base/understanding-and-using-custom-property-ids-in-shelf /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
+/knowledge-base/sequential-asset-ids-simplifying-asset-identification /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
+/knowledge-base/change-asset-label-information /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
+
+# --- KB consolidation 2026-04: Exports merge (filter-export absorbed) ---
+/knowledge-base/how-to-filter-export-and-report-on-your-asset-inventory /knowledge-base/export-exporting-workspace-data-from-shelf 301
+
+# --- KB consolidation 2026-04: Advanced Index merge (enable absorbed) ---
+/knowledge-base/how-to-enable-advanced-index /knowledge-base/advanced-asset-index-complete-guide 301
+
+# --- KB consolidation 2026-04: Relocations out of KB ---
+/knowledge-base/how-to-get-in-touch-with-support /contact 301
+/knowledge-base/share-your-feedback-or-request-new-features-on-our-github https://github.com/Shelf-nu/shelf.nu/issues 301
+/knowledge-base/sequential-asset-ids-simplified-asset-identification /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
 /knowledge-base/use-case-scenarios-explaing-our-bookings-feature /knowledge-base/use-case-scenarios-explaining-our-bookings-feature 301
 /knowledge-base/working-hours-workspace /knowledge-base/working-hours-set-operating-schedules-for-your-workspace 301
-/knowledge-base/customize-your-qr-code-display-choose-between-qr-ids-and-sequential-asset-numbers /knowledge-base/change-asset-label-information 301
+/knowledge-base/customize-your-qr-code-display-choose-between-qr-ids-and-sequential-asset-numbers /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
 /knowledge-base-categories /knowledge-base 301
 
 # --- Missing blog posts → /blog ---
