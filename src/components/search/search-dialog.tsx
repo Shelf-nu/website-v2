@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Search, FileText, Loader2, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
-import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /*  Pagefind type stubs (loaded dynamically at runtime)               */
@@ -128,6 +127,7 @@ export function SearchDialog() {
                 clearTimeout(focusT);
                 clearTimeout(backdropT);
                 setBackdropActive(false);
+                backdropPressActive.current = false;
                 document.body.style.position = "";
                 document.body.style.top = "";
                 document.body.style.left = "";
@@ -141,6 +141,7 @@ export function SearchDialog() {
             setResults([]);
             setActiveIndex(0);
             setActiveFilter(null);
+            backdropPressActive.current = false;
         }
     }, [open, loadPagefind]);
 
@@ -236,34 +237,30 @@ export function SearchDialog() {
 
     return (
         <>
-            {/* Backdrop — close on tap.
+            {/* Backdrop — close on tap, with two defenses.
 
-                Safari bug: the opening click on the search button causes
-                React to mount the backdrop under the cursor in the same
-                tick; Safari then dispatches a click (and in some cases a
-                full pointerdown→pointerup sequence) on the newly-topmost
-                element — the backdrop — and the dialog closes itself.
-                Other browsers don't do this.
+                1. Time-gate the close for 250ms after open. Safari's
+                   click retargeting can fire a synthesized pointer
+                   sequence on the newly-mounted backdrop in the same
+                   tick as the opening click; inside the window we
+                   absorb the events silently (do not close). A rapid
+                   user double-click is absorbed too — the backdrop
+                   still swallows the second click, so it can't
+                   click-through to navbar elements behind it.
 
-                Two defenses, both cheap:
-                  1. `pointer-events: none` for the first ~250ms after
-                     open. Any stray synthesized events pass straight
-                     through — can't hit anything clickable, can't close
-                     the dialog. Genuine user clicks after the window are
-                     unaffected.
-                  2. pointerdown→pointerup pairing, so even if (1) ever
-                     misses, closing still requires a press that actually
-                     started on the backdrop. Prevents drag-select inside
-                     the dialog that ends on the backdrop from closing. */}
+                2. pointerdown→pointerup pairing. Even after the
+                   window, closing requires a press that actually
+                   started on the backdrop — prevents drag-selects
+                   inside the dialog that end on the backdrop from
+                   dismissing it. */}
             <div
-                className={cn(
-                    "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-150",
-                    backdropActive ? "pointer-events-auto" : "pointer-events-none"
-                )}
+                className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-150"
                 onPointerDown={(e) => {
+                    if (!backdropActive) return;
                     backdropPressActive.current = e.target === e.currentTarget;
                 }}
                 onPointerUp={(e) => {
+                    if (!backdropActive) return;
                     if (backdropPressActive.current && e.target === e.currentTarget) {
                         setOpen(false);
                     }
