@@ -660,13 +660,3 @@ export function getHeroLogos() {
         .filter(Boolean) as CustomerLogo[];
 }
 
-/** All logos grouped by industry */
-export function getLogosByIndustry() {
-    const grouped: Record<string, CustomerLogo[]> = {};
-    for (const logo of CUSTOMER_LOGOS) {
-        const industry = logo.industry || "Other";
-        if (!grouped[industry]) grouped[industry] = [];
-        grouped[industry].push(logo);
-    }
-    return grouped;
-}

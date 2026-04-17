@@ -8,6 +8,7 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Pill } from "@/components/ui/pill";
 import { Play } from "lucide-react";
 import { MigrationDropdown } from "@/components/sections/migration-dropdown";
+import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { getHeroLogos } from "@/data/customer-logos";
 
 interface HeroProps {
@@ -108,36 +109,22 @@ export function Hero({
                     </div>
                 </div>
 
-                {/* Hero Logo Marquee — two identical groups, each carrying its own
-                    internal gap + a trailing gap via padding-right, so the outer
-                    flex row has no gap and translateX(-50%) lands exactly at the
-                    start of the second copy (no half-gap seam jump on Safari). */}
-                <div className="mt-10 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                    <div
-                        className="flex flex-nowrap animate-marquee"
-                        style={{ "--marquee-duration": "25s" } as React.CSSProperties}
-                    >
-                        {[0, 1].map((copy) => (
-                            <div
-                                key={copy}
-                                className="flex gap-12 sm:gap-16 pr-12 sm:pr-16 flex-nowrap flex-shrink-0"
-                                {...(copy === 1 ? { "aria-hidden": true } : {})}
-                            >
-                                {heroLogos.map((logo) => (
-                                    <div key={`${logo.id}-${copy}`} className="relative h-7 w-20 flex-shrink-0 flex items-center justify-center">
-                                        <Image
-                                            src={logo.logo}
-                                            alt={logo.name}
-                                            fill
-                                            className="object-contain opacity-35 grayscale"
-                                            sizes="80px"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <LogoMarquee
+                    duration="25s"
+                    groupClassName="gap-12 sm:gap-16 pr-12 sm:pr-16"
+                    containerClassName="mt-10"
+                    items={heroLogos.map((logo) => (
+                        <div key={logo.id} className="relative h-7 w-20 flex-shrink-0 flex items-center justify-center">
+                            <Image
+                                src={logo.logo}
+                                alt={logo.name}
+                                fill
+                                className="object-contain opacity-35 grayscale"
+                                sizes="80px"
+                            />
+                        </div>
+                    ))}
+                />
 
                 {/* Dashboard Image — Full-Width Below */}
                 <div className="mt-16 sm:mt-20 relative mx-auto max-w-5xl">
