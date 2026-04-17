@@ -1,0 +1,13 @@
+---
+title: "Calendar Export Now Works with Google Calendar"
+description: "Fixed: booking .ics files now import reliably into Google Calendar and all RFC-compliant calendar apps."
+date: "2026-04-16"
+image: "/images/updates/add-bookings-to-calendar.jpg"
+layout: "update"
+---
+
+Booking events exported from Shelf now import correctly into Google Calendar, Apple Calendar, Outlook, and any other RFC 5545-compliant calendar app.
+
+Previously, the exported `.ics` file used an invalid `SEQUENCE` field value that caused Google Calendar to silently reject the import — the file would download without error, but the event would never appear. This has been fixed.
+
+To export a booking, open any non-draft booking and click **Add to Calendar**. The downloaded file contains the booking dates and a direct link back to the booking in Shelf. You can open it directly or share it with the custodian to add to their own calendar.
