@@ -1,0 +1,80 @@
+---
+title: "Troubleshooting: QR Code Not Scanning"
+description: "Your Shelf QR label won't scan? Here are the most common causes and how to fix them — from camera permissions to damaged labels."
+category: "Troubleshooting"
+date: "2026-04-17"
+updated: "2026-04-17"
+layout: "knowledge-base"
+---
+
+If you're trying to scan a Shelf QR code and it won't register, work through these checks in order. Most scanning issues resolve within the first three steps.
+
+---
+
+## 1. Check camera permissions
+
+Your browser needs camera access to scan QR codes. If the camera feed doesn't appear:
+
+- **iOS Safari**: Settings → Safari → Camera → set to **Allow**
+- **Android Chrome**: tap the lock icon in the address bar → Permissions → Camera → **Allow**
+- **Desktop Chrome/Edge**: click the camera icon in the address bar and allow access for `app.shelf.nu`
+
+After granting permission, **reload the page** and try again.
+
+---
+
+## 2. Clean the QR code
+
+Dirt, scratches, faded ink, or a crumpled label can make a QR code unreadable. Wipe the label clean and try again. If the label is physically damaged beyond recovery, see step 5 (recovery via typed ID).
+
+---
+
+## 3. Improve lighting and angle
+
+- Hold the phone **10–15 cm** from the label
+- Avoid glare — tilt the label slightly if it's glossy or laminated
+- Ensure the entire code is in frame (don't crop the quiet zone — the white border around the code)
+- If you're in a dark environment, turn on your phone's flashlight
+
+---
+
+## 4. Try the text-input fallback
+
+The Shelf scan page has a **text field** above the camera feed. If the camera won't read the code, you can **type the code ID manually** and press Enter:
+
+- The QR ID is printed under the QR code on the label (e.g. `clxegnjcm005b11tn2cszkw6c`)
+- If your labels show a SAM ID instead (e.g. `SAM-0042`), type that — both are searchable
+
+This bypasses the camera entirely.
+
+---
+
+## 5. If the label is destroyed — recover via Quick Find
+
+If the label is physically gone (ripped off, melted, paint-covered), you can still find the asset:
+
+1. Open **Quick Find** (⌘K or the search bar)
+2. Type the **asset name**, **SAM ID**, or **QR ID** — whichever you remember or can read from a partial label
+3. Open the asset page
+4. Click **Actions → Relink QR Code** to associate a new physical label with the same asset record
+
+No data is lost. See [QR Code Swapping](/knowledge-base/understanding-qr-code-swapping-and-management-in-shelf) for the full relinking workflow.
+
+---
+
+## 6. "Barcode scanning disabled" message
+
+If you see a message saying barcode scanning is disabled, your workspace admin may have restricted scanning permissions for your role. Contact your workspace owner or administrator to check your role's scanning permissions.
+
+See [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions) for the full permission matrix.
+
+---
+
+## Still stuck?
+
+[Contact support](/contact) with:
+- Your device and browser (e.g. iPhone 14, Safari 17)
+- A photo of the label you're trying to scan
+- The error message (if any) or a screenshot of the scan page
+
+We'll help diagnose from there.

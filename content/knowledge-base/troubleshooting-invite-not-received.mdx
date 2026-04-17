@@ -1,0 +1,68 @@
+---
+title: "Troubleshooting: Team Invite Not Received"
+description: "Invited someone to your Shelf workspace but they didn't get the email? Here's what to check."
+category: "Troubleshooting"
+date: "2026-04-17"
+updated: "2026-04-17"
+layout: "knowledge-base"
+---
+
+If a team member says they never received their Shelf workspace invitation, run through these checks.
+
+---
+
+## 1. Check the spam / junk folder
+
+Shelf invitations come from `noreply@shelf.nu` (or your configured sender on self-hosted). Many corporate email filters flag automated invitations. Ask the recipient to check their spam folder and mark Shelf as safe.
+
+---
+
+## 2. Verify the email address
+
+A typo in the email is the most common cause. Go to **Settings → Team → Users → Pending Invites** and confirm the address matches exactly — watch for:
+
+- Extra spaces before or after the address
+- `.com` vs `.co` vs `.nu` mixups
+- Autocorrect changing the domain
+
+If the address is wrong, cancel the invite and re-send to the correct one.
+
+---
+
+## 3. Check if they already have an account
+
+If the recipient already has a Shelf account under a different email, the invite may have landed in that account's workspace list — but they're logging in with the other email. Ask them to try logging in with the invited address.
+
+---
+
+## 4. Re-send the invitation
+
+From **Settings → Team → Users → Pending Invites**, you can re-send. Each re-send generates a fresh link (the old one still works too, unless manually cancelled).
+
+---
+
+## 5. Corporate email filters (IT-managed inboxes)
+
+Some organizations block emails from unknown senders or require domain whitelisting. If the recipient's IT team manages their inbox:
+
+- Ask IT to whitelist `shelf.nu` (and `supabase.co` for self-hosted instances using Supabase email)
+- Alternatively, the recipient can sign up directly at [app.shelf.nu/join](https://app.shelf.nu/join) using the invited email address — Shelf will auto-connect them to the workspace
+
+---
+
+## Still not arriving?
+
+[Contact support](/contact) with:
+- The email address you invited
+- When the invite was sent
+- Whether this is a cloud Shelf workspace or self-hosted
+
+We can check delivery logs from our side.
+
+---
+
+## Related Articles
+
+- [Onboarding Your Team Members](/knowledge-base/onboarding-your-team-members)
+- [Inviting Users via CSV Upload](/knowledge-base/inviting-users-via-csv-upload)
+- [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions)
