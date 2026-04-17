@@ -107,21 +107,32 @@ export function Hero({
                     </div>
                 </div>
 
-                {/* Hero Logo Marquee */}
+                {/* Hero Logo Marquee — two identical groups, each carrying its own
+                    internal gap + a trailing gap via padding-right, so the outer
+                    flex row has no gap and translateX(-50%) lands exactly at the
+                    start of the second copy (no half-gap seam jump on Safari). */}
                 <div className="mt-10 relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                     <div
-                        className="flex gap-12 sm:gap-16 flex-nowrap animate-marquee"
+                        className="flex flex-nowrap animate-marquee"
                         style={{ "--marquee-duration": "25s" } as React.CSSProperties}
                     >
-                        {[...getHeroLogos(), ...getHeroLogos()].map((logo, i) => (
-                            <div key={`${logo.id}-${i}`} className="relative h-7 w-20 flex-shrink-0 flex items-center justify-center">
-                                <Image
-                                    src={logo.logo}
-                                    alt={logo.name}
-                                    fill
-                                    className="object-contain opacity-35 grayscale"
-                                    sizes="80px"
-                                />
+                        {[0, 1].map((copy) => (
+                            <div
+                                key={copy}
+                                className="flex gap-12 sm:gap-16 pr-12 sm:pr-16 flex-nowrap flex-shrink-0"
+                                {...(copy === 1 ? { "aria-hidden": true } : {})}
+                            >
+                                {getHeroLogos().map((logo) => (
+                                    <div key={`${logo.id}-${copy}`} className="relative h-7 w-20 flex-shrink-0 flex items-center justify-center">
+                                        <Image
+                                            src={logo.logo}
+                                            alt={logo.name}
+                                            fill
+                                            className="object-contain opacity-35 grayscale"
+                                            sizes="80px"
+                                        />
+                                    </div>
+                                ))}
                             </div>
                         ))}
                     </div>

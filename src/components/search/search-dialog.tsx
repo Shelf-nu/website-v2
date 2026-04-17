@@ -57,6 +57,9 @@ const TYPE_LABELS: Record<string, { label: string; color: string }> = {
 /* ------------------------------------------------------------------ */
 export function SearchDialog() {
     const [open, setOpen] = useState(false);
+    // Gates backdrop interactivity for a short window after opening so
+    // Safari's in-flight synthesized click/pointer events can't hit it.
+    const [backdropActive, setBackdropActive] = useState(false);
     const [query, setQuery] = useState("");
     const [results, setResults] = useState<PagefindResultData[]>([]);
     const [loading, setLoading] = useState(false);
@@ -69,8 +72,8 @@ export function SearchDialog() {
     const resultRefs = useRef<(HTMLAnchorElement | null)[]>([]);
     const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
     // Tracks whether the current pointer press started on the backdrop.
-    // Used to gate the Safari-synthesized-click close issue (see backdrop
-    // handler comments below).
+    // Used to ignore drag-selects that end on the backdrop (mouseup on
+    // backdrop without mousedown on backdrop shouldn't close the dialog).
     const backdropPressActive = useRef(false);
 
     /* ---------- Lazy-load Pagefind on first open ---------- */
@@ -115,9 +118,15 @@ export function SearchDialog() {
             document.body.style.right = "0";
             document.body.style.overflowY = "scroll";
             // Small delay to let the dialog animate in
-            const t = setTimeout(() => inputRef.current?.focus(), 50);
+            const focusT = setTimeout(() => inputRef.current?.focus(), 50);
+            // Backdrop is inert for the first 250ms so the opening
+            // click's tail (and any Safari-synthesized follow-ups) can't
+            // dismiss the dialog before the user has let go.
+            const backdropT = setTimeout(() => setBackdropActive(true), 250);
             return () => {
-                clearTimeout(t);
+                clearTimeout(focusT);
+                clearTimeout(backdropT);
+                setBackdropActive(false);
                 document.body.style.position = "";
                 document.body.style.top = "";
                 document.body.style.left = "";
@@ -226,25 +235,30 @@ export function SearchDialog() {
 
     return (
         <>
-            {/* Backdrop — close on tap, but only when the press AND release
-                both happen on the backdrop itself.
+            {/* Backdrop — close on tap.
 
-                Safari bug we saw: clicking the search button fires onClick
-                on the button → setOpen(true) → React mounts the backdrop
-                under the cursor → Safari then synthesizes a click on the
-                newly-mounted top element (the backdrop) when the user
-                releases the mouse → backdrop.onClick fires → setOpen(false)
-                → the dialog appears, flashes, and disappears. Other
-                browsers don't fire that synthesized click; Safari does.
+                Safari bug: the opening click on the search button causes
+                React to mount the backdrop under the cursor in the same
+                tick; Safari then dispatches a click (and in some cases a
+                full pointerdown→pointerup sequence) on the newly-topmost
+                element — the backdrop — and the dialog closes itself.
+                Other browsers don't do this.
 
-                Tracking pointerdown→pointerup pair gates the close behind
-                a real click that *started* on the backdrop. A click that
-                originated on the search button has its pointerdown on the
-                button (not backdrop), so the close handler is correctly
-                ignored. Tap-to-dismiss on the backdrop still works because
-                that genuinely starts and ends on the backdrop. */}
+                Two defenses, both cheap:
+                  1. `pointer-events: none` for the first ~250ms after
+                     open. Any stray synthesized events pass straight
+                     through — can't hit anything clickable, can't close
+                     the dialog. Genuine user clicks after the window are
+                     unaffected.
+                  2. pointerdown→pointerup pairing, so even if (1) ever
+                     misses, closing still requires a press that actually
+                     started on the backdrop. Prevents drag-select inside
+                     the dialog that ends on the backdrop from closing. */}
             <div
-                className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-150"
+                className={
+                    "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-150 " +
+                    (backdropActive ? "pointer-events-auto" : "pointer-events-none")
+                }
                 onPointerDown={(e) => {
                     backdropPressActive.current = e.target === e.currentTarget;
                 }}
