@@ -178,20 +178,6 @@
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/20 focus-visible:ring-offset-2;
   }
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-      transform: translateX(-100%);
-    }
-  }
-
-  .animate-marquee {
-    animation: marquee 30s linear infinite;
-  }
-
   @keyframes accordion-down {
     from {
       height: 0;
