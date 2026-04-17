@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Search, FileText, Loader2, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /*  Pagefind type stubs (loaded dynamically at runtime)               */
@@ -255,10 +256,10 @@ export function SearchDialog() {
                      started on the backdrop. Prevents drag-select inside
                      the dialog that ends on the backdrop from closing. */}
             <div
-                className={
-                    "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-150 " +
-                    (backdropActive ? "pointer-events-auto" : "pointer-events-none")
-                }
+                className={cn(
+                    "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-150",
+                    backdropActive ? "pointer-events-auto" : "pointer-events-none"
+                )}
                 onPointerDown={(e) => {
                     backdropPressActive.current = e.target === e.currentTarget;
                 }}

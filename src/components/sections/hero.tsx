@@ -19,6 +19,7 @@ export function Hero({
     heroImageDesktop = "/images/hero_dashboard_v3.webp",
     heroImageMobile
 }: HeroProps) {
+    const heroLogos = getHeroLogos();
     return (
         <section className="py-24 sm:py-32 relative overflow-x-clip">
             {/* Background Effects */}
@@ -122,7 +123,7 @@ export function Hero({
                                 className="flex gap-12 sm:gap-16 pr-12 sm:pr-16 flex-nowrap flex-shrink-0"
                                 {...(copy === 1 ? { "aria-hidden": true } : {})}
                             >
-                                {getHeroLogos().map((logo) => (
+                                {heroLogos.map((logo) => (
                                     <div key={`${logo.id}-${copy}`} className="relative h-7 w-20 flex-shrink-0 flex items-center justify-center">
                                         <Image
                                             src={logo.logo}
