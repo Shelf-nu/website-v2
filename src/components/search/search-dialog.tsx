@@ -127,6 +127,7 @@ export function SearchDialog() {
                 clearTimeout(focusT);
                 clearTimeout(backdropT);
                 setBackdropActive(false);
+                backdropPressActive.current = false;
                 document.body.style.position = "";
                 document.body.style.top = "";
                 document.body.style.left = "";
@@ -140,6 +141,7 @@ export function SearchDialog() {
             setResults([]);
             setActiveIndex(0);
             setActiveFilter(null);
+            backdropPressActive.current = false;
         }
     }, [open, loadPagefind]);
 
