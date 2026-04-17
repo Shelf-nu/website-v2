@@ -1,32 +1,61 @@
 ---
 title: "Adding New Assets"
-description: "Learn how to manually add new assets to your inventory in Shelf, the core building block representing tangible items requiring tracking and management."
+description: "Populate your inventory with assets manually or import your full catalogue via CSV. Step-by-step for both workflows."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-04-16"
 layout: "knowledge-base"
 ---
 
-At the core of Shelf lies the concept of an Asset, representing a unique, tangible item within your inventory that requires tracking and management. Each Asset corresponds to a specific piece of equipment, including its associated metadata, status, usage history, assignments, and other essential details. By organizing your belongings into individual Assets, you can better monitor their availability, condition, and deployment throughout your operations.
+At the core of Shelf lies the concept of an **Asset**: a unique, tangible item in your inventory that you track and manage. Each asset carries its own metadata, status, usage history, custody, and any custom fields you've defined. Organising your equipment into assets is the first step toward knowing what you own, where it is, and who has it.
 
-## Adding an Asset to Your Inventory
+<InlineVideo
+  mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-flow.mp4"
+  webm="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-flow.webm"
+  alt="How to add assets to your Shelf inventory — manually or via CSV import"
+/>
 
-Follow these steps to create a new asset:
+Two ways to get assets into Shelf:
 
+- **[Add manually](#adding-assets-manually)** — best for small inventories, or for occasional one-off additions.
+- **[Import from a spreadsheet](#importing-assets-via-spreadsheet)** — best for onboarding your existing inventory, or adding many items at once.
 
-![Asset list view in Shelf showing available assets](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/adding-new-assets-1.webp)
+---
 
-![Adding a new asset form in Shelf](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/adding-new-assets-2.webp)
-1. Click **Assets**
+## Adding Assets Manually
+
+![Assets index showing the New asset button](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-index.webp)
+
+1. Click **Assets** in the sidebar
 2. Click **New asset**
-3. Fill in a name
-4. **Upload an image** or **take a photo** with your phone (optional)
-5. Choose a **Category**, **Tags** and/or a **Location** (optional)
-6. Fill in a description (optional)
-7. Fill in any other fields, or [add custom fields](/knowledge-base/adding-additional-fields-to-assets)
+3. Fill in a **name**
+4. Upload an image or take a photo with your phone *(optional)*
+5. Choose a **Category**, **Tags**, and/or **Location** *(optional)*
+6. Add a **description** *(optional)*
+7. Fill in any remaining fields, including [custom fields](/knowledge-base/adding-additional-fields-to-assets) you've configured for your workspace
 8. Click **Save**
+
+![New Asset form with all available fields](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-form.webp)
+
+Custom fields are especially useful for capturing information specific to your business — serial numbers, purchase dates, warranty dates, internal references. See [adding additional fields to assets](/knowledge-base/adding-additional-fields-to-assets) for setup.
+
+---
+
+## Importing Assets via Spreadsheet
+
+For larger inventories, bulk import saves hours of manual entry. From the Assets index, click **Import** and upload a CSV.
+
+![Assets index showing the Import button](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-import.webp)
+
+The CSV needs to follow Shelf's expected column format (including optional columns for custom fields, barcodes, and tags). Prepare your file, preview the import, and apply — Shelf creates one asset per row.
+
+Full walkthrough including column reference and troubleshooting: **[Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide)**.
+
+---
 
 ## Related Articles
 
-- [How to add Assets to your inventory](/knowledge-base/how-to-add-assets-to-your-inventory)
-- [How to prepare a spreadsheet for bulk importing assets](/knowledge-base/importing-assets-to-shelf-csv-guide)
+- [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — configure custom fields before a bulk import
+- [Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) — complete CSV reference
+- [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) — edit existing assets in bulk
+- [Using Categories to Organize Your Asset Inventory](/knowledge-base/using-categories-to-organize-your-asset-inventory)
