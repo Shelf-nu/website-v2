@@ -61,17 +61,20 @@ You are helping me enrich a Shelf asset inventory CSV.
 For each row, produce:
 - A 1-2 sentence factual description based on the asset name
   and category (do not invent specs you can't verify).
-- Up to 3 relevant tags.
+- Up to 3 relevant tags (comma-separated in one cell).
 - A suggested value range (low / high in USD) ONLY if you can
   cite a reasonable basis; otherwise leave blank.
 
 Keep all original columns intact. Add new columns:
-  description_suggested
-  tags_suggested
-  value_low_suggested
-  value_high_suggested
+  cf:AI Description
+  tags
+  valuation
   confidence (low / med / high)
   source_note
+
+If a "tags" column already exists, APPEND your suggested tags
+to the existing values (comma-separated). For valuation, use a
+single midpoint number (not a range) — the user will review.
 
 Do not fabricate serial numbers, purchase dates, or owner data.
 If a field is unclear, leave it blank and note why in source_note.
@@ -79,15 +82,21 @@ If a field is unclear, leave it blank and note why in source_note.
 Return the result as a downloadable CSV file.
 ```
 
+<Callout type="info" title="Why 'cf:AI Description' instead of 'Description'?">
+
+Shelf's bulk-update flow supports **custom fields** but not the built-in Description field. To get AI-generated descriptions into your assets, first [create a custom text field](/knowledge-base/adding-additional-fields-to-assets) called "AI Description" in your workspace. The `cf:` prefix in the CSV tells Shelf to write to that custom field. You can always copy the text into the built-in Description field manually later, or use "AI Description" as your primary description field going forward.
+
+</Callout>
+
 Claude will process your inventory and return an enriched CSV with new columns appended to every row.
 
 **What the output looks like:**
 
-| Name | Category | ... | description_suggested | tags_suggested | value_low_suggested | value_high_suggested | confidence | source_note |
-|---|---|---|---|---|---|---|---|---|
-| Nikon D3200 | Camera | ... | Entry-level DSLR camera with 24.2MP sensor, suitable for photography and video. | Photography, DSLR, Entry-Level | 150 | 300 | med | Based on used market pricing as of 2026 |
-| ARRI Skypanel S60 | Lighting | ... | Professional LED soft light panel used in film and broadcast production. | LED, Soft Light, Broadcast | 3000 | 5000 | med | Based on B&H / rental market pricing |
-| DJI Ronin-S | Stabilization | ... | 3-axis motorised gimbal for DSLR and mirrorless cameras. | Gimbal, Stabilization, Video | 200 | 350 | med | Based on used market pricing |
+| Name | Category | ... | cf:AI Description | tags | valuation | confidence | source_note |
+|---|---|---|---|---|---|---|---|
+| Nikon D3200 | Camera | ... | Entry-level DSLR camera with 24.2MP sensor, suitable for photography and video. | Photography, DSLR, Entry-Level | 225 | med | Based on used market pricing as of 2026 |
+| ARRI Skypanel S60 | Lighting | ... | Professional LED soft light panel used in film and broadcast production. | LED, Soft Light, Broadcast | 4000 | med | Based on B&H / rental market pricing |
+| DJI Ronin-S | Stabilization | ... | 3-axis motorised gimbal for DSLR and mirrorless cameras. | Gimbal, Stabilization, Video | 275 | med | Based on used market pricing |
 
 ---
 
@@ -140,8 +149,9 @@ For the full CSV re-import walkthrough, see [Bulk Updating Assets via CSV](/know
 ## Limits and Gotchas
 
 - **Context window**: Claude Pro handles ~200K tokens (~150 pages of CSV). If your export is larger, split it into batches of 1,000–2,000 rows and process each separately.
-- **Column name matching**: when re-importing, your CSV column headers must match Shelf's field names exactly. If you're populating a custom field called "Description", the CSV header must be `Description` — not `description_suggested`. Rename before uploading.
-- **Tags format**: Shelf expects tags as comma-separated values in a single column. If Claude returns them as separate columns, consolidate before re-importing.
+- **Column name matching**: custom fields must be prefixed with `cf:` (e.g. `cf:AI Description`). Standard fields like `tags`, `valuation`, `category` use their plain names. If a column header doesn't match, Shelf ignores it silently.
+- **Tags format**: Shelf expects tags as comma-separated values in a single `tags` column. If Claude returns them as separate columns, consolidate before re-importing.
+- **Built-in Description field**: Shelf's bulk-update currently doesn't support the built-in Description field. Use a custom text field (the `cf:AI Description` approach in the prompt above) as the workaround.
 - **Rate limits**: Claude may slow down on very large files. If it stops mid-output, ask "please continue from row N" and it will resume.
 - **Data freshness**: Claude's knowledge has a cutoff date. Pricing for very new or very niche equipment may be unreliable. The `confidence` column is your signal — anything marked `low` deserves manual verification.
 
