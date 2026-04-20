@@ -1,126 +1,108 @@
 ---
 title: "Enrich Your Entire Shelf Inventory with Claude"
-description: "Use Claude (or any AI assistant) to bulk-add descriptions, tags, and value estimates to your Shelf assets — no integration, no code, just a CSV round-trip."
+description: "Use Claude (or any AI assistant) to bulk-fill empty tags, values, and custom fields across your Shelf assets — no integration, no code, just a CSV round-trip."
 category: "Assets"
 date: "2026-04-20"
 updated: "2026-04-20"
 layout: "knowledge-base"
 ---
 
-You have hundreds of assets in Shelf with bare-minimum data — a name, maybe a category, maybe a location. Writing descriptions, assigning tags, and researching replacement values by hand is realistic for 20 items. It's not realistic for 500.
+You have hundreds of assets in Shelf with bare-minimum data — a name, maybe a category. Tags are empty. Values are blank. Custom fields like "Manufacturer" or "condition" sit unfilled because nobody had time. Doing it by hand for 500 assets isn't realistic.
 
-This guide shows you how to **enrich your entire inventory in minutes** by exporting a CSV from Shelf, running it through Claude (or any AI assistant that accepts file uploads), and re-importing the enriched data. No integration work, no API, no code. Just a round-trip.
+This guide shows you how to **fill those gaps in minutes** by round-tripping a CSV through Claude. No integration, no API, no code. You export from Shelf, Claude fills in the blanks, you review, and re-import via the bulk-update flow.
+
+> This workflow works with any AI assistant that handles CSV uploads — Claude, ChatGPT, Gemini, etc. We use Claude in the screenshots because it handles large file contexts well.
 
 ---
 
 ## What You'll Need
 
 - A **Shelf workspace** with admin access and assets you want to enrich
-- A **Claude account** ([claude.ai](https://claude.ai)) — Pro or Team recommended for large files. A free account works for smaller batches.
+- A **Claude account** ([claude.ai](https://claude.ai)) — Pro or Team recommended for large files
 - **15 minutes**
 
-> This workflow works with any AI assistant that handles CSV uploads — Claude, ChatGPT, Gemini, etc. We use Claude in the screenshots because it handles large-context files well.
+---
+
+## Step 1: Toggle on the columns you want to enrich
+
+The exported CSV **only includes columns that are visible** in your Asset Index. If a custom field isn't toggled on, it won't appear in the export — and Claude won't be able to fill it.
+
+1. Go to the **Assets** index
+2. Click the **Columns** control (top-right)
+3. Toggle on every field you want Claude to help with — Tags, Value, and any custom fields (Manufacturer, condition, Purchase date, etc.)
+4. Click **Apply**
+
+If the custom fields you need don't exist yet, [create them first](/knowledge-base/adding-additional-fields-to-assets) before exporting.
 
 ---
 
-## Step 1: Export Your Assets as CSV
+## Step 2: Export your assets
 
-1. Go to the **Assets** index in Shelf
-2. Select the assets you want to enrich (or click **Select all** for the entire inventory)
-3. Click **Export selection**
-4. Shelf downloads a CSV with all visible columns — name, category, location, tags, value, custom fields, etc.
+1. Select the assets you want to enrich (checkboxes, or **Select all**)
+2. Click **Export selection**
+3. Shelf downloads a CSV with the columns you toggled on
 
-![Assets selected in the Shelf index with the Export selection button visible](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/claude-kb-export.webp)
+The exported CSV is the **same file you'll re-import later** — same columns, same headers. Claude will fill in empty cells; you won't need to add or rename any columns.
 
-If you want to include specific columns, configure them first using the **Columns** control in the top-right of the asset index before exporting.
-
-For a detailed walkthrough of the export flow, see [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf).
+For a detailed walkthrough, see [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf).
 
 ---
 
-## Step 2: Upload the CSV to Claude
+## Step 3: Upload to Claude and paste the prompt
 
-1. Open [claude.ai](https://claude.ai) and start a new conversation
-2. Click the **attachment icon** (paperclip) and select your exported CSV
-3. Claude will preview the file — confirm it looks right (column headers, row count)
+1. Open [claude.ai](https://claude.ai) → start a new conversation
+2. Attach your exported CSV (paperclip icon)
+3. Paste this prompt:
+
+```
+I'm uploading a Shelf asset management CSV. Many cells are empty
+and I need help filling them in.
+
+For each row, based on the asset Name and Category, please:
+- Fill empty "Tags" cells with up to 3 relevant comma-separated
+  tags. If tags already exist, append new ones after a comma.
+- Fill empty "Value" cells with a reasonable estimated value
+  in the same currency format as existing rows. ONLY if you can
+  cite a basis — otherwise leave blank.
+- Fill empty custom field cells where you can make a reasonable
+  inference from the asset name (e.g. "Manufacturer", "brand",
+  "model", "condition").
+
+IMPORTANT RULES:
+- Do NOT change any existing values — only fill blank cells.
+- Do NOT add, remove, or rename any columns.
+- Do NOT touch: ID, Asset ID, QR ID, Status, Custody, Kit,
+  Description, Created at, Updated at.
+- If you're not confident about a value, leave the cell blank.
+- Return the complete CSV as a downloadable file.
+```
 
 <Callout type="warning" title="Privacy: your data leaves Shelf">
 
-Uploading a CSV to Claude (or any external AI service) sends your asset data to that provider's servers. If your inventory contains sensitive information — serial numbers, employee names, financial values, classified equipment — **confirm with your organisation's data policy before uploading**. Review [Anthropic's usage policy](https://www.anthropic.com/policies) and consider whether your Claude plan's data retention settings are acceptable.
+Uploading a CSV to Claude (or any external AI service) sends your asset data to that provider's servers. If your inventory contains sensitive information — serial numbers, financial values, classified equipment — **confirm with your organisation's data policy before uploading**. Review [Anthropic's usage policy](https://www.anthropic.com/policies) and consider whether your plan's data retention settings are acceptable for your data.
 
 </Callout>
 
 ---
 
-## Step 3: Paste This Prompt
+## Step 4: Download the enriched CSV
 
-Copy and paste the following prompt into Claude alongside your uploaded CSV:
+Claude returns the same CSV with previously-empty cells filled in. Download the file.
 
-```
-You are helping me enrich a Shelf asset inventory CSV.
-For each row, produce:
-- A 1-2 sentence factual description based on the asset name
-  and category (do not invent specs you can't verify).
-- Up to 3 relevant tags (comma-separated in one cell).
-- A suggested value range (low / high in USD) ONLY if you can
-  cite a reasonable basis; otherwise leave blank.
-
-Keep all original columns intact. Add new columns:
-  cf:AI Description
-  tags
-  valuation
-  confidence (low / med / high)
-  source_note
-
-If a "tags" column already exists, APPEND your suggested tags
-to the existing values (comma-separated). For valuation, use a
-single midpoint number (not a range) — the user will review.
-
-Do not fabricate serial numbers, purchase dates, or owner data.
-If a field is unclear, leave it blank and note why in source_note.
-
-Return the result as a downloadable CSV file.
-```
-
-<Callout type="info" title="Why 'cf:AI Description' instead of 'Description'?">
-
-Shelf's bulk-update flow supports **custom fields** but not the built-in Description field. To get AI-generated descriptions into your assets, first [create a custom text field](/knowledge-base/adding-additional-fields-to-assets) called "AI Description" in your workspace. The `cf:` prefix in the CSV tells Shelf to write to that custom field. You can always copy the text into the built-in Description field manually later, or use "AI Description" as your primary description field going forward.
-
-</Callout>
-
-Claude will process your inventory and return an enriched CSV with new columns appended to every row.
-
-**What the output looks like:**
-
-| Name | Category | ... | cf:AI Description | tags | valuation | confidence | source_note |
-|---|---|---|---|---|---|---|---|
-| Nikon D3200 | Camera | ... | Entry-level DSLR camera with 24.2MP sensor, suitable for photography and video. | Photography, DSLR, Entry-Level | 225 | med | Based on used market pricing as of 2026 |
-| ARRI Skypanel S60 | Lighting | ... | Professional LED soft light panel used in film and broadcast production. | LED, Soft Light, Broadcast | 4000 | med | Based on B&H / rental market pricing |
-| DJI Ronin-S | Stabilization | ... | 3-axis motorised gimbal for DSLR and mirrorless cameras. | Gimbal, Stabilization, Video | 275 | med | Based on used market pricing |
+**Do not re-import yet** — review first.
 
 ---
 
-## Step 4: Download the Enriched CSV
-
-Claude will either:
-- Display the enriched table inline (you can click **Copy** or **Download**)
-- Offer a file download link for the full CSV
-
-Download the file and open it in Excel or Google Sheets. **Do not re-import yet** — review first.
-
----
-
-## Step 5: Review Before Re-Importing
+## Step 5: Review before re-importing
 
 <Callout type="warning" title="Always review AI-generated data before re-importing">
 
-AI suggestions are starting points, not ground truth. Spot-check at least 10–20 rows before applying to your real inventory. Look for:
-- **Descriptions that assume specs** the AI can't verify (e.g. inventing a sensor size for a camera it doesn't recognise)
-- **Value estimates that feel off** — particularly for niche, vintage, or custom equipment
-- **Tags that don't match your existing taxonomy** — rename to match before importing
-- **Blank `confidence` or `source_note` columns** — these are the rows the AI wasn't sure about; review them manually
+Open the CSV in Excel or Google Sheets and spot-check at least 10–20 rows. Look for:
 
-Delete any `_suggested` columns you don't want to import. Rename the ones you do want to match your Shelf custom field names exactly.
+- **Values that seem off** — AI pricing estimates can be unreliable for niche, vintage, or custom equipment
+- **Tags that don't match your existing taxonomy** — rename to match before importing
+- **Custom field values the AI guessed wrong** — delete any cells you're not confident about
+- **Cells that SHOULD be empty** — an empty cell in the re-import **clears the existing value** in Shelf. If Claude filled a cell incorrectly and you delete it, that empty cell will wipe whatever was there before. Only delete values you genuinely want to clear.
 
 </Callout>
 
@@ -128,43 +110,50 @@ Delete any `_suggested` columns you don't want to import. Rename the ones you do
 
 ---
 
-## Step 6: Re-Import into Shelf
-
-Once you've reviewed and cleaned the CSV:
+## Step 6: Re-import via bulk update
 
 1. Go to the **Assets** index in Shelf
-2. Click **Import** → choose **Update Existing Assets** (not "Import new")
+2. Click **Import** → select the **Update existing** tab
 3. Upload your enriched CSV
-4. Shelf shows a **preview diff** — every field change is highlighted before anything is saved
-5. Review the diff, then click **Apply**
+4. Shelf shows a **preview diff** — every changed cell is highlighted with old and new values side by side
+5. Review the diff carefully, then type **I AGREE** and click **Apply changes**
 
-![Shelf's import page where you upload the enriched CSV for bulk update](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/claude-kb-reimport.webp)
+The preview step is your safety net. Nothing is saved until you explicitly confirm.
 
-> **Important:** Use **Update Existing Assets**, not **Import**. Import creates new records; Update matches by asset ID and applies changes in place. Using the wrong one creates duplicates. See [Troubleshooting: CSV Import Issues](/knowledge-base/troubleshooting-csv-import-issues) if something goes wrong.
+> **Important:** Use the **Update existing** tab, not "Create new assets." The update flow matches rows by the **ID** or **Asset ID** column in your CSV and applies changes in place. Using the wrong tab creates duplicate assets. See [Troubleshooting: CSV Import Issues](/knowledge-base/troubleshooting-csv-import-issues) if something goes wrong.
 
-For the full CSV re-import walkthrough, see [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
-
----
-
-## Limits and Gotchas
-
-- **Context window**: Claude Pro handles ~200K tokens (~150 pages of CSV). If your export is larger, split it into batches of 1,000–2,000 rows and process each separately.
-- **Column name matching**: custom fields must be prefixed with `cf:` (e.g. `cf:AI Description`). Standard fields like `tags`, `valuation`, `category` use their plain names. If a column header doesn't match, Shelf ignores it silently.
-- **Tags format**: Shelf expects tags as comma-separated values in a single `tags` column. If Claude returns them as separate columns, consolidate before re-importing.
-- **Built-in Description field**: Shelf's bulk-update currently doesn't support the built-in Description field. Use a custom text field (the `cf:AI Description` approach in the prompt above) as the workaround.
-- **Rate limits**: Claude may slow down on very large files. If it stops mid-output, ask "please continue from row N" and it will resume.
-- **Data freshness**: Claude's knowledge has a cutoff date. Pricing for very new or very niche equipment may be unreliable. The `confidence` column is your signal — anything marked `low` deserves manual verification.
+For the full bulk-update walkthrough, see [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
 
 ---
 
-## What to Try Next
+## What about Descriptions?
 
-Once you're comfortable with the description + value workflow, the same CSV round-trip pattern works for:
+Shelf's bulk-update flow currently does not support updating the built-in **Description** field via CSV — it's safely skipped during import to prevent formatting loss. If you want AI-generated descriptions:
 
-- **Tag cleanup** — ask Claude to normalize inconsistent tags (e.g. consolidate "photo", "Photography", "PHOTO" into one canonical tag)
-- **Category suggestions** — if you have uncategorized assets, Claude can suggest categories based on asset names
-- **Custom field enrichment** — populate fields like "Warranty Expiration" or "Manufacturer" based on the asset name + your organisation's conventions
-- **Multilingual descriptions** — ask Claude to translate descriptions into a second language for international teams
+- **Option A**: Create a custom text field called "AI Description" or similar. Toggle it on in the Asset Index, include it in your export, and Claude will fill it like any other custom field. You can copy the text into the built-in Description manually later.
+- **Option B**: Use the descriptions Claude generates as reference material and paste them into individual asset pages — useful if you're enriching a small batch.
+
+---
+
+## Limits and gotchas
+
+- **Empty cells clear values.** This is the most important gotcha. In the bulk-update flow, an empty cell overwrites the existing value with blank. If Claude leaves a cell empty that previously had data, the re-import will erase it. Check the preview diff carefully.
+- **Context window**: Claude Pro handles large CSVs well (~200K tokens). For very large exports (2,000+ rows), split into batches of 1,000 and process each separately.
+- **Currency formats**: Shelf exports values with currency symbols (e.g. `¥5,400`). If Claude outputs plain numbers, match the format your workspace uses before re-importing.
+- **Up to 1,000 assets per bulk-update file.** Split larger batches.
+- **Tags are comma-separated** in a single column. Claude should append to existing tags, not replace them.
+- **Rate limits**: if Claude stops mid-output on a large file, ask "please continue from where you left off" and it will resume.
+
+---
+
+## What to try next
+
+Once you're comfortable with the enrichment workflow:
+
+- **Tag cleanup** — ask Claude to normalise inconsistent tags (e.g. consolidate "photo", "Photography", "PHOTO" into one canonical)
+- **Category suggestions** — if you have uncategorised assets, Claude can suggest categories based on asset names
+- **Custom field enrichment** — populate empty fields like "Warranty expiry" or "Manufacturer" based on the asset name and your conventions
+- **Multilingual descriptions** — ask Claude to translate custom field values into a second language for international teams
 
 ---
 
