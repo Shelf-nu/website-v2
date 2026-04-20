@@ -11,6 +11,7 @@ import { PullQuote } from "@/components/mdx/pull-quote";
 import { SummaryBox } from "@/components/mdx/summary-box";
 import { HeadingAnchor } from "@/components/mdx/heading-anchor";
 import { ComparisonTable } from "@/components/mdx/comparison-table";
+import { CodeBlock } from "@/components/mdx/code-block";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -99,15 +100,10 @@ const components = {
             {...props}
         />
     ),
-    pre: (props: HtmlProps<"pre">) => (
-        <pre
-            className="mb-4 mt-6 overflow-x-auto rounded-xl border border-border/40 bg-zinc-950 py-4 shadow-lg"
-            {...props}
-        />
-    ),
+    pre: (props: HtmlProps<"pre">) => <CodeBlock>{props.children}</CodeBlock>,
     code: (props: HtmlProps<"code">) => (
         <code
-            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-orange-800 dark:text-orange-300"
+            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-[0.9em] font-semibold text-orange-800 dark:text-orange-300"
             {...props}
         />
     ),
