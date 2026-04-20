@@ -20,16 +20,19 @@ function getPostHog(): Promise<PostHogLike> {
         loadingPromise = import("posthog-js").then(({ default: ph }) => {
             // The npm build does NOT queue capture() calls made before
             // init() (unlike the HTML snippet). If the provider hasn't
-            // initialized yet, do a minimal init here so queued events
-            // aren't silently lost. PostHog ignores a second init() call
-            // with the same token, so no conflict with the provider.
+            // initialized yet, init here so queued events aren't silently
+            // lost. PostHog ignores a second init() with the same token —
+            // so whichever of this and PostHogProvider's idle init fires
+            // first wins. Config must match the provider's to avoid
+            // silently disabling autocapture / pageleave when this path
+            // wins the race.
             const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
             if (key) {
                 ph.init(key, {
                     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
-                    capture_pageview: false, // Provider handles pageviews
-                    capture_pageleave: false,
-                    autocapture: false,
+                    capture_pageview: false, // Pageviews fire manually on pathname changes
+                    capture_pageleave: true,
+                    autocapture: true,
                 });
             }
             posthogClient = ph;
