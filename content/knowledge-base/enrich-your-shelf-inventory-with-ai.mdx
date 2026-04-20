@@ -77,13 +77,28 @@ RULES:
 - Do not add, remove, or rename any columns.
 - Do not touch: ID, Asset ID, QR ID, Status, Custody, Kit,
   Description, Created at, Updated at.
-- For Tags: append new comma-separated tags after existing ones.
-- For Value: only suggest if you can cite a reasonable basis.
-  Match the currency format already used in the file.
 - If you're not confident about a value, leave it blank.
+
+FORMAT RULES (Shelf will reject wrong formats):
+- Dates: YYYY-MM-DD only (e.g. 2026-04-20). No other format.
+- Booleans: exactly "Yes" or "No". Not TRUE/FALSE, not 1/0.
+- Currency/Value: match the format already used in the file
+  (e.g. if existing values show ¥5,400, use that same format).
+- Tags: comma-separated in a single cell. IMPORTANT — before
+  adding any tag, check the Tags column across ALL rows in 
+  the file. If a similar tag already exists (even with 
+  different casing), use the EXACT casing from the file. 
+  Shelf treats "networking" and "Networking" as different 
+  tags. Append new tags at the end, after existing ones.
+
+CSV FORMAT:
+- Preserve the exact column order, quoting style, and line 
+  endings from the original file.
+- The output must be uploadable directly back into Shelf's 
+  "Update existing assets" importer without modification.
 ```
 
-This prompt is designed to be **conversational** — Claude will analyze your file first, show you a preview of proposed changes, and only generate the full CSV after you've confirmed the direction. You can ask it to adjust ("skip the value estimates" or "only do tags for now") before it commits to the whole file.
+This prompt is designed to be **conversational** — Claude will analyse your file first, show you a preview of proposed changes, and only generate the full CSV after you've confirmed the direction. You can ask it to adjust ("skip the value estimates" or "only do tags for now") before it commits to the whole file.
 
 <Callout type="warning" title="Privacy: your data leaves Shelf">
 
@@ -128,7 +143,11 @@ Open the CSV in Excel or Google Sheets and spot-check at least 10–20 rows. Loo
 
 ![The Update existing tab on Shelf's import page](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/claude-kb-update-existing.webp)
 
-The preview step is your safety net. Nothing is saved until you explicitly confirm.
+The preview step is your safety net — you see every change before anything is saved. In the example below, Shelf detected 46 cell changes across 20 assets, with 0 failures:
+
+![Shelf's bulk-update preview showing 46 changes across 20 assets, 0 failed — every changed cell highlighted in blue](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/claude-kb-preview-diff.jpg)
+
+Nothing is saved until you type **I AGREE** and click Apply.
 
 > **Important:** Use the **Update existing** tab, not "Create new assets." The update flow matches rows by the **ID** or **Asset ID** column in your CSV and applies changes in place. Using the wrong tab creates duplicate assets. See [Troubleshooting: CSV Import Issues](/knowledge-base/troubleshooting-csv-import-issues) if something goes wrong.
 
@@ -151,6 +170,10 @@ Shelf's bulk-update flow currently does not support updating the built-in **Desc
 - **Context window**: Claude Pro handles large CSVs well (~200K tokens). For very large exports (2,000+ rows), split into batches of 1,000 and process each separately.
 - **Currency formats**: Shelf exports values with currency symbols (e.g. `¥5,400`). If Claude outputs plain numbers, match the format your workspace uses before re-importing.
 - **Up to 1,000 assets per bulk-update file.** Split larger batches.
+- **Tags are case-sensitive.** Shelf treats `networking` and `Networking` as different tags. If Claude adds a lowercase tag that already exists as capitalised, Shelf will create a duplicate. The prompt includes a guardrail for this, but always check the preview's **"New items will be created"** banner — if you see new tags listed that look like duplicates of existing ones, go back and fix the casing before applying.
+
+![Shelf's preview warning about new tags being created — a sign that tag casing doesn't match existing tags](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/claude-kb-tag-warning.jpg)
+
 - **Tags are comma-separated** in a single column. Claude should append to existing tags, not replace them.
 - **Rate limits**: if Claude stops mid-output on a large file, ask "please continue from where you left off" and it will resume.
 
