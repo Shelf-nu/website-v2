@@ -1,0 +1,153 @@
+---
+title: "Locations vs Categories vs Tags: How to Structure Your Inventory"
+description: "Shelf has three ways to organize assets — locations, categories, and tags. Here's when to use each, how they interact, and common mistakes to avoid."
+category: "Assets"
+date: "2026-04-17"
+updated: "2026-04-17"
+layout: "knowledge-base"
+---
+
+Every new Shelf workspace faces the same question within the first week: should I put "Studio B" as a location, a category, or a tag? The answer depends on what kind of question you want to answer later. This article explains the three organizing tools, when to use each, and how they work together.
+
+---
+
+## The short version
+
+| Tool | What it answers | How many per asset | Examples |
+|---|---|---|---|
+| **Location** | Where is this asset right now? | One (current) | Studio B, Meander 901, Truck 4, Server Room |
+| **Category** | What kind of thing is this? | One | Camera, Lighting, Audio, Computer, Peripheral |
+| **Tags** | What else do I need to know about this? | Many | Photography, Broadcast, Fragile, Needs-Repair, LED |
+
+If you only remember one rule: **Location = where. Category = what. Tags = everything else.**
+
+---
+
+## Locations — where the asset physically lives
+
+A location is a **physical place**. Shelf supports a [hierarchy up to 12 levels deep](/knowledge-base/sublocations-organize-locations-into-hierarchies) (building → floor → room → shelf), and every asset can be in exactly **one location** at a time.
+
+When someone scans a QR code, the location can update automatically based on where the scan happened. When equipment moves between sites, a quick scan logs the transfer.
+
+### Use locations for
+
+- Buildings, floors, rooms, closets, vehicles
+- Job sites, warehouses, storage units
+- Anything that answers "where should I physically go to find this?"
+
+### Don't use locations for
+
+- Asset type ("Camera" is a category, not a location)
+- Ownership or department ("IT Department" is better as a workspace or tag)
+- Condition or status ("Needs Repair" is a tag)
+
+---
+
+## Categories — what kind of thing the asset is
+
+A category is the **type classification**. Each asset belongs to exactly **one category**. Categories drive the color-coded chips you see in the asset index and help you filter views.
+
+Categories are also the backbone of [custom field templates](/knowledge-base/linking-custom-fields-to-categories) — you can link specific custom fields to a category so that every Camera automatically gets "Sensor Size" and "Lens Mount" fields, while every Laptop gets "RAM" and "Storage".
+
+### Use categories for
+
+- Equipment type: Camera, Lens, Lighting, Audio, Monitor, Computer, Stabilization, Peripheral
+- Broad asset classes: Furniture, Vehicle, Tool, Safety Equipment
+- Anything you'd use as a column header if you were organizing a spreadsheet by "type of thing"
+
+### Don't use categories for
+
+- Location (use locations)
+- Multi-value attributes (a camera can't be in two categories — if you need to tag it as both "Camera" and "Video Production", the second label should be a tag)
+- Temporary states ("In Repair" is a tag or a status, not a category)
+
+---
+
+## Tags — flexible, multi-value labels
+
+Tags are the **catch-all organizer**. Every asset can have **multiple tags**, and you can create tags freely without any schema. They're the fastest way to slice your inventory by attributes that don't fit neatly into location or category.
+
+### Use tags for
+
+- **Cross-cutting attributes**: Photography, Broadcast, Streaming, Film Lighting, LED
+- **Project or event associations**: "Q2 Shoot", "London Office Move", "Summer Camp 2026"
+- **Condition or maintenance flags**: Needs-Repair, Fragile, End-of-Life, Calibration-Due
+- **Ownership or funding**: Grant-Funded, Leased, IT-Managed, Student-Accessible
+- **Workflow markers**: Available-for-Loan, Do-Not-Move, Insurance-Documented
+
+### Don't use tags for
+
+- The asset's primary type (that's the category)
+- Its current physical location (that's a location)
+- Anything that should be a structured, searchable field with a specific value (that's a [custom field](/knowledge-base/custom-field-types-in-shelf) — e.g. "Purchase Date" should be a date field, not a tag)
+
+---
+
+## How they work together — a real example
+
+Suppose you manage AV equipment across two studios:
+
+| Asset | Location | Category | Tags |
+|---|---|---|---|
+| ARRI Skypanel S60 | Studio B | Lighting | LED, Soft Light |
+| Nikon D3200 | Meander 901 | Camera | Photography, Streaming, Broadcast |
+| Sennheiser EW 112P G4 | Studio B | Audio | Microphone, Broadcast |
+| Manfrotto 190go! Tripod | Studio B | Stabilization | Tripod, Carbon Fiber |
+
+Now you can answer questions fast:
+
+- **"What's in Studio B?"** → filter by Location = Studio B (4 items)
+- **"Show me all cameras"** → filter by Category = Camera (1 item here, probably more in the full inventory)
+- **"What's tagged Broadcast?"** → filter by Tag = Broadcast (2 items across different categories and locations)
+- **"Show me all Lighting in Meander 901"** → filter Location + Category (cross-filter)
+
+Each tool gives you a different axis. Together, they answer any question without duplicating data.
+
+---
+
+## Common mistakes (and how to fix them)
+
+### Mistake: using tags where you need a location
+
+"Studio B" as a tag works until you need to track that an asset *moved* from Studio B to Meander 901. Tags don't have history — locations do. If you need movement tracking, use a location.
+
+**Fix**: create Studio B as a location. If you've already tagged assets, bulk-update their location and remove the tag.
+
+### Mistake: too many categories
+
+If you have 50 categories with 2-3 assets each, your category dropdown becomes unusable and your filters lose value. Categories should be broad enough that each one contains dozens of items.
+
+**Fix**: consolidate to 8-15 categories. Use tags for the specific sub-types ("Zoom Lens" and "Prime Lens" are tags under the "Lens" category, not separate categories).
+
+### Mistake: using custom fields for things that should be tags
+
+A boolean custom field called "Is Broadcast Equipment" does the same job as a "Broadcast" tag — but the tag is visible in the asset index, can be filtered with one click, and doesn't require schema setup. If it's a yes/no label that many assets share, it's a tag.
+
+**Fix**: delete the custom field, create the tag, bulk-assign it via [batch actions](/knowledge-base/using-batch-actions-in-shelf).
+
+### Mistake: flat locations when you need hierarchy
+
+If you have "Building A - Floor 2 - Room 201" as a single location name, you can't filter by "Building A" alone. Use [sublocations](/knowledge-base/sublocations-organize-locations-into-hierarchies) to nest: Building A → Floor 2 → Room 201.
+
+---
+
+## Quick decision flowchart
+
+When you're not sure where to put a piece of information:
+
+1. **Is it a physical place?** → Location
+2. **Is it the primary type of thing?** → Category
+3. **Does the asset need a specific value (date, number, URL)?** → Custom field
+4. **Is it a label that many assets share, and you want to filter by it?** → Tag
+5. **Still not sure?** → Start with a tag. Tags are the lowest-commitment choice — you can always restructure later without losing data.
+
+---
+
+## Related Articles
+
+- [Sublocations: Organize Locations into Hierarchies](/knowledge-base/sublocations-organize-locations-into-hierarchies)
+- [Using Categories to Organize Your Asset Inventory](/knowledge-base/using-categories-to-organize-your-asset-inventory)
+- [What is a Tag in Shelf?](/knowledge-base/what-is-a-tag-in-shelf-and-what-can-they-be-used-for)
+- [Mastering Custom Fields in Shelf](/knowledge-base/custom-field-types-in-shelf)
+- [Linking Custom Fields to Categories](/knowledge-base/linking-custom-fields-to-categories)
+- [Using Batch Actions](/knowledge-base/using-batch-actions-in-shelf) — for bulk-assigning tags, categories, or locations
