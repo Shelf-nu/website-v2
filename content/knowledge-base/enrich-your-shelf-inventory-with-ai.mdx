@@ -67,12 +67,17 @@ changes for 5-10 rows before doing the full file.
 
 Rules: only fill blank cells, don't change existing values,
 don't add or remove columns. Match the format of existing
-values in each column exactly. Skip the Description column
-— it can't be bulk-updated in our system and changes would
-be silently lost.
+values in each column exactly.
+
+Do not touch these columns — our system ignores changes to
+them on re-import and they would be silently lost:
+Description, Status, Kit, Custody, ID, Asset ID, QR ID,
+Created at, Updated at, Upcoming Reminder, Upcoming Bookings.
 ```
 
 This prompt is intentionally short. Claude will analyse your file, infer the right formats from existing values in each column, and show you a preview before committing. You can steer the conversation from there — "skip the value estimates", "only do tags", "also try filling the Manufacturer column." The AI learns the shape of your data from the file itself; you don't need to spell out every format rule.
+
+The skip list covers every column that Shelf's bulk-update flow silently ignores. If you need AI-generated descriptions, see [What about Descriptions?](#what-about-descriptions) below for the custom-field workaround.
 
 <Callout type="warning" title="Privacy: your data leaves Shelf">
 
@@ -131,7 +136,7 @@ For the full bulk-update walkthrough, see [Bulk Updating Assets via CSV](/knowle
 
 ## What about Descriptions?
 
-Shelf's bulk-update flow currently does not support updating the built-in **Description** field via CSV — it's safely skipped during import to prevent formatting loss. If you want AI-generated descriptions:
+Shelf's bulk-update flow does not support the built-in **Description** field (along with Status, Kit, and Custody — each has its own dedicated workflow). Description is skipped during import to prevent formatting loss. If you want AI-generated descriptions:
 
 - **Option A**: Create a custom text field called "AI Description" or similar. Toggle it on in the Asset Index, include it in your export, and Claude will fill it like any other custom field. You can copy the text into the built-in Description manually later.
 - **Option B**: Use the descriptions Claude generates as reference material and paste them into individual asset pages — useful if you're enriching a small batch.
