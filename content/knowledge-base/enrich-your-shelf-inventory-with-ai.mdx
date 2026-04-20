@@ -55,27 +55,31 @@ For a detailed walkthrough, see [Exporting Data from Shelf](/knowledge-base/expo
 3. Paste this prompt:
 
 ```
-I'm uploading a Shelf asset management CSV. Many cells are empty
-and I need help filling them in.
+I'm uploading an asset inventory CSV exported from Shelf.
+Many cells are empty and I need your help filling them in.
 
-For each row, based on the asset Name and Category, please:
-- Fill empty "Tags" cells with up to 3 relevant comma-separated
-  tags. If tags already exist, append new ones after a comma.
-- Fill empty "Value" cells with a reasonable estimated value
-  in the same currency format as existing rows. ONLY if you can
-  cite a basis — otherwise leave blank.
-- Fill empty custom field cells where you can make a reasonable
-  inference from the asset name (e.g. "Manufacturer", "brand",
-  "model", "condition").
+Please:
+1. Scan the file and tell me what you see — how many rows,
+   which columns have the most empty cells, and which columns
+   you think you can help with based on the asset names.
+2. Show me a preview of your suggested changes for the first
+   5-10 rows so I can check your work before you do the full
+   file.
+3. After I confirm the preview looks good, produce the
+   complete enriched CSV as a downloadable file.
 
-IMPORTANT RULES:
-- Do NOT change any existing values — only fill blank cells.
-- Do NOT add, remove, or rename any columns.
-- Do NOT touch: ID, Asset ID, QR ID, Status, Custody, Kit,
+RULES:
+- Only fill BLANK cells. Never overwrite existing values.
+- Do not add, remove, or rename any columns.
+- Do not touch: ID, Asset ID, QR ID, Status, Custody, Kit,
   Description, Created at, Updated at.
-- If you're not confident about a value, leave the cell blank.
-- Return the complete CSV as a downloadable file.
+- For Tags: append new comma-separated tags after existing ones.
+- For Value: only suggest if you can cite a reasonable basis.
+  Match the currency format already used in the file.
+- If you're not confident about a value, leave it blank.
 ```
+
+This prompt is designed to be **conversational** — Claude will analyze your file first, show you a preview of proposed changes, and only generate the full CSV after you've confirmed the direction. You can ask it to adjust ("skip the value estimates" or "only do tags for now") before it commits to the whole file.
 
 <Callout type="warning" title="Privacy: your data leaves Shelf">
 
