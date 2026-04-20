@@ -59,46 +59,20 @@ For a detailed walkthrough, see [Exporting Data from Shelf](/knowledge-base/expo
 3. Paste this prompt:
 
 ```
-I'm uploading an asset inventory CSV exported from Shelf.
-Many cells are empty and I need your help filling them in.
+I'm uploading an asset inventory CSV. Many cells are empty.
 
-Please:
-1. Scan the file and tell me what you see — how many rows,
-   which columns have the most empty cells, and which columns
-   you think you can help with based on the asset names.
-2. Show me a preview of your suggested changes for the first
-   5-10 rows so I can check your work before you do the full
-   file.
-3. After I confirm the preview looks good, produce the
-   complete enriched CSV as a downloadable file.
+Scan the file, tell me which columns have gaps you can help
+fill based on the asset names, and preview your suggested
+changes for 5-10 rows before doing the full file.
 
-RULES:
-- Only fill BLANK cells. Never overwrite existing values.
-- Do not add, remove, or rename any columns.
-- Do not touch: ID, Asset ID, QR ID, Status, Custody, Kit,
-  Description, Created at, Updated at.
-- If you're not confident about a value, leave it blank.
-
-FORMAT RULES (Shelf will reject wrong formats):
-- Dates: YYYY-MM-DD only (e.g. 2026-04-20). No other format.
-- Booleans: exactly "Yes" or "No". Not TRUE/FALSE, not 1/0.
-- Currency/Value: match the format already used in the file
-  (e.g. if existing values show ¥5,400, use that same format).
-- Tags: comma-separated in a single cell. IMPORTANT — before
-  adding any tag, check the Tags column across ALL rows in 
-  the file. If a similar tag already exists (even with 
-  different casing), use the EXACT casing from the file. 
-  Shelf treats "networking" and "Networking" as different 
-  tags. Append new tags at the end, after existing ones.
-
-CSV FORMAT:
-- Preserve the exact column order, quoting style, and line 
-  endings from the original file.
-- The output must be uploadable directly back into Shelf's 
-  "Update existing assets" importer without modification.
+Rules: only fill blank cells, don't change existing values,
+don't add or remove columns. Match the format of existing
+values in each column exactly. Skip the Description column
+— it can't be bulk-updated in our system and changes would
+be silently lost.
 ```
 
-This prompt is designed to be **conversational** — Claude will analyse your file first, show you a preview of proposed changes, and only generate the full CSV after you've confirmed the direction. You can ask it to adjust ("skip the value estimates" or "only do tags for now") before it commits to the whole file.
+This prompt is intentionally short. Claude will analyse your file, infer the right formats from existing values in each column, and show you a preview before committing. You can steer the conversation from there — "skip the value estimates", "only do tags", "also try filling the Manufacturer column." The AI learns the shape of your data from the file itself; you don't need to spell out every format rule.
 
 <Callout type="warning" title="Privacy: your data leaves Shelf">
 
