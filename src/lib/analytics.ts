@@ -20,16 +20,19 @@ function getPostHog(): Promise<PostHogLike> {
         loadingPromise = import("posthog-js").then(({ default: ph }) => {
             // The npm build does NOT queue capture() calls made before
             // init() (unlike the HTML snippet). If the provider hasn't
-            // initialized yet, do a minimal init here so queued events
-            // aren't silently lost. PostHog ignores a second init() call
-            // with the same token, so no conflict with the provider.
+            // initialized yet, init here so queued events aren't silently
+            // lost. PostHog ignores a second init() with the same token —
+            // so whichever of this and PostHogProvider's idle init fires
+            // first wins. Config must match the provider's to avoid
+            // silently disabling autocapture / pageleave when this path
+            // wins the race.
             const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
             if (key) {
                 ph.init(key, {
                     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
-                    capture_pageview: false, // Provider handles pageviews
-                    capture_pageleave: false,
-                    autocapture: false,
+                    capture_pageview: false, // Pageviews fire manually on pathname changes
+                    capture_pageleave: true,
+                    autocapture: true,
                 });
             }
             posthogClient = ph;
@@ -57,14 +60,29 @@ export function getPagesViewed(): string[] {
 }
 
 /**
+ * Explicitly trigger the lazy PostHog load. Called by PostHogProvider's
+ * idle callback so that the 175KB posthog-js bundle waits for an idle
+ * window rather than being dragged onto the critical path by the first
+ * `trackEvent` call.
+ */
+export function initAnalytics(): void {
+    if (typeof window === "undefined") return;
+    void getPostHog();
+}
+
+/**
  * Track a custom analytics event via PostHog.
  *
- * @param name  - Event name (e.g. "signup_click", "demo_form_submit")
- * @param props - Optional key-value properties to attach
+ * @param name    - Event name (e.g. "signup_click", "demo_form_submit")
+ * @param props   - Optional key-value properties to attach
+ * @param options - `load: false` queues the event without triggering the
+ *                  lazy import. Used by provider-driven pageviews that
+ *                  should wait for the idle-scheduled `initAnalytics()`.
  */
 export function trackEvent(
     name: string,
     props?: Record<string, string>,
+    options: { load?: boolean } = {},
 ): void {
     if (typeof window === "undefined") return;
 
@@ -88,9 +106,12 @@ export function trackEvent(
     if (posthogClient) {
         posthogClient.capture(name, eventProps);
     } else {
-        // Queue and trigger lazy load
+        // Queue; load posthog-js only when caller hasn't opted out
+        // (provider-driven pageviews opt out to preserve idle deferral).
         eventQueue.push({ name, props: eventProps });
-        getPostHog();
+        if (options.load !== false) {
+            void getPostHog();
+        }
     }
 }
 
