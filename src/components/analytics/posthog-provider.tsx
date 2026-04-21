@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { trackEvent } from "@/lib/analytics";
+import { initAnalytics, trackEvent } from "@/lib/analytics";
 
 /**
  * PostHog bootstrap — lazy-initializes posthog-js after the browser is
@@ -39,15 +39,11 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
             ? requestIdleCallback
             : (cb: () => void) => setTimeout(cb, 3000);
 
+        // Delegate the lazy load + init to lib/analytics so both this
+        // provider and any `trackEvent` caller share one init path with
+        // matching config — first-init-wins, same result either way.
         const id = schedule(() => {
-            import("posthog-js").then(({ default: posthog }) => {
-                posthog.init(key, {
-                    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
-                    capture_pageview: false, // handled manually via pathname effect
-                    capture_pageleave: true,
-                    autocapture: true,
-                });
-            });
+            initAnalytics();
         });
 
         return () => {
@@ -60,10 +56,14 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     // Fire a $pageview on every pathname change, including the initial
-    // mount. `trackEvent` queues events until posthog-js finishes loading,
-    // so the first pageview survives the idle-deferred init.
+    // mount. `{ load: false }` queues the event without triggering the
+    // posthog-js import — the idle-scheduled `initAnalytics()` above is
+    // what loads it, so the critical-path optimization is preserved.
+    // Skipped entirely if the key is missing so the queue doesn't grow
+    // unbounded.
     useEffect(() => {
-        trackEvent("$pageview");
+        if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) return;
+        trackEvent("$pageview", undefined, { load: false });
     }, [pathname]);
 
     return <>{children}</>;
