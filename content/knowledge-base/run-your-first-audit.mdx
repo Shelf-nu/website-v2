@@ -1,0 +1,153 @@
+---
+title: "Run Your First Audit"
+description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
+category: "Assets"
+date: "2026-04-17"
+updated: "2026-04-17"
+layout: "knowledge-base"
+---
+
+<InlineVideo
+  mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-flow.mp4"
+  webm="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-flow.webm"
+  alt="Walkthrough of running an audit in Shelf — from the audit list to scanning assets"
+/>
+
+Audits let you verify that what's physically in a location matches what your records say should be there. Shelf flags what was **found**, what's **missing**, and anything **unexpected** that showed up. When the audit is done, export a PDF report.
+
+Audits is a paid add-on available on any Shelf plan. It includes a **7-day free trial** so you can test it on your own inventory before committing. This guide walks you through your first audit — start to finish — in about 20 minutes.
+
+---
+
+## Before You Start
+
+You need three things in place:
+
+1. **Assets in Shelf** — at least a few items in the location you plan to audit. If your inventory is empty, [add some assets first](/knowledge-base/adding-new-assets).
+2. **QR labels on those assets** — the audit scan page reads QR codes to confirm physical presence. If you haven't printed labels yet, see [Using Shelf QR Codes with Avery Label Sheets](/knowledge-base/using-shelf-qr-codes-with-avery-label-sheets) or [Printing Custom Branded QR Code Labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
+3. **Audits activated** — from the sidebar, click **Audits**. If you haven't activated the add-on yet, Shelf will prompt you to start the 7-day trial. No credit card required.
+
+---
+
+## Step 1: Create an Audit Session
+
+1. Click **Audits** in the sidebar
+2. Click **New Audit** (top-right)
+3. Fill in:
+   - **Name** — something descriptive for your team (e.g. "Studio B Equipment Check", "Server Room Q2 2026")
+   - **Description** *(optional)* — instructions for the person doing the scan (e.g. "Scan each asset and provide a condition photo")
+   - **Due date** *(optional)* — when the audit should be completed by
+4. **Select which assets to include** — you can scope by location, category, tag, or any combination. Shelf builds the "expected" asset list from your current records.
+5. **Assign the audit** *(optional)* — pick a team member who'll do the scanning. If you leave this blank, any admin can open the scan page.
+6. Click **Save** to create the session
+
+![Audit list in Shelf showing pending and completed sessions](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-list.webp)
+
+---
+
+## Step 2: Open the Audit Overview
+
+Click into the audit you just created. The **Overview** tab shows:
+
+- **Statistics** — Expected / Found / Missing / Unexpected counts (all zeros at the start)
+- **Audit Information** — status, created date, assignee, due date
+- **Asset list** — every asset Shelf expects to find, with an "Expected" status chip
+
+This is your live dashboard. As scanning progresses, the counters update in real time.
+
+![Audit overview with Expected 19, Found 0, Missing 19 — ready to scan](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-overview.webp)
+
+---
+
+## Step 3: Start Scanning
+
+Click **Start scanning** (in the header) to open the dedicated scan page. This page is purpose-built for audits — separate from the regular QR Scanner — so there's no confusion about which workflow you're in.
+
+Two ways to register assets:
+
+- **Scanner mode** — focus the text field and use a handheld barcode scanner to scan QR labels rapid-fire
+- **Camera mode** — toggle to **Camera** in the top-right and use your phone or laptop camera to scan the QR
+
+Each scan registers the asset as **Found**. The progress bar updates live: "Audit: Studio B (Equipment Check) • 3/19 found".
+
+You can also **Add comment** or **Add image** per asset during the scan — useful for documenting condition, damage, or wrong labels.
+
+![Audit scan page with progress bar and asset list showing Pending / Expected status chips](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
+
+---
+
+## Step 4: Review Results
+
+Go back to the **Overview** tab at any point to check progress. Four statuses:
+
+| Status | Meaning |
+|---|---|
+| **Found** | Scanned and matches the expected list |
+| **Missing** | Expected but never scanned — the item might be misplaced, lost, or mislabelled |
+| **Unexpected** | Scanned but NOT on the expected list — the item has moved from another location, or was never recorded |
+| **Pending** | Not yet scanned |
+
+Use the **Filter by audit status** dropdown to isolate missing or unexpected items for follow-up.
+
+---
+
+## Step 5: Complete the Audit
+
+When scanning is done:
+
+1. Click **Complete Audit** (bottom-right of the scan page, or from the Actions dropdown on the overview)
+2. Shelf sends a **summary email** to the audit creator with final counts
+3. From the completed audit's overview, click **Actions → Download Receipt** to export a **PDF report** with found/missing/unexpected breakdowns
+
+The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review.
+
+---
+
+## After the Trial
+
+The 7-day trial gives you unlimited audits. When it expires:
+
+- **Completed audits stay visible** — you keep full access to results, reports, and PDFs from audits run during the trial
+- **New audits require the paid add-on** — activate from Audits in the sidebar; pricing is managed through your Shelf account
+- **No data lost** — nothing is deleted when the trial ends
+
+If you found value during the trial, the add-on is available on every Shelf plan (Free, Plus, Team, Enterprise).
+
+---
+
+## Tips for a Successful First Audit
+
+- **Start small**: audit one room or one category, not the entire inventory. Prove the workflow before scaling.
+- **Print test labels first**: run a [test print](/knowledge-base/using-shelf-qr-codes-with-avery-label-sheets#3-drop-in-the-pngs-and-print-then-test) and scan several codes before committing a full batch.
+- **Assign the audit to yourself** for your first run — you'll understand the scan flow before delegating to someone else.
+- **Use the camera toggle on your phone** if you don't have a handheld scanner. It works with any phone camera, no app needed.
+- **Add photos during the scan** for anything that looks damaged, misplaced, or mislabelled — it saves a second pass later.
+
+---
+
+## FAQ
+
+### Can multiple people scan the same audit?
+
+Currently, each audit session supports a single assigned scanner. For large-scale audits, create multiple sessions scoped to different areas and assign each to a different team member.
+
+### What happens to assets marked "Missing"?
+
+Nothing is automatically changed in your Shelf database. Missing means "expected but not scanned" — you decide what action to take: follow up with the last known custodian, mark as lost, or investigate.
+
+### Can I re-open a completed audit?
+
+No. Completed audits are final. If you need to re-audit, create a new session for the same scope.
+
+### Can I archive old audits?
+
+Yes. Admins and owners can archive any Completed or Cancelled audit via **Actions → Archive**. Archived audits are removed from the default list but stay accessible via the status filter.
+
+---
+
+## Related Articles
+
+- [Audits Feature Overview](/features/audits) — full feature description, pricing, and FAQ
+- [Adding New Assets](/knowledge-base/adding-new-assets) — prerequisite: get assets into Shelf
+- [Using Shelf QR Codes with Avery Label Sheets](/knowledge-base/using-shelf-qr-codes-with-avery-label-sheets) — print QR labels for the assets you'll scan
+- [Using External Barcode Scanners with Shelf](/knowledge-base/using-external-barcode-scanners-with-shelf) — hardware scanner setup
