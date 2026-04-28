@@ -1,0 +1,83 @@
+---
+title: "Permanently Delete Archived Audits"
+description: "Remove archived audits and all their scan data, notes, and images from Shelf permanently — one at a time or in bulk."
+category: "Audits"
+date: "2026-04-28"
+layout: "knowledge-base"
+---
+
+Once an audit is archived, it can be permanently deleted. Deletion removes all scan data, notes, images, and storage objects — this action cannot be undone.
+
+Deletion is only available for **Archived** audits. Audits must be archived before they can be deleted — Shelf enforces this as a safety step. Only **Admin** and **Owner** roles can delete audits.
+
+## Delete a Single Audit
+
+1. Open the audit from the list
+2. Click the **actions menu (⋯)** in the top-right
+3. Select **Delete** (shown in red — only visible on Archived audits)
+4. In the confirmation dialog, **type the audit's name exactly** to unlock the button
+5. Click **Delete** to permanently remove the audit
+
+<!-- TODO: Add screenshot showing the Delete option in the audit actions dropdown (PR #2494) -->
+
+## Bulk Delete Archived Audits
+
+To delete multiple archived audits at once:
+
+### Step 1: Filter to Archived
+
+On the audits index page, filter the list by **Status → Archived**. This is required before using Select All with bulk delete — otherwise the count shown would be misleading.
+
+### Step 2: Select the Audits
+
+Use the **checkboxes** on the left of each row. To select all archived audits at once, click the checkbox in the column header, then click **"Select all X audits"** when the banner appears.
+
+### Step 3: Open the Actions Dropdown
+
+Click the **Actions** button that appears in the top-right once at least one audit is selected.
+
+### Step 4: Choose Delete
+
+Select **Delete** from the dropdown. If any selected audits are not archived, the Delete option will be disabled with a tooltip explaining why.
+
+### Step 5: Type DELETE to Confirm
+
+Type the word **DELETE** (all caps) in the confirmation field and click **Delete permanently** to proceed.
+
+<!-- TODO: Add screenshot showing the bulk delete confirmation dialog (PR #2494) -->
+
+## What Gets Deleted
+
+Permanently deleting an audit removes:
+
+- All scan records (Found, Missing, Unexpected, Pending status per asset)
+- All notes added during the audit
+- All photos uploaded to audit assets
+- The audit session record itself
+
+The underlying **assets** are not affected — only the audit data is removed.
+
+## Notes
+
+- Deletion is permanent and cannot be reversed.
+- Archiving must come first. Active, Completed, or Cancelled audits cannot be deleted directly — archive them first.
+- For large-scale audit operations (e.g., running 100+ audits per month), bulk delete is the recommended path for periodic cleanup.
+- The bulk delete option is disabled if you have selected audits across mixed statuses — all selected audits must be Archived.
+
+## Archive First, Then Delete
+
+The standard audit lifecycle in Shelf is:
+
+1. **Create** the audit session
+2. **Scan** assets to complete it
+3. **Complete or Cancel** the session
+4. **Archive** it when it's no longer actively referenced
+5. **Delete** it when you want to remove it entirely
+
+If you only want to hide old audits from the default list without removing data, archiving alone is sufficient. See [Bulk Archive Audits](/knowledge-base/bulk-archive-audits) for instructions.
+
+## Related Articles
+
+- [Bulk Archive Audits](/knowledge-base/bulk-archive-audits) — how to archive multiple audits at once
+- [Run Your First Audit](/knowledge-base/run-your-first-audit) — full audit walkthrough from start to finish
+- [Audits Feature Overview](/features/audits) — full feature description, pricing, and FAQ
