@@ -69,6 +69,16 @@ const CASE_STUDIES = [
             "Migrated their Media Center from Cheqroom to Shelf without disrupting student equipment checkout.",
         industry: "Art & Design Education",
     },
+    {
+        slug: "purdue-university",
+        company: "Purdue University",
+        logo: "/logos/purdue-satt.svg",
+        stat: "632",
+        statLabel: "drone bookings in 4 months",
+        headline:
+            "From a 24-hour library checkout to multi-week mission planning across 3 research programs.",
+        industry: "Aviation Research",
+    },
 ];
 
 function CaseStudyCard({
@@ -162,8 +172,8 @@ export function CaseStudiesPreview() {
                     </div>
                 </ScrollReveal>
 
-                {/* Uniform grid: 3 + 3 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5 mb-14">
+                {/* Uniform grid: 4 + 3 */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-5 mb-14">
                     {CASE_STUDIES.map((study, i) => (
                         <CaseStudyCard key={study.slug} study={study} index={i} />
                     ))}
