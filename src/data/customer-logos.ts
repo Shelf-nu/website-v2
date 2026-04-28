@@ -102,6 +102,19 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         industry: "Education",
         priority: 5,
     },
+    {
+        id: "purdue-satt",
+        name: "Purdue University — School of Aviation and Transportation Technology",
+        logo: "/logos/purdue-satt.svg",
+        caseStudySlug: "purdue-university",
+        showOnHomePage: true,
+        showInTrustedBy: true,
+        industry: "Education",
+        priority: 5.5,
+        quote: "Shelf is a powerful Asset Manager that is both easy to use and powerful in functionality. The ease of use allows our entire team to help manage and maintain our assets, but the powerful functionality allows us to create a specific system to meet our needs.",
+        quoteAuthor: "Nathan Rose",
+        quoteRole: "Clinical Assistant Professor, SATT — Purdue University",
+    },
 
     // === Brand-name logos — Home page grid + marquee ===
     {
