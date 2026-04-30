@@ -1,0 +1,86 @@
+---
+title: "Getting Started with Reports"
+description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
+category: "Getting Started"
+date: "2026-04-30"
+layout: "knowledge-base"
+---
+
+Reports turn the data Shelf already captures — bookings, custody, assets — into answers you can read, filter, and export. This guide walks through running your first report.
+
+## Open the Reports Index
+
+In the sidebar, click **Reports**. The index lists every available report grouped by category:
+
+- **Bookings** — Booking Compliance, Top Booked Assets, Monthly Booking Trends, Overdue Items
+- **Assets** — Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution
+- **Custody** — Custody Snapshot
+
+Each card describes what the report shows. Click any enabled card to run it.
+
+<!-- TODO: Screenshot needed: Reports index page in Shelf showing the grid of reports grouped by category (PR #2495) -->
+
+## Pick a Timeframe
+
+Time-based reports — Booking Compliance, Top Booked Assets, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Idle Assets — include a **timeframe picker** at the top of the page.
+
+1. Click the timeframe picker.
+2. Choose a preset (**Last 7 days**, **Last 30 days**, **Last quarter**, **Year to date**) or define a custom range.
+3. The report re-runs against the new timeframe.
+
+Snapshot reports — **Asset Inventory**, **Custody Snapshot**, **Overdue Items** — always reflect the current state of the workspace, so they do not show a timeframe picker.
+
+## Apply Filters
+
+Each report exposes filters that match the underlying data:
+
+| Report | Filters |
+|---|---|
+| Booking Compliance | Status, Custodian, Location |
+| Top Booked Assets | Category, Location |
+| Monthly Booking Trends | Category, Location |
+| Overdue Items | Custodian, Location |
+| Asset Inventory | Category, Location, Status |
+| Asset Activity Summary | Asset, Category |
+| Asset Utilization | Category, Location |
+| Idle Assets | Category, Location |
+| Custody Snapshot | Team Member, Location |
+
+Filters are written into the URL, so you can **bookmark or share** a specific view of a report. A link to "Idle Assets in the Amsterdam warehouse, last 90 days" works for everyone with access to the workspace.
+
+## Read the Result
+
+Reports are laid out in three layers:
+
+1. **KPI cards** at the top — headline numbers like total bookings, on-time rate, or assets at risk.
+2. **Charts** in the middle — trends, distributions, or compliance breakdowns.
+3. **Tables** at the bottom — the underlying records that make up the numbers.
+
+Compliance and utilization reports use color to flag entries that need attention — late bookings, idle assets that have not moved in months, or custodians with overdue items.
+
+## Export the Result
+
+Every report supports **CSV export**. Click **Export** at the top right of any report to download the data shown.
+
+Reports with charts also support **PDF download** — Shelf renders the charts and tables into a print-ready document. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
+
+## Who Can Run Reports
+
+All workspace members with access to assets can open the Reports index. The data shown in each report is automatically scoped to the workspace and to the records the user is permitted to see.
+
+## Common Reports by Use Case
+
+- **"What's overdue right now?"** → Overdue Items
+- **"Which assets are getting the most use?"** → Top Booked Assets, Asset Utilization
+- **"What can we redistribute or retire?"** → Idle Assets, Asset Distribution
+- **"How well are we returning bookings on time?"** → Booking Compliance
+- **"Who has what right now?"** → Custody Snapshot
+- **"What's the inventory state for an audit?"** → Asset Inventory
+- **"How are bookings trending month over month?"** → Monthly Booking Trends
+
+## Related
+
+- [Dashboard](/features/dashboard) — always-on operational view of the workspace
+- [Exporting workspace data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf)
+- [Booking notification settings](/knowledge-base/booking-notification-settings)
+- [Run your first audit](/knowledge-base/run-your-first-audit)

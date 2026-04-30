@@ -1,0 +1,121 @@
+---
+title: "Reports"
+description: "Self-serve reports for booking compliance, asset utilization, custody, idle inventory, and more — with charts, CSV export, and PDF download."
+layout: "feature"
+intent: "commercial"
+cluster: "product-feature"
+personas:
+  - "operations"
+  - "education"
+  - "it"
+canonicalUrl: "/features/reports"
+date: "2026-04-30"
+updated: "2026-04-30"
+seo:
+  title: "Equipment Reports & Analytics | Shelf"
+  description: "Run booking compliance, utilization, custody, and inventory reports in Shelf. Filter by category, location, and timeframe. Export to CSV or PDF."
+  keywords:
+    - "equipment reports"
+    - "asset utilization report"
+    - "booking compliance report"
+    - "asset management analytics"
+    - "equipment tracking reports"
+---
+
+# Reports
+
+Reports turn the day-to-day data Shelf already collects — bookings, custody changes, audits, asset activity — into answers. Pick a report, set a timeframe, optionally filter by category or location, and read the result. No SQL, no spreadsheet exports to wrangle, no separate BI tool.
+
+<!-- TODO: Screenshot needed: Reports index page showing the grid of available reports grouped by category (PR #2495) -->
+
+---
+
+## What You Can Report On
+
+Reports cover the parts of the workflow operations managers are usually asked about: who is overdue, what gets booked, what sits idle, and how things are distributed across the inventory.
+
+### Booking Reports
+
+- **Booking Compliance** — On-time checkouts, late returns, and overdue items across the timeframe you pick. Filter by status, custodian, or location.
+- **Top Booked Assets** — The most frequently booked assets and their utilization patterns. Useful for capacity planning and replacement decisions.
+- **Monthly Booking Trends** — Booking volume over time with month-over-month comparisons.
+- **Overdue Items** — A live view of every booking that is currently past its end date. Filter by custodian or location to chase down what is missing right now.
+
+### Asset Reports
+
+- **Asset Inventory** — A complete snapshot of the inventory with category, location, and status filters. The fastest way to produce a list for an insurance audit or board report.
+- **Asset Activity Summary** — Activity history across all assets — changes, custody handovers, and bookings.
+- **Asset Utilization** — How effectively each asset is being used, based on booking and custody time.
+- **Idle Assets** — Assets that have not been booked or checked out recently. Surfaces equipment that may be candidates for redistribution or retirement.
+- **Asset Distribution** — Breakdown by category, location, and status for inventory planning.
+
+### Custody Reports
+
+- **Custody Snapshot** — A live view of every asset currently in custody and the team member it is assigned to.
+
+---
+
+## How Reports Work
+
+### Pick a Report
+
+The reports index lists every report grouped by category — bookings, assets, custody. Each card describes what the report shows; click in to run it.
+
+### Set the Timeframe
+
+Time-based reports include a timeframe picker so you can scope the result to last week, last month, last quarter, or any custom range. Snapshot reports (Asset Inventory, Custody Snapshot, Overdue Items) reflect the current state of the workspace and do not need a timeframe.
+
+### Filter to the Slice You Care About
+
+Each report exposes filters that match how the underlying data is organized. Booking Compliance filters by status, custodian, and location. Top Booked Assets filters by category and location. The filters are saved in the URL, so you can bookmark or share a specific report view.
+
+### Read the Numbers
+
+Reports combine **KPI cards** for headline numbers, **charts** for trends and distributions, and **tables** for the underlying records. Compliance and utilization reports use color to flag entries that need attention.
+
+<!-- TODO: Screenshot needed: A run report page showing KPI cards, a chart, and the underlying table — Booking Compliance is a good example (PR #2495) -->
+
+### Export the Result
+
+Every report can be exported to **CSV** for further analysis in a spreadsheet or BI tool. Reports with charts can also be downloaded as a **PDF** that captures the rendered visualization alongside the data — handy for board packs and customer reviews.
+
+---
+
+## Why It Matters
+
+### Stop Reconstructing Data Manually
+
+Before reports, answering "how many bookings were returned late last quarter?" meant exporting bookings to CSV and writing formulas. Now it is a report you can run in seconds and export with one click.
+
+### Catch Problems Before They Compound
+
+The Overdue Items and Booking Compliance reports surface the small leaks — late returns, ignored bookings, custody assignments that drag on — that turn into lost equipment.
+
+### Justify Inventory Decisions
+
+The Idle Assets and Asset Utilization reports show what is actually being used and what is not. Use them to defend equipment budgets, redistribute under-used assets between teams, or retire what nobody is booking anymore.
+
+### Reduce Custodian Disputes
+
+The Custody Snapshot report makes it impossible to argue about who has what — every asset currently in custody is listed with the assigned team member.
+
+---
+
+## Benefits
+
+- **Self-serve** — Operations managers run reports themselves, without waiting on engineering or exporting to BI tools
+- **Filterable** — Every report supports filters that match how teams already organize their inventory
+- **Shareable** — URLs encode the filters, so a saved view can be sent to a colleague or bookmarked
+- **Exportable** — CSV for analysis, PDF for distribution
+- **Live where it matters** — Snapshot reports (Custody, Overdue, Inventory) always reflect current state
+
+---
+
+## Related
+
+- [Dashboard](/features/dashboard) — for the always-on operational view
+- [Bookings](/features/bookings) — booking compliance reports build on the booking data captured here
+- [Custody](/features/custody) — custody snapshot reports build on the custody data captured here
+- [Audits](/features/audits) — audits provide a separate path to verify inventory against reality
+
+[Get started with Shelf](https://app.shelf.nu/join) and turn your equipment data into answers.
