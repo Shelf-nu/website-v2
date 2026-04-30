@@ -11,6 +11,7 @@ import {
     Menu,
     X,
     BarChart2,
+    BarChart3,
     Link as LinkIcon,
     Users,
     CheckSquare,
@@ -314,6 +315,15 @@ export function Navbar() {
                                                             >
                                                                 Find any asset
                                                                 instantly.
+                                                            </ListItem>
+                                                            <ListItem
+                                                                href="/features/reports"
+                                                                title="Reports"
+                                                                icon={BarChart3}
+                                                            >
+                                                                Booking compliance,
+                                                                utilization, idle
+                                                                assets, and more.
                                                             </ListItem>
                                                             <ListItem
                                                                 href="/mobile-app"
@@ -678,6 +688,9 @@ export function Navbar() {
                                     </MobileLink>
                                     <MobileLink href="/features/asset-search">
                                         Asset Search
+                                    </MobileLink>
+                                    <MobileLink href="/features/reports">
+                                        Reports
                                     </MobileLink>
                                     <MobileLink href="/mobile-app">
                                         Mobile App

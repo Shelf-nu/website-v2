@@ -43,5 +43,9 @@ export const pricingFaqs: PricingFAQ[] = [
     {
         question: "Do you offer a free trial?",
         answer: "Yes, the Team plan comes with a free trial so you can test all collaboration features including bookings, calendar, and unlimited user seats. No credit card is required to start your trial."
+    },
+    {
+        question: "What reports does Shelf include?",
+        answer: "Shelf ships with ten built-in operational reports across bookings, assets, and custody — Booking Compliance, Top Booked Assets, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, and Custody Snapshot. Each report has timeframe and filter controls; URL state encodes the filters so views are bookmarkable. Every report exports to CSV and chart-based reports also export to PDF. Reports are included on every plan, including the free Personal plan."
     }
 ];
