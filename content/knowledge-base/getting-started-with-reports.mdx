@@ -25,7 +25,7 @@ Each card describes what the report shows. Click any enabled card to run it.
 Time-based reports — Booking Compliance, Top Booked Assets, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Idle Assets — include a **timeframe picker** at the top of the page.
 
 1. Click the timeframe picker.
-2. Choose a preset (**Last 7 days**, **Last 30 days**, **Last quarter**, **Year to date**) or define a custom range.
+2. Choose a preset — **Today**, **Last 7 days**, **Last 30 days** (the default), **Last 90 days**, **This month**, **Last month**, **This quarter**, **This year**, **All time**, or define a custom range.
 3. The report re-runs against the new timeframe.
 
 Snapshot reports — **Asset Inventory**, **Custody Snapshot**, **Overdue Items** — always reflect the current state of the workspace, so they do not show a timeframe picker.
@@ -44,6 +44,7 @@ Each report exposes filters that match the underlying data:
 | Asset Activity Summary | Asset, Category |
 | Asset Utilization | Category, Location |
 | Idle Assets | Category, Location |
+| Asset Distribution | — |
 | Custody Snapshot | Team Member, Location |
 
 Filters are written into the URL, so you can **bookmark or share** a specific view of a report. A link to "Idle Assets in the Amsterdam warehouse, last 90 days" works for everyone with access to the workspace.
@@ -62,7 +63,7 @@ Compliance and utilization reports use color to flag entries that need attention
 
 Every report supports **CSV export**. Click **Export** at the top right of any report to download the data shown.
 
-Reports with charts also support **PDF download** — Shelf renders the charts and tables into a print-ready document. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
+Reports with charts also support **PDF download** — Shelf renders the charts and tables into a print-ready document. PDF download is available for chart-based reports (Booking Compliance, Top Booked Assets, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Asset Distribution); tabular-only reports — Asset Inventory, Idle Assets, Overdue Items, and Custody Snapshot — export to CSV. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
 
 ## Who Can Run Reports
 
