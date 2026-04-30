@@ -3,7 +3,7 @@ title: "Asset Identifiers: QR ID, SAM ID, and Property ID"
 description: "Shelf has three ways to identify an asset — the system QR ID, sequential SAM IDs, and your own Property IDs. This guide explains each, when to use them, and how to choose which one prints on your QR labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-04-16"
+updated: "2026-04-30"
 layout: "knowledge-base"
 ---
 
@@ -76,11 +76,13 @@ Not currently — it's fixed at `SAM` (Shelf Asset Management). Custom prefixes 
 
 ## 3. Property ID — your own identifier
 
-Property IDs let you assign **your own** identifier to an asset — on top of the QR Code ID and SAM ID. Useful when:
+Property IDs let you record **your own** identifier on an asset — on top of the QR Code ID and SAM ID. Useful when:
 
-- You're migrating from an existing tracking system and need to preserve old labels.
+- You're migrating from an existing tracking system and need to preserve old labels or numbers in your records.
 - Your organisation already has a numbering scheme (e.g. `LAPTOP-001`, `CAM-02`, `VEH-004`).
 - You want asset references that embed meaning (asset type, department, location).
+
+> **Important — Property ID does NOT print on QR labels.** The Property ID is a stored value you can search and reference, not a printable label format. Only **QR Code ID** or **SAM ID** can appear under the QR code on a downloaded Shelf label — see [section 4](#4-which-identifier-shows-on-your-qr-labels) below for how to control that. If you need your own IDs on the printed labels themselves, that is a custom-template workflow, not a built-in Property ID feature.
 
 ### Setting a Property ID
 
@@ -89,6 +91,21 @@ Property IDs let you assign **your own** identifier to an asset — on top of th
 3. Save.
 
 Property IDs are optional. If you don't set one, nothing changes — the asset still has its system ID and SAM ID.
+
+### Bulk-importing Property IDs from your old system
+
+Migrating from another asset tracker? Your existing IDs can come in via CSV import. Map your old-ID column to **Property ID** (or to a custom field — see below) when uploading. The imported value is searchable from Quick Find and the asset index, exactly like a Property ID set by hand. See [Importing Assets to Shelf — CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
+
+### Alternative: Use a custom field for your own identifier scheme
+
+If you want a different field name (e.g. **Tag Number**, **Inventory ID**, **Old Asset No.**), or you want multiple parallel ID columns, create a [custom field](/knowledge-base/adding-additional-fields-to-assets) of type **Text**. You can:
+
+- Name it anything that matches your existing system
+- Make it required for new assets if you rely on it
+- Include it as a column when importing assets via CSV — old IDs from your previous system land directly in the new field
+- Search for assets by that value from the asset index and Quick Find
+
+A custom field behaves like the built-in Property ID for search, display, and import. The same caveat applies: **a custom-field value does not appear on the printed QR label** — only QR Code ID or SAM ID can show there.
 
 ### The Property ID custom URL
 
@@ -154,6 +171,19 @@ By default, Shelf's downloaded QR labels display the **QR Code ID** underneath t
 - Workspaces without SAM IDs assigned (falls back to QR Code ID anyway)
 - Cases where the label design already shows the asset name prominently
 
+### Hiding the SAM ID column in the asset index
+
+If your team relies on Property IDs or a custom field for day-to-day reference and the SAM ID column is creating noise, you can hide it from the asset index:
+
+1. Open the **asset index**.
+2. Click **Configure columns** (the column-toggle control above the table).
+3. Uncheck **SAM ID**.
+4. Save.
+
+The SAM ID is still assigned and still searchable from Quick Find — you've just removed the column from the table view. Anyone on the team can re-enable it from the same menu later.
+
+See: [Advanced Asset Index — Complete Guide](/knowledge-base/advanced-asset-index-complete-guide).
+
 ---
 
 ## FAQ
@@ -181,6 +211,14 @@ Shelf doesn't enforce uniqueness on Property IDs, so technically two assets can 
 ### Will changing the QR Code Display setting break existing labels?
 
 No. Existing printed labels continue to work — the QR codes on them encode the canonical URL, not the displayed text. The setting only affects the next label you download or print from Shelf.
+
+### Can I print my own Property ID (or a custom-field value) on the QR labels Shelf generates?
+
+Not in the default downloaded labels. The "QR Code Display" setting only toggles between **QR Code ID** and **SAM ID** as the text under the code. Property IDs and custom-field values are stored on the asset and searchable, but Shelf does not currently inject them into the printed label format. If you need your own IDs physically on the labels, the path today is a [custom branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) using unclaimed QR codes — you design the layout in your own tool and print externally.
+
+### My team uses Property IDs (or a custom field) for our IDs and the SAM ID column is confusing. Can I hide it?
+
+Yes. Open the asset index, click **Configure columns**, uncheck **SAM ID**, and save. The SAM ID stays assigned and remains searchable in Quick Find — you have just removed the column from the table.
 
 ---
 
