@@ -1,4 +1,4 @@
-import { LucideIcon, Box, Users, Layers, BarChart2, RefreshCw, CheckSquare, MapPin, CalendarDays, Search, FileText, ClipboardCheck } from "lucide-react";
+import { LucideIcon, Box, Users, Layers, BarChart2, BarChart3, RefreshCw, CheckSquare, MapPin, CalendarDays, Search, FileText, ClipboardCheck } from "lucide-react";
 
 export const featureIcons: Record<string, LucideIcon> = {
     "workspaces": Box,
@@ -12,4 +12,5 @@ export const featureIcons: Record<string, LucideIcon> = {
     "asset-search": Search,
     "asset-pages": FileText,
     "audits": ClipboardCheck,
+    "reports": BarChart3,
 };
