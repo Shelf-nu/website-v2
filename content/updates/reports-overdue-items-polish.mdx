@@ -1,0 +1,24 @@
+---
+title: "Reports: partial returns, accurate compliance, fresh thumbnails"
+description: "Overdue Items now tracks partial check-ins, Booking Compliance lateness math is rebuilt to match reality, and report tables refresh asset thumbnails server-side."
+date: "2026-05-01"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp"
+readMoreUrl: "/features/reports"
+layout: "update"
+---
+
+A few refinements to Reports following the v1 launch.
+
+**Overdue Items now reflects partial returns.** The hero KPI — now labelled **Assets Outstanding** — counts only the assets still out, with partial check-ins subtracted. Each row shows a `X / Y` progress bar of assets checked in, so a booking that has been mostly returned no longer looks as urgent as a booking with nothing returned. The table header now reads **Overdue Bookings** to match.
+
+**Booking Compliance now matches reality.** The on-time rate could previously show 100% even when overdue bookings appeared in the table, and the **Return Status** column froze at the moment a booking auto-transitioned to OVERDUE. Lateness math has been rebuilt and centralized between the booking detail page and every compliance compute path:
+
+- **OVERDUE** bookings count live time past the due date, so the figure keeps growing until the booking is checked in.
+- **Complete** bookings are measured from the actual check-in time (resolved from the canonical activity event), not from a stale `updatedAt` timestamp.
+- **Archived** bookings — which can only be reached after completion — are now included in compliance metrics, so historical trends reflect the full data set.
+
+The hero explainer copy has been refreshed to spell out exactly what counts. The PDF export's overdue count, which silently rendered as `0` before, is now correct.
+
+**Report thumbnails stay fresh.** Asset thumbnails on report tables are now re-signed server-side at load time, so an expired Supabase signed URL never reaches the browser. Idle Assets, Custody Snapshot, Top Booked Assets, Asset Inventory, Asset Utilization, and Asset Activity Summary all share the same refresh path.
+
+**Smaller fixes** — Top Booked Assets clamps any negative-duration edge case to a minimum of one day, and Monthly Booking Trends groups by UTC month for consistency across timezones.
