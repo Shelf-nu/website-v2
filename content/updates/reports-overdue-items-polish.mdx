@@ -1,0 +1,16 @@
+---
+title: "Overdue Items now tracks partial check-ins"
+description: "The Overdue Items report counts only assets still out, shows a per-booking check-in progress bar, and Booking Compliance no longer counts unreturned bookings as on-time."
+date: "2026-04-30"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp"
+readMoreUrl: "/features/reports"
+layout: "update"
+---
+
+A few refinements to Reports following the v1 launch.
+
+**Overdue Items now reflects partial returns.** The hero KPI — now labelled **Assets Outstanding** — counts only the assets still out, with partial check-ins subtracted. Each row shows a `X / Y` progress bar of assets checked in, so a booking that has been mostly returned no longer looks as urgent as a booking with nothing returned. The table header now reads **Overdue Bookings** to match.
+
+**Booking Compliance on-time rate corrected.** Bookings still in the OVERDUE state are now excluded from the on-time count rather than treated as on-time by default. The on-time rate now reflects only bookings that were actually returned within the grace period.
+
+**Smaller fixes** — Top Booked Assets clamps any negative-duration edge case to a minimum of one day, Monthly Booking Trends groups by UTC month for consistency across timezones, and report tables fall back to a placeholder thumbnail when an asset image fails to load.
