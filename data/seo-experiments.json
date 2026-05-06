@@ -1130,7 +1130,7 @@
     {
       "id": "exp-029",
       "page": "/solutions/equipment-check-in",
-      "field": "title-and-description",
+      "field": "title+description",
       "before": "Equipment Checkout Software — Free QR Check-In/Out Tracking | Shelf",
       "after": "Free Check-In and Check-Out Software for Equipment | Shelf",
       "hypothesis": "Top query is \"check in check out software\" (1078 impr, 0.1% CTR @ pos 5.5). Current title leads with \"Equipment Checkout\" (different word order). Reordering to lead with \"Free Check-In and Check-Out\" matches the dominant query phrasing exactly. Existing CTR at pos 7.3 is 1.09%, expected 4-6% at that position.",
@@ -1170,7 +1170,7 @@
     {
       "id": "exp-030",
       "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware",
-      "field": "title-and-description",
+      "field": "title+description",
       "before": "The Importance of PC Asset Tags for Computer Hardware",
       "after": "Asset Tags for Computers and Laptops: A Practical Guide | Shelf",
       "hypothesis": "Page ranks pos 8.6 with abysmal 0.23% CTR. Current title is generic and does not include high-volume query phrases: \"asset tags for computers\" (693 impr), \"asset tag on computer\" (602), \"laptop asset tags\" (134). New title leads with the literal query language and a how-to framing.",
@@ -1211,7 +1211,7 @@
     {
       "id": "exp-031",
       "page": "/alternatives/snipe-it",
-      "field": "title-and-description",
+      "field": "title+description",
       "before": "Snipe-IT vs Shelf — Which Open Source Asset Manager Fits Your Team? (2026)",
       "after": "Snipe-IT Alternative — Open Source Asset Management | Shelf",
       "hypothesis": "Top query is \"snipe it alternative\" (429 impr, 0.2% CTR @ pos 8.4). Current title leads with vs/comparison framing — that's comparison intent, not alternative-seeking intent. Aligning title to the dominant query verb should lift CTR. CTR is also dropping (0.63% → 0.47% over the past 4 weeks).",
@@ -1252,7 +1252,7 @@
     {
       "id": "exp-032",
       "page": "/alternatives/sortly",
-      "field": "title-and-description",
+      "field": "title+description",
       "before": "Sortly Alternative (2026) — Equipment Tracking Beyond Inventory Lists | Shelf",
       "after": "Sortly Alternative — Free Equipment Tracking with QR Codes | Shelf",
       "hypothesis": "Page ranks pos 5.9 with 0.80% CTR (declined from 0.95% in prior 14d). Pos ~2-6 should hit 5-10% CTR. \"Equipment Tracking Beyond Inventory Lists\" is opaque copy. Replacing with explicit value (Free, QR Codes) should compel clicks. Conservative — uses only public claims (free tier, QR-based tracking).",
