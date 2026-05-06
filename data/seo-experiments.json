@@ -1289,6 +1289,48 @@
         "batch-3"
       ],
       "learnings": ""
+    },
+    {
+      "id": "exp-033",
+      "page": "/solutions/equipment-reservations",
+      "field": "title+description",
+      "before": "Equipment Reservation Software — Prevent Double-Bookings | Shelf",
+      "after": "Equipment Booking Software — Free Reservations & Scheduling | Shelf",
+      "hypothesis": "Cannibalization audit revealed that /solutions/equipment-reservations is the page already targeting commercial booking queries: \"equipment booking software\" (520 impr/90d, pos 16.8, 0.2% CTR), \"equipment reservation system\" (527 impr, pos 11.3, 0.0% CTR), \"equipment booking system\" (695 impr, pos 19.8, 0.0% CTR). Current SEO title leads with \"Equipment Reservation Software\" but the dominant query is \"equipment booking software\" (~3x higher search volume). The page body already uses both terms interchangeably (\"booking\" appears 18 times). Reordering to lead with \"Booking Software\" matches dominant query intent and adds \"Free\" — a known CTR booster from exp-002. Avoids creating a new /equipment-booking-software page that would have triple-cannibalized this and /features/bookings.",
+      "baseline": {
+        "clicks": 6,
+        "impressions": 4087,
+        "ctr": 0.15,
+        "position": 14.2,
+        "dateRange": [
+          "2026-04-17",
+          "2026-05-01"
+        ],
+        "capturedAt": "2026-05-06T10:26:02.332Z"
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "startDate": "2026-05-06",
+      "deployedAt": "2026-05-06",
+      "evaluateAfterDays": 21,
+      "tags": [
+        "title-rewrite",
+        "description-rewrite",
+        "solution",
+        "retarget",
+        "batch-3"
+      ],
+      "learnings": ""
     }
   ]
 }
