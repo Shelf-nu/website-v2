@@ -3,7 +3,7 @@ title: "Understanding QR Code Swapping and Management in Shelf"
 description: "QR code swapping gives flexibility in your asset operations. This powerful tool allows you to replace an asset's existing QR code with a new one while maintaining all asset data."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-05-07"
 layout: "knowledge-base"
 ---
 
@@ -18,7 +18,7 @@ layout: "knowledge-base"
 3. Use the camera to scan a new QR code
 4. Confirm the swap
 
-**Important:** Once you link a new code, the old code becomes unusable and won't lead to any asset.
+**Good to know:** Once you link a new code to an asset, the previously-linked code becomes **unlinked** — it stays owned by your workspace and can be re-linked to a different asset or kit at any time. No code is ever burned or wasted.
 
 ## Types of QR Codes in Shelf
 
@@ -49,19 +49,21 @@ Two types of alternative codes exist in Shelf:
 - You have "Asset B" with its original QR code
 - You have unclaimed codes from [the Shelf store](https://store.shelf.nu)
 - You swap Asset B's code with an unclaimed code
-- **Result:** Asset B now has the new code, and the old code becomes unusable
+- **Result:** Asset B now has the new code (claimed by your workspace), and the old code becomes unlinked — still owned by your workspace and available to re-link to a different asset or kit
 
-### Scenario 3: Deleting an Asset with an Unclaimed Code
+### Scenario 3: Deleting an Asset
 
-- You create "Asset C" using an unclaimed code
-- You later delete Asset C
-- **Result:** The unclaimed code becomes available again for use in any workspace
+- You delete an asset that had a QR code linked to it
+- **Result:** The QR code becomes unlinked but stays owned by your workspace. You can scan that physical sticker again and the app will show an **Unlinked QR Code** page with options to create a new asset/kit or link to an existing one. See [Fixing Incorrectly Assigned QR Sticker Codes](/knowledge-base/fixing-incorrectly-assigned-qr-stickers) for the full walkthrough.
 
 ## Best Practices and Tips
 
 - Always double-check before swapping codes to ensure you're using the correct new code
 - Keep track of your unlinked and unclaimed codes to maintain an organized system
 - **Remember that swapping codes doesn't change any other asset information -- it only changes the QR code associated with the asset**
+- One asset can have **multiple QR codes** linked to it over time. If you've printed several stickers for the same item and then delete or unlink that item, every one of those stickers becomes individually reusable
+- **Scan history persists per QR code.** Every scan is recorded under that QR's identifier, even across re-links. If you audit scan history for a specific code, you'll see scans from before and after a reassignment under the same QR ID
+- Made a mistake and need to fix a wrongly-linked sticker? See [Fixing Incorrectly Assigned QR Sticker Codes](/knowledge-base/fixing-incorrectly-assigned-qr-stickers)
 
 ## Troubleshooting
 
