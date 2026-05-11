@@ -1,0 +1,17 @@
+---
+title: "Mobile Modal Buttons No Longer Hidden Behind iOS Safari Toolbars"
+description: "Fixed an iOS Safari issue where modal action buttons — like the Confirm button when adding assets to a booking — could end up hidden under the URL bar or home indicator. Dropdown selection on iPhone and iPad has also been improved."
+date: "2026-05-07"
+image: "/images/updates/improved-qr-scanner.jpg"
+layout: "update"
+---
+
+A handful of mobile UX issues reported on iPhone and iPad have been resolved.
+
+**Modal action buttons are now reachable on iOS Safari.** Previously, when opening flows like *Manage assets* or *Manage kits* on a booking from an iPhone, the bottom action bar (with the Close and Confirm buttons) could end up tucked under the browser URL bar or the home indicator, making it impossible to tap. Modals now follow the dynamic visible area of the browser and add appropriate spacing for the home indicator on devices that have one. The same fix improves image and PDF preview dialogs across the app.
+
+**Dropdown selection works reliably on iPad and iPhone.** A defensive touch handler added long ago for iOS sometimes intercepted taps on dropdown items — most visible in the team-invite role selector, asset filters, and booking pickers. The handler is now narrower and only suppresses unintended ghost taps, so dropdown options consistently register on the first tap. Tap targets in dropdowns and select inputs were also enlarged on small screens to follow Apple's recommended minimum size.
+
+**Toast notifications now respect the iPhone home indicator** so they no longer sit on top of the home bar at the bottom of the screen.
+
+No action is needed — these fixes apply automatically the next time you open Shelf in a mobile browser.
