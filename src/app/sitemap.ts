@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/customers", priority: 0.7 },
         { path: "/resources", priority: 0.7 },
         { path: "/brand-assets", priority: 0.3 },
-        { path: "/design-system", priority: 0.2 },
+        // /design-system is an internal UI reference (noindex) — excluded from sitemap.
         // Index pages for content sections
         { path: "/features", priority: 0.9 },
         { path: "/solutions", priority: 0.9 },
@@ -59,9 +59,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/terms", priority: 0.3 },
         { path: "/privacy", priority: 0.3 },
         { path: "/security", priority: 0.4 },
-        // About & Product
+        // About
         { path: "/about", priority: 0.7 },
-        { path: "/product", priority: 0.8 },
+        // /product is a redirect to /features — not a real page, excluded from sitemap.
         // Tools
         { path: "/tools", priority: 0.6 },
         { path: "/tools/qr-code-generator", priority: 0.6 },

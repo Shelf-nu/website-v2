@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run search:index && npm run search:verify && npm run search:dev",
+    "build": "npm run search:coverage && next build && npm run search:index && npm run search:verify && npm run search:dev",
     "build:next": "next build",
+    "search:coverage": "node scripts/verify-search-coverage.mjs",
     "search:index": "pagefind --site out --output-path out/pagefind",
     "search:verify": "node scripts/verify-pagefind.mjs out/pagefind",
     "search:dev": "rm -rf public/pagefind && cp -r out/pagefind public/pagefind",
