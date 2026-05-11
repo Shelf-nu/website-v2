@@ -17,6 +17,10 @@
  *   node scripts/analytics.mjs gsc-pages     [--days 30]
  *   node scripts/analytics.mjs gsc-summary   [--days 30]
  *
+ *   node scripts/analytics.mjs cf-vitals     [--days 14]   # Core Web Vitals (LCP/FCP/CLS/INP/TTFB)
+ *   node scripts/analytics.mjs cf-summary    [--days 14]   # Cloudflare RUM traffic + referrers
+ *   node scripts/analytics.mjs cf-pages      [--days 14]   # Top pages by Cloudflare RUM pageloads
+ *
  *   node scripts/analytics.mjs experiments                        # Show all experiments
  *   node scripts/analytics.mjs experiments capture-baseline <id>  # Capture baseline GSC metrics
  *   node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed
@@ -28,6 +32,9 @@
  *   SUPABASE_SERVICE_KEY     — Supabase service role key (for content changelog only)
  *   GSC_KEY_FILE             — Path to Google Search Console service account JSON key
  *   GSC_SITE_URL             — GSC property URL (e.g. sc-domain:shelf.nu)
+ *   CF_API_TOKEN             — Cloudflare API token (Web Analytics scope)
+ *   CF_SITE_TAG              — Cloudflare Web Analytics site tag
+ *   CF_ACCOUNT_ID            — Cloudflare account ID
  */
 
 import { config } from "dotenv";
@@ -50,6 +57,9 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const GSC_KEY_FILE = process.env.GSC_KEY_FILE;
 const GSC_SITE_URL = process.env.GSC_SITE_URL;
+const CF_API_TOKEN = process.env.CF_API_TOKEN;
+const CF_SITE_TAG = process.env.CF_SITE_TAG;
+const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
 
 const args = process.argv.slice(2);
 const command = args[0] || "summary";
@@ -94,6 +104,148 @@ async function phQuery(hogql) {
 
     const json = await res.json();
     return json.results || [];
+}
+
+/* ------------------------------------------------------------------ */
+/*  Cloudflare GraphQL (Web Analytics — RUM)                           */
+/*  Provides Core Web Vitals + a backup view of traffic / referrers /  */
+/*  top pages from CF's RUM dataset, complementing PostHog.            */
+/* ------------------------------------------------------------------ */
+
+async function cfQuery(query, variables = {}) {
+    if (!CF_API_TOKEN || !CF_SITE_TAG || !CF_ACCOUNT_ID) {
+        console.log("⚠️  CF_API_TOKEN, CF_SITE_TAG, and CF_ACCOUNT_ID required for Cloudflare data.");
+        return null;
+    }
+    const res = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${CF_API_TOKEN}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query, variables }),
+    });
+    if (!res.ok) {
+        console.error("CF API error:", res.status, (await res.text()).slice(0, 300));
+        return null;
+    }
+    const json = await res.json();
+    if (json.errors?.length) {
+        console.error("CF GraphQL errors:", JSON.stringify(json.errors, null, 2));
+        return null;
+    }
+    return json.data;
+}
+
+async function getCfWebVitals(sinceDate, untilDate) {
+    // Cloudflare's RUM Web Vitals dataset. Returns count + per-metric
+    // average and quantile values across all pageloads in range.
+    const query = `
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
+            viewer {
+                accounts(filter: { accountTag: $accountTag }) {
+                    rumWebVitalsEventsAdaptiveGroups(
+                        filter: { AND: [
+                            { siteTag: $siteTag },
+                            { date_geq: $since },
+                            { date_lt: $until }
+                        ] }
+                        limit: 1
+                    ) {
+                        count
+                        avg {
+                            largestContentfulPaint
+                            firstContentfulPaint
+                            cumulativeLayoutShift
+                            interactionToNextPaint
+                            firstInputDelay
+                            timeToFirstByte
+                        }
+                        quantiles {
+                            largestContentfulPaintP75
+                            firstContentfulPaintP75
+                            cumulativeLayoutShiftP75
+                            interactionToNextPaintP75
+                            firstInputDelayP75
+                            timeToFirstByteP75
+                        }
+                    }
+                }
+            }
+        }
+    `;
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: sinceDate, until: untilDate });
+}
+
+async function getCfTraffic(sinceDate, untilDate) {
+    const query = `
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
+            viewer {
+                accounts(filter: { accountTag: $accountTag }) {
+                    rumPageloadEventsAdaptiveGroups(
+                        filter: { AND: [
+                            { siteTag: $siteTag },
+                            { date_geq: $since },
+                            { date_lt: $until }
+                        ] }
+                        limit: 1
+                    ) {
+                        count
+                        sum { visits }
+                    }
+                }
+            }
+        }
+    `;
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: sinceDate, until: untilDate });
+}
+
+async function getCfTopPages(sinceDate, untilDate, limit = 15) {
+    const query = `
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
+            viewer {
+                accounts(filter: { accountTag: $accountTag }) {
+                    rumPageloadEventsAdaptiveGroups(
+                        filter: { AND: [
+                            { siteTag: $siteTag },
+                            { date_geq: $since },
+                            { date_lt: $until }
+                        ] }
+                        limit: ${limit}
+                        orderBy: [count_DESC]
+                    ) {
+                        count
+                        dimensions { requestPath }
+                    }
+                }
+            }
+        }
+    `;
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: sinceDate, until: untilDate });
+}
+
+async function getCfReferrers(sinceDate, untilDate, limit = 12) {
+    const query = `
+        query ($accountTag: string!, $siteTag: string!, $since: string!, $until: string!) {
+            viewer {
+                accounts(filter: { accountTag: $accountTag }) {
+                    rumPageloadEventsAdaptiveGroups(
+                        filter: { AND: [
+                            { siteTag: $siteTag },
+                            { date_geq: $since },
+                            { date_lt: $until }
+                        ] }
+                        limit: ${limit}
+                        orderBy: [count_DESC]
+                    ) {
+                        count
+                        dimensions { refererHost }
+                    }
+                }
+            }
+        }
+    `;
+    return cfQuery(query, { accountTag: CF_ACCOUNT_ID, siteTag: CF_SITE_TAG, since: sinceDate, until: untilDate });
 }
 
 async function getTraffic(sinceDate, untilDate) {
@@ -175,7 +327,17 @@ async function getCustomEvents(eventName, sinceDate, untilDate) {
         ORDER BY timestamp DESC
         LIMIT 1000
     `);
-    return rows || [];
+    // PostHog HogQL returns the `properties` column as a JSON string,
+    // not a parsed object. Parse it here so callers can index props
+    // directly (props.landing_page, props.query, etc.). Without this,
+    // every props.<field> read is undefined and downstream attribution /
+    // search-query reports silently report zero data.
+    return (rows || []).map(([props, timestamp]) => {
+        if (typeof props === "string") {
+            try { props = JSON.parse(props); } catch { props = {}; }
+        }
+        return [props || {}, timestamp];
+    });
 }
 
 /* ------------------------------------------------------------------ */
@@ -858,6 +1020,100 @@ async function cmdExperiments() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Cloudflare commands (Web Analytics + Core Web Vitals)              */
+/* ------------------------------------------------------------------ */
+
+function cwvStatus(metric, value) {
+    if (value === null || value === undefined || isNaN(value)) return "N/A";
+    const thresholds = {
+        lcp: { good: 2500, poor: 4000 },
+        fcp: { good: 1800, poor: 3000 },
+        cls: { good: 0.1, poor: 0.25 },
+        inp: { good: 200, poor: 500 },
+        fid: { good: 100, poor: 300 },
+        ttfb: { good: 800, poor: 1800 },
+    };
+    const t = thresholds[metric];
+    if (!t) return "N/A";
+    if (value <= t.good) return "GOOD ✅";
+    if (value <= t.poor) return "NEEDS IMPROVEMENT ⚠️";
+    return "POOR ❌";
+}
+
+async function cmdCfVitals() {
+    console.log(`\n⚡ Cloudflare Core Web Vitals — Last ${days} Days\n${"=".repeat(60)}`);
+    const data = await getCfWebVitals(dateStr(since), dateStr(tomorrow));
+    if (!data) return;
+    const groups = data?.viewer?.accounts?.[0]?.rumWebVitalsEventsAdaptiveGroups || [];
+    if (!groups.length) {
+        console.log("  No Web Vitals data in this range.");
+        return;
+    }
+    const g = groups[0];
+    const samples = g.count || 0;
+    console.log(`  Samples: ${samples.toLocaleString()}\n`);
+    console.log(`  ${"Metric".padEnd(30)} ${"p75".padStart(10)} ${"Avg".padStart(10)}   Status`);
+    console.log(`  ${"-".repeat(30)} ${"-".repeat(10)} ${"-".repeat(10)}   ${"-".repeat(20)}`);
+
+    // Cloudflare returns time-based metrics in MICROSECONDS (μs).
+    // Convert to milliseconds for human-readable output and threshold comparison.
+    // Negative or null values indicate "no samples for this metric" (e.g. FID
+    // is rare on modern Chrome which uses INP instead).
+    const us2ms = (v) => (v == null || v < 0) ? null : v / 1000;
+    const fmt = (v, unit, decimals = 0) => v == null ? "N/A" : (decimals ? v.toFixed(decimals) : Math.round(v)) + unit;
+    const rows = [
+        ["Largest Contentful Paint", "lcp", us2ms(g.quantiles?.largestContentfulPaintP75), us2ms(g.avg?.largestContentfulPaint), "ms", 0],
+        ["First Contentful Paint", "fcp", us2ms(g.quantiles?.firstContentfulPaintP75), us2ms(g.avg?.firstContentfulPaint), "ms", 0],
+        ["Cumulative Layout Shift", "cls", g.quantiles?.cumulativeLayoutShiftP75, g.avg?.cumulativeLayoutShift, "", 4],
+        ["Interaction to Next Paint", "inp", us2ms(g.quantiles?.interactionToNextPaintP75), us2ms(g.avg?.interactionToNextPaint), "ms", 0],
+        ["First Input Delay", "fid", us2ms(g.quantiles?.firstInputDelayP75), us2ms(g.avg?.firstInputDelay), "ms", 0],
+        ["Time to First Byte", "ttfb", us2ms(g.quantiles?.timeToFirstByteP75), us2ms(g.avg?.timeToFirstByte), "ms", 0],
+    ];
+    for (const [label, key, p75, avg, unit, dec] of rows) {
+        console.log(`  ${label.padEnd(30)} ${fmt(p75, unit, dec).padStart(10)} ${fmt(avg, unit, dec).padStart(10)}   ${cwvStatus(key, p75)}`);
+    }
+    console.log("");
+}
+
+async function cmdCfSummary() {
+    console.log(`\n☁️  Cloudflare Web Analytics — Last ${days} Days\n${"=".repeat(60)}`);
+    const traffic = await getCfTraffic(dateStr(since), dateStr(tomorrow));
+    const refs = await getCfReferrers(dateStr(since), dateStr(tomorrow));
+    if (!traffic) return;
+    const t = traffic?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups?.[0];
+    if (t) {
+        console.log(`\n  TRAFFIC (Cloudflare RUM)`);
+        console.log(`  Page loads:  ${(t.count || 0).toLocaleString()}`);
+        console.log(`  Visits:      ${((t.sum?.visits) || 0).toLocaleString()}`);
+    }
+    const referrers = refs?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
+    if (referrers.length) {
+        console.log(`\n  TOP REFERRERS (Cloudflare)`);
+        for (const r of referrers.slice(0, 10)) {
+            const host = r.dimensions?.refererHost || "(direct)";
+            console.log(`    ${host.padEnd(40)} ${String(r.count || 0).padStart(8)}`);
+        }
+    }
+    console.log("");
+}
+
+async function cmdCfPages() {
+    console.log(`\n📄 Cloudflare Top Pages — Last ${days} Days\n${"=".repeat(60)}`);
+    const data = await getCfTopPages(dateStr(since), dateStr(tomorrow));
+    if (!data) return;
+    const pages = data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups || [];
+    if (!pages.length) {
+        console.log("  No pageload data in this range.");
+        return;
+    }
+    for (const p of pages) {
+        const path = p.dimensions?.requestPath || "/";
+        console.log(`  ${path.padEnd(50).slice(0, 50)} ${String(p.count || 0).padStart(8)}`);
+    }
+    console.log("");
+}
+
+/* ------------------------------------------------------------------ */
 /*  Router                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -873,6 +1129,9 @@ const COMMANDS = {
     "gsc-queries": cmdGscQueries,
     "gsc-pages": cmdGscPages,
     "gsc-summary": cmdGscSummary,
+    "cf-vitals": cmdCfVitals,
+    "cf-summary": cmdCfSummary,
+    "cf-pages": cmdCfPages,
     experiments: cmdExperiments,
 };
 
