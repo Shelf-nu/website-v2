@@ -6,6 +6,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Check, AlertCircle, Info, ChevronRight, Settings, Loader2 } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+    title: "Design System",
+    description: "Internal reference for Shelf UI components, tokens, and styles.",
+    robots: { index: false, follow: false },
+};
+
 export default function DesignSystemPage() {
     return (
         <div className="bg-background min-h-screen pb-20">

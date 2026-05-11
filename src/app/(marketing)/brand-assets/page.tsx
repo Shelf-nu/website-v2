@@ -5,9 +5,10 @@ import Image from "next/image";
 import { Download, Check, X, ExternalLink } from "lucide-react";
 import { CopyButton } from "@/components/brand/copy-button";
 import { AnchorNav } from "@/components/brand/anchor-nav";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata = {
-    title: "Brand Center - Shelf Asset Management",
+    title: "Brand Center",
     description: "Official Shelf logos, colors, typography, and usage guidelines. Everything you need to represent Shelf correctly.",
     alternates: { canonical: "https://www.shelf.nu/brand-assets" },
 };
@@ -57,7 +58,11 @@ const BOILERPLATE_LONG = "Shelf is the modern, open-source asset management plat
 
 export default function BrandAssetsPage() {
     return (
-        <>
+        <PagefindWrapper
+            type="Page"
+            title="Brand Center — Shelf Asset Management"
+            keywords="brand assets brand center logo logos download press kit boilerplate company description brand guidelines colors typography"
+        >
             {/* Hero */}
             <div className="relative">
                 <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
@@ -285,7 +290,7 @@ export default function BrandAssetsPage() {
                     </ScrollReveal>
                 </section>
             </Container>
-        </>
+        </PagefindWrapper>
     );
 }
 

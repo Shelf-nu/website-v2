@@ -4,10 +4,11 @@ import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx-content";
 import { Container } from "@/components/ui/container";
 import { Frontmatter } from "@/lib/content/schema";
+import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata = {
-    title: "Security | Shelf Asset Management",
-    description: "At Shelf, we prioritize the security of your data and have implemented robust measures to protect your information.",
+    title: "Security",
+    description: "How Shelf protects your asset data — infrastructure security, encryption, access controls, and our approach to SOC 2 / ISO 27001 alignment.",
     alternates: { canonical: "https://www.shelf.nu/security" },
 };
 
@@ -21,14 +22,20 @@ export default function SecurityPage() {
     }
 
     return (
-        <Container className="pt-36 sm:pt-44 pb-20 max-w-4xl">
-            <div className="mb-10 text-center">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">{frontmatter.title}</h1>
-                <p className="text-xl text-muted-foreground">{frontmatter.description}</p>
-            </div>
-            <article className="prose prose-zinc prose-lg dark:prose-invert max-w-none">
-                <MDXContent source={content} />
-            </article>
-        </Container>
+        <PagefindWrapper
+            type="Page"
+            title="Security — Shelf Asset Management"
+            keywords="security data security infrastructure security SOC 2 ISO 27001 encryption compliance procurement vendor review"
+        >
+            <Container className="pt-36 sm:pt-44 pb-20 max-w-4xl">
+                <div className="mb-10 text-center">
+                    <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">{frontmatter.title}</h1>
+                    <p className="text-xl text-muted-foreground">{frontmatter.description}</p>
+                </div>
+                <article className="prose prose-zinc prose-lg dark:prose-invert max-w-none">
+                    <MDXContent source={content} />
+                </article>
+            </Container>
+        </PagefindWrapper>
     );
 }
