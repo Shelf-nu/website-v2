@@ -50,7 +50,10 @@ function routeFromPath(absPath) {
 
 function hasPagefindWrapper(absPath) {
     const src = readFileSync(absPath, "utf8");
-    return /PagefindWrapper/.test(src);
+    // Require an actual opening JSX tag, not just an import or comment mention.
+    // Without the `<`, a page that imports PagefindWrapper but never renders
+    // it would pass the gate and ship unindexed.
+    return /<\s*PagefindWrapper\b/.test(src);
 }
 
 const pages = listPageFiles(marketingDir);
