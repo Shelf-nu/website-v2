@@ -227,8 +227,8 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                     <Button size="lg" variant="outline" className="border-orange-200 text-orange-800 hover:bg-orange-100" asChild>
                                         <TrackedLink
                                             href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_demo"
-                                            eventName="signup_click"
-                                            eventProps={{ location: "case_study_bottom_demo" }}
+                                            eventName="demo_cta"
+                                            eventProps={{ location: "case_study_bottom" }}
                                         >
                                             Book Demo
                                         </TrackedLink>

@@ -188,8 +188,8 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                         <Button size="lg" variant="outline" asChild>
                             <TrackedLink
                                 href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_hero_demo"
-                                eventName="signup_click"
-                                eventProps={{ location: `alt_${slugifiedCompetitor}_hero_demo` }}
+                                eventName="demo_cta"
+                                eventProps={{ location: `alt_${slugifiedCompetitor}_hero` }}
                             >
                                 Book a demo
                             </TrackedLink>
@@ -229,8 +229,8 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                                             <Button variant="outline" className="w-full" asChild>
                                                 <TrackedLink
                                                     href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_sidebar_demo"
-                                                    eventName="signup_click"
-                                                    eventProps={{ location: `alt_${slugifiedCompetitor}_sidebar_demo` }}
+                                                    eventName="demo_cta"
+                                                    eventProps={{ location: `alt_${slugifiedCompetitor}_sidebar` }}
                                                 >
                                                     <MessageSquare className="mr-2 h-4 w-4" /> Talk to us
                                                 </TrackedLink>
@@ -343,8 +343,8 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                                 <Button variant="outline" asChild>
                                     <TrackedLink
                                         href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=alt_mobile_demo"
-                                        eventName="signup_click"
-                                        eventProps={{ location: `alt_${slugifiedCompetitor}_mobile_demo` }}
+                                        eventName="demo_cta"
+                                        eventProps={{ location: `alt_${slugifiedCompetitor}_mobile` }}
                                     >
                                         Book a demo
                                     </TrackedLink>

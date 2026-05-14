@@ -261,7 +261,7 @@ export default function PricingPage() {
                             </Link>
                         </Button>
                         <Button size="lg" variant="outline" className="h-12 px-8 text-base" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo" onClick={() => trackEvent("signup_click", { location: "pricing_bottom_demo" })}>
+                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo" onClick={() => trackEvent("demo_cta", { location: "pricing_bottom" })}>
                                 Book a Demo
                             </Link>
                         </Button>
