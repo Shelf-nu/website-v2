@@ -12,6 +12,7 @@
  *   node scripts/analytics.mjs referrers    [--days 30]
  *   node scripts/analytics.mjs content-changes [--days 30]
  *   node scripts/analytics.mjs attribution  [--days 30]
+ *   node scripts/analytics.mjs 404s         [--days 30]
  *
  *   node scripts/analytics.mjs gsc-queries   [--days 30]
  *   node scripts/analytics.mjs gsc-pages     [--days 30]
@@ -535,7 +536,7 @@ async function cmdConversions() {
     const counts = await getEventCounts(dateStr(since), dateStr(tomorrow));
     const prevCounts = await getEventCounts(dateStr(prevSince), dateStr(since));
 
-    const events = ["signup_click", "demo_form_submit", "pricing_cta", "search_query", "404_hit", "scroll_depth", "chat_opened"];
+    const events = ["signup_click", "demo_cta", "demo_form_submit", "pricing_cta", "search_query", "404_hit", "scroll_depth", "chat_opened"];
     for (const e of events) {
         const c = counts[e] || 0;
         const p = prevCounts[e] || 0;
@@ -646,6 +647,38 @@ async function cmdAttribution() {
         for (const [path, count] of sortedPaths) {
             console.log(`    ${pad(path, 50)} (${count}×)`);
         }
+    }
+
+    console.log("");
+}
+
+async function cmd404s() {
+    console.log(`\n🚫 404 Hits — Last ${days} Days\n${"=".repeat(70)}`);
+    const rows = await phQuery(`
+        SELECT
+            properties.path AS path,
+            count() AS hits,
+            uniq(distinct_id) AS users,
+            topK(1)(properties.referrer)[1] AS top_referrer
+        FROM events
+        WHERE event = '404_hit'
+          AND timestamp >= '${dateStr(since)}'
+          AND timestamp < '${dateStr(tomorrow)}'
+        GROUP BY properties.path
+        ORDER BY hits DESC
+        LIMIT 25
+    `);
+
+    if (!rows || rows.length === 0) {
+        console.log("  No 404 hits in this period.");
+        console.log("");
+        return;
+    }
+
+    console.log(`  ${pad("HITS", 6)} ${pad("USERS", 6)} ${pad("PATH", 40)} TOP REFERRER`);
+    for (const [path, hits, users, referrer] of rows) {
+        const ref = (referrer || "(direct)").replace(/^https?:\/\//, "").slice(0, 35);
+        console.log(`  ${rpad(hits, 6)} ${rpad(users, 6)} ${pad(path || "(unknown)", 40)} ${ref}`);
     }
 
     console.log("");
@@ -1126,6 +1159,7 @@ const COMMANDS = {
     referrers: cmdReferrers,
     "content-changes": cmdContentChanges,
     attribution: cmdAttribution,
+    "404s": cmd404s,
     "gsc-queries": cmdGscQueries,
     "gsc-pages": cmdGscPages,
     "gsc-summary": cmdGscSummary,

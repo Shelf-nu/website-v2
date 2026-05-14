@@ -31,8 +31,8 @@ export function CTA() {
                         <Button size="lg" variant="outline" className="text-white border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:text-white h-12 px-8" asChild>
                             <TrackedLink
                                 href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=global_bottom_cta_demo"
-                                eventName="signup_click"
-                                eventProps={{ location: "global_bottom_cta_demo" }}
+                                eventName="demo_cta"
+                                eventProps={{ location: "global_bottom_cta" }}
                             >
                                 Book a demo
                             </TrackedLink>

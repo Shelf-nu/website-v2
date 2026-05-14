@@ -109,8 +109,8 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                                             <Button variant="outline" className="w-full" asChild>
                                                 <TrackedLink
                                                     href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=kb_sidebar_demo"
-                                                    eventName="signup_click"
-                                                    eventProps={{ location: "kb_sidebar_demo" }}
+                                                    eventName="demo_cta"
+                                                    eventProps={{ location: "kb_sidebar" }}
                                                 >
                                                     <MessageSquare className="mr-2 h-4 w-4" /> Talk to sales
                                                 </TrackedLink>
@@ -187,8 +187,8 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                                 <Button variant="outline" asChild>
                                     <TrackedLink
                                         href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=kb_mobile_demo"
-                                        eventName="signup_click"
-                                        eventProps={{ location: "kb_mobile_demo" }}
+                                        eventName="demo_cta"
+                                        eventProps={{ location: "kb_mobile" }}
                                     >
                                         Book a demo
                                     </TrackedLink>

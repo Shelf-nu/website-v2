@@ -114,6 +114,7 @@
 /solutions/equipment-check-out /solutions/equipment-check-in 301
 /solutions/equipment-checkin /solutions/equipment-check-in 301
 /solutions/equipment-checkout /solutions/equipment-check-in 301
+/solutions/equipmentcheckin /solutions/equipment-check-in 301
 /solutions/camera-equipment-tracking /solutions/camera-equipment-check-out 301
 /solutions/camera-equipment-checkout /solutions/camera-equipment-check-out 301
 /solutions/qr-asset-labels /tools/asset-label-designer 301
@@ -162,6 +163,10 @@
 /download https://docs.shelf.nu 301
 /download/mac https://docs.shelf.nu 301
 /download/windows https://docs.shelf.nu 301
+
+# --- Marketing-site catches for app-host typos / malformed inbound links ---
+/login https://app.shelf.nu/login 301
+/features) /features 301
 
 # --- Misc pages ---
 /sales /demo 301
