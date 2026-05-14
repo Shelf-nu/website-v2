@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-05-08"
+updated: "2026-05-14"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Export PDF and CSV reports. Paid add-on with 7-day free trial."
@@ -92,13 +92,15 @@ When scanning is finished, complete the audit. Shelf sends a summary email to th
 
 ---
 
-### 5. Archive and Delete for Record-Keeping
+### 5. Duplicate, Archive, and Delete for Record-Keeping
 
 Once a completed or cancelled audit is no longer actively referenced, admins and owners can **archive** it. Archived audits are removed from the default audit list but remain accessible by filtering for the **Archived** status.
 
 To archive a single audit, open it and select **Archive** from the actions menu (⋯). To archive several at once, return to the audit list, use the checkboxes to select audits, then choose **Archive** from the **Actions** dropdown. See [Bulk Archive Audits](/knowledge-base/bulk-archive-audits) for step-by-step instructions.
 
 When you want to permanently remove an archived audit and all its scan data, notes, and images, you can **delete** it. Deletion requires the audit to be archived first — open the archived audit, choose **Delete** from the actions menu, and type the audit name to confirm. Bulk deletion is also available: filter the list to **Archived**, select multiple audits, and choose **Delete** from the **Actions** dropdown. See [Permanently Delete Archived Audits](/knowledge-base/delete-audits) for full instructions.
+
+For recurring audits — monthly stock counts, post-event sweeps, quarterly compliance checks — you don't have to rebuild the scope each time. **Duplicate** any Completed, Cancelled, or Archived audit and Shelf creates a fresh Pending session with the same name (with a "(Copy)" suffix), description, and asset list. If some of the original audit's assets have since been deleted, the dialog warns you with the dropped count before you proceed; if every original asset is gone, the duplicate is blocked. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
 
 ---
 
@@ -113,6 +115,7 @@ When you want to permanently remove an archived audit and all its scan data, not
 - **PDF and CSV export**: Generate reports for compliance, insurance, or management review.
 - **Completion notifications**: Email summaries sent automatically when an audit is completed.
 - **Full audit lifecycle management**: Archive completed or cancelled audits to remove them from the default list while keeping the data accessible. When the data is no longer needed, permanently delete archived audits — individually or in bulk — removing all scan records, notes, and images. Archive individually or in bulk from the **Actions** dropdown; delete follows the same pattern with a type-to-confirm safety step.
+- **One-click recurring audits**: Duplicate any Completed, Cancelled, or Archived audit to re-run it on the same asset list. The copy starts clean (no notes, no scans, no assignee, no due date) and inherits the source's name, description, and scope. If the source's assets have shifted, Shelf reports the dropped count up front and blocks the duplicate if every asset is gone — no silent failures.
 - **Works on any device**: Runs in the browser — phone, tablet, or laptop. No app to install.
 
 ---
@@ -179,6 +182,10 @@ To archive multiple audits at once, go to the audit list, use the checkboxes to 
 Yes. Admins and owners can permanently delete any **Archived** audit. Archiving must happen first — it acts as a safety step before deletion. Open an archived audit, click the actions menu (⋯), select **Delete**, and type the audit name to confirm. Deletion permanently removes all scan data, notes, and images and cannot be reversed.
 
 To delete multiple archived audits at once, filter the audit list to the **Archived** status, select the audits using checkboxes, and choose **Delete** from the **Actions** dropdown. See [Permanently Delete Archived Audits](/knowledge-base/delete-audits) for full instructions.
+
+### Can I duplicate an audit to re-run it?
+
+Yes. Admins and owners can duplicate any **Completed**, **Cancelled**, or **Archived** audit from the actions menu (⋯). The new audit inherits the source's name (with a "(Copy)" suffix), description, and asset list, and starts in a clean **Pending** state — no notes, scans, assignee, or due date carry over. If some of the source audit's assets have since been deleted, Shelf shows a yellow warning with the dropped count before you proceed; if every asset is gone, the duplicate is blocked and you'll need to create a new audit instead. Pending and Active audits don't show the Duplicate option — they have their own **Edit** and **Cancel** actions. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
 
 ---
 
