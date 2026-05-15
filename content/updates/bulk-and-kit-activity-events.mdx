@@ -1,0 +1,25 @@
+---
+title: "Bulk and Kit Operations Now Record Full Activity History"
+description: "Bulk delete, bulk category/tag/location changes, and kit-cascade flows now emit the same per-asset activity events as their singular counterparts — closing reporting gaps in the Asset Activity timeline and the Asset Activity Summary report."
+date: "2026-05-14"
+image: "/images/updates/reports-launch.jpg"
+layout: "update"
+---
+
+If you've ever run a bulk action — bulk delete, bulk archive, bulk category change, bulk tag assignment, bulk move-by-kit — and noticed that the Asset Activity timeline or the new Asset Activity Summary report came up short, that gap is closed.
+
+Until now, several bulk and kit-cascade paths emitted fewer activity events than the equivalent single-asset action. Bulk delete didn't record per-asset deletion events; bulk category and tag changes skipped per-asset change events; and kit-driven cascades (custody inheriting onto added assets, location flowing from a kit to its assets, kit deletion unkitting assets) emitted no per-asset events at all. The bulk and kit actions still worked correctly — but reports, history filters, and integrations that read the activity log saw an incomplete picture.
+
+**What's fixed**:
+
+- **Bulk delete assets** now emits `ASSET_DELETED` for every removed asset, mirroring the singular delete flow.
+- **Bulk category change** emits `ASSET_CATEGORY_CHANGED` per asset whose category actually changed and writes the same per-asset change note as the singular flow.
+- **Bulk tag assignment** emits `ASSET_TAGS_CHANGED` per asset whose tag set actually changed.
+- **Bulk remove assets from kits** emits `ASSET_KIT_CHANGED` per removed asset and `CUSTODY_RELEASED` for any kit-inherited custody that was cleaned up — both tagged with `viaKit: true` so reports can tell kit-driven transitions apart from direct ones.
+- **Kit asset add/remove** emits `CUSTODY_ASSIGNED` / `CUSTODY_RELEASED` for assets inheriting or losing kit custody, and `ASSET_LOCATION_CHANGED` for the kit → asset location cascade.
+- **Kit location updates** (single and bulk) emit `ASSET_LOCATION_CHANGED` per asset whose location cascades from the kit.
+- **Kit deletion** (single and bulk) emits `ASSET_KIT_CHANGED` per asset before the cascade unkits it — so the activity history captures why the asset left the kit.
+
+All bulk paths are now wrapped in atomic transactions: events are written together with the data change, never partially. Events only fire for assets whose state actually changed, so you won't see noise from no-op rows.
+
+**Why it matters**: with [Reports v1](/updates/reports-v1) live, the Asset Activity Summary now reflects the full operational picture — including activity driven by bulk actions and by kit-level changes — instead of only the activity from one-at-a-time interactions. Asset history filters and exports are similarly more complete.
