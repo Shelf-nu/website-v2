@@ -273,7 +273,8 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                             </aside>
                         </div>
 
-                        {/* Quick Comparison Table */}
+                        {/* Quick Comparison Table — suppress when MDX body has its own */}
+                        {!frontmatter.hideLayoutTable && (
                         <div className="mt-16 max-w-3xl">
                             <h2 className="text-2xl font-bold text-foreground mb-6">Quick comparison</h2>
                             <div className="overflow-x-auto rounded-xl border border-border/50">
@@ -316,6 +317,7 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                                 Feature availability for {competitor} may vary by plan. We encourage you to verify on their website.
                             </p>
                         </div>
+                        )}
 
                         {/* Compatibility Checker */}
                         <div className="mt-16 max-w-xl">
