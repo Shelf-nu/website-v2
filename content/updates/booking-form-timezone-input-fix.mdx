@@ -1,0 +1,14 @@
+---
+title: "Booking Date Inputs Now Validate in Your Time Zone"
+description: "Fixed a validation bug that could reject valid future bookings for users outside UTC."
+date: "2026-05-14"
+image: "/images/updates/working-hours-timezone-fix.jpg"
+layout: "update"
+---
+
+The Start and End date pickers on the booking form now interpret the time you typed in your own time zone — not the server's. Two related rejections are gone:
+
+- **"Start date must be in the future"** could appear on a booking that genuinely was in the future. This happened to users west of UTC (anywhere in the Americas) when the date entered was a few hours away from "now."
+- **Working-hours-window rejections** could trigger on bookings that fell inside your local 9–17 window. For example, a Los Angeles user booking at 10:00 local time was being checked against UTC, where the same instant reads as 17:00 or 18:00 — outside the window.
+
+If you'd hit either error and had to nudge the date forward, that workaround is no longer needed. The fix applies automatically — no action required.
