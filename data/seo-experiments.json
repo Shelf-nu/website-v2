@@ -1331,6 +1331,46 @@
         "batch-3"
       ],
       "learnings": ""
+    },
+    {
+      "id": "exp-034",
+      "page": "/alternatives/cheqroom",
+      "field": "body-rewrite",
+      "before": "Opening 96-word competitor company-bio paragraph + duplicate body H1 + redundant layout-injected comparison table; no FAQ section. PostHog scroll-to-bottom: 17.3% (last 30d).",
+      "after": "Pain-first hook + 'Switch if / Stay if' TL;DR; duplicate body H1 removed; layout-injected comparison table suppressed via new hideLayoutTable frontmatter flag; ## Frequently Asked Questions section added (5 Q&As, schema-eligible).",
+      "hypothesis": "PRIMARY METRIC: scroll-to-bottom rate (PostHog). Cheqroom is the worst-engaging alternatives page at 17.3% scroll-to-bottom despite high-intent traffic. The opening paragraph buries the verdict in 96 words of competitor history — readers searching 'cheqroom alternative' want a switch/stay decision in 5 seconds. Replacing with a pain-first hook plus 'Switch if / Stay if' bullets should lift engagement. Killing the dup H1 + the all-'Varies' layout-injected comparison table tightens the top of the page. Adding FAQ schema is a free CTR side-bet (rich results possible). Secondary metric: GSC CTR for 'cheqroom alternative' query.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": "2026-05-15",
+      "deployedAt": null,
+      "evaluateAfterDays": 21,
+      "tags": [
+        "body-rewrite",
+        "alternatives",
+        "engagement-batch-1"
+      ],
+      "learnings": ""
     }
   ]
 }

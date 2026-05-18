@@ -48,6 +48,8 @@ export interface Frontmatter {
     competitor?: string;
     competitorFeatures?: string[];
     comparisonTable?: Record<string, unknown>[];
+    /** Suppress the layout-injected "Quick comparison" table — use when the MDX body has its own comparison content. */
+    hideLayoutTable?: boolean;
     whyShelf?: string[];
 
     // Glossary
