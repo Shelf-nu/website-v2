@@ -13,7 +13,7 @@ If your CSV import fails, partially imports, or creates unexpected records, chec
 
 ## "Some rows failed" or partial import
 
-- **Missing title**: every row needs a `title` value. Rows with a blank title still create an asset record, but with no name — leaving you with broken assets you will need to clean up afterwards.
+- **Missing title**: every row needs a `title` value. The importer does not reject blank titles — those rows still create asset records, just with no name, which you'd then have to clean up by hand. Validate that every row's `title` column is populated before uploading.
 - **Encoding**: save your CSV as **UTF-8**. Excel sometimes saves as ANSI or Windows-1252, which corrupts special characters (accents, non-Latin scripts). In Excel: File → Save As → choose "CSV UTF-8".
 - **Extra commas or line breaks inside a cell**: if a description field contains commas, the cell must be wrapped in double quotes. Most spreadsheet apps handle this automatically — but copy-pasted data from websites sometimes breaks the quoting.
 
