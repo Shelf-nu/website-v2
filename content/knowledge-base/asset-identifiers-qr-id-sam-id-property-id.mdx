@@ -3,7 +3,7 @@ title: "Asset Identifiers: QR ID, SAM ID, and Property ID"
 description: "Shelf has three ways to identify an asset — the system QR ID, sequential SAM IDs, and your own Property IDs. This guide explains each, when to use them, and how to choose which one prints on your QR labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-04-30"
+updated: "2026-05-20"
 layout: "knowledge-base"
 ---
 
@@ -92,9 +92,11 @@ Property IDs let you record **your own** identifier on an asset — on top of th
 
 Property IDs are optional. If you don't set one, nothing changes — the asset still has its system ID and SAM ID.
 
-### Bulk-importing Property IDs from your old system
+### Bulk-importing IDs from your old system
 
-Migrating from another asset tracker? Your existing IDs can come in via CSV import. Map your old-ID column to **Property ID** (or to a custom field — see below) when uploading. The imported value is searchable from Quick Find and the asset index, exactly like a Property ID set by hand. See [Importing Assets to Shelf — CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
+Migrating from another asset tracker? A heads-up before you build your CSV: **Shelf's import CSV does not have a `propertyId` column today.** The built-in Property ID field cannot be populated from a CSV in either the create-import or the bulk-update flow — it can only be set by editing assets one at a time in the UI.
+
+The right way to bring old identifiers in via CSV is a **custom field** dedicated to that purpose — see the next section. For a small number of assets, setting Property ID by hand per asset is also viable. See [Importing Assets to Shelf — CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the import format.
 
 ### Alternative: Use a custom field for your own identifier scheme
 
