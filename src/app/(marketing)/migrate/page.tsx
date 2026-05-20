@@ -223,7 +223,7 @@ export default function MigratePage() {
                                 question: "Does Shelf integrate with my existing tools?",
                                 answer: (
                                     <>
-                                        Shelf supports common authentication and operational workflows used by teams managing physical assets. We integrate with SSO providers and support flexible import/export options. Check our <Link href="https://docs.shelf.nu" className="text-orange-600 hover:underline">documentation</Link> for details.
+                                        Shelf supports common authentication and operational workflows used by teams managing physical assets. We integrate with SSO providers and support flexible import/export options. Check our <Link href="/resources" className="text-orange-600 hover:underline">help center</Link> for details.
                                     </>
                                 )
                             },
