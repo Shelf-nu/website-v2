@@ -47,7 +47,9 @@ As the founder of Shelf, I've seen firsthand how proper asset management can tra
 - Open the file in a spreadsheet program like Microsoft Excel or Google Sheets.
 - Replace the sample data with your own asset information.
 - Save the file as a CSV.
-- Import the file into Shelf using our [CSV import feature](https://docs.shelf.nu).
+- Import the file into Shelf following the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
+
+> **Heads up — Excel can silently change the delimiter.** These templates are semicolon-delimited (`;`) on purpose so that custom-field headers like `cf:Purchase date,type:date` work without escaping. Excel on most US/UK locales re-saves them as comma-delimited, which then breaks those headers and produces an "Invalid header provided" error on import. After saving, open the CSV in a plain-text editor: if commas have replaced the semicolons, either restore the semicolons (Find & Replace), or wrap every `cf:…,type:…` header in double quotes (e.g. `"cf:Purchase date,type:date"`). Google Sheets users: download as "Comma-separated values" then run the same check.
 
 ### Customizing Your CSV
 
