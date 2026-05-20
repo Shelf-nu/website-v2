@@ -3,7 +3,7 @@ title: "Alternative Barcodes (Barcode, Datamatrix, QR Code)"
 description: "Learn about Shelf's alternative barcode feature that extends beyond standard QR codes, enabling organizations to integrate multiple barcode formats into their asset tracking systems."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-09"
+updated: "2026-05-20"
 layout: "knowledge-base"
 ---
 
@@ -17,12 +17,13 @@ Shelf's alternative barcode feature extends beyond the standard QR codes automat
 
 ## Supported Barcode Types
 
-The feature supports four barcode types:
+The feature supports five barcode types:
 
 - **Code 128**: 4-40 characters including letters, numbers, and symbols
-- **Code39**: 4-43 alphanumeric characters
+- **Code 39**: 4-43 alphanumeric characters (A-Z, 0-9)
 - **Data Matrix**: 4-100 characters, printable at extremely small sizes
-- **EAN-13**: 13-digit numeric codes matching retail product standards
+- **External QR**: 1-2048 characters, any text or URL — for QR codes generated outside Shelf that you want to attach to a Shelf asset (case is preserved on save)
+- **EAN-13**: 13-digit numeric codes matching retail product standards (Shelf validates the check digit on import)
 
 ## How to Generate Code 128 Barcodes
 

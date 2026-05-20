@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-04-17"
+updated: "2026-05-20"
 layout: "knowledge-base"
 ---
 
@@ -13,7 +13,7 @@ If your CSV import fails, partially imports, or creates unexpected records, chec
 
 ## "Some rows failed" or partial import
 
-- **Missing required column**: every row must have a **Name** value. Blank names are skipped.
+- **Missing title**: every row needs a `title` value. Rows with a blank title still create an asset record, but with no name — leaving you with broken assets you will need to clean up afterwards.
 - **Encoding**: save your CSV as **UTF-8**. Excel sometimes saves as ANSI or Windows-1252, which corrupts special characters (accents, non-Latin scripts). In Excel: File → Save As → choose "CSV UTF-8".
 - **Extra commas or line breaks inside a cell**: if a description field contains commas, the cell must be wrapped in double quotes. Most spreadsheet apps handle this automatically — but copy-pasted data from websites sometimes breaks the quoting.
 
@@ -21,8 +21,8 @@ If your CSV import fails, partially imports, or creates unexpected records, chec
 
 ## Columns not mapping correctly
 
-- **Column headers must match Shelf's expected names exactly** (case-sensitive). Check the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the full column reference.
-- **Custom fields**: use the exact custom field name as the column header. If your custom field is called "Purchase Date", the CSV header must be `Purchase Date` — not `purchase_date` or `PurchaseDate`.
+- **Column headers must match Shelf's expected names exactly** (case-sensitive). Unknown headers abort the entire import with "Invalid header provided." Check the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the full column reference.
+- **Custom fields**: headers must use the form `cf:FieldName,type:TypeName` — for example `cf:Purchase Date,type:date`. A bare `Purchase Date` header is **not** valid and will be rejected as an unknown header. In a comma-delimited file, the whole header must be wrapped in double quotes because it contains a comma: `"cf:Purchase Date,type:date"`. In a semicolon-delimited file no quoting is needed.
 
 ---
 
@@ -40,7 +40,7 @@ This happens when you use the **Import** flow (which creates new assets) instead
 
 - **Date formats**: Shelf expects dates as `YYYY-MM-DD` (e.g. `2026-04-17`). Other formats (`04/17/2026`, `17 Apr 2026`) may import as text instead of dates.
 - **Number fields**: remove currency symbols and thousands separators. `12359.00` works; `$12,359.00` does not.
-- **Boolean fields**: use `true` / `false` (lowercase).
+- **Boolean fields**: custom-field booleans accept only `yes` or `no` (case-insensitive). `true`, `false`, `1`, `0` are silently skipped — the value will not be saved. For the `bookable` column, only the exact string `no` makes an asset non-bookable — `false`, blank, and `yes` all leave it bookable.
 
 ---
 
