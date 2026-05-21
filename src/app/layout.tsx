@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { CrispChat } from "@/components/chat/crisp-chat";
 import { PostHogProvider } from "@/components/analytics/posthog-provider";
 import { ReducedMotionConfig } from "@/components/ui/reduced-motion-config";
+import { StructuredData } from "@/components/seo/structured-data";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -96,6 +98,11 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
+        {/* Site-wide identity schema — Organization + WebSite. Emitted
+            once here so every page (not just the homepage) advertises
+            site-level identity to crawlers and LLMs. Per-page schemas
+            (SoftwareApplication, Article, etc.) reference these via @id. */}
+        <StructuredData data={[organizationJsonLd(), websiteJsonLd()]} />
         <PostHogProvider>
           <ReducedMotionConfig>
             <ThemeProvider>
