@@ -8,6 +8,8 @@ import { CTA } from "@/components/sections/cta";
 import { ArrowRight, HardHat, GraduationCap, Monitor, Video, FlaskConical, Layers } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Industries - Shelf",
@@ -26,8 +28,20 @@ const industryIcons: Record<string, LucideIcon> = {
 export default function IndustriesIndexPage() {
     const industries = getAllContent("industries");
 
+    const collectionSchema = collectionPageJsonLd({
+        name: "Industries",
+        description: "Shelf for every industry — tailored asset management solutions for your sector.",
+        url: "/industries",
+        items: industries.map((i) => ({
+            name: i.frontmatter.title,
+            url: `/industries/${i.slug}`,
+            description: i.frontmatter.description,
+        })),
+    });
+
     return (
         <PagefindWrapper type="Page" title="Industries — Shelf Asset Management" keywords="industries sectors education construction IT media">
+            <StructuredData data={collectionSchema} />
             <div className="flex min-h-screen flex-col relative overflow-hidden">
                 {/* Ambient Background */}
                 <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />

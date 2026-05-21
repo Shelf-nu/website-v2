@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import { KnowledgeBaseFeed } from "@/components/knowledge-base/kb-feed";
 import Image from "next/image";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Knowledge Base - Shelf Asset Management",
@@ -34,8 +36,23 @@ export default function KnowledgeBasePage() {
         category: a.frontmatter.category || "General",
     }));
 
+    // Cap ItemList at 30 entries to keep schema payload bounded. The full
+    // article set is still discoverable via the on-page feed + sitemap.
+    const collectionSchema = collectionPageJsonLd({
+        name: "Shelf Knowledge Base",
+        description:
+            "Guides, tutorials, and how-to articles to help you get the most out of Shelf.",
+        url: "/knowledge-base",
+        items: articles.slice(0, 30).map((a) => ({
+            name: a.frontmatter.title,
+            url: `/knowledge-base/${a.slug}`,
+            description: a.frontmatter.description,
+        })),
+    });
+
     return (
         <PagefindWrapper type="Page" title="Knowledge Base — Shelf Asset Management" keywords="knowledge base help guides tutorials how-to">
+            <StructuredData data={collectionSchema} />
             <div className="flex min-h-screen flex-col relative">
                 {/* Ambient Background */}
             <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />

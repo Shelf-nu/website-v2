@@ -9,6 +9,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Layers } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Solutions - Shelf Asset Management",
@@ -19,8 +21,20 @@ export const metadata: Metadata = {
 export default function SolutionsPage() {
     const solutions = getAllContent("solutions");
 
+    const collectionSchema = collectionPageJsonLd({
+        name: "Shelf Solutions",
+        description: "Tailored asset management workflows for your industry.",
+        url: "/solutions",
+        items: solutions.slice(0, 30).map((s) => ({
+            name: s.frontmatter.title,
+            url: `/solutions/${s.slug}`,
+            description: s.frontmatter.description,
+        })),
+    });
+
     return (
         <PagefindWrapper type="Page" title="Solutions — Shelf Asset Management" keywords="solutions workflows industry asset management">
+            <StructuredData data={collectionSchema} />
             <div className="flex flex-col min-h-screen relative overflow-hidden">
                 {/* Ambient Background */}
                 <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />

@@ -8,6 +8,8 @@ import { CTA } from "@/components/sections/cta";
 import { ArrowRight, Video, Monitor, Wrench, Layers } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Use Cases - Shelf",
@@ -24,8 +26,20 @@ const useCaseIcons: Record<string, LucideIcon> = {
 export default function UseCasesIndexPage() {
     const useCases = getAllContent("use-cases");
 
+    const collectionSchema = collectionPageJsonLd({
+        name: "Use Cases",
+        description: "Explore real-world examples of Shelf in action across teams and workflows.",
+        url: "/use-cases",
+        items: useCases.map((u) => ({
+            name: u.frontmatter.title,
+            url: `/use-cases/${u.slug}`,
+            description: u.frontmatter.description,
+        })),
+    });
+
     return (
         <PagefindWrapper type="Page" title="Use Cases — Shelf" keywords="use cases workflows examples asset tracking">
+            <StructuredData data={collectionSchema} />
             <div className="flex min-h-screen flex-col relative overflow-hidden">
                 {/* Ambient Background */}
                 <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />

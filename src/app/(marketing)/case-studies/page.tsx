@@ -8,6 +8,8 @@ import { CaseStudyCard } from "@/components/sections/case-studies/case-study-car
 import { LogoWall } from "@/components/sections/case-studies/logo-wall";
 import { TestimonialsSection } from "@/components/sections/case-studies/testimonials-section";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Customers - Shelf",
@@ -17,6 +19,17 @@ export const metadata: Metadata = {
 
 export default function CaseStudiesIndexPage() {
     const caseStudies = getAllContent("case-studies");
+
+    const collectionSchema = collectionPageJsonLd({
+        name: "Shelf Case Studies",
+        description: "See how leading teams use Shelf to track assets and streamline operations.",
+        url: "/case-studies",
+        items: caseStudies.slice(0, 30).map((study) => ({
+            name: study.frontmatter.title,
+            url: `/case-studies/${study.slug}`,
+            description: study.frontmatter.summary || study.frontmatter.description,
+        })),
+    });
 
     // Transform MDX content into LogoItem format for the wall
     const logoItems = caseStudies.map((study) => {
@@ -38,6 +51,7 @@ export default function CaseStudiesIndexPage() {
 
     return (
         <PagefindWrapper type="Page" title="Case Studies — Shelf Customers" keywords="case studies customers testimonials success stories">
+            <StructuredData data={collectionSchema} />
             <div className="flex min-h-screen flex-col">
 
                 {/* 1. Header Section */}
