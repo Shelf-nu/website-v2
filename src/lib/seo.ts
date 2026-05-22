@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Frontmatter } from "./content/schema";
 import { ContentType } from "./mdx";
+import type { PricingPlan } from "../data/pricing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
 
@@ -322,4 +323,144 @@ function stripMarkdown(text: string): string {
         .replace(/\n/g, " ")                       // collapse line breaks
         .replace(/\s{2,}/g, " ")                   // collapse spaces
         .trim();
+}
+
+/* ------------------------------------------------------------------ */
+/*  Site-wide identity JSON-LD                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Renders the Organization JSON-LD object for Shelf. Emitted site-wide
+ * from the root layout. Uses a stable @id so other schemas (publisher,
+ * author references) can link to it without duplicating the entity.
+ */
+export function organizationJsonLd(): Record<string, unknown> {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": `${BASE_URL}/#organization`,
+        name: "Shelf Asset Management",
+        url: BASE_URL,
+        logo: { "@type": "ImageObject", url: `${BASE_URL}/logo.png` },
+        sameAs: [
+            "https://github.com/Shelf-nu/shelf.nu",
+            "https://www.linkedin.com/company/shelf-inc/",
+        ],
+        contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            url: `${BASE_URL}/contact`,
+        },
+    };
+}
+
+/**
+ * Renders the WebSite JSON-LD object for shelf.nu. Emitted site-wide
+ * from the root layout. Stable @id for cross-schema references.
+ */
+export function websiteJsonLd(): Record<string, unknown> {
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        url: BASE_URL,
+        name: "Shelf",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+    };
+}
+
+/* ------------------------------------------------------------------ */
+/*  Pricing JSON-LD                                                    */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Renders a SoftwareApplication JSON-LD object with an Offer per priced
+ * plan, sourced from the canonical pricing data in src/data/pricing.ts.
+ *
+ * Plans whose billing is "custom" (i.e. Enterprise) are omitted from the
+ * offers array because they have no fixed price; they are described in
+ * the page content and reachable via the demo CTA.
+ *
+ * Shares its @id with the homepage SoftwareApplication entity so the
+ * AggregateRating emitted from the homepage applies to the same product.
+ */
+export function pricingSoftwareApplicationJsonLd(
+    plans: PricingPlan[]
+): Record<string, unknown> {
+    const offers = plans
+        .filter((plan) => plan.billing !== "custom")
+        .map((plan) => {
+            const monthly = parseInt(plan.priceMonthly.replace(/[^0-9]/g, ""), 10);
+            const url = plan.href.startsWith("http") ? plan.href : `${BASE_URL}${plan.href}`;
+            return {
+                "@type": "Offer",
+                name: plan.name,
+                description: plan.description,
+                price: String(monthly),
+                priceCurrency: "USD",
+                url,
+                category: monthly === 0 ? "Free" : "Subscription",
+                availability: "https://schema.org/InStock",
+            };
+        });
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": `${BASE_URL}/#shelf-software-application`,
+        name: "Shelf",
+        description:
+            "Open source asset tracking and inventory management software for modern distributed teams.",
+        applicationCategory: "BusinessApplication",
+        applicationSubCategory: "Asset Tracking Software",
+        operatingSystem: "Web, iOS, Android",
+        url: BASE_URL,
+        downloadUrl: "https://app.shelf.nu",
+        offers,
+    };
+}
+
+/* ------------------------------------------------------------------ */
+/*  CollectionPage / ItemList JSON-LD                                  */
+/* ------------------------------------------------------------------ */
+
+export interface CollectionItem {
+    name: string;
+    url: string;
+    description?: string;
+}
+
+/**
+ * Renders a CollectionPage JSON-LD object with an embedded ItemList of
+ * its children. Use on index pages (/features, /solutions, etc.) to
+ * communicate site hierarchy to crawlers and LLMs.
+ *
+ * Cap items at a reasonable count (~30) when the index is large.
+ */
+export function collectionPageJsonLd(opts: {
+    name: string;
+    description: string;
+    url: string;
+    items: CollectionItem[];
+}): Record<string, unknown> {
+    const pageUrl = opts.url.startsWith("http") ? opts.url : `${BASE_URL}${opts.url}`;
+    return {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: opts.name,
+        description: opts.description,
+        url: pageUrl,
+        isPartOf: { "@id": `${BASE_URL}/#website` },
+        mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: opts.items.length,
+            itemListElement: opts.items.map((item, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: item.url.startsWith("http") ? item.url : `${BASE_URL}${item.url}`,
+                name: item.name,
+                ...(item.description ? { description: item.description } : {}),
+            })),
+        },
+    };
 }

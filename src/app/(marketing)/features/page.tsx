@@ -9,6 +9,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Layers } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Features - Shelf Asset Management",
@@ -19,8 +21,21 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
     const features = getAllContent("features");
 
+    const collectionSchema = collectionPageJsonLd({
+        name: "Shelf Features",
+        description:
+            "The complete operating system for physical asset management. Track, manage, and scale your equipment operations.",
+        url: "/features",
+        items: features.slice(0, 30).map((f) => ({
+            name: f.frontmatter.title,
+            url: `/features/${f.slug}`,
+            description: f.frontmatter.description,
+        })),
+    });
+
     return (
         <PagefindWrapper type="Page" title="Features — Shelf Asset Management" keywords="features capabilities asset tracking equipment management">
+            <StructuredData data={collectionSchema} />
             <div className="flex flex-col min-h-screen relative overflow-hidden">
                 {/* Ambient Background */}
                 <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />

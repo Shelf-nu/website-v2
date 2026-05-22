@@ -8,6 +8,8 @@ import { CTA } from "@/components/sections/cta";
 import { ArrowRight, BookOpen, Tag, ScanLine, Ghost, Wrench } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Asset Management Glossary | Shelf",
@@ -51,8 +53,21 @@ export default function GlossaryIndexPage() {
         a.frontmatter.title.localeCompare(b.frontmatter.title)
     );
 
+    const collectionSchema = collectionPageJsonLd({
+        name: "Asset Management Glossary",
+        description:
+            "Clear definitions for asset tagging, check-in/check-out, ghost assets, preventive maintenance, and other key equipment management terms.",
+        url: "/glossary",
+        items: sorted.map((term) => ({
+            name: term.frontmatter.title,
+            url: `/glossary/${term.slug}`,
+            description: term.frontmatter.definition || term.frontmatter.description,
+        })),
+    });
+
     return (
         <PagefindWrapper type="Page" title="Asset Management Glossary" keywords="glossary definitions terms asset management vocabulary">
+            <StructuredData data={collectionSchema} />
             <div className="flex min-h-screen flex-col relative overflow-hidden">
                 {/* Ambient Background */}
                 <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />

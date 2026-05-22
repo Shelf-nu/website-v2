@@ -9,6 +9,8 @@ import { ArrowRight, ArrowLeftRight } from "lucide-react";
 import { CTA } from "@/components/sections/cta";
 import { getCompetitorAdvantages } from "@/data/competitor-advantages";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Shelf Alternatives & Comparisons | Shelf",
@@ -44,8 +46,21 @@ const competitorLogos: Record<string, string> = {
 export default function AlternativesIndexPage() {
     const alternatives = getAllContent("alternatives");
 
+    const collectionSchema = collectionPageJsonLd({
+        name: "Shelf Alternatives & Comparisons",
+        description:
+            "Compare Shelf to other asset management solutions. See feature-by-feature breakdowns of why teams switch to Shelf.",
+        url: "/alternatives",
+        items: alternatives.slice(0, 30).map((a) => ({
+            name: a.frontmatter.title,
+            url: `/alternatives/${a.slug}`,
+            description: a.frontmatter.description,
+        })),
+    });
+
     return (
         <PagefindWrapper type="Page" title="Shelf Alternatives & Comparisons" keywords="alternatives comparisons compare switch asset management">
+            <StructuredData data={collectionSchema} />
             <div className="flex min-h-screen flex-col">
                 {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden">

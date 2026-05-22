@@ -19,6 +19,8 @@ import { ArrowRight, Quote, Star } from "lucide-react";
 import Image from "next/image";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { trackEvent } from "@/lib/analytics";
+import { StructuredData } from "@/components/seo/structured-data";
+import { pricingSoftwareApplicationJsonLd } from "@/lib/seo";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -97,6 +99,7 @@ export default function PricingPage() {
 
     return (
         <PagefindWrapper type="Page" title="Pricing - Simple, transparent pricing" keywords="pricing plans price cost pricing page">
+        <StructuredData data={pricingSoftwareApplicationJsonLd(pricingPlans)} />
         <div className="flex min-h-screen flex-col relative overflow-hidden">
             {/* Ambient Background Gradient & Grid */}
             <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
