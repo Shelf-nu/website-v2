@@ -1,0 +1,13 @@
+---
+title: "Large Bookings Now Check Out Reliably"
+description: "Resolved a server timeout that could fail checkout on bookings containing several hundred assets."
+date: "2026-05-21"
+image: "/images/updates/add-assets-to-bookings.jpg"
+layout: "update"
+---
+
+If you've ever hit a server error when checking out a booking with a few hundred assets, that's fixed.
+
+Behind the scenes, recording the per-asset activity events during checkout used to issue one database round-trip per asset, all inside a single transaction with a 5-second budget. On bookings with 250+ assets, that budget could be exceeded and the transaction would be aborted — leaving you with a failed checkout and nothing to retry against. Activity events for bulk operations now write in a single batched call, and the checkout transaction has additional headroom for outlier bookings.
+
+The fix applies automatically. If you'd been splitting a large booking into smaller ones as a workaround, that's no longer necessary.
