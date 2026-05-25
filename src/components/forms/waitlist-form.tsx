@@ -8,33 +8,25 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import { trackEvent, getUtmParams } from "@/lib/analytics";
-import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
-/*  Validation                                                         */
+/*  Android notify-me waitlist                                         */
+/*                                                                     */
+/*  iOS is live on the App Store (https://apps.apple.com/app/id6765639874).
+/*  This form captures interest for the Android companion only.        */
+/*  No release date is promised.                                       */
 /* ------------------------------------------------------------------ */
 
-const quickSchema = z.object({
-    email: z.string().email("Please enter a valid email"),
-});
-
-const fullSchema = z.object({
+const schema = z.object({
     firstName: z.string().min(1, "First name is required"),
     lastName: z.string().min(1, "Last name is required"),
     email: z.string().email("Please enter a valid email"),
     company: z.string().optional(),
-    platform: z.enum(["ios", "android", "both"], {
-        error: "Please select a platform",
-    }),
     existingUser: z.boolean(),
 });
 
-type FullFields = z.infer<typeof fullSchema>;
-type FieldErrors = Partial<Record<keyof FullFields, string>>;
-
-/* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
+type Fields = z.infer<typeof schema>;
+type FieldErrors = Partial<Record<keyof Fields, string>>;
 
 function FieldError({ error }: { error?: string }) {
     if (!error) return null;
@@ -46,113 +38,6 @@ function Required() {
 }
 
 const FORM_ENDPOINT = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT || "";
-
-const PLATFORM_OPTIONS = [
-    { value: "ios", label: "iOS" },
-    { value: "android", label: "Android" },
-    { value: "both", label: "Both" },
-] as const;
-
-/* ------------------------------------------------------------------ */
-/*  Quick inline email capture (for hero)                              */
-/* ------------------------------------------------------------------ */
-
-export function QuickWaitlistForm({ className }: { className?: string }) {
-    const [email, setEmail] = useState("");
-    const [pending, setPending] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState<string | undefined>();
-
-    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        setError(undefined);
-
-        const honeypot = new FormData(e.currentTarget).get("website");
-        if (honeypot) { setSuccess(true); return; }
-
-        const result = quickSchema.safeParse({ email });
-        if (!result.success) {
-            setError(result.error.issues[0].message);
-            return;
-        }
-
-        const utm = getUtmParams();
-        if (!FORM_ENDPOINT) {
-            trackEvent("mobile_app_waitlist_submit", { type: "quick", ...utm });
-            setSuccess(true);
-            return;
-        }
-
-        setPending(true);
-        try {
-            const res = await fetch(FORM_ENDPOINT, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email: result.data.email,
-                    source: "mobile_app_waitlist_quick",
-                    source_url: window.location.href,
-                    ...utm,
-                }),
-            });
-            const data = await res.json();
-            if (data.success) {
-                trackEvent("mobile_app_waitlist_submit", { type: "quick", success: "true", ...utm });
-            } else {
-                trackEvent("mobile_app_waitlist_submit", { type: "quick", success: "false", ...utm });
-            }
-            setSuccess(true);
-        } catch {
-            trackEvent("mobile_app_waitlist_submit", { type: "quick", success: "error", ...utm });
-            setSuccess(true);
-        } finally {
-            setPending(false);
-        }
-    }
-
-    if (success) {
-        return (
-            <div className={cn("flex items-center gap-2 text-sm font-medium text-green-600", className)}>
-                <CheckCircle2 className="h-4 w-4" />
-                You&apos;re in! We&apos;ll be in touch.
-            </div>
-        );
-    }
-
-    return (
-        <form onSubmit={handleSubmit} className={cn("flex flex-col sm:flex-row gap-3", className)}>
-            <div className="flex-1">
-                <Input
-                    type="email"
-                    placeholder="Enter your work email"
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); setError(undefined); }}
-                    aria-invalid={!!error}
-                    className="h-12 bg-background"
-                />
-                {error && <p className="text-sm text-red-600 mt-1">{error}</p>}
-            </div>
-            <div className="hidden" aria-hidden="true">
-                <input type="text" name="website" autoComplete="off" />
-            </div>
-            <Button
-                type="submit"
-                disabled={pending}
-                className="h-12 px-6 bg-orange-600 hover:bg-orange-700 text-white font-semibold shrink-0"
-            >
-                {pending ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                    <>Get Early Access <ArrowRight className="ml-2 h-4 w-4" /></>
-                )}
-            </Button>
-        </form>
-    );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Full waitlist form (for dedicated section)                         */
-/* ------------------------------------------------------------------ */
 
 export function WaitlistForm() {
     const searchParams = useSearchParams();
@@ -167,7 +52,6 @@ export function WaitlistForm() {
         lastName: "",
         email: "",
         company: "",
-        platform: "" as string,
         existingUser: false,
     });
 
@@ -202,9 +86,12 @@ export function WaitlistForm() {
 
         const form = e.currentTarget;
         const honeypot = new FormData(form).get("website");
-        if (honeypot) { setSuccess(true); return; }
+        if (honeypot) {
+            setSuccess(true);
+            return;
+        }
 
-        const result = fullSchema.safeParse(formData);
+        const result = schema.safeParse(formData);
         if (!result.success) {
             const errors: FieldErrors = {};
             result.error.issues.forEach((issue) => {
@@ -217,14 +104,13 @@ export function WaitlistForm() {
 
         const utm = getUtmParams();
         const eventProps = {
-            type: "full",
-            platform: result.data.platform,
+            platform: "android",
             existing_user: String(result.data.existingUser),
             ...utm,
         };
 
         if (!FORM_ENDPOINT) {
-            trackEvent("mobile_app_waitlist_submit", eventProps);
+            trackEvent("android_waitlist_submit", eventProps);
             setSuccess(true);
             return;
         }
@@ -236,9 +122,9 @@ export function WaitlistForm() {
                 last_name: result.data.lastName,
                 email: result.data.email,
                 company_name: result.data.company || "",
-                platform_preference: result.data.platform,
+                platform_preference: "android",
                 existing_shelf_user: result.data.existingUser,
-                source: "mobile_app_waitlist",
+                source: "android_notify_waitlist",
                 source_url: sourceUrl,
                 utm_source: utmParams.utmSource,
                 utm_medium: utmParams.utmMedium,
@@ -256,7 +142,7 @@ export function WaitlistForm() {
             const data = await res.json();
 
             if (data.success) {
-                trackEvent("mobile_app_waitlist_submit", eventProps);
+                trackEvent("android_waitlist_submit", eventProps);
                 setSuccess(true);
                 return;
             }
@@ -281,10 +167,12 @@ export function WaitlistForm() {
                     <CheckCircle2 className="h-7 w-7 text-green-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                    You&apos;re on the list!
+                    You&apos;re on the list.
                 </h3>
-                <p className="text-muted-foreground text-sm">
-                    We&apos;ll reach out when beta access opens for your platform.
+                <p className="text-muted-foreground text-sm max-w-xs">
+                    We&apos;ll email you when Shelf Companion for Android is
+                    ready. In the meantime, you can use Shelf in any modern
+                    phone browser.
                 </p>
             </div>
         );
@@ -300,7 +188,10 @@ export function WaitlistForm() {
 
             <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <Label htmlFor="waitlist-firstName">First name<Required /></Label>
+                    <Label htmlFor="waitlist-firstName">
+                        First name
+                        <Required />
+                    </Label>
                     <Input
                         id="waitlist-firstName"
                         name="firstName"
@@ -312,7 +203,10 @@ export function WaitlistForm() {
                     <FieldError error={fieldErrors.firstName} />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="waitlist-lastName">Last name<Required /></Label>
+                    <Label htmlFor="waitlist-lastName">
+                        Last name
+                        <Required />
+                    </Label>
                     <Input
                         id="waitlist-lastName"
                         name="lastName"
@@ -326,7 +220,10 @@ export function WaitlistForm() {
             </div>
 
             <div className="space-y-2">
-                <Label htmlFor="waitlist-email">Work email<Required /></Label>
+                <Label htmlFor="waitlist-email">
+                    Work email
+                    <Required />
+                </Label>
                 <Input
                     id="waitlist-email"
                     name="email"
@@ -350,34 +247,6 @@ export function WaitlistForm() {
                 />
             </div>
 
-            <div className="space-y-2">
-                <Label>Platform preference<Required /></Label>
-                <div className="flex gap-3">
-                    {PLATFORM_OPTIONS.map((opt) => (
-                        <label
-                            key={opt.value}
-                            className={cn(
-                                "flex-1 flex items-center justify-center gap-2 rounded-lg border p-3 cursor-pointer transition-colors text-sm font-medium",
-                                formData.platform === opt.value
-                                    ? "border-orange-200 bg-orange-50/30 text-orange-700"
-                                    : "border-border hover:border-orange-200 hover:bg-muted/30",
-                            )}
-                        >
-                            <input
-                                type="radio"
-                                name="platform"
-                                value={opt.value}
-                                checked={formData.platform === opt.value}
-                                onChange={(e) => updateField("platform", e.target.value)}
-                                className="sr-only"
-                            />
-                            {opt.label}
-                        </label>
-                    ))}
-                </div>
-                <FieldError error={fieldErrors.platform} />
-            </div>
-
             <div className="flex items-center gap-3">
                 <label className="relative inline-flex items-center cursor-pointer">
                     <input
@@ -388,13 +257,20 @@ export function WaitlistForm() {
                     />
                     <div className="w-9 h-5 bg-muted peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-orange-500 peer-focus:ring-offset-2 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600" />
                 </label>
-                <span className="text-sm text-muted-foreground">I&apos;m an existing Shelf user</span>
+                <span className="text-sm text-muted-foreground">
+                    I&apos;m an existing Shelf user
+                </span>
             </div>
 
             {/* Honeypot */}
             <div className="hidden" aria-hidden="true">
                 <label htmlFor="waitlist-website">Website</label>
-                <input type="text" id="waitlist-website" name="website" autoComplete="off" />
+                <input
+                    type="text"
+                    id="waitlist-website"
+                    name="website"
+                    autoComplete="off"
+                />
             </div>
 
             <Button
@@ -408,12 +284,15 @@ export function WaitlistForm() {
                         Submitting...
                     </>
                 ) : (
-                    <>Join as a Founding Tester <ArrowRight className="ml-2 h-4 w-4" /></>
+                    <>
+                        Notify me when Android lands
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
                 )}
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">
-                We&apos;ll never share your email. Unsubscribe anytime.
+                We&apos;ll only email you about the Android launch. No newsletter.
             </p>
         </form>
     );
