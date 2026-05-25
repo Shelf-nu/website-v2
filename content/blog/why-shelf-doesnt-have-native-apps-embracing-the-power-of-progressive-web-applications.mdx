@@ -1,73 +1,81 @@
 ---
-title: >-
-  Why Shelf Doesn't Have Native Apps: Embracing the Power of Progressive Web
-  Applications
+title: "How We Used to Think About Native Apps — and What Changed"
 description: >-
-  At Shelf, we're often asked why we don't offer native mobile apps. Today, I
-  want to address this question and share our philosophy on delivering value to
-  our users. Read about our thinking.
+  In 2024 we wrote a post explaining why Shelf didn't have native apps. In 2026 we shipped one. Here's the honest story of what changed our mind, what stayed true, and what we'd say differently today.
 layout: blog
 canonicalUrl: >-
   /blog/why-shelf-doesnt-have-native-apps-embracing-the-power-of-progressive-web-applications
 date: '2024-08-27'
-updated: '2024-08-27'
+updated: '2026-05-25'
 author: carlos-virreira
 category: software-features-capabilities
 seo:
   title: >-
-    Why Shelf Doesn't Have Native Apps: Embracing the Power of Progressive Web
-    Applications
+    How Shelf's Thinking on Native Apps Changed — From PWA-Only to iOS Companion
   description: >-
-    At Shelf, we're often asked why we don't offer native mobile apps. Today, I
-    want to address this question and share our philosophy on delivering value
-    to our users. Read about our thinking.
+    In 2024 we argued Shelf didn't need native apps. In 2026 we shipped one. Here is what changed, what stayed true, and why the web platform remains the source of truth.
   keywords: []
   noindex: false
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/why-shelf-doesnt-have-native-apps-embracing-the-power-of-progressive-web-applications.jpg"
 ---
 
-<Callout type="info" title="Update — April 2026">
+<Callout type="info" title="Editor's note — May 25, 2026">
 
-We still believe in web-first. But after listening to field teams, we've decided to build a native companion app for iOS and Android — purpose-built for scanning, audits, and custody management. The web app remains the command center. Read the full story: [Why We're Building the Shelf Mobile App](/blog/why-were-building-the-shelf-mobile-app).
+This post was originally published in August 2024 under the title *"Why Shelf Doesn't Have Native Apps."* It now reflects what changed when we shipped [Shelf Companion on the App Store](https://apps.apple.com/app/id6765639874). The URL is preserved so the conversation history stays intact. For the original arguments and what we'd say differently today, read on.
 
 </Callout>
 
-At Shelf, we're often asked why we don't offer native mobile apps. Today, I want to address this question and share our philosophy on delivering value to our users.
+In August 2024 I wrote a post titled *"Why Shelf Doesn't Have Native Apps."* The argument was simple: progressive web apps were enough, native apps added overhead without proportional value, and our small team's energy was better spent shipping features than maintaining app store binaries.
 
-## Speed, Innovation, and Accessibility: The Shelf Approach
+In May 2026 we shipped Shelf Companion on the iOS App Store.
 
-At the core of Shelf's mission is a commitment to rapid value delivery without compromising usability. We optimize for speed of innovation and delivery, aiming to build a robust system using only freely open and widely supported web standards. This approach led us to embrace Progressive Web Applications (PWAs) instead of developing native apps.
+This is the honest story of what changed, what stayed true, and what we would say differently today.
 
-### The Beauty of Progressive Web Applications
+## What we said in 2024
 
-PWAs offer a native-like experience without the overhead of maintaining separate codebases for different platforms. This allows us to focus our resources on delivering features and improvements faster, rather than splitting our efforts across multiple app stores and approval processes.
+The original post made five points in favor of PWAs over native apps: universal access from any browser, an app-like home-screen experience, no version fragmentation, fewer "the app was broken" support tickets, and modern browser APIs for camera and hardware.
 
-### Here's why we believe PWAs are the future:
+All of that is still true. None of it was wrong.
 
-- Universal Accessibility: On any device with a browser, you can access Shelf with full functionality - whether you're on desktop or mobile.
-- App-Like Experience: By adding Shelf to your home screen, you get a distraction-free, full-screen experience that mimics a native app.
-- Always Up-to-Date: No need to worry about app updates or version incompatibilities. You always have the latest version at your fingertips.
-- Reduced Friction: In a world where seamless access to your asset database is crucial, PWAs eliminate excuses like "the app was broken" or "I had an old version without that functionality."
-- Hardware Compatibility: Modern PWAs can tap into device features like cameras, enabling you to scan asset tags directly from your browser.
+## What we missed
 
-### Our Commitment to Open Standards
+We underweighted the difference between *good enough* and *purpose-built* for the specific work field teams do.
 
-We believe the web should be open and accessible. PWAs align perfectly with this philosophy, ensuring that Shelf remains platform-agnostic and widely available.
+Browser-based barcode scanning works for one-offs. It does not scale to an audit of 200 assets where every scan is friction. Camera autofocus, format support, haptic feedback, instant home-screen quick actions — small things individually, but in aggregate they change whether a tool gets used eight hours a day or abandoned for a clipboard.
 
-## A Strong Belief, Loosely Held
+We also underestimated how strongly people associate "this company takes field work seriously" with "this company has a native app." Even when the PWA technically did the job, the absence of an App Store presence read as a signal that field operations were a secondary use case. They are not.
 
-While we're confident in our PWA approach, we're always open to evolving our technology stack. If future needs require deeper hardware integration or specific native functionalities that significantly enhance the Shelf experience, we'll certainly consider developing native apps. For now, we're fully committed to delivering an exceptional PWA experience.
+## What changed our mind
 
-### Try It Yourself
+Three operational gaps that the browser could not close, all from real customer conversations.
 
-We encourage you to experience the power of Shelf's PWA firsthand. Simply tap 'Add to Home Screen' on your mobile device, and you'll see why we're so enthusiastic about this approach.
+**Offline scan persistence.** PWAs cache pages but cannot reliably queue writes and sync them later. A field team scanning 200 assets in a basement with no signal needs their work to survive the network gap. Native saves to the device, syncs on reconnect, does not lose work. The web could not do this.
 
-### Thank You for Your Trust
+**Scanner performance at batch speed.** Code 128, EAN-13, DataMatrix, audits at the speed teams actually work — browser scanning was too slow for sustained use. Native gets sub-second focus and recognition with haptic confirmation, so you can keep scanning without looking at the screen.
 
-We're grateful for the opportunity to build solutions that address the practical challenges in your daily operations. By choosing PWAs, we ensure that you always have the latest version of Shelf at your fingertips, ready to streamline your asset management workflows.
+**The trust signal.** "Is there a mobile app?" came up in nearly every enterprise conversation. Even when our PWA answer was good, the absence of an App Store presence read as a gap. Shipping a native companion closed that gap honestly.
 
-Thank you for reading, and for being part of the Shelf community. We're excited to continue innovating and delivering value through the power of progressive web technologies.
+## What stayed the same
 
-Carlos Virreira Founder, Shelf Asset Management, Inc.
+The web app is still the source of truth. Workspaces, billing, configuration, bulk imports, custom fields, role management, reporting, integrations — all of that lives on the web. The companion does not replace the web platform; it complements it for the work that happens away from a desk.
 
-‍
+The PWA still exists and still works. If you do not want to install another app, you can keep using shelf.nu in your phone browser. Adding it to your home screen still gets you a native-like experience, and we will keep maintaining that path.
+
+Pricing did not change. The companion is free with any Shelf account, including the free tier. Nothing is sold through the app.
+
+## What we would say differently today
+
+Two things.
+
+First, the original post used "PWAs are the future" framing. That was overconfident. PWAs are *a* future for a lot of use cases, and they remain a strong default. "Always use PWAs, never go native" is a dogma we no longer hold. The right answer is task-specific.
+
+Second, we framed the choice as binary — native *or* web — when in practice the strongest pattern is a focused native companion alongside a web source of truth. That is what we ship now and it works better than either side of the binary would have.
+
+## What is next
+
+Shelf Companion for iPhone is on the [App Store](https://apps.apple.com/app/id6765639874) now. It is free with any Shelf account, including the free tier. Android is in development; we will announce it when it is ready.
+
+For the full feature breakdown of the companion app and what it is built to do, read [Why We're Building the Shelf Mobile App](/blog/why-were-building-the-shelf-mobile-app).
+
+Carlos Virreira
+Founder, Shelf Asset Management, Inc.
