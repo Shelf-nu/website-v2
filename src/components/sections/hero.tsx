@@ -34,7 +34,7 @@ export function Hero({
                     {/* Announcement Badge */}
                     <div className="mb-6 flex justify-center">
                         <Pill
-                            href="/case-studies"
+                            href="/mobile-app"
                             icon={
                                 <>
                                     <span className="font-semibold">New</span>
@@ -42,7 +42,7 @@ export function Hero({
                                 </>
                             }
                         >
-                            See how teams use Shelf
+                            Shelf Companion for iPhone is on the App Store
                             <span className="ml-2 font-semibold text-orange-600">
                                 &rarr;
                             </span>

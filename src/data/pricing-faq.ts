@@ -47,5 +47,21 @@ export const pricingFaqs: PricingFAQ[] = [
     {
         question: "What reports does Shelf include?",
         answer: "Shelf ships with ten built-in operational reports across bookings, assets, and custody — Booking Compliance, Top Booked Assets, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, and Custody Snapshot. Each report has timeframe and filter controls; URL state encodes the filters so views are bookmarkable. Every report exports to CSV and chart-based reports also export to PDF. Reports are included on every plan, including the free Personal plan."
+    },
+    {
+        question: "Is the mobile app included with my plan?",
+        answer: "Yes. Shelf Companion for iPhone is free with any Shelf account, including the free Personal plan. Nothing is sold through the app — it's purely a field client for your existing Shelf workspace. Sign in with the credentials you already use on shelf.nu."
+    },
+    {
+        question: "Is there an Android version?",
+        answer: "Android is in development. We don't have a release date yet — we'll announce it when it's ready. In the meantime, the Shelf web app works in any modern phone browser, and you can sign up to be notified when the Android app lands at https://www.shelf.nu/mobile-app."
+    },
+    {
+        question: "Do I need a separate login for the mobile app?",
+        answer: "No. The app connects to your existing Shelf workspace using the same login, the same organizations, and the same permissions as the web app. There is no separate mobile account."
+    },
+    {
+        question: "Can I capture audit evidence (photos, notes) from the mobile app?",
+        answer: "Not yet on iOS. Adding notes or photos during an audit scan is currently web-only — the capability is on our roadmap for a future release of the iOS app. You can still run, complete, and review audits from the app today; the per-scan evidence step happens on the web for now."
     }
 ];

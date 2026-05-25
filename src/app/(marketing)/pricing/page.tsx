@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Check } from "lucide-react";
+import { Check, Apple } from "lucide-react";
 import { FAQSection } from "@/components/sections/faq";
 import { pricingPlans, PricingPlan } from "@/data/pricing";
 import { pricingFaqs } from "@/data/pricing-faq";
@@ -21,6 +21,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { trackEvent } from "@/lib/analytics";
 import { StructuredData } from "@/components/seo/structured-data";
 import { pricingSoftwareApplicationJsonLd } from "@/lib/seo";
+import { AppStoreBadge } from "@/components/ui/app-store-badge";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -233,6 +234,27 @@ export default function PricingPage() {
                             </CardFooter>
                         </Card>
                     ))}
+                </div>
+
+                {/* Mobile App callout — included with every plan */}
+                <div className="mt-12 mx-auto max-w-3xl">
+                    <Link
+                        href="/mobile-app"
+                        className="group flex flex-col sm:flex-row items-center gap-5 rounded-2xl border border-border-subtle bg-card/50 px-6 py-5 transition-colors hover:bg-card hover:border-orange-200"
+                    >
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/50">
+                            <Apple className="h-6 w-6" />
+                        </div>
+                        <div className="flex-1 text-center sm:text-left">
+                            <p className="text-sm font-semibold text-foreground">
+                                Shelf Companion for iPhone — included with every plan
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                                Scan, audit, and manage assets from the field. Free with any Shelf account. Android in development.
+                            </p>
+                        </div>
+                        <AppStoreBadge className="text-xs py-2 px-4" />
+                    </Link>
                 </div>
 
                 {/* Trusted By Section */}
