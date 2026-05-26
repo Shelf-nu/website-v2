@@ -3,7 +3,7 @@ title: "Alternative Barcodes (Barcode, Datamatrix, QR Code)"
 description: "Learn about Shelf's alternative barcode feature that extends beyond standard QR codes, enabling organizations to integrate multiple barcode formats into their asset tracking systems."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-05-20"
+updated: "2026-05-26"
 layout: "knowledge-base"
 ---
 
@@ -49,6 +49,29 @@ You can also add barcodes by **scanning existing physical barcodes** using a dev
 Once added, barcodes appear in the **Barcodes** section at the bottom of each asset page. You can attach multiple barcodes of different types to a single asset — there is no limit.
 
 ![Asset page showing multiple barcodes — DataMatrix, Code 128, and EAN-13](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/barcodes-on-asset.webp)
+
+## Showing a Barcode on Every List Row
+
+Once an asset has a barcode, Shelf can display that barcode next to the asset's name on every list view — `/assets`, `/kits`, the booking detail page, the "add assets/kits to booking" modals, the locations page, and the audit overview. A pack-out picker can read the chip on screen and match it to the sticker on the gear.
+
+To pick which code shows up:
+
+1. Go to **Settings → General**
+2. Find **Preferred display code**
+3. Choose one of the barcode-type options (Code 128, Code 39, DataMatrix, External QR, or EAN-13)
+4. Click **Save changes**
+
+Every asset that has a barcode of the chosen type will now show its value as a small gray chip next to the row. Assets without a barcode of that type fall back to their QR Code ID, rendered with a quieter outlined style so the missing data stays visible.
+
+### Per-asset override
+
+If most of your fleet uses one identifier (say, Code 128) but a small subset needs to display a different code, you can override the workspace preference on a single asset. Open the asset's edit page, scroll to **"Preferred display code for this asset"**, and pick a specific barcode from the radio group. That asset's chip will show your override on every list view, and a tooltip will note it as an override.
+
+> Full reference: [Asset Identifiers — Preferred display code](/knowledge-base/asset-identifiers-qr-id-sam-id-property-id#4-preferred-display-code--the-workspace-setting)
+
+### Finding an asset by its barcode value
+
+On the booking detail page (when filtering the assets attached to a booking) and on the audit asset picker, you can now type a barcode value into the search box and the matching asset will appear. Useful when you have a sticker in hand and want to jump to the row that represents it.
 
 ## Migrating Barcodes from Another System
 
