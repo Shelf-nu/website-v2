@@ -1,15 +1,17 @@
 ---
 title: "Asset search is fast on large workspaces again"
-description: "Substring search across asset IDs, barcodes, QR ids, category, location, and tag names now runs on trigram indexes — and ID-shaped queries take a narrower fast path."
+description: "If your asset list has thousands of items and search had started feeling slow, that's fixed."
 date: "2026-05-25"
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/search-hero.webp"
 layout: "update"
 ---
 
-If you have a large inventory and the search bar at the top of your asset list had started feeling slow — or in the worst cases timing out — that's fixed.
+If you've been waiting on the search bar at the top of your asset list, that's over.
 
-A customer with around 13,000 assets was seeing simple searches take 30 to 60 seconds. The cause was twofold: substring matches like `ILIKE '%term%'` against `sequentialId`, barcode value, QR id, and category/location/tag names had no trigram index to lean on, so the database fell back to scanning entire tables; and every row returned by the asset list was eagerly loading its custom-field values, even though the simple asset index never displays them.
+One of our customers with around 13,000 assets had been seeing searches take 30 to 60 seconds. Now they're back to feeling instant — and the same fix applies to every workspace, whether you have 500 assets or 50,000.
 
-This release adds GIN trigram indexes on the columns the simple search bar actually scans — `Asset.sequentialId`, `Category.name`, `Location.name`, `Tag.name`, `Qr.id`, and `Barcode.value` — and stops the eager custom-field load on the simple list. There is also a new fast path: when every search term looks like an asset identifier (a bare number like `21035`, a UPC barcode, or a canonical sequential ID like `SAM-0001`), the query narrows to just the three columns where an ID-shaped value can legitimately live — sequential ID, barcode value, and QR id — instead of fanning out across ten different OR branches.
+Two things changed under the hood. We taught the database to find substrings in your asset IDs, barcodes, QR codes, and category, location, and tag names much faster. And we added a smart shortcut: when you type something that clearly looks like an asset ID — a number like `21035`, a barcode, or a code like `SAM-0001` — Shelf jumps straight to looking it up in those identifier fields instead of scanning everywhere else.
 
-The fix applies automatically. Searches that look like asset IDs feel instant; substring searches across category, location, and tag names benefit from the new indexes too. The command palette and the advanced asset index continue to search the full set of fields, including custom-field values.
+One thing worth knowing: that smart shortcut for ID-like searches only checks asset IDs, barcodes, and QR codes — not titles, descriptions, or custom fields. So if you happen to have an asset titled `21035` and you search for `21035`, you'll find it by its ID but not by its title. For everyday word searches like `camera` or `John`, nothing changes — Shelf still looks across every field. The command palette and the advanced asset index also continue to search the full set of fields, including custom-field values.
+
+You don't need to do anything — the fix is already live.
