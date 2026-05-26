@@ -1,9 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const APP_STORE_URL = "https://apps.apple.com/app/id6765639874";
+
+const appStoreBadgeVariants = cva(
+    "inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted/50 hover:border-foreground/30",
+);
 
 interface AppStoreBadgeProps {
     className?: string;
@@ -29,10 +34,7 @@ export function AppStoreBadge({
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(
-                "inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted/50 hover:border-foreground/30",
-                className,
-            )}
+            className={cn(appStoreBadgeVariants(), className)}
             aria-label="Download Shelf Companion on the App Store"
         >
             {label}
@@ -40,3 +42,5 @@ export function AppStoreBadge({
         </Link>
     );
 }
+
+export { appStoreBadgeVariants };
