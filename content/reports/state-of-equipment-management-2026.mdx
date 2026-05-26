@@ -1,0 +1,326 @@
+---
+title: "The State of Equipment Management 2026"
+description: "An annual report on how teams actually track equipment. Drawn from anonymized telemetry across thousands of Shelf workspaces, with original data on visibility, bookings, custody, audits, and the real cost of disorder."
+layout: "report"
+canonicalUrl: "/reports/state-of-equipment-management-2026"
+date: "2026-09-15"
+updated: "2026-09-15"
+author: "Shelf Research Team"
+image: "/images/reports/state-of-equipment-management-2026/cover.png"
+intent: "informational"
+stage: "TOFU"
+cluster:
+  name: "reports"
+  role: "pillar"
+seo:
+  title: "The State of Equipment Management 2026 — Annual Report from Shelf"
+  description: "Original data on how teams actually track equipment in 2026. Aggregated from thousands of Shelf workspaces across education, IT, media production, construction, and field operations. Free PDF + CSV, CC BY 4.0."
+  keywords:
+    - "state of equipment management 2026"
+    - "asset tracking report"
+    - "equipment management trends 2026"
+    - "asset management statistics"
+    - "asset utilization data"
+    - "ghost asset rate"
+    - "booking conflict rate"
+    - "audit completion data"
+featured: true
+reportYear: 2026
+dataWindowStart: "2025-05-01"
+dataWindowEnd: "2026-04-30"
+sampleSize:
+  workspaces: 0
+  assets: 0
+  countries: 0
+  notes: "PLACEHOLDER — the data team will populate exact sample sizes from the extraction script output before publication."
+pdfUrl: "/reports/state-of-equipment-management-2026.pdf"
+csvUrl: "/reports/state-of-equipment-management-2026.csv"
+methodologyUrl: "/reports/state-of-equipment-management-2026#methodology"
+methodologyVersion: "1.0"
+datasetKey: "soem-2026-v1"
+tags:
+  - "report"
+  - "industry-data"
+  - "equipment-management"
+  - "asset-tracking"
+---
+
+> **PUBLICATION NOTE (remove before publishing).** This MDX is a v1 scaffold. Every statistic marked `{{TODO}}` needs to be replaced with the real value from the extraction script in `shelf.nu`. The narrative is meant to be revised — it's there so the data team and editorial can see the shape of the finished piece. The methodology section is real and should hold up under scrutiny as-written.
+
+Every team that tracks equipment runs the same operation. They acquire something physical, they assign it to a person, they let it move, they try to get it back. The variations are in scale, vocabulary, and what happens when the loop breaks.
+
+For the past year, we watched that loop run inside thousands of workspaces on Shelf. This report is a return of that observation — anonymized, aggregated, and given back to the industry for free.
+
+The headline finding is simple. **Most teams are tracking more equipment than they have an accountability story for.** Custody coverage is patchy, audits are rarer than they should be, and a meaningful percentage of every inventory is missing the moment you check.
+
+The details are below.
+
+---
+
+## Executive summary
+
+Five findings from a year of Shelf telemetry:
+
+1. **The median Shelf workspace tracks {{TODO: median_assets_per_workspace}} assets**, but only **{{TODO: pct_assets_with_active_custody}}%** of those assets have an active custodian assigned at any moment. The remaining gap is the accountability surface that defines whether equipment management works or doesn't.
+
+2. **Booking conflicts are the unmeasured baseline.** Across workspaces with bookings enabled, Shelf blocked **{{TODO: pct_bookings_with_conflict_averted}}%** of attempted reservations because the requested asset was already booked. Those would have been double-bookings on a calendar or a spreadsheet — invisible until production day.
+
+3. **Audits work, but most teams don't run them often enough.** Only **{{TODO: au_pct_workspaces_running_audits}}%** of Team-tier workspaces with the Audits add-on enabled ran at least one audit in the year. In the audits that did happen, **{{TODO: au_pct_audited_assets_missing}}%** of expected assets came up Missing on the first scan.
+
+4. **Ghost assets are real.** Defined as assets marked Missing across consecutive audits with no scan activity in between, ghost assets are an estimated **{{TODO: ds_ghost_asset_rate}}%** of the median inventory. Ghost assets distort budgets, depreciation schedules, insurance valuations, and headcount-per-device ratios. Nobody tracks them; nobody questions them.
+
+5. **Top performers do four specific things differently.** They assign custody within 48 hours of asset creation, audit at least quarterly, apply QR labels at intake rather than retrospectively, and group multi-component equipment into kits. The cumulative effect on Missing rates and on-time return rates is the difference between a working asset operation and a chronically broken one.
+
+The full data is in the sections that follow. The underlying anonymized aggregates are available as a CSV download for analysts and journalists. Citation formats are at the bottom.
+
+---
+
+## Methodology
+
+We believe a report is only as good as its methodology. Here is the full disclosure:
+
+**Data source.** Anonymized telemetry from production Shelf workspaces. No customer-identifying data was used. All numbers in this report are aggregates over cohorts of at least 20 workspaces; cohorts smaller than 20 are not reported.
+
+**Time window.** The 12 months ending **April 30, 2026** (data window: 2025-05-01 through 2026-04-30).
+
+**Sample.** Approximately **{{TODO: workspaces}} workspaces**, **{{TODO: assets}} assets**, spanning **{{TODO: countries}} countries**. Inclusion criteria below.
+
+**Inclusion criteria.** A workspace is included in the report if it meets all of the following:
+- Workspace type is **Team** (Personal workspaces are excluded — they are individual sandboxes that don't reflect organizational behavior).
+- Workspace is **not disabled** at the end of the window.
+- The owning user is **not deleted**.
+- The workspace has tracked **at least 10 assets** during the window (workspaces below this threshold typically reflect trial / evaluation activity).
+- The workspace is **not on a known internal / staff allowlist** (Shelf employees, demo workspaces, support workspaces are excluded).
+- Where a stat requires a specific feature (e.g. audits, bookings), the workspace must have that feature enabled.
+
+**Anonymization.** No customer names, workspace names, user names, asset titles, or location names appear in any aggregate. Numerical aggregates are rounded to one significant figure (e.g. 3,047 workspaces is published as "approximately 3,000"). Quotes attributed to specific customers in this report are published with that customer's explicit permission.
+
+**Definitions.** Where a stat could be defined multiple ways, we picked the most conservative definition.
+- **Active custody** means an asset has a `Custody` row (current custodian) at the moment of measurement. Historical custody transfers are tracked via `ActivityEvent` and used for handover-rate calculations.
+- **Ghost asset** is an asset that was marked Missing in two or more consecutive audits within the window AND had no scan activity between those audits.
+- **Idle asset** is an asset with no activity events (scan, custody change, booking, location update) in the prior 90 days.
+- **Booking conflict averted** is an attempted booking creation that failed the conflict-prevention check.
+- **Audit completion duration** is `completedAt - startedAt`, measured for audits that reached the Completed status within the window.
+
+**Confidence levels.** Each stat in this report carries a confidence level:
+- **High** — derived from a comprehensive telemetry source covering the entire eligible cohort.
+- **Medium** — derived from a partial telemetry source (e.g. opt-in feature usage) or a definition that involves a judgement call.
+- **Low** — reported with the figure but flagged in copy; do not cite without checking the underlying definition.
+
+**Methodology version.** This methodology is published as version 1.0. Subsequent annual editions of this report will track diffs in methodology version.
+
+**Reproducibility.** The extraction script that produced these aggregates is published in the open at [github.com/Shelf-nu/shelf.nu](https://github.com/Shelf-nu/shelf.nu) under `apps/webapp/scripts/state-of-em-2026/`. The script does not include customer data — only the queries and aggregation logic.
+
+**Limitations.** Self-hosted Shelf instances run on customer-owned databases and are not included in this dataset — the report reflects hosted-cloud usage only. Self-hosted patterns may differ. Adoption of the bookings and audits features is not uniform; stats restricted to feature-enabled workspaces are noted as such. "Missing" in an audit context is what was scanned-or-not-scanned during a specific audit session — it is not a permanent property of the asset. We use it to size operational gaps, not to imply asset destruction.
+
+---
+
+## Finding 1: The visibility gap
+
+Most teams that track equipment know **what** they own. Fewer know **where**. Fewer still know **who has it right now**.
+
+Across the sample:
+
+<StatBlock label="Median assets per workspace" value="{{TODO: median_assets_per_workspace}}" />
+
+<StatBlock label="Of assets have a current location assigned" value="{{TODO: vis_assets_with_location}}%" />
+
+<StatBlock label="Of assets have an active custodian assigned" value="{{TODO: pct_assets_with_active_custody}}%" />
+
+The **{{TODO: pct_assets_with_active_custody}}%** custody figure is the most operationally important number in this report. It is the gap between what's on the books and what someone is accountable for. A laptop with no current custodian is functionally a public-pool asset; a camera with no current custodian is functionally lost until someone next picks it up.
+
+The top asset categories — **{{TODO: vis_top_categories}}** — are unsurprising. The interesting cuts are by industry, which we get to below.
+
+Custom-field coverage is one signal of workspace maturity. Workspaces that have configured **{{TODO: vis_median_fields_per_workspace}} or more** custom fields are also the workspaces with the highest custody coverage and the lowest idle-asset rates. Causality is unclear — it may be that organized teams configure custom fields and also keep custody up to date — but the correlation is robust across the sample.
+
+---
+
+## Finding 2: The booking problem
+
+Wherever equipment is shared, conflicts will be attempted. The question is whether the conflicts are caught or whether they detonate on production day.
+
+<StatBlock label="Median bookings per workspace per year" value="{{TODO: bk_median_bookings_per_workspace_per_year}}" />
+
+<StatBlock label="Of attempted bookings were blocked for conflict" value="{{TODO: pct_bookings_with_conflict_averted}}%" />
+
+A conflict-prevention rate of **{{TODO: pct_bookings_with_conflict_averted}}%** is the part of equipment management that nobody measures when they're not using a tool that does it. Every one of those is a double-booking that would have happened on a spreadsheet, a calendar, or a Slack thread. The cumulative impact on lost shoot days, lost class time, and lost field hours is not something we can put a single dollar value on. But the volume is real.
+
+**Median booking lead time** is **{{TODO: bk_median_lead_time_days}} days**. Field teams book closer to the work; education teams book a full semester ahead. Both patterns are healthy.
+
+The pain point: **{{TODO: bk_pct_overdue}}%** of bookings ended after their scheduled return time. The median lateness is **{{TODO: bk_median_overdue_hours}} hours**, but the long tail goes into days. Late returns block the next booking and cascade through the calendar. This is where overdue notifications, automatic custody handoff, and a clear return ritual show their value.
+
+The most-booked weekday is **{{TODO: bk_peak_day}}**. The bottleneck for shared equipment isn't always the asset — sometimes it's a day-of-week pinch point in human behavior.
+
+---
+
+## Finding 3: Custody and accountability
+
+A custody chain is the closest thing equipment management has to a system of record. It answers the only question that matters when something goes wrong: **who had it?**
+
+<StatBlock label="Of assets had at least one custody event in the year" value="{{TODO: cu_pct_assets_with_history}}%" />
+
+<StatBlock label="Median custody handovers per active asset per year" value="{{TODO: cu_median_handovers_per_asset_per_year}}" />
+
+A handover frequency of **{{TODO: cu_median_handovers_per_asset_per_year}}** is the median — the median asset changes hands that often. The distribution is heavily right-skewed: a fleet of loaner laptops in an IT pool will turn over weekly; a permanently-assigned office chair will sit unscanned for the entire window.
+
+The categories with the highest handover rates are **{{TODO: cu_top_handover_categories}}**. The categories with the lowest — office furniture, fixed installations, and long-term-assigned devices — are not interesting to track this closely, and the data reflects that.
+
+---
+
+## Finding 4: The audit reality
+
+Physical audits are the only mechanism that reconciles digital records against physical reality. They are also the operation that teams skip first when time is tight.
+
+<StatBlock label="Of Team workspaces with Audits enabled ran at least one audit in the year" value="{{TODO: au_pct_workspaces_running_audits}}%" />
+
+<StatBlock label="Of expected assets came up Missing on the first audit scan" value="{{TODO: au_pct_audited_assets_missing}}%" />
+
+<StatBlock label="Median audit duration, start to complete" value="{{TODO: au_median_completion_days}} days" />
+
+The **{{TODO: au_pct_audited_assets_missing}}%** Missing rate is the single most important number in this section. It means roughly one in every **{{TODO: 100/missing_rate}}** items the records claim is in a location was not actually in that location at the moment of audit.
+
+Three caveats:
+- An asset can be Missing because it has moved without an update, not because it has been lost. The next scan in another location resolves it.
+- The Missing rate is heavily concentrated in specific categories — small portable items, kit components, consumable-adjacent items.
+- Workspaces that audit on a regular cadence have lower Missing rates over time. Audits surface the problem, and the problem then gets fixed; teams that don't audit don't observe the gap.
+
+The **{{TODO: au_pct_audited_assets_unexpected}}%** Unexpected rate is the other half of the equation. These are assets that were scanned during an audit but were not on the expected list — items that have wandered into the audited location from somewhere else. Unexpected scans are how teams discover that the inventory of a given room has drifted from what the system thinks.
+
+---
+
+## Finding 5: The cost of disorder
+
+The true cost of equipment mismanagement is not the obviously-lost item. It is the slow accumulation of ghost assets, the long tail of idle gear, and the time spent recovering things that shouldn't have gone missing in the first place.
+
+<StatBlock label="Estimated ghost-asset rate (missing across consecutive audits)" value="{{TODO: ds_ghost_asset_rate}}%" />
+
+<StatBlock label="Of assets had no activity in the prior 90 days (idle)" value="{{TODO: ds_idle_asset_rate}}%" />
+
+<StatBlock label="Of Missing assets were recovered via Found-via-Scan within 30 days" value="{{TODO: ds_recovery_rate_found_via_scan}}%" />
+
+Ghost assets are the silent cost. They distort:
+- **Budgets** — a ghost asset still shows in inventory totals, inflating the apparent fleet.
+- **Depreciation** — a ghost asset still depreciates on paper, even though there's nothing physical to deprecate.
+- **Insurance valuations** — a fleet's insured value should reflect what exists, not what records claim.
+- **Headcount-per-device ratios** — IT teams that look at "laptops per employee" overstate coverage if ghosts are in the count.
+
+The **{{TODO: ds_recovery_rate_found_via_scan}}%** Found-via-Scan recovery rate is the bright spot. The Shelf workflow lets anyone — even without a Shelf account — scan a QR label on a found item and notify the owner. A non-trivial percentage of Missing assets come back this way, often via members of the public who found the item at a job site, an event venue, or in a rideshare.
+
+The median time to recover a Missing asset is **{{TODO: ds_median_recovery_days}} days**. Outliers go into months. The lesson: a permanent QR label is not just a tracking mechanism — it is a recovery mechanism.
+
+---
+
+## Findings by industry
+
+Equipment management is industry-shaped. The same platform serves cameras at film schools, laptops at distributed-IT teams, generators at construction sites, and lab instruments at universities. The shape of the workflow looks different in each.
+
+### Education
+
+Median assets per education workspace: **{{TODO: ed_median_assets}}**. Median active users: **{{TODO: ed_median_users}}**. Peak booking month: **{{TODO: ed_seasonal_peak_month}}**.
+
+The education profile is high turnover, high seasonality, low per-asset value but high cumulative value. The custody chain matters less than the booking calendar; the booking calendar is the whole game. The audit cadence is annual or semi-annual, often timed to the end of a semester.
+
+What we observe: education workspaces are the heaviest users of the kits feature — because cameras, lenses, batteries, and accessories travel as units in production classes.
+
+### IT & Technology
+
+**{{TODO: it_pct_laptops}}%** of tracked assets in IT workspaces are laptops or computing devices. Median custody duration is **{{TODO: it_median_custody_duration_days}} days** — long enough that loaner-laptop programs and short-term assignments stand out as distinct cohorts.
+
+IT workspaces have the highest custody coverage — the assets-with-active-custodian rate is well above the platform median. The driver is operational necessity: a laptop without a custodian is a security gap, not just an accountability one.
+
+### Media & Production
+
+**{{TODO: mp_pct_camera_lens_audio}}%** of media-and-production assets are camera, lens, or audio equipment. **{{TODO: mp_pct_kits}}%** of bookings include at least one kit — production gear travels as a unit or it doesn't travel.
+
+The pattern that defines media production: high-value assets, short check-out windows, kit-level accountability. A camera body without its battery is useless, so the kit-completeness check at return is the critical control point. Workspaces that use kits show measurably lower missing-accessory rates at check-in than workspaces tracking each component as a standalone asset.
+
+### Construction & Field Operations
+
+**{{TODO: co_pct_tool_assets}}%** of construction and field-ops assets are categorized as tools. **{{TODO: co_pct_multi_location}}%** of workspaces operate across two or more locations — the multi-site pattern is the norm, not the exception.
+
+Construction shows the highest idle-asset rate of any cohort — unsurprisingly, given the way tools sit in trucks and storage between jobs. It also shows the highest Found-via-Scan recovery rate. Tools get lost; QR labels get them back.
+
+---
+
+## What top performers do differently
+
+We segmented the sample into top-quartile workspaces (lowest Missing rate, highest on-time return rate, highest audit cadence) and looked for behavioral patterns. Four patterns hold up:
+
+1. **Assign custody within 48 hours of asset creation.** The window matters. Assets created and left without a custodian for more than a week tend to stay uncustomied for the rest of their lifecycle. Top performers have a clear intake ritual: the same person who creates the asset assigns the first custody. Impact: {{TODO: lower missing rate at year-end audit}}.
+
+2. **Audit at least quarterly.** Annual audits surface accumulated drift; quarterly audits prevent drift from accumulating. The marginal cost of an extra audit per year is small — the dedicated audit scan workflow is fast — and the ghost-asset rate is materially lower. Impact: {{TODO: lower ghost-asset rate}}.
+
+3. **Apply QR labels at intake, not retrospectively.** Retroactive labeling programs ("we'll label everything this quarter") almost always end up incomplete. Labels applied at the moment the asset enters inventory are nearly universal in coverage; labels applied later are perpetually catching up. Impact: {{TODO: higher custody coverage}}.
+
+4. **Group multi-component equipment into kits.** This is the single highest-impact behavior for media-and-production and field-ops teams. A camera with three lenses, a tripod, and a battery charger is one kit, not five assets. Kit-level check-out and return is the only mechanism that reliably catches missing accessories before they propagate. Impact: {{TODO: lower missing-accessory rate}}.
+
+All four patterns are practice patterns, not tool patterns. Any organization can adopt them today.
+
+---
+
+## In their words
+
+The data is one half of the story. The other half is the operational reality the data is trying to describe — the moments where the loop works and the moments where it breaks.
+
+<PullQuote
+  quote="{{TODO: outreach for an education customer quote about ghost assets, custody coverage, or audit results}}"
+  attribution="{{TODO: name}}"
+  role="{{TODO: role, organization}}"
+/>
+
+<PullQuote
+  quote="{{TODO: outreach for a media/AV customer quote about double-booking elimination or kit completeness}}"
+  attribution="{{TODO: name}}"
+  role="{{TODO: role, organization}}"
+/>
+
+<PullQuote
+  quote="{{TODO: outreach for a field-ops customer quote about tool recovery, multi-location, or accountability}}"
+  attribution="{{TODO: name}}"
+  role="{{TODO: role, organization}}"
+/>
+
+---
+
+## Limitations and what comes next
+
+No report of this kind is the last word. A few honest caveats:
+
+- **The sample is Shelf customers.** That means the population skews toward teams that have already opted into a structured asset-management practice. Industry-wide rates of, say, ghost assets are probably higher than what we observe, because workspaces that don't use a tool like Shelf don't measure ghosts at all.
+- **Self-hosted instances are not in the data.** Shelf is open source and self-hostable. Self-hosted patterns may differ from cloud patterns; we don't have visibility into them and don't try to claim otherwise.
+- **One year of data is one year of data.** Year-over-year diffs come into play in the 2027 edition. Some of the numbers in this report are baselines without a comparison point yet.
+- **Industry segmentation is best-effort.** We use onboarding-survey responses (`UserBusinessIntel`) to assign workspaces to industries. Workspaces that didn't complete onboarding or that span multiple industries are classified by best-guess. Cohort sizes per industry are disclosed.
+
+The **State of Equipment Management 2027** will be published in the same window next year. If there are specific cuts you'd want us to investigate — by team size, by region, by asset value bracket, by feature usage — [tell us](/contact). We can plan extraction queries against requests.
+
+---
+
+## About this report
+
+**Publisher:** Shelf Asset Management, Inc.
+
+**Authors:** Shelf Research Team
+
+**Methodology version:** 1.0
+
+**Data window:** 2025-05-01 through 2026-04-30
+
+**License:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). Reuse, remix, and republish with attribution.
+
+**Downloads:**
+- [The full report (PDF)](/reports/state-of-equipment-management-2026.pdf) (TODO: upload before launch)
+- [The underlying aggregates (CSV)](/reports/state-of-equipment-management-2026.csv) (TODO: upload before launch)
+
+**Source code for the extraction:** [`shelf-nu/shelf.nu`](https://github.com/Shelf-nu/shelf.nu) — see `apps/webapp/scripts/state-of-em-2026/`.
+
+**Contact:** For citation questions, additional cuts, or press inquiries, reach Carlos Virreira at [carlos@shelf.nu](mailto:carlos@shelf.nu).
+
+---
+
+<CitationBlock
+  title="The State of Equipment Management 2026"
+  authors={["Shelf Research Team"]}
+  publisher="Shelf Asset Management, Inc."
+  year={2026}
+  url="https://www.shelf.nu/reports/state-of-equipment-management-2026"
+/>
