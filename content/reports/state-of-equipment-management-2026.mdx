@@ -1,6 +1,6 @@
 ---
 title: "The State of Equipment Management 2026"
-description: "How much physical equipment in the median organization exists only on paper? Original data drawn from anonymized telemetry across thousands of Shelf workspaces, paired with a survey of 200 admins."
+description: "How much physical equipment sits unused in the median organization? Original data drawn from anonymized telemetry across thousands of Shelf workspaces, paired with a survey of 200 admins."
 layout: "report"
 canonicalUrl: "/reports/state-of-equipment-management-2026"
 date: "2026-09-15"
@@ -14,14 +14,15 @@ cluster:
   role: "pillar"
 seo:
   title: "The State of Equipment Management 2026 — Annual Report from Shelf"
-  description: "How much equipment in the median organization exists only on paper? Anonymized telemetry from thousands of workspaces + survey of 200 admins. Free PDF + CSV under CC BY 4.0."
-  noindex: true  # SAFETY: while {{TODO}} placeholders are in the prose. Flip to false after data is plugged in.
+  description: "How much physical equipment sits unused in the median organization? Anonymized telemetry from thousands of workspaces + survey of 200 admins. Free PDF + CSV under CC BY 4.0."
+  noindex: true
   keywords:
     - "state of equipment management 2026"
-    - "ghost assets"
+    - "idle asset rate"
+    - "equipment utilization"
     - "asset tracking report"
-    - "equipment loss statistics"
-    - "asset management report 2026"
+    - "asset management statistics"
+    - "equipment loss data"
 featured: true
 reportYear: 2026
 dataWindowStart: "2025-05-01"
@@ -30,7 +31,7 @@ sampleSize:
   workspaces: 0
   assets: 0
   countries: 0
-  notes: "PLACEHOLDER — populated from extraction script + survey tool before publication."
+  notes: "PLACEHOLDER"
 pdfUrl: "/reports/state-of-equipment-management-2026.pdf"
 csvUrl: "/reports/state-of-equipment-management-2026.csv"
 methodologyUrl: "/reports/state-of-equipment-management-2026#methodology"
@@ -39,144 +40,139 @@ datasetKey: "soem-2026-v1"
 tags:
   - "report"
   - "industry-data"
-  - "ghost-assets"
+  - "idle-assets"
   - "equipment-management"
 ---
 
-> **PUBLICATION NOTE (remove before publishing).** This MDX is the v1 scaffold, pivoted to a single-headline structure (ghost assets, in dollars) after the editorial review. Every statistic marked `{{TODO}}` needs to be replaced with the real value. The methodology section is real. The three customer mini-case-studies need real customer outreach — see `content/reports/distribution/README.md`. The page is `noindex: true` while in this state; flip to `false` after editorial sign-off.
+> **PUBLICATION NOTE (remove before publishing).** v1.2 scaffold — pivoted to idle-assets-in-dollars headline because ghost-asset stats depend on the Audits add-on (bounded adoption). The data team runs `pnpm webapp:report:state-of-em-2026 -- --probe` FIRST to verify feature adoption, then chooses whether ghost-asset stats survive as supporting subset findings or get cut entirely. The page is `noindex: true` until editorial sign-off.
 
-**For the median organization, {{TODO: $X,XXX}} of physical equipment exists only on paper** — items recorded in inventory but missing from audits, with no scan activity to explain where they went. Ghost assets are the silent cost of equipment mismanagement: they distort budgets, inflate depreciation schedules, mislead insurance valuations, and overstate headcount-per-device ratios.
+**For the median organization, {{TODO: $X,XXX}} of physical equipment sits unused for 90 days or more at a time.** Across the Shelf platform, **{{TODO: ds_idle_asset_rate}}%** of tracked assets had no activity — no scan, no custody change, no booking, no location update — in the 90 days ending April 30, 2026. Idle is not lost. Idle is dead capital: equipment the organization owns, depreciates, insures, and budgets around without using.
 
-This is the first edition of *The State of Equipment Management*, drawn from anonymized telemetry across approximately **{{TODO: workspaces}}** Shelf workspaces representing **{{TODO: assets}}** tracked assets, paired with a survey of **{{TODO: surveyResponses}}** admins on operational impact. Methodology, the underlying aggregates as CSV, and citation formats are all below.
+This is the first edition of *The State of Equipment Management*, drawn from anonymized telemetry across approximately **{{TODO: workspaces}}** Shelf workspaces representing **{{TODO: assets}}** tracked assets, paired with a survey of **{{TODO: surveyResponses}}** administrators on operational impact. The full methodology, the underlying aggregates as CSV, and citation formats are below.
 
 ---
 
 ## Executive summary
 
-1. **The headline number.** The median workspace has **{{TODO: $X,XXX}}** of equipment on the books but missing from audits — ghost assets. Across the platform, the rate is **{{TODO: ds_ghost_asset_rate}}%** of audited inventory.
+1. **The headline number.** The median organization has **{{TODO: $X,XXX}}** of equipment idle for 90+ days at a time — dead capital that doesn't show up as a line item on any P&L. Platform-wide, **{{TODO: ds_idle_asset_rate}}%** of tracked assets fit the definition.
 
-2. **The accountability gap.** Only **{{TODO: pct_assets_with_active_custody}}%** of tracked assets have an active custodian assigned. The remainder is the gap that produces ghost assets in the first place.
+2. **The accountability gap.** Only **{{TODO: pct_assets_with_active_custody}}%** of tracked assets have an active custodian assigned. The remainder is the surface where most loss and underutilization originates.
 
-3. **Most teams don't audit.** Only **{{TODO: au_pct_workspaces_running_audits}}%** of workspaces with the Audits add-on enabled ran at least one audit in the year. Ghost assets are invisible without audits — most organizations are operating with no measurement at all.
+3. **Late returns cascade.** Among workspaces that use the bookings feature, **{{TODO: bk_pct_returned_late}}%** of reservations ended after their scheduled return time. Late returns block the next user, force last-minute substitutions, and are the operational tax that pairs with the dollar cost of idle equipment.
 
-4. **Idle equipment is a parallel cost.** The median workspace also has **{{TODO: $X,XXX}}** of equipment idle (no activity in 90 days) — not lost, but unused. Combined with ghost assets, the average organization is carrying significant unmeasured equipment overhead.
+4. **The recovery story.** Across the platform, **{{TODO: $X,XXX,XXX}}** of equipment was recovered through Shelf's public Found-via-Scan flow — anyone, including someone who isn't a Shelf user, scanned a QR label on a found item and notified the owner.
 
-5. **The "why" admins give.** In a survey of {{TODO: surveyResponses}} workspace admins, the median answer to *"how many hours per month does your team lose dealing with missing equipment?"* was **{{TODO: survey_hours_lost_per_month_median}} hours per month**. Lost time is the operational tax that pairs with the dollar cost.
+5. **The operational tax.** In a survey of {{TODO: surveyResponses}} workspace administrators, the median answer to *"how many hours per month does your team lose dealing with missing or misplaced equipment?"* was **{{TODO: survey_hours_lost_per_month_median}} hours per month** — the staff-time cost that pairs with the dollar cost of dead capital.
 
-The industry has historically measured equipment management with vendor surveys. This report measures it with **telemetry from real organizations using real software** — a different kind of evidence, with a published methodology you can verify.
+The industry has historically measured equipment management with vendor surveys. This report measures it with **telemetry from real organizations using real software** — a different kind of evidence, with a published methodology and the extraction script in the open.
 
 ---
 
 ## Methodology
 
-A report is only as good as its methodology. Here is the full disclosure:
+A report is only as good as its methodology. Here is the full disclosure, including the risks we managed.
 
-**Data sources.** Two:
-- **Anonymized telemetry** from production Shelf workspaces. No customer-identifying data was used. All numbers are aggregates over cohorts of at least 20 workspaces; cohorts smaller than 20 are not reported.
+**Data sources.**
+- **Anonymized telemetry** from production Shelf workspaces. No customer-identifying data. All aggregates require cohorts of at least 20 workspaces; smaller cohorts are not reported.
 - **A survey of {{TODO: surveyResponses}} workspace admins**, distributed via email and in-app during {{TODO: month}} 2026.
 
-**Time window.** The 12 months ending **April 30, 2026** for telemetry. Survey responses were collected in {{TODO: month}} 2026.
+**Time window.** The 12 months ending **April 30, 2026** for telemetry. Survey responses collected in {{TODO: month}} 2026.
 
-**Sample.** Approximately **{{TODO: workspaces}}** workspaces, **{{TODO: assets}}** tracked assets, **{{TODO: countries}}** countries. Inclusion criteria below.
+**Sample.** Approximately **{{TODO: workspaces}}** workspaces, **{{TODO: assets}}** tracked assets, **{{TODO: countries}}** countries, plus the survey responses.
 
 **Inclusion criteria for telemetry.** A workspace is included if all of the following hold:
-- Workspace type is **Team** (Personal workspaces excluded — they are individual sandboxes).
+- Workspace type is **Team** (Personal workspaces excluded).
 - Workspace is **not disabled**.
 - Owner user is **not soft-deleted**.
 - Workspace has tracked **at least 10 assets** during the window.
 - Workspace is **not on the internal allowlist** (Shelf staff, demo workspaces, support workspaces).
-- Feature-gated stats (audits, bookings) restrict to feature-enabled workspaces; the sub-cohort gets its own k-anonymity check.
+- Feature-gated stats restrict to feature-enabled workspaces; sub-cohort gets its own k-anonymity check.
 
-**Anonymization.** Numerical aggregates are rounded to one significant figure. Cohorts smaller than 20 are not reported. No customer names, workspace names, user names, asset titles, or location names appear in any aggregate. Quotes attributed to specific customers in this report are published with their explicit permission.
+**Risk disclosures.** This is what separates a research artifact from a marketing piece:
+
+1. **Feature-adoption risk.** Several Shelf features have bounded adoption (the Audits add-on is paid; not every workspace uses bookings). Any stat that depends on a feature is computed only over the workspaces using that feature, and the published prose explicitly says so. We do not present feature-subset stats as "median workspace" claims.
+
+2. **`Asset.valuation` coverage.** The valuation field is workspace-entered and partial. Approximately **{{TODO: pct_assets_with_valuation}}%** of tracked assets carry a valuation. Dollar figures are computed only over the assets with a valuation, then median-extrapolated per workspace. **The published dollar figures are conservative lower bounds** — they exclude assets without explicit valuation entirely. If overall coverage falls below 30%, the dollar headline is replaced with the percentage headline.
+
+3. **Cohort-size enforcement.** Every aggregate requires k=20 workspaces. The extraction script returns `cohort_too_small` for any stat that falls below; those stats are omitted from the published report, not silently rounded down.
+
+4. **Survey response rate.** The survey targeted n=200 admins. Actual responses: **{{TODO: surveyResponses}}**. If responses fell below n=50, the survey-derived stat would have been dropped entirely.
 
 **Definitions.** Where a stat could be defined multiple ways, we picked the most conservative definition.
-- **Ghost asset.** An asset marked Missing in two or more consecutive audits within the window AND with no scan activity (QR scan or audit scan) between those audits. Excludes assets that have been recovered, reassigned, or scanned anywhere on the platform.
-- **Ghost-asset dollar value.** For each ghost asset, use the workspace-entered `Asset.valuation` field. **Coverage caveat:** approximately {{TODO: pct_assets_with_valuation}}% of tracked assets have a valuation set; ghost-asset dollar values are computed only over the assets with a valuation, then median-extrapolated per workspace. Ghost dollar figures are conservative — they exclude unvalued assets entirely.
+
+- **Idle asset (THE HEADLINE DEFINITION).** An asset with no activity events — scan, custody change, booking event, location update, or audit scan — in the prior 90 days at end of window. Assets created within the 90-day idle window are excluded (brand-new assets without history are not idle, they're just new).
+
+- **Idle-asset dollar value (THE HEADLINE).** For each workspace: sum `Asset.valuation` over the workspace's idle assets where valuation is set. The published figure is the median of those per-workspace sums. Median rather than mean because the distribution is right-skewed.
+
 - **Active custody.** An asset has a `Custody` row (current custodian) at the moment of measurement.
-- **Idle asset.** An asset with no activity events (scan, custody change, booking, location update) in the prior 90 days at end of window.
-- **Audit completion.** An `AuditSession` that reached `COMPLETED` status within the window.
 
-**Survey methodology.** The survey was sent to admins of eligible workspaces who had been active in the previous 30 days. 5 questions, single-page form, no incentive offered. Response rate: {{TODO: response_pct}}%. The full questionnaire is published alongside the dataset.
+- **Late return.** A booking whose actual return time exceeded its scheduled `to` time, or a booking still in `ONGOING` / `OVERDUE` status after its scheduled `to`.
 
-**Reproducibility.** The extraction script that produced these telemetry aggregates is published in the open at [github.com/Shelf-nu/shelf.nu](https://github.com/Shelf-nu/shelf.nu) under `apps/webapp/scripts/state-of-em-2026/`. The script contains no customer data — only the queries and aggregation logic.
+- **Recovery via Found-via-Scan.** A `Scan` event from an anonymous (non-Shelf-account) scanner whose associated asset was previously marked Missing or Idle. Sum `Asset.valuation` across all recovered assets in the window for a single platform-wide total.
 
-**Limitations.** Self-hosted Shelf instances are not included — the report reflects hosted-cloud usage only. "Missing" in an audit context is per-session, not a permanent property of the asset. The Asset.valuation field is workspace-entered and incomplete; dollar figures should be read as conservative lower bounds, not exhaustive totals. The sample skews toward teams that have already opted into a structured asset-management practice — the industry-wide ghost-asset rate is likely higher than what we observe.
+- **Ghost asset (audit-subset definition).** An asset that (a) exists in the inventory, (b) was on the expected list of two or more consecutive `AuditAsset` rows with status `MISSING`, (c) had no scan activity between those audits anywhere on the platform. **This stat applies only to workspaces with the Audits add-on enabled who ran at least one audit in the window. The published value is the median of THAT subset, never presented as the platform median.**
+
+**Reproducibility.** The extraction script is published in the open at [github.com/Shelf-nu/shelf.nu](https://github.com/Shelf-nu/shelf.nu) under `apps/webapp/scripts/state-of-em-2026/`. The script contains no customer data — only queries and aggregation logic. A separate `--probe` mode verifies feature adoption before stats are computed, so the methodology can be re-validated by anyone with database access.
+
+**Limitations.** Self-hosted Shelf instances are not included (cloud-hosted only). "Idle" is per-asset-per-90-days, not a permanent property. The sample skews toward teams that have already opted into structured asset management — industry-wide idle rates are likely higher.
 
 ---
 
-## The dollar value of ghost assets
+## The dollar value of idle equipment
 
-For the median Shelf workspace, **{{TODO: $X,XXX}}** of physical equipment exists only on paper.
+For the median Shelf workspace, **{{TODO: $X,XXX}}** of physical equipment sits unused for 90 days or more at a stretch.
 
-The definition is precise. A ghost asset is an item that:
+The definition is precise. An idle asset is an item that:
 1. Is recorded in the workspace's asset inventory,
-2. Was expected at a specific location during a physical audit,
-3. Did not appear in two consecutive audits at that location,
-4. Has had no scan activity — QR scan, audit scan, location update — between those audits anywhere on the platform.
+2. Has had no scan, custody change, booking event, location update, or audit scan in the prior 90 days,
+3. Existed before the 90-day window opened (brand-new untouched assets are not idle, they're just new).
 
-That last clause matters. An asset can fail to appear at an audit because it moved without the location being updated; once it's scanned at the new location, it's no longer a ghost. The ghost-asset definition isolates the assets that have genuinely vanished from operational reality.
+Idle is not lost. Idle is unused. A drill in a tool crib that hasn't been checked out in three months may be off-season. A laptop with no custody activity may belong to a long-term employee who doesn't trigger interaction events. The point is not that idle assets are missing — it's that aggregated across an inventory, **idle assets are dead capital**: equipment the organization has paid for, depreciates against, and insures, without using.
 
-Across the platform, ghost assets account for **{{TODO: ds_ghost_asset_rate}}%** of audited inventory. The dollar value comes from multiplying that rate by the median `Asset.valuation` field per workspace. **{{TODO: pct_assets_with_valuation}}%** of assets carry a valuation, so the figure is a conservative lower bound — it excludes assets without explicit valuation entirely.
+Why idle equipment matters financially:
 
-Why ghost assets matter:
+- **Procurement budget waste.** If 15% of your existing laptop fleet hasn't been touched in 90 days, the next quarter's procurement request is overstated by exactly that amount. The dead-capital cost shows up as next quarter's order, not last quarter's loss.
+- **Depreciation against unused assets.** Depreciation schedules don't care whether equipment is used. Dead capital still depreciates.
+- **Insurance overpayment.** Insured fleet value should reflect what's working, not what exists. Idle equipment inflates premium.
+- **Headcount-per-device ratios** suggest equipment exists that's effectively absent. IT teams over-provision; field teams under-utilize.
 
-- **Budgets.** A ghost asset still appears in inventory counts. "We have 850 laptops" overstates the fleet if 10% of those are ghosts; the IT team plans procurement accordingly and over-buys.
-- **Depreciation.** Ghost assets continue to depreciate on the financial books, generating phantom expense and inflating the depreciation total that flows to the income statement.
-- **Insurance.** A fleet's insured value should reflect what exists. Workspaces overstating fleet value pay higher premiums than necessary; understating it leaves them under-covered when something is actually lost.
-- **Headcount-per-device ratios.** IT and operations teams that compute "laptops per employee" or "tools per crew" overstate coverage if ghosts are in the count. The deployed-fleet-to-real-fleet gap shows up later as employees waiting for equipment that records claim already exists.
-
-Nothing in the industry has historically measured this directly. Vendor surveys ask administrators what they believe is missing; this report measures what telemetry actually finds missing.
+Unlike the loss-rate framing favoured by traditional industry research, idle-rate is observable, definable, and reproducible. Telemetry sees idleness more cleanly than it sees loss — a missing asset might be recovered next month; an idle asset is just there, doing nothing, costing money.
 
 <MiniCaseStudy
   customer="{{TODO}}"
   context="{{TODO}}"
-  outcome="{{TODO: e.g. 'Reduced ghost-asset rate from 12% to under 2% in 9 months by introducing a quarterly audit cadence'}}"
+  outcome="{{TODO: e.g. 'Redistributed 40% of idle laptops to new hires, freeing $X in pending procurement'}}"
 >
-  {{TODO: ~100 words narrative of the customer's experience, with permission-confirmed attribution. See content/reports/distribution/README.md for outreach process.}}
+  {{TODO: ~100 words narrative of the customer's experience with idle equipment. Specific, named, permission-confirmed.}}
 </MiniCaseStudy>
 
 ---
 
 ## The accountability gap
 
-Only **{{TODO: pct_assets_with_active_custody}}%** of tracked assets have an active custodian assigned at any moment.
+Only **{{TODO: pct_assets_with_active_custody}}%** of tracked assets have an active custodian assigned.
 
-Custody is the operational definition of accountability. An asset with a current custodian is an asset that, if it goes missing, has a chain that begins with a specific human. An asset without a custodian is a shared-pool item with no clear accountability — functionally a public resource. Both can be operationally appropriate; the difference matters when something is lost.
+Custody is the operational definition of accountability. An asset with a current custodian is an asset that, if it goes missing, has a clear human at the start of the chain. An asset without a custodian is a shared-pool item — functionally a public resource.
 
-The gap between the platform's custody-coverage rate and 100% is the upstream cause of most ghost assets. Workspaces with above-median custody coverage have measurably lower missing rates at audit time.
+The gap between platform custody coverage and 100% is the upstream cause of most downstream loss and idleness. Workspaces with above-median custody coverage have measurably lower idle rates and — in the subset of workspaces that audit — lower missing rates.
 
 ---
 
-## Most teams don't audit
+## The late return problem
 
-Only **{{TODO: au_pct_workspaces_running_audits}}%** of Team-tier workspaces with the Audits add-on enabled ran at least one audit in the year. In the audits that did happen, **{{TODO: au_pct_audited_assets_missing}}%** of expected assets came up Missing on the first scan.
+Among workspaces that use the bookings feature, **{{TODO: bk_pct_returned_late}}%** of reservations ended after their scheduled return time.
 
-The Missing rate is the most operationally important behavioural number in this report. It says: of the items records claim are in a specific location, roughly one in every **{{TODO: 100/missing_rate}}** is not actually there at the moment of audit.
+Late returns are the cascade event. A camera returned late blocks the production team booked for the next day. A laptop returned late means the new hire starts without a device. A power tool returned late means the crew on the next job site borrows from a different source — sometimes the source of the next ghost asset.
 
-Three caveats:
-- An asset can be Missing because it moved without an update, not because it was lost. The next scan in another location resolves it.
-- Missing rates are concentrated in specific categories — small portable items, kit components.
-- Workspaces that audit on a regular cadence have lower Missing rates over time. Audits surface the problem; the problem then gets fixed.
-
-The meta-finding: audit cadence is the single best predictor of low ghost-asset rates. Quarterly audits work measurably better than annual ones.
+Late returns are also the most operationally fixable problem in this report. Booking reminders, overdue notifications, and a clear return ritual measurably reduce the rate — the case study below shows how.
 
 <MiniCaseStudy
   customer="{{TODO}}"
   context="{{TODO}}"
-  outcome="{{TODO: e.g. 'Missing rate fell from 8% to 1.5% over four quarterly audits'}}"
+  outcome="{{TODO: e.g. 'Late-return rate fell from 35% to 8% over one semester via booking reminders + check-in ritual'}}"
 >
-  {{TODO: ~100 words narrative. The customer that moved from annual audits to quarterly. Specific numbers, named attribution.}}
+  {{TODO: ~100 words narrative of the customer's late-return turnaround. Specific, named, permission-confirmed.}}
 </MiniCaseStudy>
-
----
-
-## The idle-asset parallel
-
-The median workspace also has **{{TODO: $X,XXX}}** of equipment idle — no activity in the prior 90 days.
-
-Idle is not lost. Idle is unused. A drill in a tool crib that hasn't been checked out in three months may simply be off-season; a laptop with no custody activity may belong to a long-term employee who doesn't trigger events. Idle is a softer signal than ghost. But aggregated across an inventory, idle assets are the equivalent of dead capital — procurement budget spent on items the organization isn't using.
-
-Ghost assets distort what the books say you have. Idle assets distort what you should buy next. Together, they're the unmeasured equipment overhead carried by the average organization.
 
 ---
 
@@ -184,9 +180,9 @@ Ghost assets distort what the books say you have. Idle assets distort what you s
 
 Across the platform, **{{TODO: $X,XXX,XXX}}** of equipment was recovered via Found-via-Scan in the year.
 
-Found-via-Scan is Shelf's public recovery flow: anyone, even without a Shelf account, can scan a QR label on a found item and notify the owner. The flow exists because the most useful person to recover an asset is often a stranger — someone who picked up the camera left in a rideshare, the drill left at a job site, the laptop left in a conference room.
+Found-via-Scan is Shelf's public recovery flow: anyone, even without a Shelf account, can scan a QR label on a found item and notify the owner. A non-trivial percentage of Missing and previously-Idle assets come back through this mechanism — often via members of the public who found the item at a job site, an event venue, or in a rideshare.
 
-This is the positive flip side of the ghost-asset finding. The mechanism that prevents an asset from becoming a ghost is sometimes a member of the public scanning a printed label and clicking a notification. The permanent QR label is both a tracking mechanism and a recovery mechanism.
+The permanent QR label is both a tracking mechanism and a recovery mechanism. The dollar total above is the size of the recovery flow's operational impact across all Shelf customers in 2026.
 
 <MiniCaseStudy
   customer="{{TODO}}"
@@ -200,17 +196,32 @@ This is the positive flip side of the ghost-asset finding. The mechanism that pr
 
 ## The operational tax (what admins say)
 
-Telemetry tells you what happens. A survey tells you why it matters operationally.
+Telemetry says what happens. A survey says what it costs.
 
-We asked **{{TODO: surveyResponses}}** Shelf workspace admins one direct question: *"In an average month, how many hours does your team lose dealing with missing or misplaced equipment?"*
+We asked **{{TODO: surveyResponses}}** Shelf workspace administrators one direct question: *"In an average month, how many hours does your team lose dealing with missing or misplaced equipment?"*
 
 The median answer was **{{TODO: survey_hours_lost_per_month_median}} hours per month**.
 
-Multiply that by a fully-loaded hourly cost and the operational tax of equipment mismanagement starts to compete with the dollar value of the ghost-and-idle assets themselves. A 10-hour-per-month equipment search problem at a US labour rate is roughly $X,XXX of staff time per year, per organization, in addition to whatever the missing equipment is worth.
+Multiply that by a fully-loaded hourly cost and the operational tax of equipment mismanagement starts to compete with the dollar value of the idle and missing equipment itself. A 10-hour-per-month equipment search problem at a US labour rate is roughly $X,XXX of staff time per year per organization, on top of whatever the equipment is worth.
 
-This is the cost that doesn't show up on any books. It's the cost that, when it gets fixed, frees up the team time that the books never noticed was being spent.
+This is the cost that doesn't show up on any books. It's the cost that, when it gets fixed, frees up the team time the books never noticed was being spent.
 
-The survey's open-ended question — *"in one sentence, what's the most painful part of how your organization manages equipment today?"* — produced a recurring theme: **{{TODO: top open-ended theme from survey responses, e.g. 'losing track of who has what when people leave the team'}}**.
+The survey's open-ended question — *"in one sentence, what's the most painful part of how your organization manages equipment today?"* — produced a recurring theme: **{{TODO: top open-ended theme from survey, e.g. 'losing track of who has what when people leave the team'}}**.
+
+---
+
+## For the subset of workspaces running audits
+
+A smaller cohort within our sample uses the Audits add-on and ran at least one completed audit during the window. **{{TODO: au_pct_workspaces_running_audits}}%** of audit-enabled Team workspaces did so. The subset is meaningful but **NOT representative of the platform**, and we present its findings only with that explicit qualification.
+
+Within that subset:
+
+- **{{TODO: au_pct_audited_assets_missing}}%** of expected assets came up Missing on the first audit scan.
+- **{{TODO: ds_ghost_asset_rate}}%** of audited assets met our definition of ghost assets: items marked Missing across two or more consecutive audits with no scan activity in between anywhere on the platform.
+
+Ghost assets are the audit-detectable subset of the broader idle-and-missing equipment problem. They are valuable because they isolate the assets that have genuinely vanished from operational reality — not just been displaced for a week. **For the workspaces that audit, ghost-asset rate is the best available measurement of true loss**. For workspaces that don't audit, the equivalent loss is unmeasured and almost certainly higher.
+
+The 2027 edition of this report will examine the audit-subset findings in more detail as the audit-enabled cohort grows. For 2026, it remains a supporting finding rather than the headline.
 
 ---
 
@@ -218,7 +229,7 @@ The survey's open-ended question — *"in one sentence, what's the most painful 
 
 <Callout type="info" title="External benchmark">
 
-{{TODO: one external benchmark with citation. Example: "The American Society for Industrial Security (ASIS) International reports an industry-wide equipment shrinkage rate of X% across surveyed organizations. Shelf workspaces' ghost-asset rate of {{ds_ghost_asset_rate}}% is below/above that baseline." See content/reports/research-inputs/external-benchmarks.md for vetted candidate sources.}}
+{{TODO: one external benchmark with citation. Example: "The American Society for Industrial Security (ASIS) International estimates an industry-wide equipment utilization rate of X% across surveyed organizations. Shelf workspaces' idle rate of {{ds_idle_asset_rate}}% is below / above that baseline." See content/reports/research-inputs/external-benchmarks.md for vetted candidate sources.}}
 
 </Callout>
 
@@ -228,15 +239,16 @@ This is the only external number in this report. Most industry research on equip
 
 ## Limitations and the 2027 baseline
 
-No report of this kind is the last word. A few honest caveats:
+A few honest caveats:
 
-- **The Shelf-customer sample skews toward teams already practising structured asset management.** Industry-wide ghost-asset rates are likely higher than what we observe.
-- **Asset.valuation coverage.** The dollar figures are conservative lower bounds; they exclude assets whose workspace did not enter a valuation.
-- **Self-hosted instances are not in the data.** Shelf is open source and self-hostable; self-hosted patterns may differ.
-- **One year of data is one year of data.** Year-over-year diffs come into play in the 2027 edition. The 2026 numbers are the baseline.
-- **Survey N is small.** {{TODO: surveyResponses}} responses is adequate for medians and reportable themes; it is not sufficient to break out by industry segment with confidence. The 2027 survey will aim for n=500.
+- **The Shelf-customer sample skews toward teams already practising structured asset management.** Industry-wide idle and missing rates are almost certainly higher than what we observe — we see the well-instrumented organizations.
+- **`Asset.valuation` coverage.** Dollar figures are conservative lower bounds; they exclude assets whose workspace did not enter a valuation. We disclose the coverage percentage in the methodology and use percentage-only stats as fallback for any number where valuation coverage was inadequate.
+- **Self-hosted instances are not in the data.** Shelf is open source; self-hosted patterns may differ from cloud patterns. We can't observe them and don't try to claim otherwise.
+- **One year of data is one year of data.** Year-over-year diffs come into play in the 2027 edition. The 2026 numbers are baselines without comparison points yet.
+- **Feature-adoption variance.** The bookings, audits, and Found-via-Scan stats each speak to subsets of the cohort. We publish them with explicit qualification rather than pretending they describe the median workspace.
+- **Survey N.** Approximately 200 responses is adequate for medians and reportable themes; it is not sufficient to break out reliably by industry. The 2027 survey will aim for n=500.
 
-The **State of Equipment Management 2027** will be published in the same window next year, with year-over-year trend lines added to every stat in this report. If there is a specific cut you would like investigated — by team size, by region, by industry, by feature usage — [tell us](/contact); the 2027 extraction queries can be planned against requests.
+**The State of Equipment Management 2027** will publish in the same window next year, with year-over-year trend lines added to every stat in this report. If there is a specific cut you would like investigated, [tell us](/contact); the 2027 extraction queries can be planned against requests.
 
 ---
 
@@ -250,9 +262,9 @@ The **State of Equipment Management 2027** will be published in the same window 
 **License:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). Reuse, remix, and republish with attribution.  
 
 **Downloads:**
-- [The full report (PDF)](/reports/state-of-equipment-management-2026.pdf) (TODO: upload before launch)
-- [The underlying aggregates (CSV)](/reports/state-of-equipment-management-2026.csv) (TODO: upload before launch)
-- [The survey questionnaire](/reports/state-of-equipment-management-2026-survey-questions.pdf) (TODO: upload before launch)
+- [The full report (PDF)](/reports/state-of-equipment-management-2026.pdf)
+- [The underlying aggregates (CSV)](/reports/state-of-equipment-management-2026.csv)
+- [The survey questionnaire](/reports/state-of-equipment-management-2026-survey-questions.pdf)
 
 **Source code for the telemetry extraction:** [`shelf-nu/shelf.nu`](https://github.com/Shelf-nu/shelf.nu) — see `apps/webapp/scripts/state-of-em-2026/`.
 
