@@ -35,6 +35,7 @@ export const CONTENT_SEO: Record<string, ContentSeoConfig> = {
     "use-cases":      { type: "use-cases",      urlPrefix: "/use-cases",      ogType: "website" },
     concepts:         { type: "concepts",       urlPrefix: "/concepts",       ogType: "article" },
     glossary:         { type: "glossary",       urlPrefix: "/glossary",       ogType: "website" },
+    reports:          { type: "reports",        urlPrefix: "/reports",        ogType: "article", titleSuffix: "Shelf Reports" },
 };
 
 /**
@@ -462,5 +463,126 @@ export function collectionPageJsonLd(opts: {
                 ...(item.description ? { description: item.description } : {}),
             })),
         },
+    };
+}
+
+/* ------------------------------------------------------------------ */
+/*  Report + Dataset JSON-LD                                           */
+/*                                                                     */
+/*  Use for annual industry reports (State of Equipment Management).   */
+/*  - Report: the editorial product (citable by journalists / Wikipedia)*/
+/*  - Dataset: the underlying aggregates (discoverable via Google      */
+/*    Dataset Search; used by researchers and analysts)                */
+/* ------------------------------------------------------------------ */
+
+export function reportJsonLd(opts: {
+    title: string;
+    description: string;
+    urlPath: string;
+    datePublished?: string;
+    dateModified?: string;
+    image?: string;
+    authors?: string[];
+    keywords?: string[];
+    pdfUrl?: string;
+}): Record<string, unknown> {
+    const url = `${BASE_URL}${opts.urlPath}`;
+    const authors = opts.authors ?? ["Shelf Research Team"];
+
+    const associatedMedia = opts.pdfUrl
+        ? [
+              {
+                  "@type": "MediaObject",
+                  encodingFormat: "application/pdf",
+                  contentUrl: opts.pdfUrl.startsWith("http")
+                      ? opts.pdfUrl
+                      : `${BASE_URL}${opts.pdfUrl}`,
+              },
+          ]
+        : undefined;
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "Report",
+        headline: opts.title,
+        name: opts.title,
+        description: opts.description,
+        url,
+        ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
+        ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
+        ...(opts.image
+            ? { image: opts.image.startsWith("http") ? opts.image : `${BASE_URL}${opts.image}` }
+            : {}),
+        author: authors.map((name) => ({
+            "@type":
+                name === "Shelf" ||
+                name === "Shelf Asset Management" ||
+                name === "Shelf Research Team" ||
+                name === "Shelf Team"
+                    ? "Organization"
+                    : "Person",
+            name,
+        })),
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        ...(opts.keywords?.length ? { keywords: opts.keywords.join(", ") } : {}),
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": url,
+        },
+        ...(associatedMedia ? { associatedMedia } : {}),
+        isAccessibleForFree: true,
+    };
+}
+
+export function datasetJsonLd(opts: {
+    name: string;
+    description: string;
+    urlPath: string;
+    datePublished?: string;
+    keywords?: string[];
+    dataWindowStart?: string;
+    dataWindowEnd?: string;
+    csvUrl?: string;
+    methodologyUrl?: string;
+    datasetKey?: string;
+}): Record<string, unknown> {
+    const url = `${BASE_URL}${opts.urlPath}`;
+    const distribution = opts.csvUrl
+        ? [
+              {
+                  "@type": "DataDownload",
+                  encodingFormat: "text/csv",
+                  contentUrl: opts.csvUrl.startsWith("http")
+                      ? opts.csvUrl
+                      : `${BASE_URL}${opts.csvUrl}`,
+              },
+          ]
+        : undefined;
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        name: opts.name,
+        description: opts.description,
+        url,
+        ...(opts.datasetKey ? { identifier: opts.datasetKey } : {}),
+        ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
+        ...(opts.dataWindowStart && opts.dataWindowEnd
+            ? { temporalCoverage: `${opts.dataWindowStart}/${opts.dataWindowEnd}` }
+            : {}),
+        // CC-BY-4.0 invites Wikipedia citation specifically (their reuse policy).
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        creator: { "@id": `${BASE_URL}/#organization` },
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        ...(opts.keywords?.length ? { keywords: opts.keywords } : {}),
+        ...(distribution ? { distribution } : {}),
+        isAccessibleForFree: true,
+        ...(opts.methodologyUrl
+            ? {
+                  citation: opts.methodologyUrl.startsWith("http")
+                      ? opts.methodologyUrl
+                      : `${BASE_URL}${opts.methodologyUrl}`,
+              }
+            : {}),
     };
 }
