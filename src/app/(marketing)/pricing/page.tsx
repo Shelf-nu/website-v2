@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Check } from "lucide-react";
+import { Check, Apple } from "lucide-react";
 import { FAQSection } from "@/components/sections/faq";
 import { pricingPlans, PricingPlan } from "@/data/pricing";
 import { pricingFaqs } from "@/data/pricing-faq";
@@ -21,6 +21,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { trackEvent } from "@/lib/analytics";
 import { StructuredData } from "@/components/seo/structured-data";
 import { pricingSoftwareApplicationJsonLd } from "@/lib/seo";
+import { AppStoreBadge } from "@/components/ui/app-store-badge";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -233,6 +234,35 @@ export default function PricingPage() {
                             </CardFooter>
                         </Card>
                     ))}
+                </div>
+
+                {/* Mobile App callout — included with every plan.
+                    Outer wrapper is a div (not a Link) because the AppStoreBadge
+                    sibling already renders its own Next.js <Link> to the App Store.
+                    Two anchors are needed (one to /mobile-app, one to the App Store),
+                    so the descriptive text is wrapped in a separate inner Link — no
+                    nested <a> tags. */}
+                <div className="mt-12 mx-auto max-w-3xl">
+                    <div className="group flex flex-col sm:flex-row items-center gap-5 rounded-2xl border border-border-subtle bg-card/50 px-6 py-5 transition-colors hover:bg-card hover:border-orange-200">
+                        <Link
+                            href="/mobile-app"
+                            className="flex min-w-0 flex-1 flex-col sm:flex-row items-center gap-5"
+                            aria-label="Learn more about Shelf Companion for iPhone"
+                        >
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/50">
+                                <Apple className="h-6 w-6" />
+                            </div>
+                            <div className="flex-1 text-center sm:text-left">
+                                <p className="text-sm font-semibold text-foreground">
+                                    Shelf Companion for iPhone — included with every plan
+                                </p>
+                                <p className="text-xs text-muted-foreground">
+                                    Scan, audit, and manage assets from the field. Free with any Shelf account. Android in development.
+                                </p>
+                            </div>
+                        </Link>
+                        <AppStoreBadge className="text-xs py-2 px-4" />
+                    </div>
                 </div>
 
                 {/* Trusted By Section */}

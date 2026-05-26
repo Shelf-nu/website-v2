@@ -1,0 +1,123 @@
+---
+title: "Getting Started with Shelf Companion for iPhone"
+description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone. Covers QR scanning, audits, custody, bookings, and multi-workspace switching."
+category: "Getting Started"
+date: "2026-05-25"
+updated: "2026-05-25"
+layout: "knowledge-base"
+seo:
+  title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
+  description: "How to download Shelf Companion from the App Store, sign in with your existing Shelf account, and start scanning assets, running audits, and managing custody from iPhone."
+---
+
+Shelf Companion is the free iOS app for your Shelf workspace. It puts the field-side workflows of Shelf — scanning, audits, custody, bookings — directly on your iPhone. The web platform stays your source of truth for workspace setup, configuration, billing, reporting, and admin work.
+
+This guide walks through downloading the app, signing in, and using each of the core flows.
+
+## What You Need First
+
+Before installing Shelf Companion:
+
+- **An existing Shelf account.** The app does not create a separate account or workspace — it connects to your current Shelf workspace using the same login. If you do not have one yet, sign up free at [app.shelf.nu/join](https://app.shelf.nu/join).
+- **iPhone running iOS 16 or later.**
+- Optional: assets in your workspace already labelled with Shelf QR codes (or registered Code 128, Code 39, EAN-13, DataMatrix, or external QR codes). If you do not have labels yet, you can still browse and act on assets manually — see [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
+
+The app is **free with any Shelf plan**, including the free Personal tier. Nothing is sold through the app. If your workspace does not have an add-on enabled (for example, the Audits add-on), the app shows an informational message rather than a paywall.
+
+## 1. Download the App
+
+Search the App Store for **"Shelf Companion"** or open the direct link:
+
+[Download Shelf Companion on the App Store](https://apps.apple.com/app/id6765639874)
+
+The app is published by **Shelf Asset Management, Inc.**, in the Productivity / Business category, age rating 4+. Global App Store propagation can take up to about a day after a release — the direct link works immediately.
+
+## 2. Sign In
+
+Open the app and tap **Sign in**. Use the same email and password you use at [app.shelf.nu](https://app.shelf.nu) — same workspace, same data, same permissions.
+
+If your team uses SSO, the app supports the same SSO flow you use on the web. If you have not configured SSO yet, see [User roles and their permissions](/knowledge-base/user-roles-and-their-permissions) and the SSO setup guide in your workspace settings.
+
+After sign-in, your session is held securely on the device using iOS Keychain. Signing out clears the token.
+
+## 3. Switch Workspaces (if you have more than one)
+
+If you belong to multiple Shelf workspaces, tap **Settings** in the app and choose the workspace you want to act in. You can switch at any time. The app respects each workspace's role-based access — base user, self-service member, admin, owner — so you only see and do what you are entitled to do.
+
+## 4. Scan a QR Code or Barcode
+
+Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR label or any registered barcode (Code 128, Code 39, EAN-13, DataMatrix, external QR).
+
+- If the code is linked to an asset in your workspace, the app jumps straight to the asset detail screen.
+- If the code exists but is not yet linked (for example, a printed sticker that has not been assigned, or a code from a deleted asset), the app shows an informational message. Linking a code to an asset (or creating a new asset for an unlinked code) happens in the [web app](https://app.shelf.nu) today.
+
+## 5. View Asset Detail
+
+The asset detail screen shows the asset image, current status, category, location, who currently has custody, and recent activity history. From here you can:
+
+- **Update the asset's location** — useful when you move an asset between rooms, buildings, vehicles, or job sites.
+- **Assign or release custody** — hand the asset to a teammate, or release custody when it comes back.
+- **Open the asset's full activity history** — a permanent, timestamped record of every check-out, return, and transfer.
+
+Workspace permissions apply: what you can edit depends on your role.
+
+## 6. Run a Live Audit From the Floor
+
+If your workspace has the [Audits add-on](/features/audits) enabled and you have been assigned an audit, you can run it from the app:
+
+- Open the audit from the audits list.
+- Walk to the location and start scanning assets.
+- Watch the **Found / Expected / Unexpected / Pending** counts update in real time as you scan. Urgency surfaces in the UI as you go.
+- When the audit is complete, tap **Complete audit**. The audit creator receives a summary email.
+
+**Important:** Adding photos or notes to an individual audit scan from the iPhone app is **not yet available** — that capability is web-only today and is on the iOS roadmap for a future release. You can still run, complete, and review audits from the app; capture per-scan evidence from the web in the meantime.
+
+If your workspace does not have the Audits add-on enabled, the app shows an informational "Contact your admin" message rather than a paywall or upgrade link.
+
+## 7. Booking Check-In and Check-Out
+
+For workspaces using [Bookings](/features/bookings):
+
+- Open a booking from the bookings list.
+- Use the in-app scanner to check items out at the start of the booking (the equipment leaves the gear room) and check them back in at the end (when items return).
+- Roles apply: self-service members can check out their own bookings; admins and owners can check out on behalf of others.
+
+Creating, editing, and configuring bookings still happens in the web app today.
+
+## 8. Custody Handoffs
+
+For day-to-day custody handovers outside a formal booking flow:
+
+- Open the asset (scan or search), tap **Assign custody**, pick the teammate.
+- When the equipment comes back, open the asset again and **Release custody**.
+
+The full custody chain is logged with timestamps. The web app's audit log shows every step.
+
+## Workspace Add-Ons — What the App Shows
+
+The app respects whether your workspace has an add-on enabled:
+
+- **Audits add-on enabled** — Audits tab is active. You can run and complete audits.
+- **Audits add-on not enabled** — Audits tab shows an informational "Contact your admin" message. No upgrade link or paywall — those live on the web side, where billing happens.
+- **Barcodes add-on** — Multiple registered barcodes per asset are honoured on the asset detail screen as the feature matures. Full multi-code parity on mobile is a 1.x item.
+
+## What the App Does Not Do Yet
+
+For clarity — these are real, intentional 1.0 gaps. They are on our radar, but they are not in the app today:
+
+- **Adding notes or photos to an audit scan from iPhone.** Web only today; on the iOS roadmap.
+- **GPS / last-known-location capture on scan.** Deliberate 1.1 item.
+- **Universal Links / iOS Camera deep-linking into Shelf Companion.** A 1.x fast-follow.
+- **Linking an unlinked QR code to an asset (or creating an asset from one) inside the app.** Today the app shows an informational message; do the linking in the web app for now. On the 1.0.1 patch list.
+- **Android.** Android is in development. We do not have a release date yet — sign up to be notified at [shelf.nu/mobile-app](/mobile-app).
+
+## Where to Go Next
+
+- [Shelf Companion overview](/mobile-app) — product page with screenshots, features, and the App Store link.
+- [Getting started with Shelf](/knowledge-base/getting-started) — if you are still setting up your workspace, start here first.
+- [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) — you'll want labels on your assets before scanning at scale.
+- [Bookings overview](/features/bookings) and [Audits overview](/features/audits) — read up on the workflows you'll be running from the floor.
+
+## Questions or Issues?
+
+If something is not behaving the way this guide describes, [contact us](/contact) — we want to know. The app is new and we are watching it closely.

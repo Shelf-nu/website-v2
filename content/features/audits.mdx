@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-05-14"
+updated: "2026-05-25"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Export PDF and CSV reports. Paid add-on with 7-day free trial."
@@ -63,7 +63,7 @@ Create an audit session and select which assets to include. You can scope by loc
 
 ### 2. Assign and Scan
 
-Assign the audit to a team member. They open a dedicated scan page on any phone or tablet and start scanning QR labels. Each scan registers the asset as **Found**. No app download required.
+Assign the audit to a team member. They open a dedicated scan page on any phone or tablet — in any browser, or in the free [Shelf Companion app](/mobile-app) on iPhone — and start scanning QR labels. Each scan registers the asset as **Found**.
 
 The scan page is purpose-built for audits — separate from regular check-in/check-out — so there is no confusion about what workflow is active.
 
@@ -80,7 +80,7 @@ As scanning progresses, Shelf tracks four statuses in real time:
 - **Unexpected**: An asset was scanned that was not part of the expected list — flagging items that have moved or were never recorded.
 - **Pending**: Not yet scanned.
 
-Auditors can add notes and photos to any asset during the audit — documenting damage, wrong labels, or condition issues.
+In the web app, auditors can add notes and photos to any asset during the audit — documenting damage, wrong labels, or condition issues. Per-scan notes and photos from the iOS Companion app are on the iOS roadmap and not available today; run the audit from the iPhone if you need on-the-floor scanning, and add evidence from the web when you have a moment at a desk.
 
 ![Audit overview with live statistics — expected, found, missing, unexpected — alongside session details and the audit's asset list](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-overview.webp)
 
@@ -109,14 +109,14 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Structured verification**: Define expected assets up front so scanning confirms presence rather than just listing what was found.
 - **Found / Missing / Unexpected detection**: Three-way reconciliation that catches both losses and untracked items.
 - **Dedicated scan page**: Purpose-built audit scanning interface, separate from check-in/check-out workflows.
-- **Notes and photos**: Document conditions, discrepancies, or issues during the audit itself.
+- **Notes and photos on the web**: Document conditions, discrepancies, or issues from the web app during the audit. Per-scan evidence capture from the iOS Companion app is on the iOS roadmap.
 - **Real-time progress**: Live counts of found, missing, unexpected, and pending assets update as scanning happens.
 - **Location context in scan list**: When auditing by tag, category, or any non-location filter, each asset in the scan list shows its current location beneath its name — helping auditors identify where they need to look without leaving the scan view. Location is automatically hidden when the audit is scoped to a specific location to avoid redundancy.
 - **PDF and CSV export**: Generate reports for compliance, insurance, or management review.
 - **Completion notifications**: Email summaries sent automatically when an audit is completed.
 - **Full audit lifecycle management**: Archive completed or cancelled audits to remove them from the default list while keeping the data accessible. When the data is no longer needed, permanently delete archived audits — individually or in bulk — removing all scan records, notes, and images. Archive individually or in bulk from the **Actions** dropdown; delete follows the same pattern with a type-to-confirm safety step.
 - **One-click recurring audits**: Duplicate any Completed, Cancelled, or Archived audit to re-run it on the same asset list. The copy starts clean (no notes, no scans, no assignee, no due date) and inherits the source's name, description, and scope. If the source's assets have shifted, Shelf reports the dropped count up front and blocks the duplicate if every asset is gone — no silent failures.
-- **Works on any device**: Runs in the browser — phone, tablet, or laptop. No app to install.
+- **Runs on any device**: Browser-based scanning on phone, tablet, or laptop, and a native iPhone experience via the [Shelf Companion app](/mobile-app). Android is in development.
 
 ---
 
@@ -147,7 +147,7 @@ No. Audits is a paid add-on, separate from your Shelf subscription tier. It is a
 
 ### Do I need a special app to run audits?
 
-No. Audits uses the same browser-based QR scanning as the rest of Shelf. Open the dedicated audit scan page on any phone, tablet, or laptop and start scanning. No app download required.
+Not mandatory. Audits run in any modern phone browser using the device's camera — nothing to install. For an iPhone-native experience, you can also run audits from the free [Shelf Companion app](/mobile-app) on the App Store: scan, watch found/expected counts update in real time, and complete the audit on the floor. Android is in development. Adding photos or notes per audit scan is currently web-only on iOS and on the iOS roadmap.
 
 ### Can I scope an audit to a specific location or category?
 
@@ -189,9 +189,9 @@ Yes. Admins and owners can duplicate any **Completed**, **Cancelled**, or **Arch
 
 ---
 
-<Callout type="info" title="Coming Soon: Audits on Mobile">
+<Callout type="info" title="Now on iPhone: Shelf Companion">
 
-Run audits from a dedicated native app — scan barcodes, work offline, and sync when you reconnect. [Join the beta waitlist →](/mobile-app)
+The free [Shelf Companion app](/mobile-app) on the App Store lets you run audits live from the floor on iPhone — scan, watch found/expected counts update in real time, complete the audit when done. Free with any Shelf account. Android is in development. Adding photos or notes per audit scan is currently web-only on iOS — capture evidence from the web today; native mobile evidence capture is on the roadmap.
 
 </Callout>
 

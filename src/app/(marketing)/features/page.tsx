@@ -7,7 +7,7 @@ import { CTA } from "@/components/sections/cta";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Layers } from "lucide-react";
+import { ArrowRight, Layers, Apple } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
@@ -42,7 +42,7 @@ export default function FeaturesPage() {
                 <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background pointer-events-none" />
 
                 <Container className="py-24 md:py-32 relative">
-                <div className="max-w-3xl mx-auto text-center mb-20">
+                <div className="max-w-3xl mx-auto text-center mb-16">
                     <ScrollReveal width="100%">
                         <Badge variant="secondary" className="mb-4 bg-orange-50 text-orange-700 border-orange-100/50">Features</Badge>
                         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
@@ -54,6 +54,31 @@ export default function FeaturesPage() {
                         </p>
                     </ScrollReveal>
                 </div>
+
+                {/* iOS Companion announcement strip */}
+                <ScrollReveal width="100%">
+                    <div className="max-w-3xl mx-auto mb-12">
+                        <Link
+                            href="/mobile-app"
+                            className="group flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-orange-200 dark:border-orange-900/40 bg-orange-50/40 dark:bg-orange-950/20 px-6 py-4 transition-colors hover:bg-orange-50 dark:hover:bg-orange-950/30"
+                        >
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-200">
+                                <Apple className="h-5 w-5" />
+                            </div>
+                            <div className="flex-1 text-center sm:text-left">
+                                <p className="text-sm font-semibold text-foreground">
+                                    Shelf Companion for iPhone is now on the App Store
+                                </p>
+                                <p className="text-xs text-muted-foreground">
+                                    Scan, audit, and manage assets in the field. Free with any Shelf account. Android in development.
+                                </p>
+                            </div>
+                            <span className="flex items-center text-sm font-semibold text-orange-600 group-hover:translate-x-0.5 transition-transform">
+                                Learn more <ArrowRight className="ml-1 h-4 w-4" />
+                            </span>
+                        </Link>
+                    </div>
+                </ScrollReveal>
 
                 {/* Feature Cards with Images */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

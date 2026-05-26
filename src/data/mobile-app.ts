@@ -28,19 +28,19 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Field Audits",
         description:
-            "Walk through audit checklists on-site — scan assets, mark found or unexpected, complete audits with offline persistence.",
+            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, see urgency surface as you go, complete the audit when done.",
         icon: ClipboardCheck,
     },
     {
         title: "Custody Management",
         description:
-            "Assign or release asset custody in bulk right from the field — hand off equipment with a few taps.",
+            "Assign or release asset custody right from the field — hand off equipment to a teammate with a few taps.",
         icon: Users,
     },
     {
         title: "Booking Checkout & Checkin",
         description:
-            "Check out reserved equipment to team members, or check items back in — full or partial.",
+            "Check booked equipment out to team members, or check items back in when they return.",
         icon: CalendarCheck,
     },
     {
@@ -50,9 +50,9 @@ export const mobileAppFeatures: MobileAppFeature[] = [
         icon: BarChart2,
     },
     {
-        title: "Scan Without Wi-Fi",
+        title: "Built for the Floor",
         description:
-            "Audit scans are saved to your device and sync when you're back online. No signal on the job site? Keep scanning — your work won't be lost.",
+            "Tap a Shelf QR with the phone camera and jump straight to the asset. Walk, scan, act — the app is built for moments away from the desk.",
         icon: WifiOff,
     },
 ];
@@ -72,6 +72,7 @@ export const builtForApp = [
 
 export const bestOnWeb = [
     "Creating and configuring audits",
+    "Adding notes or photos to an audit scan",
     "Bulk asset imports and complex edits",
     "Custom field setup and administration",
     "User/role management and permissions",
@@ -90,27 +91,31 @@ export interface MobileAppFAQ {
 
 export const mobileAppFaqs: MobileAppFAQ[] = [
     {
-        question: "When will the app be available?",
-        answer: "We're currently in closed beta testing. iOS TestFlight access comes first, with Android following shortly after. Join the waitlist to be notified when it's your turn.",
+        question: "Do I have to install the Shelf Companion app to use Shelf?",
+        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion for iPhone — an optional native iOS app focused on field workflows like scanning, audits, and custody handoffs. Many teams use a mix: admins on the web, field crews on the Companion app. Same workspace, same data, same login on every path.",
+    },
+    {
+        question: "Where can I get the app?",
+        answer: "Shelf Companion for iPhone is live on the App Store. Search for \"Shelf Companion\" or download it directly from https://apps.apple.com/app/id6765639874. Sign in with your existing Shelf account.",
     },
     {
         question: "Do I need a Shelf account?",
-        answer: "Yes. The app connects to your existing Shelf workspace — same login, same organizations, same data.",
-    },
-    {
-        question: "Will it work offline?",
-        answer: "Audit scanning works without a connection — scans are saved to your device and sync when you reconnect. Other actions (custody, bookings, asset creation) require an internet connection.",
+        answer: "Yes. The app connects to your existing Shelf workspace — same login, same organizations, same data, same permissions. You don't create a separate account.",
     },
     {
         question: "Is it free?",
-        answer: "The mobile app is included with Shelf Team and Business plans at no extra cost. Free-tier access details will be announced closer to launch.",
+        answer: "Yes. The app is free with any Shelf account, including the free tier. Nothing is sold through the app. Pricing for the web platform stays exactly the same.",
+    },
+    {
+        question: "Will it be available on Android?",
+        answer: "Android is in development. We don't have a release date yet. We'll announce it when it's ready — you can sign up below to get notified. In the meantime, Shelf works in any Android phone browser (and can be installed as a PWA on the home screen).",
+    },
+    {
+        question: "Can I capture audit evidence (photos, notes) from the app?",
+        answer: "Not yet on iOS. Adding notes or photos during an audit scan is currently web-only. The capability is on our roadmap for a future release of the iOS app. You can still run, complete, and review audits from the app today — the per-scan evidence step happens on the web for now.",
     },
     {
         question: "Can I manage my whole organization from the app?",
         answer: "The app is purpose-built for field operations — scanning, audits, custody, bookings. Admin tasks like user management, bulk imports, custom fields, and reporting stay on the web app. They work together.",
-    },
-    {
-        question: "Will it be available on Android?",
-        answer: "Yes! Android is confirmed. iOS beta launches first, with Android following shortly after. We know this is highly requested — it's a top priority.",
     },
 ];
