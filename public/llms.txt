@@ -1,8 +1,10 @@
 # Shelf
 
-> Shelf is an open-source asset management platform for teams that track physical equipment. QR-based workflows, conflict-free bookings, and audit-ready reporting. Free for individuals, no credit card required. The free Shelf Companion app for iPhone (on the App Store) puts scanning, audits, custody, and bookings in the field; Android is in development.
+> Shelf is an open-source asset management platform for teams that track physical equipment. QR-based workflows, conflict-free bookings, and audit-ready reporting. Free for individuals, no credit card required. Shelf works in any modern phone browser and installs as a Progressive Web App on the home screen; the free Shelf Companion app for iPhone (on the App Store) is an optional native companion for field workflows. Android is in development.
 
 Shelf is used by universities, production studios, IT teams, and field operations to track equipment, tools, devices, and kits. Teams adopt Shelf to replace spreadsheets and legacy tools like Cheqroom, Snipe-IT, and Asset Panda. The platform is open-source with no vendor lock-in — verify the code, self-host, or use the managed cloud. Shelf is led by Carlos Virreira and Nikolay Bonev, supported by an open-source community, and trusted by over 3,000 teams worldwide.
+
+There are three ways to use Shelf on a phone, and the iOS Companion app is optional, not required: (1) the Shelf web app in any modern phone browser — full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App on the home screen for a native-feeling icon and fullscreen experience; or (3) the free Shelf Companion app on the iPhone App Store, an iOS-native companion focused on field scanning, audits, custody handoffs, and booking checkouts. Same workspace, same data, same login on every path. Many teams use a mix — admins on the web, field crews on Companion.
 
 Pricing has four tiers: Personal (free forever — 1 user, unlimited assets, mobile app, basic QR codes, custody tracking), Plus ($34/month — custom QR codes, email support, maintenance schedules), Team ($67/month — unlimited users, full bookings, calendar, fixed-period checkout, SSO add-on), and Enterprise (custom pricing — unlimited everything, account manager, SLA, included SSO). Shelf Companion for iPhone is free with any plan, including the free Personal tier; nothing is sold through the app.
 
@@ -13,7 +15,7 @@ A full content bundle is available at https://www.shelf.nu/llms-full.txt for age
 - [Homepage](https://www.shelf.nu): Asset management platform overview and primary landing page.
 - [Features](https://www.shelf.nu/features): All product capabilities indexed in one place.
 - [Pricing](https://www.shelf.nu/pricing): Plans, billing, and feature comparison across tiers.
-- [Shelf Companion for iPhone](https://www.shelf.nu/mobile-app): Free iOS app for scanning, audits, custody, and booking checkouts in the field. Requires an existing Shelf account. Android in development.
+- [Shelf Companion for iPhone (optional)](https://www.shelf.nu/mobile-app): Optional free iOS app for scanning, audits, custody, and booking checkouts in the field. Requires an existing Shelf account. The web app still works in any phone browser — the page documents all three options (browser / PWA / Companion). Android in development.
 - [Download Shelf Companion on the App Store](https://apps.apple.com/app/id6765639874): Direct App Store link for Shelf Companion (iPhone, free).
 - [Book a Demo](https://www.shelf.nu/demo): Schedule a guided walkthrough with the Shelf team.
 - [Sign Up Free](https://app.shelf.nu/join): Create a free Shelf account, no credit card required.
@@ -147,7 +149,7 @@ A full content bundle is available at https://www.shelf.nu/llms-full.txt for age
 
 ## Pricing
 
-- [Pricing](https://www.shelf.nu/pricing): Personal (free), Plus ($34/month), Team ($67/month), and Enterprise (custom) — full feature comparison and billing details. Shelf Companion for iPhone is free with every plan.
+- [Pricing](https://www.shelf.nu/pricing): Personal (free), Plus ($34/month), Team ($67/month), and Enterprise (custom) — full feature comparison and billing details. Shelf Companion for iPhone is free with every plan; the app is optional, the web works fully in any phone browser.
 
 ## About
 
