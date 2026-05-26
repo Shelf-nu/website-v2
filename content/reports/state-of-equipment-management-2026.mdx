@@ -15,6 +15,7 @@ cluster:
 seo:
   title: "The State of Equipment Management 2026 — Annual Report from Shelf"
   description: "Original data on how teams actually track equipment in 2026. Aggregated from thousands of Shelf workspaces across education, IT, media production, construction, and field operations. Free PDF + CSV, CC BY 4.0."
+  noindex: true  # SAFETY: while {{TODO}} placeholders are still in the prose. Flip to false when the data team has plugged in real numbers and editorial has signed off.
   keywords:
     - "state of equipment management 2026"
     - "asset tracking report"
@@ -45,7 +46,7 @@ tags:
   - "asset-tracking"
 ---
 
-> **PUBLICATION NOTE (remove before publishing).** This MDX is a v1 scaffold. Every statistic marked `{{TODO}}` needs to be replaced with the real value from the extraction script in `shelf.nu`. The narrative is meant to be revised — it's there so the data team and editorial can see the shape of the finished piece. The methodology section is real and should hold up under scrutiny as-written.
+> **PUBLICATION NOTE (remove before publishing).** This MDX is a v1 scaffold. Every statistic marked `{{TODO}}` needs to be replaced with the real value from the extraction script in `shelf.nu`. The narrative is meant to be revised — it's there so the data team and editorial can see the shape of the finished piece. The methodology section is real and should hold up under scrutiny as-written. The page is `noindex: true` in frontmatter while in this state; flip the flag to `false` after editorial sign-off so search engines start crawling it.
 
 Every team that tracks equipment runs the same operation. They acquire something physical, they assign it to a person, they let it move, they try to get it back. The variations are in scale, vocabulary, and what happens when the loop breaks.
 
