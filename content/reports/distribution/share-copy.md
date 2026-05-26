@@ -1,6 +1,6 @@
 # Share copy — State of Equipment Management 2026
 
-**DRAFT** — v1 scaffold. Variants for LinkedIn, X, Threads. Pick by channel and length budget. Replace `{{TODO}}` placeholders before posting.
+**DRAFT** — v1.1 (pivoted to ghost-assets-in-dollars headline). Replace `{{TODO}}` placeholders before posting. Numbers MUST match the published report exactly.
 
 ---
 
@@ -8,52 +8,41 @@
 
 ### Long post (Carlos personal, launch day)
 
-> Today we're publishing *The State of Equipment Management 2026* — the first industry report on how teams actually track equipment, drawn from anonymized telemetry across approximately {{TODO: workspaces}} Shelf workspaces over the past year.
+> Today we're publishing *The State of Equipment Management 2026*. First industry report drawn from anonymized telemetry across thousands of Shelf workspaces, paired with a survey of 200 admins.
 >
-> One number stayed with me as we wrote it.
+> The headline number stayed with me as we wrote it:
 >
-> The median workspace tracks {{TODO: median_assets_per_workspace}} assets. Only {{TODO: pct_assets_with_active_custody}}% of those assets have an active custodian assigned at any moment. The rest are in the gap between what's on the books and what someone is accountable for.
+> **For the median organization, {{TODO: $X,XXX}} of physical equipment exists only on paper.**
 >
-> Every loss story I've ever heard from a customer begins in that gap.
+> We call these ghost assets — items recorded in inventory but missing across two consecutive audits, with no scan activity in between. Across the platform they're {{TODO: ds_ghost_asset_rate}}% of audited inventory.
 >
-> Four more things we learned:
+> Ghost assets distort everything they touch: budgets, depreciation, insurance valuations, headcount-per-device ratios. Nobody has been measuring this directly. Vendor surveys ask people what they think is missing. We measured what telemetry actually shows missing.
 >
-> → Shelf blocked {{TODO: pct_bookings_with_conflict_averted}}% of attempted bookings for conflicts — every one of those would have been a double-booking on a spreadsheet.
+> Five things we learned:
 >
-> → Only {{TODO: au_pct_workspaces_running_audits}}% of Team workspaces with audits enabled ran one. In those that did, {{TODO: au_pct_audited_assets_missing}}% of expected assets came up Missing on the first scan.
+> → {{TODO: $X,XXX}} of ghost-asset dollar value in the median workspace.
 >
-> → Ghost assets (Missing across consecutive audits, no scan in between) are an estimated {{TODO: ds_ghost_asset_rate}}% of inventory.
+> → {{TODO: pct_assets_with_active_custody}}% of assets have an active custodian. The rest is the accountability gap.
 >
-> → Top performers do four specific things differently: assign custody within 48 hours of asset creation, audit at least quarterly, apply QR labels at intake, group multi-component gear into kits.
+> → Only {{TODO: au_pct_workspaces_running_audits}}% of audit-enabled workspaces ran an audit. Ghost assets are invisible without one.
 >
-> Methodology is open. The extraction script is in our public repo. The aggregates are released as a free CSV under CC BY 4.0. If you cover this space — reporter, analyst, researcher, vendor — the numbers are yours to use.
+> → The median workspace has another {{TODO: $X,XXX}} of equipment idle (no activity in 90 days) — not lost, but unused.
 >
-> Read it here: https://www.shelf.nu/reports/state-of-equipment-management-2026
+> → Admins say their team loses a median of {{TODO}} hours per month dealing with missing equipment. The operational tax that pairs with the dollar cost.
 >
-> Huge thanks to the Shelf team and to the thousands of customers whose anonymized activity made this possible.
+> Free, CC BY 4.0, open-source extraction code on GitHub, three named customer case studies, one external industry benchmark for comparison. Read it, share it, cite it, remix it.
+>
+> https://www.shelf.nu/reports/state-of-equipment-management-2026
 
 ### Short post (company page)
 
 > Out today: *The State of Equipment Management 2026.*
 >
-> First industry report drawn from anonymized telemetry across {{TODO: workspaces}}+ Shelf workspaces.
+> The median organization has **{{TODO: $X,XXX}} of equipment on the books but missing from audits** — ghost assets nobody has been measuring.
 >
-> Five findings on visibility, bookings, custody, audits, and the cost of disorder. Full methodology. Free PDF + CSV under CC BY 4.0.
+> First industry report from anonymized telemetry + a 200-admin survey. Methodology in full. Free PDF + CSV under CC BY 4.0.
 >
 > Read it: https://www.shelf.nu/reports/state-of-equipment-management-2026
-
-### Carousel option (10 slides)
-
-1. Cover: "The State of Equipment Management 2026" + Shelf logo
-2. "Drawn from anonymized telemetry across {{TODO: workspaces}}+ workspaces"
-3. Finding 1: The custody gap — {{TODO: pct_assets_with_active_custody}}% have an active custodian
-4. Finding 2: Booking conflicts — {{TODO: pct_bookings_with_conflict_averted}}% averted by Shelf
-5. Finding 3: Audits — only {{TODO: au_pct_workspaces_running_audits}}% ran one
-6. Finding 4: Missing rate — {{TODO: au_pct_audited_assets_missing}}% on first audit scan
-7. Finding 5: Ghost assets — {{TODO: ds_ghost_asset_rate}}% of inventory
-8. Top performers do four things differently (list)
-9. Methodology + CC BY 4.0 license + open-source extraction
-10. CTA: Read the report → shelf.nu/reports/2026
 
 ---
 
@@ -61,56 +50,55 @@
 
 ### Single launch tweet
 
-> Out today: *The State of Equipment Management 2026.*
+> The median organization has **{{TODO: $X,XXX}} of equipment on the books but missing from audits.**
 >
-> First industry report from anonymized telemetry across {{TODO: workspaces}}+ Shelf workspaces.
+> We call them ghost assets. First time anyone has measured this from telemetry.
 >
-> {{TODO: pct_assets_with_active_custody}}% have a custodian. {{TODO: ds_ghost_asset_rate}}% are ghosts. {{TODO: pct_bookings_with_conflict_averted}}% of bookings blocked for conflict.
+> The State of Equipment Management 2026 — free, CC BY 4.0:
 >
-> Free, CC BY 4.0 → shelf.nu/reports/2026
+> https://www.shelf.nu/reports/state-of-equipment-management-2026
 
-### Thread (7 tweets)
+### Thread (6 tweets)
 
-1. We published *The State of Equipment Management 2026* today. First industry report drawn from anonymized Shelf telemetry across {{TODO: workspaces}}+ workspaces. Five findings. Free. CC BY 4.0. 🧵
+1. We just published the inaugural *State of Equipment Management 2026.* Anonymized telemetry from thousands of Shelf workspaces + 200-admin survey. One number stood out. 🧵
 
-2. Finding 1: The median workspace tracks {{TODO: median_assets_per_workspace}} assets. Only {{TODO: pct_assets_with_active_custody}}% have an active custodian assigned at any moment. The custody gap is the operational definition of accountability.
+2. **For the median organization, {{TODO: $X,XXX}} of physical equipment exists only on paper.** Items in inventory but missing across consecutive audits, with no scan activity in between. We call them ghost assets. They are {{TODO: ds_ghost_asset_rate}}% of audited inventory across the platform.
 
-3. Finding 2: Shelf blocked {{TODO: pct_bookings_with_conflict_averted}}% of attempted bookings for conflicts. Without conflict-prevention software, those would all be double-bookings invisible until production day.
+3. Ghost assets distort everything: budgets overstate fleet size, depreciation carries phantom expense, insurance valuations misprice coverage, headcount-per-device ratios suggest equipment exists that doesn't. Nobody has been measuring this from telemetry. Now we have.
 
-4. Finding 3: Only {{TODO: au_pct_workspaces_running_audits}}% of Team workspaces with audits enabled ran one. In those that did, {{TODO: au_pct_audited_assets_missing}}% of expected assets came up Missing on first scan. Audits work; most teams skip them.
+4. The cause is upstream. Only {{TODO: pct_assets_with_active_custody}}% of tracked assets have an active custodian. The custody gap is where ghosts form. Only {{TODO: au_pct_workspaces_running_audits}}% of audit-enabled workspaces ran an audit — most teams are operating with no measurement at all.
 
-5. Finding 4: Ghost assets — Missing across consecutive audits with no scan in between — are an estimated {{TODO: ds_ghost_asset_rate}}% of inventory. They distort budgets, depreciation, insurance valuations, and headcount-per-device ratios.
+5. The operational tax pairs with the dollar cost. In our 200-admin survey, the median answer to "how many hours per month does your team lose dealing with missing equipment?" was **{{TODO}} hours per month**. The staff-time cost nobody has on a P&L.
 
-6. Finding 5: Top performers do four things differently. Assign custody within 48 hours of creation. Audit quarterly. Label at intake. Group gear into kits. Practice patterns, not tool patterns.
+6. Methodology in full. Extraction script open-source. Underlying aggregates as free CSV. Three named customer case studies. One external industry benchmark. CC BY 4.0 — reuse, remix, cite. https://www.shelf.nu/reports/state-of-equipment-management-2026
 
-7. Methodology in full. Extraction script open-source. Underlying aggregates as free CSV. CC BY 4.0 — reuse, remix, cite. Read it: https://www.shelf.nu/reports/state-of-equipment-management-2026
-
-### Pull-quote tweet (use as a quote-tweet of the main thread)
+### Pull-quote tweet (use as a quote-tweet of the thread)
 
 > The single most important number in the report:
 >
-> {{TODO: pct_assets_with_active_custody}}% of assets have an active custodian.
+> **{{TODO: $X,XXX}}.**
 >
-> The gap between {{TODO: pct_assets_with_active_custody}}% and 100% is where every loss story begins.
+> That's how much physical equipment, in the median organization, exists only on paper. Items in inventory, missing from consecutive audits, no scan trail.
+>
+> Ghost assets. Measured, finally.
 
 ---
 
-## Threads (Meta)
+## Threads (Meta) / Bluesky / Mastodon
 
 > New: *The State of Equipment Management 2026.*
 >
-> One year of anonymized data from {{TODO: workspaces}}+ teams.
+> The median organization has {{TODO: $X,XXX}} of equipment on the books but missing from audits. We call them ghost assets — first time anyone has measured this from telemetry rather than survey.
 >
-> The custody gap: only {{TODO: pct_assets_with_active_custody}}% of tracked assets have a custodian. Ghosts: {{TODO: ds_ghost_asset_rate}}% of inventory.
->
-> Free + CC BY 4.0 → shelf.nu/reports/2026
+> Free, CC BY 4.0 → shelf.nu/reports/2026
 
 ---
 
 ## Rules
 
-- **The numbers in social copy MUST match the report exactly.** Don't round differently. Don't paraphrase.
-- **No invented quotes.** No “customer X said Y” unless customer X signed off.
+- **The dollar figure in social copy MUST match the published report exactly.** Don't round differently. Don't paraphrase.
+- **"Ghost assets" is the phrase to lead with.** It is the report's brand. Consistent use across all channels builds the term as Shelf's IP.
+- **No invented quotes.** No “customer X said Y” unless approved.
 - **Link to the canonical URL** — `https://www.shelf.nu/reports/state-of-equipment-management-2026` — not a shortener. The canonical URL feeds the structured-data citation chain.
-- **Don't push to social before press embargo lifts.** Embargo break gets you uninvited from next year's pitches.
-- **Tag where appropriate** — customer companies who agreed to be named, industry analysts the founder knows personally, etc. No tagging without consent.
+- **Don't push to social before press embargo lifts.**
+- **Tag where appropriate** — customer companies who agreed to be named, industry analysts known personally. No tagging without consent.
