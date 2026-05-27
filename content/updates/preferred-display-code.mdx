@@ -8,6 +8,8 @@ readMoreUrl: "/knowledge-base/asset-identifiers-qr-id-sam-id-property-id#4-prefe
 
 Wherever Shelf lists code-bearing items — `/assets` (simple and advanced), `/kits`, the booking detail page, the "add assets/kits to booking" modals, the locations page, the audit overview, the kit-detail asset list — there is now a small chip on each row showing that asset's chosen identifier. A pack-out picker can read the chip on screen and match it to the sticker on the gear in one second.
 
+![Assets list showing the new code chip under each row's status badge](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/preferred-display-code-list-chips.webp)
+
 A new workspace setting at **Settings → General**, **Preferred display code**, controls which identifier the chip shows. Every workspace gets two free options — **QR Code ID** and **SAM ID**. Workspaces with the alternative-barcodes add-on unlock five more: **Code 128**, **Code 39**, **DataMatrix**, **External QR**, and **EAN-13**. When an asset doesn't have a code of the preferred type, the chip falls back to its QR Code ID with a quieter outlined style so the missing data stays visible.
 
 If most of your fleet uses one identifier but a small subset needs a different one, the asset edit page now has a **"Preferred display code for this asset"** section — pick a specific barcode for that one item and the chip shows your override on every list view. The asset edit-page override and the barcode-type workspace preferences both require the alternative-barcodes add-on; free workspaces continue to use QR Code ID or SAM ID.
