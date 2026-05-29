@@ -9,7 +9,7 @@
  */
 import sharp from "sharp";
 import { stat } from "fs/promises";
-import { resolve, dirname } from "path";
+import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -37,7 +37,7 @@ for (const { input, output } of conversions) {
     await sharp(input).webp({ quality: 82 }).toFile(output);
     const after = (await stat(output)).size;
 
-    const name = input.split("/").pop();
+    const name = basename(input);
     console.log(`✓ ${name} → .webp`);
     console.log(`  Before: ${(before / 1024).toFixed(0)} KB`);
     console.log(`  After:  ${(after / 1024).toFixed(0)} KB`);
