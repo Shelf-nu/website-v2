@@ -1,9 +1,9 @@
 ---
 title: "Asset Identifiers: QR ID, SAM ID, and Property ID"
-description: "Shelf has three ways to identify an asset — the system QR ID, sequential SAM IDs, and your own Property IDs. This guide explains each, when to use them, and how to choose which one prints on your QR labels."
+description: "Shelf has three ways to identify an asset — the system QR ID, sequential SAM IDs, and your own Property IDs. This guide explains each, when to use them, and how to choose which one shows on your list views and printed labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-04-30"
+updated: "2026-05-27"
 layout: "knowledge-base"
 ---
 
@@ -13,7 +13,9 @@ layout: "knowledge-base"
   alt="Asset identifiers in Shelf — QR ID, SAM ID, and Property ID"
 />
 
-Shelf has **three ways to identify an asset**, and a **setting** that controls which identifier appears on your printed QR labels. This article covers all of them.
+Shelf has **three ways to identify an asset**, and a **workspace setting** — *Preferred display code* — that controls which identifier appears next to each asset on list views (and underneath the code on downloaded QR labels). This article covers all of them.
+
+> **What's new (May 2026):** the *QR Code Display* setting has been renamed to **Preferred display code** and expanded. Workspaces with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) can now choose a barcode type (Code 128, Code 39, DataMatrix, External QR, or EAN-13) as the workspace default, and override the choice per asset. See [Section 4](#4-preferred-display-code--the-workspace-setting) below.
 
 ## At a Glance
 
@@ -82,7 +84,7 @@ Property IDs let you record **your own** identifier on an asset — on top of th
 - Your organisation already has a numbering scheme (e.g. `LAPTOP-001`, `CAM-02`, `VEH-004`).
 - You want asset references that embed meaning (asset type, department, location).
 
-> **Important — Property ID does NOT print on QR labels.** The Property ID is a stored value you can search and reference, not a printable label format. Only **QR Code ID** or **SAM ID** can appear under the QR code on a downloaded Shelf label — see [section 4](#4-which-identifier-shows-on-your-qr-labels) below for how to control that. If you need your own IDs on the printed labels themselves, that is a custom-template workflow, not a built-in Property ID feature.
+> **Important — Property ID does NOT print on QR labels.** The Property ID is a stored value you can search and reference, not a printable label format. Only **QR Code ID** or **SAM ID** can appear under the QR code on a downloaded Shelf label — see [section 4](#4-preferred-display-code--the-workspace-setting) below for how to control that. If you need your own IDs on the printed labels themselves, that is a custom-template workflow, not a built-in Property ID feature.
 
 ### Setting a Property ID
 
@@ -129,47 +131,133 @@ Example: if your Property ID is `LAPTOP-001`, visiting `https://app.shelf.nu/pro
 
 ---
 
-## 4. Which identifier shows on your QR labels?
+## 4. Preferred display code — the workspace setting
 
-By default, Shelf's downloaded QR labels display the **QR Code ID** underneath the code. You can change this to the **SAM ID** so the printed label shows a human-readable number your team can reference without scanning.
+Every list row in Shelf now ends with a small chip showing each asset's chosen identifier. The **Preferred display code** workspace setting controls which identifier that chip shows — and which identifier appears underneath the code on downloaded QR labels. It lives at **Settings → General**.
 
-![QR Code Display setting in workspace general settings](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/asset-label-1.webp)
+![Every row on the simple assets index ends with a code chip under the status badge — same chip primitive renders on kits, bookings, audits, locations, and kit-detail lists](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/preferred-display-code-list-chips.webp)
 
-### How to change the label display
+### Where chips appear
 
-1. Click your workspace name in the top navigation
-2. Open **Settings → General**
-3. Scroll to **QR Code Display**
-4. Choose between:
-   - **QR Code ID** (default) — `clm123abc456def`
-   - **Sequential Asset Number (SAM ID)** — `SAM-0001`
-5. Click **Save changes**
+The same chip vocabulary renders on every list view, so a label on the warehouse floor matches the row on the screen:
 
-![Asset sidebar showing the chosen ID format](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/asset-label-2.webp)
+- `/assets` — both **Simple** and **Advanced** index modes (in Advanced mode the chip lives inside the QR ID and SAM ID columns).
+- `/kits` and the asset list inside a kit's detail page.
+- `/locations`.
+- The booking detail page.
+- The "add assets/kits to booking" modals.
+- The audit overview.
+
+### Who can change it
+
+Both the workspace setting (Settings → General) and per-asset overrides are gated by the standard update permissions in the [Shelf permission model](/knowledge-base/user-roles-and-their-permissions) — that means **Owner** and **Administrator**. Base and Self-Service users see the chips on every list but the controls themselves are hidden.
+
+### How to change the workspace setting
+
+1. Open **Settings → General**.
+2. Scroll to **Preferred display code**.
+3. Click the dropdown — each option shows a **live preview chip** so you can see what your list rows will look like before saving.
+4. Pick a value.
+5. Click **Save changes**.
+
+![Settings → General → Preferred display code — one dropdown controls every list chip across assets, kits, bookings, audits and locations](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/preferred-display-code-setting.webp)
+
+![Dropdown open showing the seven options, each with its description and a live preview chip — and a preview chip beneath the trigger that updates as you change the selection](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/preferred-display-code-setting-open.webp)
+
+### Available options
+
+Every workspace gets two free options:
+
+- **QR Code ID** *(default)* — Shelf-generated; every asset has one (e.g. `abc123xyz`).
+- **SAM ID** — Sequential Asset Marker; short, human-readable (e.g. `SAM-0001`).
+
+Workspaces with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) (a [7-day free trial](/knowledge-base/alternative-barcodes#free-trial) is available — any Owner can start it directly without contacting sales) unlock five more:
+
+- **Code 128** — most flexible: letters + numbers + symbols (e.g. `ABC-123`).
+- **Code 39** — letters and numbers only, no symbols (e.g. `ABC123`).
+- **DataMatrix** — 2D matrix code, supports any characters (e.g. `ABC-123`).
+- **External QR** — third-party QR codes; URLs or text (e.g. `https://example.com`).
+- **EAN-13** — retail barcodes, exactly 13 digits (e.g. `9780201379624`).
+
+Without the add-on the five barcode-type options are hidden from the dropdown — QR Code ID and SAM ID remain available to everyone.
 
 ### What this setting affects
 
-- **Printed QR labels** — the text under the code in the default Download output.
-- **Bulk download filenames** — `SAM-0001_Laptop_Dell_clm123abc456def.png` vs. `Laptop_Dell_clm123abc456def.png`.
+- **List-view code chips** — every row across all the surfaces listed in "Where chips appear" above.
+- **Printed QR labels** — *only when the preference is QR Code ID or SAM ID*. Those are the two options whose value also appears underneath the code on the default Download output. A SAM-ID preference also adds the SAM prefix to bulk-download filenames (e.g. `SAM-0001_Laptop_Dell_abc123.png` instead of `Laptop_Dell_abc123.png`).
 
 ### What it does NOT affect
 
-- The QR code itself — it still encodes the same URL either way.
-- Existing printed labels — they keep working. The setting only applies to newly viewed or downloaded labels.
-- Any integration, export, or URL — those continue to use the QR Code ID as the unique key.
+- **Printed QR labels for barcode-type preferences** — if your workspace prefers Code 128, Code 39, DataMatrix, External QR, or EAN-13, the printed label still shows the QR Code ID underneath the code today. Barcode-type label printing is on the v1.1 roadmap. Until then, if you need a specific barcode value on the physical label itself, use a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
+- **The QR code itself** — it still encodes the canonical asset URL regardless of the preference.
+- **Existing printed labels** — they keep working. The setting only affects the next label you download or print from Shelf.
+- **Integrations, exports, or URLs** — those continue to use the QR Code ID as the unique key.
 
-### When to choose SAM ID on labels
+### Per-asset override — picking a different code for one item
 
-- Schools and institutions with numbered equipment ("Laptop #42" = SAM-0042)
-- Organisations transitioning from a manual tracking system with existing numbers
-- Teams that reference asset numbers verbally during handoffs or shift changes
-- Mixed physical/digital workflows where quick visual reference matters
+Most assets should leave the override on **Workspace default**. But sometimes one asset needs to show a different code than the rest — a partner-supplied loaner with its own sticker, demo gear that carries a manufacturer barcode, or an asset that has multiple barcodes of the same type where you want a specific one to surface.
 
-### When to stay with QR Code ID on labels
+Open the asset's edit page (Owner / Admin) and scroll to **"Preferred display code for this asset"** below the Barcodes section.
 
-- Teams that operate primarily by scanning — the printed text is rarely needed
-- Workspaces without SAM IDs assigned (falls back to QR Code ID anyway)
-- Cases where the label design already shows the asset name prominently
+![Per-asset override radio group on an asset with one persisted barcode — the Workspace default row says "Currently set to QR Code ID for this workspace", and the EAN-13 row shows a live preview chip with the value that will override it](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/preferred-display-code-asset-override.webp)
+
+The radio group has a **Workspace default** row at the top plus one row per persisted barcode on the asset. The Workspace default row tells you in plain English what it will resolve to right now:
+
+- If your workspace prefers QR Code ID or SAM ID, the row reads: *"Currently set to QR Code ID for this workspace."* (or *"… SAM ID …"*).
+- If your workspace prefers a barcode type and the asset has one of that type, same wording with the type label.
+- If your workspace prefers a barcode type but this asset has **none** of it, the row shows a fallback warning: *"Currently set to Code 128, but this asset has no Code 128 barcode. List views will fall back to its QR code (add a Code 128 above to fix)."*
+
+Selecting a specific barcode row forces that value to show on every list view for this one asset, regardless of the workspace preference. The chip's tooltip then explicitly reads as an override — see "Tooltip vocabulary" below.
+
+If an asset has zero persisted barcodes, the section shows an empty state: *"This asset has no barcodes yet, so there's nothing to override. … Add a barcode in the section above and save the asset — it will become selectable here on your next edit."*
+
+Per-asset overrides require the alternative-barcodes add-on. Without it, the entire override section is hidden and every asset follows the workspace default.
+
+### Chip color states — filled vs outlined
+
+The chip renders in one of two visual states:
+
+- **Filled gray** — the chip is showing the workspace's preferred type (or your per-asset override) and the asset has that data. The default, confident state.
+- **Outlined white** — the workspace prefers a barcode type but **this asset has no barcode of that type**. The chip falls back to the QR Code ID and renders with a thin ring instead of a filled background. The row doesn't change height, but the missing data stays visible as a quiet hygiene signal.
+
+To go from outlined back to filled on one asset, either add a barcode of the preferred type to that asset, set a per-asset override, or change the workspace preference itself.
+
+### Tooltip vocabulary — what each chip says on hover
+
+Every chip has a structured tooltip with a bold title (code type + value) and a body explaining what's going on. The three states use distinct, verbatim copy from the product:
+
+| State | Tooltip title | Tooltip body |
+|---|---|---|
+| Default (matches workspace) | `Code 128: ABC-123` | *Matches your workspace's preferred display code. Change in workspace settings.* |
+| Per-asset override | `Code 39: TARGET` | *Per-asset override — overrides workspace's preferred Code 128.* |
+| Fallback (asset has no preferred type) | `QR Code ID: abc123 (fallback)` | *Your workspace prefers Code 128 but this item has no Code 128. Add one (or change the workspace setting) to fix.* |
+
+The tooltip text is also mirrored to the chip's `aria-label`, so screen-reader users get the same explanation without opening the tooltip.
+
+### Clickable chips vs display-only chips
+
+Some chips open a code-preview dialog when clicked — notably the chips in the QR ID and SAM ID columns of the **Advanced** asset index. Those chips show a small maximize-glyph at 50% opacity on the right edge — an at-rest interactivity hint, not just on hover. Chips without that glyph are display-only.
+
+### Activity log
+
+Two activity events are emitted automatically:
+
+- **Workspace setting changes** are logged as `ORGANIZATION_QR_ID_DISPLAY_PREFERENCE_CHANGED` — captures the old preference, the new preference, and the actor.
+- **Per-asset override changes** are logged as `ASSET_PREFERRED_BARCODE_CHANGED` — captures the old and new barcode id (or `null` when reverting to Workspace default).
+
+Both events appear in the standard activity feed and surface in reports alongside other asset-change events.
+
+### Troubleshooting — my chips didn't update
+
+Chips render from loader-fetched data, not from the in-progress edit state. After saving a workspace-preference change or a per-asset override, refresh the list view (or navigate away and back) — the chips reflect the new preference on the next load.
+
+### When to pick each option
+
+**QR Code ID** is the right choice when your team primarily *scans* labels rather than reading them — the visible chip is incidental because the scanner does the matching. It's also the safe default if you haven't yet standardised on a physical-label scheme, and the only sensible choice for workspaces that don't have SAM IDs assigned (the chip would fall back to QR Code ID anyway).
+
+**SAM ID** is the right choice when your team talks about assets by short numbers in real workflows ("can you grab SAM-0042 from the cage?"), when you're migrating from a manual tracking system that already used short reference numbers, or when you print Avery-style sheets where a human-readable number under the QR makes pack-outs faster.
+
+**A barcode type** (Code 128, Code 39, DataMatrix, External QR, EAN-13) is the right choice when your fleet is already stickered with physical barcodes — from a previous system, a manufacturer, or a retail purchase — and the sticker's value is what your team reads off pack-out lists, types into search, or matches against a screen during check-in/check-out. Pick the type that covers the *majority* of your assets and use per-asset overrides for the outliers; mixed populations fall back gracefully via the outlined chip state.
 
 ### Hiding the SAM ID column in the asset index
 
@@ -208,13 +296,33 @@ Yes — open the asset, edit the Property ID field, save. The old value is repla
 
 Shelf doesn't enforce uniqueness on Property IDs, so technically two assets can share one. In practice, keep them unique — you'll have a bad time searching if two assets both claim `LAPTOP-001`.
 
-### Will changing the QR Code Display setting break existing labels?
+### Will changing the Preferred display code setting break existing labels?
 
-No. Existing printed labels continue to work — the QR codes on them encode the canonical URL, not the displayed text. The setting only affects the next label you download or print from Shelf.
+No. The QR codes on existing printed labels encode the canonical asset URL, not the displayed text — scanning them still resolves to the right asset regardless of the setting. The setting only affects (a) the chips on list views in the app, and (b) what value Shelf prints under the QR on the *next* label you download. For (b), only the QR Code ID and SAM ID preferences change the printed text; barcode-type preferences don't affect printed labels yet (see "What it does NOT affect" in Section 4 above).
 
 ### Can I print my own Property ID (or a custom-field value) on the QR labels Shelf generates?
 
-Not in the default downloaded labels. The "QR Code Display" setting only toggles between **QR Code ID** and **SAM ID** as the text under the code. Property IDs and custom-field values are stored on the asset and searchable, but Shelf does not currently inject them into the printed label format. If you need your own IDs physically on the labels, the path today is a [custom branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) using unclaimed QR codes — you design the layout in your own tool and print externally.
+Not in the default downloaded labels. The **Preferred display code** setting picks among **QR Code ID**, **SAM ID**, or — with the alternative-barcodes add-on — a barcode type as the value shown on list-view chips, with QR Code ID and SAM ID also appearing as the text under the code on downloaded labels. Property IDs and custom-field values are stored on the asset and searchable, but Shelf does not currently inject them into the printed label format. If you need your own IDs physically on the labels, the path today is a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) using unclaimed QR codes — you design the layout in your own tool and print externally.
+
+### Can I override the preferred display code on a single asset?
+
+Yes — with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes). Open the asset's edit page, scroll to **"Preferred display code for this asset"**, and pick a specific barcode from the radio group (or leave it on **Workspace default**). The chip on every list view will then show that asset's overridden value with a tooltip noting it as an override. Without the add-on, the override section is hidden and every asset follows the workspace default.
+
+### What happens if my workspace prefers Code 128 but an asset doesn't have one?
+
+The chip falls back to that asset's QR Code ID, rendered with a quieter outlined style (instead of the filled gray used when the preference is satisfied). The tooltip title becomes `QR Code ID: <value> (fallback)` with body *"Your workspace prefers Code 128 but this item has no Code 128. Add one (or change the workspace setting) to fix."* To resolve it, either add a Code 128 barcode to that asset, set a per-asset override, or change the workspace preference.
+
+### Why does one chip in my list look outlined while the rest are filled gray?
+
+That's the fallback state — your workspace prefers a barcode type, but that one asset has no barcode of that type, so its chip falls back to the QR Code ID rendered with a thin ring instead of a filled background. Hover the chip to see exactly which type is missing.
+
+### Is there an activity log entry when someone changes the setting or sets an override?
+
+Yes — workspace-preference changes emit `ORGANIZATION_QR_ID_DISPLAY_PREFERENCE_CHANGED` and per-asset override changes emit `ASSET_PREFERRED_BARCODE_CHANGED`. Both appear in the standard activity feed alongside other asset and workspace events.
+
+### Who can change the workspace setting or set an override?
+
+Owner and Administrator roles. Base and Self-Service users see the chips on every list view but the controls themselves are hidden.
 
 ### My team uses Property IDs (or a custom field) for our IDs and the SAM ID column is confusing. Can I hide it?
 

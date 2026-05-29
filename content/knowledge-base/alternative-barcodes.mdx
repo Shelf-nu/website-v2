@@ -3,7 +3,7 @@ title: "Alternative Barcodes (Barcode, Datamatrix, QR Code)"
 description: "Learn about Shelf's alternative barcode feature that extends beyond standard QR codes, enabling organizations to integrate multiple barcode formats into their asset tracking systems."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-05-20"
+updated: "2026-05-27"
 layout: "knowledge-base"
 ---
 
@@ -49,6 +49,45 @@ You can also add barcodes by **scanning existing physical barcodes** using a dev
 Once added, barcodes appear in the **Barcodes** section at the bottom of each asset page. You can attach multiple barcodes of different types to a single asset — there is no limit.
 
 ![Asset page showing multiple barcodes — DataMatrix, Code 128, and EAN-13](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/barcodes-on-asset.webp)
+
+## Showing a Barcode on Every List Row
+
+Once an asset has a barcode, Shelf can display that barcode next to the asset's name on every list view — `/assets`, `/kits`, the kit-detail asset list, the booking detail page, the "add assets/kits to booking" modals, the locations page, and the audit overview. A pack-out picker can read the chip on screen and match it to the sticker on the gear.
+
+![Each row on the assets index now ends with a code chip under the status badge — `ntjtcbd8dc`, `gxkgs386k2`, and the rest are the actual identifiers Shelf is displaying for that asset](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/preferred-display-code-list-chips.webp)
+
+To pick which code shows up:
+
+1. Go to **Settings → General**
+2. Find **Preferred display code**
+3. Choose one of the barcode-type options (Code 128, Code 39, DataMatrix, External QR, or EAN-13)
+4. Click **Save changes**
+
+Every asset that has a barcode of the chosen type will now show its value as a small gray chip next to the row. Assets without a barcode of that type fall back to their QR Code ID, rendered with a quieter outlined style so the missing data stays visible.
+
+### Tooltip vocabulary — what the chip tells you
+
+Hover any chip and you get a structured tooltip with a bold title (`Code 128: ABC-123`) and a body that explains what's going on in plain English:
+
+- *Matches your workspace's preferred display code. Change in workspace settings.* — the default state.
+- *Per-asset override — overrides workspace's preferred Code 128.* — you've set an override on this specific asset.
+- *Your workspace prefers Code 128 but this item has no Code 128. Add one (or change the workspace setting) to fix.* — the asset has no barcode of the preferred type, so the chip falls back to the QR Code ID (rendered with an outlined ring instead of a filled background).
+
+The same text is mirrored to the chip's `aria-label` for screen readers.
+
+### Per-asset override
+
+If most of your fleet uses one identifier (say, Code 128) but a small subset needs to display a different code, you can override the workspace preference on a single asset. Open the asset's edit page (Owner / Admin), scroll to **"Preferred display code for this asset"**, and pick a specific barcode from the radio group. That asset's chip will show your override on every list view, and the chip tooltip will read as an override.
+
+The **Workspace default** row in the radio group also tells you what it will resolve to right now — including a fallback warning if your workspace prefers a barcode type the asset doesn't have. See [Asset Identifiers — Per-asset override](/knowledge-base/asset-identifiers-qr-id-sam-id-property-id#per-asset-override--picking-a-different-code-for-one-item) for the full breakdown, screenshots, and the verbatim copy.
+
+### Finding an asset by its barcode value
+
+On the booking detail page (when filtering the assets attached to a booking) and on the audit asset picker, you can now type a barcode value into the search box and the matching asset will appear. Useful when you have a sticker in hand and want to jump to the row that represents it. Both surfaces are backed by GIN trigram indexes on `Barcode.value` and `Qr.id`, so the substring search stays fast even on large workspaces.
+
+### Activity log
+
+Workspace-preference changes emit `ORGANIZATION_QR_ID_DISPLAY_PREFERENCE_CHANGED` and per-asset override changes emit `ASSET_PREFERRED_BARCODE_CHANGED`. Both show up in the standard activity feed.
 
 ## Migrating Barcodes from Another System
 
