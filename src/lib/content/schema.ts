@@ -3,7 +3,7 @@ export interface Frontmatter {
     slug: string;
     description: string;
 
-    layout: string; // solution | feature | industry | alternative | blog | case-study | glossary | use-case | concept
+    layout: string; // solution | feature | industry | alternative | blog | case-study | glossary | use-case | concept | report
 
     canonicalUrl: string;
 
@@ -99,4 +99,31 @@ export interface Frontmatter {
         description?: string;
         image?: string;
     };
+
+    // Reports (annual industry reports, e.g. State of Equipment Management 2026)
+    /** Year the report covers, e.g. 2026. Useful for sorting and year-on-year diffs. */
+    reportYear?: number;
+    /** ISO 8601 start of the data observation window, e.g. "2025-05-01". */
+    dataWindowStart?: string;
+    /** ISO 8601 end of the data observation window, e.g. "2026-04-30". */
+    dataWindowEnd?: string;
+    /** Approximate sample size used in the report. */
+    sampleSize?: {
+        workspaces?: number;
+        assets?: number;
+        countries?: number;
+        notes?: string;
+    };
+    /** Pointer to a downloadable PDF, e.g. "/reports/state-of-equipment-management-2026.pdf". */
+    pdfUrl?: string;
+    /** Pointer to a downloadable CSV of the underlying aggregates. */
+    csvUrl?: string;
+    /** Pointer to the methodology document for this report. */
+    methodologyUrl?: string;
+    /** Methodology version string for tracking changes across yearly editions. */
+    methodologyVersion?: string;
+    /** Stable key for the underlying dataset (used in Dataset JSON-LD). */
+    datasetKey?: string;
+    /** Whether this report is the headline / featured report on /reports. */
+    featured?: boolean;
 }

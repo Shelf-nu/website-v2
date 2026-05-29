@@ -12,6 +12,7 @@ import { SummaryBox } from "@/components/mdx/summary-box";
 import { HeadingAnchor } from "@/components/mdx/heading-anchor";
 import { ComparisonTable } from "@/components/mdx/comparison-table";
 import { CodeBlock } from "@/components/mdx/code-block";
+import { CitationBlock } from "@/components/mdx/citation-block";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -116,6 +117,7 @@ const components = {
     SummaryBox,
     ComparisonTable,
     InlineVideo,
+    CitationBlock,
 };
 
 export function MDXContent({ source }: { source: string }) {
