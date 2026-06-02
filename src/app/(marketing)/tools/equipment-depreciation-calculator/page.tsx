@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/container";
 import { ArrowRight } from "lucide-react";
 import { EquipmentDepreciationCalculator } from "@/components/tools/equipment-depreciation-calculator";
 import { CTA } from "@/components/sections/cta";
+import { TrustedBy } from "@/components/sections/trusted-by";
+import { G2Badge } from "@/components/sections/g2-badge";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
@@ -261,6 +263,12 @@ export default function EquipmentDepreciationCalculatorPage() {
                         </div>
                     </Container>
                 </section>
+
+                {/* Social proof */}
+                <div className="flex justify-center pt-12">
+                    <G2Badge />
+                </div>
+                <TrustedBy showTitle={false} />
 
                 <CTA />
             </div>

@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { ArrowRight, Box, Tag, FileText, CheckCircle2, ScanLine } from 'lucide-react';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { CTA } from "@/components/sections/cta";
+import { TrustedBy } from "@/components/sections/trusted-by";
+import { G2Badge } from "@/components/sections/g2-badge";
 
 export const metadata: Metadata = {
     title: 'Free Online Barcode Scanner — Scan QR, UPC, Code 128, EAN | Shelf',
@@ -252,6 +254,12 @@ export default function BarcodeScannerPage() {
 
                     </Container>
                 </section>
+
+                {/* Social proof */}
+                <div className="flex justify-center pt-12">
+                    <G2Badge />
+                </div>
+                <TrustedBy showTitle={false} />
 
                 <CTA />
             </div>

@@ -4,6 +4,8 @@ import { Container } from '@/components/ui/container';
 import { ArrowRight } from 'lucide-react';
 import { AssetLabelDesigner } from '@/components/tools/asset-label-designer';
 import { CTA } from '@/components/sections/cta';
+import { TrustedBy } from '@/components/sections/trusted-by';
+import { G2Badge } from '@/components/sections/g2-badge';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
@@ -22,6 +24,24 @@ export default function AssetLabelDesignerPage() {
         url: "https://www.shelf.nu/tools/asset-label-designer",
         description:
             "Create and print professional asset labels and tags with QR codes. Exports to PNG, SVG, and PDF.",
+        faqs: [
+            {
+                question: "Do I need to sign up to use the label designer?",
+                answer: "No. The asset label designer is completely free and runs in your browser — no account or signup required. Export to PNG, SVG, or PDF instantly.",
+            },
+            {
+                question: "What label size should I use?",
+                answer: "Use 25mm for small tools and devices, 40mm (the industry standard) for laptops, monitors, and office equipment, and 60mm for flight cases, server racks, and heavy machinery.",
+            },
+            {
+                question: "Can I print these asset tags on any printer?",
+                answer: "Yes. Export to PDF for standard label sheets, or PNG/SVG for dedicated label printers. The designer enforces high-contrast, scan-safe layouts with a human-readable ID backup.",
+            },
+            {
+                question: "Will the QR codes link to my asset records?",
+                answer: "The free designer creates the printable tags. To make each QR code resolve to a live asset record — with custody, location, and maintenance history — track your assets in Shelf.",
+            },
+        ],
     });
 
     return (
@@ -106,6 +126,12 @@ export default function AssetLabelDesignerPage() {
                     </div>
                 </Container>
             </section>
+
+            {/* Social proof */}
+            <div className="flex justify-center pt-12">
+                <G2Badge />
+            </div>
+            <TrustedBy showTitle={false} />
 
             <CTA />
         </div>
