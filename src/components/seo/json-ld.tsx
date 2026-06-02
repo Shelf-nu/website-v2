@@ -17,7 +17,7 @@ export function JsonLd() {
         "name": "Shelf",
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "Asset Tracking Software",
-        "operatingSystem": "Web, iOS, Android",
+        "operatingSystem": "Web, iOS",
         "url": "https://www.shelf.nu",
         "description": "Open source asset tracking and inventory management software for modern distributed teams.",
         "offers": {
