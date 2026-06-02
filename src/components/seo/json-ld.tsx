@@ -28,8 +28,8 @@ export function JsonLd() {
         },
         "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "ratingCount": "120"
+            "ratingValue": "5",
+            "ratingCount": "10"
         },
         "interactionStatistic": interactionStats.map((stat) => ({
             "@type": "InteractionCounter",

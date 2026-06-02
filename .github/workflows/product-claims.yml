@@ -1,0 +1,33 @@
+name: Product claims check
+
+# Guards against stale / false product claims shipping — in marketing copy
+# (e.g. "native app coming soon" after the iOS app launched) and in structured
+# data (e.g. an Android operatingSystem in JSON-LD when no Android app exists).
+# Source of truth: PRODUCT-FACTS.md. The scanner uses only Node built-ins, so
+# there is no install step — it runs in seconds. Runs on every PR (content
+# included, unlike the perf gate), on push to main, and weekly to catch drift.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 9 * * 1" # Mondays 09:00 UTC
+
+concurrency:
+  group: product-claims-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-claims:
+    name: Product claims
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/check-product-claims.mjs
