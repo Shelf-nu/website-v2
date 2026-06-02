@@ -19,7 +19,7 @@ const FEATURE_LINKS = [
     { label: "Asset Search", href: "/features/asset-search" },
     { label: "Asset Reminders", href: "/features/asset-reminders" },
     { label: "Workspaces", href: "/features/workspaces" },
-    { label: "Mobile App", href: "/mobile-app", badge: "Coming Soon" },
+    { label: "Mobile App", href: "/mobile-app", badge: "New" },
 ] as const;
 
 export function FeatureNavigationCTA() {
