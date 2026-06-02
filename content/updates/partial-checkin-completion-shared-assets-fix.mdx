@@ -1,0 +1,16 @@
+---
+title: "Partial Check-ins Now Complete Reliably for Shared Assets"
+description: "Fixed a bug where a booking returned through partial check-in could stay Ongoing or Overdue even after every asset was checked in, when those assets were also part of another overlapping booking."
+date: "2026-06-01"
+image: "/images/updates/partial-check-ins.jpg"
+readMoreUrl: "/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns"
+layout: "update"
+---
+
+If you returned every asset on a booking through the Explicit Check-in scanner but the booking still showed as **Ongoing** or **Overdue**, that's fixed.
+
+The problem only showed up when an asset belonged to more than one overlapping booking. Completion used to be decided from each asset's global status, but a physical item you'd just returned could flip back to **Checked out** the moment a later booking picked it up — so the booking you were finishing never matched the "all returned" condition and refused to close. The partial-return path had a related counting issue, where the **Remaining** total only subtracted the assets scanned in the current session and ignored anything you'd checked in earlier.
+
+A booking now decides completion from its own partial check-in records — the same per-booking source of truth the progress bar already uses. It completes when every asset that hasn't yet been recorded for *this* booking is covered, independent of what any other booking has done with the same item. The **Remaining** count now subtracts everything recorded across all sessions, so it always reflects what's genuinely still out.
+
+No action is needed — the fix applies automatically. If a booking got stuck open because of this, completing its remaining check-in now closes it as expected.
