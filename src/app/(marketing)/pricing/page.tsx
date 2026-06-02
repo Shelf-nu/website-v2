@@ -181,16 +181,21 @@ export default function PricingPage() {
                                         ) : (
                                             <>
                                                 <NumberFlow
-                                                    value={isYearly ? parseInt(plan.priceYearly.replace('$', '')) : parseInt(plan.priceMonthly.replace('$', ''))}
-                                                    format={{ style: 'currency', currency: 'USD', trailingZeroDisplay: 'stripIfInteger' }}
+                                                    value={isYearly ? parseInt(plan.priceYearly.replace('$', '')) / 12 : parseInt(plan.priceMonthly.replace('$', ''))}
+                                                    format={{ style: 'currency', currency: 'USD', maximumFractionDigits: isYearly ? 2 : 0, trailingZeroDisplay: 'stripIfInteger' }}
                                                     className="text-4xl font-extrabold tracking-tight text-heading"
                                                 />
                                                 <span className="text-caption text-xs font-semibold uppercase ml-1 tracking-wide">
-                                                    /{isYearly ? 'year' : 'mo'}
+                                                    /mo
                                                 </span>
                                             </>
                                         )}
                                     </div>
+                                    {plan.price !== "Custom" && isYearly && plan.priceYearly !== "$0" && (
+                                        <p className="text-caption text-xs mt-1.5">
+                                            billed annually as {plan.priceYearly}/yr
+                                        </p>
+                                    )}
                                 </div>
 
                                 <ul className="space-y-3">
