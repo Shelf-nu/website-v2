@@ -211,7 +211,7 @@ export function shelfSoftwareApplicationJsonLd(
             : {}),
         applicationCategory: "BusinessApplication",
         applicationSubCategory: "Asset Tracking Software",
-        operatingSystem: "Web, iOS, Android",
+        operatingSystem: "Web, iOS",
         url: BASE_URL,
         description: competitor
             ? `${baseDescription} A modern alternative to ${competitor}.`
@@ -413,7 +413,7 @@ export function pricingSoftwareApplicationJsonLd(
             "Open source asset tracking and inventory management software for modern distributed teams.",
         applicationCategory: "BusinessApplication",
         applicationSubCategory: "Asset Tracking Software",
-        operatingSystem: "Web, iOS, Android",
+        operatingSystem: "Web, iOS",
         url: BASE_URL,
         downloadUrl: "https://app.shelf.nu",
         offers,
