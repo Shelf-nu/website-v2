@@ -224,8 +224,8 @@ export function shelfSoftwareApplicationJsonLd(
         },
         aggregateRating: {
             "@type": "AggregateRating",
-            ratingValue: "4.8",
-            ratingCount: "120",
+            ratingValue: "5",
+            ratingCount: "10",
         },
         featureList:
             "QR code asset tracking, Equipment check-in/check-out, Booking calendar, Custom fields, Multi-location support, Team collaboration, CSV import/export, Self-hosting option",
