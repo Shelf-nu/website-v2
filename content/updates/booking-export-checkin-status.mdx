@@ -1,0 +1,17 @@
+---
+title: "Booking CSV Export Now Shows What's Still Out"
+description: "The booking CSV export now includes per-asset check-in status and check-in dates, plus a checked-in / total count for each booking — so you can tell exactly which items have come back and which are still out."
+date: "2026-06-03"
+image: "/images/updates/add-assets-to-bookings.jpg"
+readMoreUrl: "/knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out"
+layout: "update"
+---
+
+If you export bookings to drive return reminders or reconcile equipment at the end of a busy period, the CSV now tells you exactly which items in each booking are still out versus already returned.
+
+Until now, the export carried only the booking-level status (Ongoing, Overdue, and so on) and a flat list of asset titles — the same partial check-in detail you could see in the progress bar on the booking page never reached the file. Four columns close that gap, appended at the end so every existing column stays in the same place:
+
+- **Item check-in status** and **Check-in date** on each asset row — `Checked in` (with the date it came back) or `Checked out` for items still on an active booking.
+- **Checked in** and **Total assets** on each booking's main row — a quick `X of Y returned` rollup that matches the in-app progress bar.
+
+The export stays complete — no rows are dropped — so you can sort or filter the file on your end. For an end-of-semester or end-of-shoot return sweep, filter **Item check-in status** to `Checked out` across your Checked-Out and Overdue bookings to get a clean list of exactly what hasn't come back yet.

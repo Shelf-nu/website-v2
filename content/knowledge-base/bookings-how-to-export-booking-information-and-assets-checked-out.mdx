@@ -3,7 +3,7 @@ title: "Bookings: How to Export Booking Information and Assets Checked Out"
 description: "Shelf's booking export feature allows users to extract comprehensive booking information in CSV format, facilitating equipment usage tracking, cost allocation, reporting, and asset movement documentation."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-06-03"
 layout: "knowledge-base"
 ---
 
@@ -28,6 +28,7 @@ Select your bookings (in any state) and then click on export selection.
 ## What's Included in the Export
 
 The CSV export contains the following information for each booking:
+
 - **Booking URL**: Direct link to view the booking in Shelf
 - **Booking ID**: Unique identifier for the booking
 - **Name**: Title of the booking
@@ -35,12 +36,28 @@ The CSV export contains the following information for each booking:
 - **End date**: When the booking ends (check-in date)
 - **Custodian**: Person responsible for the assets during the booking period
 - **Description**: Any notes or details about the booking
-- **Assets**: List of assets included in the booking
+- **Tags**: Tags applied to the booking
+- **Assets**: The assets included in the booking, one per row
+
+### Per-asset check-in status
+
+Beyond the booking-level details, the export now breaks down **which items in a booking are still out versus already returned** — the same partial check-in information shown by the progress bar on the booking detail page. Two columns are populated on each asset row:
+
+- **Item check-in status**: `Checked in` if the asset has been returned, `Checked out` if it's still out on an active (Ongoing or Overdue) booking. Bookings that never checked their assets out — Draft, Reserved, and Cancelled — leave this blank. Completed and Archived bookings show every asset as `Checked in`.
+- **Check-in date**: When that asset was checked in, for assets that have been returned.
+
+Two further columns summarize each booking on its main row:
+
+- **Checked in**: How many of the booking's assets have been returned.
+- **Total assets**: How many assets are on the booking.
+
+Because these are columns rather than row filters, the export stays complete — every asset is still listed — and you can sort or filter on your end (in Excel or Google Sheets) to isolate exactly what's outstanding.
 
 ## Practical Applications
 
 This export functionality is particularly valuable for:
 
+- **Tracking outstanding returns**: For Checked-Out and Overdue bookings, filter the **Item check-in status** column to `Checked out` to see exactly which items haven't come back — ideal for driving end-of-period return reminders.
 - **Financial Reporting**: Allocate equipment costs to different departments or projects
 - **Usage Analysis**: Track how frequently specific assets are booked and by whom
 - **Audit Preparation**: Maintain comprehensive records of equipment movements
