@@ -1,0 +1,13 @@
+---
+title: "Bulk actions now complete reliably on large selections"
+description: "Deleting, tagging, or archiving hundreds of items at once no longer times out."
+date: "2026-06-04"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/batch-actions-1.webp"
+layout: "update"
+---
+
+If you've ever selected a few hundred assets, hit **Delete** or **Assign Tags**, and gotten a server error instead of a result, that's fixed. The same goes for archiving a large batch of bookings at once.
+
+Behind the scenes, each of these bulk operations did its work inside a single database transaction with a 5-second budget. On big selections — deleting assets that cascade across their notes, custody, codes, and custom fields, or tagging hundreds of items one at a time — that budget could run out and the entire operation would be aborted, leaving you with an error and nothing applied. We've given the bulk delete and bulk tag operations more headroom, and reworked bulk booking archive so it no longer holds a transaction open while it writes each booking's status note.
+
+The fix applies automatically. If you'd been breaking large selections into smaller chunks as a workaround, that's no longer necessary.
