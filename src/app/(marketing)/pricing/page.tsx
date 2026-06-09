@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Check, Apple } from "lucide-react";
+import { Check, Smartphone } from "lucide-react";
 import { FAQSection } from "@/components/sections/faq";
 import { pricingPlans, PricingPlan } from "@/data/pricing";
 import { pricingFaqs } from "@/data/pricing-faq";
@@ -23,6 +23,7 @@ import { trackEvent } from "@/lib/analytics";
 import { StructuredData } from "@/components/seo/structured-data";
 import { pricingSoftwareApplicationJsonLd } from "@/lib/seo";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
+import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -243,21 +244,24 @@ export default function PricingPage() {
                         <Link
                             href="/mobile-app"
                             className="flex min-w-0 flex-1 flex-col sm:flex-row items-center gap-5"
-                            aria-label="Learn more about Shelf Companion for iPhone"
+                            aria-label="Learn more about Shelf Companion for iPhone and Android"
                         >
                             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/50">
-                                <Apple className="h-6 w-6" />
+                                <Smartphone className="h-6 w-6" />
                             </div>
                             <div className="flex-1 text-center sm:text-left">
                                 <p className="text-sm font-semibold text-foreground">
-                                    Shelf Companion for iPhone — included with every plan
+                                    Shelf Companion for iPhone &amp; Android — included with every plan
                                 </p>
                                 <p className="text-xs text-muted-foreground">
-                                    Scan, audit, and manage assets from the field. Free with any Shelf account. Android in development.
+                                    Scan, audit, and manage assets from the field. Free with any Shelf account. On iPhone and Android.
                                 </p>
                             </div>
                         </Link>
-                        <AppStoreBadge className="text-xs py-2 px-4" />
+                        <div className="flex flex-col sm:flex-row items-center gap-2">
+                            <AppStoreBadge variant="outline" size="sm" />
+                            <PlayStoreBadge variant="outline" size="sm" />
+                        </div>
                     </div>
                 </div>
 

@@ -1,14 +1,11 @@
 import { Metadata } from "next";
-import { Suspense } from "react";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { FAQSection } from "@/components/sections/faq";
-import { WaitlistForm } from "@/components/forms/waitlist-form";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
+import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 import { StructuredData } from "@/components/seo/structured-data";
 import { ArrowRight, Check, Apple, Smartphone as AndroidIcon, Globe, Download } from "lucide-react";
 import {
@@ -21,12 +18,13 @@ import {
 const APP_STORE_URL = "https://apps.apple.com/app/id6765639874";
 
 export const metadata: Metadata = {
-    title: "Shelf Companion for iPhone — Scan, Audit, Manage Custody on the Floor",
+    title: "Shelf Companion for iPhone & Android — Scan, Audit, Manage Custody on the Floor",
     description:
-        "The official iPhone companion for your Shelf workspace. Optional — the Shelf web app still works in any phone browser, and can be installed as a PWA. Scan QR codes, run live audits, manage custody, and handle booking check-in/check-out. Free with any Shelf account.",
+        "The official iPhone and Android companion for your Shelf workspace. Optional — the Shelf web app still works in any phone browser, and can be installed as a PWA. Scan QR codes, run live audits, manage custody, and handle booking check-in/check-out. Free with any Shelf account.",
     keywords: [
         "shelf companion",
         "shelf ios app",
+        "shelf android app",
         "shelf app",
         "shelf mobile app",
         "asset tracking app",
@@ -48,10 +46,10 @@ const mobileAppSchema = {
     "@id": "https://www.shelf.nu/mobile-app#shelf-companion-ios",
     name: "Shelf Companion",
     description:
-        "Optional iPhone-native companion app for the Shelf asset management platform. Scan QR codes, run live audits, view assets, manage custody, and check bookings in/out from your iPhone. Requires an existing Shelf account. The Shelf web app remains fully usable in any phone browser.",
+        "Optional native companion app (iPhone and Android) for the Shelf asset management platform. Scan QR codes, run live audits, view assets, manage custody, and check bookings in/out from your phone. Requires an existing Shelf account. The Shelf web app remains fully usable in any phone browser.",
     applicationCategory: "BusinessApplication",
     applicationSubCategory: "Asset Tracking",
-    operatingSystem: "iOS 16+",
+    operatingSystem: "iOS 16+, Android",
     url: APP_STORE_URL,
     downloadUrl: APP_STORE_URL,
     softwareVersion: "1.0",
@@ -123,18 +121,21 @@ export default function MobileAppPage() {
                 <Container className="relative z-10">
                     <div className="max-w-xl mx-auto lg:mx-0 py-16 lg:py-28 lg:min-h-[75vh] flex flex-col justify-center text-center lg:text-left items-center lg:items-start">
                         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50/50 px-4 py-1.5 text-sm font-medium text-orange-800 dark:border-orange-800 dark:bg-orange-950/50 dark:text-orange-200">
-                            <Apple className="h-3.5 w-3.5" aria-hidden="true" />
-                            Now on the App Store
+                            <Download className="h-3.5 w-3.5" aria-hidden="true" />
+                            Now on the App Store &amp; Google Play
                         </div>
                         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl mb-6 leading-[1.08]">
                             Scan it. Find it. <span className="text-orange-600">Done.</span>
                         </h1>
                         <p className="text-lg leading-relaxed text-muted-foreground mb-8">
-                            Shelf Companion is an iPhone-native companion to your Shelf workspace. Scan QR codes, run audits, manage custody, and check bookings in or out — from wherever the work happens. Free with any Shelf account. Optional — the Shelf web app still works in any modern phone browser, with PWA install if you want a home-screen icon.
+                            Shelf Companion is a native app — for iPhone and Android — that pairs with your Shelf workspace. Scan QR codes, run audits, manage custody, and check bookings in or out — from wherever the work happens. Free with any Shelf account. Optional — the Shelf web app still works in any modern phone browser, with PWA install if you want a home-screen icon.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                            <AppStoreBadge />
+                        <div className="flex flex-col items-center lg:items-start gap-3 w-full sm:w-auto">
+                            <div className="flex flex-col sm:flex-row items-center gap-3">
+                                <AppStoreBadge />
+                                <PlayStoreBadge />
+                            </div>
                             <a
                                 href="#three-ways"
                                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -144,7 +145,7 @@ export default function MobileAppPage() {
                         </div>
 
                         <p className="text-xs text-muted-foreground/60 mt-4">
-                            Requires iOS 16+. Sign in with the credentials you already use on shelf.nu.
+                            On iPhone (iOS 16+) and Android. Sign in with the credentials you already use on shelf.nu.
                         </p>
 
                         {/* Platform indicator — mobile only */}
@@ -156,7 +157,7 @@ export default function MobileAppPage() {
                             <span className="opacity-30">|</span>
                             <div className="flex items-center gap-2">
                                 <AndroidIcon className="h-5 w-5" />
-                                <span>Android — In development</span>
+                                <span>Android — Live</span>
                             </div>
                         </div>
                     </div>
@@ -222,14 +223,14 @@ export default function MobileAppPage() {
                         <ScrollReveal width="100%" delay={0.15} className="h-full">
                             <div className="rounded-xl border border-orange-200 dark:border-orange-900/40 bg-orange-50/20 dark:bg-orange-950/10 p-6 h-full flex flex-col">
                                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-200 mb-4">
-                                    <Apple className="h-5 w-5" />
+                                    <AndroidIcon className="h-5 w-5" />
                                 </div>
                                 <h3 className="font-semibold text-heading mb-2">Shelf Companion app</h3>
                                 <p className="text-sm text-body leading-relaxed flex-1 mb-4">
-                                    Native iPhone app focused on field scanning, audits, custody, and bookings. Faster on the floor than the browser.
+                                    Native iPhone and Android app focused on field scanning, audits, custody, and bookings. Faster on the floor than the browser.
                                 </p>
                                 <p className="text-xs font-semibold uppercase tracking-widest text-orange-700 dark:text-orange-400">
-                                    iOS now · Android in development
+                                    iOS and Android
                                 </p>
                             </div>
                         </ScrollReveal>
@@ -302,7 +303,7 @@ export default function MobileAppPage() {
                         <ScrollReveal width="100%" delay={0.1}>
                             <div className="rounded-xl border border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/20 p-5">
                                 <p className="text-xs font-semibold uppercase tracking-widest text-green-700 dark:text-green-400 mb-4">
-                                    Shelf Companion (iOS)
+                                    Shelf Companion (iOS &amp; Android)
                                 </p>
                                 <ul className="space-y-2.5">
                                     {builtForApp.map((item) => (
@@ -361,55 +362,15 @@ export default function MobileAppPage() {
                                 <div className="flex items-center gap-3 mb-3">
                                     <AndroidIcon className="h-6 w-6 text-foreground" aria-hidden="true" />
                                     <h3 className="text-xl font-bold text-heading">Android</h3>
-                                    <span className="ml-auto inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
-                                        In development
+                                    <span className="ml-auto inline-flex items-center rounded-full bg-green-100 dark:bg-green-950/50 px-2.5 py-0.5 text-xs font-semibold text-green-700 dark:text-green-400">
+                                        Live
                                     </span>
                                 </div>
                                 <p className="text-sm text-muted-foreground mb-6 flex-1">
-                                    We&apos;re building it. No release date yet — we&apos;ll announce it when it&apos;s ready. In the meantime, the Shelf web app works in any Android phone browser.
+                                    Available on Google Play. Free with any Shelf account. Sign in with your existing credentials — no separate account.
                                 </p>
-                                <Button variant="outline" asChild>
-                                    <a href="#android-notify">
-                                        Get notified <ArrowRight className="ml-2 h-4 w-4" />
-                                    </a>
-                                </Button>
+                                <PlayStoreBadge />
                             </div>
-                        </ScrollReveal>
-                    </div>
-                </Container>
-            </section>
-
-            {/* ============================================================ */}
-            {/*  ANDROID NOTIFY-ME FORM                                        */}
-            {/* ============================================================ */}
-            <section
-                id="android-notify"
-                className="py-20 sm:py-28 bg-card border-t border-border-subtle scroll-mt-24"
-            >
-                <Container>
-                    <div className="max-w-2xl mx-auto">
-                        <ScrollReveal width="100%">
-                            <div className="text-center mb-10">
-                                <p className="text-sm font-semibold uppercase tracking-widest text-orange-600 mb-3">
-                                    Android
-                                </p>
-                                <h2 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl mb-4">
-                                    Get notified when Shelf for Android lands
-                                </h2>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    The Android companion is in development. No date promised — we&apos;ll email you when it&apos;s ready. Until then, Shelf works in any Android phone browser.
-                                </p>
-                            </div>
-                        </ScrollReveal>
-
-                        <ScrollReveal width="100%" delay={0.1}>
-                            <Card className="border-border shadow-lg bg-background">
-                                <CardContent className="pt-6">
-                                    <Suspense fallback={<div className="h-[300px] animate-pulse rounded-lg bg-muted/50" />}>
-                                        <WaitlistForm />
-                                    </Suspense>
-                                </CardContent>
-                            </Card>
                         </ScrollReveal>
                     </div>
                 </Container>
@@ -436,9 +397,12 @@ export default function MobileAppPage() {
                             Bring Shelf to the floor.
                         </h2>
                         <p className="text-neutral-400 text-lg mb-8 max-w-lg mx-auto">
-                            Download Shelf Companion for iPhone — or keep using Shelf in any phone browser. Same workspace, same data, your choice.
+                            Download Shelf Companion for iPhone or Android — or keep using Shelf in any phone browser. Same workspace, same data, your choice.
                         </p>
-                        <AppStoreBadge className="border-white/20 bg-white text-neutral-900 hover:bg-neutral-200 hover:border-white/40" />
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <AppStoreBadge />
+                            <PlayStoreBadge />
+                        </div>
                     </ScrollReveal>
                 </Container>
             </section>

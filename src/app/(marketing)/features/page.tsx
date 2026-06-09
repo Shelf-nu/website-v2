@@ -7,7 +7,7 @@ import { CTA } from "@/components/sections/cta";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Layers, Apple } from "lucide-react";
+import { ArrowRight, Layers, Smartphone } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
@@ -63,14 +63,14 @@ export default function FeaturesPage() {
                             className="group flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-orange-200 dark:border-orange-900/40 bg-orange-50/40 dark:bg-orange-950/20 px-6 py-4 transition-colors hover:bg-orange-50 dark:hover:bg-orange-950/30"
                         >
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-200">
-                                <Apple className="h-5 w-5" />
+                                <Smartphone className="h-5 w-5" />
                             </div>
                             <div className="flex-1 text-center sm:text-left">
                                 <p className="text-sm font-semibold text-foreground">
-                                    Shelf Companion for iPhone is now on the App Store
+                                    Shelf Companion is now on the App Store and Google Play
                                 </p>
                                 <p className="text-xs text-muted-foreground">
-                                    Scan, audit, and manage assets in the field. Free with any Shelf account. Android in development.
+                                    Scan, audit, and manage assets in the field. Free with any Shelf account. On iPhone and Android.
                                 </p>
                             </div>
                             <span className="flex items-center text-sm font-semibold text-orange-600 group-hover:translate-x-0.5 transition-transform">

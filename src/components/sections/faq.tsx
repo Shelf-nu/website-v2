@@ -27,7 +27,7 @@ const defaultFaqs: FAQItem[] = [
     },
     {
         question: "Do I need special hardware?",
-        answer: "No. Shelf works with any smartphone or tablet. Our iOS Companion app (Android in development) lets you scan QR codes using your phone camera, and the web app also works in any modern phone browser. You can also use standard USB scanners if you prefer."
+        answer: "No. Shelf works with any smartphone or tablet. Our Shelf Companion app for iPhone and Android lets you scan QR codes using your phone camera, and the web app also works in any modern phone browser. You can also use standard USB scanners if you prefer."
     },
     {
         question: "How does the 'Open Source' part work?",
