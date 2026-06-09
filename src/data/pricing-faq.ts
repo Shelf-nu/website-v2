@@ -50,15 +50,15 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "Do I have to install the Shelf Companion app to use Shelf?",
-        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion for iPhone — an optional native iOS app focused on field workflows. Many teams use a mix. Same workspace, same data, same login on every path."
+        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion — an optional native app for iPhone and Android, focused on field workflows. Many teams use a mix. Same workspace, same data, same login on every path."
     },
     {
         question: "Is the mobile app included with my plan?",
-        answer: "Yes. Shelf Companion for iPhone is free with any Shelf account, including the free Personal plan. Nothing is sold through the app — it's purely an optional field client for your existing Shelf workspace. Sign in with the credentials you already use on shelf.nu."
+        answer: "Yes. Shelf Companion (iPhone and Android) is free with any Shelf account, including the free Personal plan. Nothing is sold through the app — it's purely an optional field client for your existing Shelf workspace. Sign in with the credentials you already use on shelf.nu."
     },
     {
         question: "Is there an Android version?",
-        answer: "Android is in development. We don't have a release date yet — we'll announce it when it's ready. In the meantime, the Shelf web app works in any modern phone browser (Android included), and you can sign up to be notified when the Android app lands at https://www.shelf.nu/mobile-app."
+        answer: "Yes — Shelf Companion is now live on Google Play, free with any Shelf account. You can also use the Shelf web app in any modern phone browser (Android included), or install it as a PWA on the home screen. Get it at https://play.google.com/store/apps/details?id=com.shelf.companion."
     },
     {
         question: "Do I need a separate login for the mobile app?",

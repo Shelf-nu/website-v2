@@ -113,12 +113,14 @@ export function BlogFeed({ allPosts }: BlogFeedProps) {
 
                                         {/* Content */}
                                         <div className="flex flex-col flex-1 p-6">
-                                            {/* Category */}
+                                            {/* Category — a <span>, not a nested <Link>: the whole card is
+                                                already an <a>, and an <a> inside an <a> is invalid HTML
+                                                (hydration error). Category filtering is disabled anyway. */}
                                             {post.frontmatter.category && (
                                                 <div className="mb-4">
-                                                    <Link href={`/blog?category=${post.frontmatter.category}`} className="inline-flex items-center rounded-full bg-orange-50 px-2.5 py-0.5 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/10 hover:bg-orange-100 transition-colors" onClick={(e) => e.stopPropagation()}>
+                                                    <span className="inline-flex items-center rounded-full bg-orange-50 px-2.5 py-0.5 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/10">
                                                         {formatCategoryLabel(post.frontmatter.category)}
-                                                    </Link>
+                                                    </span>
                                                 </div>
                                             )}
 
