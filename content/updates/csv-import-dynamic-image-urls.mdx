@@ -1,0 +1,12 @@
+---
+title: "CSV import now accepts dynamic image URLs"
+description: "Asset image links no longer need a .png, .jpg, or .jpeg extension — any public http(s) URL that serves an image now imports correctly."
+date: "2026-06-09"
+image: "/images/updates/better-csv-imports.jpg"
+readMoreUrl: "/knowledge-base/importing-assets-to-shelf-csv-guide"
+layout: "update"
+---
+
+When you import assets from a CSV, the `imageUrl` column no longer has to end in `.png`, `.jpg`, or `.jpeg`. Any publicly reachable `http(s)` link that returns an image now works — including dynamic image endpoints that have no file extension, such as an ASP.NET handler like `https://host/GetImage.ashx?guid=…` that serves image bytes from a query string.
+
+Previously, links like these were rejected up front with an "Invalid image format" message before Shelf even tried to fetch them. Now Shelf downloads the image and confirms it's a real picture (PNG, JPEG, GIF, WebP, or BMP) from the file's contents rather than guessing from the URL text — so legitimate image links import reliably, and a URL that doesn't actually return an image is still caught.

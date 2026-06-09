@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-05-20"
+updated: "2026-06-09"
 layout: "knowledge-base"
 ---
 
@@ -50,13 +50,15 @@ To begin importing assets:
 | `location` | No | Physical location | "Office Floor 2" |
 | `custodian` | No | Team member assignment (by **name**) | "John Doe" |
 | `bookable` | No | Booking capability — only `no` disables booking | "yes" |
-| `imageUrl` | No | Public image link (`.png`, `.jpg`, `.jpeg`) | "https://example.com/image.jpg" |
+| `imageUrl` | No | Public `http(s)` link to an image (no file extension required) | "https://example.com/image.jpg" |
 | `valuation` | No | Asset monetary value (plain number, `.` decimal) | "1200.50" |
 | `qrId` | No | Existing unclaimed Shelf QR code identifier | "qr_abc123" |
 
 **Auto-creation:** `category`, `kit`, `location`, `tags`, and `custodian` are matched by **name** and **created automatically** if they don't already exist in your workspace — you don't need to pre-create them. For `custodian` specifically, Shelf creates a non-registered team member (NRM) with that name. The column is matched by name, not email — using an email address will create an NRM literally named `john@company.com`.
 
 **`bookable` semantics:** anything other than the literal string `no` (including blank, `yes`, `true`) leaves the asset bookable. Use `no` to opt out.
+
+**`imageUrl` semantics:** any publicly reachable `http(s)` URL works — the link no longer has to end in `.png`, `.jpg`, or `.jpeg`. Dynamic image endpoints (for example an ASP.NET handler like `https://host/GetImage.ashx?guid=…` that serves image bytes from a query string) import correctly. Shelf downloads the URL and confirms the file is a real image (PNG, JPEG, GIF, WebP, or BMP) from its contents, not from the URL text, so a link that doesn't actually return an image is rejected after the download attempt.
 
 **Multi-value cells:** `tags` (and the `barcode_*` columns below) hold multiple values separated by commas **inside a single cell**. In a comma-delimited file the cell must be double-quoted (`"high-priority,fragile"`); in a semicolon-delimited file no quoting is needed.
 
