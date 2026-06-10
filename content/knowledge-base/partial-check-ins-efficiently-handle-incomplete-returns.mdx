@@ -3,6 +3,7 @@ title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
 description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
 category: "Bookings & Custody"
 date: "2024-06-01"
+updated: "2026-06-10"
 layout: "knowledge-base"
 ---
 
@@ -91,6 +92,29 @@ The system features context-aware status management that handles complex scenari
 - "Already checked in": Shows for assets that have been returned in active bookings
 - "Available": Asset returned and ready for new bookings
 - "Checked out": Asset currently in use in this booking context
+
+## How the Check-in Progress Bar Counts Kits
+
+The **Check-in progress** bar on a booking shows how much of the booking has been returned. By default it counts at the **asset** level — every asset is one item, including each asset inside a kit. For a booking built mostly from kits, that can be confusing: a single 30-piece camera kit reads as 30 separate items to check in, so "2 / 32" can look alarming when really only one standalone item and part of one kit are still out.
+
+To make the progress bar match how people actually think about returns, a workspace can choose to count **each kit as a single unit** instead.
+
+### Counting modes
+
+- **Assets (default)**: Every asset counts individually. A kit with 30 assets contributes 30 to the total. The progress label reads **"assets"** with the note *"All assets inside kits are counted individually."*
+- **Units**: Each standalone asset is one unit, and each kit is one unit. A kit only counts as checked in once **every** asset inside it has been returned — a kit with some (but not all) of its assets back still counts as outstanding. The progress label reads **"units"** with the note *"Kits count as one unit."*
+
+In both modes the underlying check-in is identical — you still check in individual assets, and the per-asset list, scanner drawer, and CSV export always count assets individually. The setting only changes how the **progress bar** on the booking page tallies and displays its total.
+
+### Turning on kit-as-a-unit counting
+
+This is a workspace-wide setting, so it applies to every booking. Only workspace **Owners and Administrators** can change it.
+
+1. Go to **Settings > Bookings**
+2. Find the **Counting options** card
+3. Turn on **Count each kit as a single unit**
+
+The toggle saves automatically — there's no separate Save button. Switch it back off at any time to return to per-asset counting.
 
 ## Best Practices
 
