@@ -27,7 +27,23 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so a PR can be diffed against its base
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: node scripts/check-product-claims.mjs
+      - name: Check product claims
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # On a PR, gate only on the files this PR changes. Pre-existing
+            # claims in untouched files are caught by the push-to-main and
+            # weekly runs below — they should never block unrelated work.
+            base="${{ github.event.pull_request.base.sha }}"
+            mapfile -t files < <(git diff --name-only --diff-filter=d "$base"...HEAD -- content src public/llms.txt)
+            echo "Changed in-scope files (${#files[@]}):"
+            printf '  %s\n' "${files[@]}"
+            node scripts/check-product-claims.mjs --changed "${files[@]}"
+          else
+            # push to main + weekly cron: full-repo scan to catch drift anywhere.
+            node scripts/check-product-claims.mjs
+          fi

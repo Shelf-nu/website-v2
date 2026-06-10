@@ -10,7 +10,9 @@
  *   • a "Mobile App — Coming Soon" badge in the homepage feature nav
  *   • an Android operatingSystem in JSON-LD when no native Android app exists yet
  *
- * Usage: node scripts/check-product-claims.mjs
+ * Usage:
+ *   node scripts/check-product-claims.mjs                       # full-repo scan (push to main + weekly cron)
+ *   node scripts/check-product-claims.mjs --changed <files...>  # PR: scan only the files the PR changed
  */
 import { readFileSync, readdirSync, statSync } from "fs";
 import { join } from "path";
@@ -55,28 +57,63 @@ function collect(p, exts, out) {
   }
 }
 
-let hits = 0;
-let scanned = 0;
-for (const { roots, exts, rules } of TARGETS) {
-  const files = [];
-  for (const r of roots) collect(r, exts, files);
-  scanned += files.length;
-  for (const f of files) {
-    const lines = readFileSync(f, "utf8").split("\n");
-    lines.forEach((line, i) => {
-      for (const { re, unless, why } of rules) {
-        if (re.test(line) && !(unless && unless.test(line))) {
-          console.log(`✗ ${f}:${i + 1}  [${why}]`);
-          console.log(`    ${line.trim()}`);
-          hits++;
-        }
-      }
-    });
+// Map a file path to the rule set that applies, or null if it is out of scope
+// (not under a scanned root, or the wrong extension). Drives --changed mode.
+function rulesForFile(filePath) {
+  const p = filePath.replace(/^\.\//, "");
+  for (const { roots, exts, rules } of TARGETS) {
+    const underRoot = roots.some((r) => p === r || p.startsWith(`${r}/`));
+    if (underRoot && exts.some((e) => p.endsWith(e))) return rules;
+  }
+  return null;
+}
+
+// Build the scan list. On a PR, CI passes the PR's changed files after
+// `--changed`, so we gate only on the claims the PR actually touches — never on
+// pre-existing claims in files it didn't change (which would block unrelated
+// work). With no `--changed` (push to main + the weekly cron) we fall back to
+// the full-repo scan that catches drift anywhere on the site.
+const changedMode = process.argv.includes("--changed");
+const argFiles = process.argv.slice(2).filter((a) => !a.startsWith("-"));
+
+const workList = []; // { file, rules }
+if (changedMode) {
+  for (const f of argFiles) {
+    const rules = rulesForFile(f);
+    if (rules) workList.push({ file: f, rules });
+  }
+} else {
+  for (const { roots, exts, rules } of TARGETS) {
+    const files = [];
+    for (const r of roots) collect(r, exts, files);
+    for (const f of files) workList.push({ file: f, rules });
   }
 }
 
+let hits = 0;
+for (const { file, rules } of workList) {
+  let lines;
+  try {
+    lines = readFileSync(file, "utf8").split("\n");
+  } catch {
+    continue; // file deleted/renamed away in the PR — nothing to scan
+  }
+  lines.forEach((line, i) => {
+    for (const { re, unless, why } of rules) {
+      if (re.test(line) && !(unless && unless.test(line))) {
+        console.log(`✗ ${file}:${i + 1}  [${why}]`);
+        console.log(`    ${line.trim()}`);
+        hits++;
+      }
+    }
+  });
+}
+
+const scope = changedMode
+  ? `${workList.length} changed file(s)`
+  : `${workList.length} files`;
 if (hits > 0) {
-  console.error(`\n${hits} stale product claim(s) found across ${scanned} files. Fix per PRODUCT-FACTS.md.`);
+  console.error(`\n${hits} stale product claim(s) found across ${scope}. Fix per PRODUCT-FACTS.md.`);
   process.exit(1);
 }
-console.log(`✓ check-product-claims: no stale product claims across ${scanned} files.`);
+console.log(`✓ check-product-claims: no stale product claims across ${scope}.`);
