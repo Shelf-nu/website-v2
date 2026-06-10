@@ -4,7 +4,7 @@
 >
 > **Why this file exists:** a stale "Native App Coming Soon — join the beta waitlist" claim shipped on the #1-ranking `/knowledge-base/shelf-mobile-app` page *after* the iOS app had launched, because there was no single place that said "the iOS app is live." This is that place.
 
-`lastVerified: 2026-06-02`
+`lastVerified: 2026-06-10`
 
 ## What Shelf is
 - Open-source (**AGPL**), **QR-first asset & equipment management** platform (shelf.nu). Public repo: `github.com/Shelf-nu/shelf.nu`.
@@ -12,10 +12,10 @@
 
 ## Mobile / apps
 - **Shelf Companion (iPhone): LIVE on the Apple App Store since 2026-05-25** — `https://apps.apple.com/app/id6765639874`. iPhone-only (iOS 15.1+), **free**, requires an existing Shelf account. A field **companion**: scan QR/barcodes, run live audits, manage custody, booking check-in/out; syncs with the web workspace.
-- **Android native app: in development — NOT released.** Android users use the web app / PWA.
-- **Web app / PWA:** the full Shelf platform runs in any modern browser (iOS, Android, macOS, Windows, Linux) and installs as a PWA — no app store needed. The web app is the **complete platform / source of truth**; the iPhone app is an optional companion.
-- ❌ **Never say:** "native app coming soon", "join the (beta) waitlist" for the iOS app, "the upcoming native app", "Shelf has no native app / no app-store option." The iOS Companion is live.
-- ✅ **Say:** "Shelf Companion for iPhone is on the App Store (free); Android is in development; the web app works in any browser."
+- **Shelf Companion (Android): LIVE on Google Play since 2026-06-09** — `https://play.google.com/store/apps/details?id=com.shelf.companion`. **Free**, requires an existing Shelf account. Same field companion as the iPhone app (scan QR/barcodes, run live audits, manage custody, booking check-in/out).
+- **Web app / PWA:** the full Shelf platform runs in any modern browser (iOS, Android, macOS, Windows, Linux) and installs as a PWA — no app store needed. The web app is the **complete platform / source of truth**; the native apps are optional companions.
+- ❌ **Never say:** "native app coming soon", "join the (beta) waitlist", "the upcoming native app", "Android is in development / coming soon", "Shelf has no native app / no app-store option." Both Companion apps (iPhone + Android) are live.
+- ✅ **Say:** "Shelf Companion is on the App Store and Google Play — free on iPhone & Android; listing iOS and Android in operatingSystem structured data is now correct; the web app works in any browser."
 
 ## Pricing (verify against `/pricing` + `src/data/pricing.ts`)
 - **Free** — single user, unlimited assets, QR scanning, custody. $0.
@@ -28,7 +28,7 @@
 - "3,000+ teams"; **5.0 on G2**. Marquee customers incl. Chicago Bulls, UC Berkeley, British Airways, Kent State, USS Midway Museum, University of Missouri (`src/data/customer-logos.ts`).
 
 ## Comparison-content rules
-- Be **honest** in competitor comparisons — don't claim Shelf wins on every axis. Where a competitor is genuinely stronger (e.g. a native Android app, deeper integrations, CMMS depth, enterprise features), say so.
+- Be **honest** in competitor comparisons — don't claim Shelf wins on every axis. Where a competitor is genuinely stronger (e.g. deeper integrations, CMMS depth, enterprise features), say so.
 - Lead with the real, uncopyable wedge: **genuinely free + AGPL open-source + self-host + QR-first.**
 
 ## Maintenance — the "agentically compiled" part

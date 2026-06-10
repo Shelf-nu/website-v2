@@ -3,6 +3,8 @@ import { Container } from "@/components/ui/container";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight } from "lucide-react";
 import { TrackedLink } from "@/components/analytics/tracked-link";
+import { AppStoreBadge } from "@/components/ui/app-store-badge";
+import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 
 export function CTA() {
     return (
@@ -37,6 +39,22 @@ export function CTA() {
                                 Book a demo
                             </TrackedLink>
                         </Button>
+                    </div>
+
+                    <div className="mt-8 flex flex-col items-center gap-3">
+                        <p className="text-sm text-neutral-500">
+                            Out in the field? Shelf Companion is free on iPhone &amp; Android.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <AppStoreBadge
+                                variant="outline"
+                                className="text-white border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:text-white"
+                            />
+                            <PlayStoreBadge
+                                variant="outline"
+                                className="text-white border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:text-white"
+                            />
+                        </div>
                     </div>
                 </ScrollReveal>
             </Container>
