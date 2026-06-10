@@ -15,29 +15,30 @@
 import { readFileSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 
-// The iPhone Companion is LIVE (App Store, 2026-05-25) and does booking
-// check-in/out; Android is genuinely in development. So a claim SCOPED to
-// Android ("Android — in development", an Android "notify me" form) is fine —
-// `unless: /android/i` lets those through. Anything else that calls the
-// mobile / native / iPhone app "coming soon" or routes it to a waitlist is
-// stale. These run over BOTH copy (content) and code (src badges, JSON-LD),
-// matched per line — so phrasing variants ("Mobile App … Coming Soon",
-// "Coming Soon: Bookings on Mobile") are caught, not just one exact string.
+// Both Shelf Companion apps are LIVE — iPhone (App Store, 2026-05-25) and
+// Android (Google Play, 2026-06-09) — and do scanning, audits, custody, and
+// booking check-in/out. So ANY "coming soon" / waitlist framing for the
+// mobile / native / iPhone / Android app is now stale (the per-rule `unless`
+// Android exception was removed), and listing iOS *and* Android in
+// operatingSystem structured data is correct. These run over BOTH copy
+// (content) and code (src badges, JSON-LD), matched per line — so phrasing
+// variants ("Mobile App … Coming Soon", "Coming Soon: Bookings on Mobile")
+// are caught, not just one exact string.
 const MOBILE_LIVE_RULES = [
-  { re: /(mobile|native|iphone|ios)[ -]?app[^\n]{0,40}coming soon/i, unless: /android/i,
-    why: "Shelf Companion (iPhone) is LIVE — don't label the mobile/native app 'coming soon'." },
-  { re: /coming soon[^\n]{0,40}(on mobile|mobile|native app|iphone|ios app|companion)/i, unless: /android/i,
-    why: "Shelf Companion (iPhone) is LIVE — don't say the mobile app / bookings-on-mobile is 'coming soon'." },
-  { re: /upcoming[^\n]{0,30}native[^\n]{0,12}app/i, unless: /android/i,
-    why: "The native iPhone app already shipped (Shelf Companion)." },
-  { re: /join the (beta )?waitlist/i, unless: /android/i,
-    why: "The iOS app is live; link to the App Store. (An Android 'notify me' form is fine.)" },
+  { re: /(mobile|native|iphone|ios|android)[ -]?app[^\n]{0,40}coming soon/i,
+    why: "Shelf Companion is LIVE on iPhone and Android — don't label the app 'coming soon'." },
+  { re: /coming soon[^\n]{0,40}(on mobile|mobile|native app|iphone|ios app|android|companion)/i,
+    why: "Shelf Companion is LIVE — don't say the mobile app / bookings-on-mobile is 'coming soon'." },
+  { re: /upcoming[^\n]{0,30}native[^\n]{0,12}app/i,
+    why: "The native Shelf Companion app already shipped (iPhone + Android)." },
+  { re: /join the (beta )?waitlist/i,
+    why: "Both apps are live — link to the App Store / Google Play, not a waitlist." },
 ];
 
 // Code-only claims that feed Google + LLMs directly (structured data).
-const SRC_ONLY_RULES = [
-  { re: /operatingSystem["'\s:]+["'][^"']*\bAndroid\b/i, why: "No native Android app exists yet (in development) — don't list Android in operatingSystem structured data." },
-];
+// (The Android operatingSystem rule was retired when Shelf Companion shipped
+//  on Google Play — listing iOS + Android is now correct.)
+const SRC_ONLY_RULES = [];
 
 const TARGETS = [
   { roots: ["content", "public/llms.txt"], exts: [".mdx", ".md", ".txt"], rules: MOBILE_LIVE_RULES },

@@ -329,7 +329,7 @@ export function Navbar() {
                                                                 href="/mobile-app"
                                                                 title="Mobile App"
                                                                 icon={Smartphone}
-                                                                badge="Beta"
+                                                                badge="New"
                                                             >
                                                                 Scan, audit &amp;
                                                                 manage from the
@@ -695,7 +695,7 @@ export function Navbar() {
                                     <MobileLink href="/mobile-app">
                                         Mobile App
                                         <span className="ml-2 inline-flex items-center rounded-full bg-orange-100 px-1.5 py-0.5 text-[10px] font-semibold text-orange-700 dark:bg-orange-950/50 dark:text-orange-300">
-                                            Beta
+                                            New
                                         </span>
                                     </MobileLink>
                                 </nav>

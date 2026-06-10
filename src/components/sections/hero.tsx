@@ -42,7 +42,7 @@ export function Hero({
                                 </>
                             }
                         >
-                            Shelf Companion for iPhone is on the App Store
+                            Shelf Companion is now on iPhone &amp; Android
                             <span className="ml-2 font-semibold text-orange-600">
                                 &rarr;
                             </span>
