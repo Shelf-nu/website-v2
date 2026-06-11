@@ -3,7 +3,7 @@ title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
 description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-10"
+updated: "2026-06-11"
 layout: "knowledge-base"
 ---
 
@@ -102,7 +102,7 @@ To make the progress bar match how people actually think about returns, a worksp
 ### Counting modes
 
 - **Assets (default)**: Every asset counts individually. A kit with 30 assets contributes 30 to the total. The progress label reads **"assets"** with the note *"All assets inside kits are counted individually."*
-- **Units**: Each standalone asset is one unit, and each kit is one unit. A kit only counts as checked in once **every** asset inside it has been returned — a kit with some (but not all) of its assets back still counts as outstanding. The progress label reads **"units"** with the note *"Kits count as one unit."*
+- **Kit as one unit**: Each standalone asset counts as one item, and each kit counts as one item. A kit only counts as checked in once **every** asset inside it has been returned — a kit with some (but not all) of its assets back still counts as outstanding. The progress label reads **"items"** with the note *"Kits count as one item."*
 
 In both modes the underlying check-in is identical — you still check in individual assets, and the per-asset list, scanner drawer, and CSV export always count assets individually. The setting only changes how the **progress bar** on the booking page tallies and displays its total.
 
