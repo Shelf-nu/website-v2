@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-05-25"
+updated: "2026-06-12"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Export PDF and CSV reports. Paid add-on with 7-day free trial."
@@ -56,6 +56,8 @@ Regular audits close the gap between what your system says and what actually exi
 ### 1. Define the Scope
 
 Create an audit session and select which assets to include. You can scope by location, category, team, or any combination. Shelf builds the expected asset list automatically from your existing records.
+
+There are three ways to start an audit, all from the **New Audit** dialog: from the **Assets** list in advanced mode, or directly from one or more selected **locations** or **kits**. To audit by location or kit, select the rows you want on the **Locations** or **Kits** page and choose **Actions → Create audit** — Shelf builds a single audit covering the union of all assets in your selection, so a multi-location or multi-kit count is one session rather than many. Selecting **all** with an active search or filter audits exactly the rows that match.
 
 ![List of audit sessions in Shelf showing pending and completed audits](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-list.webp)
 
@@ -107,6 +109,7 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 ## Key Capabilities
 
 - **Structured verification**: Define expected assets up front so scanning confirms presence rather than just listing what was found.
+- **Start from locations or kits**: Bulk-select on the Locations or Kits page and choose **Actions → Create audit** to spin up one audit covering the union of every asset in the selection — no need to rebuild the scope by hand.
 - **Found / Missing / Unexpected detection**: Three-way reconciliation that catches both losses and untracked items.
 - **Dedicated scan page**: Purpose-built audit scanning interface, separate from check-in/check-out workflows.
 - **Notes and photos on the web**: Document conditions, discrepancies, or issues from the web app during the audit. Per-scan evidence capture from the iOS Companion app is on the iOS roadmap.
@@ -152,6 +155,10 @@ Not mandatory. Audits run in any modern phone browser using the device's camera 
 ### Can I scope an audit to a specific location or category?
 
 Yes. When creating an audit session, you select which assets to include. You can filter by location, category, or other criteria to focus the audit on exactly what you need to verify.
+
+### Can I start an audit straight from the Locations or Kits page?
+
+Yes. On the **Locations** page or the **Kits** page, select one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates a single audit covering the union of every asset across the selected locations or kits — useful for a room-by-room sweep or for confirming that kit contents are complete. If you select all with a search or filter applied, only the matching rows are included. Creating audits this way requires the same audit permission as the **New Audit** button, so it's available to anyone on your team who can already create audits.
 
 ### What happens to assets marked as missing?
 
