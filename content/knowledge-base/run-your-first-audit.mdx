@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-05-14"
+updated: "2026-06-12"
 layout: "knowledge-base"
 ---
 
@@ -40,6 +40,8 @@ You need three things in place:
 4. **Select which assets to include** — you can scope by location, category, tag, or any combination. Shelf builds the "expected" asset list from your current records.
 5. **Assign the audit** *(optional)* — pick a team member who'll do the scanning. If you leave this blank, any admin can open the scan page.
 6. Click **Save** to create the session
+
+> **Shortcut: start an audit from your Locations or Kits.** Instead of building the scope inside the dialog, you can kick off an audit straight from a list page. On the **Locations** page (or the **Kits** page), tick one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates a single audit covering the union of every asset across the selected locations or kits — ideal for a room-by-room sweep or for confirming kit contents are complete. If you select all with a search or filter active, only the matching rows are included. You'll still name the audit and (optionally) assign it before it's created.
 
 ![Audit list in Shelf showing pending and completed sessions](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-list.webp)
 
@@ -130,6 +132,10 @@ If you found value during the trial, the add-on is available on every Shelf plan
 ### Can multiple people scan the same audit?
 
 Currently, each audit session supports a single assigned scanner. For large-scale audits, create multiple sessions scoped to different areas and assign each to a different team member.
+
+### Can I create an audit from the Locations or Kits page?
+
+Yes. You don't have to build the scope inside the **New Audit** dialog. On the **Locations** page or the **Kits** page, select one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates one audit covering the union of every asset across the selected locations or kits. Selecting all with a search or filter applied audits only the matching rows. This is the fastest way to start a multi-location or multi-kit audit, and it requires the same permission as the **New Audit** button — so anyone who can already create audits can use it.
 
 ### What happens to assets marked "Missing"?
 
