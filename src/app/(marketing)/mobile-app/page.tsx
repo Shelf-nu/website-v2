@@ -49,7 +49,7 @@ const mobileAppSchema = {
         "Optional native companion app (iPhone and Android) for the Shelf asset management platform. Scan QR codes, run live audits, view assets, manage custody, and check bookings in/out from your phone. Requires an existing Shelf account. The Shelf web app remains fully usable in any phone browser.",
     applicationCategory: "BusinessApplication",
     applicationSubCategory: "Asset Tracking",
-    operatingSystem: "iOS 16+, Android",
+    operatingSystem: "iOS 15.1+, Android",
     url: APP_STORE_URL,
     downloadUrl: APP_STORE_URL,
     softwareVersion: "1.0",
@@ -145,7 +145,7 @@ export default function MobileAppPage() {
                         </div>
 
                         <p className="text-xs text-muted-foreground/60 mt-4">
-                            On iPhone (iOS 16+) and Android. Sign in with the credentials you already use on shelf.nu.
+                            On iPhone (iOS 15.1+) and Android. Sign in with the credentials you already use on shelf.nu.
                         </p>
 
                         {/* Platform indicator — mobile only */}
