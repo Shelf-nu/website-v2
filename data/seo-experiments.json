@@ -1371,6 +1371,47 @@
         "engagement-batch-1"
       ],
       "learnings": ""
+    },
+    {
+      "id": "exp-035",
+      "page": "/knowledge-base/shelf-mobile-app",
+      "field": "internal-links",
+      "before": "Page had only 2 inbound internal links sitewide (a blog body link + an updates readMoreUrl) while /mobile-app held ~49 links across 26 files. seo.title unchanged (exp-027 winner, frozen).",
+      "after": "Added 6 varied-anchor editorial internal links to the page from high-traffic / topically-relevant surfaces (tools/barcode-scanner, solutions/mobile-asset-auditing, solutions/asset-tracking, features/audits, solutions/equipment-check-in, features/custody), taking inbound links 2 -> 8. No exact-match 'shelf app' anchors. Two edits also Android-corrected leftover iPhone-only copy. seo.title frozen.",
+      "hypothesis": "The KB page owns the 'shelf app' cluster (~520 clk / 30d on-page; head 'shelf app' 112 clk @ pos 8.0 / 0.5% CTR; variants 'shelf app android' pos 4.7, 'shelf app download' pos 5.8, 'shelf android' pos 6.2; PT timing queries 5-13% CTR) with no cannibalization from /mobile-app (~7 clk/30d). The proven ranker is starved of internal authority (2 inbound links) vs /mobile-app's 49. Routing a few varied-anchor editorial links to it should nudge the just-outside-top-5 qualified variants toward top-5. Head 'shelf app' is position + brand-collision capped and is treated as a canary that must NOT regress. Upside is uncertain (/mobile-app's 49 links never made it rank, so internal links alone don't force ranking) — this is a low-risk, measured test. Evaluate at the QUERY level via scripts/cluster-snapshot.mjs, NOT the page aggregate (which masked exp-028).",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 28,
+      "tags": [
+        "internal-links",
+        "knowledge-base",
+        "shelf-app-cluster",
+        "batch-4"
+      ],
+      "learnings": ""
     }
   ]
 }
