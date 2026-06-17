@@ -38,9 +38,12 @@ const MOBILE_LIVE_RULES = [
 ];
 
 // Code-only claims that feed Google + LLMs directly (structured data).
-// (The Android operatingSystem rule was retired when Shelf Companion shipped
-//  on Google Play — listing iOS + Android is now correct.)
-const SRC_ONLY_RULES = [];
+// Run on .ts/.tsx only — prose MDX can legitimately mention iOS without Android
+// (e.g. an iPhone-specific KB step), which would false-positive here.
+const SRC_ONLY_RULES = [
+  { re: /operatingSystem"?\s*:\s*"(?=[^"]*\biOS\b)(?![^"]*\bAndroid\b)[^"]*"/i,
+    why: "Shelf Companion is LIVE on Android (Google Play, 2026-06-09) — platform operatingSystem structured data must list Android alongside iOS (e.g. \"Web, iOS, Android\")." },
+];
 
 const TARGETS = [
   { roots: ["content", "public/llms.txt"], exts: [".mdx", ".md", ".txt"], rules: MOBILE_LIVE_RULES },
