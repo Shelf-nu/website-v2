@@ -36,7 +36,9 @@ async function gscClient() {
   if (!process.env.GSC_KEY_FILE || !process.env.GSC_SITE_URL) {
     throw new Error("GSC_KEY_FILE and GSC_SITE_URL must be set (.env.local).");
   }
-  const key = JSON.parse(readFileSync(process.env.GSC_KEY_FILE, "utf-8"));
+  // Resolve relative to the repo root, not the caller's cwd, so the script
+  // works regardless of which directory it's invoked from.
+  const key = JSON.parse(readFileSync(resolve(root, process.env.GSC_KEY_FILE), "utf-8"));
   const { google } = await import("googleapis");
   const auth = new google.auth.GoogleAuth({
     credentials: key,
@@ -58,19 +60,25 @@ async function pull() {
   const client = await gscClient();
   const end = new Date();
   const start = new Date(end.getTime() - DAYS * 864e5);
-  const res = await client.searchanalytics.query({
-    siteUrl: process.env.GSC_SITE_URL,
-    requestBody: {
-      startDate: ymd(start),
-      endDate: ymd(end),
-      dimensions: ["query"],
-      rowLimit: 250,
-      dataState: "all",
-      dimensionFilterGroups: [
-        { filters: [{ dimension: "page", operator: "equals", expression: PAGE }] },
-      ],
-    },
-  });
+  let res;
+  try {
+    res = await client.searchanalytics.query({
+      siteUrl: process.env.GSC_SITE_URL,
+      requestBody: {
+        startDate: ymd(start),
+        endDate: ymd(end),
+        dimensions: ["query"],
+        rowLimit: 250,
+        dataState: "all",
+        dimensionFilterGroups: [
+          { filters: [{ dimension: "page", operator: "equals", expression: PAGE }] },
+        ],
+      },
+    });
+  } catch (e) {
+    console.error(`GSC query failed: ${e?.errors?.[0]?.message || e.message}`);
+    process.exit(1);
+  }
   const rows = (res.data.rows || []).map((r) => ({
     q: r.keys[0],
     clicks: r.clicks,
@@ -104,7 +112,11 @@ function latestBaseline() {
     : null;
 }
 
-const mode = process.argv[2] === "result" ? "result" : "baseline";
+const mode = process.argv[2] ?? "baseline";
+if (mode !== "baseline" && mode !== "result") {
+  console.error(`Invalid mode: "${mode}". Usage: node scripts/cluster-snapshot.mjs [baseline|result]`);
+  process.exit(1);
+}
 mkdirSync(OUT_DIR, { recursive: true });
 const snap = await pull();
 const file = resolve(OUT_DIR, `${ymd(new Date())}-${mode}.json`);
