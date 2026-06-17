@@ -223,7 +223,7 @@ export default function BarcodeScannerPage() {
                                 <div className="space-y-2 md:col-span-2">
                                     <h3 className="font-semibold text-foreground">Can I use this for asset tracking?</h3>
                                     <p className="text-sm text-muted-foreground leading-relaxed">
-                                        Yes. This is the same scanning engine used inside Shelf, our asset management platform. For full asset tracking — inventory, custody, bookings, audit trails — <Link href="/pricing" className="text-orange-600 hover:underline">sign up for a free Shelf account</Link> and use our mobile and web apps to scan codes and update records in real time.
+                                        Yes. This is the same scanning engine used inside Shelf, our asset management platform. For full asset tracking — inventory, custody, bookings, audit trails — <Link href="/pricing" className="text-orange-600 hover:underline">sign up for a free Shelf account</Link> and use our <Link href="/knowledge-base/shelf-mobile-app" className="text-orange-600 hover:underline">mobile and web apps</Link> to scan codes and update records in real time.
                                     </p>
                                 </div>
                             </div>
