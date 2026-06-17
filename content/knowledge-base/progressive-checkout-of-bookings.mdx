@@ -1,0 +1,111 @@
+---
+title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
+description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
+category: "Bookings & Custody"
+date: "2026-06-17"
+updated: "2026-06-17"
+layout: "knowledge-base"
+---
+
+## What Is Progressive Checkout?
+
+Until now, a reserved booking was checked out all at once: one **Check Out** action flipped every item to "Checked out" together. That works when the whole kit list leaves at the same moment, but real handoffs are often staggered — a custodian collects half their gear in the morning and the rest after lunch, or items come out of the cage one shelf at a time as they're located.
+
+Progressive checkout is the checkout counterpart to [partial check-ins](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns). It lets you check out a booking's assets:
+
+- **One at a time**, by scanning each item as it's handed over, or
+- **In bulk**, by selecting specific rows and using the **Actions** menu,
+
+instead of only all at once. The booking becomes active (**Ongoing**) on the **first** item you check out, while everything you haven't reached yet stays reserved for the booking but available to verify.
+
+The system works like a library checkout desk where books leave the counter as each patron collects them — the loan is open from the first item, and you keep a running tally of what's gone out and what's still waiting.
+
+## How Progressive Checkout Works
+
+When a booking is **Reserved** and ready to go, the **Check Out** button now offers two ways to start:
+
+- **Check Out** — the traditional all-at-once action that checks out every remaining item together.
+- **Scan to check out** — opens a dedicated scanner so you can check out items individually as they're picked up.
+
+A separate **Scan to check out** entry button also appears on the booking page. Once every item has been checked out, that entry point disappears — there's nothing left to scan.
+
+{/* TODO: Screenshot needed: the booking Check Out dropdown showing "Check Out" and "Scan to check out" options (PR #2625) */}
+
+### The Booking Lifecycle Bar
+
+When a booking has any progressive checkout or check-in activity, the single check-in progress bar is replaced by a segmented **lifecycle bar** that shows the whole journey at a glance:
+
+- **Booked** (gray) — reserved items not yet checked out
+- **Checked out** (purple) — items currently in the custodian's hands
+- **Returned** (green) — items already checked back in
+
+The headline above the bar adapts to the phase you're in. While any items are still **Booked**, it reads **"Check-out progress"** and counts how many items have left (checked out + returned). Once nothing is left to check out, it switches to **"Check-in progress"** and counts how many have come back. A legend underneath shows the exact count in each bucket.
+
+{/* TODO: Screenshot needed: the segmented Booked / Checked out / Returned lifecycle bar on a booking (PR #2625) */}
+
+If your workspace counts [each kit as a single unit](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns#how-the-check-in-progress-bar-counts-kits), the lifecycle bar honors that setting too — the tooltip reads *"Kits count as one item."* Otherwise every asset is counted individually, with the tooltip *"All assets inside kits are counted individually."*
+
+### Checking Out by Scanning
+
+1. From the **Check Out** dropdown, choose **Scan to check out** (or click the **Scan to check out** entry button on the booking).
+2. The scanner opens with the booking's details and the lifecycle bar at the top.
+3. Scan each asset's QR code or barcode as it's handed over.
+4. Shelf validates every scan against the booking — it blocks items that aren't part of the booking, are already checked out, are in custody elsewhere, or break kit rules.
+5. The first successful scan moves the booking from **Reserved** to **Ongoing** (or **Overdue** if the end date has already passed), and schedules the check-in reminder.
+6. Keep scanning across as many sessions as you need. The lifecycle bar updates after each scan so you always know what's still booked.
+
+If you scan before the booking's scheduled start time, Shelf shows the same early-checkout warning as a normal check-out — you can cancel, adjust the start date to now, or proceed without changing the dates. See [Early Check-in and Check-out of Bookings](/knowledge-base/early-check-in-and-check-out-of-bookings).
+
+### Checking Out in Bulk
+
+When scanning isn't practical — damaged labels, or you're working from a pick list — check out specific items from the booking list instead:
+
+1. On the booking detail page, tick the checkboxes next to the assets being handed out.
+2. Open the **Actions** dropdown.
+3. Choose **Check out selected items**.
+4. Confirm. The selected assets are checked out, and the booking goes **Ongoing** if it wasn't already.
+
+Bulk checkout works with both individual assets and complete kits.
+
+### Tracking Who Took What, and When
+
+Once items start leaving, the booking's asset list adds **"Checked out on"** and **"Checked out by"** columns — mirroring the existing check-in columns — so you can see exactly when each item left and who processed it. (For kits, Shelf shows the kit-level status rather than per-asset dates.)
+
+## The Mixed State: Items That Never Left
+
+Progressive checkout introduces a legitimate new situation: an **Ongoing** booking where some items were never checked out at all — maybe a custodian decided they didn't need a particular lens after all.
+
+Shelf handles this honestly so your records and reports stay accurate:
+
+- **Progressive check-in** won't let you check in an item that was never checked out — there's nothing to return.
+- **Quick and full check-in** won't log or label never-checked-out items as "returned." They're skipped from the activity log, system notes, and the per-row **Returned** badge.
+- A **kit** only counts as returned once all of its assets were actually checked out — so a kit that went out incomplete won't be marked fully returned.
+
+Unlike check-in, progressive checkout **never auto-completes** the booking. Checking out the last item simply finishes the checkout phase; you still check the items back in when they return.
+
+## Best Practices
+
+**Use Scan to check out when:**
+
+- Gear leaves the cage in stages throughout the day
+- You want physical verification of each item as it's handed over
+- You're working a busy counter and items go out as people arrive
+
+**Use Bulk (Actions > Check out selected items) when:**
+
+- Labels are damaged or scanning isn't practical
+- You're working from a printed pick list
+- You want to hand out a specific subset in one click
+
+**Use the all-at-once Check Out when:**
+
+- The entire booking leaves together
+- You've already verified everything is present
+
+## Continue Learning
+
+- [Partial Check-ins: Efficiently Handle Incomplete Returns](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns) — the return counterpart to progressive checkout.
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings) — how a booking moves through its states.
+- [Early Check-in and Check-out of Bookings](/knowledge-base/early-check-in-and-check-out-of-bookings)
+
+**Need help getting started?** Contact the support team or [schedule a demo](/demo) to see progressive checkout in action with your workflow.

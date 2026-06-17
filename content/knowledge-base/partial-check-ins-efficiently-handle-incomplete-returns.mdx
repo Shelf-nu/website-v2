@@ -3,7 +3,7 @@ title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
 description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-11"
+updated: "2026-06-17"
 layout: "knowledge-base"
 ---
 
@@ -95,6 +95,8 @@ The system features context-aware status management that handles complex scenari
 
 ## How the Check-in Progress Bar Counts Kits
 
+Once a booking has any progressive checkout or check-in activity, the simple check-in bar becomes a segmented **Booked / Checked out / Returned** lifecycle bar — gray for items still reserved, purple for items checked out, and green for items returned. The headline reads **"Check-out progress"** while items are still being handed out, then switches to **"Check-in progress"** once everything has left and you're tracking returns. The kit-counting behavior below applies to this bar in either phase. See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings) for the checkout side.
+
 The **Check-in progress** bar on a booking shows how much of the booking has been returned. By default it counts at the **asset** level — every asset is one item, including each asset inside a kit. For a booking built mostly from kits, that can be confusing: a single 30-piece camera kit reads as 30 separate items to check in, so "2 / 32" can look alarming when really only one standalone item and part of one kit are still out.
 
 To make the progress bar match how people actually think about returns, a workspace can choose to count **each kit as a single unit** instead.
@@ -146,6 +148,7 @@ The toggle saves automatically — there's no separate Save button. Switch it ba
 
 Ready to dive deeper? Check out these related articles:
 
+- [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings) — the checkout counterpart: hand booking items out one at a time as they're picked up.
 - [Availability View Complete Guide](/knowledge-base/availability-view-complete-guide)
 - [Bookings: How to Export Booking Information](/knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out) — the booking CSV export now includes per-asset check-in status, so you can report on exactly what's still out.
 
