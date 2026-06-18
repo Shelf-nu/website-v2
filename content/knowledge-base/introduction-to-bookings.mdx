@@ -3,6 +3,7 @@ title: "Introduction to Bookings"
 description: "This guide explains the fundamental concepts of Shelf's Bookings feature, which enables users to reserve equipment for specific time periods while preventing double-bookings."
 category: "Bookings & Custody"
 date: "2026-03-30"
+updated: "2026-06-17"
 layout: "knowledge-base"
 ---
 
@@ -35,11 +36,13 @@ The booking is being configured. To proceed, you must fill in the Name, Start/En
 
 The booking is fully configured. Assets become unavailable for overlapping bookings. The booking period is in the future and hasn't been checked out yet -- assets retain an **Available** status. Administrators can still take or assign custody. Options include **Check-out**, **Delete**, or **Cancel**.
 
+You can check out the whole booking at once with **Check Out**, or hand items out as they're picked up using **Scan to check out** (or **Actions > Check out selected items**). See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings).
+
 
 ![2. Reserved](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df607_65d35f406742ee28457b7e19_Reserved.png)
 ### 3. Ongoing
 
-The **Check-out** action has been performed. Assets now have a **Checked out** status and are in the custodian's possession. Administrators cannot take or assign custody during this phase. A **Check-in** action moves the booking to **Completed**. You can also **Delete** or **Cancel**.
+The **Check-out** action has been performed. Assets now have a **Checked out** status and are in the custodian's possession. The booking becomes **Ongoing** as soon as the **first** item is checked out, so a booking can be Ongoing while some items are still being handed out — those still read **Available** until they leave. A segmented **Booked / Checked out / Returned** lifecycle bar tracks where everything is. Administrators cannot take or assign custody during this phase. A **Check-in** action moves the booking to **Completed**. You can also **Delete** or **Cancel**.
 
 
 ![3. Ongoing](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df61a_65d35f49a8a6b96788073a9a_Ongoing.png)
