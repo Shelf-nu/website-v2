@@ -345,6 +345,13 @@ export function organizationJsonLd(): Record<string, unknown> {
         sameAs: [
             "https://github.com/Shelf-nu/shelf.nu",
             "https://www.linkedin.com/company/shelf-inc/",
+            // Authoritative review + app-store profiles — strengthen entity
+            // resolution for AI/answer engines and help disambiguate the
+            // "shelf app" brand collision. All verified as the official Shelf listing.
+            "https://www.g2.com/products/shelf-asset-management/reviews",
+            "https://www.capterra.com/p/10018377/Shelf/",
+            "https://apps.apple.com/app/id6765639874",
+            "https://play.google.com/store/apps/details?id=com.shelf.companion",
         ],
         contactPoint: {
             "@type": "ContactPoint",
