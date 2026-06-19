@@ -145,7 +145,7 @@ export default function MobileAppPage() {
                         </div>
 
                         <p className="text-xs text-muted-foreground/60 mt-4">
-                            On iPhone (iOS 15.1+) and Android. Sign in with the credentials you already use on shelf.nu.
+                            On iPhone (iOS 15.1+) and Android. Sign in with the credentials you already use on shelf.nu — including SSO.
                         </p>
 
                         {/* Platform indicator — mobile only */}
