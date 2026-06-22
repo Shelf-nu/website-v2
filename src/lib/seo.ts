@@ -345,6 +345,9 @@ export function organizationJsonLd(): Record<string, unknown> {
         sameAs: [
             "https://github.com/Shelf-nu/shelf.nu",
             "https://www.linkedin.com/company/shelf-inc/",
+            // Canonical Wikidata entity — feeds Google's Knowledge Graph and
+            // disambiguates Shelf (shelf.nu) from the unrelated Shelf.io.
+            "https://www.wikidata.org/wiki/Q140313354",
             // Authoritative review + app-store profiles — strengthen entity
             // resolution for AI/answer engines and help disambiguate the
             // "shelf app" brand collision. All verified as the official Shelf listing.
