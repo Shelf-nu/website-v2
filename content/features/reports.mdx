@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/features/reports"
 date: "2026-04-30"
-updated: "2026-04-30"
+updated: "2026-06-22"
 seo:
   title: "Equipment Reports & Analytics | Shelf"
   description: "Run booking compliance, utilization, custody, and inventory reports in Shelf. Filter by category, location, and timeframe. Export to CSV or PDF."
@@ -28,7 +28,7 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 Reports turn the day-to-day data Shelf already collects — bookings, custody changes, asset activity — into answers. Pick a report, set a timeframe, optionally filter by category or location, and read the result. No SQL, no spreadsheet exports to wrangle, no separate BI tool.
 
-![Reports index in Shelf showing the grid of ten ready-to-run reports grouped by category — Bookings, Assets, and Custody](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp)
+![Reports index in Shelf showing the grid of ready-to-run reports grouped by category — Bookings, Assets, and Custody](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp)
 
 ---
 
@@ -40,6 +40,7 @@ Reports cover the parts of the workflow operations managers are usually asked ab
 
 - **Booking Compliance** — On-time checkouts, late returns, and overdue items across the timeframe you pick. Filter by status, custodian, or location.
 - **Top Booked Assets** — The most frequently booked assets and their utilization patterns. Useful for capacity planning and replacement decisions.
+- **Top Booked Kits** — The most frequently booked kits, ranked by how often each kit goes out. A kit is counted once per booking it appears in, so multiple assets from the same kit in one booking collapse to a single kit-booking. Useful when you bundle and lend equipment as kits and want to plan kit-level capacity.
 - **Monthly Booking Trends** — Booking volume over time with month-over-month comparisons.
 - **Overdue Items** — A live view of every booking that is currently past its end date. Filter by custodian or location to chase down what is missing right now.
 
@@ -69,7 +70,7 @@ Time-based reports include a timeframe picker with presets for the last 7 / 30 /
 
 ### Filter to the Slice You Care About
 
-Each report exposes filters that match how the underlying data is organized. Booking Compliance filters by status, custodian, and location. Top Booked Assets filters by category and location. The filters are saved in the URL, so you can bookmark or share a specific report view.
+Each report exposes filters that match how the underlying data is organized. Booking Compliance filters by status, custodian, and location. Top Booked Assets and Top Booked Kits filter by category and location. The filters are saved in the URL, so you can bookmark or share a specific report view.
 
 ### Read the Numbers
 
@@ -81,7 +82,7 @@ Reports combine **KPI cards** for headline numbers, **charts** for trends and di
 
 ### Export the Result
 
-Every report can be exported to **CSV** for further analysis in a spreadsheet or BI tool. Chart-based reports can additionally be downloaded as a **PDF** that captures the rendered visualization alongside the data — handy for board packs and customer reviews. Tabular-only reports (Asset Inventory, Custody Snapshot, Overdue Items, Idle Assets) export to CSV.
+Every report can be exported to **CSV** for further analysis in a spreadsheet or BI tool. Chart-based reports can additionally be downloaded as a **PDF** that captures the rendered visualization alongside the data — handy for board packs and customer reviews. Reports without a chart (Asset Inventory, Custody Snapshot, Overdue Items, Idle Assets, Top Booked Kits) export to CSV.
 
 ---
 
