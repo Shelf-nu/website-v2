@@ -350,6 +350,9 @@ export function organizationJsonLd(): Record<string, unknown> {
             // "shelf app" brand collision. All verified as the official Shelf listing.
             "https://www.g2.com/products/shelf-asset-management/reviews",
             "https://www.capterra.com/p/10018377/Shelf/",
+            "https://alternativeto.net/software/shelf-nu/",
+            "https://www.crunchbase.com/organization/shelf-a6f9",
+            "https://www.producthunt.com/products/shelf-7",
             "https://apps.apple.com/app/id6765639874",
             "https://play.google.com/store/apps/details?id=com.shelf.companion",
         ],
