@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-05-20"
+updated: "2026-06-23"
 layout: "knowledge-base"
 ---
 
@@ -38,7 +38,7 @@ This happens when you use the **Import** flow (which creates new assets) instead
 
 ## Import succeeds but data looks wrong
 
-- **Date formats**: Shelf expects dates as `YYYY-MM-DD` (e.g. `2026-04-17`). Other formats (`04/17/2026`, `17 Apr 2026`) may import as text instead of dates.
+- **Date custom fields** (`cf:…,type:date`): values must be in `YYYY-MM-DD` format (e.g. `2026-04-17`). Any other format — `04/17/2026`, `17-04-2026`, `17 Apr 2026` — and impossible calendar dates like `2026-02-31` now **stop the import with a clear error** so you can fix the value, rather than being accepted. (Previously a day-first dash format such as `03-04-2026` could be silently stored as a wrong date like `1908-10-16`; that no longer happens.) Reformat the column to `YYYY-MM-DD` and re-import.
 - **Number fields**: remove currency symbols and thousands separators. `12359.00` works; `$12,359.00` does not.
 - **Boolean fields**: custom-field booleans accept only `yes` or `no` (case-insensitive). `true`, `false`, `1`, `0` are silently skipped — the value will not be saved. For the `bookable` column, only the exact string `no` makes an asset non-bookable — `false`, blank, and `yes` all leave it bookable.
 
