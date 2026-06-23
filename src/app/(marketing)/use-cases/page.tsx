@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CTA } from "@/components/sections/cta";
-import { ArrowRight, Video, Monitor, Wrench, Layers } from "lucide-react";
+import { ArrowRight, Video, Monitor, Wrench, Layers, Gauge } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
@@ -21,6 +21,7 @@ const useCaseIcons: Record<string, LucideIcon> = {
     "av-equipment-management": Video,
     "it-asset-management": Monitor,
     "tool-tracking": Wrench,
+    "consultancy-equipment-management": Gauge,
 };
 
 export default function UseCasesIndexPage() {

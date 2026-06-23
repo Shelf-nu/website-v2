@@ -1412,6 +1412,130 @@
         "batch-4"
       ],
       "learnings": ""
+    },
+    {
+      "id": "exp-036",
+      "page": "/solutions/qr-code-asset-tracking",
+      "field": "new-page",
+      "before": "No page existed targeting this term/segment.",
+      "after": "New page created at /solutions/qr-code-asset-tracking (batch-5, GSC-informed). See hypothesis.",
+      "hypothesis": "GSC shows a ~7,000-impr/180d cluster — 'qr code asset tags' (2302, pos 22.1), 'qr code asset tracking' (1549, pos 22.7), 'asset tags with qr code' (1449, pos 17.1), 'qr code asset tag' (1059, pos 21.3), 'qr code asset tracking software' (937, pos 21.6) — that shelf.nu surfaces for at pos 17-22 with NO exact-match page (equipment-management/asset-tracking only mention QR). A dedicated, exact-match page should climb these from page 2/3 toward page 1. Highest-confidence item in the batch. Evaluate at query level, not just page aggregate.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 28,
+      "tags": [
+        "new-page",
+        "batch-5",
+        "qr-code",
+        "high-confidence"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-037",
+      "page": "/solutions/calibration-tracking",
+      "field": "new-page",
+      "before": "No page existed targeting this term/segment.",
+      "after": "New page created at /solutions/calibration-tracking (batch-5, GSC-informed). See hypothesis.",
+      "hypothesis": "Category bet, NOT GSC-proven: 'calibrat' has only ~27 non-branded impr/180d for us and the head terms ('calibration tracking software', 'calibration management software') don't surface shelf.nu at all (no page). Calibration is a real category with dedicated competitors; this page makes an honest 'tracking, not metrology suite' claim and also serves the high-value calibrated-instrument segment (origin: an acoustic-consultancy demo lead). Also seeded with inbound links from engineering, maintenance-tracking, asset-reminders. Measure ramp from ~0; treat as a 90-day bet, re-evaluate demand.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 28,
+      "tags": [
+        "new-page",
+        "batch-5",
+        "calibration",
+        "category-bet"
+      ],
+      "learnings": ""
+    },
+    {
+      "id": "exp-038",
+      "page": "/use-cases/consultancy-equipment-management",
+      "field": "new-page",
+      "before": "No page existed targeting this term/segment.",
+      "after": "New page created at /use-cases/consultancy-equipment-management (batch-5, GSC-informed). See hypothesis.",
+      "hypothesis": "Conversion + long-tail segment page mirroring the source lead (consultancy: shared, calibrated instruments across 3 offices, booking required). Low head-term volume ('instrument asset management software' 14 impr, 'consult' equipment-checkout AI query 86 impr) — value is conversion of the exact ICP and AEO/long-tail capture, not head-term SEO. Tells the booking + multi-office + calibration intersection in one narrative. Measure assisted demo conversions + long-tail impressions.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "startDate": null,
+      "deployedAt": null,
+      "evaluateAfterDays": 28,
+      "tags": [
+        "new-page",
+        "batch-5",
+        "use-case",
+        "consultancy",
+        "conversion"
+      ],
+      "learnings": ""
     }
   ]
 }
