@@ -3,7 +3,32 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Enterprise or Organization plan only."
 category: "Workspaces"
 date: "2026-03-26"
+updated: "2026-06-23"
 layout: "knowledge-base"
+---
+
+## Before You Start: Prerequisites
+
+SSO changes how accounts on your domain are created and managed, so a few things must be in place **before** the connection is activated. Most setup confusion comes from skipping these — please read them carefully.
+
+### 1. You need one non-SSO account to own the workspace
+
+Shelf SSO requires **one non-SSO user to own the workspace**. This account's only job is to own the workspace and configure the SSO settings (the group-to-role mapping); it is not used for daily work. Owners typically sign in only during the initial setup or when adjusting the configuration later.
+
+> **Important:** This account **must be created before SSO is activated**. Once your domain is configured as an SSO domain, no more non-SSO accounts can be created on that domain. If you don't have this owner account ready beforehand, you will be locked out of administrative changes.
+
+### 2. Decide the fate of any existing workspace
+
+If you already have a workspace that was used for testing or trials (for example, one created with a few standard accounts), decide whether you want to **keep it together with all the assets inside it**, or start fresh. Let your Shelf contact know so the right workspace is connected to SSO.
+
+### 3. Remove existing standard accounts on the SSO domain
+
+Any existing **standard (non-SSO) accounts** that use the SSO domain — for example `jane@yourdomain.com` and `joe@yourdomain.com` — must be removed so that new accounts can be created through SSO login. Once an email is linked to a standard account it cannot log in via SSO, and once the domain is an SSO domain no new standard accounts can be created on it. Share the list of these accounts with your Shelf contact, who will remove them at the right point in the setup.
+
+### 4. Plan your group-to-role mapping
+
+Shelf decides which role a user gets by matching the groups they belong to in your identity provider. You map those groups to Shelf roles (**Administrator**, **Self service**, **Base**) in the workspace settings. You only need to map the **roles you actually use** — a single group mapping is enough for SSO to work. You do not need to create a group for every role.
+
 ---
 
 ## Set Up SSO with Google Workspace
@@ -77,16 +102,19 @@ In the meantime, you can continue with the next steps that will show you how to 
 
 ### Step 8: Create Groups and Assign Users
 
-In order to manage which users get access to which workspace and with what role, Shelf uses groups for the mapping. For each workspace you will have to create 2 groups, each one representing a different role in Shelf:
+In order to manage which users get access to which workspace and with what role, Shelf uses groups for the mapping. Shelf has three roles you can map a group to:
 
 - Admin group
 - Self service group
+- Base user group
+
+> **You only need to create a group for the roles you actually use** — mapping a single group is enough for SSO to work. For example, if everyone on your team should have the same role, one group is all you need. Create additional groups only if you want different users to get different roles.
 
 #### 8.1: Create Your Groups in Google Workspace
 
 First step is to create the groups in the Google Workspace. Inside your admin panel, navigate to **Directory > Groups > Create group**.
 
-Add a name, email and make sure the group is labeled as security. Optionally fill in the other fields as well. Make sure to create 2 groups for each workspace, one for Admins and one for Self service users.
+Add a name, email and make sure the group is labeled as security. Optionally fill in the other fields as well. Create one group per Shelf role you want to use (you need at least one).
 
 > **Note:** Due to how Google Workspaces works, it returns group names instead of IDs when the user tries to login. We recommend using lower cased group names without spaces, to avoid mismatch. This is not required, but can ensure a better integration.
 
@@ -111,11 +139,11 @@ Make sure to add all groups that you want to access Shelf. The **App attribute**
 
 ### Step 9: Map Google Workspace Groups Inside Shelf
 
-Once you have the groups ready, you need to add their names in the workspace settings inside Shelf. If you have multiple workspaces, you will need to map each one.
+Once you have the groups ready, you need to add their **names** in the workspace settings inside Shelf. If you have multiple workspaces, you will need to map each one.
 
 
 ![8.1: Create Your Groups in Google Workspace](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de30_6672da5488296a3d362dcb7a_Create%2520Your%2520Groups%2520in%2520Google%2520Workspace.jpeg)
-Go to the workspace settings and place the name of the ADMIN and SELF SERVICE groups.
+Go to the workspace settings and place the **name** of each group next to its matching role (Administrator, Self service, Base). You only need to fill in the roles you use — leave the others blank, but **at least one group must be mapped**.
 
 > **Important:** Those fields are case sensitive. The name should be placed exactly as the group name is in Google Workspace.
 
