@@ -1,0 +1,12 @@
+---
+title: "Stricter Date Validation on CSV Import"
+description: "Date custom fields imported via CSV are now strictly validated — non-ISO and impossible dates fail loudly with a clear error instead of being silently stored as the wrong date."
+date: "2026-06-23"
+image: "/images/updates/better-csv-imports.jpg"
+readMoreUrl: "/knowledge-base/troubleshooting-csv-import-issues"
+layout: "update"
+---
+
+When importing assets via CSV, **date custom fields** (`cf:…,type:date`) are now strictly validated against the `YYYY-MM-DD` format. Previously, a day-first dash format such as `03-04-2026` could be silently stored as a completely wrong date (like `1908-10-16`), and impossible dates such as `2026-02-31` were quietly rolled over — corrupting sorting, filtering, reports, and reminders without any warning.
+
+Now any value that isn't a valid `YYYY-MM-DD` date **stops the import with a clear error**, so you can correct the column and re-import with confidence that your dates are stored exactly as intended. Valid ISO dates continue to import exactly as before.
