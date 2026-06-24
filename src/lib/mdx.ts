@@ -23,7 +23,7 @@ function calculateReadingTime(content: string): string {
     return `${minutes} min`;
 }
 
-export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'concepts' | 'use-cases' | 'solutions' | 'industries' | 'alternatives' | 'glossary' | 'updates' | 'knowledge-base';
+export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'concepts' | 'use-cases' | 'solutions' | 'industries' | 'alternatives' | 'glossary' | 'updates' | 'knowledge-base' | 'reports';
 
 export interface MDXContent {
     slug: string;
@@ -76,8 +76,8 @@ export function getContentBySlug(type: ContentType, slug: string): MDXContent {
         ...data,
     } as Frontmatter;
 
-    // Auto-calculate reading time for blog posts if not explicitly set
-    if (type === 'blog' && !data.readingTime) {
+    // Auto-calculate reading time for blog posts and reports if not explicitly set
+    if ((type === 'blog' || type === 'reports') && !data.readingTime) {
         frontmatter.readingTime = calculateReadingTime(content);
     }
 

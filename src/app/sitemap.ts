@@ -55,6 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/use-cases", priority: 0.7 },
         { path: "/concepts", priority: 0.5 },
         { path: "/alternatives", priority: 0.7 },
+        { path: "/reports", priority: 0.8 },
         // Legal pages
         { path: "/terms", priority: 0.3 },
         { path: "/privacy", priority: 0.3 },
@@ -92,6 +93,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // so they are excluded from the sitemap. The /updates index page is still
     // included in staticRoutes above.
     const knowledgeBase = contentEntries("knowledge-base", "/knowledge-base", { changeFrequency: "monthly", priority: 0.6 });
+    // Annual industry reports — high priority because they are evergreen,
+    // citable, and Wikipedia/journalist-discoverable. Updated rarely after
+    // publication; lastModified is set per-entry from frontmatter date.
+    const reports = contentEntries("reports", "/reports", { changeFrequency: "yearly", priority: 0.9 });
 
     return [
         ...staticRoutes,
@@ -105,5 +110,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...concepts,
         ...glossary,
         ...knowledgeBase,
+        ...reports,
     ];
 }
