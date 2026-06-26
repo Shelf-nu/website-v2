@@ -1,16 +1,16 @@
 ---
 title: "Getting Started with Shelf Companion for iPhone"
-description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone. Covers QR scanning, audits, custody, bookings, and multi-workspace switching."
+description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone. Covers QR scanning, kits, audits, custody, bookings, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-06-17"
+updated: "2026-06-26"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
   description: "How to download Shelf Companion from the App Store, sign in with your existing Shelf account, and start scanning assets, running audits, and managing custody from iPhone."
 ---
 
-Shelf Companion is the free iOS app for your Shelf workspace. It puts the field-side workflows of Shelf — scanning, audits, custody, bookings — directly on your iPhone. The web platform stays your source of truth for workspace setup, configuration, billing, reporting, and admin work.
+Shelf Companion is the free iOS app for your Shelf workspace. It puts the field-side workflows of Shelf — scanning, kits, audits, custody, bookings — directly on your iPhone. The web platform stays your source of truth for workspace setup, configuration, billing, reporting, and admin work.
 
 This guide walks through downloading the app, signing in, and using each of the core flows.
 
@@ -51,6 +51,10 @@ Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR 
 - If the code is linked to an asset in your workspace, the app jumps straight to the asset detail screen.
 - If the code exists but is not yet linked (for example, a printed sticker that has not been assigned, or a code from a deleted asset), the app shows an informational message. Linking a code to an asset (or creating a new asset for an unlinked code) happens in the [web app](https://app.shelf.nu) today.
 
+**Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, out of reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners, with no add-on required.
+
+**Scanning several items for one action.** When you scan a run of assets for a bulk action (assign or release custody, or update location), the app gathers them into a list. If any scanned item can't take that action, the app shows a per-item **blocker** card you clear with one tap, and keeps the submit button disabled until every item is eligible. This mirrors the web scanner, so you never push a batch that would half-fail.
+
 ## 5. View Asset Detail
 
 The asset detail screen shows the asset image, current status, category, location, who currently has custody, and recent activity history. From here you can:
@@ -61,7 +65,18 @@ The asset detail screen shows the asset image, current status, category, locatio
 
 Workspace permissions apply: what you can edit depends on your role.
 
-## 6. Run a Live Audit From the Floor
+## 6. Browse and Act on Kits
+
+[Kits](/knowledge-base/kits) group assets that travel together (a camera body with its lenses, batteries, and charger, for example). The app gives kits their own screens alongside assets:
+
+- On the Assets tab, use the **Assets | Kits** switcher to list your kits. Each row shows the kit's category and location, and you can filter to **My custody**.
+- Tap a kit to open its detail screen: hero image (tap to zoom), the kit's QR card, and full details (category, location, value, and who currently has custody).
+- From kit detail you can **Assign** or **Release custody** of the whole kit and **Move location**, the same inline actions you use on an asset.
+- Scanning a kit's QR jumps straight to its detail screen, and you can scan kits into a batch action just like assets. From an asset that belongs to a kit, tap through to open the kit.
+
+Workspace permissions apply here too: the actions you see match your role.
+
+## 7. Run a Live Audit From the Floor
 
 If your workspace has the [Audits add-on](/features/audits) enabled and you have been assigned an audit, you can run it from the app:
 
@@ -74,17 +89,21 @@ If your workspace has the [Audits add-on](/features/audits) enabled and you have
 
 If your workspace does not have the Audits add-on enabled, the app shows an informational "Contact your admin" message rather than a paywall or upgrade link.
 
-## 7. Booking Check-In and Check-Out
+## 8. Bookings: Find, Build, Check Out and Check In
 
-For workspaces using [Bookings](/features/bookings):
+For workspaces using [Bookings](/features/bookings), the app now handles the field side of a booking end to end.
 
-- Open a booking from the bookings list.
-- Use the in-app scanner to check items out at the start of the booking (the equipment leaves the gear room) and check them back in at the end (when items return).
-- Roles apply: self-service members can check out their own bookings; admins and owners can check out on behalf of others.
+**Find the right booking.** The bookings list has individual **Reserved**, **Ongoing**, and **Overdue** status filters, keyword search, and a sort menu (by start date, due date, name, or recently created). Each row shows a live countdown, such as "Starts in 2d", "Due in 5h", or "Overdue by 3d", so what needs attention stands out at a glance.
 
-Creating, editing, and configuring bookings still happens in the web app today.
+**Build out a booking by scanning.** Open a draft booking and tap **Scan to Add Assets**, then scan the assets and kits you're packing. Kits expand to their member assets automatically. You still create the booking itself (dates, custodian, name) in the web app; the app is where you fill it with gear from the floor.
 
-## 8. Custody Handoffs
+**Check out one item at a time or in bulk.** You can check out a selected subset of a booking's assets rather than all at once (progressive check-out). A lifecycle **progress bar** tracks each item through Reserved, Checked out, and Returned, so a half-packed booking reads accurately.
+
+**Check items back in.** Use the in-app scanner to check items in as they return. Scan-to-check-in only accepts assets that are actually in this booking, expands kit codes to their in-booking members, and won't double-return an item that is already back.
+
+Roles apply: self-service members act on their own bookings; admins and owners act on behalf of others.
+
+## 9. Custody Handoffs
 
 For day-to-day custody handovers outside a formal booking flow:
 
@@ -105,6 +124,7 @@ The app respects whether your workspace has an add-on enabled:
 
 For clarity — these are real, intentional 1.0 gaps. They are on our radar, but they are not in the app today:
 
+- **Creating, editing, or rescheduling a booking from the app.** You can build a booking by scanning gear into it, check items out, and check them back in on mobile, but setting the booking up (dates, custodian, details) is still web-only. Mobile booking-create routes are tracked separately.
 - **Adding notes or photos to an audit scan from iPhone.** Web only today; on the iOS roadmap.
 - **GPS / last-known-location capture on scan.** Deliberate 1.1 item.
 - **Universal Links / iOS Camera deep-linking into Shelf Companion.** A 1.x fast-follow.
@@ -115,7 +135,7 @@ For clarity — these are real, intentional 1.0 gaps. They are on our radar, but
 - [Shelf Companion overview](/mobile-app) — product page with screenshots, features, and the App Store link.
 - [Getting started with Shelf](/knowledge-base/getting-started) — if you are still setting up your workspace, start here first.
 - [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) — you'll want labels on your assets before scanning at scale.
-- [Bookings overview](/features/bookings) and [Audits overview](/features/audits) — read up on the workflows you'll be running from the floor.
+- [Bookings overview](/features/bookings), [Kits overview](/features/kits), and [Audits overview](/features/audits) — read up on the workflows you'll be running from the floor.
 
 ## Questions or Issues?
 
