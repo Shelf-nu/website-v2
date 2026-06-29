@@ -12,6 +12,11 @@ import { Container } from "@/components/ui/container";
 /*  To change the window, edit only these constants.                   */
 /* ------------------------------------------------------------------ */
 
+// Master kill-switch for the maintenance notice. Flip to `true` and update
+// the window constants below to schedule the next maintenance banner; the
+// rest of the maintenance UI is kept in place for that reason.
+const MAINTENANCE_ENABLED = false;
+
 const MAINTENANCE_START = Date.UTC(2026, 5, 29, 6, 0, 0); // 09:00 EEST
 const MAINTENANCE_END = Date.UTC(2026, 5, 29, 10, 0, 0); // 13:00 EEST (communicated end)
 // Keep the banner up a little past the stated end as a safety margin
@@ -52,6 +57,7 @@ function subscribe(cb: () => void) {
 }
 
 function getSnapshot(): Phase {
+    if (!MAINTENANCE_ENABLED) return "none";
     try {
         if (localStorage.getItem(DISMISS_KEY) === "1") return "none";
     } catch {
