@@ -7,7 +7,7 @@ updated: "2026-06-26"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
-  description: "How to download Shelf Companion from the App Store, sign in with your existing Shelf account, and start scanning assets, running audits, and managing custody from iPhone."
+  description: "How to download Shelf Companion from the App Store, sign in with your existing Shelf account, and start scanning assets, building kits and bookings, running audits, and managing custody from iPhone."
 ---
 
 Shelf Companion is the free iOS app for your Shelf workspace. It puts the field-side workflows of Shelf — scanning, kits, audits, custody, bookings — directly on your iPhone. The web platform stays your source of truth for workspace setup, configuration, billing, reporting, and admin work.
@@ -51,7 +51,7 @@ Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR 
 - If the code is linked to an asset in your workspace, the app jumps straight to the asset detail screen.
 - If the code exists but is not yet linked (for example, a printed sticker that has not been assigned, or a code from a deleted asset), the app shows an informational message. Linking a code to an asset (or creating a new asset for an unlinked code) happens in the [web app](https://app.shelf.nu) today.
 
-**Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, out of reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners, with no add-on required.
+**Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, hard to reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners; the lookup itself needs no add-on (running a full audit still requires the [Audits add-on](/features/audits)).
 
 **Scanning several items for one action.** When you scan a run of assets for a bulk action (assign or release custody, or update location), the app gathers them into a list. If any scanned item can't take that action, the app shows a per-item **blocker** card you clear with one tap, and keeps the submit button disabled until every item is eligible. This mirrors the web scanner, so you never push a batch that would half-fail.
 
@@ -124,7 +124,7 @@ The app respects whether your workspace has an add-on enabled:
 
 For clarity — these are real, intentional 1.0 gaps. They are on our radar, but they are not in the app today:
 
-- **Creating, editing, or rescheduling a booking from the app.** You can build a booking by scanning gear into it, check items out, and check them back in on mobile, but setting the booking up (dates, custodian, details) is still web-only. Mobile booking-create routes are tracked separately.
+- **Creating, editing, or rescheduling a booking from the app.** You can build a booking by scanning gear into it, check items out, and check them back in on mobile, but setting the booking up (dates, custodian, details) is still web-only.
 - **Adding notes or photos to an audit scan from iPhone.** Web only today; on the iOS roadmap.
 - **GPS / last-known-location capture on scan.** Deliberate 1.1 item.
 - **Universal Links / iOS Camera deep-linking into Shelf Companion.** A 1.x fast-follow.
