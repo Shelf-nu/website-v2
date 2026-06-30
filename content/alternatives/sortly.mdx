@@ -43,6 +43,7 @@ Shelf focuses on what happens when equipment moves between people. Instead of or
 | **Equipment booking** | Not available | Built-in with conflict prevention |
 | **Custody tracking** | Limited — folder-based assignment | Full custody chain with history |
 | **Kit management** | No kit grouping | Kit-aware booking and return verification |
+| **Consumables / quantity tracking** | Photo-and-count inventory with low-stock and expiration alerts | [Track consumables by quantity](/features/consumables-tracking) with units of measure, min-quantity alerts, and Used-up/Returnable types — on every plan |
 | **Integrations** | QuickBooks Online (Premium+); limited otherwise | Open source codebase; CSV import/export |
 | **Open source** | No — proprietary SaaS | Yes — full codebase available |
 | **Mobile experience** | Native iOS/Android app | Native iOS & Android app (Shelf Companion) + mobile web |
@@ -101,7 +102,17 @@ See: [Kits](/features/kits)
 
 ---
 
-### 5. Integration and Extensibility
+### 5. One Model for Trackable Gear and Consumables
+
+Sortly is count-and-photo centric: it catalogs items and watches stock levels, with low-stock and expiration alerts that suit consumable supplies. But the same workspace does not turn those items into bookable, custody-tracked equipment.
+
+Shelf keeps both in one place. The same workspace that handles individually tracked equipment can also [track consumables by quantity](/features/consumables-tracking) — set a unit of measure (pcs, boxes, liters), a min-quantity threshold that triggers a low-stock email, and choose whether each item is "Used up" (consumed) or "Returnable" (returned with a consumption report at check-in). Available quantity is computed live as you assign, reserve, and restock. Quantity-tracked stock can be reserved in bookings and dropped into kits, so cables, batteries, and supplies live alongside the gear they support instead of in a separate count list.
+
+See: [Consumables Tracking](/features/consumables-tracking)
+
+---
+
+### 6. Integration and Extensibility
 
 Sortly's integration ecosystem is limited. QuickBooks Online integration is available only on the Premium tier and above, and reviewers on Capterra and Software Advice have consistently noted the lack of third-party integrations as a significant gap. API and webhook access require the Enterprise plan.
 
@@ -109,7 +120,7 @@ Shelf is open source, which means teams can inspect the codebase, build custom i
 
 ---
 
-### 6. Multi-Department Workspaces
+### 7. Multi-Department Workspaces
 
 Sortly organizes everything into a single inventory with folder-based separation and user roles. This works for a single team but becomes difficult when IT, facilities, a media department, and an education program all need to manage their own equipment within the same organization. Folder structures get deep, permissions get complex, and cross-department clutter is hard to avoid.
 
@@ -121,7 +132,7 @@ See: [Workspaces](/features/workspaces)
 
 ---
 
-### 7. QR-First Field Operations
+### 8. QR-First Field Operations
 
 Sortly includes barcode and QR code scanning for looking up items and performing inventory counts. However, QR codes in Sortly serve as a search shortcut—scan to find the item record—rather than as a workflow trigger.
 

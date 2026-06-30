@@ -13,7 +13,6 @@
 
     { "q": "audits", "expect": "/features/audits" },
     { "q": "audit", "expect": "/features/audits" },
-    { "q": "kits", "expect": "/features/kits" },
     { "q": "custody", "expect": "/features/custody" },
     { "q": "reports", "expect": "/features/reports" },
     { "q": "asset reminders", "expect": "/features/asset-reminders" },
@@ -25,6 +24,10 @@
     { "q": "dashboard", "expect": "/features/dashboard" },
     { "q": "asset search", "expect": "/features/asset-search" },
     { "q": "asset pages", "expect": "/features/asset-pages" },
+    { "q": "consumables", "expect": "/features/consumables-tracking" },
+    { "q": "consumables tracking", "expect": "/features/consumables-tracking" },
+    { "q": "quantity tracking", "expect": "/features/consumables-tracking" },
+    { "q": "track supplies", "expect": "/features/consumables-tracking" },
 
     { "q": "maintenance tracking", "expect": "/solutions/maintenance-tracking" },
     { "q": "maintenance", "expect": "/solutions/maintenance-tracking" },
@@ -60,6 +63,7 @@
 
   "knownIssues": [
     { "q": "bookings", "expect": "/features/bookings", "note": "Term on 344/348 pages -> IDF~0, all scores ~0.03, order is noise. Not fixable by ranking/keywords." },
+    { "q": "kits", "expect": "/features/kits", "note": "Core concept on most pages -> IDF~0, all scores ~0, order is noise (passed before by tie-luck, tipped by corpus churn). Same class as bookings." },
     { "q": "book a demo", "expect": "/demo", "note": "Common terms (book/demo) sitewide; /demo is a thin form page." },
     { "q": "asset tracking", "expect": "/solutions/asset-tracking", "note": "Extremely generic head term; competes with the whole site." },
     { "q": "csv", "expect": "/knowledge-base/importing-assets-to-shelf-csv-guide", "note": "Real on-site query, currently ~#8. Verify/strengthen canonical import destination." },

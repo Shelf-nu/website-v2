@@ -58,6 +58,7 @@ Shelf takes a different approach entirely. Instead of per-admin licensing, Shelf
 | **Pricing** | From $100/admin/month (Essentials) | Free (self-hosted) or managed cloud |
 | **Pricing model** | Per-admin license, unlimited assets | Flat pricing, unlimited users |
 | **Kit management** | Yes — bundle equipment into kits | Yes — kit-aware booking with return verification |
+| **Consumables / quantity tracking** | Yes — bulk items, with units of measure and min-levels via custom fields | Yes — [native quantity fields](/features/consumables-tracking): unit of measure, min-quantity alerts, Used-up/Returnable types |
 | **Equipment booking** | Yes — reservation and check-out workflows | Yes — with automatic conflict prevention |
 | **GPS tracking** | Yes (higher tiers) | No — QR-first, no hardware needed |
 | **Maintenance scheduling** | Yes — repair tracking and service schedules | No |
@@ -105,7 +106,17 @@ See: [Kits](/features/kits)
 
 ---
 
-### 4. Mobile-First Experience
+### 4. Native Consumables Fields vs Custom-Field Workarounds
+
+Both platforms handle bulk items, and Cheqroom can model a unit of measure and a minimum stock level by configuring custom fields on those items. That works, but it relies on fields you build and maintain yourself.
+
+Shelf treats this as first-class. When you create an asset you choose its tracking method — individually tracked, or [tracked by quantity](/features/consumables-tracking) for a pool of identical units sharing one QR. Quantity-tracked items have native fields for total quantity, unit of measure (pcs, boxes, liters), a min-quantity low-stock threshold, and a consumption type: "Used up" for items that are consumed, or "Returnable" for items returned with a consumption report at check-in. When stock drops to the threshold, a low-stock email goes to the workspace owner. No custom-field scaffolding to set up or keep consistent across your inventory.
+
+See: [Consumables Tracking](/features/consumables-tracking)
+
+---
+
+### 5. Mobile-First Experience
 
 Cheqroom offers a dedicated mobile app for Android and iOS, which is a reasonable approach. However, G2 and Capterra reviewers consistently note feature gaps between the app and the web interface, with management functions unavailable on mobile. For teams doing equipment hand-offs on loading docks or in gear rooms, those gaps create friction.
 
@@ -117,7 +128,7 @@ See: [Asset Search](/features/asset-search) · [Shelf Companion](/mobile-app)
 
 ---
 
-### 5. Multi-Department Workspaces
+### 6. Multi-Department Workspaces
 
 Cheqroom operates on a single-workspace-per-subscription model. For a standalone media department or a single equipment room, this works well. But organizations where IT, facilities, and media production all need to manage their own equipment independently face challenges: either everyone shares one crowded inventory, or you pay for separate subscriptions.
 
@@ -129,7 +140,7 @@ See: [Workspaces](/features/workspaces)
 
 ---
 
-### 6. Search That Forgives Mistakes
+### 7. Search That Forgives Mistakes
 
 Cheqroom reviewers on Capterra specifically call out the search functionality as a pain point. The search is spelling and spacing sensitive and will not surface items if a user does not know exactly how the item name was entered into the system. For busy equipment rooms where students or freelancers need to find gear quickly, this creates unnecessary friction.
 
@@ -139,7 +150,7 @@ See: [Asset Search](/features/asset-search)
 
 ---
 
-### 7. Booking-Centric Notification Management
+### 8. Booking-Centric Notification Management
 
 Both Cheqroom and Shelf let admins configure who receives booking notifications. Cheqroom's approach is rule-based: administrators go to **Settings > Notifications** and build notification rules — choose a trigger (new reservation, check-out due, overdue, etc.), pick the delivery channel (Email, SMS, Slack, Webhooks), and specify recipients. It is a powerful, flexible system, particularly well-suited for teams that need SMS alerts or Slack routing.
 
@@ -153,7 +164,7 @@ See: [Bookings](/features/bookings)
 
 ---
 
-### 8. Open Source and Data Ownership
+### 9. Open Source and Data Ownership
 
 Cheqroom is a proprietary SaaS platform. Your data lives on their infrastructure, your workflows depend on their product decisions, and if pricing changes or the product pivots, your options are limited to what they offer.
 

@@ -21,6 +21,7 @@ import {
     Code2,
     Layers,
     Box,
+    Boxes,
     RefreshCw,
     Smartphone,
     ArrowRight,
@@ -305,6 +306,15 @@ export function Navbar() {
                                                             >
                                                                 Bundle items for
                                                                 quick checkout.
+                                                            </ListItem>
+                                                            <ListItem
+                                                                href="/features/consumables-tracking"
+                                                                title="Consumables Tracking"
+                                                                icon={Boxes}
+                                                            >
+                                                                Track supplies by
+                                                                quantity with
+                                                                low-stock alerts.
                                                             </ListItem>
                                                             <ListItem
                                                                 href="/features/asset-search"
@@ -685,6 +695,9 @@ export function Navbar() {
                                     </MobileLink>
                                     <MobileLink href="/features/kits">
                                         Kits
+                                    </MobileLink>
+                                    <MobileLink href="/features/consumables-tracking">
+                                        Consumables Tracking
                                     </MobileLink>
                                     <MobileLink href="/features/asset-search">
                                         Asset Search

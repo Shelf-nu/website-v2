@@ -42,6 +42,7 @@ Shelf approaches asset management as an operational workflow system. Instead of 
 | **Cloud pricing** | From $39.99/month | Managed cloud available |
 | **Software license tracking** | Yes — seats, expiration, keys | No |
 | **Equipment booking** | No native booking system | Built-in with conflict prevention |
+| **Consumables / quantity tracking** | Separate Consumables/Accessories types, one-way only, passive min-amount flag | [Per-asset quantity tracking](/features/consumables-tracking): Used-up or Returnable, units of measure, active min-quantity email + in-app alerts |
 | **Kit management** | Individual asset tracking only | Kit-aware booking and verification |
 | **LDAP/SAML/SSO** | Yes — Active Directory, SAML 2.0 | SSO available |
 | **Mobile experience** | Responsive web UI, no native app | Native iOS & Android app (Shelf Companion) + mobile web |
@@ -102,7 +103,17 @@ See: [Kits](/features/kits)
 
 ---
 
-### 5. QR-First Operations Without Server Complexity
+### 5. Unified Consumables Model vs Separate Entity Types
+
+Snipe-IT models consumables as their own thing. Consumables, Accessories, and Components are distinct entity types you pick up front, each with a minimum-amount field that surfaces as a passive low-stock flag in the interface, and consumables are strictly one-way — once issued, they cannot be checked back in.
+
+Shelf keeps everything in one unified asset record. When you create an asset you choose its tracking method — individually tracked, or [tracked by quantity](/features/consumables-tracking) for a pool of identical units. Quantity-tracked items get a unit of measure, a min-quantity threshold, and a per-item consumption type: "Used up" for items that are consumed, or "Returnable" for items returned with a consumption report at check-in. You decide that choice per item rather than committing the whole record to a one-way entity type. And the low-stock signal is active, not just visual: when available drops to the threshold, Shelf emails the workspace owner and posts an in-app notification to whoever made the change. Quantity-tracked stock can also be reserved in bookings and included in kits — capabilities Snipe-IT's registry model does not offer.
+
+See: [Consumables Tracking](/features/consumables-tracking)
+
+---
+
+### 6. QR-First Operations Without Server Complexity
 
 Self-hosting Snipe-IT requires setting up a PHP/MySQL stack, configuring web servers, managing database backups, and handling updates. Reviewers consistently note that the initial setup is demanding for teams without dedicated sysadmin resources. Cloud hosting removes this burden but starts at $39.99/month.
 
@@ -114,7 +125,7 @@ See: [Location Tracking](/features/location-tracking)
 
 ---
 
-### 6. Multi-Team Workspaces
+### 7. Multi-Team Workspaces
 
 Snipe-IT operates as a single inventory instance with role-based permissions. This works for a single IT department managing one equipment pool. When multiple departments need to manage their own equipment independently, administrators must carefully configure permissions to prevent cross-department clutter and accidental changes.
 
@@ -126,7 +137,7 @@ See: [Workspaces](/features/workspaces)
 
 ---
 
-### 7. Reporting and Analytics
+### 8. Reporting and Analytics
 
 Snipe-IT includes basic reporting: asset lists, audit logs, activity histories, and depreciation reports. Reviewers on G2 and Capterra consistently cite limited reporting and analytics as a weakness, noting the absence of customizable dashboards and advanced analysis tools.
 
