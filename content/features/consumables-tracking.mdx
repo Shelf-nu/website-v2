@@ -87,7 +87,7 @@ Alerts only fire when a minimum is set — no threshold, no noise. (There's no l
 
 Quantity-tracked stock plugs into the rest of Shelf:
 
-- **Bookings**: reserve N units from available stock for a date range, and adjust the booked quantity as plans change. With **book-by-model**, you reserve N of a model and scan-to-assign the specific units at checkout.
+- **Bookings**: reserve N units from available stock for a date range, and adjust the booked quantity as plans change. Reserving drops the available count immediately, so two bookings can't lay claim to the same stock.
 - **Kits**: include quantity-tracked stock in a kit, and the kit handles custody by quantity — so a kit that ships with 3 cables and 1 charger keeps its stock counts straight.
 
 Bookings — and quantity in bookings — are available on **Team plans**.
