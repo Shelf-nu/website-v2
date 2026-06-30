@@ -1,0 +1,16 @@
+---
+title: "Track assets by quantity, including consumables"
+description: "Shelf now supports quantity-tracked assets — manage fungible items like cables, supplies, and consumables by count, with units of measure, low-stock alerts, quantity-aware custody, and quantity in bookings."
+date: "2026-06-30"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-form.webp"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables"
+layout: "update"
+---
+
+Shelf has always tracked every asset as a single, uniquely-identifiable item — perfect for laptops, cameras, and vehicles, but a poor fit for supplies you manage by count. You can now choose how each asset is tracked.
+
+When you add or edit an asset, pick a **tracking method**: **Individually tracked** (one record per item, exactly as before) or **Tracked by quantity** (one record for a pool of identical units). Quantity-tracked assets add a **quantity**, a **unit of measure** (pcs, boxes, liters), an optional **min quantity** low-stock threshold, and a **consumption type** — "Used up" for disposables that are consumed when handed out, or "Returnable" for reusable supplies that come back with a report of what returned versus what was lost.
+
+Quantity changes flow through the rest of Shelf: custody becomes quantity-aware (several people can each hold a portion of the same pool), bookings can reserve a quantity from available stock, restocking increases the count when new shipments arrive, and every change is logged for an audit trail. Set a min quantity and workspace admins get an email when stock runs low, so you can reorder before you run out.
+
+Learn how to set it up in [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables).
