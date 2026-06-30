@@ -1,0 +1,43 @@
+<svg width="100%" viewBox="0 0 680 296" role="img" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<title>Used up versus returnable consumption</title>
+<desc>Used-up (one-way) stock like gloves: hand out 50 from 200 and 150 remain, the 50 are consumed and not expected back. Returnable (two-way) stock like cables: check out 10 from 100, at check-in report 7 returned and 3 lost, leaving 97 available.</desc>
+<defs>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1 L9 5 L1 9" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="680" height="296" rx="14" fill="#ffffff" stroke="#e8edf3" stroke-width="1"/>
+<text x="340" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#0f172a">Consumable or returnable</text>
+
+<!-- ROW A: used up -->
+<text x="40" y="72" font-size="11" font-weight="700" letter-spacing="0.5" fill="#ea580c">USED UP · ONE-WAY</text>
+<rect x="40" y="82" width="150" height="48" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="60" y="105" font-size="13" font-weight="700" fill="#0f172a">Gloves</text>
+<text x="60" y="122" font-size="11" fill="#64748b">200 pcs</text>
+<line x1="194" y1="106" x2="250" y2="106" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="222" y="98" text-anchor="middle" font-size="10.5" fill="#64748b">hand out 50</text>
+<rect x="254" y="82" width="118" height="48" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="313" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">150 left</text>
+<text x="313" y="122" text-anchor="middle" font-size="10.5" fill="#64748b">available</text>
+<rect x="392" y="82" width="248" height="48" rx="10" fill="#fff7ed" stroke="#fed7aa"/>
+<text x="412" y="103" font-size="12" font-weight="600" fill="#9a3412">50 consumed</text>
+<text x="412" y="120" font-size="11" fill="#b45309">gone — not expected back</text>
+
+<!-- ROW B: returnable -->
+<text x="40" y="184" font-size="11" font-weight="700" letter-spacing="0.5" fill="#0369a1">RETURNABLE · TWO-WAY</text>
+<rect x="40" y="194" width="138" height="48" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="60" y="217" font-size="13" font-weight="700" fill="#0f172a">Cables</text>
+<text x="60" y="234" font-size="11" fill="#64748b">100 pcs</text>
+<line x1="182" y1="218" x2="238" y2="218" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="210" y="210" text-anchor="middle" font-size="10.5" fill="#64748b">check out 10</text>
+<rect x="242" y="194" width="170" height="48" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+<text x="327" y="214" text-anchor="middle" font-size="10.5" fill="#475569">check-in</text>
+<text x="327" y="231" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">7 returned · 3 lost</text>
+<line x1="416" y1="218" x2="472" y2="218" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="444" y="210" text-anchor="middle" font-size="10.5" fill="#64748b">returns</text>
+<rect x="476" y="194" width="164" height="48" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="558" y="217" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">97 available</text>
+<text x="558" y="234" text-anchor="middle" font-size="10.5" fill="#64748b">3 deducted as used</text>
+
+<text x="340" y="278" text-anchor="middle" font-size="12" fill="#94a3b8">Returnable items reconcile what came back versus what was used — at check-in.</text>
+</svg>
