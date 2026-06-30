@@ -31,7 +31,7 @@ seo:
 
 Not everything you manage is a single, serialized asset. Cables, batteries, gloves, printer toner, lab reagents, PPE — these come in bulk, get used up, and need restocking. Shelf lets you track supplies and consumables by quantity **alongside** your individually-tracked assets, in one system, so your stock of disposables and your fleet of equipment live side by side.
 
-{/* TODO screenshot */}
+![Two ways to track every item in Shelf: individually tracked items each get their own record and QR code, while quantity-tracked items use one record and one shared QR for a pool of identical units, with a count and a low-stock threshold.](/images/features/consumables/tracking-methods.svg)
 
 ---
 
@@ -61,6 +61,8 @@ Every quantity-tracked item has a **consumption type** that matches how it's act
 - **Used up**: a one-way consumable. Once it's issued, it's gone — paper, reagents, disposable gloves.
 - **Returnable**: a two-way pool. Units go out and come back, and a **consumption report** is recorded at check-in so you capture how much was actually used versus returned.
 
+![Used up versus returnable consumption: used-up stock is consumed and not expected back, while returnable stock is checked out and reconciled at check-in into what returned versus what was used.](/images/features/consumables/consumption-types.svg)
+
 For day-to-day stock changes, **quick adjustments** keep counts honest: restock to add stock (+), record a loss (−), or correct a miscount — each with an optional note. Every adjustment is logged with full attribution and shows up in the asset's activity **notes**, so there's a running audit trail of who changed what and why.
 
 ---
@@ -74,6 +76,8 @@ Custody works at the unit level. Assign **any portion** of a pool to a person, r
 ## Low-stock alerts
 
 Set a **minimum quantity** threshold on any quantity-tracked item and Shelf watches it for you. When available stock drops to or below that minimum, the **workspace owner** gets an email alert and an in-app notification goes to whoever made the change. The alert clears automatically once stock rises back above the threshold.
+
+![Low-stock alert flow: when available stock drops to or below the minimum, Shelf emails the workspace owner and posts an in-app notification to whoever made the change.](/images/features/consumables/low-stock-alert.svg)
 
 Alerts only fire when a minimum is set — no threshold, no noise. (There's no low-stock dashboard widget or list filter; the alert is the email plus the in-app notification.)
 

@@ -1,0 +1,47 @@
+<svg width="100%" viewBox="0 0 680 322" role="img" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<title>Two ways to track every item in Shelf</title>
+<desc>Individually tracked items each have their own record and QR code (three camera records #A-01, #A-02, #A-03). Quantity-tracked items use one record and one shared QR for a pool of identical units, with a count (500 pcs USB-C cables) and a low-stock alert threshold.</desc>
+<rect x="0" y="0" width="680" height="322" rx="14" fill="#ffffff" stroke="#e8edf3" stroke-width="1"/>
+<text x="340" y="36" text-anchor="middle" font-size="19" font-weight="700" fill="#0f172a">Two ways to track every item</text>
+
+<!-- LEFT: individually tracked -->
+<rect x="32" y="58" width="294" height="232" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="56" y="90" font-size="15" font-weight="700" fill="#0f172a">Individually tracked</text>
+<text x="56" y="110" font-size="12" fill="#64748b">One record = one physical item</text>
+
+<g>
+  <rect x="56" y="128" width="78" height="130" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="73" y="146" width="44" height="44" rx="6" fill="#0f172a"/>
+  <rect x="79" y="152" width="9" height="9" fill="#ffffff"/><rect x="102" y="152" width="9" height="9" fill="#ffffff"/><rect x="79" y="175" width="9" height="9" fill="#ffffff"/>
+  <text x="95" y="218" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#334155">#A-01</text>
+  <text x="95" y="238" text-anchor="middle" font-size="10.5" fill="#94a3b8">Camera</text>
+
+  <rect x="140" y="128" width="78" height="130" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="157" y="146" width="44" height="44" rx="6" fill="#0f172a"/>
+  <rect x="163" y="152" width="9" height="9" fill="#ffffff"/><rect x="186" y="152" width="9" height="9" fill="#ffffff"/><rect x="163" y="175" width="9" height="9" fill="#ffffff"/>
+  <text x="179" y="218" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#334155">#A-02</text>
+  <text x="179" y="238" text-anchor="middle" font-size="10.5" fill="#94a3b8">Camera</text>
+
+  <rect x="224" y="128" width="78" height="130" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="241" y="146" width="44" height="44" rx="6" fill="#0f172a"/>
+  <rect x="247" y="152" width="9" height="9" fill="#ffffff"/><rect x="270" y="152" width="9" height="9" fill="#ffffff"/><rect x="247" y="175" width="9" height="9" fill="#ffffff"/>
+  <text x="263" y="218" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#334155">#A-03</text>
+  <text x="263" y="238" text-anchor="middle" font-size="10.5" fill="#94a3b8">Camera</text>
+</g>
+
+<!-- RIGHT: tracked by quantity -->
+<rect x="354" y="58" width="294" height="232" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.25"/>
+<text x="378" y="90" font-size="15" font-weight="700" fill="#0f172a">Tracked by quantity</text>
+<text x="378" y="110" font-size="12" fill="#64748b">One record = a pool of identical units</text>
+
+<rect x="378" y="128" width="246" height="130" rx="12" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+<rect x="400" y="150" width="50" height="50" rx="7" fill="#9a3412"/>
+<rect x="407" y="157" width="11" height="11" fill="#ffffff"/><rect x="432" y="157" width="11" height="11" fill="#ffffff"/><rect x="407" y="182" width="11" height="11" fill="#ffffff"/>
+<text x="470" y="176" font-size="33" font-weight="800" fill="#ea580c">500</text>
+<text x="471" y="197" font-size="12.5" font-weight="600" fill="#9a3412">pcs · USB-C cables</text>
+<rect x="400" y="220" width="202" height="24" rx="12" fill="#ffffff" stroke="#fed7aa"/>
+<circle cx="416" cy="232" r="4" fill="#ea580c"/>
+<text x="428" y="236" font-size="11.5" fill="#9a3412">Low-stock alert at 50</text>
+
+<text x="340" y="308" text-anchor="middle" font-size="12" fill="#94a3b8">You pick the method when you create the item — and it’s permanent.</text>
+</svg>
