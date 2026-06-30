@@ -13,6 +13,7 @@
     "search:index": "pagefind --site out --output-path out/pagefind",
     "search:verify": "node scripts/verify-pagefind.mjs out/pagefind",
     "search:dev": "rm -rf public/pagefind && cp -r out/pagefind public/pagefind",
+    "search:quality": "playwright test --config=playwright.search.config.ts",
     "start": "npx serve out",
     "lint": "eslint",
     "test:perf": "playwright test",

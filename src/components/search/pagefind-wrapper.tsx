@@ -1,3 +1,18 @@
+import { Frontmatter } from "@/lib/content/schema";
+
+/**
+ * Builds the weighted keyword string for an MDX content page from its frontmatter.
+ *
+ * Without this, MDX pages get no Pagefind keyword boost, so a long flagship page
+ * (e.g. /features/audits) can rank below short, tangential pages for its own topic.
+ * Feeding the title + curated SEO keywords into PagefindWrapper's 10x-weighted block
+ * lifts each page for the terms it's meant to own. Falls back to the title alone when
+ * a page has no `seo.keywords`.
+ */
+export function frontmatterKeywords(frontmatter: Pick<Frontmatter, "title" | "seo">): string {
+    return [frontmatter.title, ...(frontmatter.seo?.keywords ?? [])].filter(Boolean).join(" ");
+}
+
 /**
  * Wraps content pages with Pagefind attributes for indexing and filtering.
  *

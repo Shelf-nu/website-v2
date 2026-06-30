@@ -5,7 +5,7 @@ import { MDXContent } from "@/components/mdx-content";
 import { Metadata } from "next";
 import { buildContentMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { StructuredData } from "@/components/seo/structured-data";
-import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { PagefindWrapper, frontmatterKeywords } from "@/components/search/pagefind-wrapper";
 import { Frontmatter } from "@/lib/content/schema";
 
 interface PageProps {
@@ -49,7 +49,7 @@ export default async function GlossaryPage({ params }: PageProps) {
     ]);
 
     return (
-        <PagefindWrapper type="Glossary" title={frontmatter.title}>
+        <PagefindWrapper type="Glossary" title={frontmatter.title} keywords={frontmatterKeywords(frontmatter)}>
             <StructuredData data={jsonLd} />
             {/* eslint-disable-next-line react-hooks/static-components */}
             <Layout frontmatter={frontmatter}>

@@ -1,0 +1,71 @@
+{
+  "topN": 3,
+  "_comment": "query -> the canonical page it should surface. `queries` are asserted (expected url must appear within topN results); `knownIssues` are reported only (tracked, not failed). Seed from real demand: PostHog on-site search + GSC. See search-quality/README.md.",
+
+  "queries": [
+    { "q": "qr code generator", "expect": "/tools/qr-code-generator" },
+    { "q": "barcode scanner", "expect": "/tools/barcode-scanner" },
+    { "q": "roi calculator", "expect": "/tools/asset-roi-calculator" },
+    { "q": "depreciation calculator", "expect": "/tools/equipment-depreciation-calculator" },
+    { "q": "asset label designer", "expect": "/tools/asset-label-designer" },
+    { "q": "salvage value calculator", "expect": "/tools/salvage-value-calculator" },
+    { "q": "macrs", "expect": "/tools/macrs-depreciation-calculator" },
+
+    { "q": "audits", "expect": "/features/audits" },
+    { "q": "audit", "expect": "/features/audits" },
+    { "q": "kits", "expect": "/features/kits" },
+    { "q": "custody", "expect": "/features/custody" },
+    { "q": "reports", "expect": "/features/reports" },
+    { "q": "asset reminders", "expect": "/features/asset-reminders" },
+    { "q": "reminders", "expect": "/features/asset-reminders" },
+    { "q": "calendar", "expect": "/features/calendar" },
+    { "q": "location tracking", "expect": "/features/location-tracking" },
+    { "q": "locations", "expect": "/features/location-tracking" },
+    { "q": "workspaces", "expect": "/features/workspaces" },
+    { "q": "dashboard", "expect": "/features/dashboard" },
+    { "q": "asset search", "expect": "/features/asset-search" },
+    { "q": "asset pages", "expect": "/features/asset-pages" },
+
+    { "q": "maintenance tracking", "expect": "/solutions/maintenance-tracking" },
+    { "q": "maintenance", "expect": "/solutions/maintenance-tracking" },
+    { "q": "it asset management", "expect": "/solutions/it-asset-management" },
+    { "q": "equipment reservations", "expect": "/solutions/equipment-reservations" },
+    { "q": "reservations", "expect": "/solutions/equipment-reservations" },
+    { "q": "tool tracking", "expect": "/solutions/tool-tracking" },
+    { "q": "tool tracking software", "expect": "/solutions/tool-tracking" },
+    { "q": "calibration", "expect": "/solutions/calibration-tracking" },
+    { "q": "open source asset management", "expect": "/solutions/open-source-asset-management" },
+    { "q": "equipment management", "expect": "/solutions/equipment-management" },
+    { "q": "fixed asset tracking", "expect": "/solutions/fixed-asset-tracking" },
+    { "q": "multi location", "expect": "/solutions/multi-location-asset-tracking" },
+    { "q": "home inventory", "expect": "/solutions/home-inventory-management" },
+    { "q": "camera equipment", "expect": "/solutions/camera-equipment-check-out" },
+
+    { "q": "demo", "expect": "/demo" },
+    { "q": "pricing", "expect": "/pricing" },
+    { "q": "contact", "expect": "/contact" },
+    { "q": "migrate", "expect": "/migrate" },
+    { "q": "security", "expect": "/security" },
+    { "q": "about", "expect": "/about" },
+    { "q": "changelog", "expect": "/updates" },
+    { "q": "glossary", "expect": "/glossary" },
+    { "q": "case studies", "expect": "/case-studies" },
+
+    { "q": "ezofficeinventory alternative", "expect": "/alternatives/ezofficeinventory" },
+    { "q": "asset tiger", "expect": "/alternatives/asset-tiger" },
+    { "q": "cheqroom", "expect": "/alternatives/cheqroom" },
+
+    { "q": "sso", "expect": "/knowledge-base/sso-with-google-workspace" }
+  ],
+
+  "knownIssues": [
+    { "q": "bookings", "expect": "/features/bookings", "note": "Term on 344/348 pages -> IDF~0, all scores ~0.03, order is noise. Not fixable by ranking/keywords." },
+    { "q": "book a demo", "expect": "/demo", "note": "Common terms (book/demo) sitewide; /demo is a thin form page." },
+    { "q": "asset tracking", "expect": "/solutions/asset-tracking", "note": "Extremely generic head term; competes with the whole site." },
+    { "q": "csv", "expect": "/knowledge-base/importing-assets-to-shelf-csv-guide", "note": "Real on-site query, currently ~#8. Verify/strengthen canonical import destination." },
+    { "q": "rfid", "expect": null, "note": "Real on-site query with NO canonical page. Verify product support before creating one." },
+    { "q": "avery", "expect": null, "note": "Real on-site query (label templates). No canonical page; scattered mentions." },
+    { "q": "api", "expect": null, "note": "Real on-site query. No canonical API/integrations page; scattered across ~40 files." },
+    { "q": "language", "expect": null, "note": "Real on-site query (i18n). Verify product support before creating a page." }
+  ]
+}
