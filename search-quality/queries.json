@@ -25,6 +25,10 @@
     { "q": "dashboard", "expect": "/features/dashboard" },
     { "q": "asset search", "expect": "/features/asset-search" },
     { "q": "asset pages", "expect": "/features/asset-pages" },
+    { "q": "consumables", "expect": "/features/consumables-tracking" },
+    { "q": "consumables tracking", "expect": "/features/consumables-tracking" },
+    { "q": "quantity tracking", "expect": "/features/consumables-tracking" },
+    { "q": "track supplies", "expect": "/features/consumables-tracking" },
 
     { "q": "maintenance tracking", "expect": "/solutions/maintenance-tracking" },
     { "q": "maintenance", "expect": "/solutions/maintenance-tracking" },

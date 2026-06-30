@@ -41,6 +41,7 @@ Shelf takes a different approach. Instead of charging per user, Shelf offers unl
 | **Customization depth** | Highly configurable templates and fields | Streamlined, opinionated workflows |
 | **Mobile app** | Native iOS/Android with offline mode | Native iOS & Android app (Shelf Companion) + mobile web |
 | **Equipment booking** | Not a core feature | Built-in with conflict prevention |
+| **Consumables / low-stock alerts** | DIY — build a threshold field plus a scheduled automation | Native — quantity, unit of measure, min-quantity email alerts |
 | **Kit management** | Individual asset records only | Kit-aware booking and verification |
 | **Integrations** | Zendesk, Jira, SCCM, Intune, Zapier | Open source codebase; CSV import/export |
 | **Open source** | No -- proprietary SaaS | Yes -- full codebase available |
@@ -120,7 +121,17 @@ See: [Workspaces](/features/workspaces)
 
 ---
 
-### 7. Open Source and Data Ownership
+### 7. Native Consumables vs DIY Configuration
+
+Asset Panda is quantity-capable, but tracking supplies and spare parts the way teams actually use them means building it yourself: add a custom threshold field, then wire up a scheduled automation to watch it and notify someone. It is the same configuration-first pattern that defines the rest of the platform.
+
+Shelf handles this out of the box. Any item can [track consumables by quantity](/features/consumables-tracking) with a unit of measure (pcs, boxes, liters, kg), a min-quantity threshold that emails the workspace owner when stock runs low, and a per-item choice of whether stock is **used up** (one-way, consumed) or **returnable** (two-way, returned at check-in). No threshold fields to invent, no automations to maintain.
+
+See: [Consumables Tracking](/features/consumables-tracking)
+
+---
+
+### 8. Open Source and Data Ownership
 
 Asset Panda is a proprietary SaaS platform. Your asset data lives in their cloud, exported via their tools, governed by their terms. For many organizations this is perfectly fine. For teams in government, education, or regulated industries where data sovereignty is a requirement, it introduces vendor dependency.
 

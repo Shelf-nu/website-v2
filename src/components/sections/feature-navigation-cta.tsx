@@ -14,6 +14,7 @@ const FEATURE_LINKS = [
     { label: "Location Tracking", href: "/features/location-tracking" },
     { label: "Asset Pages", href: "/features/asset-pages" },
     { label: "Kits", href: "/features/kits" },
+    { label: "Consumables Tracking", href: "/features/consumables-tracking" },
     { label: "Calendar", href: "/features/calendar" },
     { label: "Dashboard", href: "/features/dashboard" },
     { label: "Asset Search", href: "/features/asset-search" },
