@@ -1,43 +1,32 @@
-<svg width="100%" viewBox="0 0 680 250" role="img" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
-<title>Low-stock alerts</title>
-<desc>When available stock for an item drops to or below its minimum-quantity threshold, Shelf emails the workspace owner and posts an in-app notification to whoever made the change. Alerts fire only when a minimum is set and clear automatically when stock recovers.</desc>
+<svg width="100%" viewBox="0 0 680 304" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<title>Low-stock alerts (illustrative)</title>
+<desc>Illustrative mockup. An asset row for USB-C cables shows 40 left against a minimum of 50 with a Low stock badge. Below, a low-stock alert card shows it is sent by email to the workspace owner and as an in-app alert to whoever made the change. Representative of the Shelf interface, not a screenshot.</desc>
 <defs>
-  <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-    <path d="M1 1 L9 5 L1 9" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
+  <filter id="cs4" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#1e293b" flood-opacity="0.10"/></filter>
 </defs>
-<rect x="0" y="0" width="680" height="250" rx="14" fill="#ffffff" stroke="#e8edf3" stroke-width="1"/>
-<text x="340" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#0f172a">Low-stock alerts</text>
+<rect x="0" y="0" width="680" height="304" rx="20" fill="#eef1f5"/>
 
-<!-- LEFT: stock gauge -->
-<text x="44" y="74" font-size="13" font-weight="700" fill="#0f172a">USB-C cables</text>
-<text x="160" y="74" font-size="11" fill="#dc2626" font-weight="700">Below minimum</text>
-<rect x="44" y="92" width="300" height="24" rx="12" fill="#f1f5f9" stroke="#e2e8f0"/>
-<rect x="44" y="92" width="120" height="24" rx="12" fill="#dc2626"/>
-<line x1="194" y1="84" x2="194" y2="124" stroke="#ea580c" stroke-width="2" stroke-dasharray="4 3"/>
-<text x="194" y="138" text-anchor="middle" font-size="10.5" fill="#ea580c" font-weight="600">Min 50</text>
-<text x="44" y="138" font-size="10.5" fill="#64748b">Available 40</text>
-<text x="344" y="138" text-anchor="end" font-size="10.5" fill="#94a3b8">Total 500</text>
-<text x="44" y="172" font-size="11.5" fill="#475569">Available drops to or below the minimum →</text>
+<!-- asset row showing low stock -->
+<rect x="36" y="26" width="608" height="84" rx="14" fill="#ffffff" stroke="#e9eef4" filter="url(#cs4)"/>
+<rect x="60" y="48" width="40" height="40" rx="10" fill="#ffedd5"/>
+<rect x="71" y="60" width="18" height="15" rx="2.5" fill="none" stroke="#ea580c" stroke-width="1.7"/><line x1="71" y1="66" x2="89" y2="66" stroke="#ea580c" stroke-width="1.7"/>
+<text x="114" y="62" font-size="13.5" font-weight="600" fill="#0f172a">USB-C cables</text>
+<text x="114" y="80" font-size="11" fill="#94a3b8">Quantity pool · pcs</text>
+<text x="452" y="64" text-anchor="end" font-size="19" font-weight="800" fill="#dc2626">40</text>
+<text x="456" y="64" font-size="11" fill="#94a3b8">left</text>
+<text x="452" y="82" text-anchor="end" font-size="10.5" fill="#94a3b8">minimum 50</text>
+<rect x="512" y="55" width="100" height="26" rx="13" fill="#fee2e2"/><circle cx="529" cy="68" r="3" fill="#dc2626"/><text x="540" y="72" font-size="11" font-weight="600" fill="#b91c1c">Low stock</text>
 
-<!-- arrows to outputs -->
-<line x1="360" y1="120" x2="424" y2="104" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ar2)"/>
-<line x1="360" y1="120" x2="424" y2="176" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ar2)"/>
+<!-- alert notification card -->
+<rect x="36" y="126" width="608" height="148" rx="14" fill="#ffffff" stroke="#e9eef4" filter="url(#cs4)"/>
+<path d="M66 162 a7 7 0 0 1 14 0 v5 l3 4 h-20 l3 -4 z" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-linejoin="round"/><circle cx="73" cy="173" r="2" fill="#ea580c"/>
+<text x="92" y="163" font-size="14" font-weight="700" fill="#0f172a">Low-stock alert</text>
+<rect x="512" y="150" width="100" height="22" rx="11" fill="#fff7ed"/><text x="562" y="165" text-anchor="middle" font-size="10.5" font-weight="600" fill="#9a3412">Email + in-app</text>
+<text x="60" y="196" font-size="12" fill="#475569">USB-C cables dropped to 40 — below your minimum of 50.</text>
+<circle cx="72" cy="222" r="11" fill="#fff7ed"/><text x="72" y="226" text-anchor="middle" font-size="10" font-weight="700" fill="#9a3412">O</text>
+<text x="92" y="226" font-size="12" font-weight="500" fill="#0f172a">Email → the workspace owner</text>
+<circle cx="72" cy="250" r="11" fill="#eef2ff"/><path d="M68 249 a4 4 0 0 1 8 0 v3 l1.5 2 h-11 l1.5 -2 z" fill="none" stroke="#4338ca" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="92" y="254" font-size="12" fill="#475569">In-app → whoever made the change</text>
 
-<!-- email card -->
-<rect x="430" y="74" width="210" height="72" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
-<rect x="446" y="90" width="26" height="18" rx="3" fill="#ffffff" stroke="#ea580c" stroke-width="1.5"/>
-<polyline points="447,92 459,101 471,92" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="484" y="98" font-size="11" font-weight="700" fill="#0f172a">Email</text>
-<text x="484" y="113" font-size="11" fill="#64748b">to the workspace owner</text>
-<text x="446" y="134" font-size="11" fill="#9a3412">“Low stock: USB-C cables (40 left)”</text>
-
-<!-- in-app card -->
-<rect x="430" y="156" width="210" height="56" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
-<path d="M453 188 a8 8 0 0 1 16 0 v5 l3 4 h-22 l3 -4 z" fill="none" stroke="#0369a1" stroke-width="1.5" stroke-linejoin="round"/>
-<circle cx="461" cy="201" r="2.2" fill="#0369a1"/>
-<text x="484" y="182" font-size="11" font-weight="700" fill="#0f172a">In-app alert</text>
-<text x="484" y="197" font-size="11" fill="#64748b">to whoever made the change</text>
-
-<text x="340" y="236" text-anchor="middle" font-size="12" fill="#94a3b8">Fires only when a minimum is set · clears automatically when stock recovers.</text>
+<text x="620" y="294" text-anchor="end" font-size="10.5" fill="#aab3bf">Illustrative — representative of the Shelf interface, not a screenshot</text>
 </svg>
