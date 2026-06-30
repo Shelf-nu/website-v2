@@ -3,7 +3,7 @@ title: "Adding New Assets"
 description: "Populate your inventory with assets manually or import your full catalogue via CSV. Step-by-step for both workflows."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-16"
+updated: "2026-06-30"
 layout: "knowledge-base"
 ---
 
@@ -29,15 +29,18 @@ Two ways to get assets into Shelf:
 1. Click **Assets** in the sidebar
 2. Click **New asset**
 3. Fill in a **name**
-4. Upload an image or take a photo with your phone *(optional)*
-5. Choose a **Category**, **Tags**, and/or **Location** *(optional)*
-6. Add a **description** *(optional)*
-7. Fill in any remaining fields, including [custom fields](/knowledge-base/adding-additional-fields-to-assets) you've configured for your workspace
-8. Click **Save**
+4. Choose a **tracking method** — **Individually tracked** (one record per item, the default) or **Tracked by quantity** for fungible items you manage by count
+5. Upload an image or take a photo with your phone *(optional)*
+6. Choose a **Category**, **Tags**, and/or **Location** *(optional)*
+7. Add a **description** *(optional)*
+8. Fill in any remaining fields, including [custom fields](/knowledge-base/adding-additional-fields-to-assets) you've configured for your workspace
+9. Click **Save**
 
 ![New Asset form with all available fields](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-form.webp)
 
 Custom fields are especially useful for capturing information specific to your business — serial numbers, purchase dates, warranty dates, internal references. See [adding additional fields to assets](/knowledge-base/adding-additional-fields-to-assets) for setup.
+
+If you choose **Tracked by quantity**, the form adds fields for the quantity, a unit of measure, an optional low-stock threshold, and how the stock is consumed. This is the right model for supplies and consumables like cables, gloves, and fasteners — see [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables) for the full walkthrough.
 
 ---
 
@@ -55,6 +58,7 @@ Full walkthrough including column reference and troubleshooting: **[Importing As
 
 ## Related Articles
 
+- [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables) — track supplies and consumables by count
 - [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — configure custom fields before a bulk import
 - [Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) — complete CSV reference
 - [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) — edit existing assets in bulk

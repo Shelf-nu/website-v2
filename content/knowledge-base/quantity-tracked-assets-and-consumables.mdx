@@ -1,0 +1,106 @@
+---
+title: "Quantity-Tracked Assets and Consumables"
+description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
+category: "Assets"
+date: "2026-06-30"
+updated: "2026-06-30"
+layout: "knowledge-base"
+---
+
+Not everything you manage is a single, uniquely-identifiable item. Laptops, cameras, and vehicles each deserve their own record — but pens, USB-C cables, gloves, and other supplies are managed by **how many you have**, not by individual identity. Shelf now supports both. When you create an asset you choose a **tracking method**, and quantity-tracked assets let one record stand for a pool of identical units at a location.
+
+---
+
+## Two tracking methods
+
+When you add or edit an asset, you pick how it should be tracked:
+
+- **Individually tracked** *(default)* — One record equals one physical item, exactly as Shelf has always worked. Each item has its own QR code, custody history, and booking history.
+- **Tracked by quantity** — One record represents a pool of identical units (for example, 500 cable ties). You manage the count rather than each unit, and a single QR code represents the whole pool.
+
+| | Individually tracked | Tracked by quantity |
+|---|---|---|
+| **QR code** | One per item | One shared QR for the pool |
+| **Custody** | One custodian per item | Several people can each hold a portion |
+| **Bookings** | Reserve specific items | Reserve a quantity from the pool |
+| **History** | Full per-unit lifecycle | Aggregate quantity changes |
+
+---
+
+## Creating a quantity-tracked asset
+
+1. Click **Assets** in the sidebar, then **New asset**
+2. Give the asset a **name**
+3. Under **Tracking method**, choose **Tracked by quantity**
+4. Fill in the quantity fields that appear:
+   - **Quantity** — how many units you have (for example, 500)
+   - **Unit of measure** — what they're counted in (for example, "pcs", "boxes", "liters")
+   - **Min quantity** *(optional)* — the low-stock threshold; Shelf alerts you when available stock drops to or below this number
+   - **Consumption type** — how the stock behaves after checkout (see [Consumption types](#consumption-types) below)
+5. Add a **Category**, **Tags**, **Location**, and any other fields as usual
+6. Click **Save**
+
+{/* TODO: Screenshot needed: New asset form with "Tracked by quantity" selected, showing the quantity, unit of measure, min quantity, and consumption type fields (PR #2337) */}
+
+---
+
+## Consumption types
+
+Quantity-tracked assets can behave in one of two ways after they're handed out or checked out:
+
+- **Used up (one-way)** — Units are consumed and not expected back. Checking out 50 gloves permanently reduces the count by 50. Best for disposables: gloves, masks, single-use kits.
+- **Returnable (two-way)** — Units are checked out and returned, with a consumption report on the way back. Check out 10 cables; when they come back you report what returned and what was lost or used up. Returned units go back into available stock and the rest are deducted. Best for reusable supplies that occasionally go missing.
+
+When new stock arrives, you can **restock** a quantity-tracked asset to increase its count. Every quantity change is logged for an audit trail.
+
+---
+
+## Quantity-aware custody
+
+For quantity-tracked assets, custody is by portion rather than all-or-nothing:
+
+- Assign part of the pool to a person — for example, "20 of 100 USB-C cables to Sarah." The available count drops by 20.
+- Several team members can hold different quantities of the same asset at once.
+- Releasing custody — fully or partially — returns those units to the available pool.
+
+---
+
+## Quantity in bookings
+
+You can reserve a quantity of a pooled asset for a booking. Available stock is calculated as:
+
+```
+Available = Total quantity − In custody − Reserved in bookings
+```
+
+When you reserve units in a booking, the available count drops immediately, so two bookings can't reserve the same stock. For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes.
+
+---
+
+## Low-stock alerts
+
+If you set a **min quantity**, Shelf watches the available count for that asset. When stock drops to or below the threshold, workspace admins are notified by email so you can reorder before you run out. The alert clears automatically when stock rises back above the threshold through a restock or returns.
+
+---
+
+## Asset models (optional)
+
+You can group assets under an **Asset Model** (for example, "Dell Latitude 5550") so that shared defaults — like category and valuation — are pre-filled when you create new assets from that model. Asset models are managed under **Settings → Asset models**, and you can bulk-create assets from a model.
+
+---
+
+## When to use which method
+
+- Use **Individually tracked** when each unit needs its own QR code, custody chain, and history — laptops, cameras, vehicles, instruments.
+- Use **Tracked by quantity** when only the count matters — cables, adapters, gloves, fasteners, and other supplies.
+
+> **Need per-unit history on a pooled item?** Printing several QR labels for one quantity-tracked asset still points every label at the same pool — they all show and adjust the same count. If you need independent history per unit, track those items individually instead.
+
+---
+
+## Related Articles
+
+- [Adding New Assets](/knowledge-base/adding-new-assets) — the full asset creation walkthrough
+- [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — capture business-specific data
+- [How to Create a Booking](/knowledge-base/how-to-create-a-booking) — reserve assets, including quantities
+- [Using Categories to Organize Your Asset Inventory](/knowledge-base/using-categories-to-organize-your-asset-inventory)
