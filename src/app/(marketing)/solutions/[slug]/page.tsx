@@ -5,7 +5,7 @@ import { MDXContent } from "@/components/mdx-content";
 import { Metadata } from "next";
 import { buildContentMetadata, breadcrumbJsonLd, faqJsonLd, extractFaqsFromMdx } from "@/lib/seo";
 import { StructuredData } from "@/components/seo/structured-data";
-import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { PagefindWrapper, frontmatterKeywords } from "@/components/search/pagefind-wrapper";
 import { Frontmatter } from "@/lib/content/schema";
 
 interface PageProps {
@@ -56,7 +56,7 @@ export default async function SolutionPage({ params }: PageProps) {
     }
 
     return (
-        <PagefindWrapper type="Solution" title={frontmatter.title}>
+        <PagefindWrapper type="Solution" title={frontmatter.title} keywords={frontmatterKeywords(frontmatter)}>
             <StructuredData data={schemas} />
             {/* eslint-disable-next-line react-hooks/static-components */}
             <Layout frontmatter={frontmatter}>

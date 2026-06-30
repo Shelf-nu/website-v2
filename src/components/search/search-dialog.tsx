@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Search, FileText, Loader2, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
+import searchRanking from "@/lib/search-ranking.json";
 
 /* ------------------------------------------------------------------ */
 /*  Pagefind type stubs (loaded dynamically at runtime)               */
@@ -82,6 +83,16 @@ export function SearchDialog() {
         try {
             // @ts-expect-error — Pagefind is loaded at runtime from /pagefind/pagefind.js
             const pf = await import(/* webpackIgnore: true */ "/pagefind/pagefind.js");
+            // Tune ranking so canonical pages win for their own topic. Pagefind's
+            // defaults bury us two ways: pageLength (0.75) over-rewards short pages,
+            // so a comprehensive feature page loses to a 2-paragraph update post; and
+            // termSimilarity (1.0) lets prefix partials inflate (a single-word query
+            // like "demo" matches "demonstrations"-heavy blog posts). Lowering
+            // pageLength and raising termSimilarity fixes both without breaking
+            // as-you-type prefix matching. Values live in search-ranking.json so the
+            // search-quality regression harness asserts against the same numbers — see
+            // search-quality/. Re-tune there, never inline.
+            await pf.options({ ranking: searchRanking });
             pagefindRef.current = pf;
             // Pre-fetch available filter values
             const filters = await pf.filters();

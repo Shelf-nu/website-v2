@@ -11,7 +11,7 @@ import {
     faqJsonLd,
 } from "@/lib/seo";
 import { StructuredData } from "@/components/seo/structured-data";
-import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { PagefindWrapper, frontmatterKeywords } from "@/components/search/pagefind-wrapper";
 import { Frontmatter } from "@/lib/content/schema";
 
 interface PageProps {
@@ -63,7 +63,7 @@ export default async function AlternativePage({ params }: PageProps) {
     }
 
     return (
-        <PagefindWrapper type="Alternative" title={frontmatter.title}>
+        <PagefindWrapper type="Alternative" title={frontmatter.title} keywords={frontmatterKeywords(frontmatter)}>
             <StructuredData data={schemas} />
             {/* eslint-disable-next-line react-hooks/static-components */}
             <Layout frontmatter={frontmatter}>
