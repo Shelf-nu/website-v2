@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone. Covers QR scanning, kits, audits, custody, bookings, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-06-26"
+updated: "2026-07-02"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -89,19 +89,23 @@ If your workspace has the [Audits add-on](/features/audits) enabled and you have
 
 If your workspace does not have the Audits add-on enabled, the app shows an informational "Contact your admin" message rather than a paywall or upgrade link.
 
-## 8. Bookings: Find, Build, Check Out and Check In
+## 8. Bookings: Create, Build, Check Out and Check In
 
-For workspaces using [Bookings](/features/bookings), the app now handles the field side of a booking end to end.
+For workspaces using [Bookings](/features/bookings), the app now handles a booking end to end — from creating it to checking it back in.
 
 **Find the right booking.** The bookings list has individual **Reserved**, **Ongoing**, and **Overdue** status filters, keyword search, and a sort menu (by start date, due date, name, or recently created). Each row shows a live countdown, such as "Starts in 2d", "Due in 5h", or "Overdue by 3d", so what needs attention stands out at a glance.
 
-**Build out a booking by scanning.** Open a draft booking and tap **Scan to Add Assets**, then scan the assets and kits you're packing. Kits expand to their member assets automatically. You still create the booking itself (dates, custodian, name) in the web app; the app is where you fill it with gear from the floor.
+**Create or edit a booking.** Tap **New booking** to set the name, dates, and custodian right on the phone, then reserve it. You can also open an existing booking to edit its details or reschedule it. Availability-aware pickers only offer assets and kits that are free for the window you chose, so you don't reserve gear that's already committed elsewhere.
+
+**Build out a booking by scanning.** Open a draft booking and tap **Scan to Add Assets**, then scan the assets and kits you're packing. Kits expand to their member assets automatically.
+
+**Manage the booking's lifecycle.** Reserve, cancel, archive, delete, or duplicate a booking without leaving the app.
 
 **Check out one item at a time or in bulk.** You can check out a selected subset of a booking's assets rather than all at once (progressive check-out). A lifecycle **progress bar** tracks each item through Reserved, Checked out, and Returned, so a half-packed booking reads accurately.
 
 **Check items back in.** Use the in-app scanner to check items in as they return. Scan-to-check-in only accepts assets that are actually in this booking, expands kit codes to their in-booking members, and won't double-return an item that is already back.
 
-Roles apply: self-service members act on their own bookings; admins and owners act on behalf of others.
+Roles apply: self-service members act on their own bookings; admins and owners act on behalf of others. The app enforces the same permission, ownership, and status rules as the web, so you can never do more from the phone than your role allows.
 
 ## 9. Custody Handoffs
 
@@ -124,11 +128,13 @@ The app respects whether your workspace has an add-on enabled:
 
 For clarity — these are real, intentional 1.0 gaps. They are on our radar, but they are not in the app today:
 
-- **Creating, editing, or rescheduling a booking from the app.** You can build a booking by scanning gear into it, check items out, and check them back in on mobile, but setting the booking up (dates, custodian, details) is still web-only.
 - **Adding notes or photos to an audit scan from iPhone.** Web only today; on the iOS roadmap.
 - **GPS / last-known-location capture on scan.** Deliberate 1.1 item.
-- **Universal Links / iOS Camera deep-linking into Shelf Companion.** A 1.x fast-follow.
-- **Linking an unlinked QR code to an asset (or creating an asset from one) inside the app.** Today the app shows an informational message; do the linking in the web app for now. On the 1.0.1 patch list.
+- **Linking an unlinked QR code to an asset (or creating an asset from one) inside the app.** Today the app shows an informational message; do the linking in the web app for now.
+
+## Opening Shelf Links in the App
+
+If you have Shelf Companion installed, tapping a Shelf link on your phone — an asset, booking, audit, or QR code URL at `app.shelf.nu` — opens it directly in the app instead of bouncing through the browser. This works on both iPhone (Universal Links) and Android (App Links). Sign-in and account pages still open in your browser, so links that need a full web session behave exactly as before.
 
 ## Where to Go Next
 
