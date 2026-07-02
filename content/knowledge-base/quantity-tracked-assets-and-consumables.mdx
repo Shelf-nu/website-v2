@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-06-30"
+updated: "2026-07-02"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -85,6 +85,12 @@ Available = Total quantity − In custody − Reserved in bookings
 ```
 
 When you reserve units in a booking, the available count drops immediately, so two bookings can't reserve the same stock. For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes.
+
+---
+
+## Total value counts every unit
+
+The value you set on an asset is the **per-unit** value. For a quantity-tracked asset, Shelf multiplies it by the quantity on hand to get the pool's total worth — a box of 100 cables at €2 each counts as €200, not €2. That total flows through everywhere value is summed: the dashboard inventory-value tile, location and kit totals, a booking's total asset value (including the pull-list PDF), the value-based reports, and CSV exports. Individually tracked assets are unaffected — with a quantity of one, per-unit and total are the same number.
 
 ---
 
