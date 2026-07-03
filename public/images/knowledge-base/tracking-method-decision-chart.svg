@@ -1,0 +1,157 @@
+<svg viewBox="0 0 1000 880" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#98A2B3"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text x="500" y="42" font-size="20" font-weight="600" fill="#101828" text-anchor="middle">How should you track it in Shelf?</text>
+  <text x="500" y="66" font-size="13" fill="#667085" text-anchor="middle">Individual assets, Asset Models, or Quantity tracking: pick per item type</text>
+
+  <!-- ================= center questions ================= -->
+  <!-- Q1 -->
+  <rect x="340" y="96" width="320" height="92" rx="10" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="500" y="128" font-size="13.5" font-weight="600" fill="#101828" text-anchor="middle">Do you have several identical</text>
+  <text x="500" y="147" font-size="13.5" font-weight="600" fill="#101828" text-anchor="middle">ones of this item?</text>
+  <text x="500" y="169" font-size="11.5" fill="#667085" text-anchor="middle">one projector vs a bin of 200 cables</text>
+
+  <!-- Q2 -->
+  <rect x="340" y="248" width="320" height="92" rx="10" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="500" y="280" font-size="13.5" font-weight="600" fill="#101828" text-anchor="middle">Do you need to know which exact</text>
+  <text x="500" y="299" font-size="13.5" font-weight="600" fill="#101828" text-anchor="middle">unit each person has?</text>
+  <text x="500" y="321" font-size="11.5" fill="#667085" text-anchor="middle">serial numbers, per-unit condition or history</text>
+
+  <!-- Q3 -->
+  <rect x="340" y="400" width="320" height="92" rx="10" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="500" y="432" font-size="13.5" font-weight="600" fill="#101828" text-anchor="middle">Are the items used up over time?</text>
+  <text x="500" y="454" font-size="11.5" fill="#667085" text-anchor="middle">tape, gels, batteries: things you do not</text>
+  <text x="500" y="470" font-size="11.5" fill="#667085" text-anchor="middle">expect to get back</text>
+
+  <!-- Q4 -->
+  <rect x="340" y="552" width="320" height="92" rx="10" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="500" y="584" font-size="13.5" font-weight="600" fill="#101828" text-anchor="middle">Does each unit carry its own</text>
+  <text x="500" y="603" font-size="13.5" font-weight="600" fill="#101828" text-anchor="middle">QR label?</text>
+  <text x="500" y="625" font-size="11.5" fill="#667085" text-anchor="middle">a printed code stuck on every piece</text>
+
+  <!-- spine arrows -->
+  <line x1="500" y1="188" x2="500" y2="246" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="480" y="203" width="40" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="500" y="218" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">Yes</text>
+
+  <line x1="500" y1="340" x2="500" y2="398" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="481" y="355" width="38" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="500" y="370" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">No</text>
+
+  <line x1="500" y1="492" x2="500" y2="550" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="481" y="507" width="38" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="500" y="522" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">No</text>
+
+  <!-- branch arrows -->
+  <!-- Q1 no -> right (individual) -->
+  <line x1="660" y1="142" x2="708" y2="142" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="665" y="131" width="38" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="684" y="146" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">No</text>
+  <!-- Q2 yes -> left (models) -->
+  <line x1="340" y1="294" x2="292" y2="294" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="296" y="283" width="40" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="316" y="298" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">Yes</text>
+  <!-- Q3 yes -> right (quantity) -->
+  <line x1="660" y1="446" x2="708" y2="446" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="664" y="435" width="40" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="684" y="450" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">Yes</text>
+  <!-- Q4 yes -> left (models) -->
+  <line x1="340" y1="598" x2="292" y2="598" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="296" y="587" width="40" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="316" y="602" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">Yes</text>
+  <!-- Q4 no -> right (quantity) -->
+  <line x1="660" y1="598" x2="708" y2="598" stroke="#98A2B3" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="665" y="587" width="38" height="22" rx="11" fill="#ffffff" stroke="#D0D5DD"/>
+  <text x="684" y="602" font-size="11.5" font-weight="500" fill="#475467" text-anchor="middle">No</text>
+
+  <!-- ================= top right: Individual assets ================= -->
+  <rect x="708" y="96" width="252" height="240" rx="12" fill="#ffffff" stroke="#EAECF0"/>
+  <rect x="708" y="96" width="252" height="6" rx="3" fill="#475467"/>
+  <text x="730" y="132" font-size="15" font-weight="600" fill="#101828">Individual assets</text>
+  <text x="730" y="152" font-size="11.5" fill="#667085">The default: one record per item</text>
+  <g font-size="11.5" fill="#344054">
+    <circle cx="736" cy="176" r="2.5" fill="#475467"/>
+    <text x="748" y="180">One item, one record, one QR label</text>
+    <circle cx="736" cy="206" r="2.5" fill="#475467"/>
+    <text x="748" y="210">Book it, assign custody, audit it</text>
+    <circle cx="736" cy="236" r="2.5" fill="#475467"/>
+    <text x="748" y="240">Full history for that exact item</text>
+  </g>
+  <line x1="730" y1="260" x2="938" y2="260" stroke="#EAECF0"/>
+  <text x="730" y="284" font-size="11.5" font-weight="600" fill="#101828">Great for</text>
+  <text x="730" y="302" font-size="11.5" fill="#475467">Unique gear: the projector, the</text>
+  <text x="730" y="317" font-size="11.5" fill="#475467">drone, the van</text>
+
+  <!-- ================= left: Asset Models ================= -->
+  <rect x="40" y="248" width="252" height="400" rx="12" fill="#ffffff" stroke="#EAECF0"/>
+  <rect x="40" y="248" width="252" height="6" rx="3" fill="#EF6820"/>
+  <text x="62" y="284" font-size="15" font-weight="600" fill="#101828">Asset Models</text>
+  <text x="62" y="304" font-size="11.5" fill="#667085">Individual units, grouped by model</text>
+  <g font-size="11.5" fill="#344054">
+    <circle cx="68" cy="328" r="2.5" fill="#EF6820"/>
+    <text x="80" y="332">Every unit is its own record with</text>
+    <text x="80" y="347">its own QR label and history</text>
+
+    <circle cx="68" cy="370" r="2.5" fill="#EF6820"/>
+    <text x="80" y="374">Identical units grouped under</text>
+    <text x="80" y="389">one model</text>
+
+    <circle cx="68" cy="412" r="2.5" fill="#EF6820"/>
+    <text x="80" y="416">Book by model: reserve "4x HDMI</text>
+    <text x="80" y="431">cable", scan any 4 at pickup</text>
+
+    <circle cx="68" cy="454" r="2.5" fill="#EF6820"/>
+    <text x="80" y="458">Always know exactly who has</text>
+    <text x="80" y="473">which unit</text>
+
+    <circle cx="68" cy="496" r="2.5" fill="#EF6820"/>
+    <text x="80" y="500">Maintenance reminders and audit</text>
+    <text x="80" y="515">trail per unit</text>
+  </g>
+  <line x1="62" y1="540" x2="270" y2="540" stroke="#EAECF0"/>
+  <text x="62" y="564" font-size="11.5" font-weight="600" fill="#101828">Great for</text>
+  <text x="62" y="582" font-size="11.5" fill="#475467">Fleets of cameras, lenses, laptops,</text>
+  <text x="62" y="597" font-size="11.5" fill="#475467">audio gear: anything with a serial</text>
+  <text x="62" y="612" font-size="11.5" fill="#475467">number or a life of its own</text>
+
+  <!-- ================= right: Quantity tracking ================= -->
+  <rect x="708" y="400" width="252" height="380" rx="12" fill="#ffffff" stroke="#EAECF0"/>
+  <rect x="708" y="400" width="252" height="6" rx="3" fill="#101828"/>
+  <text x="730" y="436" font-size="15" font-weight="600" fill="#101828">Quantity tracking</text>
+  <text x="730" y="456" font-size="11.5" fill="#667085">One record with a count</text>
+  <g font-size="11.5" fill="#344054">
+    <circle cx="736" cy="480" r="2.5" fill="#101828"/>
+    <text x="748" y="484">One entry for the whole stock,</text>
+    <text x="748" y="499">e.g. "Gaffer tape, 200 pcs"</text>
+
+    <circle cx="736" cy="522" r="2.5" fill="#101828"/>
+    <text x="748" y="526">Book or check out part of the</text>
+    <text x="748" y="541">stock: 4 out of 200</text>
+
+    <circle cx="736" cy="564" r="2.5" fill="#101828"/>
+    <text x="748" y="568">Low-stock alerts when you drop</text>
+    <text x="748" y="583">below your threshold</text>
+
+    <circle cx="736" cy="606" r="2.5" fill="#101828"/>
+    <text x="748" y="610">One-way mode for consumables,</text>
+    <text x="748" y="625">two-way for returnables</text>
+
+    <circle cx="736" cy="648" r="2.5" fill="#101828"/>
+    <text x="748" y="652">Split the count across multiple</text>
+    <text x="748" y="667">locations</text>
+  </g>
+  <line x1="730" y1="692" x2="938" y2="692" stroke="#EAECF0"/>
+  <text x="730" y="716" font-size="11.5" font-weight="600" fill="#101828">Great for</text>
+  <text x="730" y="734" font-size="11.5" fill="#475467">Cables, adapters, tape, batteries,</text>
+  <text x="730" y="749" font-size="11.5" fill="#475467">expendables: interchangeable</text>
+  <text x="730" y="764" font-size="11.5" fill="#475467">stock where only the count matters</text>
+
+  <!-- footnotes -->
+  <text x="500" y="822" font-size="12" fill="#667085" text-anchor="middle">You choose individual or quantity tracking when creating an item; that choice cannot be switched later.</text>
+  <text x="500" y="842" font-size="12" fill="#667085" text-anchor="middle">Grouping items under an Asset Model can be done or undone at any time. All three are fully booking-aware.</text>
+</svg>

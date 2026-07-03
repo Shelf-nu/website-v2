@@ -99,6 +99,7 @@ Three-layer analytics, all free:
 - `scroll_depth` — 25/50/75/100% milestones
 - `404_hit` — broken inbound links (path + referrer)
 - `chat_opened` / `chat_message_sent` — Crisp chat interactions
+- `tracking_quiz_started` / `tracking_quiz_completed` — tracking-method decision quiz on /knowledge-base/how-to-choose-a-tracking-method (completed carries `result` + `path`)
 
 **CLI commands** (for querying data from Claude Code):
 ```bash

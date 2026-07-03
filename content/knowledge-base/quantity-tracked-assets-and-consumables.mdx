@@ -90,13 +90,13 @@ When you reserve units in a booking, the available count drops immediately, so t
 
 ## Low-stock alerts
 
-If you set a **min quantity**, Shelf watches the available count for that asset. When stock drops to or below the threshold, the workspace owner is notified by email so you can reorder before you run out. The alert clears automatically when stock rises back above the threshold through a restock or returns.
+If you set a **min quantity**, Shelf watches the available count for that asset. When a stock adjustment or custody assignment takes the count to or below the threshold, the workspace owner is notified by email so you can reorder before you run out. The **Low stock** badge on the asset page clears automatically when stock rises back above the threshold through a restock or returns.
 
 ---
 
 ## Asset models (optional)
 
-You can group assets under an **Asset Model** (for example, "Dell Latitude 5550") so that shared defaults — like category and valuation — are pre-filled when you create new assets from that model. Asset models are managed under **Settings → Asset models**, and you can bulk-create assets from a model.
+You can group individually tracked assets under an **[Asset Model](/glossary/asset-models)** (for example, "Dell Latitude 5550") so that shared defaults — like category and valuation — are pre-filled when you create new assets from that model. Asset models are managed under **Settings → Asset models**, and you can bulk-create assets from a model. Models also unlock [booking by model](/features/bookings#book-by-model): reserve "4x" of a model and scan any 4 units at pickup. Note that models group individually tracked assets only; a quantity-tracked pool cannot join a model.
 
 ---
 
@@ -105,6 +105,8 @@ You can group assets under an **Asset Model** (for example, "Dell Latitude 5550"
 - Use **Individually tracked** when each unit needs its own QR code, custody chain, and history — laptops, cameras, vehicles, instruments.
 - Use **Tracked by quantity** when only the count matters — cables, adapters, gloves, fasteners, and other supplies.
 
+For the full decision framework, including when a fleet of identical units belongs under an Asset Model, see [How to Choose a Tracking Method](/knowledge-base/how-to-choose-a-tracking-method).
+
 > **Need per-unit history on a pooled item?** Printing several QR labels for one quantity-tracked asset still points every label at the same pool — they all show and adjust the same count. If you need independent history per unit, track those items individually instead.
 
 ---
@@ -112,6 +114,7 @@ You can group assets under an **Asset Model** (for example, "Dell Latitude 5550"
 ## Related Articles
 
 - [Consumables Tracking](/features/consumables-tracking) — track consumables by quantity, with units, low-stock alerts, and quantity-aware custody
+- [How to Choose a Tracking Method](/knowledge-base/how-to-choose-a-tracking-method) — individual assets, Asset Models, or quantity tracking, per item type
 - [Adding New Assets](/knowledge-base/adding-new-assets) — the full asset creation walkthrough
 - [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — capture business-specific data
 - [How to Create a Booking](/knowledge-base/how-to-create-a-booking) — reserve assets, including quantities

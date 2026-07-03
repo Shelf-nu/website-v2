@@ -44,6 +44,8 @@ When you create an item in Shelf, you choose how it's tracked:
 
 The tracking method is chosen at creation and is **permanent** — it locks once the item exists, so decide up front whether an item is a unique asset or a pool of stock. Quantity tracking complements individual tracking; it doesn't replace it.
 
+Not sure which method fits an item? [How to Choose a Tracking Method](/knowledge-base/how-to-choose-a-tracking-method) walks the decision in four questions, including when a fleet of identical units belongs under an [Asset Model](/glossary/asset-models) instead.
+
 ---
 
 ## Track assets by quantity
@@ -75,7 +77,7 @@ Custody works at the unit level. Assign **any portion** of a pool to a person, r
 
 ## Low-stock alerts
 
-Set a **minimum quantity** threshold on any quantity-tracked item and Shelf watches it for you. When available stock drops to or below that minimum, the **workspace owner** gets an email alert and an in-app notification goes to whoever made the change. The alert clears automatically once stock rises back above the threshold.
+Set a **minimum quantity** threshold on any quantity-tracked item and Shelf watches it for you. When a stock adjustment or custody assignment takes available stock to or below that minimum, the **workspace owner** gets an email alert and an in-app notification goes to whoever made the change. The **Low stock** badge on the asset page clears automatically once stock rises back above the threshold.
 
 ![Low-stock alert flow: when available stock drops to or below the minimum, Shelf emails the workspace owner and posts an in-app notification to whoever made the change.](/images/features/consumables/low-stock-alert.svg)
 
@@ -94,16 +96,21 @@ Bookings — and quantity in bookings — are available on **Team plans**.
 
 ---
 
-## Import, export & asset models
+## Import & export
 
-- **CSV import/export** supports quantity tracking directly, with columns for quantity, unit of measure, min-quantity, and consumption type — so you can bring an existing supply list in (or pull it out) in bulk. Import/export is a premium capability.
-- **Asset models** are a separate feature for your *individual* assets: reusable templates that pre-fill **category and valuation** defaults so you can bulk-create identical serialized assets from one model. Managed under **Settings → Asset models**, they're a distinct tool from quantity tracking — asset models template individual assets, not pools of stock.
+**CSV import/export** supports quantity tracking directly, with columns for quantity, unit of measure, min-quantity, and consumption type — so you can bring an existing supply list in (or pull it out) in bulk. Import/export is a premium capability.
+
+---
+
+## Asset models: fleets tracked unit by unit
+
+**[Asset Models](/glossary/asset-models)** cover the middle ground between one-off assets and pooled stock: fleets of identical, serialized gear where every unit still needs its own record. Group individually tracked units under a model (say, "Dell Latitude 5550") and each unit keeps its own QR label, custody, and history, while new units created from the model inherit shared defaults like category and valuation. Bookings can [reserve by model](/features/bookings#book-by-model): reserve "4x HDMI cable" and scan any 4 units at pickup (bookings are on Team plans). Models group *individually tracked* assets only (a quantity-tracked pool cannot join a model), and units can join or leave a model at any time, managed under **Settings → Asset models**.
 
 ---
 
 ## Available on every plan
 
-Quantity tracking and asset models aren't plan-gated — they're available on **every Shelf plan**, including the free tier. The features that build on top keep their usual tiers: bookings (and reserving quantity in bookings) are on **Team plans**, and CSV import/export is premium. Shelf is open source and free to start, with the free tier supporting a single user.
+Quantity tracking and asset models aren't plan-gated — they're available on **every Shelf plan**, including the free tier. The features that build on top keep their usual tiers: bookings (including reserving quantity and reserving by model) are on **Team plans**, and CSV import/export is premium. Shelf is open source and free to start, with the free tier supporting a single user.
 
 ---
 
@@ -123,3 +130,4 @@ Quantity tracking and asset models aren't plan-gated — they're available on **
 - [Kits](/features/kits)
 - [Asset Pages](/features/asset-pages)
 - Learn the full workflow: [Quantity-tracked assets & consumables](/knowledge-base/quantity-tracked-assets-and-consumables)
+- Not sure which method fits? [How to Choose a Tracking Method](/knowledge-base/how-to-choose-a-tracking-method)

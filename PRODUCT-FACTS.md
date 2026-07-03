@@ -24,6 +24,12 @@
 - **Enterprise** — custom.
 - ❌ **Never** call bookings/reservations or multi-user "free" — they are paid (Team plan). The free tier is single-user.
 
+## Tracking methods (verified 2026-07-03 against product origin/main)
+- Two tracking types, chosen at creation and **immutable**: **individually tracked** (default, one record per item) and **quantity-tracked** (one record with a count). ❌ Never say or imply items can be converted or merged between the two — no conversion exists.
+- **Asset Models** group *individually tracked* units under one template (every unit keeps its own QR/custody/history). Grouping is editable anytime; quantity-tracked pools can NOT join a model. Asset Models and quantity tracking are on **every plan** (role-gated, not plan-gated).
+- **Book-by-model** ("reserve 4x of a model, scan any 4 at pickup") is LIVE in production since 2026-06-29 (PR #2337). It rides on bookings, so it is **Team plan**. Keep "Asset Models on every plan" separate from "book by model" (paid).
+- **Low-stock alerts**: email to the workspace owner + in-app notification to whoever made the change, fired on stock adjustments and custody assignments (not yet on booking check-in consumption — issue #2677). ❌ Never say "the alert clears when stock recovers" — only the on-page **Low stock** badge clears automatically; there is no recovery notification.
+
 ## Social proof (verify before quoting)
 - "3,000+ teams"; **5.0 on G2**. Marquee customers incl. Chicago Bulls, UC Berkeley, British Airways, Kent State, USS Midway Museum, University of Missouri (`src/data/customer-logos.ts`).
 
