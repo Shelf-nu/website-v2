@@ -66,6 +66,7 @@ export function Footer() {
                             <li><Link href="/resources" className="hover:text-orange-600 transition-colors font-medium text-foreground">All Resources</Link></li>
                             <li><Link href="/blog" className="hover:text-orange-600 transition-colors">Blog</Link></li>
                             <li><Link href="/knowledge-base" className="hover:text-orange-600 transition-colors">Knowledge Base</Link></li>
+                            <li><Link href="/knowledge-base/how-to-choose-a-tracking-method" className="hover:text-orange-600 transition-colors">Choosing a Tracking Method</Link></li>
                             <li><Link href="/glossary" className="hover:text-orange-600 transition-colors">Glossary</Link></li>
                             <li><Link href="/updates" className="hover:text-orange-600 transition-colors">Updates</Link></li>
                             <li><Link href="/tools" className="hover:text-orange-600 transition-colors font-medium text-foreground">Free Tools</Link></li>

@@ -7,7 +7,7 @@ import { CTA } from "@/components/sections/cta";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Layers, Smartphone } from "lucide-react";
+import { ArrowRight, GitBranch, Layers, Smartphone } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
@@ -75,6 +75,31 @@ export default function FeaturesPage() {
                             </div>
                             <span className="flex items-center text-sm font-semibold text-orange-600 group-hover:translate-x-0.5 transition-transform">
                                 Learn more <ArrowRight className="ml-1 h-4 w-4" />
+                            </span>
+                        </Link>
+                    </div>
+                </ScrollReveal>
+
+                {/* Tracking-method decision guide strip */}
+                <ScrollReveal width="100%">
+                    <div className="max-w-3xl mx-auto mb-12">
+                        <Link
+                            href="/knowledge-base/how-to-choose-a-tracking-method"
+                            className="group flex items-center gap-4 rounded-2xl border border-border/60 bg-muted/30 px-6 py-3.5 transition-colors hover:border-orange-200 hover:bg-orange-50/40 dark:hover:bg-orange-950/20"
+                        >
+                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-foreground/70 group-hover:bg-orange-100 group-hover:text-orange-700 dark:group-hover:bg-orange-900/50 dark:group-hover:text-orange-200 transition-colors">
+                                <GitBranch className="h-4.5 w-4.5" />
+                            </div>
+                            <div className="flex-1 text-left">
+                                <p className="text-sm font-semibold text-foreground">
+                                    Not sure how to track something?
+                                </p>
+                                <p className="text-xs text-muted-foreground">
+                                    Individual assets, Asset Models, or quantity tracking: a 30-second quiz picks the right method per item.
+                                </p>
+                            </div>
+                            <span className="flex items-center text-sm font-semibold text-orange-600 group-hover:translate-x-0.5 transition-transform">
+                                Take the quiz <ArrowRight className="ml-1 h-4 w-4" />
                             </span>
                         </Link>
                     </div>
