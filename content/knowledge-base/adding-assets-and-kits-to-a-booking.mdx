@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-03"
+updated: "2026-07-06"
 layout: "knowledge-base"
 ---
 
@@ -41,12 +41,27 @@ If you or other users have configured one or more kits you'll be able to utilize
 3. Select one or multiple kits
 4. Click **Confirm** to add your selection of kits to the booking
 
+## Adding items to a booking that's already active
+
+You don't have to finalize the whole list before checkout begins. You can add assets and kits to a booking that's already **Ongoing** or **Overdue** using the same **Manage assets** modal, the **Add to booking** option on an asset or kit page, the bulk **Add to booking** panel, or by scanning.
+
+Items added to an active booking join it as line items and stay **Available** until you check them out. They aren't force-checked-out just because the booking is already underway, which fits the [progressive checkout](/knowledge-base/progressive-checkout-of-bookings) flow where gear leaves in stages. The only thing you can't add is an item that's already checked out on another active booking, since that would double-book it.
+
 ## Finding and sorting assets on a booking
 
 Once assets are on a booking, the asset list on the booking page has its own search and a **Location** column so you can find items quickly — useful on large bookings where scrolling isn't practical.
 
 - **Search** the list by typing in the search bar. It matches across an asset's name, asset ID, category, **location**, tags, and its QR and barcode values. Separate multiple terms with a comma to match **any** of them (for example, `studio a, lens` returns items in Studio A *and* anything named "lens"). If a match falls inside a kit, the whole kit is shown so you keep the full bundle in view.
 - **Location column**: each row shows where the asset (or kit) is stored. Click the **Location** column header to sort the list by location — handy for grouping a pull list by room or shelf before checkout.
+
+### Sort options
+
+Click any sortable column header, or use the sort control, to reorder the list. A tooltip next to the control explains the two booking-specific options:
+
+- **Item type** groups kits first and then standalone assets, so you can work through a bundle in one pass.
+- **Status** sinks fully checked-out items to the bottom and keeps the items you still need to hand out on top. This is especially useful during [progressive checkout](/knowledge-base/progressive-checkout-of-bookings), when a booking holds a mix of Available and Checked out items at the same time.
+
+When you sort by any other field, kits and standalone assets are interleaved by that field instead of kits always sitting on top, while each kit's members stay grouped together.
 
 The search you apply here also carries through to the **Generate PDF** overview, so you can print a focused list of just the matching items. See [How to Generate a PDF Overview](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings).
 
