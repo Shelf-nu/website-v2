@@ -3,6 +3,8 @@ import { Container } from "@/components/ui/container";
 import { Metadata } from "next";
 import { KnowledgeBaseFeed } from "@/components/knowledge-base/kb-feed";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, GitBranch } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
@@ -71,6 +73,19 @@ export default function KnowledgeBasePage() {
                                 Everything you need to know about using Shelf
                                 — from getting started to advanced features.
                             </p>
+                            <Link
+                                href="/knowledge-base/how-to-choose-a-tracking-method"
+                                className="group mt-6 inline-flex items-center gap-3 rounded-xl border border-orange-200 dark:border-orange-900/40 bg-orange-50/40 dark:bg-orange-950/20 px-4 py-3 text-left transition-colors hover:bg-orange-50 dark:hover:bg-orange-950/30"
+                            >
+                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-200">
+                                    <GitBranch className="h-4 w-4" />
+                                </span>
+                                <span className="text-sm">
+                                    <span className="font-semibold text-foreground">Start here: How to Choose a Tracking Method</span>
+                                    <span className="block text-xs text-muted-foreground">Individual, models, or quantity? Take the 30-second quiz.</span>
+                                </span>
+                                <ArrowRight className="h-4 w-4 shrink-0 text-orange-600 transition-transform group-hover:translate-x-0.5" />
+                            </Link>
                         </div>
 
                         {/* Label images composition */}

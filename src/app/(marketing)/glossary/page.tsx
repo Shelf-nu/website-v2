@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CTA } from "@/components/sections/cta";
-import { ArrowRight, BookOpen, Tag, ScanLine, Ghost, Wrench } from "lucide-react";
+import { ArrowRight, BookOpen, Tag, ScanLine, Ghost, Wrench, Layers, Boxes } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
@@ -19,12 +19,23 @@ export const metadata: Metadata = {
 
 const termIcons: Record<string, LucideIcon> = {
     "asset-tagging": Tag,
+    "asset-models": Layers,
     "check-in-check-out": ScanLine,
     "ghost-assets": Ghost,
     "preventive-maintenance": Wrench,
+    "quantity-tracked-assets": Boxes,
 };
 
 const termRelated: Record<string, { label: string; href: string }[]> = {
+    "asset-models": [
+        { label: "Bookings", href: "/features/bookings" },
+        { label: "Asset Pages", href: "/features/asset-pages" },
+        { label: "Choosing a Tracking Method", href: "/knowledge-base/how-to-choose-a-tracking-method" },
+    ],
+    "quantity-tracked-assets": [
+        { label: "Consumables Tracking", href: "/features/consumables-tracking" },
+        { label: "Choosing a Tracking Method", href: "/knowledge-base/how-to-choose-a-tracking-method" },
+    ],
     "asset-tagging": [
         { label: "Asset Tracking", href: "/solutions/asset-tracking" },
         { label: "Location Tracking", href: "/features/location-tracking" },

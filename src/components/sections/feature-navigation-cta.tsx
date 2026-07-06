@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { ArrowRight, ChevronRight, Smartphone } from "lucide-react";
+import { ArrowRight, ChevronRight, GitBranch, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 
 const FEATURE_LINKS = [
@@ -15,6 +15,7 @@ const FEATURE_LINKS = [
     { label: "Asset Pages", href: "/features/asset-pages" },
     { label: "Kits", href: "/features/kits" },
     { label: "Consumables Tracking", href: "/features/consumables-tracking" },
+    { label: "Which tracking method fits?", href: "/knowledge-base/how-to-choose-a-tracking-method", badge: "Quiz", icon: GitBranch },
     { label: "Calendar", href: "/features/calendar" },
     { label: "Dashboard", href: "/features/dashboard" },
     { label: "Asset Search", href: "/features/asset-search" },
@@ -48,7 +49,14 @@ export function FeatureNavigationCTA() {
 
                     <div className="max-w-4xl mx-auto">
                         <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
-                            {FEATURE_LINKS.map((feature, i) => (
+                            {FEATURE_LINKS.map((feature, i) => {
+                                const Icon =
+                                    "icon" in feature
+                                        ? feature.icon
+                                        : "badge" in feature && feature.badge
+                                          ? Smartphone
+                                          : ArrowRight;
+                                return (
                                 <motion.div
                                     key={feature.label}
                                     initial={{ opacity: 0, y: 10 }}
@@ -64,11 +72,7 @@ export function FeatureNavigationCTA() {
                                                 : "bg-secondary/50 border-border hover:border-orange-200 hover:bg-orange-50/50 text-muted-foreground hover:text-orange-700"
                                         }`}
                                     >
-                                        {"badge" in feature && feature.badge ? (
-                                            <Smartphone className="h-4 w-4 text-orange-500" />
-                                        ) : (
-                                            <ArrowRight className="h-4 w-4 text-orange-500" />
-                                        )}
+                                        <Icon className="h-4 w-4 text-orange-500" />
                                         {feature.label}
                                         {"badge" in feature && feature.badge && (
                                             <span className="rounded-full bg-orange-600 px-1.5 py-0.5 text-[9px] font-bold text-white leading-none">
@@ -77,7 +81,8 @@ export function FeatureNavigationCTA() {
                                         )}
                                     </Link>
                                 </motion.div>
-                            ))}
+                            );
+                            })}
                         </div>
 
                         <Link

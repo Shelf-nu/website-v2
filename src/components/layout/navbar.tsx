@@ -28,6 +28,8 @@ import {
     Wrench,
     MapPin,
     ArrowLeftRight,
+    GitBranch,
+    BookMarked,
 } from "lucide-react";
 import { useState, useEffect, useCallback, startTransition } from "react";
 import {
@@ -537,6 +539,24 @@ export function Navbar() {
                                                                 calculators and
                                                                 more.
                                                             </ListItem>
+                                                            <ListItem
+                                                                href="/knowledge-base/how-to-choose-a-tracking-method"
+                                                                title="Choose a Tracking Method"
+                                                                icon={GitBranch}
+                                                            >
+                                                                Individual,
+                                                                models, or
+                                                                quantity? Take
+                                                                the quiz.
+                                                            </ListItem>
+                                                            <ListItem
+                                                                href="/glossary"
+                                                                title="Glossary"
+                                                                icon={BookMarked}
+                                                            >
+                                                                Asset management
+                                                                terms, defined.
+                                                            </ListItem>
                                                         </ul>
                                                     </div>
                                                 </Container>
@@ -784,6 +804,12 @@ export function Navbar() {
                                     </MobileLink>
                                     <MobileLink href="/knowledge-base">
                                         Knowledge Base
+                                    </MobileLink>
+                                    <MobileLink href="/knowledge-base/how-to-choose-a-tracking-method">
+                                        Choose a Tracking Method
+                                    </MobileLink>
+                                    <MobileLink href="/glossary">
+                                        Glossary
                                     </MobileLink>
                                 </nav>
                             </div>

@@ -536,7 +536,7 @@ async function cmdConversions() {
     const counts = await getEventCounts(dateStr(since), dateStr(tomorrow));
     const prevCounts = await getEventCounts(dateStr(prevSince), dateStr(since));
 
-    const events = ["signup_click", "demo_cta", "demo_form_submit", "pricing_cta", "search_query", "404_hit", "scroll_depth", "chat_opened"];
+    const events = ["signup_click", "demo_cta", "demo_form_submit", "pricing_cta", "search_query", "404_hit", "scroll_depth", "chat_opened", "tracking_quiz_started", "tracking_quiz_completed"];
     for (const e of events) {
         const c = counts[e] || 0;
         const p = prevCounts[e] || 0;
