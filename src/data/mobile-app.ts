@@ -38,9 +38,9 @@ export const mobileAppFeatures: MobileAppFeature[] = [
         icon: Users,
     },
     {
-        title: "Booking Checkout & Checkin",
+        title: "Bookings, End to End",
         description:
-            "Check booked equipment out to team members, or check items back in when they return.",
+            "Create, edit, and reserve bookings from the phone with availability-aware asset and kit pickers, then check equipment out to team members and back in when it returns.",
         icon: CalendarCheck,
     },
     {
@@ -66,7 +66,7 @@ export const builtForApp = [
     "Scanning QR codes and barcodes on-site",
     "Quick asset lookups and status checks",
     "Custody handoffs between team members",
-    "Booking checkout/checkin at the point of use",
+    "Creating, editing, and checking bookings in and out at the point of use",
     "On-the-go dashboard monitoring",
 ];
 
