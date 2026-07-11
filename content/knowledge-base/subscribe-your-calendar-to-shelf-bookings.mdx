@@ -1,0 +1,76 @@
+---
+title: "Subscribe Your Calendar to Shelf Bookings"
+description: "Connect Google Calendar, Apple Calendar, or Outlook to a live feed of your Shelf bookings via a secret URL, so reservations appear in the calendar you already use and stay up to date automatically."
+category: "Bookings & Custody"
+date: "2026-07-11"
+updated: "2026-07-11"
+layout: "knowledge-base"
+---
+
+## Keep Your Bookings in the Calendar You Already Use
+
+Instead of exporting bookings one at a time, you can **subscribe** your everyday calendar (Google Calendar, Apple Calendar, Outlook, or any RFC-compliant calendar app) to a live feed of your Shelf bookings. Once connected, your reservations show up alongside your other events and **stay updated automatically** — when a booking is added, moved, or cancelled in Shelf, your calendar reflects it the next time it refreshes.
+
+The feed is **one-way and read-only**: it publishes your Shelf bookings into your calendar. It does not create or change bookings from your calendar app, and it never exposes your Shelf login — access is granted through a secret feed URL that only you generate.
+
+> **Not the same as "Add to Calendar."** The **Add to Calendar** button on an individual booking downloads a one-off `.ics` file for that single event. The calendar subscription described here is a live feed of **all** your bookings that keeps refreshing on its own. Use the subscription when you want your bookings to stay in sync without re-exporting.
+
+---
+
+## How to Subscribe
+
+### Step 1: Open your calendar feed
+
+Go to the **Calendar** page and click **Subscribe**, or open **Account Settings → Calendars**. Either opens the **Subscribe to your booking calendar** dialog, which shows your personal secret feed URL.
+
+{/* TODO: Screenshot needed: the "Subscribe to your booking calendar" dialog showing the feed URL with Copy / Regenerate / Stop sharing actions (PR #2602) */}
+
+### Step 2: Add the feed to your calendar app
+
+Copy the feed URL, then add it in your calendar app:
+
+- **Apple Calendar & Outlook**: Use the `webcal://` link — most systems add the calendar in one click when you open it.
+- **Google Calendar**: Go to **Other calendars → From URL**, paste the feed URL, and click **Add calendar**.
+- **Any other app**: Add a new subscribed/internet calendar and paste the feed URL.
+
+Your bookings appear within a few minutes and refresh automatically on your calendar app's own schedule (Google, Apple, and Outlook each poll subscribed calendars on their own timing).
+
+---
+
+## What the Feed Includes
+
+- **Confirmed bookings only** — reserved, ongoing, overdue, and completed bookings. Drafts, cancelled, and archived bookings are excluded.
+- **A rolling window** — roughly the last month through one year ahead, so your calendar stays focused on relevant reservations.
+- **Booking details** — each event carries the booking's dates and a **direct link back to the booking in Shelf**.
+
+### Whose bookings show up
+
+The feed mirrors exactly what you can see on Shelf's in-app **Calendar**:
+
+- If your role lets you **see all workspace bookings** (for example, an Administrator), the feed includes the whole workspace. This means an admin can publish a **shared team calendar** for everyone to subscribe to.
+- If you're a **Self service or Base** member, the feed includes **only your own** bookings. Custodian names for bookings you aren't entitled to see are hidden.
+
+---
+
+## Keeping the Feed Secure
+
+The feed URL is a **secret** — anyone who has it can see the bookings in your feed, so treat it like a password. Don't post it publicly.
+
+From the **Subscribe** dialog you can:
+
+- **Regenerate** the URL — this issues a new link and **immediately stops the old one from working**. Use it if a link was shared by mistake. You'll need to update the URL in any calendar app that was subscribed to the old feed.
+- **Stop sharing** — this revokes the feed entirely, so no calendar can pull it until you generate a new one.
+
+---
+
+## Availability
+
+The calendar subscription feed is **free for all Team workspaces**. Because bookings are a Team feature, any workspace using bookings already has access.
+
+---
+
+## Related Articles
+
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
+- [How to Create a Booking](/knowledge-base/how-to-create-a-booking)
+- [How to Generate a PDF Overview of Your Reserved Assets (Bookings)](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings)
