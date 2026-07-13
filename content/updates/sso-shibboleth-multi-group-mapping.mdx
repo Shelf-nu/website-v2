@@ -1,0 +1,18 @@
+---
+title: "SSO: Shibboleth Support and Multi-Group Role Mapping"
+description: "Shibboleth is now a first-class SSO provider, each role can be mapped from several groups at once, and group matching is case-insensitive so capitalization no longer causes mismatches."
+date: "2026-07-11"
+image: "/images/updates/improved-team-management.jpg"
+readMoreUrl: "/knowledge-base/sso-with-google-workspace"
+layout: "update"
+---
+
+Single sign-on gets more flexible for larger and education-sector deployments. Shelf's SSO is IdP-agnostic (it brokers SAML 2.0), and **Shibboleth** now joins Google Workspace, Microsoft Entra ID, and Okta as a documented, first-class provider — a common requirement for universities and research institutions.
+
+We also hardened the group-to-role mapping in three ways:
+
+- **Map several groups to one role.** Each role field (Administrator, Self service, Base) now accepts **one or more group names separated by commas**, so different departments or affiliations can all resolve to the same Shelf role. If a user belongs to groups that map to more than one role, the higher role always wins (Administrator > Self service > Base).
+- **Case-insensitive, trimmed matching.** Group matching now ignores capitalization and surrounding spaces, so a value like `Staff` and `staff` are treated the same. This corrects the previous case-sensitive behavior that was a frequent source of "why isn't my role applying?" confusion.
+- **Safe handling of LDAP distinguished names.** A value containing an `=` (such as `ou=staff,dc=example,dc=edu`) is treated as a single group and is never split on its commas, so directory paths map cleanly.
+
+The [SSO setup guide](/knowledge-base/sso-with-google-workspace) has been updated with the multi-group syntax and the corrected matching rules.

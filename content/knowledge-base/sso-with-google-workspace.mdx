@@ -3,9 +3,11 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Enterprise or Organization plan only."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-06-23"
+updated: "2026-07-11"
 layout: "knowledge-base"
 ---
+
+> **Works with any SAML 2.0 identity provider.** This guide uses Google Workspace as the example, but Shelf's SSO is IdP-agnostic — the same setup applies to **Microsoft Entra ID, Okta, Shibboleth**, and other SAML 2.0 providers. The group-to-role mapping described below works identically across all of them. If you use a different provider, share its metadata with your Shelf contact and follow the equivalent steps in your IdP's admin console.
 
 ## Before You Start: Prerequisites
 
@@ -116,7 +118,7 @@ First step is to create the groups in the Google Workspace. Inside your admin pa
 
 Add a name, email and make sure the group is labeled as security. Optionally fill in the other fields as well. Create one group per Shelf role you want to use (you need at least one).
 
-> **Note:** Due to how Google Workspaces works, it returns group names instead of IDs when the user tries to login. We recommend using lower cased group names without spaces, to avoid mismatch. This is not required, but can ensure a better integration.
+> **Note:** Due to how Google Workspace works, it returns group names instead of IDs when a user logs in. Shelf matches these **case-insensitively and ignores any surrounding spaces**, so capitalization differences won't cause a mismatch. Using simple, consistent group names still keeps the mapping easy to read.
 
 #### 8.2: Assign Members to Each Group
 
@@ -145,7 +147,9 @@ Once you have the groups ready, you need to add their **names** in the workspace
 ![8.1: Create Your Groups in Google Workspace](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de30_6672da5488296a3d362dcb7a_Create%2520Your%2520Groups%2520in%2520Google%2520Workspace.jpeg)
 Go to the workspace settings and place the **name** of each group next to its matching role (Administrator, Self service, Base). You only need to fill in the roles you use — leave the others blank, but **at least one group must be mapped**.
 
-> **Important:** Those fields are case sensitive. The name should be placed exactly as the group name is in Google Workspace.
+Each role field accepts **one or more group names, separated by commas**, so several identity-provider groups can map to the same Shelf role — useful when different departments or affiliations should all land on, for example, Self service. If a user belongs to groups that map to more than one role, the higher role wins (**Administrator > Self service > Base**).
+
+> **Important:** Matching is **case-insensitive** and ignores surrounding spaces, so you don't have to match capitalization exactly. Still, paste each group name as it appears in your identity provider to avoid typos. Values containing an `=` (such as an LDAP distinguished name like `ou=staff,dc=example,dc=edu`) are treated as a single group value and are never split on commas.
 
 ### Step 10: Test Single Sign-On
 
