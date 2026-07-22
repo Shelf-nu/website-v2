@@ -6,17 +6,17 @@ import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, ExternalLink, Sparkles } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { MDXContent } from "@/lib/mdx";
+import { ContentMeta } from "@/lib/mdx";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { formatDate } from "@/lib/utils";
 
 interface UpdatesFeedProps {
-    updates: MDXContent[];
+    updates: ContentMeta[];
 }
 
-function groupByYear(updates: MDXContent[]): Record<string, MDXContent[]> {
-    const groups: Record<string, MDXContent[]> = {};
+function groupByYear(updates: ContentMeta[]): Record<string, ContentMeta[]> {
+    const groups: Record<string, ContentMeta[]> = {};
     for (const update of updates) {
         const year = new Date(update.frontmatter.date || "").getFullYear().toString();
         if (!groups[year]) groups[year] = [];

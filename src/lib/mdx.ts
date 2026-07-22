@@ -96,3 +96,23 @@ export function getAllContent(type: ContentType): MDXContent[] {
         .sort((post1, post2) => (post1.frontmatter.date && post2.frontmatter.date && post1.frontmatter.date > post2.frontmatter.date ? -1 : 1));
     return content;
 }
+
+/** An MDX entry without its body — everything an index/listing page needs. */
+export type ContentMeta = Omit<MDXContent, "content">;
+
+/**
+ * Like getAllContent, but drops the MDX body.
+ *
+ * Use this for any listing that hands entries to a *client* component. Next
+ * serializes every prop crossing the client boundary into the RSC flight
+ * payload, so passing full MDXContent embeds every article body into the HTML
+ * — /blog was 864 KB (80% of it inline flight data) before this existed, and
+ * that payload is prefetched from the footer link on every page.
+ *
+ * Server components are unaffected (their props are never serialized), so
+ * getAllContent is still correct there.
+ */
+export function getAllContentMeta(type: ContentType): ContentMeta[] {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return getAllContent(type).map(({ content, ...meta }) => meta);
+}

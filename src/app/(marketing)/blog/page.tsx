@@ -1,4 +1,4 @@
-import { getAllContent } from "@/lib/mdx";
+import { getAllContentMeta } from "@/lib/mdx";
 import { Metadata } from "next";
 import { BlogFeed } from "@/components/blog/blog-feed";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogIndexPage() {
-    const allPosts = getAllContent("blog");
+    const allPosts = getAllContentMeta("blog");
 
     const collectionSchema = collectionPageJsonLd({
         name: "Shelf Blog",
