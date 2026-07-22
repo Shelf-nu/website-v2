@@ -1,9 +1,9 @@
 ---
 title: "Exporting Data from Shelf"
-description: "Export asset data from Shelf as CSV — selected assets, filtered results, or a full workspace backup. Covers what's included, when to use each method, and common reporting scenarios."
+description: "Export asset data from Shelf as CSV: selected assets, filtered results, or a full workspace backup. Covers the Standard and Import-ready formats, what each includes, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-16"
+updated: "2026-07-22"
 layout: "knowledge-base"
 ---
 
@@ -24,7 +24,8 @@ Shelf provides multiple ways to export asset data as CSV — whether you need a 
 - Navigate to the Assets index
 - Select the assets you want using the checkboxes
 - Click **Export selection** at the top of the asset list
-- Your selected assets download as a CSV file
+- Pick a **Format** and a **Columns** scope (see [Choosing an export format](#choosing-an-export-format) below)
+- Click **Download CSV**
 
 ![Assets index showing the export toolbar](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-assets-index.webp)
 
@@ -32,7 +33,9 @@ Shelf provides multiple ways to export asset data as CSV — whether you need a 
 
 - Apply any filters in the Assets index (category, location, custodian, tags, status)
 - Click **Select all X entries** to include all matches across every page
-- Click **Export selection** to download the filtered CSV
+- Click **Export selection**, pick your format, and click **Download CSV**
+
+Your current search and filters are carried into the export, so the file contains exactly the rows you can see.
 
 Filter-then-export is the most common reporting path — see [Common reporting scenarios](#common-reporting-scenarios) below. For the full filtering reference, see [Advanced Asset Index: Complete Guide](/knowledge-base/advanced-asset-index-complete-guide).
 
@@ -47,9 +50,40 @@ Filter-then-export is the most common reporting path — see [Common reporting s
 
 ---
 
+## Choosing an Export Format
+
+When you click **Export selection**, Shelf asks two questions before it builds the file.
+
+![Export options showing the Standard and Import-ready formats and the column scope](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-format-options.webp)
+
+### Format
+
+- **Standard**: a readable spreadsheet that mirrors what's on your screen: display labels, formatted values, and a total value column. Use it for reporting, insurance schedules, budget reviews, and anything a person will read.
+- **Import-ready**: the same assets written with the importer's own column headers and values, so the file can be uploaded straight into another workspace through **Assets → Import**. Use it when you're moving or duplicating inventory rather than reporting on it.
+
+### Columns
+
+- **Visible columns**: only the columns currently shown in your index.
+- **All columns**: every available column, regardless of what's displayed.
+
+Switching to **Import-ready** selects **All columns** for you, since a fuller file re-imports more completely. You can switch back to **Visible columns** if you only want a subset: Import-ready always keeps the fields required to recreate an asset (`title`, `type`, `quantity`, `minQuantity`, `unitOfMeasure`, `consumptionType`), so a trimmed file still imports.
+
+### Moving Assets to Another Workspace
+
+Import-ready exports are built for exactly this. Export from the source workspace, then import the file into the destination workspace with **Assets → Import**. The importer creates the categories, tags, locations, custodians, asset models, kits, and custom fields it finds by **name**, so you don't have to set anything up first.
+
+Two fields are deliberately left out:
+
+- **QR IDs** are tied to the workspace that owns them, so they can't travel. Assets get fresh QR codes in the destination workspace.
+- **Images** aren't carried over yet, so asset photos need to be re-added after the import.
+
+Everything else, including barcodes and custom field values with their types, comes across. See [Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the import side.
+
+---
+
 ## What's Included in Each Export
 
-Selected and filtered exports include the columns currently visible in your view. Customize the columns by clicking the **Columns** control in the top-right and toggling which fields display.
+Standard exports include the columns you chose in the export dialog: either the ones currently visible in your view, or all of them. Customize which columns display by clicking the **Columns** control in the top-right of the index.
 
 Typical fields included:
 
@@ -102,7 +136,7 @@ See [Asset Reminders](/knowledge-base/asset-reminders) for setting up maintenanc
 
 A common workflow: export a filtered selection, edit the CSV in Excel or Google Sheets, re-import to apply changes at scale. The **Update Existing Assets** feature handles this with a preview step that shows every field change before anything is saved.
 
-> **Important**: Only use **Asset Index exports** for re-import updates — not the Workspace Backup CSV. Backup exports include internal fields not intended for re-import, and uploading one as an update file can corrupt data.
+> **Important**: Only use **Asset Index exports** for re-import updates, not the Workspace Backup CSV. Backup exports include internal fields not intended for re-import, and uploading one as an update file can corrupt data. To create new assets in another workspace from an export, use the **Import-ready** format described above.
 
 Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
 

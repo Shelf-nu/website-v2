@@ -532,7 +532,7 @@ export const pricingFeatures: PricingFeature[] = [
         id: "csv-export-assets",
         category: "Data Import/Export",
         name: "Export Assets (CSV)",
-        description: "Bulk export assets to CSV file",
+        description: "Bulk export assets to CSV, in a readable format or an import-ready format for moving assets between workspaces",
         availability: {
             free: "not-included",
             plus: "included",
