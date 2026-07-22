@@ -62,8 +62,12 @@ once the current-production baseline is stable.
 - Playwright uses the `web-vitals` library (v5) injected into each page via
   `perf/helpers/capture-vitals.ts`. Same library Google uses for CrUX, so
   numbers match Lighthouse field data.
-- Lighthouse-CI runs a synthetic desktop-profile audit (cable-like throttling,
-  3 runs per URL) and asserts against budgets in `lighthouserc.json`.
+- Lighthouse-CI runs a synthetic desktop-profile audit (cable-like throttling)
+  and asserts against budgets in `lighthouserc.json`. Note the run count differs
+  by trigger: `.github/workflows/perf.yml` passes
+  `--collect.numberOfRuns=1` on pull requests and uses the config's
+  `numberOfRuns: 3` only on pushes to `main`. So a PR's numbers are a single
+  sample and are noisier than a `main` run — see the calibration section below.
 - Both feed into the PR comment + Phase 1 baseline report.
 
 ## How the `lighthouserc.json` budgets are calibrated
@@ -80,13 +84,35 @@ Key calibration decisions:
 - **Hardware-comparable metrics** stay as `error`:
   - CLS max 0.1 — hardware-independent, real user-visible number
   - LCP max 3500 ms — loose enough for CI, tight enough to catch regressions
-- **TBT is `warn` with a very loose threshold** (50000 ms). The homepage
-  hits ~39,500 ms of TBT on ubuntu-latest CI across all 3 runs — the
-  `cobe` globe (WebGL canvas) and framer-motion hero animations produce
-  continuous >50ms long tasks that accumulate into TBT. This is a real
-  finding worth a Phase 3 diagnosis, not a calibration issue. The 50s
-  threshold lets CI go green while logging the number so regressions
-  still surface; if TBT jumps to 60s+ we know something new broke.
+- **TBT is `warn` with a very loose threshold** (50000 ms) because homepage
+  TBT on the CI runner is *extremely noisy*, not because it is large.
+
+  An earlier version of this file claimed the homepage "hits ~39,500 ms of TBT
+  on ubuntu-latest CI across all 3 runs" and blamed the `cobe` globe and
+  framer-motion hero animations. **That was wrong on both counts and has been
+  corrected.** Measured from two real CI runs (2026-07-22):
+
+  | URL | run A | run B |
+  |---|---|---|
+  | `/` | perf 99, TBT **22 ms** | perf 63, TBT **1418 ms** |
+  | `/pricing` | perf 99, TBT 2 ms | perf 99, TBT 46 ms |
+  | `/features/workspaces` | perf 100, TBT 0 ms | perf 100, TBT 4 ms |
+  | `/mobile-app` | perf 100, TBT 0 ms | perf 100, TBT 0 ms |
+  | blog post | perf 88, TBT 0 ms | perf 88, TBT 0 ms |
+
+  Worst observed is 1418 ms — the old figure was off by ~28x even against
+  that, and by ~1800x against the median. The attribution was wrong too: the
+  globe is `dynamic(..., { ssr: false })` and IntersectionObserver-gated
+  (`scale-block.tsx`, `globe.tsx`), and its chunk is not referenced by
+  `out/index.html` at all.
+
+  The real signal is the **spread**: the same homepage swings 22 ms → 1418 ms
+  (and perf 99 → 63) purely on 2-core shared-runner contention. That is why TBT
+  and the category scores are `warn`, not `error`.
+
+  **Do not ratchet the TBT threshold on one green run.** Two samples are not
+  enough to set a floor, and a tight threshold would fail flakily on a slow
+  runner. Collect multi-run `main` data first — that is what Phase 5 is for.
 - FCP and Speed Index are `warn` — they compound with other metrics in
   the category score, so gating on them adds noise without signal.
 
