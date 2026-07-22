@@ -1,37 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
 
 /**
- * Lazy MotionConfig wrapper — loads framer-motion's MotionConfig after idle
- * to set reducedMotion="user" without adding framer-motion to the initial bundle.
- * This tells framer-motion to respect the OS prefers-reduced-motion setting.
+ * Sets framer-motion's reducedMotion="user" app-wide so JS-driven animations
+ * respect the OS prefers-reduced-motion setting (WCAG 2.3.3).
+ *
+ * The @media (prefers-reduced-motion) block in globals.css is not a substitute:
+ * it clamps CSS animation/transition duration, which does nothing to
+ * framer-motion — that animates via WAAPI/rAF and inline styles.
+ *
+ * MotionConfig is rendered unconditionally, and that is the point. A previous
+ * version imported it lazily after requestIdleCallback and rendered a bare
+ * fragment until then. Swapping the wrapper's element type mid-load makes
+ * React unmount and remount every client component beneath it — measured at
+ * ~1.9s into load on throttled mobile, late enough to wipe an open mobile menu
+ * or search dialog. Keeping the tree shape stable from the first render is
+ * worth more than deferring framer-motion's context module.
  */
 export function ReducedMotionConfig({ children }: { children: React.ReactNode }) {
-    const [Wrapper, setWrapper] = useState<React.ComponentType<{ children: React.ReactNode }> | null>(null);
-
-    useEffect(() => {
-        const schedule = typeof requestIdleCallback === "function"
-            ? requestIdleCallback
-            : (cb: () => void) => setTimeout(cb, 2000);
-
-        const id = schedule(() => {
-            import("framer-motion").then(({ MotionConfig }) => {
-                setWrapper(() => function MotionConfigWrapper({ children }: { children: React.ReactNode }) {
-                    return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
-                });
-            });
-        });
-
-        return () => {
-            if (typeof requestIdleCallback === "function") {
-                cancelIdleCallback(id as number);
-            } else {
-                clearTimeout(id as ReturnType<typeof setTimeout>);
-            }
-        };
-    }, []);
-
-    if (Wrapper) return <Wrapper>{children}</Wrapper>;
-    return <>{children}</>;
+    return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }

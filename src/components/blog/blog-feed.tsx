@@ -9,10 +9,11 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Frontmatter } from "@/lib/content/schema";
 import { formatCategoryLabel, formatDate } from "@/lib/utils";
 
+// No `content` field: this is a client component, so every prop is serialized
+// into the RSC flight payload. See getAllContentMeta in @/lib/mdx.
 interface BlogPost {
     slug: string;
     frontmatter: Frontmatter;
-    content: string;
 }
 
 interface BlogFeedProps {
