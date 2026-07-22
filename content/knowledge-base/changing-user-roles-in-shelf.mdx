@@ -1,54 +1,58 @@
 ---
 title: "Changing User Roles in Shelf"
-description: "This guide explains how to change a user's role within your Shelf workspace while maintaining data integrity."
+description: "Change a team member's role directly from Workspace Settings. Covers the Change role dialog, what happens to their assets and bookings when you lower a role, and who is allowed to make the change."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-04-13"
+updated: "2026-07-22"
 layout: "knowledge-base"
 ---
 
-<InlineVideo
-  mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/changing-roles-flow.mp4"
-  webm="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/changing-roles-flow.webm"
-  alt="How to change user roles in Shelf"
-/>
+You can change a team member's role in place from your workspace settings. The change takes effect immediately, and the user keeps their account, their history, and their place in the workspace.
 
-## Understanding the Process
+{/* TODO: Screenshot needed: Team → Users → Actions → "Change role" and the demotion transfer step. Not automated: the dialog renders real team member names and emails from the demo workspace, and driving it on production risks a real role change. */}
 
-Changing a user's role in Shelf requires revoking their current access and re-inviting them with the new role. This process preserves all asset assignments and historical data while allowing you to modify their permissions.
+## Changing a Role
 
-## Step-by-Step Guide
+1. Go to **Workspace settings → Team → Users**
+2. Find the user and click the **Actions** menu on their row
+3. Choose **Change role**
+4. Pick the new role: **Administrator**, **Self service**, or **Base**
+5. Click **Change role**
 
-### Step 1: Revoke Current Access
+That's it. The user's permissions update straight away, and they don't need to accept anything or sign in again.
 
-1. Navigate to **Settings > Team**
-2. Find the user whose role you want to change
-3. Click on **Actions** next to their name
-4. Select **Revoke access**
+## Lowering a Role
 
+Moving someone **down** a level, for example from Administrator to Self service, is treated as a demotion. Because the lower roles can't own workspace-wide records, the dialog asks where those records should go before it lets you continue.
 
-![Team page](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/changing-roles-1.webp)
-**Note:** When you revoke access, the user becomes a Non-Registered Member (NRM). This ensures that all assets and data associated with this user remain intact in your database.
+Shelf shows you exactly what will move:
 
-### Step 2: Re-invite the User
+- Assets, kits, categories, tags, locations, custom fields, asset reminders, and images the user created
+- **Bookings created for others**, meaning bookings this user set up with someone else as the custodian
 
-1. Locate the user in the Non-Registered Members section
-2. Click **Actions** next to their name
-3. Select **Invite**
-4. Choose the new role you want to assign
-5. Confirm the invitation
+Pick a **Transfer entities to** recipient from the dropdown. The workspace owner is preselected, and any other member of the workspace can be chosen instead. If the user owns nothing, the dialog says there is nothing to transfer and you can go ahead.
 
+> **The user keeps their own bookings.** Only bookings they created for a different custodian move to the recipient. Their own reservations and their own drafts stay with them and remain visible to them after the change.
 
-![Actions](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/changing-roles-2.webp)
-### Step 3: Monitor Invitation Status
+Raising a role, for example from Base to Administrator, transfers nothing. Nothing needs to move, so there is no extra step.
 
-You can track pending invitations in the "Pending Invitations" tab under **Settings > Team**.
+## Who Can Change a Role
 
-## Important Considerations
+- **Administrators and the workspace owner** can change roles.
+- **You cannot change your own role.** Ask another administrator or the owner.
+- **Only the workspace owner can change an Administrator's role.** One administrator cannot demote another.
+- **Users managed through SSO** cannot be changed here. Their role comes from the group mapping in your identity provider, so make the change there instead. See [SSO with Google Workspace](/knowledge-base/sso-with-google-workspace).
 
-- During the transition period, the user will exist as a Non-Registered Member (NRM)
-- All asset assignments and historical data are preserved throughout this process
-- Once the user accepts the new invitation, they will automatically regain access to their associated assets
-- The user will need to accept the new invitation to complete the role change
+## Revoking Access Instead
+
+**Revoke access**, in the same **Actions** menu, is a different action: it removes the person from the workspace rather than adjusting what they can do. They become a Non-Registered Member (NRM), which keeps all their assets, custody records, and history intact, and you can invite them back later from the Non-Registered Members section.
+
+Use **Change role** when someone stays on the team with different permissions, and **Revoke access** when they are leaving.
+
+## Related Articles
+
+- [User Types / Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions): what each role can and cannot do
+- [Configure What Self Service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see): fine-tune visibility for the lower roles
+- [Onboarding Your Team Members](/knowledge-base/onboarding-your-team-members): inviting people and picking a starting role
 
 For any questions about changing user roles, reach out to our support team at [support@shelf.nu](mailto:support@shelf.nu).
