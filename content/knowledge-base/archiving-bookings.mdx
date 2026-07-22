@@ -1,0 +1,96 @@
+---
+title: "Archiving Bookings"
+description: "Move finished bookings out of your active list, manually or automatically. Covers which bookings can be archived, the auto-archive settings, and what archiving means for reporting."
+category: "Bookings & Custody"
+date: "2026-07-22"
+updated: "2026-07-22"
+layout: "knowledge-base"
+---
+
+Over time your bookings index fills up with reservations that are done with. Archiving files them away without deleting the record: archived bookings stay in your workspace and remain searchable through the status filter, they just stop cluttering the default view.
+
+This guide covers which bookings can be archived, how to archive them one at a time or in bulk, and how to let Shelf archive them for you.
+
+---
+
+## Which Bookings Can Be Archived
+
+Two kinds of bookings are eligible:
+
+- **Completed bookings**: the gear went out and was checked back in. The classic case.
+- **Reserved bookings whose end date has passed**: reservations that were never checked out. Their assets were never taken out of circulation, so archiving simply files the booking away.
+
+Bookings that are **Ongoing** or **Overdue** cannot be archived. Their assets are physically checked out, so hiding the booking would leave equipment in someone's hands with no active booking to trace it to. Check the booking in first, then archive it.
+
+**Draft**, **Cancelled**, and **future-dated Reserved** bookings are not archivable either. A draft or a cancelled booking is already out of the active flow, and a reservation that hasn't happened yet is still live.
+
+> **Archiving is not the same as completing.** A reserved booking that is archived was never checked out, and Shelf does not pretend otherwise: it is never recorded as a returned booking. See [What archiving means for reports](#what-archiving-means-for-reports) below.
+
+---
+
+## Archiving a Single Booking
+
+1. Open the booking
+2. Click **Actions** in the top right
+3. Select **Archive**
+
+If **Archive** isn't in the menu, the booking isn't eligible. Check its status against the list above.
+
+---
+
+## Archiving Several Bookings at Once
+
+1. Go to the **Bookings** index
+2. Tick the checkboxes for the bookings you want to archive
+3. Open the bulk actions dropdown and choose **Archive**
+4. Confirm in the dialog
+
+Completed bookings and past-due reserved bookings in your selection are moved to the archive together. If your selection includes a booking that can't be archived, Shelf tells you rather than archiving part of the batch.
+
+---
+
+## Auto-Archiving
+
+Instead of archiving by hand, you can have Shelf do it on a schedule. Both options live in **Workspace Settings → Bookings → Automation**, and both are set by an administrator.
+
+![Booking settings Automation card with both auto-archive toggles](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-auto-archive-settings.webp)
+
+### Auto-archive completed bookings
+
+Moves a booking to Archived a set number of days after it is checked in.
+
+### Auto-archive reserved bookings after their end date
+
+Moves a reserved booking to Archived a set number of days after its end date passes. This is the one for teams who use Shelf as a **reservation calendar**, booking gear ahead of time without ever running a formal check-out. Those bookings never reach Completed, so before this setting existed the only ways to clear them were to cancel them (which emails the custodian and reads as "cancelled") or delete them (which loses the record).
+
+Turning the toggle on also schedules the existing backlog, so past-due reservations already sitting in your index get cleaned up too. You don't have to work through them by hand first.
+
+### Days before auto-archiving
+
+Both toggles share one **Days before auto-archiving** value: the grace period Shelf waits after a booking is completed, or after its reservation's end date passes, before archiving it. Set it to whatever matches how long your team needs finished bookings visible.
+
+Shelf re-checks each booking at the moment it's due to be archived. If the booking has since been checked out, cancelled, or had its end date extended, it is left alone.
+
+---
+
+## What Archiving Means for Reports
+
+A booking archived straight from **Reserved** was never checked back in, because it was never checked out. Counting it as an on-time return would inflate your numbers, so Shelf excludes these bookings from **Booking Compliance** reporting entirely. They neither help nor hurt your on-time rate.
+
+Bookings archived from **Completed** are unaffected: they were returned, and they keep counting toward compliance exactly as before.
+
+See [Getting Started with Reports](/knowledge-base/getting-started-with-reports) for the full reporting reference.
+
+---
+
+## Finding Archived Bookings
+
+Archived bookings are hidden from the default bookings index, not removed. Use the **Status** filter on the bookings index and select **Archived** to bring them back into view.
+
+---
+
+## Related Articles
+
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings): the full booking lifecycle and every status
+- [Use Case Scenarios for Bookings](/knowledge-base/use-case-scenarios-explaining-our-bookings-feature): how different teams run bookings
+- [Getting Started with Reports](/knowledge-base/getting-started-with-reports): booking compliance and the other reports

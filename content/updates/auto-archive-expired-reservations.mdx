@@ -1,0 +1,14 @@
+---
+title: "Archive reservations that were never checked out"
+description: "Bookings that pass their end date without a check-out can now be archived, by hand or automatically, so a reservation calendar no longer grows without bound."
+date: "2026-07-13"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-auto-archive-settings.webp"
+readMoreUrl: "/knowledge-base/archiving-bookings"
+layout: "update"
+---
+
+Plenty of teams use Shelf as a reservation calendar: they book gear ahead of time, hand it over informally, and never run a formal check-out. Those bookings never reach **Completed**, so until now they could never be archived. The only ways to clear them were to cancel them, which emails the custodian and reads as "cancelled", or delete them, which loses the record entirely.
+
+You can now **archive a reserved booking once its end date has passed**, from the booking's **Actions** menu or in bulk from the bookings index. Shelf never pretends these bookings were returned: because the gear was never checked out, they are excluded from Booking Compliance reporting rather than counted as on-time returns. **Ongoing** and **Overdue** bookings stay unarchivable, since their assets are still physically checked out.
+
+There is also a new automation. In **Workspace Settings → Bookings → Automation**, the new **Auto-archive reserved bookings after their end date** toggle sits alongside the existing auto-archive for completed bookings, and the two share one **Days before auto-archiving** grace period. Switching it on also clears your existing backlog of past-due reservations, so you don't have to work through them by hand. Shelf re-checks each booking at the moment it is due to be archived, so anything that was since checked out, cancelled, or extended is left alone.
