@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-06-09"
+updated: "2026-07-22"
 layout: "knowledge-base"
 ---
 
@@ -20,7 +20,7 @@ To begin importing assets:
 
 
 ![Asset import page in Shelf with CSV upload option](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/importing-csv-1.webp)
-1. Download the CSV template or barcode-enabled version from Shelf
+1. Download the CSV template or barcode-enabled version from Shelf (or, if you're moving assets in from another Shelf workspace, use an **Import-ready** export instead: [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format))
 2. Add your asset information following the provided format
 3. Save the file with UTF-8 encoding
 4. Navigate to Assets then Import in your workspace
@@ -53,8 +53,16 @@ To begin importing assets:
 | `imageUrl` | No | Public `http(s)` link to an image (no file extension required) | "https://example.com/image.jpg" |
 | `valuation` | No | Asset monetary value (plain number, `.` decimal) | "1200.50" |
 | `qrId` | No | Existing unclaimed Shelf QR code identifier | "qr_abc123" |
+| `assetModel` | No | Asset model by name (case-insensitive, created if missing) | "MacBook Pro 13-inch" |
+| `type` | No | `INDIVIDUAL` (default) or `QUANTITY_TRACKED` | "QUANTITY_TRACKED" |
+| `quantity` | No | Number of units. Defaults to `1`; required and greater than 0 for quantity-tracked rows | "250" |
+| `minQuantity` | No | Low-stock threshold for quantity-tracked assets | "50" |
+| `unitOfMeasure` | No | Free-form unit label | "boxes" |
+| `consumptionType` | Conditional | `ONE_WAY` (consumed, no return) or `TWO_WAY` (returned with a consumption report). Required on quantity-tracked rows | "ONE_WAY" |
 
-**Auto-creation:** `category`, `kit`, `location`, `tags`, and `custodian` are matched by **name** and **created automatically** if they don't already exist in your workspace — you don't need to pre-create them. For `custodian` specifically, Shelf creates a non-registered team member (NRM) with that name. The column is matched by name, not email — using an email address will create an NRM literally named `john@company.com`.
+**Quantity-tracked rows:** leave `type` blank for ordinary one-row-one-item assets. Set it to `QUANTITY_TRACKED` for consumables and bulk stock, and give the row a `quantity` and a `consumptionType`. See [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables) for what the two consumption types mean in practice.
+
+**Auto-creation:** `category`, `kit`, `location`, `assetModel`, `tags`, and `custodian` are matched by **name** and **created automatically** if they don't already exist in your workspace — you don't need to pre-create them. For `custodian` specifically, Shelf creates a non-registered team member (NRM) with that name. The column is matched by name, not email — using an email address will create an NRM literally named `john@company.com`.
 
 **`bookable` semantics:** anything other than the literal string `no` (including blank, `yes`, `true`) leaves the asset bookable. Use `no` to opt out.
 
