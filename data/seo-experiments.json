@@ -1602,8 +1602,8 @@
         "capturedAt": "2026-07-23T09:41:40.314Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1632,8 +1632,8 @@
         "capturedAt": "2026-07-23T09:41:41.306Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1662,8 +1662,8 @@
         "capturedAt": "2026-07-23T09:41:42.248Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1692,8 +1692,8 @@
         "capturedAt": "2026-07-23T09:41:43.207Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1722,8 +1722,8 @@
         "capturedAt": "2026-07-23T09:41:45.709Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1752,8 +1752,8 @@
         "capturedAt": "2026-07-23T09:41:46.696Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1782,8 +1782,8 @@
         "capturedAt": "2026-07-23T09:41:47.703Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1812,8 +1812,8 @@
         "capturedAt": "2026-07-23T09:41:48.554Z"
       },
       "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
