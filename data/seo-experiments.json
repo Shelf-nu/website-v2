@@ -4,8 +4,8 @@
       "id": "exp-001",
       "page": "/barcode-scanner",
       "field": "redirect",
-      "before": "/barcode-scanner → /features (generic, irrelevant target)",
-      "after": "/barcode-scanner → /tools/qr-code-decoder (specific, relevant tool)",
+      "before": "/barcode-scanner \u2192 /features (generic, irrelevant target)",
+      "after": "/barcode-scanner \u2192 /tools/qr-code-decoder (specific, relevant tool)",
       "hypothesis": "Redirecting to a relevant tool page instead of generic /features should recover click-through from users searching for barcode/QR scanning tools",
       "baseline": {
         "clicks": 27,
@@ -37,14 +37,14 @@
         "redirect-fix",
         "emergency"
       ],
-      "learnings": "WINNER. Redirect fix recovered lost traffic. CTR +23% (1.62→2.0%), position improved 15.7→9.2. Impressions down slightly (seasonal). Redirect working as intended — keeping permanently."
+      "learnings": "WINNER. Redirect fix recovered lost traffic. CTR +23% (1.62\u21922.0%), position improved 15.7\u21929.2. Impressions down slightly (seasonal). Redirect working as intended \u2014 keeping permanently."
     },
     {
       "id": "exp-002",
       "page": "/",
       "field": "title",
       "before": "The Open Source Asset Tracking Platform | Shelf Asset Management",
-      "after": "Open Source Asset Management Software — Free for Teams | Shelf Asset Management",
+      "after": "Open Source Asset Management Software \u2014 Free for Teams | Shelf Asset Management",
       "hypothesis": "8,248 monthly impressions for 'asset management software' with 0.0% CTR. Current title says 'Asset Tracking' not 'Asset Management' and doesn't mention 'free'. Matching the search intent + adding 'free' should lift CTR.",
       "baseline": {
         "clicks": 397,
@@ -76,14 +76,14 @@
         "title-rewrite",
         "move-1"
       ],
-      "learnings": "WINNER. Adding 'Free for Teams' to homepage title lifted CTR +65% (0.79→1.3%), position improved 16→13. 'Free' + 'open source' is the winning formula. Homepage is the highest-leverage page — keep this title."
+      "learnings": "WINNER. Adding 'Free for Teams' to homepage title lifted CTR +65% (0.79\u21921.3%), position improved 16\u219213. 'Free' + 'open source' is the winning formula. Homepage is the highest-leverage page \u2014 keep this title."
     },
     {
       "id": "exp-003",
       "page": "/solutions/asset-tracking",
       "field": "description",
       "before": "Track equipment across people, locations, and workflows with QR-first simplicity, custody logging, and modern workflows.",
-      "after": "Track who has what, where it is, and when it's due back. QR scanning, custody logs, and booking calendars — free for individuals, open source.",
+      "after": "Track who has what, where it is, and when it's due back. QR scanning, custody logs, and booking calendars \u2014 free for individuals, open source.",
       "hypothesis": "5,372 impressions at 0.2% CTR and pos 30.9. More conversational tone + mentioning 'free' and 'open source' in the meta description should make the listing more clickable and differentiate from paid competitors.",
       "baseline": {
         "clicks": 7,
@@ -115,14 +115,14 @@
         "description-rewrite",
         "move-1"
       ],
-      "learnings": "WINNER. Conversational description with 'free' and 'open source' drove CTR +180% (0.25→0.7%), position improved dramatically 30.3→16.1. Biggest batch 1 win — moved from page 3 to page 2. Template for future description rewrites."
+      "learnings": "WINNER. Conversational description with 'free' and 'open source' drove CTR +180% (0.25\u21920.7%), position improved dramatically 30.3\u219216.1. Biggest batch 1 win \u2014 moved from page 3 to page 2. Template for future description rewrites."
     },
     {
       "id": "exp-004",
       "page": "/solutions/equipment-check-in",
       "field": "title",
       "before": "Equipment Check-In/Check-Out Software | Shelf",
-      "after": "Equipment Check-In & Check-Out Software — QR Scan, Track, Return | Shelf",
+      "after": "Equipment Check-In & Check-Out Software \u2014 QR Scan, Track, Return | Shelf",
       "hypothesis": "6,877 impressions at 0.4% CTR and pos 19.0. Adding action verbs (scan, track, return) makes the listing more compelling and concrete in search results vs the generic current title.",
       "baseline": {
         "clicks": 10,
@@ -154,13 +154,13 @@
         "title-rewrite",
         "move-1"
       ],
-      "learnings": "WINNER. Action verbs (Scan, Track, Return) in title boosted CTR +150% (0.28→0.7%), position improved 19.2→10.9. Page moved from page 2 to page 1. Concrete action language beats generic descriptions."
+      "learnings": "WINNER. Action verbs (Scan, Track, Return) in title boosted CTR +150% (0.28\u21920.7%), position improved 19.2\u219210.9. Page moved from page 2 to page 1. Concrete action language beats generic descriptions."
     },
     {
       "id": "exp-005",
       "page": "/tools/macrs-depreciation-calculator",
       "field": "new-page",
-      "before": "No page exists — /macrs-depreciation-calculator redirects to generic /tools",
+      "before": "No page exists \u2014 /macrs-depreciation-calculator redirects to generic /tools",
       "after": "Built dedicated interactive MACRS depreciation calculator tool page with 301 redirect",
       "hypothesis": "8,320 monthly impressions going to a generic /tools page. Building a dedicated calculator should capture this traffic and feed users into the Shelf funnel via CTAs.",
       "baseline": {
@@ -194,13 +194,13 @@
         "move-3",
         "calculator"
       ],
-      "learnings": "Page built in PR #14. GSC (30d): 138 clicks, 9,452 impr, 1.5% CTR, pos 11.6. Top query: 'macrs depreciation calculator' (25 clicks, pos 6.6). PostHog: 26 views/14d. GSC still reports old URL — 301 working but not yet re-indexed."
+      "learnings": "Page built in PR #14. GSC (30d): 138 clicks, 9,452 impr, 1.5% CTR, pos 11.6. Top query: 'macrs depreciation calculator' (25 clicks, pos 6.6). PostHog: 26 views/14d. GSC still reports old URL \u2014 301 working but not yet re-indexed."
     },
     {
       "id": "exp-006",
       "page": "/tools/equipment-depreciation-calculator",
       "field": "new-page",
-      "before": "No page exists — /equipment-depreciation-calculator redirects to generic /tools",
+      "before": "No page exists \u2014 /equipment-depreciation-calculator redirects to generic /tools",
       "after": "Built dedicated interactive equipment depreciation calculator tool page with 301 redirect",
       "hypothesis": "7,494 monthly impressions going to generic /tools. Dedicated page with straight-line depreciation calculator should capture this traffic.",
       "baseline": {
@@ -234,13 +234,13 @@
         "move-3",
         "calculator"
       ],
-      "learnings": "Page built in PR #14. GSC (30d): 27 clicks, 7,950 impr, 0.3% CTR, pos 16.8. Weakest performer of the 3 calculators — deeper position and lower CTR. May benefit from title/description optimization. PostHog: 7 views/14d."
+      "learnings": "Page built in PR #14. GSC (30d): 27 clicks, 7,950 impr, 0.3% CTR, pos 16.8. Weakest performer of the 3 calculators \u2014 deeper position and lower CTR. May benefit from title/description optimization. PostHog: 7 views/14d."
     },
     {
       "id": "exp-007",
       "page": "/tools/salvage-value-calculator",
       "field": "new-page",
-      "before": "No page exists — /salvage-value-calculator redirects to generic /tools",
+      "before": "No page exists \u2014 /salvage-value-calculator redirects to generic /tools",
       "after": "Built dedicated interactive salvage value calculator tool page with 301 redirect",
       "hypothesis": "8,163 monthly impressions going to generic /tools. Dedicated calculator page should capture this high-volume traffic.",
       "baseline": {
@@ -280,9 +280,9 @@
       "id": "exp-008",
       "page": "/alternatives/snipe-it",
       "field": "title",
-      "before": "Snipe-IT Alternative — Modern Open-Source Asset Management | Shelf",
-      "after": "Snipe-IT vs Shelf — Which Open Source Asset Manager Fits Your Team? (2026)",
-      "hypothesis": "1,522 impressions at 0.9% CTR, pos 10.0. The 'vs' format with a year tag performs better for comparison queries — makes the listing feel like a current, objective comparison rather than biased marketing.",
+      "before": "Snipe-IT Alternative \u2014 Modern Open-Source Asset Management | Shelf",
+      "after": "Snipe-IT vs Shelf \u2014 Which Open Source Asset Manager Fits Your Team? (2026)",
+      "hypothesis": "1,522 impressions at 0.9% CTR, pos 10.0. The 'vs' format with a year tag performs better for comparison queries \u2014 makes the listing feel like a current, objective comparison rather than biased marketing.",
       "baseline": {
         "clicks": 5,
         "impressions": 808,
@@ -314,7 +314,7 @@
         "move-2",
         "alternatives"
       ],
-      "learnings": "WINNER. 'vs' format with year tag lifted CTR +44% (0.62→0.89%), position improved 9.1→6.6, clicks +80% (5→9), impressions +25% (808→1013). Comparison-style titles with year tags work well for /alternatives pages — apply to future alternative page experiments."
+      "learnings": "WINNER. 'vs' format with year tag lifted CTR +44% (0.62\u21920.89%), position improved 9.1\u21926.6, clicks +80% (5\u21929), impressions +25% (808\u21921013). Comparison-style titles with year tags work well for /alternatives pages \u2014 apply to future alternative page experiments."
     },
     {
       "id": "exp-009",
@@ -354,14 +354,14 @@
         "search-intent",
         "tools"
       ],
-      "learnings": "LOSER. Renaming primary ranking term from 'Label Designer' to 'Tag Maker' confused Google's semantic understanding. Impressions dropped -86% (18K→2.6K), position worsened 24.8→37.8. CTR improved slightly (0.7→0.88%) but net massive negative. Lesson: never rename the primary ranking term — extend it instead. Deploying hybrid title in EXP-026."
+      "learnings": "LOSER. Renaming primary ranking term from 'Label Designer' to 'Tag Maker' confused Google's semantic understanding. Impressions dropped -86% (18K\u21922.6K), position worsened 24.8\u219237.8. CTR improved slightly (0.7\u21920.88%) but net massive negative. Lesson: never rename the primary ranking term \u2014 extend it instead. Deploying hybrid title in EXP-026."
     },
     {
       "id": "exp-010",
       "page": "/solutions/equipment-management",
       "field": "title+description",
-      "before": "Title: 'Equipment Management Software — Free QR Tracking & Scheduling | Shelf' / Desc: 'Free equipment management software with QR scanning, custody tracking, booking calendars, and location management. Open source. Used by 3,000+ teams.'",
-      "after": "Title: 'Free Equipment Management Software — Open Source | Shelf' / Desc: 'Manage shared equipment with QR scanning, booking calendars, and custody tracking. Free for individuals, no per-asset pricing. Open source — used by 3,000+ teams.'",
+      "before": "Title: 'Equipment Management Software \u2014 Free QR Tracking & Scheduling | Shelf' / Desc: 'Free equipment management software with QR scanning, custody tracking, booking calendars, and location management. Open source. Used by 3,000+ teams.'",
+      "after": "Title: 'Free Equipment Management Software \u2014 Open Source | Shelf' / Desc: 'Manage shared equipment with QR scanning, booking calendars, and custody tracking. Free for individuals, no per-asset pricing. Open source \u2014 used by 3,000+ teams.'",
       "hypothesis": "SERP analysis: Page 1 for 'equipment management software' is all paid enterprise tools (ToolSense, Fleetio, Cheqroom, Samsara). None are free/open-source. Leading with 'Free' and 'no per-asset pricing' differentiates from every competitor on page 1. Batch 1 learnings: 'free' + 'open source' in descriptions drove +150-180% CTR lifts.",
       "baseline": {
         "clicks": 1,
@@ -404,8 +404,8 @@
       "page": "/solutions/open-source-asset-management",
       "field": "description",
       "before": "Free, open-source asset management with QR tracking, custody logs, and booking calendars. Sign up and start tracking in minutes. AGPL licensed. 3,000+ teams.",
-      "after": "Free, open-source asset management — cloud-hosted or self-host. QR tracking, custody logs, and booking calendars. Start tracking in minutes, no setup required. AGPL licensed. 3,000+ teams.",
-      "hypothesis": "SERP analysis: Snipe-IT dominates 'open source asset management' at #1 but is self-host only (requires PHP/MySQL setup). Our cloud+self-host option is unique. Replaced jargon 'No DevOps required' with clearer 'Start tracking in minutes, no setup required'. CTR already 3.3% — targeting position improvement via relevance signal.",
+      "after": "Free, open-source asset management \u2014 cloud-hosted or self-host. QR tracking, custody logs, and booking calendars. Start tracking in minutes, no setup required. AGPL licensed. 3,000+ teams.",
+      "hypothesis": "SERP analysis: Snipe-IT dominates 'open source asset management' at #1 but is self-host only (requires PHP/MySQL setup). Our cloud+self-host option is unique. Replaced jargon 'No DevOps required' with clearer 'Start tracking in minutes, no setup required'. CTR already 3.3% \u2014 targeting position improvement via relevance signal.",
       "baseline": {
         "clicks": 22,
         "impressions": 676,
@@ -445,9 +445,9 @@
       "id": "exp-012",
       "page": "/solutions/camera-equipment-check-out",
       "field": "title+description",
-      "before": "Title: 'Camera Equipment Check-Out Software — QR Checkout for Film & Media | Shelf' / Desc: 'Free camera equipment checkout software for film programs and media teams. QR scanning, booking calendars, kit tracking. Open source. Used by 3,000+ teams.'",
-      "after": "Title: 'Camera Equipment Checkout Software — QR Scan & Book | Shelf' / Desc: 'Camera gear checkout for film programs, media departments, and production houses. QR scan, book, track custody — no sign-out sheets. Open source, free to start. 3,000+ teams.'",
-      "hypothesis": "3,988 impr (30d), 0.6% CTR, pos 18.1. Removed misleading 'Free for Teams' (free tier is single-user). Kept action verbs ('scan, book, track') and pain point ('no sign-out sheets') from exp-004 success (+150% CTR). 'Free to start' is accurate — free tier exists for individuals.",
+      "before": "Title: 'Camera Equipment Check-Out Software \u2014 QR Checkout for Film & Media | Shelf' / Desc: 'Free camera equipment checkout software for film programs and media teams. QR scanning, booking calendars, kit tracking. Open source. Used by 3,000+ teams.'",
+      "after": "Title: 'Camera Equipment Checkout Software \u2014 QR Scan & Book | Shelf' / Desc: 'Camera gear checkout for film programs, media departments, and production houses. QR scan, book, track custody \u2014 no sign-out sheets. Open source, free to start. 3,000+ teams.'",
+      "hypothesis": "3,988 impr (30d), 0.6% CTR, pos 18.1. Removed misleading 'Free for Teams' (free tier is single-user). Kept action verbs ('scan, book, track') and pain point ('no sign-out sheets') from exp-004 success (+150% CTR). 'Free to start' is accurate \u2014 free tier exists for individuals.",
       "baseline": {
         "clicks": 26,
         "impressions": 4141,
@@ -480,7 +480,7 @@
         "move-2",
         "serp-informed"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 0.63%→0.94% (+49%). P1 confirmed on camera-checkout.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 0.63%\u21920.94% (+49%). P1 confirmed on camera-checkout.",
       "verdict": "WIN",
       "closedAt": "2026-07-23"
     },
@@ -488,9 +488,9 @@
       "id": "exp-013",
       "page": "/solutions/asset-tracking",
       "field": "title+description",
-      "before": "Title: 'Asset Tracking Software — Free QR Scanning & Custody Tracking | Shelf' / Desc: 'Free asset tracking software with QR scanning, custody logs, booking calendars, and location tracking. Open source. Used by 3,000+ teams to track 450,000+ assets.'",
-      "after": "Title: 'Free Asset Tracking Software — Open Source QR Scanning | Shelf' / Desc: 'Free asset tracking software with QR scanning, custody logs, and location tracking. Unlimited assets, open source. Used by 3,000+ teams.'",
-      "hypothesis": "5,339 impr, 0.4% CTR, pos 23.9. Two changes: (1) Lead with 'Free' — batch 1 proved this lifts CTR. (2) Remove 'booking calendars' from description — bookings is a Team plan feature ($67/mo), not free. Replaced with 'Unlimited assets' which IS true on free tier. Truthfulness fix + CTR optimization.",
+      "before": "Title: 'Asset Tracking Software \u2014 Free QR Scanning & Custody Tracking | Shelf' / Desc: 'Free asset tracking software with QR scanning, custody logs, booking calendars, and location tracking. Open source. Used by 3,000+ teams to track 450,000+ assets.'",
+      "after": "Title: 'Free Asset Tracking Software \u2014 Open Source QR Scanning | Shelf' / Desc: 'Free asset tracking software with QR scanning, custody logs, and location tracking. Unlimited assets, open source. Used by 3,000+ teams.'",
+      "hypothesis": "5,339 impr, 0.4% CTR, pos 23.9. Two changes: (1) Lead with 'Free' \u2014 batch 1 proved this lifts CTR. (2) Remove 'booking calendars' from description \u2014 bookings is a Team plan feature ($67/mo), not free. Replaced with 'Unlimited assets' which IS true on free tier. Truthfulness fix + CTR optimization.",
       "baseline": {
         "clicks": 25,
         "impressions": 5683,
@@ -524,7 +524,7 @@
         "batch-2",
         "serp-informed"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] clicks 25→94/30d (+276%), pos 23.6→11.6. 'Free'-led title + truthfulness fix worked (P1).",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] clicks 25\u219294/30d (+276%), pos 23.6\u219211.6. 'Free'-led title + truthfulness fix worked (P1).",
       "verdict": "WIN",
       "closedAt": "2026-07-23"
     },
@@ -532,9 +532,9 @@
       "id": "exp-014",
       "page": "/solutions/it-asset-management",
       "field": "title+description",
-      "before": "Title: 'IT Asset Management Software — Free Device Tracking for IT Teams | Shelf' / Desc: 'Free IT asset management software with QR scanning, custody tracking, and device lifecycle management. Track laptops, tablets, and peripherals across hybrid teams. Open source.'",
-      "after": "Title: 'IT Asset Management Software — Free, Open Source | Shelf' / Desc: 'Free, open-source IT asset management. QR scanning, custody tracking, and device lifecycle management for laptops, tablets, and peripherals. Self-host or cloud. AGPL licensed.'",
-      "hypothesis": "Removed 'for IT Teams' from title — free tier is single-user, not teams. Removed 'across hybrid teams' from description — same misleading implication. Added 'Self-host or cloud' to differentiate from Snipe-IT (#1 SERP) which is self-host only. SERP: Snipe-IT dominates, Shelf already has 2 results — need clearer differentiation.",
+      "before": "Title: 'IT Asset Management Software \u2014 Free Device Tracking for IT Teams | Shelf' / Desc: 'Free IT asset management software with QR scanning, custody tracking, and device lifecycle management. Track laptops, tablets, and peripherals across hybrid teams. Open source.'",
+      "after": "Title: 'IT Asset Management Software \u2014 Free, Open Source | Shelf' / Desc: 'Free, open-source IT asset management. QR scanning, custody tracking, and device lifecycle management for laptops, tablets, and peripherals. Self-host or cloud. AGPL licensed.'",
+      "hypothesis": "Removed 'for IT Teams' from title \u2014 free tier is single-user, not teams. Removed 'across hybrid teams' from description \u2014 same misleading implication. Added 'Self-host or cloud' to differentiate from Snipe-IT (#1 SERP) which is self-host only. SERP: Snipe-IT dominates, Shelf already has 2 results \u2014 need clearer differentiation.",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -576,9 +576,9 @@
       "id": "exp-015",
       "page": "/solutions/fixed-asset-tracking",
       "field": "title",
-      "before": "Fixed Asset Tracking Software — Free QR-Based Lifecycle Tracking | Shelf",
-      "after": "Free Fixed Asset Tracking Software — QR Labels & Lifecycle Management | Shelf",
-      "hypothesis": "1,082 impr, 1.4% CTR, pos 15.8. Leading with 'Free' (batch 1 learning). SERP dominated by accounting tools (Sage, Intuit, MIP) — Shelf differentiates as operational tracking with QR labels. Shelf already #3, pushing for #1-2.",
+      "before": "Fixed Asset Tracking Software \u2014 Free QR-Based Lifecycle Tracking | Shelf",
+      "after": "Free Fixed Asset Tracking Software \u2014 QR Labels & Lifecycle Management | Shelf",
+      "hypothesis": "1,082 impr, 1.4% CTR, pos 15.8. Leading with 'Free' (batch 1 learning). SERP dominated by accounting tools (Sage, Intuit, MIP) \u2014 Shelf differentiates as operational tracking with QR labels. Shelf already #3, pushing for #1-2.",
       "baseline": {
         "clicks": 0,
         "impressions": 868,
@@ -618,9 +618,9 @@
       "id": "exp-016",
       "page": "/solutions/tool-tracking",
       "field": "title+description",
-      "before": "Title: 'Tool Tracking Software — Free QR-Based Field Tracking | Shelf' / Desc: 'Free tool tracking software for field teams. QR scanning, custody chains, and location tracking across job sites, trucks, and crews. Open source. 3,000+ teams.'",
-      "after": "Title: 'Free Tool Tracking Software — QR Scan, Assign, Track | Shelf' / Desc: 'Free tool tracking software with QR scanning, custody chains, and location tracking across job sites, trucks, and crews. Open source. Start with one user, scale to your whole team.'",
-      "hypothesis": "SERP dominated by construction-specific tools (ToolHound, ShareMyToolbox, TOOLTRIBE). Shelf is broader. Changes: (1) Lead with 'Free' (batch 1). (2) Action verbs 'Scan, Assign, Track' (exp-004 +150%). (3) Fixed 'for field teams' → 'Start with one user, scale to your whole team' — honest about free tier being single-user while showing growth path.",
+      "before": "Title: 'Tool Tracking Software \u2014 Free QR-Based Field Tracking | Shelf' / Desc: 'Free tool tracking software for field teams. QR scanning, custody chains, and location tracking across job sites, trucks, and crews. Open source. 3,000+ teams.'",
+      "after": "Title: 'Free Tool Tracking Software \u2014 QR Scan, Assign, Track | Shelf' / Desc: 'Free tool tracking software with QR scanning, custody chains, and location tracking across job sites, trucks, and crews. Open source. Start with one user, scale to your whole team.'",
+      "hypothesis": "SERP dominated by construction-specific tools (ToolHound, ShareMyToolbox, TOOLTRIBE). Shelf is broader. Changes: (1) Lead with 'Free' (batch 1). (2) Action verbs 'Scan, Assign, Track' (exp-004 +150%). (3) Fixed 'for field teams' \u2192 'Start with one user, scale to your whole team' \u2014 honest about free tier being single-user while showing growth path.",
       "baseline": {
         "clicks": 0,
         "impressions": 439,
@@ -662,8 +662,8 @@
       "id": "exp-017",
       "page": "/alternatives/sortly",
       "field": "title",
-      "before": "Sortly Alternative — Equipment Tracking Beyond Inventory Lists | Shelf",
-      "after": "Sortly Alternative (2026) — Equipment Tracking Beyond Inventory Lists | Shelf",
+      "before": "Sortly Alternative \u2014 Equipment Tracking Beyond Inventory Lists | Shelf",
+      "after": "Sortly Alternative (2026) \u2014 Equipment Tracking Beyond Inventory Lists | Shelf",
       "hypothesis": "1,894 impr, 1.7% CTR, pos 6.4. Already #2 behind G2. Every competitor on SERP has year tags (G2 'in 2026', Capterra '2026', Software Advice '2026'). Adding (2026) signals freshness and matches the pattern users expect for comparison queries.",
       "baseline": {
         "clicks": 33,
@@ -697,7 +697,7 @@
         "serp-informed",
         "alternatives"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 1.72%→0.67% (−61%). Confirms A2: year tags standalone hurt. Superseded by exp-032.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 1.72%\u21920.67% (\u221261%). Confirms A2: year tags standalone hurt. Superseded by exp-032.",
       "verdict": "LOSS",
       "closedAt": "2026-07-23"
     },
@@ -705,9 +705,9 @@
       "id": "exp-018",
       "page": "/solutions/equipment-reservations",
       "field": "title+description",
-      "before": "Title: 'Equipment Reservation Software — Free Booking & Scheduling | Shelf' / Desc: 'Free equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. 3,000+ teams.'",
-      "after": "Title: 'Equipment Reservation Software — Prevent Double-Bookings | Shelf' / Desc: 'Equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. No per-asset fees.'",
-      "hypothesis": "Already #1 for 'equipment reservation software'. TRUTHFULNESS FIX: Removed 'Free' from title and description — bookings/reservations is a Team plan feature ($67/mo), NOT available on free tier. Replaced with value prop 'Prevent Double-Bookings' and 'No per-asset fees' which are both true.",
+      "before": "Title: 'Equipment Reservation Software \u2014 Free Booking & Scheduling | Shelf' / Desc: 'Free equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. 3,000+ teams.'",
+      "after": "Title: 'Equipment Reservation Software \u2014 Prevent Double-Bookings | Shelf' / Desc: 'Equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. No per-asset fees.'",
+      "hypothesis": "Already #1 for 'equipment reservation software'. TRUTHFULNESS FIX: Removed 'Free' from title and description \u2014 bookings/reservations is a Team plan feature ($67/mo), NOT available on free tier. Replaced with value prop 'Prevent Double-Bookings' and 'No per-asset fees' which are both true.",
       "baseline": {
         "clicks": 11,
         "impressions": 1914,
@@ -740,7 +740,7 @@
         "truthfulness-fix",
         "batch-2"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 0.57%→0.24% (−58%). Confirms A3: removed 'Free' without replacement magnet. Remedy = exp-046 (Try Free).",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 0.57%\u21920.24% (\u221258%). Confirms A3: removed 'Free' without replacement magnet. Remedy = exp-046 (Try Free).",
       "verdict": "LOSS",
       "closedAt": "2026-07-23"
     },
@@ -749,7 +749,7 @@
       "page": "/solutions/educational-resource-management",
       "field": "title+description",
       "before": "Title: 'Educational Resource Management Software | Shelf' / Desc: 'Track cameras, laptops, AV gear, maker tools, and lab equipment across departments with simple QR-based workflows.'",
-      "after": "Title: 'Educational Equipment Tracking Software — QR-Based Campus Management | Shelf' / Desc: 'Track cameras, laptops, AV gear, and lab equipment across departments and campuses. QR scanning, custody logs, and booking calendars. Open source, free to start.'",
+      "after": "Title: 'Educational Equipment Tracking Software \u2014 QR-Based Campus Management | Shelf' / Desc: 'Track cameras, laptops, AV gear, and lab equipment across departments and campuses. QR scanning, custody logs, and booking calendars. Open source, free to start.'",
       "hypothesis": "Current title is generic with no keywords for discovery. New title adds 'Equipment Tracking' (searchable) + 'Campus Management' (matches education persona). Description adds 'open source, free to start' which drove +150-180% CTR in batch 1.",
       "baseline": {
         "clicks": 0,
@@ -782,7 +782,7 @@
         "description-rewrite",
         "batch-2"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Position improved ~25 spots but 587 impr/30d is below the S4 demand gate — noise.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Position improved ~25 spots but 587 impr/30d is below the S4 demand gate \u2014 noise.",
       "verdict": "INCONCLUSIVE",
       "closedAt": "2026-07-23"
     },
@@ -792,7 +792,7 @@
       "field": "description",
       "before": "Free multi-location asset tracking software. Track equipment across offices, warehouses, campuses, and job sites with QR scanning and real-time location updates. Open source.",
       "after": "Track equipment across offices, warehouses, campuses, and job sites from one dashboard. QR scanning, location transfers, and custody tracking. Free to start, open source.",
-      "hypothesis": "New page (2026-03-12), establishing baseline. Changed 'Free multi-location...' to 'Track equipment... from one dashboard' — leads with the benefit (unified visibility) rather than claiming the whole product is free. 'Free to start' is accurate (free tier includes locations). Multi-location tracking IS free on the free tier.",
+      "hypothesis": "New page (2026-03-12), establishing baseline. Changed 'Free multi-location...' to 'Track equipment... from one dashboard' \u2014 leads with the benefit (unified visibility) rather than claiming the whole product is free. 'Free to start' is accurate (free tier includes locations). Multi-location tracking IS free on the free tier.",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -831,9 +831,9 @@
       "id": "exp-021",
       "page": "/solutions/maintenance-tracking",
       "field": "description",
-      "before": "Free maintenance tracking for equipment teams. Schedule preventive maintenance, log service history, and get automatic reminders — without CMMS complexity. Open source.",
-      "after": "Lightweight maintenance tracking — not a full CMMS. Schedule preventive maintenance, log service history, and get automatic reminders. Open source, free to start.",
-      "hypothesis": "TRUTHFULNESS FIX: Removed 'for equipment teams' (free tier is single-user). Replaced with 'Lightweight maintenance tracking — not a full CMMS' which is the page's actual positioning and differentiates from UpKeep/Limble/Fiix on SERP. 'Free to start' is accurate.",
+      "before": "Free maintenance tracking for equipment teams. Schedule preventive maintenance, log service history, and get automatic reminders \u2014 without CMMS complexity. Open source.",
+      "after": "Lightweight maintenance tracking \u2014 not a full CMMS. Schedule preventive maintenance, log service history, and get automatic reminders. Open source, free to start.",
+      "hypothesis": "TRUTHFULNESS FIX: Removed 'for equipment teams' (free tier is single-user). Replaced with 'Lightweight maintenance tracking \u2014 not a full CMMS' which is the page's actual positioning and differentiates from UpKeep/Limble/Fiix on SERP. 'Free to start' is accurate.",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -874,7 +874,7 @@
       "page": "/solutions/home-inventory-management",
       "field": "title+description",
       "before": "Title: 'Home Inventory Management Software | Tag & Track Belongings | Shelf' / Desc: 'Tag and track your household items with QR codes. Perfect for insurance documentation, moving, and organization.'",
-      "after": "Title: 'Free Home Inventory App — QR Tag & Track Everything You Own | Shelf' / Desc: 'Free home inventory software. Tag belongings with QR codes, track by room and location, attach photos and receipts. Perfect for insurance claims, moves, and estate planning.'",
+      "after": "Title: 'Free Home Inventory App \u2014 QR Tag & Track Everything You Own | Shelf' / Desc: 'Free home inventory software. Tag belongings with QR codes, track by room and location, attach photos and receipts. Perfect for insurance claims, moves, and estate planning.'",
       "hypothesis": "Home inventory is a perfect free-tier use case (single user managing personal belongings). 'Free' is 100% accurate here. Added 'App' to match mobile-first search intent. Expanded description with specific use cases (insurance claims, estate planning) to match long-tail queries.",
       "baseline": {
         "clicks": 9,
@@ -907,7 +907,7 @@
         "description-rewrite",
         "batch-2"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] clicks 9→62/30d (~7x), CTR +224%. Confirms P1 'Free' pattern on home-inventory.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] clicks 9\u219262/30d (~7x), CTR +224%. Confirms P1 'Free' pattern on home-inventory.",
       "verdict": "WIN",
       "closedAt": "2026-07-23"
     },
@@ -916,7 +916,7 @@
       "page": "/solutions/mobile-asset-auditing",
       "field": "title+description",
       "before": "Title: 'Mobile Asset Auditing Software | Scan & Audit On-The-Go | Shelf' / Desc: 'Audit inventory from your phone or tablet. Scan QR labels, verify locations, and generate compliance reports in the field.'",
-      "after": "Title: 'Mobile Asset Audit Software — Scan QR Labels from Any Phone | Shelf' / Desc: 'Audit assets from any phone or tablet. Scan QR labels, verify locations, update records, and generate compliance reports on the go. Free to start, open source.'",
+      "after": "Title: 'Mobile Asset Audit Software \u2014 Scan QR Labels from Any Phone | Shelf' / Desc: 'Audit assets from any phone or tablet. Scan QR labels, verify locations, update records, and generate compliance reports on the go. Free to start, open source.'",
       "hypothesis": "Current title uses pipe separators (old pattern). New title uses em dash (consistent with site). 'from Any Phone' emphasizes no-app-needed advantage. Added 'Free to start, open source' to description (batch 1 winning formula).",
       "baseline": {
         "clicks": 5,
@@ -949,7 +949,7 @@
         "description-rewrite",
         "batch-2"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] pos 20.7→13.5 but CTR below band at the new position (see calibration note in patterns: re-test title at new position).",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] pos 20.7\u219213.5 but CTR below band at the new position (see calibration note in patterns: re-test title at new position).",
       "verdict": "INCONCLUSIVE",
       "closedAt": "2026-07-23"
     },
@@ -957,9 +957,9 @@
       "id": "exp-024",
       "page": "/alternatives/spreadsheets",
       "field": "description",
-      "before": "Replace Excel and Google Sheets for equipment tracking. Shelf gives you QR scanning, automatic custody logs, booking calendars, and real-time availability — free to start.",
-      "after": "Replace Excel and Google Sheets for equipment tracking. QR scanning, automatic custody logs, and real-time availability — no more version conflicts. Free to start, open source.",
-      "hypothesis": "Removed 'booking calendars' from feature list (Team-only feature, misleading in 'free to start' context). Added 'no more version conflicts' — the #1 pain point of spreadsheet users. Added 'open source' (batch 1 winning signal).",
+      "before": "Replace Excel and Google Sheets for equipment tracking. Shelf gives you QR scanning, automatic custody logs, booking calendars, and real-time availability \u2014 free to start.",
+      "after": "Replace Excel and Google Sheets for equipment tracking. QR scanning, automatic custody logs, and real-time availability \u2014 no more version conflicts. Free to start, open source.",
+      "hypothesis": "Removed 'booking calendars' from feature list (Team-only feature, misleading in 'free to start' context). Added 'no more version conflicts' \u2014 the #1 pain point of spreadsheet users. Added 'open source' (batch 1 winning signal).",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -1000,8 +1000,8 @@
       "page": "/features/bookings",
       "field": "title+description",
       "before": "Title: 'Equipment Booking & Reservation Software | Shelf' / Desc: 'Schedule equipment without conflicts using Shelf's simple booking workflows for cameras, tools, laptops, and shared resources.'",
-      "after": "Title: 'Equipment Booking Software — Conflict-Free Reservations | Shelf' / Desc: 'Reserve equipment without double-bookings. Visual booking calendar, availability checking, and pull-list PDFs for cameras, tools, laptops, and shared gear.'",
-      "hypothesis": "1,111 impr, 1.9% CTR, pos 10.4. Title uses old pipe format; updated to em dash (consistent). 'Conflict-Free Reservations' is a stronger value prop than '& Reservation Software'. Description adds specific features (visual calendar, pull-list PDFs) instead of generic 'simple booking workflows'. No 'Free' claim — bookings is a paid feature.",
+      "after": "Title: 'Equipment Booking Software \u2014 Conflict-Free Reservations | Shelf' / Desc: 'Reserve equipment without double-bookings. Visual booking calendar, availability checking, and pull-list PDFs for cameras, tools, laptops, and shared gear.'",
+      "hypothesis": "1,111 impr, 1.9% CTR, pos 10.4. Title uses old pipe format; updated to em dash (consistent). 'Conflict-Free Reservations' is a stronger value prop than '& Reservation Software'. Description adds specific features (visual calendar, pull-list PDFs) instead of generic 'simple booking workflows'. No 'Free' claim \u2014 bookings is a paid feature.",
       "baseline": {
         "clicks": 21,
         "impressions": 1111,
@@ -1039,8 +1039,8 @@
       "id": "exp-026",
       "page": "/tools/asset-label-designer",
       "field": "title+description",
-      "before": "Title: 'Free Asset Tag Maker & Label Designer | Shelf' / Desc: 'Create and print professional asset tags with QR codes. Free online tag generator — exports to PNG, SVG, and PDF. No signup required.'",
-      "after": "Title: 'Free Asset Label Designer & Tag Maker | Shelf' / Desc: 'Create and print professional asset labels and tags with QR codes. Free online label designer — exports to PNG, SVG, and PDF. No signup required.'",
+      "before": "Title: 'Free Asset Tag Maker & Label Designer | Shelf' / Desc: 'Create and print professional asset tags with QR codes. Free online tag generator \u2014 exports to PNG, SVG, and PDF. No signup required.'",
+      "after": "Title: 'Free Asset Label Designer & Tag Maker | Shelf' / Desc: 'Create and print professional asset labels and tags with QR codes. Free online label designer \u2014 exports to PNG, SVG, and PDF. No signup required.'",
       "hypothesis": "EXP-009 renamed 'Label Designer' to 'Tag Maker' (leading term) and lost -86% impressions + 13 position spots. Hybrid title restores 'Label Designer' as lead term (Google's ranking signal) while keeping 'Tag Maker' for broader reach. Description also restored 'label designer' terminology. Should recover lost rankings while capturing tag-related queries.",
       "baseline": {
         "clicks": 23,
@@ -1074,7 +1074,7 @@
         "tools",
         "recovery"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Full exp-009 recovery: pos 37.8→16.1, CTR 2.4x vs original. Confirms P5 hybrid-title pattern — extend, never replace ranking terms.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Full exp-009 recovery: pos 37.8\u219216.1, CTR 2.4x vs original. Confirms P5 hybrid-title pattern \u2014 extend, never replace ranking terms.",
       "verdict": "WIN",
       "closedAt": "2026-07-23"
     },
@@ -1082,9 +1082,9 @@
       "id": "exp-027",
       "page": "/knowledge-base/shelf-mobile-app",
       "field": "title+description",
-      "before": "Title: 'Shelf Mobile App — Shelf Knowledge Base' / Desc: 'Learn how to install Shelf as a progressive web app on iOS, Android, and desktop browsers for quick access to your asset management system.'",
-      "after": "Title: 'Shelf App — Install on iOS, Android & Desktop | Free' / Desc: 'Get the Shelf app on your phone or desktop. Install in seconds as a progressive web app — scan QR codes, track assets, and manage inventory on the go. Free, no app store needed.'",
-      "hypothesis": "'shelf app' query has 6,665 impressions at 0.4% CTR (position 6.9) — biggest untapped opportunity. Current KB title 'Shelf Mobile App' doesn't match the query well and description is instructional rather than compelling. New title starts with exact-match 'Shelf App', includes platforms (iOS/Android/Desktop), and ends with 'Free' (proven CTR booster). Also targets 'shelf app android' (267 impr) and 'shelf app for android' (13 impr).",
+      "before": "Title: 'Shelf Mobile App \u2014 Shelf Knowledge Base' / Desc: 'Learn how to install Shelf as a progressive web app on iOS, Android, and desktop browsers for quick access to your asset management system.'",
+      "after": "Title: 'Shelf App \u2014 Install on iOS, Android & Desktop | Free' / Desc: 'Get the Shelf app on your phone or desktop. Install in seconds as a progressive web app \u2014 scan QR codes, track assets, and manage inventory on the go. Free, no app store needed.'",
+      "hypothesis": "'shelf app' query has 6,665 impressions at 0.4% CTR (position 6.9) \u2014 biggest untapped opportunity. Current KB title 'Shelf Mobile App' doesn't match the query well and description is instructional rather than compelling. New title starts with exact-match 'Shelf App', includes platforms (iOS/Android/Desktop), and ends with 'Free' (proven CTR booster). Also targets 'shelf app android' (267 impr) and 'shelf app for android' (13 impr).",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -1117,7 +1117,7 @@
         "knowledge-base",
         "brand-query"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 0.4%→1.46% at deploy; page now #1 non-homepage earner (439 clicks/30d). Confirms P6 platform-specificity.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] CTR 0.4%\u21921.46% at deploy; page now #1 non-homepage earner (439 clicks/30d). Confirms P6 platform-specificity.",
       "verdict": "WIN",
       "closedAt": "2026-07-23"
     },
@@ -1125,9 +1125,9 @@
       "id": "exp-028",
       "page": "/knowledge-base/shelf-mobile-app",
       "field": "title",
-      "before": "Install Shelf Asset Management App — iOS, Android & Desktop | Free",
-      "after": "Shelf Asset Management App — Install on iOS, Android & Desktop | Free",
-      "hypothesis": "PR #103 retitle (\"Install Shelf Asset Management App\") was a deliberate trade to filter wrong-intent traffic, but query-level data shows it dropped position on right-intent queries too (e.g. \"shelf app android\" 3.3 → 5.4, \"when is shelf coming to android\" 2.6 → 4.6). Right-intent CTR dropped 5.62% → 3.14%. Restoring \"Shelf\" to lead position while keeping \"Asset Management\" in the title — plus the on-page disambiguation block — should recover right-intent ranking without losing the audience filter.",
+      "before": "Install Shelf Asset Management App \u2014 iOS, Android & Desktop | Free",
+      "after": "Shelf Asset Management App \u2014 Install on iOS, Android & Desktop | Free",
+      "hypothesis": "PR #103 retitle (\"Install Shelf Asset Management App\") was a deliberate trade to filter wrong-intent traffic, but query-level data shows it dropped position on right-intent queries too (e.g. \"shelf app android\" 3.3 \u2192 5.4, \"when is shelf coming to android\" 2.6 \u2192 4.6). Right-intent CTR dropped 5.62% \u2192 3.14%. Restoring \"Shelf\" to lead position while keeping \"Asset Management\" in the title \u2014 plus the on-page disambiguation block \u2014 should recover right-intent ranking without losing the audience filter.",
       "baseline": {
         "clicks": 186,
         "impressions": 16559,
@@ -1167,7 +1167,7 @@
       "id": "exp-029",
       "page": "/solutions/equipment-check-in",
       "field": "title+description",
-      "before": "Equipment Checkout Software — Free QR Check-In/Out Tracking | Shelf",
+      "before": "Equipment Checkout Software \u2014 Free QR Check-In/Out Tracking | Shelf",
       "after": "Free Check-In and Check-Out Software for Equipment | Shelf",
       "hypothesis": "Top query is \"check in check out software\" (1078 impr, 0.1% CTR @ pos 5.5). Current title leads with \"Equipment Checkout\" (different word order). Reordering to lead with \"Free Check-In and Check-Out\" matches the dominant query phrasing exactly. Existing CTR at pos 7.3 is 1.09%, expected 4-6% at that position.",
       "baseline": {
@@ -1201,7 +1201,7 @@
         "description-rewrite",
         "batch-3"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] clicks 84→187/30d (+123%), pos 7.3→5.5. Note: stripped exp-004's action verbs; batch-4 exp-039 restores them.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] clicks 84\u2192187/30d (+123%), pos 7.3\u21925.5. Note: stripped exp-004's action verbs; batch-4 exp-039 restores them.",
       "verdict": "WIN",
       "closedAt": "2026-07-23"
     },
@@ -1244,7 +1244,7 @@
         "blog",
         "batch-3"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Marked deployed but the change never shipped — repo still had the old title; recorded 'result' measured the unchanged page. NOT a title learning. Superseded by exp-041.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Marked deployed but the change never shipped \u2014 repo still had the old title; recorded 'result' measured the unchanged page. NOT a title learning. Superseded by exp-041.",
       "verdict": "INVALID-NEVER-DEPLOYED",
       "closedAt": "2026-07-23"
     },
@@ -1252,9 +1252,9 @@
       "id": "exp-031",
       "page": "/alternatives/snipe-it",
       "field": "title+description",
-      "before": "Snipe-IT vs Shelf — Which Open Source Asset Manager Fits Your Team? (2026)",
-      "after": "Snipe-IT Alternative — Open Source Asset Management | Shelf",
-      "hypothesis": "Top query is \"snipe it alternative\" (429 impr, 0.2% CTR @ pos 8.4). Current title leads with vs/comparison framing — that's comparison intent, not alternative-seeking intent. Aligning title to the dominant query verb should lift CTR. CTR is also dropping (0.63% → 0.47% over the past 4 weeks).",
+      "before": "Snipe-IT vs Shelf \u2014 Which Open Source Asset Manager Fits Your Team? (2026)",
+      "after": "Snipe-IT Alternative \u2014 Open Source Asset Management | Shelf",
+      "hypothesis": "Top query is \"snipe it alternative\" (429 impr, 0.2% CTR @ pos 8.4). Current title leads with vs/comparison framing \u2014 that's comparison intent, not alternative-seeking intent. Aligning title to the dominant query verb should lift CTR. CTR is also dropping (0.63% \u2192 0.47% over the past 4 weeks).",
       "baseline": {
         "clicks": 8,
         "impressions": 1685,
@@ -1287,7 +1287,7 @@
         "alternatives",
         "batch-3"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Core alt-queries flat & healthy (pos 2.9–3.4 @ 1.9–2.75%). Batch-4 exp-042 takes the next swing with differentiation.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Core alt-queries flat & healthy (pos 2.9\u20133.4 @ 1.9\u20132.75%). Batch-4 exp-042 takes the next swing with differentiation.",
       "verdict": "INCONCLUSIVE",
       "closedAt": "2026-07-23"
     },
@@ -1295,9 +1295,9 @@
       "id": "exp-032",
       "page": "/alternatives/sortly",
       "field": "title+description",
-      "before": "Sortly Alternative (2026) — Equipment Tracking Beyond Inventory Lists | Shelf",
-      "after": "Sortly Alternative — Free Equipment Tracking with QR Codes | Shelf",
-      "hypothesis": "Page ranks pos 5.9 with 0.80% CTR (declined from 0.95% in prior 14d). Pos ~2-6 should hit 5-10% CTR. \"Equipment Tracking Beyond Inventory Lists\" is opaque copy. Replacing with explicit value (Free, QR Codes) should compel clicks. Conservative — uses only public claims (free tier, QR-based tracking).",
+      "before": "Sortly Alternative (2026) \u2014 Equipment Tracking Beyond Inventory Lists | Shelf",
+      "after": "Sortly Alternative \u2014 Free Equipment Tracking with QR Codes | Shelf",
+      "hypothesis": "Page ranks pos 5.9 with 0.80% CTR (declined from 0.95% in prior 14d). Pos ~2-6 should hit 5-10% CTR. \"Equipment Tracking Beyond Inventory Lists\" is opaque copy. Replacing with explicit value (Free, QR Codes) should compel clicks. Conservative \u2014 uses only public claims (free tier, QR-based tracking).",
       "baseline": {
         "clicks": 10,
         "impressions": 1251,
@@ -1330,7 +1330,7 @@
         "alternatives",
         "batch-3"
       ],
-      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Core 'sortly alternative(s)' holds pos 2.1–2.4; no lift, no damage.",
+      "learnings": "[close-out 2026-07-23, wf_fbc2d7dc] Core 'sortly alternative(s)' holds pos 2.1\u20132.4; no lift, no damage.",
       "verdict": "INCONCLUSIVE",
       "closedAt": "2026-07-23"
     },
@@ -1338,9 +1338,9 @@
       "id": "exp-033",
       "page": "/solutions/equipment-reservations",
       "field": "title+description",
-      "before": "Equipment Reservation Software — Prevent Double-Bookings | Shelf",
-      "after": "Equipment Booking Software — Free Reservations & Scheduling | Shelf",
-      "hypothesis": "Cannibalization audit revealed that /solutions/equipment-reservations is the page already targeting commercial booking queries: \"equipment booking software\" (520 impr/90d, pos 16.8, 0.2% CTR), \"equipment reservation system\" (527 impr, pos 11.3, 0.0% CTR), \"equipment booking system\" (695 impr, pos 19.8, 0.0% CTR). Current SEO title leads with \"Equipment Reservation Software\" but the dominant query is \"equipment booking software\" (~3x higher search volume). The page body already uses both terms interchangeably (\"booking\" appears 18 times). Reordering to lead with \"Booking Software\" matches dominant query intent and adds \"Free\" — a known CTR booster from exp-002. Avoids creating a new /equipment-booking-software page that would have triple-cannibalized this and /features/bookings.",
+      "before": "Equipment Reservation Software \u2014 Prevent Double-Bookings | Shelf",
+      "after": "Equipment Booking Software \u2014 Free Reservations & Scheduling | Shelf",
+      "hypothesis": "Cannibalization audit revealed that /solutions/equipment-reservations is the page already targeting commercial booking queries: \"equipment booking software\" (520 impr/90d, pos 16.8, 0.2% CTR), \"equipment reservation system\" (527 impr, pos 11.3, 0.0% CTR), \"equipment booking system\" (695 impr, pos 19.8, 0.0% CTR). Current SEO title leads with \"Equipment Reservation Software\" but the dominant query is \"equipment booking software\" (~3x higher search volume). The page body already uses both terms interchangeably (\"booking\" appears 18 times). Reordering to lead with \"Booking Software\" matches dominant query intent and adds \"Free\" \u2014 a known CTR booster from exp-002. Avoids creating a new /equipment-booking-software page that would have triple-cannibalized this and /features/bookings.",
       "baseline": {
         "clicks": 6,
         "impressions": 4087,
@@ -1384,7 +1384,7 @@
       "field": "body-rewrite",
       "before": "Opening 96-word competitor company-bio paragraph + duplicate body H1 + redundant layout-injected comparison table; no FAQ section. PostHog scroll-to-bottom: 17.3% (last 30d).",
       "after": "Pain-first hook + 'Switch if / Stay if' TL;DR; duplicate body H1 removed; layout-injected comparison table suppressed via new hideLayoutTable frontmatter flag; ## Frequently Asked Questions section added (5 Q&As, schema-eligible).",
-      "hypothesis": "PRIMARY METRIC: scroll-to-bottom rate (PostHog). Cheqroom is the worst-engaging alternatives page at 17.3% scroll-to-bottom despite high-intent traffic. The opening paragraph buries the verdict in 96 words of competitor history — readers searching 'cheqroom alternative' want a switch/stay decision in 5 seconds. Replacing with a pain-first hook plus 'Switch if / Stay if' bullets should lift engagement. Killing the dup H1 + the all-'Varies' layout-injected comparison table tightens the top of the page. Adding FAQ schema is a free CTR side-bet (rich results possible). Secondary metric: GSC CTR for 'cheqroom alternative' query.",
+      "hypothesis": "PRIMARY METRIC: scroll-to-bottom rate (PostHog). Cheqroom is the worst-engaging alternatives page at 17.3% scroll-to-bottom despite high-intent traffic. The opening paragraph buries the verdict in 96 words of competitor history \u2014 readers searching 'cheqroom alternative' want a switch/stay decision in 5 seconds. Replacing with a pain-first hook plus 'Switch if / Stay if' bullets should lift engagement. Killing the dup H1 + the all-'Varies' layout-injected comparison table tightens the top of the page. Adding FAQ schema is a free CTR side-bet (rich results possible). Secondary metric: GSC CTR for 'cheqroom alternative' query.",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -1424,7 +1424,7 @@
       "field": "internal-links",
       "before": "Page had only 2 inbound internal links sitewide (a blog body link + an updates readMoreUrl) while /mobile-app held ~49 links across 26 files. seo.title unchanged (exp-027 winner, frozen).",
       "after": "Added 6 varied-anchor editorial internal links to the page from high-traffic / topically-relevant surfaces (tools/barcode-scanner, solutions/mobile-asset-auditing, solutions/asset-tracking, features/audits, solutions/equipment-check-in, features/custody), taking inbound links 2 -> 8. No exact-match 'shelf app' anchors. Two edits also Android-corrected leftover iPhone-only copy. seo.title frozen.",
-      "hypothesis": "The KB page owns the 'shelf app' cluster (~520 clk / 30d on-page; head 'shelf app' 112 clk @ pos 8.0 / 0.5% CTR; variants 'shelf app android' pos 4.7, 'shelf app download' pos 5.8, 'shelf android' pos 6.2; PT timing queries 5-13% CTR) with no cannibalization from /mobile-app (~7 clk/30d). The proven ranker is starved of internal authority (2 inbound links) vs /mobile-app's 49. Routing a few varied-anchor editorial links to it should nudge the just-outside-top-5 qualified variants toward top-5. Head 'shelf app' is position + brand-collision capped and is treated as a canary that must NOT regress. Upside is uncertain (/mobile-app's 49 links never made it rank, so internal links alone don't force ranking) — this is a low-risk, measured test. Evaluate at the QUERY level via scripts/cluster-snapshot.mjs, NOT the page aggregate (which masked exp-028).",
+      "hypothesis": "The KB page owns the 'shelf app' cluster (~520 clk / 30d on-page; head 'shelf app' 112 clk @ pos 8.0 / 0.5% CTR; variants 'shelf app android' pos 4.7, 'shelf app download' pos 5.8, 'shelf android' pos 6.2; PT timing queries 5-13% CTR) with no cannibalization from /mobile-app (~7 clk/30d). The proven ranker is starved of internal authority (2 inbound links) vs /mobile-app's 49. Routing a few varied-anchor editorial links to it should nudge the just-outside-top-5 qualified variants toward top-5. Head 'shelf app' is position + brand-collision capped and is treated as a canary that must NOT regress. Upside is uncertain (/mobile-app's 49 links never made it rank, so internal links alone don't force ranking) \u2014 this is a low-risk, measured test. Evaluate at the QUERY level via scripts/cluster-snapshot.mjs, NOT the page aggregate (which masked exp-028).",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -1465,7 +1465,7 @@
       "field": "new-page",
       "before": "No page existed targeting this term/segment.",
       "after": "New page created at /solutions/qr-code-asset-tracking (batch-5, GSC-informed). See hypothesis.",
-      "hypothesis": "GSC shows a ~7,000-impr/180d cluster — 'qr code asset tags' (2302, pos 22.1), 'qr code asset tracking' (1549, pos 22.7), 'asset tags with qr code' (1449, pos 17.1), 'qr code asset tag' (1059, pos 21.3), 'qr code asset tracking software' (937, pos 21.6) — that shelf.nu surfaces for at pos 17-22 with NO exact-match page (equipment-management/asset-tracking only mention QR). A dedicated, exact-match page should climb these from page 2/3 toward page 1. Highest-confidence item in the batch. Evaluate at query level, not just page aggregate.",
+      "hypothesis": "GSC shows a ~7,000-impr/180d cluster \u2014 'qr code asset tags' (2302, pos 22.1), 'qr code asset tracking' (1549, pos 22.7), 'asset tags with qr code' (1449, pos 17.1), 'qr code asset tag' (1059, pos 21.3), 'qr code asset tracking software' (937, pos 21.6) \u2014 that shelf.nu surfaces for at pos 17-22 with NO exact-match page (equipment-management/asset-tracking only mention QR). A dedicated, exact-match page should climb these from page 2/3 toward page 1. Highest-confidence item in the batch. Evaluate at query level, not just page aggregate.",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -1547,7 +1547,7 @@
       "field": "new-page",
       "before": "No page existed targeting this term/segment.",
       "after": "New page created at /use-cases/consultancy-equipment-management (batch-5, GSC-informed). See hypothesis.",
-      "hypothesis": "Conversion + long-tail segment page mirroring the source lead (consultancy: shared, calibrated instruments across 3 offices, booking required). Low head-term volume ('instrument asset management software' 14 impr, 'consult' equipment-checkout AI query 86 impr) — value is conversion of the exact ICP and AEO/long-tail capture, not head-term SEO. Tells the booking + multi-office + calibration intersection in one narrative. Measure assisted demo conversions + long-tail impressions.",
+      "hypothesis": "Conversion + long-tail segment page mirroring the source lead (consultancy: shared, calibrated instruments across 3 offices, booking required). Low head-term volume ('instrument asset management software' 14 impr, 'consult' equipment-checkout AI query 86 impr) \u2014 value is conversion of the exact ICP and AEO/long-tail capture, not head-term SEO. Tells the booking + multi-office + calibration intersection in one narrative. Measure assisted demo conversions + long-tail impressions.",
       "baseline": {
         "clicks": null,
         "impressions": null,
@@ -1588,8 +1588,8 @@
       "page": "/solutions/equipment-check-in",
       "field": "seo.title+seo.description",
       "before": "Title: 'Free Check-In and Check-Out Software for Equipment | Shelf' / Desc: 'Replace sign-out sheets with QR-based equipment check-in and check-out. Free for individuals, real-time custody logs, no credit card required. Used by 3,000+ teams.'",
-      "after": "Title: 'Free Equipment Check-In and Check-Out Software — Scan, Return' / Desc: 'Scan a QR code to check gear out and back in. See who has what and where it is — free for individuals, no credit card. Used by 3,000+ teams.'",
-      "hypothesis": "Core queries sit pos 1–2 but click 0.3–1.5% vs 20–50% band. exp-029 stripped exp-004's proven action verbs (+150% CTR); restore them (P3) + natural word order 'Equipment Check-In' matching queries + P4 conversational desc. Also removes manual '| Shelf' (doubled-suffix bug). Est +374 clicks/mo.",
+      "after": "Title: 'Free Equipment Check-In and Check-Out Software \u2014 Scan, Return' / Desc: 'Scan a QR code to check gear out and back in. See who has what and where it is \u2014 free for individuals, no credit card. Used by 3,000+ teams.'",
+      "hypothesis": "Core queries sit pos 1\u20132 but click 0.3\u20131.5% vs 20\u201350% band. exp-029 stripped exp-004's proven action verbs (+150% CTR); restore them (P3) + natural word order 'Equipment Check-In' matching queries + P4 conversational desc. Also removes manual '| Shelf' (doubled-suffix bug). Est +374 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1601,9 +1601,19 @@
         "position": 5.4,
         "capturedAt": "2026-07-23T09:41:40.314Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1617,9 +1627,9 @@
       "id": "exp-040",
       "page": "/tools/macrs-depreciation-calculator",
       "field": "page-metadata title+description",
-      "before": "Title: 'Free MACRS Depreciation Calculator — IRS Tables & Tax Savings | Shelf' / Desc: 'Calculate MACRS tax depreciation with official IRS Publication 946 rates. GDS and ADS systems, all property classes (3–20 year), estimated tax savings. Free, no signup.'",
-      "after": "Title: 'Free MACRS Depreciation Calculator — IRS Pub 946 & Tax Savings' / Desc: 'Calculate MACRS tax depreciation with official IRS Pub 946 tables — GDS & ADS, all property classes from 3 to 20 years, plus estimated tax savings. Free, no signup.'",
-      "hypothesis": "Money query 'macrs depreciation calculator' 3.29% @ pos 3.4 vs 20–50% band; 94-char doubled-brand title truncates in SERP. Dedupe brand suffix, name 'Pub 946' (authority token searchers use). Keeps 'Tax Savings' for #3 query (A1). Est +128 clicks/mo.",
+      "before": "Title: 'Free MACRS Depreciation Calculator \u2014 IRS Tables & Tax Savings | Shelf' / Desc: 'Calculate MACRS tax depreciation with official IRS Publication 946 rates. GDS and ADS systems, all property classes (3\u201320 year), estimated tax savings. Free, no signup.'",
+      "after": "Title: 'Free MACRS Depreciation Calculator \u2014 IRS Pub 946 & Tax Savings' / Desc: 'Calculate MACRS tax depreciation with official IRS Pub 946 tables \u2014 GDS & ADS, all property classes from 3 to 20 years, plus estimated tax savings. Free, no signup.'",
+      "hypothesis": "Money query 'macrs depreciation calculator' 3.29% @ pos 3.4 vs 20\u201350% band; 94-char doubled-brand title truncates in SERP. Dedupe brand suffix, name 'Pub 946' (authority token searchers use). Keeps 'Tax Savings' for #3 query (A1). Est +128 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1631,9 +1641,19 @@
         "position": 9,
         "capturedAt": "2026-07-23T09:41:41.306Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1649,7 +1669,7 @@
       "field": "seo.title+seo.description",
       "before": "Title: 'The Importance of PC Asset Tags for Computer Hardware' / Desc: intro paragraph (380+ chars)",
       "after": "Title: 'Asset Tags for Laptops & Computers: Practical Guide' / Desc: 'What to print on computer and laptop asset tags, which tag type to choose (QR, barcode, RFID), and how to set up a tagging system that IT can maintain.'",
-      "hypothesis": "Supersedes exp-030 (never shipped). Worst CTR gap on the site: 0.10% @ pos 8.8 vs 2–5% band on 7,250 impr. Laptop cluster (~1,750 impr) leads queries; essay-style title has zero query overlap. Keeps 'Asset Tags'+'Computers' terms (A1). Est +60 clicks/mo.",
+      "hypothesis": "Supersedes exp-030 (never shipped). Worst CTR gap on the site: 0.10% @ pos 8.8 vs 2\u20135% band on 7,250 impr. Laptop cluster (~1,750 impr) leads queries; essay-style title has zero query overlap. Keeps 'Asset Tags'+'Computers' terms (A1). Est +60 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1661,9 +1681,19 @@
         "position": 8.8,
         "capturedAt": "2026-07-23T09:41:42.248Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1677,9 +1707,9 @@
       "id": "exp-042",
       "page": "/alternatives/snipe-it",
       "field": "seo.title+seo.description",
-      "before": "Title: 'Snipe-IT Alternative — Open Source Asset Management | Shelf' / Desc: 'Looking for a Snipe-IT alternative? See how Shelf compares on bookings, equipment check-outs, mobile UX, and modern setup — all open source.'",
-      "after": "Title: 'Open Source Snipe-IT Alternative — Bookings & Mobile App' / Desc: 'Shelf is an open source Snipe-IT alternative with equipment bookings, a native mobile app, and a modern UI. Cloud or self-hosted. Try free, no credit card.'",
-      "hypothesis": "Core alt-queries 0–2.75% @ pos 2.9–3.4 vs 20–50% band. Current title states category; new one names the two features Snipe-IT verifiably lacks (bookings, native mobile app) — absent from every competing title on this SERP. P2+P5+P6. Est +45 clicks/mo.",
+      "before": "Title: 'Snipe-IT Alternative \u2014 Open Source Asset Management | Shelf' / Desc: 'Looking for a Snipe-IT alternative? See how Shelf compares on bookings, equipment check-outs, mobile UX, and modern setup \u2014 all open source.'",
+      "after": "Title: 'Open Source Snipe-IT Alternative \u2014 Bookings & Mobile App' / Desc: 'Shelf is an open source Snipe-IT alternative with equipment bookings, a native mobile app, and a modern UI. Cloud or self-hosted. Try free, no credit card.'",
+      "hypothesis": "Core alt-queries 0\u20132.75% @ pos 2.9\u20133.4 vs 20\u201350% band. Current title states category; new one names the two features Snipe-IT verifiably lacks (bookings, native mobile app) \u2014 absent from every competing title on this SERP. P2+P5+P6. Est +45 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1691,9 +1721,19 @@
         "position": 6.5,
         "capturedAt": "2026-07-23T09:41:43.207Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1708,8 +1748,8 @@
       "page": "/blog/the-importance-of-qr-code-asset-management-in-business",
       "field": "seo.title+seo.description",
       "before": "Title: 'The Importance of QR Code Asset Management in Business' / Desc: intro paragraph",
-      "after": "Title: 'QR Code Asset Management & Tracking — Free Tools & Setup' / Desc: 'How QR code asset management works and why it beats manual tracking — print labels, scan with any phone, track custody. Free and open source with Shelf.'",
-      "hypothesis": "0.09% @ pos 8.7 vs 2–5% band on 2,220 impr. Hybrid keeps '& Tracking' (largest impression family, A1/P5); 'Free Tools' magnet (P1); conversational desc (P4). Est +42 clicks/mo.",
+      "after": "Title: 'QR Code Asset Management & Tracking \u2014 Free Tools & Setup' / Desc: 'How QR code asset management works and why it beats manual tracking \u2014 print labels, scan with any phone, track custody. Free and open source with Shelf.'",
+      "hypothesis": "0.09% @ pos 8.7 vs 2\u20135% band on 2,220 impr. Hybrid keeps '& Tracking' (largest impression family, A1/P5); 'Free Tools' magnet (P1); conversational desc (P4). Est +42 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1721,9 +1761,19 @@
         "position": 8.7,
         "capturedAt": "2026-07-23T09:41:45.709Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1738,8 +1788,8 @@
       "page": "/glossary/check-in-check-out",
       "field": "seo.title+seo.description",
       "before": "Title: 'What Is Check-In/Check-Out? | Definition & Workflow' / Desc: 'Learn how check-in/check-out workflows improve accountability, prevent loss, and support smooth equipment-sharing processes.'",
-      "after": "Title: 'Asset Check-In/Check-Out: Meaning, Workflow & Free Software' / Desc: 'What asset check-in/check-out means and how to run the workflow with QR scans — free to start, open source. Track who has what and when it's due back.'",
-      "hypothesis": "0 clicks on all 12 queries at pos 3.7–6.4 (band 2–5%). 'Asset' appears in every ranking query but not the title (A1 extension); '& Free Software' claims the empty software slot on a dictionary-dominated SERP. P1+P2+P4+P5. Est +30 clicks/mo.",
+      "after": "Title: 'Asset Check-In/Check-Out: Meaning, Workflow & Free Software' / Desc: 'What asset check-in/check-out means and how to run the workflow with QR scans \u2014 free to start, open source. Track who has what and when it's due back.'",
+      "hypothesis": "0 clicks on all 12 queries at pos 3.7\u20136.4 (band 2\u20135%). 'Asset' appears in every ranking query but not the title (A1 extension); '& Free Software' claims the empty software slot on a dictionary-dominated SERP. P1+P2+P4+P5. Est +30 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1751,9 +1801,19 @@
         "position": 9.9,
         "capturedAt": "2026-07-23T09:41:46.696Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1767,9 +1827,9 @@
       "id": "exp-045",
       "page": "/alternatives/asset-panda",
       "field": "seo.title+seo.description",
-      "before": "Title: 'Asset Panda Alternative — Fast Setup, No Per-User Fees | Shelf' / Desc: 'Evaluating Asset Panda? Compare workflow speed, user experience, and day-to-day equipment tracking between Shelf and Asset Panda.'",
-      "after": "Title: 'Asset Panda Alternative — Open Source, No Per-User Fees' / Desc: 'Asset Panda starts at $50 per user/month with a 5-user minimum — about $3,000/year. Shelf is open source with flat pricing and unlimited users. Free to start.'",
-      "hypothesis": "278 impr alt-queries + 207 impr pricing-queries, 0 clicks. Desc leads with the verified pricing contrast ($50/user/mo, 5-user min — stated on-page in the MDX) to catch the zero-click pricing cluster. P1+P2+P4. Est +20 clicks/mo.",
+      "before": "Title: 'Asset Panda Alternative \u2014 Fast Setup, No Per-User Fees | Shelf' / Desc: 'Evaluating Asset Panda? Compare workflow speed, user experience, and day-to-day equipment tracking between Shelf and Asset Panda.'",
+      "after": "Title: 'Asset Panda Alternative \u2014 Open Source, No Per-User Fees' / Desc: 'Asset Panda starts at $50 per user/month with a 5-user minimum \u2014 about $3,000/year. Shelf is open source with flat pricing and unlimited users. Free to start.'",
+      "hypothesis": "278 impr alt-queries + 207 impr pricing-queries, 0 clicks. Desc leads with the verified pricing contrast ($50/user/mo, 5-user min \u2014 stated on-page in the MDX) to catch the zero-click pricing cluster. P1+P2+P4. Est +20 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1781,9 +1841,19 @@
         "position": 9.9,
         "capturedAt": "2026-07-23T09:41:47.703Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
@@ -1797,9 +1867,9 @@
       "id": "exp-046",
       "page": "/solutions/equipment-reservations",
       "field": "seo.title+seo.description",
-      "before": "Title: 'Equipment Reservation Software — Prevent Double-Bookings | Shelf' / Desc: 'Equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. No per-asset fees.'",
-      "after": "Title: 'Equipment Reservation System & Software — Try Free' / Desc: 'Reserve cameras, tools, and AV gear without double-bookings. See who has what and when it's due back. Open source, no per-asset fees — try it free.'",
-      "hypothesis": "The A3 remedy test: exp-018 deleted 'Free' with no replacement (−58% CTR); this replaces it with the sanctioned truthful magnet 'Try Free' (Team plan no-CC trial — reservations is Team-only, so 'Free' would violate truthfulness). Adds 'System' (in core query, A1 extension). Est +11 clicks/mo.",
+      "before": "Title: 'Equipment Reservation Software \u2014 Prevent Double-Bookings | Shelf' / Desc: 'Equipment reservation software with conflict-free booking calendars. Prevent double-bookings for cameras, tools, laptops, and AV gear. Open source. No per-asset fees.'",
+      "after": "Title: 'Equipment Reservation System & Software \u2014 Try Free' / Desc: 'Reserve cameras, tools, and AV gear without double-bookings. See who has what and when it's due back. Open source, no per-asset fees \u2014 try it free.'",
+      "hypothesis": "The A3 remedy test: exp-018 deleted 'Free' with no replacement (\u221258% CTR); this replaces it with the sanctioned truthful magnet 'Try Free' (Team plan no-CC trial \u2014 reservations is Team-only, so 'Free' would violate truthfulness). Adds 'System' (in core query, A1 extension). Est +11 clicks/mo.",
       "baseline": {
         "dateRange": [
           "2026-06-22",
@@ -1811,9 +1881,19 @@
         "position": 15.7,
         "capturedAt": "2026-07-23T09:41:48.554Z"
       },
-      "result": null,
-      "status": "planned",
-      "deployedAt": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "active",
+      "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-4",
