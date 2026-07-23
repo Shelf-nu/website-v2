@@ -10,9 +10,9 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
-    title: "Free MACRS Depreciation Calculator — IRS Tables & Tax Savings | Shelf",
+    title: "Free MACRS Depreciation Calculator — IRS Pub 946 & Tax Savings",
     description:
-        "Calculate MACRS tax depreciation with official IRS Publication 946 rates. GDS and ADS systems, all property classes (3–20 year), estimated tax savings. Free, no signup.",
+        "Calculate MACRS tax depreciation with official IRS Pub 946 tables — GDS & ADS, all property classes from 3 to 20 years, plus estimated tax savings. Free, no signup.",
     alternates: {
         canonical: "https://www.shelf.nu/tools/macrs-depreciation-calculator",
     },
