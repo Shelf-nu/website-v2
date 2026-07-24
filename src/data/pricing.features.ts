@@ -549,26 +549,26 @@ export const pricingFeatures: PricingFeature[] = [
     {
         id: "import-external-barcodes",
         category: "Data Import/Export",
-        name: "Import External Barcodes",
+        name: "Alternative Barcodes",
         description:
-            "Import and link external barcodes (UPC, EAN, etc.) to assets",
+            "Keep the barcode or QR labels already on your assets (from Cheqroom or any other system) and scan them directly in Shelf — no re-labeling needed. Supports Code128, Code39, EAN-13, DataMatrix and QR, and works with 2D handheld scanners.",
         availability: {
             free: "not-included",
-            plus: "limited",
+            plus: "not-included",
             team: "limited",
-            enterprise: "included",
+            enterprise: "limited",
         },
         internalAvailability: {
             free: "not-included",
-            tier_1: "limited",
+            tier_1: "not-included",
             tier_2: "limited",
-            custom: "included",
+            custom: "limited",
         },
         metadata: {
             free: "Not available",
-            plus: "Add-on",
-            team: "Add-on",
-            enterprise: "Included",
+            plus: "Not available",
+            team: "Add-on — $170/yr",
+            enterprise: "Add-on — $170/yr",
         },
     },
     {
@@ -665,22 +665,22 @@ export const pricingFeatures: PricingFeature[] = [
         description:
             "Physical inventory verification with structured scan workflows, found/missing/unexpected detection, and PDF/CSV reports",
         availability: {
-            free: "limited",
-            plus: "limited",
+            free: "not-included",
+            plus: "not-included",
             team: "limited",
             enterprise: "limited",
         },
         internalAvailability: {
-            free: "limited",
-            tier_1: "limited",
+            free: "not-included",
+            tier_1: "not-included",
             tier_2: "limited",
             custom: "limited",
         },
         metadata: {
-            free: "Add-on — 7-day free trial",
-            plus: "Add-on — 7-day free trial",
-            team: "Add-on — 7-day free trial",
-            enterprise: "Add-on — 7-day free trial",
+            free: "Not available",
+            plus: "Not available",
+            team: "Add-on — $37/mo or $205/yr",
+            enterprise: "Add-on — $37/mo or $205/yr",
         },
     },
 
@@ -707,7 +707,7 @@ export const pricingFeatures: PricingFeature[] = [
         metadata: {
             free: "Not available",
             plus: "Not available",
-            team: "Add-on — contact sales",
+            team: "Add-on — from $9/user/mo (annual)",
             enterprise: "Included",
         },
     },
