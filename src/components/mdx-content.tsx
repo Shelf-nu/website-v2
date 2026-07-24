@@ -13,6 +13,8 @@ import { HeadingAnchor } from "@/components/mdx/heading-anchor";
 import { ComparisonTable } from "@/components/mdx/comparison-table";
 import { RolePicker } from "@/components/mdx/role-picker";
 import { CodeBlock } from "@/components/mdx/code-block";
+import { TrackingMethodQuiz } from "@/components/mdx/tracking-method-quiz";
+import { TrackingDecisionChart } from "@/components/mdx/tracking-decision-chart";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -118,6 +120,8 @@ const components = {
     ComparisonTable,
     RolePicker,
     InlineVideo,
+    TrackingMethodQuiz,
+    TrackingDecisionChart,
 };
 
 export function MDXContent({ source }: { source: string }) {
