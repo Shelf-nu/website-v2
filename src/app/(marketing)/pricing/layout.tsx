@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Pricing — Simple, Transparent Plans",
     description:
-        "Flat pricing for your whole team. No per-seat fees. Free plan with unlimited assets. Team plan from $67/month. No credit card required.",
+        "One flat price per workspace — unlimited assets on every plan, unlimited users on Team. Free plan available. Team plan $67/month or $370/year. 7-day free trial, no credit card required.",
     alternates: { canonical: "https://www.shelf.nu/pricing" },
 };
 
