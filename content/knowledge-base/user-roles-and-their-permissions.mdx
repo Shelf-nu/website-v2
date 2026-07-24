@@ -1,61 +1,113 @@
 ---
-title: "User Types / Roles and Their Permissions"
-description: "A short overview of user roles and their permissions in Shelf, including Owner, Administrator, Self-service, Base, and Non Registered Member roles."
+title: "User Roles and Their Permissions"
+description: "See exactly what each Shelf user role can do with a full permissions matrix for Owner, Administrator, Self-service, and Base users, plus how to restrict who can see or book specific equipment."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-07-24"
 layout: "knowledge-base"
 ---
 
-Assigning user roles allows you to regulate what different team members or colleagues can view when granting them access to the workspace.
+Shelf uses **fixed roles**: instead of building permissions from scratch for every person, you assign each team member one of four roles that already maps to a sensible set of capabilities. This keeps access control simple to reason about, even across hundreds of users.
 
-> At the moment we offer 5 different user roles (Owner, Administrator, Self-service, Base, and Non Registered Member) with static permissions.
+<Callout type="info" title="Four roles, plus a non-login placeholder">
+Shelf has four user roles with static permissions — **Owner**, **Administrator**, **Self-service**, and **Base** — plus **NRM** (Non Registered Member), a placeholder for people who hold gear but never log in. Roles are set per workspace when you invite someone, and can be changed at any time.
+</Callout>
 
-When you grant a team member or colleague access to a workspace you will have the ability to assign them a specific role depending on what that user needs to view and do.
+<SummaryBox title="Which role should I pick?">
 
-**Note:** Inviting team members is a team plan feature.
+- **Owner** — the single account owner. Full control, plus billing and workspace lifecycle. One per workspace.
+- **Administrator** — your managers and coordinators. Full operational control: manage inventory, people, bookings, and settings.
+- **Self-service** — trusted staff and power users who check gear out and back in themselves without waiting on an admin.
+- **Base** — the broadest group (students, occasional users). They can browse gear and submit booking requests; an admin approves and hands it over.
+- **NRM** — a name on record for custody/tracking, with no login.
 
-## Account Owner
+</SummaryBox>
 
-The Account owner possesses complete access to the account and they have full permission to do everything in the workspace. They are basically an Administrator with some additional permissions like the authority to **upgrade or cancel subscriptions.** Only one Account owner is permitted at a time.
+## Permissions at a glance
 
+Every checkmark below is what the role can actually do in Shelf today.
+
+<ComparisonTable
+  headers={["Owner", "Administrator", "Self-service", "Base"]}
+  rows={[
+    { label: "View and search assets", values: [true, true, true, true] },
+    { label: "Add, edit and delete assets", values: [true, true, false, false] },
+    { label: "Import and export asset data", values: [true, true, false, false] },
+    { label: "Check out assets to themselves", values: [true, true, true, false] },
+    { label: "Create booking requests", values: [true, true, true, true] },
+    { label: "Check out / check in their own bookings", values: [true, true, true, false] },
+    { label: "Manage everyone's bookings", values: [true, true, false, false] },
+    { label: "View and book Kits", values: [true, true, true, true] },
+    { label: "Create and edit Kits", values: [true, true, false, false] },
+    { label: "Manage categories, tags and locations", values: [true, true, false, false] },
+    { label: "Manage custom fields", values: [true, true, false, false] },
+    { label: "Create and manage audits", values: [true, true, false, false] },
+    { label: "Set asset reminders", values: [true, true, false, false] },
+    { label: "Invite people and set their roles", values: [true, true, false, false] },
+    { label: "Access workspace settings and permission toggles", values: [true, true, false, false] },
+    { label: "Manage billing and workspace lifecycle", values: [true, false, false, false] },
+  ]}
+/>
+
+## The roles in detail
+
+### Owner
+
+The Account Owner has complete access to everything in the workspace. They are effectively an Administrator with a few additional powers — most importantly the authority to **manage the subscription** (upgrade or cancel) and to **create or delete workspaces**. There is only ever **one Owner** at a time, and the Owner cannot be removed.
 
 ![User roles and permissions overview in Shelf team settings](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/user-roles-1.webp)
-## Administrator
 
-Users with an Administrator role possess comprehensive access to their workspace across all locations. Their permissions include:
+### Administrator
 
-- **Managing assets:** Administrators are able to create, update, and archive equipment. Additionally, they can modify categories, tags and locations and oversee the transfer of assets in custody.
-- **Managing users:** They have the authority to invite other users to the workspace and adjust the roles of existing users.
-- **Team member notes:** Administrators can add private, workspace-scoped notes to any team member's profile. Notes are only visible to Admins and Owners. See [Admin Notes on Team Members](/knowledge-base/admin-notes-on-team-members).
-- **Managing bookings:** Administrators are capable of creating, updating, and fulfilling (checking in/out) bookings, including those initiated by other users. They also have the ability to clear booking labels and disregard booking conflicts.
-- **Managing settings:** Administrators hold complete access to the account's settings, allowing them full control over configuration and adjustments.
+Administrators have comprehensive access to the workspace across all locations. Their permissions include:
 
-## Self-Service
+- **Managing assets:** create, update, archive and delete equipment; manage categories, tags, custom fields and locations; and oversee custody transfers.
+- **Managing users:** invite other users to the workspace and adjust the roles of existing users.
+- **Team member notes:** add private, workspace-scoped notes to any team member's profile. Notes are only visible to Admins and Owners. See [Admin Notes on Team Members](/knowledge-base/admin-notes-on-team-members).
+- **Managing bookings:** create, update and fulfil (check in/out) bookings — including those started by other users — clear booking labels, and override booking conflicts.
+- **Managing settings:** full access to the workspace's settings and configuration, including the [permission toggles](/knowledge-base/configure-what-self-service-and-base-users-can-see) that control what Self-service and Base users can see.
 
-Self Service users have enhanced capabilities compared to BASE users, bridging the gap between BASE and Administrator roles:
+### Self-service
 
-- **Asset overview:** They have access to view equipment listings but lack the ability to create, update, or expire equipment. Additionally, they cannot manage flags, change item locations, or handle custody transactions.
-- **Asset management:** They have the ability to self assign and self remove custody of assets.
-- **User management:** Self Service users are limited to viewing only their personal user page and cannot manage other users within the account.
-- **Creating and managing bookings:** They have the capability to book assets for themselves and can check out and check in their own bookings. This provides more autonomy in the booking process.
-- **Settings:** These users have limited access to settings, only able to view and edit their own account details. They are unable to create/invite any new team members.
+Self-service users sit between Base and Administrator. They have more autonomy than Base users — they can run their own check-outs and check-ins — without gaining control over the wider workspace:
 
-## BASE (formerly "Self Service")
+- **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle other people's custody.
+- **Custody:** self-assign and self-remove custody of assets.
+- **Bookings:** book assets for themselves and **check them out and back in on their own** — no admin needed.
+- **Settings:** view and edit their own account details only. They cannot invite or manage other team members.
 
-BASE users have foundational access to the system, with limited capabilities:
+### Base
 
-- **Asset overview:** They have access to view equipment listings but cannot create, update, or expire equipment. They also cannot manage flags, change item locations, or handle custody transactions.
-- **User management:** BASE users are limited to viewing only their personal user page and cannot manage other users within the account.
-- **Creating bookings:** They have the capability to create booking requests for themselves. However, they do not have the authority to check out or check in assets. An Administrator must handle both the check-out and check-in processes on their behalf.
-- **Settings:** These users are restricted from viewing or making changes in the Settings area, excluding their own account details. They are unable to create/invite any new team members. Their permissions are solely centered around asset viewing and personal booking request creation.
+Base is the foundational role — ideal for the widest group of users, such as students or occasional borrowers:
 
-## NRM (Non Registered Member)
+- **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle custody.
+- **Bookings:** create **booking requests** for themselves. They **cannot** check out or check in gear — an Administrator (or Self-service user, for their own bookings) completes the hand-off. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it.
+- **Settings:** limited to their own account details. They cannot invite or manage other team members.
 
-An NRM user refers to an individual whose name is recorded in an asset management system without login credentials.
+<Callout type="info" title="Self-service vs. Base — the key difference">
+Both roles can browse gear and request bookings. The difference is the hand-off: **Self-service** users check equipment out and in **themselves**, while **Base** users submit a request that an **admin approves and fulfils**. Use Base when you want an approval step in the middle.
+</Callout>
 
-These users serve as placeholders to assign custody of assets and maintain tracking records.
+### NRM (Non Registered Member)
 
-This feature is useful when there is a need to **attribute ownership of assets to specific individuals who do not require access to the asset management platform.**
+An NRM is a person recorded in Shelf **without login credentials**. They act as a placeholder to assign custody and keep tracking records accurate — useful when you need to attribute equipment to specific individuals who don't need access to the platform. This keeps accountability intact while limiting who can log in and see workspace data.
 
-By using an NRM, organizations can ensure proper accountability and visibility over their inventory while limiting access to sensitive information.
+## Restricting who can see or book specific equipment
+
+A common question — especially for universities and multi-department teams — is *"can I stop certain users from seeing or booking equipment that isn't theirs?"* Shelf gives you several ways to do this:
+
+- **Booking-request approval.** Give a group the **Base** role and they can only *request* equipment; an admin reviews and releases it. This is the simplest way to gate department-owned gear behind an approval step.
+- **Visibility permissions.** Admins can toggle whether Self-service and Base users see custody and booking information for assets they aren't involved with. See [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see).
+- **Separate workspaces per department.** For hard separation — where one department should never see another's inventory — use a distinct workspace per department. Each workspace has its own assets, members, and roles.
+
+<Callout type="takeaway" title="Good to know">
+Shelf's roles are fixed rather than fully custom — there is no per-role editor that builds a bespoke permission set for each person, and access is granted by role and workspace rather than by individual asset. If you're evaluating Shelf for a specific access-control setup, [book a demo](/demo) and we'll map your structure to the right mix of roles, permission toggles, and workspaces.
+</Callout>
+
+## Related articles
+
+- [Changing User Roles in Shelf](/knowledge-base/changing-user-roles-in-shelf)
+- [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see)
+- [Admin Notes on Team Members](/knowledge-base/admin-notes-on-team-members)
+
+**Note:** Inviting team members is a Team plan feature.
