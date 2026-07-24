@@ -1,0 +1,16 @@
+---
+title: "SCIM 2.0 User Provisioning"
+description: "Self-hosted deployments with SSO can now provision users automatically from Microsoft Entra ID, Okta, and other identity providers using SCIM 2.0 — so accounts exist in Shelf before a user's first login."
+date: "2026-07-23"
+image: "/images/updates/improved-team-management.jpg"
+readMoreUrl: "/knowledge-base/scim-user-provisioning"
+layout: "update"
+---
+
+Shelf's SSO creates accounts the first time someone signs in, but that is sometimes too late — an admin may need to assign an asset to a colleague who has not logged in yet. **SCIM 2.0 provisioning** fixes that by letting your identity provider create, update, and deactivate Shelf users directly.
+
+- **Provision ahead of first login.** Users added to your mapped IdP groups (Microsoft Entra ID, Okta, and other SAML 2.0 providers) appear in Shelf before they ever sign in.
+- **Keep accounts in sync.** Name changes flow through automatically, and deactivating a user in your IdP revokes their Shelf access — SSO won't restore access to a SCIM-deactivated user.
+- **Owner-managed tokens.** Workspace owners generate and revoke SCIM bearer tokens from **Settings → General**.
+
+SCIM is **opt-in and available on self-hosted deployments** (it is not currently offered on Shelf Cloud) and requires SSO to be configured first. See the [SCIM setup guide](/knowledge-base/scim-user-provisioning) for the full walkthrough.
