@@ -9,7 +9,7 @@ layout: "update"
 
 Shelf's SSO creates accounts the first time someone signs in, but that is sometimes too late — an admin may need to assign an asset to a colleague who has not logged in yet. **SCIM 2.0 provisioning** fixes that by letting your identity provider create, update, and deactivate Shelf users directly.
 
-- **Provision ahead of first login.** Users added to your mapped IdP groups (Microsoft Entra ID, Okta, and other SAML 2.0 providers) appear in Shelf before they ever sign in.
+- **Provision ahead of first login.** Users added to your mapped IdP groups (Microsoft Entra ID, Okta, and other SAML 2.0 providers) appear in Shelf before they ever sign in. Only users whose email domain matches the workspace's verified SSO domain are provisioned.
 - **Keep accounts in sync.** Name changes flow through automatically, and deactivating a user in your IdP revokes their Shelf access — SSO won't restore access to a SCIM-deactivated user.
 - **Owner-managed tokens.** Workspace owners generate and revoke SCIM bearer tokens from **Settings → General**.
 
