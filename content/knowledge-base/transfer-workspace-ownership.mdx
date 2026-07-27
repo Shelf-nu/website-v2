@@ -1,0 +1,68 @@
+---
+title: "Transferring Workspace Ownership"
+description: "How to make another team member the owner of your workspace, what changes for the new and previous owner, and how your subscription is handled. The transfer is permanent."
+category: "Team"
+date: "2026-07-27"
+updated: "2026-07-27"
+layout: "knowledge-base"
+---
+
+To make someone else the owner of your workspace, you transfer ownership from your workspace settings. Only the current owner can do this, and the transfer is permanent.
+
+{/* TODO: Screenshot needed: Workspace settings → General → "Transfer workspace ownership" card with the new-owner dropdown open. Not automated: the card lists real team member names and emails, and running it on production performs a real, irreversible ownership change. */}
+
+## Before You Start
+
+- You must be the **current owner** of the workspace.
+- The person you are transferring to must already be an **Administrator** in the workspace. If they are not, [change their role to Administrator](/knowledge-base/changing-user-roles-in-shelf) first. If the workspace has no other admins, the transfer button stays disabled.
+- This applies to **Team workspaces**. A Personal workspace has a single user, so there is no one to transfer it to.
+
+## How to Transfer Ownership
+
+1. Go to **Workspace settings → General**.
+2. Find the **Transfer workspace ownership** card.
+3. Select the **new owner** from the list of administrators.
+4. Decide whether to transfer your subscription as well (see [Billing](#billing-and-your-subscription) below).
+5. Type the **workspace name** exactly as shown to confirm.
+6. Tick **I understand this action cannot be undone**, then click **Transfer ownership**.
+
+The transfer takes effect immediately. Both you and the new owner receive a confirmation email.
+
+## What Changes After the Transfer
+
+**For the new owner:**
+
+- They become the workspace **Owner** and take over workspace settings and billing.
+
+**For you (the previous owner):**
+
+- Your role becomes **Administrator**. You keep full access to the workspace, its assets, and its history.
+- You can no longer manage billing or ownership for this workspace.
+
+The transfer is **permanent**. Confirm the details before you complete it.
+
+## Billing and Your Subscription
+
+Transferring ownership is separate from your subscription. By default, your subscription stays on your account, and you choose whether to move it.
+
+**If you keep your subscription (default):** billing stays with you. Note that a workspace's plan follows its owner, so if the new owner is on the **Free** plan, the workspace runs on Free-plan limits after the transfer.
+
+- **Bookings and audits are not affected.** These are Team-workspace features and remain available.
+- What becomes unavailable on Free: **asset CSV import**, **asset CSV export**, **importing non-registered members**, **hiding Shelf branding**, and **custom fields**.
+
+For the workspace to keep those paid capabilities, the new owner needs their own paid plan, or you can transfer your subscription with the ownership.
+
+**If you transfer your subscription too:** tick **Transfer my subscription to the new owner**. They continue on the current billing cycle and add their own payment method before the next billing date. If you own other Team workspaces, moving your subscription away removes their premium capabilities, so Shelf shows a warning before you confirm.
+
+**One limitation:** you cannot transfer ownership to someone who already has their own active subscription, so that the workspace never ends up with two separate active subscriptions. If you see this, the intended new owner should cancel or let their own subscription lapse first, then you can complete the transfer (and optionally transfer your subscription for billing continuity).
+
+## FAQs
+
+**The person I want to make owner is not in the list.**
+Only administrators can become the owner. [Change their role to Administrator](/knowledge-base/changing-user-roles-in-shelf) first, then they will appear in the list.
+
+**Do I lose access to the workspace after transferring?**
+No. You stay in the workspace as an Administrator, with your assets and history intact. You only lose owner-level control, such as billing.
+
+**Can I transfer a Personal workspace?**
+No. Personal workspaces are single-user. Ownership transfer applies to Team workspaces with at least one other administrator.
