@@ -4,7 +4,7 @@ export interface PricingPlan {
     description: string;
     price: string; // Default display price (usually monthly)
     priceMonthly: string;
-    priceYearly: string; // Display price when billed yearly (e.g. "$49" meaning $49/mo)
+    priceYearly: string; // Total price when billed yearly (e.g. "$370" = $370/year)
     period?: string;
     billing: "monthly" | "custom";
     cta: string;

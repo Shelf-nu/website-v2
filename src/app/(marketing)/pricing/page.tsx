@@ -63,17 +63,19 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
                 "Booking calendar & availability",
                 "Booking PDFs (pull lists)",
                 "DIVIDER",
-                "External barcode import (add-on)",
+                "Alternative Barcodes — keep existing labels (add-on)",
+                "Audits — inventory verification (add-on)",
                 "SSO / SAML / SCIM (add-on)"
             ];
         case "enterprise":
             return [
                 "Everything in Team",
-                "Custom agreement",
                 "SSO / SAML / SCIM included",
+                "Custom agreement — MSA, DPA, SLA",
+                "Dedicated single-tenant hosting available",
+                "Compliance docs (HECVAT/VPAT for US education)",
                 "Dedicated account manager & SLA",
-                "Custom workspace setup",
-                "Priority support"
+                "Priority support & onboarding"
             ];
         default:
             return [];
@@ -115,7 +117,7 @@ export default function PricingPage() {
                         Simple, transparent <span className="text-orange-600">pricing</span>
                     </h1>
                     <p className="text-xl text-muted-foreground">
-                        Flat pricing for your whole team. No per-seat fees. No credit card required.
+                        One flat price per workspace — unlimited assets on every plan, unlimited users on Team. Try Team free for 7 days, no credit card required.
                     </p>
                 </div>
 
@@ -148,7 +150,7 @@ export default function PricingPage() {
                         onCheckedChange={setIsYearly}
                     />
                     <Label htmlFor="billing-toggle" className={`text-sm font-medium cursor-pointer ${isYearly ? 'text-foreground' : 'text-muted-foreground'}`} onClick={() => setIsYearly(true)}>
-                        Yearly <span className="ml-1.5 inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-950/50 px-2 py-0.5 text-xs font-semibold text-orange-700 dark:text-orange-400">Save {maxSavings}%</span>
+                        Yearly <span className="ml-1.5 inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-950/50 px-2 py-0.5 text-xs font-semibold text-orange-700 dark:text-orange-400">Save up to {maxSavings}%</span>
                     </Label>
                 </div>
 
@@ -227,6 +229,10 @@ export default function PricingPage() {
                                             {plan.secondaryCta.text}
                                         </Link>
                                     </Button>
+                                )}
+                                {/* Trial terms microcopy — Team only; other plans have no trial */}
+                                {plan.id === "team" && (
+                                    <p className="text-xs text-muted-foreground text-center">7-day free trial · No credit card</p>
                                 )}
                             </CardFooter>
                         </Card>
