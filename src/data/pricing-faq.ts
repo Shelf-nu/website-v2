@@ -50,7 +50,7 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "Will you help us switch to Shelf?",
-        answer: "Yes. Every paid plan and trial includes free help importing your data via CSV — we will review your file, help with field mapping, and get you set up. If you want us to do the migration for you — data, images, and codes moved into Shelf — one-time Migration Support starts at $175. And if your assets are already labeled from another system, the Alternative Barcodes add-on lets you keep those labels with no re-tagging."
+        answer: "Yes — we will always point you in the right direction. Every plan supports self-serve CSV import, and our team is happy to advise on preparing your file and mapping your fields. How much hands-on help is included depends on your plan and the features you have licensed — and if you would rather have us do the migration for you (data, images, and codes moved into Shelf), our one-time Migration Support service starts at $175. If your assets are already labeled from another system, the Alternative Barcodes add-on lets you keep those labels with no re-tagging."
     },
     {
         question: "Is my data secure?",
