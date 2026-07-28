@@ -3,7 +3,7 @@ title: "Locations vs Categories vs Tags: How to Structure Your Inventory"
 description: "Shelf has three ways to organize assets — locations, categories, and tags. Here's when to use each, how they interact, and common mistakes to avoid."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-04-17"
+updated: "2026-07-28"
 layout: "knowledge-base"
 ---
 
@@ -15,7 +15,7 @@ Every new Shelf workspace faces the same question within the first week: should 
 
 | Tool | What it answers | How many per asset | Examples |
 |---|---|---|---|
-| **Location** | Where is this asset right now? | One (current) | Studio B, Meander 901, Truck 4, Server Room |
+| **Location** | Where is this asset right now? | One (quantity-tracked assets can split units across several) | Studio B, Meander 901, Truck 4, Server Room |
 | **Category** | What kind of thing is this? | One | Camera, Lighting, Audio, Computer, Peripheral |
 | **Tags** | What else do I need to know about this? | Many | Photography, Broadcast, Fragile, Needs-Repair, LED |
 
@@ -25,9 +25,11 @@ If you only remember one rule: **Location = where. Category = what. Tags = every
 
 ## Locations — where the asset physically lives
 
-A location is a **physical place**. Shelf supports a [hierarchy up to 12 levels deep](/knowledge-base/sublocations-organize-locations-into-hierarchies) (building → floor → room → shelf), and every asset can be in exactly **one location** at a time.
+A location is a **physical place**. Shelf supports a [hierarchy up to 12 levels deep](/knowledge-base/sublocations-organize-locations-into-hierarchies) (building → floor → room → shelf). An individually tracked asset is in exactly **one location** at a time; a [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) can have its units split across several, since a pool of 100 cables might sit in two stockrooms at once.
 
 When someone scans a QR code, the location can update automatically based on where the scan happened. When equipment moves between sites, a quick scan logs the transfer.
+
+Locations also work at the [kit](/knowledge-base/kits#kit-location) level: give a kit a location and its member assets move with it, so gear that travels together is relocated in one action.
 
 ### Use locations for
 

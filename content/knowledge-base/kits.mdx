@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-04-10"
+updated: "2026-07-28"
 layout: "knowledge-base"
 ---
 
@@ -40,7 +40,7 @@ The platform offers distinct methods for asset organization. **Kits** group asse
 
 ## Creating a Kit
 
-Navigate to the Kits page and select **New Kit**. Complete the setup by entering a name, image, and description, then add desired assets. You can also assign a custodian during creation.
+Navigate to the Kits page and select **New Kit**. Complete the setup by entering a name, image, description, **category**, and **location**, then add desired assets. You can also assign a custodian during creation.
 
 ## Kit Statuses
 
@@ -53,6 +53,41 @@ Kits can exist in three states:
 ## Kit Assets
 
 Assets can be added regardless of individual availability status. Even items marked as unavailable for bookings can be included. However, kits cannot be assigned until all contained assets become available.
+
+## Kit Location
+
+A kit has its own [location](/knowledge-base/locations-vs-categories-vs-tags), and that location owns where its assets are. Move the kit and every asset inside it moves with it — you don't have to relocate the contents one by one.
+
+### Three ways to move a kit
+
+| Where | How |
+|---|---|
+| **Kit page** | Open the kit, then **Actions → Update location** and pick the new location |
+| **Kits index** | Tick one or more kits, then **Actions → Update location** to move them in one go |
+| **Scanner** | Set the scanner action to **Update location**, scan the kit's QR code, and choose the destination |
+
+![Update location dialog on a kit, warning that the move will also update the location of all 4 assets within the kit](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/kit-update-location.webp)
+
+The dialog tells you how many assets are coming along before you confirm.
+
+You can also set or change the location from **Actions → Edit** on the kit page — the Location field there behaves the same way as the dedicated **Update location** action.
+
+![Kits index with two kits selected and the Actions dropdown open on Update location](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/kits-bulk-location.webp)
+
+### What happens to the assets
+
+- **Individually tracked assets** are moved to the kit's location. Because each of these assets sits in exactly one place, the kit's location replaces whatever location the asset had before.
+- **Quantity-tracked assets** only move the slice the kit holds. If a kit contains 20 cables out of a pool of 100, those 20 units show up at the kit's location and the remaining 80 stay wherever you placed them. On the asset page that slice is labelled **via kit** — to move it, change the kit's location rather than editing the placement directly.
+- Every asset that moves records a location change in its own activity history, along with a note on its timeline, so the paper trail shows the move came from the kit. Assets that were already at the destination aren't logged again.
+
+### Adding and removing assets
+
+- **Adding an asset to a kit that has a location** moves the asset (or the kit's slice of it) to that location straight away, so the kit never claims a member that's sitting somewhere else.
+- **Removing an individually tracked asset from a kit** — or deleting the kit — leaves the asset at the location the kit gave it. It keeps the placement instead of becoming unplaced.
+- **Removing a quantity-tracked asset from a kit** releases the kit's slice; those units become unplaced and can be placed again manually.
+- **Clearing a kit's location** leaves individually tracked members where they are and releases the quantity-tracked slices.
+
+> **Location is not custody.** A kit's location says where the gear is; custody says who has it. The two are tracked separately and can be changed independently.
 
 ## Assigning Custody
 
