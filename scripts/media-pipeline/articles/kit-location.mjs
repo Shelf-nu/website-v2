@@ -82,14 +82,26 @@ async function main() {
     // body row rather than a native input.
     const rowBoxes = page.locator("table tbody tr td:first-child");
     const rowCount = await rowBoxes.count();
-    for (let i = 0; i < Math.min(2, rowCount); i++) {
-      await rowBoxes.nth(i).click({ position: { x: 12, y: 12 } }).catch(() => {});
+    if (rowCount < 2) {
+      throw new Error(
+        `Need at least 2 kits on the index to show the bulk action; found ${rowCount}`
+      );
+    }
+    for (let i = 0; i < 2; i++) {
+      await rowBoxes.nth(i).click({ position: { x: 12, y: 12 } });
       await page.waitForTimeout(400);
     }
 
-    // Open the Actions dropdown so "Update location" is visible on screen.
-    await page.locator("text=Actions").first().click().catch(() => {});
-    await page.waitForTimeout(1200);
+    // Fail loudly rather than shipping a screenshot whose caption doesn't
+    // match what's on screen: the selection banner and the bulk menu item
+    // must both be visible before we capture and upload.
+    await page.locator("text=2 selected").first().waitFor({ state: "visible" });
+    await page.locator("text=Actions").first().click();
+    await page
+      .locator("text=Update location")
+      .first()
+      .waitFor({ state: "visible" });
+    await page.waitForTimeout(600);
 
     await initAnnotations(page);
     await caption(
