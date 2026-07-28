@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileSpreadsheet, MoveRight } from "lucide-react";
 import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { FAQSection } from "@/components/sections/faq";
@@ -68,14 +69,22 @@ export default function MigratePage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-500/20" asChild>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_signup">
+                            <TrackedLink
+                                href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_signup"
+                                eventName="signup_click"
+                                eventProps={{ location: "migrate_hero" }}
+                            >
                                 Create a free account
-                            </Link>
+                            </TrackedLink>
                         </Button>
                         <Button size="lg" variant="outline" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_demo">
+                            <TrackedLink
+                                href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=migrate_hero_demo"
+                                eventName="demo_cta"
+                                eventProps={{ location: "migrate_hero" }}
+                            >
                                 Book a demo
-                            </Link>
+                            </TrackedLink>
                         </Button>
                     </div>
                 </Container>

@@ -400,8 +400,8 @@ export function EquipmentDepreciationCalculator() {
                     <Button className="bg-orange-600 hover:bg-orange-700 text-white" asChild>
                         <TrackedLink
                             href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=tool_depreciation"
-                            eventName="tool_cta_click"
-                            eventProps={{ tool: "depreciation", cta: "signup" }}
+                            eventName="signup_click"
+                            eventProps={{ location: "tool_depreciation" }}
                         >
                             Start tracking free <ArrowRight className="ml-1 h-4 w-4" />
                         </TrackedLink>
