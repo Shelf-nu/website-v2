@@ -5,7 +5,7 @@
  * content/knowledge-base/kits.mdx  (## Kit Location)
  * content/updates/kit-location-moves-its-assets.mdx
  *
- * Triggered by shelf.nu PR #2752 — a kit's location now moves its member assets.
+ * Triggered by shelf.nu PR #2752: a kit's location now moves its member assets.
  */
 
 import { mkdtemp, rm } from "node:fs/promises";

@@ -1,6 +1,6 @@
 ---
 title: "Moving a Kit Now Moves Everything Inside It"
-description: "A kit's location is now the source of truth for where its assets are — change it and every member asset moves with it, from the kit page, the Kits index, or the scanner."
+description: "A kit's location is now the source of truth for where its assets are. Change it and every member asset moves with it, from the kit page, the Kits index, or the scanner."
 date: "2026-07-28"
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/kit-update-location.webp"
 readMoreUrl: "/knowledge-base/kits#kit-location"
@@ -11,7 +11,7 @@ Kits are for gear that travels together, so a kit's location should tell you whe
 
 A kit's location now owns its members' placement:
 
-- **Changing a kit's location moves its assets** — from **Actions → Update location** on the kit page, from a multi-select on the **Kits** index, or by scanning the kit's QR code with the scanner set to **Update location**. Every asset that moves records an `ASSET_LOCATION_CHANGED` event and a note on its own timeline, so the history shows the move came from the kit.
+- **Changing a kit's location moves its assets.** Do it from **Actions → Update location** on the kit page, from a multi-select on the **Kits** index, or by scanning the kit's QR code with the scanner set to **Update location**. Every asset that moves records an `ASSET_LOCATION_CHANGED` event and a note on its own timeline, so the history shows the move came from the kit.
 - **Adding an asset to a kit that has a location moves the asset too**, instead of leaving the kit claiming a member that sits somewhere else.
 - **Quantity-tracked stock moves only the kit's slice.** A kit holding 20 of 100 cables places 20 units at its location and leaves the other 80 wherever you put them. On the asset page that slice is labelled **via kit**.
 - **Unpacking preserves placement.** Remove an individually tracked asset from a kit, or delete the kit, and the asset stays at the location the kit left it at rather than becoming unplaced. Clearing a kit's location does the same.
