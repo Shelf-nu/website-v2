@@ -1,0 +1,112 @@
+{
+  "campaign": "starter-guest-post-package",
+  "description": "Agency guest-post link campaign: 5 posts/month across 4 target URLs. Slots chosen by product-market fit (searcher intent must match what Shelf actually does), keywords by GSC striking-distance data. Query-level baselines captured pre-campaign so we can tell whether links moved rankings or just produced invoices.",
+  "postsPerMonth": 5,
+  "startDate": "2026-08-01",
+  "baseline": {
+    "window": ["2026-04-28", "2026-07-27"],
+    "capturedAt": "2026-07-29",
+    "note": "Trailing 90 days of GSC data, captured before first guest post shipped."
+  },
+  "anchorRules": {
+    "exactMatchPerMonth": 2,
+    "note": "Max 1-2 exact-match anchors per month ACROSS all 5 posts. Rest branded (Shelf, Shelf asset management), naked URL, or partial/natural phrasing. Host sites must be topically relevant: ops, IT, education, AV/media, facilities. Vendor reports live post URLs monthly for indexation QA."
+  },
+  "slots": [
+    {
+      "url": "/solutions/equipment-reservations",
+      "postsPerMonth": 2,
+      "rationale": "Bookings IS the Team plan — searchers here are multi-user orgs (SSO expansion path). Striking distance on all three targets. Weighted 2x: biggest gap between position and revenue.",
+      "primaryKeyword": "equipment booking system",
+      "keywords": ["equipment booking system", "equipment reservation system", "equipment reservation software"],
+      "trackedQueries": [
+        { "query": "equipment booking system", "baseline": { "position": 14.7, "impressions": 1085, "clicks": 2 } },
+        { "query": "equipment reservation system", "baseline": { "position": 9.2, "impressions": 588, "clicks": 2 } },
+        { "query": "equipment reservation software", "baseline": { "position": 5.2, "impressions": 405, "clicks": 2 } }
+      ]
+    },
+    {
+      "url": "/solutions/asset-tracking",
+      "postsPerMonth": 1,
+      "rationale": "Page owns the free/QR asset-tracking cluster and converts demos. NOTE: bare head term 'asset tracking software' (4,167 impr) ranks via the HOMEPAGE (pos 21.3) — this page is pos 53 for it. Do NOT anchor the bare head term here; anchor the cluster this page owns.",
+      "primaryKeyword": "free asset tracking software",
+      "keywords": ["free asset tracking software", "QR code asset tracking", "barcode asset tracking software"],
+      "trackedQueries": [
+        { "query": "free asset tracking software", "baseline": { "position": 14.5, "impressions": 255, "clicks": 5 } },
+        { "query": "qr code asset tracking free", "baseline": { "position": 1.9, "impressions": 229, "clicks": 4 } },
+        { "query": "barcode asset tracking software free", "baseline": { "position": 14.9, "impressions": 162, "clicks": 1 } }
+      ]
+    },
+    {
+      "url": "/",
+      "postsPerMonth": 1,
+      "rationale": "The open-source/free claim is the one only Shelf can make in this category. 64% of demo submissions land on /. Both head modifiers sit top-of-page-2 where links move the needle most. Bare heads ('asset tracking software' pos 21.3 / 4,167 impr, 'asset management software' ~8k impr/mo) also resolve here and ride along on domain authority.",
+      "primaryKeyword": "open source asset management",
+      "keywords": ["open source asset management", "free asset management software"],
+      "trackedQueries": [
+        { "query": "free asset management software", "baseline": { "position": 7.6, "impressions": 1711, "clicks": 33 } },
+        { "query": "open source asset management", "baseline": { "position": 7.6, "impressions": 1388, "clicks": 19 } },
+        { "query": "open source asset management software", "baseline": { "position": 4.1, "impressions": 932, "clicks": 17 } },
+        { "query": "asset tracking software", "baseline": { "position": 21.3, "impressions": 4167, "clicks": 0 } }
+      ]
+    },
+    {
+      "url": "/tools/asset-label-designer",
+      "postsPerMonth": 1,
+      "rationale": "The 'asset tag generator' searcher has assets in hand and is about to label them — step one of the Shelf workflow. Feeds signup + label store. Replaced MACRS calculator slot: accountants doing tax prep never become asset-tracking customers.",
+      "primaryKeyword": "asset tag generator",
+      "keywords": ["asset tag generator", "asset label template", "free asset tag generator"],
+      "trackedQueries": [
+        { "query": "asset tag generator", "baseline": { "position": 3.3, "impressions": 548, "clicks": 17 } },
+        { "query": "asset label template", "baseline": { "position": 5.5, "impressions": 104, "clicks": 6 } },
+        { "query": "asset tag maker", "baseline": { "position": 4.8, "impressions": 105, "clicks": 4 } }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "url": "/solutions/equipment-check-in",
+      "query": "equipment checkout software",
+      "baseline": { "position": 1.9, "impressions": 1551, "clicks": 5 },
+      "note": "Untouched page, same page type. If controls rise with targets, credit the tide, not the vendor."
+    },
+    {
+      "url": "/tools/macrs-depreciation-calculator",
+      "query": "macrs depreciation calculator",
+      "baseline": { "position": 3.4, "impressions": 1403, "clicks": 58 },
+      "note": "The slot we removed from the package. Doubles as counterfactual: does it hold rank without links?"
+    },
+    {
+      "url": "/tools/salvage-value-calculator",
+      "query": "salvage value calculator",
+      "baseline": { "position": 1.9, "impressions": 1024, "clicks": 156 },
+      "note": "Stable high-performer, drift detector."
+    }
+  ],
+  "gates": [
+    {
+      "id": "T+60-link-qa",
+      "daysAfterStart": 60,
+      "type": "manual",
+      "criteria": "≥80% of placed posts live, indexed by Google (site: check), on topically relevant hosts, dofollow. FAILURE = vendor inventory is junk; renegotiate or exit before rankings data even matters."
+    },
+    {
+      "id": "T+90-impressions",
+      "daysAfterStart": 90,
+      "type": "auto",
+      "criteria": "Target-query impressions +30% vs baseline on the two striking-distance slots (equipment-reservations, asset-tracking), net of control drift. Impressions move before positions stabilize — earliest honest ranking signal."
+    },
+    {
+      "id": "T+120-position",
+      "daysAfterStart": 120,
+      "type": "auto",
+      "criteria": "≥3-position improvement on at least half of tracked queries, net of control drift. FAILURE = re-weight slots, change anchors, or change vendor."
+    },
+    {
+      "id": "T+180-revenue",
+      "daysAfterStart": 180,
+      "type": "auto+manual",
+      "criteria": "Clicks 2x on reservations + asset-tracking slots; homepage OSS cluster top-5; label designer pos ≤1.5 on 'asset tag generator'. Manual: PostHog signup_click + demo_form_submit attributed to target landing pages vs prior 90d. Compute cost per incremental click/demo vs package price."
+    }
+  ]
+}
