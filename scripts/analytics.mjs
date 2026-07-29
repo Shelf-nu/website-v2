@@ -1206,45 +1206,65 @@ async function cmdFunnel() {
     console.log("   Sessions grouped by the page they ENTERED on, and whether they ever");
     console.log(`   fired an intent event (${INTENT_EVENTS.join(", ")}).\n`);
 
+    // `!= ''` as well as IS NOT NULL: the LEFT JOIN below fills unmatched rows
+    // with '' for String, so an empty session id would count as converted.
+    const minSessions = 25;
     const rows = await phQuery(`
         WITH conv AS (
             SELECT DISTINCT properties.$session_id AS sid FROM events
             WHERE timestamp > now() - INTERVAL ${window} DAY AND event IN (${list})
-              AND properties.$session_id IS NOT NULL
+              AND properties.$session_id IS NOT NULL AND properties.$session_id != ''
         ),
         ent AS (
             SELECT properties.$session_id AS sid,
                    argMin(replaceRegexpOne(properties.$pathname, '/$', ''), timestamp) AS p
             FROM events
             WHERE timestamp > now() - INTERVAL ${window} DAY AND event = '$pageview'
-              AND properties.$session_id IS NOT NULL
+              AND properties.$session_id IS NOT NULL AND properties.$session_id != ''
             GROUP BY sid
         )
         SELECT ent.p AS p, count() AS sessions, countIf(conv.sid != '') AS intent
         FROM ent LEFT JOIN conv ON ent.sid = conv.sid
-        GROUP BY p HAVING sessions >= 25 ORDER BY sessions DESC LIMIT 50
+        GROUP BY p ORDER BY sessions DESC LIMIT 400
     `);
     if (!rows) return;
     if (!rows.length) {
         console.log("  No sessions in this range.\n");
         return;
     }
+    if (rows.length >= 400) {
+        console.log("  ⚠️  Page limit (400) hit — the site-wide average below excludes the tail.\n");
+    }
 
-    const data = rows.map(([p, s, c]) => ({ p: p || "/", s, c, r: s ? (c / s) * 100 : 0 }));
-    const totS = data.reduce((a, b) => a + b.s, 0);
-    const totC = data.reduce((a, b) => a + b.c, 0);
+    const all = rows.map(([p, s, c]) => ({ p: p || "/", s, c, r: s ? (c / s) * 100 : 0 }));
+    // Average over EVERY page, not just the listed ones — otherwise the
+    // baseline that high/low-fit is measured against silently excludes the
+    // long tail and both thresholds drift.
+    const totS = all.reduce((a, b) => a + b.s, 0);
+    const totC = all.reduce((a, b) => a + b.c, 0);
     const avg = totS ? (totC / totS) * 100 : 0;
+    const data = all.filter((d) => d.s >= minSessions);
+    const hidden = all.length - data.length;
+    const hiddenS = all.filter((d) => d.s < minSessions).reduce((a, b) => a + b.s, 0);
 
     console.log("  entry path".padEnd(52) + "sessions".padStart(9) + "intent".padStart(8) + "    rate");
     console.log("  " + "-".repeat(86));
     for (const d of data) {
-        const flag = d.r >= avg * 1.5 ? "  ✅ high-fit" : d.r < avg * 0.35 ? "  ⚠️  low-fit" : "";
+        // Guard avg === 0: without it every row (r >= 0) reads as "high-fit"
+        // when the window contains no intent events at all.
+        const flag = avg <= 0 ? ""
+            : d.r >= avg * 1.5 ? "  ✅ high-fit"
+            : d.r < avg * 0.35 ? "  ⚠️  low-fit" : "";
         console.log(
             "  " + String(d.p).slice(0, 49).padEnd(52) + String(d.s).padStart(9) +
             String(d.c).padStart(8) + "   " + d.r.toFixed(1).padStart(5) + "%" + flag,
         );
     }
-    console.log(`\n  Site average: ${avg.toFixed(1)}%  (${totC.toLocaleString()} of ${totS.toLocaleString()} sessions)`);
+    console.log(`\n  Site-wide average: ${avg.toFixed(1)}%  (${totC.toLocaleString()} of ${totS.toLocaleString()} sessions, ALL pages)`);
+    if (hidden > 0) {
+        console.log(`  Listed above: pages with ≥${minSessions} sessions. ${hidden} smaller page(s) ` +
+            `holding ${hiddenS.toLocaleString()} sessions are counted in the average but not shown.`);
+    }
     console.log("\n  ✅ high-fit = ≥1.5× average. These pages attract people who want the product.");
     console.log("  ⚠️  low-fit  = <0.35× average. Real traffic, wrong audience — a segment");
     console.log("     signal, NOT necessarily a CTA problem. Check intent before 'fixing' it.\n");
@@ -1254,51 +1274,85 @@ async function cmdFunnel() {
 /*  Revenue — MRR events, and the trial-vs-paid cancellation split     */
 /* ------------------------------------------------------------------ */
 
+/** How far back to look for an account's upgrade when classifying a cancel. */
+const UPGRADE_LOOKBACK_DAYS = 720;
+/** A cancel this close to the account's own upgrade is a plan swap, not churn. */
+const SWAP_WINDOW_DAYS = 7;
+
 async function cmdRevenue() {
     const window = daysIdx >= 0 ? days : 90;
     console.log(`\n💵 Revenue events — Last ${window} Days\n${"=".repeat(72)}`);
 
     // Raw rows, not GROUP BY: these sets are tiny (tens of rows) and grouping
     // over the full events table reliably times out on the HogQL endpoint.
+    //
+    // Upgrades are fetched over the FULL history, not `window`. Classifying a
+    // cancel requires knowing whether that account ever upgraded *at any point*
+    // — bounding this by the cancel window would silently relabel every
+    // long-standing customer as a never-paid trial.
+    const LIM = 10000;
     const ups = await phQuery(`
         SELECT distinct_id, timestamp, properties.tierId, properties.via, properties.mrr
         FROM events WHERE event='upgrade_completed'
-          AND timestamp > now() - INTERVAL ${window} DAY ORDER BY timestamp LIMIT 1000`);
+          AND timestamp > now() - INTERVAL ${UPGRADE_LOOKBACK_DAYS} DAY
+        ORDER BY timestamp LIMIT ${LIM}`);
     const cans = await phQuery(`
         SELECT distinct_id, timestamp, properties.tierId
         FROM events WHERE event='subscription_cancelled'
-          AND timestamp > now() - INTERVAL ${window} DAY ORDER BY timestamp LIMIT 1000`);
+          AND timestamp > now() - INTERVAL ${window} DAY ORDER BY timestamp LIMIT ${LIM}`);
     const signups = await phQuery(`
         SELECT count() FROM events WHERE event='signup_completed'
           AND timestamp > now() - INTERVAL ${window} DAY`);
     if (!ups || !cans) return;
+    if (ups.length >= LIM || cans.length >= LIM) {
+        console.log(`\n  ⚠️  Row limit (${LIM}) hit — results are TRUNCATED and undercount.`);
+    }
 
     const upFirst = new Map();
     for (const [id, t, tier, via, mrr] of ups) {
         if (!upFirst.has(id)) upFirst.set(id, { t: new Date(t), tier, via, mrr: parseFloat(mrr) || 0 });
     }
-    const newMrr = [...upFirst.values()].reduce((a, b) => a + b.mrr, 0);
+    // Upgrades inside the reporting window (the full map spans all history).
+    const cutoff = new Date(Date.now() - window * 864e5);
+    const inWindow = [...upFirst.values()].filter((u) => u.t >= cutoff);
+    const newMrr = inWindow.reduce((a, b) => a + b.mrr, 0);
+
+    // Instrumentation start — anything before this is invisible, which bounds
+    // what the cancel classification below can honestly claim.
+    const firstUpgrade = ups.length ? new Date(ups[0][1]) : null;
+    const historyDays = firstUpgrade ? Math.round((Date.now() - firstUpgrade) / 864e5) : 0;
 
     console.log(`\n  Signups completed : ${(signups?.[0]?.[0] ?? 0).toLocaleString()}`);
-    console.log(`  Upgrades          : ${upFirst.size}   (new MRR +$${newMrr.toFixed(2)})`);
+    console.log(`  Upgrades          : ${inWindow.length}   (new MRR +$${newMrr.toFixed(2)})`);
     console.log(`  Cancel events     : ${cans.length}`);
 
-    // The distinction that matters. A cancel from an account that never
-    // upgraded is an expiring trial, not churn. A cancel within a few days
-    // of that same account's upgrade is a Stripe plan swap, not churn.
-    let trialExpiry = 0, swap = 0, realChurn = 0;
+    // A cancel from an account with no upgrade on record is EITHER an expiring
+    // trial OR a customer who upgraded before instrumentation existed. With
+    // only ~${historyDays}d of history those are indistinguishable — so this
+    // bucket is reported as unclassifiable rather than guessed at.
+    let noRecord = 0, swap = 0, postUpgrade = 0;
     for (const [id, t] of cans) {
         const u = upFirst.get(id);
-        if (!u) { trialExpiry++; continue; }
-        Math.abs((new Date(t) - u.t) / 864e5) <= 7 ? swap++ : realChurn++;
+        if (!u) { noRecord++; continue; }
+        Math.abs((new Date(t) - u.t) / 864e5) <= SWAP_WINDOW_DAYS ? swap++ : postUpgrade++;
     }
     console.log(`\n  CANCEL BREAKDOWN`);
-    console.log(`    never upgraded (trial expiry) : ${trialExpiry}`);
-    console.log(`    within ±7d of own upgrade (plan swap) : ${swap}`);
-    console.log(`    genuine paid churn            : ${realChurn}`);
+    console.log(`    no upgrade on record            : ${noRecord}  ← trial expiry OR pre-instrumentation customer`);
+    console.log(`    within ±${SWAP_WINDOW_DAYS}d of own upgrade      : ${swap}  ← plan swap / re-subscribe, not churn`);
+    console.log(`    >${SWAP_WINDOW_DAYS}d after own upgrade          : ${postUpgrade}  ← churn visible to PostHog`);
+    if (firstUpgrade) {
+        console.log(`\n  ⚠️  upgrade_completed only exists from ${firstUpgrade.toISOString().slice(0, 10)} (~${historyDays}d).`);
+        console.log(`     Every customer who upgraded before that date looks like "no upgrade on`);
+        console.log(`     record", so the first bucket CONTAINS real churn and the third bucket is`);
+        console.log(`     a FLOOR, not the true churn count. Do not report it as total churn.`);
+        console.log(`     Stripe → Billing overview → Churn is the only trustworthy churn source.`);
+    }
 
+    // Windowed, not full-history — `upFirst` deliberately spans all time so the
+    // cancel classification above can find old upgrades, but the tier/trigger
+    // breakdown must describe the reporting window only.
     const byTier = {}, byVia = {};
-    for (const u of upFirst.values()) {
+    for (const u of inWindow) {
         (byTier[u.tier] ??= { n: 0, mrr: 0 }).n++; byTier[u.tier].mrr += u.mrr;
         (byVia[u.via] ??= { n: 0, mrr: 0 }).n++; byVia[u.via].mrr += u.mrr;
     }
