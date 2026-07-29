@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-06-12"
+updated: "2026-07-29"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Export PDF and CSV reports. Paid add-on with 7-day free trial."
@@ -82,7 +82,7 @@ As scanning progresses, Shelf tracks four statuses in real time:
 - **Unexpected**: An asset was scanned that was not part of the expected list — flagging items that have moved or were never recorded.
 - **Pending**: Not yet scanned.
 
-In the web app, auditors can add notes and photos to any asset during the audit — documenting damage, wrong labels, or condition issues. Per-scan notes and photos from the iOS Companion app are on the iOS roadmap and not available today; run the audit from the iPhone if you need on-the-floor scanning, and add evidence from the web when you have a moment at a desk.
+Auditors can add notes and photos to any asset during the audit, documenting damage, wrong labels, or condition issues. This works on the web and in the [Shelf Companion app](/mobile-app): tap a scanned row, write a condition note, and attach a photo from the camera or the photo library. A badge on each row shows how much evidence it already carries, and everything lands on the same audit record.
 
 ![Audit overview with live statistics — expected, found, missing, unexpected — alongside session details and the audit's asset list](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-overview.webp)
 
@@ -112,7 +112,7 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Start from locations or kits**: Bulk-select on the Locations or Kits page and choose **Actions → Create audit** to spin up one audit covering the union of every asset in the selection — no need to rebuild the scope by hand.
 - **Found / Missing / Unexpected detection**: Three-way reconciliation that catches both losses and untracked items.
 - **Dedicated scan page**: Purpose-built audit scanning interface, separate from check-in/check-out workflows.
-- **Notes and photos on the web**: Document conditions, discrepancies, or issues from the web app during the audit. Per-scan evidence capture from the iOS Companion app is on the iOS roadmap.
+- **Notes and photos per scan**: Document conditions, discrepancies, or issues as you go, from the web app or from the Shelf Companion app on iPhone and Android. Photos can be taken with the camera on the spot or picked from the photo library.
 - **Real-time progress**: Live counts of found, missing, unexpected, and pending assets update as scanning happens.
 - **Location context in scan list**: When auditing by tag, category, or any non-location filter, each asset in the scan list shows its current location beneath its name — helping auditors identify where they need to look without leaving the scan view. Location is automatically hidden when the audit is scoped to a specific location to avoid redundancy.
 - **PDF and CSV export**: Generate reports for compliance, insurance, or management review.
@@ -150,7 +150,7 @@ No. Audits is a paid add-on, separate from your Shelf subscription tier. It is a
 
 ### Do I need a special app to run audits?
 
-Not mandatory. Audits run in any modern phone browser using the device's camera — nothing to install. For an iPhone-native experience, you can also run audits from the free [Shelf Companion app](/mobile-app) on the App Store and Google Play: scan, watch found/expected counts update in real time, and complete the audit on the floor. Adding photos or notes per audit scan is currently web-only on iOS and on the iOS roadmap.
+Not mandatory. Audits run in any modern phone browser using the device's camera — nothing to install. For a native experience, you can also run audits from the free [Shelf Companion app](/mobile-app) on the App Store and Google Play: scan, watch found/expected counts update in real time, add notes and photos to individual scans, and complete the audit on the floor.
 
 ### Can I scope an audit to a specific location or category?
 
@@ -196,9 +196,9 @@ Yes. Admins and owners can duplicate any **Completed**, **Cancelled**, or **Arch
 
 ---
 
-<Callout type="info" title="Now on iPhone: Shelf Companion">
+<Callout type="info" title="On iPhone & Android: Shelf Companion">
 
-The free [Shelf Companion app](/mobile-app) on the App Store and Google Play lets you run audits live from the floor on iPhone — scan, watch found/expected counts update in real time, complete the audit when done. Free with any Shelf account. Adding photos or notes per audit scan is currently web-only on iOS — capture evidence from the web today; native mobile evidence capture is on the roadmap.
+The free [Shelf Companion app](/mobile-app) on the App Store and Google Play lets you run audits live from the floor: scan, watch found/expected counts update in real time, add a note or a photo to any scan, and complete the audit when done. Free with any Shelf account.
 
 </Callout>
 

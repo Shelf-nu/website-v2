@@ -28,7 +28,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Field Audits",
         description:
-            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, see urgency surface as you go, complete the audit when done.",
+            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan, complete the audit when done.",
         icon: ClipboardCheck,
     },
     {
@@ -40,7 +40,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Bookings, End to End",
         description:
-            "Create, edit, and reserve bookings from the phone with availability-aware asset and kit pickers, then check equipment out to team members and back in when it returns.",
+            "Create, edit, and reserve bookings from the phone with availability-aware asset, kit, and model pickers, then scan the actual units to assign and check out, and record what comes back on return.",
         icon: CalendarCheck,
     },
     {
@@ -63,16 +63,18 @@ export const mobileAppFeatures: MobileAppFeature[] = [
 
 export const builtForApp = [
     "Field audits and inventory walks",
+    "Adding notes and photos to an audit scan",
     "Scanning QR codes and barcodes on-site",
     "Quick asset lookups and status checks",
     "Custody handoffs between team members",
     "Creating, editing, and checking bookings in and out at the point of use",
+    "Scanning reserved models into a booking to assign and check out",
     "On-the-go dashboard monitoring",
 ];
 
 export const bestOnWeb = [
     "Creating and configuring audits",
-    "Adding notes or photos to an audit scan",
+    "Claiming brand new QR labels into a workspace",
     "Bulk asset imports and complex edits",
     "Custom field setup and administration",
     "User/role management and permissions",
@@ -112,7 +114,7 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     },
     {
         question: "Can I capture audit evidence (photos, notes) from the app?",
-        answer: "Not yet on iOS. Adding notes or photos during an audit scan is currently web-only. The capability is on our roadmap for a future release of the iOS app. You can still run, complete, and review audits from the app today — the per-scan evidence step happens on the web for now.",
+        answer: "Yes. Tap any row in the scanned-items list during an audit to open the evidence sheet, write a condition note, and attach a photo taken with the camera or picked from your photo library. Each row shows how many pieces of evidence it carries, and everything lands on the same audit record you see on the web.",
     },
     {
         question: "Can I manage my whole organization from the app?",
