@@ -110,6 +110,8 @@ node scripts/analytics.mjs conversions  [--days 7]    # Event counts
 node scripts/analytics.mjs searches     [--days 30]   # Search queries
 node scripts/analytics.mjs referrers    [--days 30]   # Traffic sources
 node scripts/analytics.mjs attribution  [--days 30]   # Demo form journey
+node scripts/analytics.mjs funnel       [--days 30]   # Landing page → product-intent rate (fit signal)
+node scripts/analytics.mjs revenue      [--days 90]   # MRR events + trial-vs-churn split
 node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
 node scripts/analytics.mjs gsc-summary    [--days 30] # GSC overview + quick wins
 node scripts/analytics.mjs gsc-queries    [--days 30] # Top search queries (clicks, impr, CTR, pos)
@@ -118,6 +120,14 @@ node scripts/analytics.mjs experiments                        # Show all SEO exp
 node scripts/analytics.mjs experiments capture-baseline <id>  # Capture baseline GSC metrics for an experiment
 node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed (starts evaluation timer)
 ```
+
+**Reading the funnel / revenue data — three traps, all hit in practice:**
+
+1. **Never compare raw `subscription_cancelled` events against `upgrade_completed` events and call the difference churn.** Most cancels are expiring trials from accounts that never paid; the rest are Stripe plan swaps firing cancel+create as a pair. `revenue` splits these three ways. Verified paid churn is ~0; Stripe's own retention cohorts flatten at 67–95%.
+2. **PostHog measures MRR *added*, not total MRR.** Total MRR, subscriber counts, trial conversion and retention cohorts live in **Stripe → Billing overview** only.
+3. **Website sessions cannot be joined to revenue.** The app emits only server-side events and no `app.shelf.nu` client events exist, so anonymous browser IDs never stitch to user IDs. Fixing this needs `posthog.identify(userId)` client-side in the product repo.
+
+**Low intent on a page is a segment signal, not automatically a CTA bug.** `funnel` flags high-fit (≥1.5× average) and low-fit (<0.35×) landing pages. Solutions/alternatives pages run 13–29%; calculators and generic how-to KB pages run 0–5%. That gap is two different audiences, not broken buttons — check search intent before "fixing" a low-fit page.
 
 **SEO experiments** — `data/seo-experiments.json` tracks title/description/redirect experiments with before/after GSC metrics. The `experiments` CLI auto-pulls results after the evaluation window (default 14 days). Workflow: plan experiment → capture baseline → make change → deploy → wait → check results → record learnings.
 

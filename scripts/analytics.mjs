@@ -12,6 +12,8 @@
  *   node scripts/analytics.mjs referrers    [--days 30]
  *   node scripts/analytics.mjs content-changes [--days 30]
  *   node scripts/analytics.mjs attribution  [--days 30]
+ *   node scripts/analytics.mjs funnel       [--days 30]   # Landing page → product-intent rate (fit signal)
+ *   node scripts/analytics.mjs revenue      [--days 90]   # MRR events + trial-vs-churn split
  *   node scripts/analytics.mjs 404s         [--days 30]
  *
  *   node scripts/analytics.mjs gsc-queries   [--days 30]
@@ -42,6 +44,7 @@ import { config } from "dotenv";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { readFileSync, writeFileSync } from "fs";
+import { execSync } from "child_process";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 config({ path: resolve(root, ".env.local") });
@@ -873,9 +876,43 @@ async function cmdGscSummary() {
 
 const EXPERIMENTS_FILE = resolve(root, "data", "seo-experiments.json");
 
+/**
+ * Warn when the working tree's experiment file is behind origin/main.
+ *
+ * This CLI reads the *local* file. If the checkout sits on a stale branch,
+ * `experiments` silently under-reports — on 2026-07-28 it showed "0 active"
+ * while origin/main had 8 active batch-4 experiments mid-flight. Silent
+ * under-reporting is worse than no report, so say so loudly.
+ */
+function warnIfExperimentsStale(local) {
+    try {
+        const head = execSync("git rev-parse --abbrev-ref HEAD", {
+            cwd: root, encoding: "utf-8", stdio: ["ignore", "pipe", "ignore"],
+        }).trim();
+        const remote = JSON.parse(
+            execSync("git show origin/main:data/seo-experiments.json", {
+                cwd: root, encoding: "utf-8", stdio: ["ignore", "pipe", "ignore"],
+            }),
+        );
+        const localN = local?.experiments?.length ?? 0;
+        const remoteN = remote?.experiments?.length ?? 0;
+        if (remoteN > localN) {
+            console.log(
+                `\n⚠️  STALE EXPERIMENT DATA — this checkout (branch "${head}") has ${localN} experiments;\n` +
+                `   origin/main has ${remoteN}. You are missing ${remoteN - localN}. Results below are incomplete.\n` +
+                `   Fix: git checkout main && git pull  (or read origin/main's copy).`,
+            );
+        }
+    } catch {
+        /* no git, no remote, or never fetched — not worth failing the command over */
+    }
+}
+
 function loadExperiments() {
     try {
-        return JSON.parse(readFileSync(EXPERIMENTS_FILE, "utf-8"));
+        const data = JSON.parse(readFileSync(EXPERIMENTS_FILE, "utf-8"));
+        warnIfExperimentsStale(data);
+        return data;
     } catch {
         console.error("⚠️  Could not read data/seo-experiments.json");
         return { experiments: [] };
@@ -1147,6 +1184,140 @@ async function cmdCfPages() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Funnel — which landing pages attract people who want the product   */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Every event that means "this visitor is heading toward the product".
+ *
+ * `tool_cta_click` is the pre-2026-07-29 name for the calculator signup
+ * CTAs; it was unified onto `signup_click` because having two names for
+ * one action made every by-page conversion query silently undercount the
+ * tools cluster. Kept here so historical windows stay comparable.
+ */
+const INTENT_EVENTS = [
+    "signup_click", "pricing_cta", "demo_form_submit", "demo_cta", "tool_cta_click",
+];
+
+async function cmdFunnel() {
+    const window = daysIdx >= 0 ? days : 30;
+    const list = INTENT_EVENTS.map((e) => `'${e}'`).join(",");
+    console.log(`\n🎯 Landing page → product intent — Last ${window} Days\n${"=".repeat(88)}`);
+    console.log("   Sessions grouped by the page they ENTERED on, and whether they ever");
+    console.log(`   fired an intent event (${INTENT_EVENTS.join(", ")}).\n`);
+
+    const rows = await phQuery(`
+        WITH conv AS (
+            SELECT DISTINCT properties.$session_id AS sid FROM events
+            WHERE timestamp > now() - INTERVAL ${window} DAY AND event IN (${list})
+              AND properties.$session_id IS NOT NULL
+        ),
+        ent AS (
+            SELECT properties.$session_id AS sid,
+                   argMin(replaceRegexpOne(properties.$pathname, '/$', ''), timestamp) AS p
+            FROM events
+            WHERE timestamp > now() - INTERVAL ${window} DAY AND event = '$pageview'
+              AND properties.$session_id IS NOT NULL
+            GROUP BY sid
+        )
+        SELECT ent.p AS p, count() AS sessions, countIf(conv.sid != '') AS intent
+        FROM ent LEFT JOIN conv ON ent.sid = conv.sid
+        GROUP BY p HAVING sessions >= 25 ORDER BY sessions DESC LIMIT 50
+    `);
+    if (!rows) return;
+    if (!rows.length) {
+        console.log("  No sessions in this range.\n");
+        return;
+    }
+
+    const data = rows.map(([p, s, c]) => ({ p: p || "/", s, c, r: s ? (c / s) * 100 : 0 }));
+    const totS = data.reduce((a, b) => a + b.s, 0);
+    const totC = data.reduce((a, b) => a + b.c, 0);
+    const avg = totS ? (totC / totS) * 100 : 0;
+
+    console.log("  entry path".padEnd(52) + "sessions".padStart(9) + "intent".padStart(8) + "    rate");
+    console.log("  " + "-".repeat(86));
+    for (const d of data) {
+        const flag = d.r >= avg * 1.5 ? "  ✅ high-fit" : d.r < avg * 0.35 ? "  ⚠️  low-fit" : "";
+        console.log(
+            "  " + String(d.p).slice(0, 49).padEnd(52) + String(d.s).padStart(9) +
+            String(d.c).padStart(8) + "   " + d.r.toFixed(1).padStart(5) + "%" + flag,
+        );
+    }
+    console.log(`\n  Site average: ${avg.toFixed(1)}%  (${totC.toLocaleString()} of ${totS.toLocaleString()} sessions)`);
+    console.log("\n  ✅ high-fit = ≥1.5× average. These pages attract people who want the product.");
+    console.log("  ⚠️  low-fit  = <0.35× average. Real traffic, wrong audience — a segment");
+    console.log("     signal, NOT necessarily a CTA problem. Check intent before 'fixing' it.\n");
+}
+
+/* ------------------------------------------------------------------ */
+/*  Revenue — MRR events, and the trial-vs-paid cancellation split     */
+/* ------------------------------------------------------------------ */
+
+async function cmdRevenue() {
+    const window = daysIdx >= 0 ? days : 90;
+    console.log(`\n💵 Revenue events — Last ${window} Days\n${"=".repeat(72)}`);
+
+    // Raw rows, not GROUP BY: these sets are tiny (tens of rows) and grouping
+    // over the full events table reliably times out on the HogQL endpoint.
+    const ups = await phQuery(`
+        SELECT distinct_id, timestamp, properties.tierId, properties.via, properties.mrr
+        FROM events WHERE event='upgrade_completed'
+          AND timestamp > now() - INTERVAL ${window} DAY ORDER BY timestamp LIMIT 1000`);
+    const cans = await phQuery(`
+        SELECT distinct_id, timestamp, properties.tierId
+        FROM events WHERE event='subscription_cancelled'
+          AND timestamp > now() - INTERVAL ${window} DAY ORDER BY timestamp LIMIT 1000`);
+    const signups = await phQuery(`
+        SELECT count() FROM events WHERE event='signup_completed'
+          AND timestamp > now() - INTERVAL ${window} DAY`);
+    if (!ups || !cans) return;
+
+    const upFirst = new Map();
+    for (const [id, t, tier, via, mrr] of ups) {
+        if (!upFirst.has(id)) upFirst.set(id, { t: new Date(t), tier, via, mrr: parseFloat(mrr) || 0 });
+    }
+    const newMrr = [...upFirst.values()].reduce((a, b) => a + b.mrr, 0);
+
+    console.log(`\n  Signups completed : ${(signups?.[0]?.[0] ?? 0).toLocaleString()}`);
+    console.log(`  Upgrades          : ${upFirst.size}   (new MRR +$${newMrr.toFixed(2)})`);
+    console.log(`  Cancel events     : ${cans.length}`);
+
+    // The distinction that matters. A cancel from an account that never
+    // upgraded is an expiring trial, not churn. A cancel within a few days
+    // of that same account's upgrade is a Stripe plan swap, not churn.
+    let trialExpiry = 0, swap = 0, realChurn = 0;
+    for (const [id, t] of cans) {
+        const u = upFirst.get(id);
+        if (!u) { trialExpiry++; continue; }
+        Math.abs((new Date(t) - u.t) / 864e5) <= 7 ? swap++ : realChurn++;
+    }
+    console.log(`\n  CANCEL BREAKDOWN`);
+    console.log(`    never upgraded (trial expiry) : ${trialExpiry}`);
+    console.log(`    within ±7d of own upgrade (plan swap) : ${swap}`);
+    console.log(`    genuine paid churn            : ${realChurn}`);
+
+    const byTier = {}, byVia = {};
+    for (const u of upFirst.values()) {
+        (byTier[u.tier] ??= { n: 0, mrr: 0 }).n++; byTier[u.tier].mrr += u.mrr;
+        (byVia[u.via] ??= { n: 0, mrr: 0 }).n++; byVia[u.via].mrr += u.mrr;
+    }
+    console.log(`\n  UPGRADES BY TIER`);
+    for (const [k, v] of Object.entries(byTier).sort((a, b) => b[1].mrr - a[1].mrr))
+        console.log(`    ${String(k).padEnd(16)} n=${String(v.n).padStart(3)}   +$${v.mrr.toFixed(2)}`);
+    console.log(`\n  UPGRADES BY TRIGGER (via)`);
+    for (const [k, v] of Object.entries(byVia).sort((a, b) => b[1].mrr - a[1].mrr))
+        console.log(`    ${String(k).padEnd(20)} n=${String(v.n).padStart(3)}   +$${v.mrr.toFixed(2)}`);
+
+    console.log(`\n  ⚠️  These are PostHog's server-side app events. They measure MRR *added*,`);
+    console.log(`     not total MRR, and they cannot be joined to website sessions (the app`);
+    console.log(`     emits no client-side events, so anonymous IDs never stitch to user IDs).`);
+    console.log(`     For total MRR, subscriber counts, trial conversion and retention`);
+    console.log(`     cohorts, use Stripe → Billing overview. Never compare raw cancel`);
+    console.log(`     events against upgrade events and call the difference churn.\n`);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Router                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -1159,6 +1330,8 @@ const COMMANDS = {
     referrers: cmdReferrers,
     "content-changes": cmdContentChanges,
     attribution: cmdAttribution,
+    funnel: cmdFunnel,
+    revenue: cmdRevenue,
     "404s": cmd404s,
     "gsc-queries": cmdGscQueries,
     "gsc-pages": cmdGscPages,
