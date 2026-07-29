@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-07-07"
+updated: "2026-07-28"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -73,6 +73,19 @@ For quantity-tracked assets, custody is by portion rather than all-or-nothing:
 - Assign part of the pool to a person — for example, "20 of 100 USB-C cables to Sarah." The available count drops by 20.
 - Several team members can hold different quantities of the same asset at once.
 - Releasing custody — fully or partially — returns those units to the available pool.
+
+---
+
+## Where the units are
+
+A pooled asset doesn't have to sit in one place. Its asset page lists every **placement**, meaning a location plus how many units are there, so 100 USB-C cables can be recorded as 60 in the main stockroom and 40 in the van. Each placement has its own row you can adjust, and any units you haven't placed yet show as unplaced.
+
+Placements come from two directions:
+
+- **Manual placements** are the ones you set yourself. You can move units between locations from the placement row.
+- **Kit placements** appear when the asset is inside a [kit that has a location](/knowledge-base/kits#kit-location). The kit holds a slice of the pool, say 20 of the 100 cables, and those units follow the kit. They're marked **via kit** on the asset page; to move them, change the kit's location rather than editing the placement. Change the kit's quantity and the slice at its location follows.
+
+The two are independent, so a pool can be partly placed by hand and partly held by kits at the same time. Take the asset out of the kit and the kit's slice is released back to unplaced.
 
 ---
 
