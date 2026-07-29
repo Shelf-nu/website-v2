@@ -1,45 +1,44 @@
 ---
-title: "Understanding and Using PDF Agreements for Asset Custody in Shelf"
-description: "Learn how Shelf's signed custody feature enables administrators to attach PDF documents to custody transfers, creating formal agreements between asset owners and custodians."
-category: "Assets"
-date: "2024-06-01"
+title: "PDF Custody Agreements: Not Available in Shelf"
+description: "PDF custody agreements and e-signatures are not part of Shelf. This article explains what this page used to describe, what custody does today, and how to handle signed hand-offs."
+category: "Bookings & Custody"
+date: "2026-07-29"
 layout: "knowledge-base"
 ---
 
-Shelf's signed custody feature enables administrators to attach PDF documents to custody transfers, creating formal agreements between asset owners and custodians. The system supports two agreement types: read-only (requiring acknowledgment) and signature-required (requiring electronic signatures).
+**Shelf does not have PDF custody agreements or e-signatures, and this is not on our near-term roadmap.**
 
-## Key Features
+This page previously described a "signed custody" feature — PDF agreement templates, read-only and signature-required agreements, and a receipts inbox. That feature was built as a prototype but was never released. The documentation went live ahead of the feature, and the feature never followed. We are leaving this page up rather than deleting it so that anyone who finds the old article gets a straight answer instead of a dead link.
 
-### Enhanced Accountability and Documentation
+If you were planning a workflow around it, please plan around the options below instead.
 
-The system establishes a clear audit trail of who has taken responsibility for assets while providing legal documentation capabilities. Users must ensure agreements comply with their jurisdiction's requirements.
+## What custody does today
 
-### Agreement Types
+Custody is an open-ended checkout. It records responsibility for an asset without a return date:
 
-- **Read-only agreements** require custodians to confirm document review
-- **Signature-required agreements** demand electronic signatures before custody transfers complete
+- **Assign custody** of an asset or a [kit](/knowledge-base/kits) to a team member, including non-registered members
+- **Release custody** when the item comes back, returning the asset to available
+- Every assignment and release is **timestamped and written to the asset's activity log**, with the user who made the change
+- Custody status is visible on the asset page, filterable in the asset index, and included in [workspace exports](/knowledge-base/export-exporting-workspace-data-from-shelf)
 
-### Flexible Implementation
+That gives you a durable, auditable record of who holds what and when it changed hands. What it does not give you is the custodian's signature or acknowledgement captured inside Shelf.
 
-Agreements are optional and can be applied selectively -- some assets require them while others don't, accommodating different asset values and risk levels.
+For time-bound checkouts with defined return dates, use [Bookings](/knowledge-base/introduction-to-bookings) instead.
 
-## Setup and Management
+## Handling signed hand-offs today
 
-Administrators access **Settings > PDF Agreements** to create templates by uploading PDFs and designating agreement type. Templates receive names, active/inactive status, and can be customized for different scenarios (equipment training, custody terms, etc.).
+If you need a signature for high-value or regulated equipment, the practical approach is to sign outside Shelf and link the record back to the asset:
 
-When assigning custody, administrators toggle "Add PDF Agreement" and select appropriate templates. Registered users receive email notifications with review links; non-registered members require manual link sharing since they lack system email addresses.
+1. Have the custodian sign your agreement in your existing tool (DocuSign, Dropbox Sign, or a countersigned PDF).
+2. Store the signed document wherever your organization keeps its records.
+3. Record the link or reference number against the asset — either in a **text custom field** (for example "Custody agreement ref") or as a **note** on the asset.
+4. Assign custody in Shelf as normal. The timestamped custody entry and the reference together give you the chain of responsibility plus the signed document behind it.
 
-## Special Considerations
+Shelf has no file-upload field type, so the signed PDF itself lives in your document system, not in Shelf. Custom fields support text, multi-line text, option, boolean, date, number, and amount.
 
-### Kit Custody
+## Related articles
 
-When kits receive custody assignments, all contained assets automatically synchronize. Individual asset custodies are released and reassigned through the kit, with pending receipts cancelled during this process.
-
-### Record Keeping
-
-Completed agreements are accessible through the Signed Custody section (showing Agreements and Receipts), asset detail pages, or kit pages. Receipt statuses include:
-
-- **Pending** -- Awaiting custodian action
-- **Completed** -- Agreement acknowledged or signed
-- **Declined** -- Custodian rejected the agreement
-- **Cancelled** -- Agreement was cancelled by administrator
+- [Custody feature for long-term equipment lend-outs](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs)
+- [Adding additional fields to assets](/knowledge-base/adding-additional-fields-to-assets)
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
+- [Exporting workspace data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf)
