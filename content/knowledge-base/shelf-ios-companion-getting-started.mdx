@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone. Covers QR scanning, kits, audits, custody, bookings, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-07-07"
+updated: "2026-07-29"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -49,7 +49,8 @@ If you belong to multiple Shelf workspaces, tap **Settings** in the app and choo
 Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR label or any registered barcode (Code 128, Code 39, EAN-13, DataMatrix, external QR).
 
 - If the code is linked to an asset in your workspace, the app jumps straight to the asset detail screen.
-- If the code exists but is not yet linked (for example, a printed sticker that has not been assigned, or a code from a deleted asset), the app shows an informational message. Linking a code to an asset (or creating a new asset for an unlinked code) happens in the [web app](https://app.shelf.nu) today.
+- If the code already belongs to your workspace but is not linked to an asset yet (a sticker you claimed earlier, or a code whose asset was deleted), the app offers **Create Asset**. Tap it and the asset creation screen opens with that code attached, so the asset you save is linked to the physical label straight away. You need asset-creation permission in the workspace to see the button.
+- If the code has not been claimed by any workspace yet (a fresh sticker off a new label sheet), the app offers **Link in Browser** and hands the claim step to the web app. Codes that belong to a kit open in the browser as well.
 
 **Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, hard to reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners; the lookup itself needs no add-on (running a full audit still requires the [Audits add-on](/features/audits)).
 
@@ -85,7 +86,7 @@ If your workspace has the [Audits add-on](/features/audits) enabled and you have
 - Watch the **Found / Expected / Unexpected / Pending** counts update in real time as you scan. Urgency surfaces in the UI as you go.
 - When the audit is complete, tap **Complete audit**. The audit creator receives a summary email.
 
-**Important:** Adding photos or notes to an individual audit scan from the iPhone app is **not yet available** — that capability is web-only today and is on the iOS roadmap for a future release. You can still run, complete, and review audits from the app; capture per-scan evidence from the web in the meantime.
+**Add evidence as you scan.** Tap any row in the scanned-items list to open the evidence sheet for that asset. From there you can write a condition note and attach a photo, either taken with the camera on the spot or picked from the photo library. Each row shows a badge with how many pieces of evidence it carries, so you can see at a glance what has been documented. Notes and photos land on the same audit record the web app writes to.
 
 If your workspace does not have the Audits add-on enabled, the app shows an informational "Contact your admin" message rather than a paywall or upgrade link.
 
@@ -95,15 +96,21 @@ For workspaces using [Bookings](/features/bookings), the app now handles a booki
 
 **Find the right booking.** The bookings list has individual **Reserved**, **Ongoing**, and **Overdue** status filters, keyword search, and a sort menu (by start date, due date, name, or recently created). Each row shows a live countdown, such as "Starts in 2d", "Due in 5h", or "Overdue by 3d", so what needs attention stands out at a glance.
 
-**Create or edit a booking.** Tap **New booking** to set the name, dates, and custodian right on the phone, then reserve it. You can also open an existing booking to edit its details or reschedule it. Availability-aware pickers only offer assets and kits that are free for the window you chose, so you don't reserve gear that's already committed elsewhere.
+Draft bookings are visible only to the person who created them, exactly as on the web, so an unfinished draft never shows up in a colleague's list.
+
+**Create or edit a booking.** Tap **New booking** to set the name, dates, and custodian right on the phone, then reserve it. You can also open an existing booking to edit its details or reschedule it. Availability-aware pickers only offer assets and kits that are free for the window you chose, so you don't reserve gear that's already committed elsewhere. The asset, kit, model, location, and team-member pickers all page through your full inventory as you scroll, so nothing is stranded past the first page.
 
 **Build out a booking by scanning.** Open a draft booking and tap **Scan to Add Assets**, then scan the assets and kits you're packing. Kits expand to their member assets automatically.
+
+**Reserve by model, then scan the actual units.** If your workspace groups identical gear under [Asset Models](/glossary/asset-models), the booking's **Models** tab reserves a count rather than specific units: reserve "4x HDMI cable" now, adjust the quantity later, or remove the reservation. The booking detail shows what is still outstanding. When it is time to hand the gear over, tap **Scan to assign & check out** and the fulfil scanner opens with the reserved models listed and a live "2/4 assigned" counter. Scan the physical units, submit, and Shelf assigns those exact units to the reservations and checks the booking out in one step. The CTA is there for admins and owners, who are the roles allowed to fulfil a reserved booking. See [Book by Model](/features/bookings#book-by-model) for how the same flow works on the web.
 
 **Manage the booking's lifecycle.** Reserve, cancel, archive, delete, or duplicate a booking without leaving the app.
 
 **Check out one item at a time or in bulk.** You can check out a selected subset of a booking's assets rather than all at once (progressive check-out). A lifecycle **progress bar** tracks each item through Reserved, Checked out, and Returned, so a half-packed booking reads accurately.
 
 **Check items back in.** Use the in-app scanner to check items in as they return. Scan-to-check-in only accepts assets that are actually in this booking, expands kit codes to their in-booking members, and won't double-return an item that is already back.
+
+**Record what came back for quantity-tracked stock.** When a booking includes [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables), checking them in asks how many units came back in what condition. Returnable stock splits across **Returned**, **Lost**, and **Damaged**; consumables split across **Consumed**, **Lost**, and **Damaged**. The sheet defaults every remaining unit to the normal outcome, so the everyday "it all came back" case is a single confirm, and a colour-coded bar shows the split before you submit. You can also check out part of a quantity-tracked line and leave the rest booked. Returned units go back to the pool, while units marked consumed, lost, or damaged are logged against the booking and come out of stock.
 
 Roles apply: self-service members act on their own bookings; admins and owners act on behalf of others. The app enforces the same permission, ownership, and status rules as the web, so you can never do more from the phone than your role allows.
 
@@ -128,11 +135,11 @@ The app respects whether your workspace has an add-on enabled:
 
 ## What the App Does Not Do Yet
 
-For clarity — these are real, intentional 1.0 gaps. They are on our radar, but they are not in the app today:
+For clarity, these are real, intentional gaps. They are on our radar, but they are not in the app today:
 
-- **Adding notes or photos to an audit scan from iPhone.** Web only today; on the iOS roadmap.
-- **GPS / last-known-location capture on scan.** Deliberate 1.1 item.
-- **Linking an unlinked QR code to an asset (or creating an asset from one) inside the app.** Today the app shows an informational message; do the linking in the web app for now.
+- **GPS / last-known-location capture on scan.**
+- **Claiming a brand new QR code inside the app.** A sticker that no workspace has claimed yet still goes through the web app for the claim step. Once a code belongs to your workspace, creating an asset for it works on the phone.
+- **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
 
 ## Opening Shelf Links in the App
 
