@@ -149,7 +149,7 @@ const DEFAULT_COMPARISON_ROWS = [
     { feature: "Free plan with unlimited assets", shelf: true as const, competitor: "varies" as const },
     { feature: "Open source & self-hostable", shelf: true as const, competitor: false as const },
     { feature: "QR codes with custom branded labels", shelf: true as const, competitor: "varies" as const },
-    { feature: "Custody tracking with PDF agreements", shelf: true as const, competitor: "varies" as const },
+    { feature: "Custody tracking with full audit trail", shelf: true as const, competitor: "varies" as const },
     { feature: "Equipment bookings & reservations", shelf: true as const, competitor: "varies" as const },
     { feature: "Kit-aware check-in/check-out", shelf: true as const, competitor: "varies" as const },
     { feature: "Location hierarchy (up to 12 levels)", shelf: true as const, competitor: "varies" as const },

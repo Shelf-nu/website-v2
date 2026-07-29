@@ -19,6 +19,7 @@ const ARTICLES = {
   "admin-notes-team-members": "articles/admin-notes-team-members.mjs",
   "understanding-sorting": "articles/understanding-sorting.mjs",
   "configure-permissions": "articles/configure-permissions.mjs",
+  "kit-location": "articles/kit-location.mjs",
 };
 
 const slug = process.argv[2];

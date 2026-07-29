@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-07-07"
+updated: "2026-07-29"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -76,6 +76,19 @@ For quantity-tracked assets, custody is by portion rather than all-or-nothing:
 
 ---
 
+## Where the units are
+
+A pooled asset doesn't have to sit in one place. Its asset page lists every **placement**, meaning a location plus how many units are there, so 100 USB-C cables can be recorded as 60 in the main stockroom and 40 in the van. Each placement has its own row you can adjust, and any units you haven't placed yet show as unplaced.
+
+Placements come from two directions:
+
+- **Manual placements** are the ones you set yourself. You can move units between locations from the placement row.
+- **Kit placements** appear when the asset is inside a [kit that has a location](/knowledge-base/kits#kit-location). The kit holds a slice of the pool, say 20 of the 100 cables, and those units follow the kit. They're marked **via kit** on the asset page; to move them, change the kit's location rather than editing the placement. Change the kit's quantity and the slice at its location follows.
+
+The two are independent, so a pool can be partly placed by hand and partly held by kits at the same time. Take the asset out of the kit and the kit's slice is released back to unplaced.
+
+---
+
 ## On the mobile app
 
 Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app for iPhone and Android, so you can read stock and hand out units from the floor:
@@ -84,6 +97,7 @@ Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app 
 - The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
 - Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign.
 - Tap a holder's custody row to **release** units back to the pool. The amount is capped at the units that person can release.
+- On a booking, check out part of a pooled line and leave the rest booked, then record the return with the same **Returned / Lost / Damaged** split (or **Consumed / Lost / Damaged** for consumables) the web check-in drawer uses.
 
 Individually tracked assets look and behave exactly as before in the app. See [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) for the full mobile walkthrough.
 
@@ -97,7 +111,7 @@ You can reserve a quantity of a pooled asset for a booking. Available stock is c
 Available = Total quantity − In custody − Reserved in bookings
 ```
 
-When you reserve units in a booking, the available count drops immediately, so two bookings can't reserve the same stock. For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes.
+When you reserve units in a booking, the available count drops immediately, so two bookings can't reserve the same stock. For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes. That reconciliation runs on the web and in the Companion app, so a partial return can be settled on the floor.
 
 ---
 
