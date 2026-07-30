@@ -1,46 +1,45 @@
 ---
 title: 'Bookings: Release Status'
-description: Keep track of our progress for releasing bookings here.
+description: Bookings has shipped and is generally available on Shelf Team plans. Here is what it does today.
 layout: blog
 canonicalUrl: /blog/bookings-release-status
 date: '2023-11-14'
-updated: '2024-02-20'
+updated: '2026-07-30'
 author: carlos-virreira
 category: updates-maintenance
 seo:
   title: 'Bookings: Release Status'
-  description: Keep track of our progress for releasing bookings here.
+  description: Bookings is live and generally available on Shelf Team plans. What shipped, what it does today, and where to go next.
   keywords: []
   noindex: false
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/bookings-release-status.jpeg"
 ---
 
-## Booking release progress 📆
+## Bookings is live 📆
 
-One of our most requested features is [Bookings](/features/bookings). We aim to expand our open source asset management system with shared asset booking functionalities. Our goal is to empower teams to effectively collaborate around gear. And to provide an open infrastructure to create batch bookings for assets. 
+This page tracked the build-out of [Bookings](/features/bookings), one of our most requested features. That build is done. Bookings has left beta, is generally available on **Team** and **Enterprise** plans, and has kept growing since the first release.
 
-### Where we are now
+### What you get today
 
-We have gone through various design stages, tested our designs with a few select partners and have done most of the back-end for this release. 
+- **Reserve assets for a date range**, with a custodian, a description, and tags.
+- **Real-time availability**, so an asset that is already reserved, in custody, or out on another booking cannot be double-booked.
+- **A calendar view** across the workspace, plus daily, weekly, and monthly availability views.
+- **Kit-aware reservations**: book a kit and every asset inside it travels with the booking.
+- **[Book by model](/features/bookings#book-by-model)**: reserve a count of an [Asset Model](/glossary/asset-models), such as "4x HDMI cable", and decide which physical units go out at pickup by scanning them.
+- **Quantity-tracked reservations** for stock you [track by quantity](/features/consumables-tracking) rather than as individual units.
+- **Progressive check-out and check-in**, so a booking can go out and come back in parts rather than all at once.
+- **Automated check-out and check-in email reminders**, with configurable notification recipients per booking.
+- **A subscribable [calendar feed](/knowledge-base/subscribe-your-calendar-to-shelf-bookings)** so bookings show up in Google Calendar, Outlook, or Apple Calendar.
+- **[CSV export](/knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out)** of bookings and the assets checked out on them, including per-asset check-in status.
+- **Bookings on the phone** through the free [Shelf Companion app](/mobile-app) for iPhone and Android: create, edit, reserve, and check equipment in or out from the floor.
 
-Currently, we **are testing** the functionality (timezones, mailers, reminders) on our test environment. 
+### Where to go next
 
-- Design stage finished
-- Back end created
-- Front end made
-- Code merged to test repository
-- Email reminder system operational (check out / check in reminder)
+- [Bookings feature overview](/features/bookings)
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
+- [How to create a booking](/knowledge-base/how-to-create-a-booking)
+- [Pricing](/pricing), where Bookings is included on Team and Enterprise
 
-The stage in which we are in is very much stress testing the system - to make sure no gaps are present for our first Bookings release. Also ensuring that there are no logic leaks with our process.
+### For the record
 
-Our beta release date is currently planned for: 
-
-**Q1 2024**
-
-‍
-
-### Update 
-
-*Bookings is released in Beta and only available on our team plans!*
-
-‍
+The original plan published on this page in November 2023: design finished, back end built, front end built, code merged, and the email reminder system operational, with a beta for Team plans targeted at Q1 2024. That beta shipped, and Bookings has been generally available since.
