@@ -82,6 +82,6 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "Can I capture audit evidence (photos, notes) from the mobile app?",
-        answer: "Not yet on iOS. Adding notes or photos during an audit scan is currently web-only — the capability is on our roadmap for a future release of the iOS app. You can still run, complete, and review audits from the app today; the per-scan evidence step happens on the web for now."
+        answer: "Yes, on iPhone and Android. Tap any row in the scanned-items list during an audit to open the evidence sheet, write a condition note, and attach a photo taken with the camera on the spot or picked from your photo library. Each row shows a badge with how much evidence it already carries, and everything lands on the same audit record you see on the web. Creating and configuring audits still happens on the web."
     }
 ];
