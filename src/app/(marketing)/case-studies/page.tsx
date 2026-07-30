@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { getAllContent } from "@/lib/mdx";
 import { Container } from "@/components/ui/container";
 import { Metadata } from "next";
@@ -66,9 +67,13 @@ export default function CaseStudiesIndexPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button size="lg" asChild>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_hero_signup">
+                            <TrackedLink
+                                href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_hero_signup"
+                                eventName="signup_click"
+                                eventProps={{ location: "case_studies_hero" }}
+                            >
                                 Start for free <ArrowRight />
-                            </Link>
+                            </TrackedLink>
                         </Button>
                         <Button variant="outline" size="lg" asChild>
                             <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_hero_demo">
@@ -130,9 +135,13 @@ export default function CaseStudiesIndexPage() {
                         Stop losing equipment and start tracking in minutes. No credit card required.
                     </p>
                     <Button size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-orange-50 hover:text-orange-700" asChild>
-                        <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_bottom_cta_signup">
+                        <TrackedLink
+                            href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_studies_bottom_cta_signup"
+                            eventName="signup_click"
+                            eventProps={{ location: "case_studies_bottom_cta" }}
+                        >
                             Get Started for Free <ArrowRight />
-                        </Link>
+                        </TrackedLink>
                     </Button>
                 </Container>
             </section>

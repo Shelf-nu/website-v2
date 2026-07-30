@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import Image from "next/image";
 import { getAllContent } from "@/lib/mdx";
 import { Container } from "@/components/ui/container";
@@ -51,12 +52,22 @@ export default function CustomersPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button size="lg" asChild>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=customers_hero_signup">
+                            <TrackedLink
+                                href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=customers_hero_signup"
+                                eventName="signup_click"
+                                eventProps={{ location: "customers_hero" }}
+                            >
                                 Start for free <ArrowRight className="ml-1 h-4 w-4" />
-                            </Link>
+                            </TrackedLink>
                         </Button>
                         <Button variant="outline" size="lg" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=customers_hero_demo">Book a demo</Link>
+                            <TrackedLink
+                                href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=customers_hero_demo"
+                                eventName="demo_cta"
+                                eventProps={{ location: "customers_hero" }}
+                            >
+                                Book a demo
+                            </TrackedLink>
                         </Button>
                     </div>
                 </Container>

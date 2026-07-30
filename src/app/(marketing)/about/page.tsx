@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScaleBlock } from "@/components/sections/scale-block";
 import { ArrowRight, Github, Users, Globe } from "lucide-react";
 import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
@@ -162,14 +163,22 @@ export default function AboutPage() {
                         </h2>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 min-w-[160px]">
-                                <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_signup">
+                                <TrackedLink
+                                    href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_signup"
+                                    eventName="signup_click"
+                                    eventProps={{ location: "about_bottom_cta" }}
+                                >
                                     Start free <ArrowRight className="ml-2 h-4 w-4" />
-                                </Link>
+                                </TrackedLink>
                             </Button>
                             <Button asChild variant="outline" size="lg" className="bg-card border-border-subtle h-12 px-8 min-w-[160px]">
-                                <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_demo">
+                                <TrackedLink
+                                    href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=about_bottom_cta_demo"
+                                    eventName="demo_cta"
+                                    eventProps={{ location: "about_bottom_cta" }}
+                                >
                                     Book a demo
-                                </Link>
+                                </TrackedLink>
                             </Button>
                             <Button asChild variant="ghost" size="lg" className="h-12 min-w-[160px]">
                                 <Link href="https://github.com/shelf-nu/shelf.nu" target="_blank">

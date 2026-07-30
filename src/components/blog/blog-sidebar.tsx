@@ -153,7 +153,7 @@ export function BlogSidebar() {
                 <a
                     href="https://app.shelf.nu/join?utm_source=blog&utm_medium=sidebar&utm_campaign=cta"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-600 hover:text-orange-700 transition-colors"
-                    onClick={() => trackEvent("signup_click", { source: "blog_sidebar" })}
+                    onClick={() => trackEvent("signup_click", { location: "blog_sidebar" })}
                 >
                     Sign up free
                     <ArrowRight className="h-3 w-3" />

@@ -383,8 +383,8 @@ export function SalvageValueCalculator() {
                     >
                         <TrackedLink
                             href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=tool_salvage"
-                            eventName="tool_cta_click"
-                            eventProps={{ tool: "salvage", cta: "signup" }}
+                            eventName="signup_click"
+                            eventProps={{ location: "tool_salvage" }}
                         >
                             Start tracking free{" "}
                             <ArrowRight className="ml-1 h-4 w-4" />

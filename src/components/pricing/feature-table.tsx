@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Check, Minus, Info } from "lucide-react";
 import { pricingFeatures, PricingFeature, AvailabilityState } from "@/data/pricing.features";
 import { pricingTiers } from "@/data/pricing.tiers";
@@ -74,9 +74,13 @@ export function FeatureTable() {
                                             className="w-full max-w-[120px] h-8 text-xs"
                                             asChild
                                         >
-                                            <Link href={tierLinks[tier.id]}>
+                                            <TrackedLink
+                                                href={tierLinks[tier.id]}
+                                                eventName={tier.id === "enterprise" ? "demo_cta" : "signup_click"}
+                                                eventProps={{ location: "pricing_feature_table", plan: tier.id }}
+                                            >
                                                 {tier.cta}
-                                            </Link>
+                                            </TrackedLink>
                                         </Button>
                                     </div>
                                 </th>
