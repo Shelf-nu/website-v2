@@ -74,6 +74,24 @@ You tried to lower an asset's **total** quantity below the units already promise
 
 ---
 
+## A booking already underway took an item your reservation was holding
+
+A booking that has already started outranks a reservation that was created after it started. If someone's booking is **Ongoing** or **Overdue** and it still has an item to hand out, it can check that item out even when your later reservation also holds it for an overlapping period.
+
+This closes a dead end rather than opening one. A booking that had already begun couldn't previously check out its own remaining items once anyone reserved them afterwards, and there was no way to resolve it from inside Shelf.
+
+Nothing happens silently. **Both bookings get a note on their activity timeline** naming the other booking and the items involved. On the reservation, it reads along the lines of *"...were checked out by [booking], which overlaps this reservation and is already in progress. You may need to replace them before this booking starts."* If you're the one who lost an item, swap in a replacement before your booking starts, or shorten the booking that's holding it.
+
+Three things still block, exactly as before:
+
+- **Two reservations clashing.** Neither has started, so the usual rule applies and the second one can't be created.
+- **An item physically checked out** on another booking that's in progress.
+- **An item in someone's custody.**
+
+This applies to individually tracked items only. Pooled stock is counted rather than claimed, so it never takes this path.
+
+---
+
 ## Extending a booking hits a conflict
 
 If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. Options:
