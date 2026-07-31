@@ -1,0 +1,12 @@
+---
+title: "Asset Index Timestamps Now Show in Your Own Time Zone"
+description: "Created at and Updated at times in the advanced asset index were rendered as if the UTC clock were local time, putting them hours out and sometimes on the wrong day for anyone outside UTC."
+date: "2026-07-30"
+layout: "update"
+---
+
+If your workspace sits outside UTC, the **Created at** and **Updated at** columns in the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide) were showing the wrong time. The value came through without a time zone attached, so your browser read the UTC clock as if it were your local one. In a UTC-6 workspace an asset created at 15:50 local time was listed as 21:50, and anything created late in the UTC evening was listed on the following day.
+
+The same asset's **Activity** tab showed the correct time all along, which is how the discrepancy came to light: two screens in Shelf disagreed about the same event by exactly the workspace's offset from UTC.
+
+**Created at**, **Updated at**, and the upcoming reminder time in the index are now stamped as UTC before they reach the browser, so they render in your own time zone like every other date in Shelf. Booking dates were never affected, and nobody on UTC would have seen a difference. No action is needed and no data was wrong, only its display.
