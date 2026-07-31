@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/consumables-tracking"
 date: "2026-06-30"
-updated: "2026-06-30"
+updated: "2026-07-31"
 seo:
   title: "Consumables Tracking Software — Track Supplies by Quantity | Shelf"
   description: "Track consumables and supplies by quantity alongside your assets. Units of measure, min-quantity low-stock alerts, Used-up or Returnable consumption, and quantity-aware custody, bookings, and kits — open source, free to start."
@@ -52,7 +52,7 @@ Not sure which method fits an item? [How to Choose a Tracking Method](/knowledge
 
 A quantity-tracked item holds a **total quantity** in a **unit of measure** you define yourself — pieces, boxes, liters, kilograms, whatever fits. The whole pool shares **one QR label**, so a single scan finds the stock rather than hunting for one unit among hundreds.
 
-Your **available** quantity is computed live as you go — Total minus what's in custody minus what's reserved — so you always see what's actually free to hand out or book, without maintaining a separate "available" number by hand.
+Your **available** quantity is computed live as you go: the total, minus what's in custody, minus what's earmarked to a kit, minus what's checked out on an active booking. It shows what's genuinely on the shelf to hand out right now, without maintaining a separate "available" number by hand. Units reserved for future dates are counted separately, on their own **Reserved (bookings)** row, so a booking three weeks out never makes today's stock look smaller than it is.
 
 ---
 
@@ -89,7 +89,7 @@ Alerts only fire when a minimum is set — no threshold, no noise. (There's no l
 
 Quantity-tracked stock plugs into the rest of Shelf:
 
-- **Bookings**: reserve N units from available stock for a date range, and adjust the booked quantity as plans change. Reserving drops the available count immediately, so two bookings can't lay claim to the same stock.
+- **Bookings**: reserve N units from the pool for a date range, and adjust the booked quantity as plans change. Availability is calculated for those dates, so bookings in different weeks can each draw on the same stock, while a genuine overlap that exceeds the pool is flagged with a **Stock conflict** pill on the bookings list and an **Insufficient stock** badge on the booking row.
 - **Kits**: include quantity-tracked stock in a kit, and the kit handles custody by quantity — so a kit that ships with 3 cables and 1 charger keeps its stock counts straight.
 
 Bookings — and quantity in bookings — are available on **Team plans**.

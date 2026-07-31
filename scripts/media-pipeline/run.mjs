@@ -20,6 +20,7 @@ const ARTICLES = {
   "understanding-sorting": "articles/understanding-sorting.mjs",
   "configure-permissions": "articles/configure-permissions.mjs",
   "kit-location": "articles/kit-location.mjs",
+  "qt-availability": "articles/qt-availability.mjs",
 };
 
 const slug = process.argv[2];

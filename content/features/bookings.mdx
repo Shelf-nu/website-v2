@@ -10,7 +10,7 @@ personas:
   - "operations"
 canonicalUrl: "/features/bookings"
 date: "2025-01-01"
-updated: "2026-07-29"
+updated: "2026-07-31"
 seo:
   title: "Equipment Booking Software — Conflict-Free Reservations | Shelf"
   description: "Reserve equipment without double-bookings. Visual booking calendar, availability checking, and pull-list PDFs for cameras, tools, laptops, and shared gear."
@@ -100,7 +100,7 @@ See: [Asset Models](/glossary/asset-models) · [How to Choose a Tracking Method]
 
 ### Quantity-Tracked Reservations
 
-For assets you [track by quantity](/features/consumables-tracking), reserve a number of units from available stock (Available = Total − In custody − Reserved) and adjust the booked quantity as needs change. Reserving drops the available count immediately, so two bookings can't reserve the same units. Available on Team plans.
+For assets you [track by quantity](/features/consumables-tracking), reserve a number of units from the pool and adjust the booked quantity as needs change. Availability is worked out for your booking's dates: Shelf subtracts the highest number of units reserved at any single moment inside that window, so three bookings of the same 7 units in three different weeks all fit in a pool of 10 instead of adding up to 21. When a pool genuinely is over-reserved, a **Stock conflict** pill on the bookings list and an **Insufficient stock** badge on the asset's row say so, and reducing an over-reserved booking is always allowed so the situation can be unwound without cancelling. Available on Team plans.
 
 When the gear comes back, check-in asks how many units returned in what condition: returnable stock splits across returned, lost, and damaged, and consumables across consumed, lost, and damaged. The same split is available in the [Shelf Companion app](/mobile-app), so a partial return can be reconciled on the floor rather than remembered until someone is back at a desk.
 

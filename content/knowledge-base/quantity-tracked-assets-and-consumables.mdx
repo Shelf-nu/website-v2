@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-07-29"
+updated: "2026-07-31"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -105,13 +105,37 @@ Individually tracked assets look and behave exactly as before in the app. See [G
 
 ## Quantity in bookings
 
-You can reserve a quantity of a pooled asset for a booking. Available stock is calculated as:
+You can reserve a quantity of a pooled asset for a booking. Two different numbers matter here, and Shelf keeps them apart on purpose.
 
-```
-Available = Total quantity − In custody − Reserved in bookings
-```
+### On the asset page: what's on the shelf right now
 
-When you reserve units in a booking, the available count drops immediately, so two bookings can't reserve the same stock. For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes. That reconciliation runs on the web and in the Companion app, so a partial return can be settled on the floor.
+The **Quantity Overview** card's **Available** row is the physical count: the total, minus units held in custody, minus units earmarked to a kit, minus units checked out on an active booking. Reservations for future dates never pull this number down. They get their own **Reserved (bookings)** row, whose tooltip tells you how many units are spoken for and across how many upcoming bookings. Placements at locations are listed too, on an **In locations** row, and they don't reduce availability: a unit can sit in Studio A and still be free to book.
+
+![The Quantity Overview card on a quantity-tracked asset, showing total quantity, available, in locations, in custody, unit of measure, min quantity and consumption behavior](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/quantity-overview-card.webp)
+
+### Inside a booking: what's free for those dates
+
+Availability in a booking is calculated for that booking's date range. Shelf takes the pool (the total, less custody and kit allocations) and subtracts the **highest number of units reserved at any single moment** inside your window. Bookings whose dates don't overlap yours never compete with you: a pool of 10 with three separate 7-unit bookings in three separate weeks still has 3 units free for each of those weeks, because only 7 are ever needed at once.
+
+Overdue bookings are the exception. Until an overdue booking is checked in, there's no date at which its units come back, so they keep counting against every window.
+
+The **Adjust booked quantity** dialog states the windowed figure directly, for example *"4 of 12 sandbags available"* for your dates, along with how many units other bookings have reserved. If your role can see other people's bookings, a **View bookings** link takes you to that asset's booking list.
+
+### When a pool is over-committed
+
+Shelf surfaces over-commitment rather than letting it sit:
+
+- An amber **Stock conflict** pill on any bookings list (the Bookings index, an asset's or kit's **Bookings** tab, **My bookings**, and a team member's bookings) marks a booking whose quantity-tracked assets are over-reserved for its dates.
+- A red **Insufficient stock** badge on the asset's row inside the booking, when that booking reserves more units than the pool can supply.
+- An amber **Checked out elsewhere** badge when the units fit your dates but some are physically out right now on another booking. This one is informational, not a blocker: those units are due back before your booking starts.
+
+**Reducing** the quantity on an over-reserved booking is always allowed, so an over-commitment can be unwound without cancelling the booking. Only increases beyond what the window can supply are refused, with a message naming the shortfall: *"Only 3 of 10 units available in this window — reduce the quantity to continue."*
+
+The pool is protected from the other direction too. Lowering an asset's total quantity below what's already committed to custody, kits, or overlapping bookings is blocked, so stock can't silently disappear out from under a booking that depends on it.
+
+### Coming back
+
+For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes. That reconciliation runs on the web and in the Companion app, so a partial return can be settled on the floor.
 
 ---
 
@@ -151,4 +175,5 @@ For the full decision framework, including when a fleet of identical units belon
 - [Adding New Assets](/knowledge-base/adding-new-assets) — the full asset creation walkthrough
 - [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — capture business-specific data
 - [How to Create a Booking](/knowledge-base/how-to-create-a-booking) — reserve assets, including quantities
+- [Troubleshooting: Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts), for when a booking is blocked or a pool is over-reserved
 - [Using Categories to Organize Your Asset Inventory](/knowledge-base/using-categories-to-organize-your-asset-inventory)

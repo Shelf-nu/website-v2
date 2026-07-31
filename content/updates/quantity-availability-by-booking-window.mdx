@@ -1,0 +1,23 @@
+---
+title: "Quantity Availability Is Now Calculated Per Booking Window"
+description: "Bookings that don't overlap no longer compete for the same pooled stock, an over-reserved booking can always be reduced, and over-commitment is surfaced with Stock conflict and Insufficient stock badges."
+date: "2026-07-30"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/quantity-overview-card.webp"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#quantity-in-bookings"
+layout: "update"
+---
+
+Availability for [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) is now worked out for the dates you're actually booking, not by adding up every reservation that ever existed.
+
+Until now, several screens summed reservations across the whole calendar. A pool of 10 sandbags with three separate 7-unit bookings in three different weeks was treated as needing 21 units at once, which showed a negative **Available** figure on the asset page and blocked check-out even though only 7 were ever needed at a time. Worse, the only obvious way out, reducing the over-reserved booking, was rejected too, so the booking had to be cancelled.
+
+What changed:
+
+- **Availability is windowed.** Shelf now counts the highest number of units reserved at any single moment inside your booking's date range. Bookings that don't overlap yours don't count against you. Overdue bookings are the exception: until they're checked in, their units keep counting against every window.
+- **The asset page separates now from later.** The **Quantity Overview** card's **Available** row is what's physically on the shelf right now. Units reserved for future dates get their own **Reserved (bookings)** row, with a tooltip showing how many bookings they span, so a reservation three weeks out never makes today's stock look smaller than it is.
+- **Reducing is always allowed.** Lowering the quantity on an over-reserved booking goes through, so over-commitment can be unwound without cancelling. Only increases beyond what the window can supply are refused, and the message names the shortfall.
+- **Over-commitment is visible.** An amber **Stock conflict** pill marks affected bookings on every bookings list, a red **Insufficient stock** badge marks the specific asset row inside the booking, and an amber **Checked out elsewhere** badge flags the softer case where units are out right now but due back before your booking starts.
+- **Stock can't be pulled out from under a booking.** Lowering an asset's total quantity below what's already committed to custody, kits, or overlapping bookings is now blocked.
+- **The Adjust booked quantity dialog says what it means.** It shows "4 of 12 sandbags available" for your dates, how many units other bookings hold, and, for roles that can see other bookings, a link to the asset's booking list.
+
+Nothing needs to be fixed by hand. Pools that were showing a negative available figure resolve on their own.

@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-07-06"
+updated: "2026-07-31"
 layout: "knowledge-base"
 ---
 
@@ -40,6 +40,18 @@ If you or other users have configured one or more kits you'll be able to utilize
 2. Switch from **Assets** to **Kits** using the tabs
 3. Select one or multiple kits
 4. Click **Confirm** to add your selection of kits to the booking
+
+## Adjusting the quantity on a pooled asset
+
+[Quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) join a booking as a number of units rather than as a specific item, and that number can be changed at any time before the units go out.
+
+1. Find the asset's row on the booking
+2. Open the row's dropdown and click **Adjust quantity**
+3. Enter the number of units to reserve, then click **Save**
+
+The **Adjust booked quantity** dialog shows how many units are free **for this booking's dates**, written as "4 of 12 sandbags available", followed by the date range it applies to. Availability here is windowed: bookings whose dates don't overlap this one aren't competing for the same units, so the figure is usually higher than the workspace's free stock at this moment. If other bookings have reserved units inside your window, the dialog says how many, and roles that can see other people's bookings also get a **View bookings** link to the asset's booking list.
+
+Lowering a quantity always goes through, including on a booking that is already over-reserved. Raising it beyond what the window can supply is refused with the shortfall spelled out. See [Troubleshooting: Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts#quantity-tracked-assets-stock-conflict-and-insufficient-stock) if a booking is showing a **Stock conflict** pill or an **Insufficient stock** badge.
 
 ## Adding items to a booking that's already active
 

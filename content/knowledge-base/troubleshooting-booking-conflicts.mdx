@@ -3,11 +3,11 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-04-17"
+updated: "2026-07-31"
 layout: "knowledge-base"
 ---
 
-Shelf prevents double-bookings automatically — if two people try to reserve the same asset for overlapping dates, the second booking is blocked. This article explains how conflict prevention works and what to do when you hit a scheduling issue.
+Shelf prevents double-bookings automatically — if two people try to reserve the same asset for overlapping dates, the second booking is blocked. For [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables), where one record stands for a pool of identical units, the check is about counts rather than identity: the question is whether enough units are free for your dates. This article explains how conflict prevention works in both cases and what to do when you hit a scheduling issue.
 
 ---
 
@@ -41,6 +41,35 @@ When you book a kit, Shelf checks every item inside it. If even one component ha
 1. Open the kit → **Assets** tab
 2. Check each item's **Bookings** tab or look at the calendar for the date range you want
 3. Resolve the conflict on the blocking item (cancel, shorten, or remove it from the kit)
+
+---
+
+## Quantity-tracked assets: "Stock conflict" and "Insufficient stock"
+
+Pooled stock doesn't get blocked at the door the way a single asset does. Instead, Shelf flags a booking that asks for more units than the pool can supply for its dates.
+
+**Amber "Stock conflict" pill on a bookings list.** At least one quantity-tracked asset on that booking is over-reserved somewhere inside its date range. You'll see the pill on the Bookings index, on an asset's or kit's **Bookings** tab, on **My bookings**, and on a team member's bookings. Open the booking to see which item it is.
+
+**Red "Insufficient stock" badge on an asset row inside a booking.** This booking reserves more units of that asset than are available across the workspace once custody, other reservations, and active checkouts are subtracted. It blocks check-out at the booked quantity. To resolve it:
+
+1. Open the row's dropdown and choose **Adjust quantity**. The dialog shows how many units are available for your dates, and how many other bookings have reserved.
+2. Lower the quantity to fit. **Reducing is always allowed**, even on a booking that is already over-reserved, so you never have to cancel the booking to get out of the situation.
+3. Or free units elsewhere: release custody, shorten or cancel an overlapping booking, check in an overdue one, or restock the asset.
+
+**Amber "Checked out elsewhere" badge.** Not a blocker. Your dates work out, but some of the units are physically out on another booking right now. They're expected back before yours starts, so no action is needed.
+
+### "Only X of Y units available in this window"
+
+You tried to raise a booked quantity past what the window can supply. The number is calculated for **your booking's dates**, not for the whole calendar: Shelf counts the highest number of units reserved at any single moment that overlaps your range. Bookings that don't overlap yours don't count against you, so the figure can be higher than a naive "total minus everything ever booked" would suggest.
+
+Two things do count against every window:
+
+- **Overdue bookings.** Until an overdue booking is checked in, there is no date at which its units return, so they stay unavailable for all dates. Check the booking in to release them.
+- **Units in custody or earmarked to a kit.** These are subtracted from the pool before dates are considered.
+
+### "Cannot reduce quantity below commitments"
+
+You tried to lower an asset's **total** quantity below the units already promised out. Shelf blocks this so stock can't vanish from under a booking that depends on it. Release the custody, remove the units from the kit, or reduce the overlapping bookings first, then lower the total.
 
 ---
 
@@ -82,3 +111,4 @@ See [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-inc
 - [Extending Booking End Dates](/knowledge-base/extending-booking-end-dates-in-shelf)
 - [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns)
 - [Availability View: Complete Guide](/knowledge-base/availability-view-complete-guide)
+- [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables)
