@@ -53,6 +53,15 @@ jobs:
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY }}
           NEXT_PUBLIC_POSTHOG_HOST: https://us.i.posthog.com
           NEXT_PUBLIC_CRISP_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_CRISP_WEBSITE_ID }}
+      # `npm run build` already runs the offline half of this check (raw markdown
+      # leaking into rendered pages). This step adds the network half: every
+      # <img> the site ships, including frontmatter `image:` fields that feed
+      # OG/social previews. Kept separate from the build so a supabase blip
+      # can't fail a deploy — the script warns on network errors and fails only
+      # on a definitive 4xx/5xx after retries.
+      - name: Verify images resolve
+        run: npm run content:verify:images
+
       - name: Snapshot content changes
         if: github.ref == 'refs/heads/main'
         continue-on-error: true
