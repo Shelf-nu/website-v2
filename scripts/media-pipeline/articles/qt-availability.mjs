@@ -1,8 +1,14 @@
 /**
  * Media article: quantity-tracked availability (shelf.nu#2770).
  *
- * Captures the Quantity Overview card on a real QUANTITY_TRACKED asset so the
- * KB section that explains the "Available" headline has a matching visual.
+ * Captures the asset overview page of a real QUANTITY_TRACKED asset, with the
+ * Quantity Overview card visible in the right sidebar, so the KB section that
+ * explains the "Available" headline has a matching visual.
+ *
+ * This is deliberately a full-viewport shot rather than an element capture of
+ * the card alone: the card is only meaningful next to the asset it belongs to,
+ * and `caption()` draws its bar across the bottom of the viewport, which an
+ * element screenshot would crop away.
  *
  * The asset is discovered at run time (no hardcoded id): walk /assets, open
  * each overview, keep the first one whose sidebar renders "Quantity Overview".
@@ -38,10 +44,13 @@ async function findQuantityTrackedAsset(page) {
 
   for (const id of ids) {
     await navigateTo(page, `/assets/${id}/overview`);
+    // waitFor, not isVisible: the sidebar card renders after the main
+    // column, so a single synchronous visibility read skips real QT assets.
     const isQt = await page
       .getByText("Quantity Overview", { exact: true })
       .first()
-      .isVisible()
+      .waitFor({ state: "visible", timeout: 5000 })
+      .then(() => true)
       .catch(() => false);
     if (isQt) return id;
   }
