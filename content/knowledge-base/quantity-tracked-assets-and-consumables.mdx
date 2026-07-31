@@ -105,33 +105,46 @@ Individually tracked assets look and behave exactly as before in the app. See [G
 
 ## Quantity in bookings
 
-You can reserve a quantity of a pooled asset for a booking. Two different numbers matter here, and Shelf keeps them apart on purpose.
+The promise is the same one Shelf makes for a camera or a laptop: **you can't reserve something that isn't there.** What changes is the question being asked. A camera is one specific thing, so the question is whether anyone else has it. A pool of sandbags is a count, so the question is how many are free on your dates.
 
-### On the asset page: what's on the shelf right now
+Shelf checks that at the moment it matters, when you confirm a booking or change what's on it, and it locks the asset while it checks. Two people confirming at the same second can't both slip through.
 
-The **Quantity Overview** card's **Available** row is the physical count: the total, minus units held in custody, minus units earmarked to a kit, minus units checked out on an active booking. Reservations for future dates never pull this number down. They get their own **Reserved (bookings)** row, whose tooltip tells you how many units are spoken for and across how many upcoming bookings. Placements at locations are listed too, on an **In locations** row, and they don't reduce availability: a unit can sit in Studio A and still be free to book.
+### Dates matter, not just totals
+
+The count is worked out for **your booking's dates**, not for the calendar as a whole. Take a pool of 10 sandbags:
+
+- Three separate bookings of 7 sandbags, one in each of three different weeks, are all fine. Only 7 are ever needed at the same time, so 3 stay free in every one of those weeks.
+- Two bookings of 7 and 8 sandbags in the **same** week are not. That's 15 at once out of 10, so the second one is turned away while only 3 are free.
+
+![Three booking timelines across three weeks. One camera booked across weeks one and two blocks a second overlapping booking. A pool of ten sandbags allows three separate seven-unit bookings in three different weeks, because never more than seven are needed at once. The same pool turns away an eight-unit booking in a week that already has a seven-unit booking, because only three units are free that week.](/images/features/consumables/booking-by-dates.svg)
+
+This is the part that surprises people coming from individually tracked gear, where a booked item is simply gone for anyone else. A pool isn't gone, it's counted, so gear that comes back before your booking starts is yours to book.
+
+The one thing that ignores dates is an **overdue** booking. Nobody knows when a late return is coming back, so its units keep counting against every date until someone checks it in.
+
+### Picking a quantity
+
+Open the asset's row on the booking and choose **Adjust quantity**. The dialog tells you what you've got to work with for these dates, written plainly as *"4 of 12 sandbags available"* with the date range underneath, plus how many units other bookings are holding. If your role can see other people's bookings, a **View bookings** link takes you to them.
+
+Ask for more than the dates allow and Shelf refuses with the exact shortfall: *"Only 3 of 10 units available in this window — reduce the quantity to continue."* Going the other way, **lowering a quantity always works**, no matter what state the booking is in.
+
+### Reading the asset page
+
+The **Available** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, earmarked to a kit, or physically checked out. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across.
+
+Locations are listed separately, on **In locations**, and don't reduce anything. A sandbag can be in Studio A and still be free to book.
 
 ![A quantity-tracked asset's overview page, with the Quantity Overview card in the right sidebar listing total quantity, available, in locations, in custody, unit of measure, min quantity and consumption behavior](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/quantity-overview-card.webp)
 
-### Inside a booking: what's free for those dates
+### If a booking is flagged
 
-Availability in a booking is calculated for that booking's date range. Shelf takes the pool (the total, less custody and kit allocations) and subtracts the **highest number of units reserved at any single moment** inside your window. Bookings whose dates don't overlap yours never compete with you: a pool of 10 with three separate 7-unit bookings in three separate weeks still has 3 units free for each of those weeks, because only 7 are ever needed at once.
+Since the check runs when you book, you shouldn't be able to over-reserve a pool in the first place. What no system can prevent is the pool getting **smaller after the fact**: a previous booking comes back late, or someone hands units out as custody in the meantime. Rather than quietly cancel a booking somebody is relying on, Shelf marks it and lets a human decide:
 
-Overdue bookings are the exception. Until an overdue booking is checked in, there's no date at which its units come back, so they keep counting against every window.
+- **Stock conflict**, an amber pill on any bookings list, means one of that booking's pooled items is short for its dates. Open the booking to see which.
+- **Insufficient stock**, a red badge on an item's row, is the item in question. Lower the quantity, or free units elsewhere by releasing custody or checking in the late booking.
+- **Checked out elsewhere**, an amber badge, is not a problem. Your dates are fine; some units just happen to be out right now and are due back before you need them.
 
-The **Adjust booked quantity** dialog states the windowed figure directly, for example *"4 of 12 sandbags available"* for your dates, along with how many units other bookings have reserved. If your role can see other people's bookings, a **View bookings** link takes you to that asset's booking list.
-
-### When a pool is over-committed
-
-Shelf surfaces over-commitment rather than letting it sit:
-
-- An amber **Stock conflict** pill on any bookings list (the Bookings index, an asset's or kit's **Bookings** tab, **My bookings**, and a team member's bookings) marks a booking whose quantity-tracked assets are over-reserved for its dates.
-- A red **Insufficient stock** badge on the asset's row inside the booking, when that booking reserves more units than the pool can supply.
-- An amber **Checked out elsewhere** badge when the units fit your dates but some are physically out right now on another booking. This one is informational, not a blocker: those units are due back before your booking starts.
-
-**Reducing** the quantity on an over-reserved booking is always allowed, so an over-commitment can be unwound without cancelling the booking. Only increases beyond what the window can supply are refused, with a message naming the shortfall: *"Only 3 of 10 units available in this window — reduce the quantity to continue."*
-
-The pool is protected from the other direction too. Lowering an asset's total quantity below what's already committed to custody, kits, or overlapping bookings is blocked, so stock can't silently disappear out from under a booking that depends on it.
+Stock is protected from the other side too. You can't lower an asset's total quantity below what's already promised to custody, kits, or overlapping bookings.
 
 ### Coming back
 

@@ -89,8 +89,10 @@ Alerts only fire when a minimum is set — no threshold, no noise. (There's no l
 
 Quantity-tracked stock plugs into the rest of Shelf:
 
-- **Bookings**: reserve N units from the pool for a date range, and adjust the booked quantity as plans change. Availability is calculated for those dates, so bookings in different weeks can each draw on the same stock, while a genuine overlap that exceeds the pool is flagged with a **Stock conflict** pill on the bookings list and an **Insufficient stock** badge on that asset's row inside the booking.
+- **Bookings**: reserve N units from the pool for a date range, and adjust that number as plans change. Shelf counts what's free on those dates and won't let a booking take units that aren't there. Because the count is date-aware, stock that comes back before a booking starts can be booked by someone else in the meantime, so the same 10 sandbags can serve three crews in three different weeks.
 - **Kits**: include quantity-tracked stock in a kit, and the kit handles custody by quantity — so a kit that ships with 3 cables and 1 charger keeps its stock counts straight.
+
+![Three booking timelines across three weeks. One camera booked across weeks one and two blocks a second overlapping booking. A pool of ten sandbags allows three separate seven-unit bookings in three different weeks, because never more than seven are needed at once. The same pool turns away an eight-unit booking in a week that already has a seven-unit booking, because only three units are free that week.](/images/features/consumables/booking-by-dates.svg)
 
 Bookings — and quantity in bookings — are available on **Team plans**.
 

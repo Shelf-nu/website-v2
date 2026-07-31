@@ -68,7 +68,7 @@ That's it. The system handles the rest.
 
 Shelf validates every booking in real time. For an individually tracked item, a taken time slot simply can't be booked: conflicts are prevented before they happen—not discovered on the morning of a shoot. [Fabel Film eliminated double bookings with Shelf](/case-studies/fabel-film-double-bookings).
 
-Pooled stock works by count rather than identity, so the equivalent check is whether enough units are free for your dates. Shelf flags a pool that has been over-reserved rather than blocking the edit outright, which is what keeps the situation fixable. See [Quantity-Tracked Reservations](#quantity-tracked-reservations) below.
+Pooled stock gets the same guarantee, counted rather than matched: Shelf checks how many units are free on your dates and won't let a booking take units that aren't there. See [Quantity-Tracked Reservations](#quantity-tracked-reservations) below.
 
 ---
 
@@ -102,7 +102,11 @@ See: [Asset Models](/glossary/asset-models) · [How to Choose a Tracking Method]
 
 ### Quantity-Tracked Reservations
 
-For assets you [track by quantity](/features/consumables-tracking), reserve a number of units from the pool and adjust the booked quantity as needs change. Availability is worked out for your booking's dates: Shelf subtracts the highest number of units reserved at any single moment inside that window, so three bookings of the same 7 units in three different weeks all fit in a pool of 10 instead of adding up to 21. When a pool genuinely is over-reserved, a **Stock conflict** pill on the bookings list and an **Insufficient stock** badge on the asset's row say so, and reducing an over-reserved booking is always allowed so the situation can be unwound without cancelling. Available on Team plans.
+For assets you [track by quantity](/features/consumables-tracking), reserve a number of units instead of a specific item, and adjust that number as needs change. Shelf counts what's free on your dates and turns away anything the pool can't cover, so a shared stock of gloves or cable or sandbags is as safe to book as a camera.
+
+Counting by date is what makes shared stock usable: gear that comes back before your booking starts is yours to book. Three crews can each take 7 of the same 10 sandbags in three different weeks, and the fourth crew that wants 8 in a week already spoken for is told so up front. Available on Team plans.
+
+![Three booking timelines across three weeks. One camera booked across weeks one and two blocks a second overlapping booking. A pool of ten sandbags allows three separate seven-unit bookings in three different weeks, because never more than seven are needed at once. The same pool turns away an eight-unit booking in a week that already has a seven-unit booking, because only three units are free that week.](/images/features/consumables/booking-by-dates.svg)
 
 When the gear comes back, check-in asks how many units returned in what condition: returnable stock splits across returned, lost, and damaged, and consumables across consumed, lost, and damaged. The same split is available in the [Shelf Companion app](/mobile-app), so a partial return can be reconciled on the floor rather than remembered until someone is back at a desk.
 
