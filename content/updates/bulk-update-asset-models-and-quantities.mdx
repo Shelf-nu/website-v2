@@ -1,0 +1,14 @@
+---
+title: "Bulk CSV updates cover asset models and quantity columns"
+description: "Update Existing Assets can set an asset model, quantity, min quantity, unit of measure, and consumption type across your inventory. The page now lists every column it accepts, and the ones an export won't hand you ready to upload."
+date: "2026-08-03"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/import-update-columns.webp"
+readMoreUrl: "/knowledge-base/bulk-updating-assets-via-csv"
+layout: "update"
+---
+
+**Assets → Import → Update existing** accepts more columns than its instructions used to admit. Alongside name, category, location, tags, value, availability, and your custom fields, it can set an **Asset model** on individually tracked assets, and **Quantity**, **Min quantity**, **Unit of measure**, and **Consumption type** on quantity-tracked ones. Model names are matched case-insensitively and created for you, so a single file can name a new fleet and assign every unit to it, and low-stock thresholds can be set across a whole shelf of supplies in one pass.
+
+The page now spells out the rules that are easy to get wrong. Five columns are never cleared by an empty cell, unlike the rest: blanking Asset model, Quantity, Min quantity, Unit of measure, or Consumption type leaves the current value alone. Tracking method is fixed once an asset exists, so that column is ignored. An asset model on a quantity-tracked row is flagged in the preview rather than applied, and the row's other changes still go through.
+
+One thing to watch on the round trip: an export writes a pooled asset's quantity with its unit attached, as `10 boxes`, and the update workflow needs the number on its own. Min quantity, unit of measure, and consumption type are not in the export at all, so add those columns yourself using exactly those header names.

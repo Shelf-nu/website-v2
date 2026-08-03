@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-07-22"
+updated: "2026-08-03"
 layout: "knowledge-base"
 ---
 
@@ -11,6 +11,8 @@ Shelf supports two CSV workflows for assets:
 
 - **Create new assets** — this guide covers importing a CSV file to add new asset records to your inventory.
 - **Update existing assets** — if you want to bulk-edit records already in Shelf, use the [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) workflow instead.
+
+The two use different column names, so a file built for one is not a file for the other. This guide's headers are the importer's own keys (`title`, `valuation`, `assetModel`, `quantity`). The update workflow reads the labels a Standard export writes (`Name`, `Value`, `Asset model`, `Quantity`) and matches rows on `Asset ID` or `ID`.
 
 Shelf enables users to import assets through CSV (Comma-Separated Values) files. The platform provides a template-based approach with validation to ensure data integrity during the import process.
 
