@@ -9,7 +9,7 @@
  * shelf.nu #2776.
  */
 
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import {
@@ -72,6 +72,7 @@ async function main() {
     console.log(`  ✅ ${url}`);
   } finally {
     await browser.close();
+    await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
   }
 }
 

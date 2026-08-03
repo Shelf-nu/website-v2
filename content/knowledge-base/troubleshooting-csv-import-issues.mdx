@@ -46,9 +46,9 @@ This happens when you use the **Import** flow (which creates new assets) instead
 
 ## Update flow: a column didn't apply
 
-In **Update Existing Assets**, an unrecognised or inapplicable column never stops the file. It is listed in the preview and skipped, so the usual symptom is that everything else updated and one column did nothing. The common causes:
+In **Update Existing Assets**, an unrecognized or inapplicable column never stops the file. It is listed in the preview and skipped, so the usual symptom is that everything else updated and one column did nothing. The common causes:
 
-- **The header is spelled differently from the export label.** Headers are matched exactly against what a Standard export writes. The value column is `Value`, not `Valuation`. A header Shelf doesn't recognise is listed under unrecognized columns and ignored.
+- **The header is spelled differently from the export label.** Headers are matched exactly against what a Standard export writes. The value column is `Value`, not `Valuation`. A header Shelf doesn't recognize is listed under unrecognized columns and ignored.
 - **The quantity cell still has its unit in it.** A Standard export writes `10 boxes` for a pooled asset. The update workflow needs `10`. A cell it can't read as a whole number is flagged in the preview with a warning and skipped, while the row's other changes still apply.
 - **The quantity columns aren't in the export.** `Min quantity`, `Unit of measure`, and `Consumption type` can be updated, but a Standard export doesn't produce them. Add the columns yourself with exactly those names.
 - **`Asset model` was set on a quantity-tracked asset.** Models group individually tracked assets only. The preview shows a warning on that cell, the model is not linked, and the rest of the row updates as normal.
