@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-07-31"
+updated: "2026-08-04"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -160,7 +160,27 @@ The value you set on an asset is the **per-unit** value. For a quantity-tracked 
 
 ## Low-stock alerts
 
-If you set a **min quantity**, Shelf watches the available count for that asset. When a stock adjustment or custody assignment takes the count to or below the threshold, the workspace owner is notified by email so you can reorder before you run out. The **Low stock** badge on the asset page clears automatically when stock rises back above the threshold through a restock or returns.
+If you set a **min quantity**, Shelf watches the available count for that asset. When a stock adjustment, a custody assignment, or a booking check-in takes the count to or below the threshold, the **workspace owner and every admin** get an email so someone can reorder before you run out, and whoever made the change gets an in-app notification.
+
+The email is sent **once per crossing**, not once per decrement. An item that is already flagged stays quiet until it recovers, so drawing a pool down over several days does not fill anyone's inbox. When stock rises back above the threshold through a restock or returns, the same people get a **Back in stock** email and the **Low stock** badge on the asset page clears itself.
+
+### Finding everything that is running low
+
+The alert tells you about one item at a time. To see the whole picture:
+
+1. Open **Assets** with the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide) enabled.
+2. Click **Filter**, then tick **Low stock only** (labelled *at or below reorder threshold*). The list narrows to quantity-tracked assets at or below their minimum.
+3. Optionally add the **Min quantity** column from the column picker so each item's threshold sits next to its live count.
+
+![The advanced asset index Filter popover, with the Low stock only checkbox described as "at or below reorder threshold".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/low-stock-filter.webp)
+
+The filter clears with the rest of your filters, and it counts toward the filter badge on the **Filter** button.
+
+---
+
+## Every quantity change is logged
+
+Quick adjustments are not the only thing recorded. Changing the quantity on the asset edit form, changing the **min quantity** threshold, and the decrements a booking check-in applies each write an entry to the asset's **Activity** tab with the previous and new value and the person responsible, plus a stock adjustment against the pool. Whatever route stock took, the history explains it.
 
 ---
 

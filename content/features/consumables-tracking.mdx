@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/consumables-tracking"
 date: "2026-06-30"
-updated: "2026-07-31"
+updated: "2026-08-04"
 seo:
   title: "Consumables Tracking Software — Track Supplies by Quantity | Shelf"
   description: "Track consumables and supplies by quantity alongside your assets. Units of measure, min-quantity low-stock alerts, Used-up or Returnable consumption, and quantity-aware custody, bookings, and kits — open source, free to start."
@@ -77,11 +77,23 @@ Custody works at the unit level. Assign **any portion** of a pool to a person, r
 
 ## Low-stock alerts
 
-Set a **minimum quantity** threshold on any quantity-tracked item and Shelf watches it for you. When a stock adjustment or custody assignment takes available stock to or below that minimum, the **workspace owner** gets an email alert and an in-app notification goes to whoever made the change. The **Low stock** badge on the asset page clears automatically once stock rises back above the threshold.
+Set a **minimum quantity** threshold on any quantity-tracked item and Shelf watches it for you. When a stock adjustment, a custody assignment, or a booking check-in takes available stock to or below that minimum, the **workspace owner and every admin** get an email alert, and an in-app notification goes to whoever made the change. When stock recovers, the same people get a **Back in stock** notice, and the **Low stock** badge on the asset page clears itself.
 
-![Low-stock alert flow: when available stock drops to or below the minimum, Shelf emails the workspace owner and posts an in-app notification to whoever made the change.](/images/features/consumables/low-stock-alert.svg)
+The alert fires **once per crossing**, not on every decrement. Shelf remembers that an item is already flagged and stays quiet until it recovers, so drawing a pool down over a week does not produce a week of email.
 
-Alerts only fire when a minimum is set — no threshold, no noise. (There's no low-stock dashboard widget or list filter; the alert is the email plus the in-app notification.)
+![Low-stock alert flow: when available stock drops to or below the minimum, Shelf emails the workspace owner and every admin and posts an in-app notification to whoever made the change. The alert fires once per crossing, and a Back in stock notice follows when the pool recovers.](/images/features/consumables/low-stock-alert.svg)
+
+Alerts only fire when a minimum is set, so no threshold means no noise.
+
+To see everything running low at once, open the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide), click **Filter**, and tick **Low stock only**. Add **Min quantity** as a column and each item's threshold sits next to its live count.
+
+![The advanced asset index Filter popover, with the Low stock only checkbox described as "at or below reorder threshold".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/low-stock-filter.webp)
+
+---
+
+## Every stock change is on the record
+
+Quick adjustments aren't the only thing tracked. Changing a count on the asset edit form, or changing the **min quantity** threshold itself, writes its own entry to the asset's **Activity** tab with the old and new value and who made the change, and the decrements a booking check-in applies are logged the same way. However stock moved, it left a trail, so "who took 40 cables and when" has an answer without anyone keeping a side spreadsheet.
 
 ---
 

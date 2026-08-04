@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-07-22"
+updated: "2026-08-04"
 layout: "knowledge-base"
 ---
 
@@ -78,6 +78,12 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 - **contains**: Has specific tag
 - **contains all**: Has all specified tags
 - **contains any**: Has any of specified tags
+
+### Low stock only
+
+The **Filter** panel carries a single checkbox, **Low stock only** (*at or below reorder threshold*), just above the **Add filter** row. It narrows the list to [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) whose available count has reached or fallen below their **Min quantity**, and it applies immediately rather than waiting for **Apply filters**.
+
+It stacks with everything else, so you can combine it with a location or category filter to see what a single stockroom needs. It also counts toward the filter badge on the **Filter** button and clears with **Clear all filters**. Add **Min quantity** from the column picker to see each item's threshold next to its live count.
 
 ## Natural and Advanced Sorting
 

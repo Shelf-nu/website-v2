@@ -1,6 +1,6 @@
 <svg width="100%" viewBox="0 0 680 250" role="img" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
 <title>Low-stock alerts</title>
-<desc>When available stock for an item drops to or below its minimum-quantity threshold, Shelf emails the workspace owner and posts an in-app notification to whoever made the change. Alerts fire only when a minimum is set and clear automatically when stock recovers.</desc>
+<desc>When available stock for an item drops to or below its minimum-quantity threshold, Shelf emails the workspace owner and every admin, and posts an in-app notification to whoever made the change. The alert fires once per crossing, and a Back in stock notice follows when the pool recovers.</desc>
 <defs>
   <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
     <path d="M1 1 L9 5 L1 9" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -29,8 +29,8 @@
 <rect x="446" y="90" width="26" height="18" rx="3" fill="#ffffff" stroke="#ea580c" stroke-width="1.5"/>
 <polyline points="447,92 459,101 471,92" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="484" y="98" font-size="11" font-weight="700" fill="#0f172a">Email</text>
-<text x="484" y="113" font-size="11" fill="#64748b">to the workspace owner</text>
-<text x="446" y="134" font-size="11" fill="#9a3412">“Low stock: USB-C cables (40 left)”</text>
+<text x="484" y="113" font-size="11" fill="#64748b">to the owner and every admin</text>
+<text x="446" y="134" font-size="11" fill="#9a3412">“Low stock alert: USB-C cables”</text>
 
 <!-- in-app card -->
 <rect x="430" y="156" width="210" height="56" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
@@ -39,5 +39,5 @@
 <text x="484" y="182" font-size="11" font-weight="700" fill="#0f172a">In-app alert</text>
 <text x="484" y="197" font-size="11" fill="#64748b">to whoever made the change</text>
 
-<text x="340" y="236" text-anchor="middle" font-size="12" fill="#94a3b8">Fires only when a minimum is set · clears automatically when stock recovers.</text>
+<text x="340" y="236" text-anchor="middle" font-size="12" fill="#94a3b8">Fires once per crossing · a Back in stock notice follows when the pool recovers.</text>
 </svg>
