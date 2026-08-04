@@ -1,0 +1,113 @@
+---
+title: "Date, Time, and Time Zone Preferences"
+description: "Choose how dates and times appear for your Shelf account: date order, 12 or 24-hour clock, which day the week starts on, and your time zone. The setting follows you across the app, exports, PDFs, and emails."
+category: "Getting Started"
+date: "2026-08-04"
+updated: "2026-08-04"
+layout: "knowledge-base"
+seo:
+  keywords:
+    - "date format"
+    - "time zone"
+    - "24 hour time"
+    - "week starts on Monday"
+    - "regional settings"
+    - "DD/MM/YYYY"
+---
+
+Is `04/03/2026` the 4th of March or the 3rd of April? Shelf used to answer that with your browser's language setting, which meant most people outside the US were reading American dates with no way to change it. You can now choose.
+
+**Available with:** All Shelf plans and subscriptions
+
+---
+
+## Where the setting lives
+
+1. Click your name at the bottom of the sidebar, then **Account settings**
+2. Stay on the **General** tab
+3. Scroll to the **Language & region** card
+
+![The Language & region card in Shelf account settings, with Date format, Time format, Week starts on, and Time zone selectors above a live preview reading "Dates will look like: 08/04/2026, 9:36 AM"](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/language-region-card.webp)
+
+Change what you want, watch the **Dates will look like** preview at the bottom update as you go, then click **Save**.
+
+---
+
+## The four settings
+
+### Date format
+
+| Option | Looks like |
+|---|---|
+| Day / Month / Year | `03/04/2026` |
+| Month / Day / Year | `04/03/2026` |
+| Year / Month / Day | `2026-04-03` |
+| Month name / Day / Year | `Jul 20, 2026` |
+| Day / Month name / Year | `20 Jul 2026` |
+
+The two month-name options are the ones to pick if you never want to second-guess a date again. Month names are shown in English regardless of the option you choose; this setting controls the order and style of the date, not the language of the app.
+
+### Time format
+
+**12-hour** (`2:30 PM`) or **24-hour** (`14:30`).
+
+### Week starts on
+
+**Monday**, **Sunday**, or **Saturday**. This is the first column in every calendar and date picker in Shelf, including the booking calendar and the availability view.
+
+### Time zone
+
+A searchable list of time zones. Type a city or region name to narrow it down. Every timestamp in Shelf is stored the same way regardless of who is looking at it; this setting decides which clock it is shown on.
+
+---
+
+## It is your setting, not your workspace's
+
+These preferences belong to **your user account**, so two people in the same workspace can read the same booking in their own format and their own time zone. Nobody has to agree on a house style, and switching workspaces does not change how you read dates.
+
+---
+
+## Where it applies
+
+Once saved, the preference follows you everywhere a date or time appears:
+
+- **Around the app**: asset and booking lists, the calendar, reports, reminders, filter chips, custom fields of type Date, and the command palette
+- **Date and time fields you fill in**: the booking form, reminders, audits, working-hours overrides, and advanced index filters all use one shared picker that reads in your format, starts the week on your chosen day, and offers a 12 or 24-hour time control to match
+- **CSV exports**: assets, bookings, and notes export with your format, so a file you download does not need reformatting before it opens in a spreadsheet
+- **PDFs**: booking and audit receipts and report exports
+- **Emails**: booking notifications, audit reminders, and subscription notices
+
+Emails follow the **recipient's** preferences rather than the sender's. If you book equipment for a colleague in another country, the confirmation they receive is in their format and their time zone, not yours.
+
+---
+
+## What you will see the first time
+
+Shelf detects your format and time zone from your browser the first time you sign in and saves those as concrete values, so a new account already reads correctly before anyone touches the settings. Existing accounts are filled in the same way on their next visit.
+
+There is no "Automatic" option. What is stored is a real choice, which is what lets exports, PDFs, and emails render the same way as the screen, since those are produced on the server where there is no browser to ask.
+
+---
+
+## Common questions
+
+**I changed the setting but an old export still looks wrong.**
+Files are formatted at the moment they are generated. Export again and the new file follows the new setting.
+
+**My colleague sees a different time on the same booking.**
+That is expected if you are in different time zones. You are both looking at the same moment, shown on your own clock. Check the **Time zone** row on each account if the difference does not match the offset you expect.
+
+**Can I set this for the whole workspace at once?**
+No. The preference is per user by design, so a distributed team does not have to settle on one region's conventions. Each person sets their own once and it holds everywhere.
+
+**Can I change the language of the app?**
+Not yet. This card controls date and time presentation only; the interface, including month names, is English.
+
+---
+
+## Related Articles
+
+- [How to Create a Booking](/knowledge-base/how-to-create-a-booking)
+- [Working Hours: Set Operating Schedules for Your Workspace](/knowledge-base/working-hours-set-operating-schedules-for-your-workspace)
+- [Advanced Asset Index: Complete Guide](/knowledge-base/advanced-asset-index-complete-guide)
+- [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf)
