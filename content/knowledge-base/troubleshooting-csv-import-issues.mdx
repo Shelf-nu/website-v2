@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-06-23"
+updated: "2026-08-03"
 layout: "knowledge-base"
 ---
 
@@ -41,6 +41,23 @@ This happens when you use the **Import** flow (which creates new assets) instead
 - **Date custom fields** (`cf:…,type:date`): values must be in `YYYY-MM-DD` format (e.g. `2026-04-17`). Any other format — `04/17/2026`, `17-04-2026`, `17 Apr 2026` — and impossible calendar dates like `2026-02-31` now **stop the import with a clear error** so you can fix the value, rather than being accepted. (Previously a day-first dash format such as `03-04-2026` could be silently stored as a wrong date like `1908-10-16`; that no longer happens.) Reformat the column to `YYYY-MM-DD` and re-import.
 - **Number fields**: remove currency symbols and thousands separators. `12359.00` works; `$12,359.00` does not.
 - **Boolean fields**: custom-field booleans accept only `yes` or `no` (case-insensitive). `true`, `false`, `1`, `0` are silently skipped — the value will not be saved. For the `bookable` column, only the exact string `no` makes an asset non-bookable — `false`, blank, and `yes` all leave it bookable.
+
+---
+
+## Update flow: a column didn't apply
+
+In **Update Existing Assets**, an unrecognized or inapplicable column never stops the file. It is listed in the preview and skipped, so the usual symptom is that everything else updated and one column did nothing. The common causes:
+
+- **The header is spelled differently from the export label.** Headers are matched exactly against what a Standard export writes. The value column is `Value`, not `Valuation`. A header Shelf doesn't recognize is listed under unrecognized columns and ignored.
+- **The quantity cell still has its unit in it.** A Standard export writes `10 boxes` for a pooled asset. The update workflow needs `10`. A cell it can't read as a whole number is flagged in the preview with a warning and skipped, while the row's other changes still apply.
+- **The quantity columns aren't in the export.** `Min quantity`, `Unit of measure`, and `Consumption type` can be updated, but a Standard export doesn't produce them. Add the columns yourself with exactly those names.
+- **`Asset model` was set on a quantity-tracked asset.** Models group individually tracked assets only. The preview shows a warning on that cell, the model is not linked, and the rest of the row updates as normal.
+- **A quantity column was set on an individually tracked asset.** Those cells are ignored without a warning, since they ride along in every export.
+- **You tried to change `Tracking method`.** Asset type is fixed at creation, so the cell is ignored whatever it says.
+- **A blank cell didn't clear the value.** `Asset model`, `Quantity`, `Min quantity`, `Unit of measure`, and `Consumption type` keep their current value when the cell is empty. Clear them on the asset itself.
+- **You uploaded an Import-ready export.** Import-ready files have no `Asset ID` or `ID` column, so there is nothing to match rows on and the upload stops before the preview. Export again with the **Standard** format.
+
+Full column reference: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv#what-you-can-update).
 
 ---
 

@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-07-28"
+updated: "2026-08-05"
 layout: "knowledge-base"
 ---
 
@@ -53,6 +53,14 @@ Kits can exist in three states:
 ## Kit Assets
 
 Assets can be added regardless of individual availability status. Even items marked as unavailable for bookings can be included. However, kits cannot be assigned until all contained assets become available.
+
+## Quantity-Tracked Stock in Kits
+
+A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is a pool of identical units rather than a single item, so the same asset can sit in several kits at once. Each kit holds its own slice: 3 sandbags in *Grip A*, 3 in *Grip B*, and the rest of the pool free on the shelf.
+
+On the asset's **Quantity Overview** card, every kit's slice adds into the **In kits** row. Those units are counted there once, whether the kit is sitting on the shelf or out on a booking, and they are not part of **Available**. The **Checked out (bookings)** row is a different measure: it counts every unit physically out right now, the loose ones and the kit-held ones together. The two rows overlap on purpose, so don't add them up.
+
+A single booking can hold the same pool from more than one direction, some units booked loose and more carried in by the kits you added. Checking the booking out hands over every slice it holds, and the [pull-list PDF](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings) prints one row per source so the packer can see which kit each portion belongs to.
 
 ## Kit Location
 
