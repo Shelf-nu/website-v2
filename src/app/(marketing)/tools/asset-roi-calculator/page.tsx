@@ -11,7 +11,6 @@ import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 const jsonLd = buildToolPageJsonLd({
     name: "Shelf Asset Tracking ROI Calculator",
-    applicationCategory: "FinanceApplication",
     url: "https://www.shelf.nu/tools/asset-roi-calculator",
     description:
         "Free asset tracking ROI calculator — estimate the true cost of poor equipment management (losses, ghost assets, duplicate purchases) and the payback of switching to Shelf.",

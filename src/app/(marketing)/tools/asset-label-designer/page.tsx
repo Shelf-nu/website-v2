@@ -20,7 +20,6 @@ export const metadata: Metadata = {
 export default function AssetLabelDesignerPage() {
     const jsonLd = buildToolPageJsonLd({
         name: "Shelf Asset Label Designer",
-        applicationCategory: "BusinessApplication",
         url: "https://www.shelf.nu/tools/asset-label-designer",
         description:
             "Create and print professional asset labels and tags with QR codes. Exports to PNG, SVG, and PDF.",

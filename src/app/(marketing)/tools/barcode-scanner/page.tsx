@@ -24,18 +24,15 @@ export default function BarcodeScannerPage() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@graph": [
+            // WebPage, not SoftwareApplication — see src/lib/tool-jsonld.ts for
+            // why. This page builds its graph inline rather than via that
+            // helper, so the same reasoning has to be applied here by hand.
             {
-                "@type": "SoftwareApplication",
+                "@type": "WebPage",
                 "name": "Shelf Barcode Scanner",
-                "applicationCategory": "UtilitiesApplication",
-                "operatingSystem": "Any",
                 "url": "https://www.shelf.nu/tools/barcode-scanner",
                 "description": "Free in-browser barcode scanner. Decodes QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, Aztec, PDF417 and more — all locally on your device.",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD"
-                }
+                "isAccessibleForFree": true
             },
             {
                 "@type": "FAQPage",

@@ -24,7 +24,6 @@ export const metadata: Metadata = {
 export default function QrCodeGeneratorPage() {
     const jsonLd = buildToolPageJsonLd({
         name: "Shelf QR Code Generator",
-        applicationCategory: "UtilitiesApplication",
         url: "https://www.shelf.nu/tools/qr-code-generator",
         description:
             "Create professional, high-resolution QR codes in PNG and SVG directly in your browser. Free, no signup.",

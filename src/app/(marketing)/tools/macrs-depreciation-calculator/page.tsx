@@ -21,7 +21,6 @@ export const metadata: Metadata = {
 export default function MacrsDepreciationCalculatorPage() {
     const jsonLd = buildToolPageJsonLd({
         name: "Shelf MACRS Depreciation Calculator",
-        applicationCategory: "FinanceApplication",
         url: "https://www.shelf.nu/tools/macrs-depreciation-calculator",
         description:
             "Calculate MACRS tax depreciation with official IRS Publication 946 rates. GDS and ADS systems, all property classes (3–20 year), estimated tax savings.",
