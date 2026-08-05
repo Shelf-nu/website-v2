@@ -3,7 +3,7 @@ title: "Exporting Data from Shelf"
 description: "Export asset data from Shelf as CSV: selected assets, filtered results, or a full workspace backup. Covers the Standard and Import-ready formats, what each includes, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-07-22"
+updated: "2026-08-03"
 layout: "knowledge-base"
 ---
 
@@ -137,6 +137,11 @@ See [Asset Reminders](/knowledge-base/asset-reminders) for setting up maintenanc
 A common workflow: export a filtered selection, edit the CSV in Excel or Google Sheets, re-import to apply changes at scale. The **Update Existing Assets** feature handles this with a preview step that shows every field change before anything is saved.
 
 > **Important**: Only use **Asset Index exports** for re-import updates, not the Workspace Backup CSV. Backup exports include internal fields not intended for re-import, and uploading one as an update file can corrupt data. To create new assets in another workspace from an export, use the **Import-ready** format described above.
+
+Two format details decide whether your file works as an update:
+
+- **Pick Standard, not Import-ready.** The update workflow matches rows on `Asset ID` or `ID`, and Import-ready files carry neither: they use the importer's own lowercase headers to create assets rather than edit them.
+- **Quantity needs a manual pass.** A Standard export writes a pooled asset's quantity with its unit attached, as `10 boxes`, and the update workflow needs the number alone. `Min quantity`, `Unit of measure`, and `Consumption type` are not exported at all, so add those columns yourself, spelled exactly that way, when you want to change them in bulk.
 
 Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
 
