@@ -7,6 +7,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { CTA } from "@/components/sections/cta";
 import { TrustedBy } from "@/components/sections/trusted-by";
 import { G2Badge } from "@/components/sections/g2-badge";
+import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
     title: 'Free Online Barcode Scanner — Scan QR, UPC, Code 128, EAN | Shelf',
@@ -21,66 +22,34 @@ export const metadata: Metadata = {
 };
 
 export default function BarcodeScannerPage() {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
-            // WebPage, not SoftwareApplication — see src/lib/tool-jsonld.ts for
-            // why. This page builds its graph inline rather than via that
-            // helper, so the same reasoning has to be applied here by hand.
+    const jsonLd = buildToolPageJsonLd({
+        name: "Shelf Barcode Scanner",
+        url: "https://www.shelf.nu/tools/barcode-scanner",
+        description:
+            "Free in-browser barcode scanner. Decodes QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, Aztec, PDF417 and more — all locally on your device.",
+        faqs: [
             {
-                "@type": "WebPage",
-                "name": "Shelf Barcode Scanner",
-                "url": "https://www.shelf.nu/tools/barcode-scanner",
-                "description": "Free in-browser barcode scanner. Decodes QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, Aztec, PDF417 and more — all locally on your device.",
-                "isAccessibleForFree": true
+                question: "What barcode formats does this scanner support?",
+                answer: "It decodes both 2D barcodes (QR Code, Data Matrix, Aztec, PDF417) and 1D barcodes (UPC-A, UPC-E, EAN-8, EAN-13, Code 39, Code 93, Code 128, ITF, Codabar, RSS-14). One tool for almost every barcode you'll encounter.",
             },
             {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "What barcode formats does this scanner support?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "It decodes both 2D barcodes (QR Code, Data Matrix, Aztec, PDF417) and 1D barcodes (UPC-A, UPC-E, EAN-8, EAN-13, Code 39, Code 93, Code 128, ITF, Codabar, RSS-14). One tool for almost every barcode you'll encounter."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Does this upload my image to a server?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "No. All decoding happens locally in your browser using JavaScript. Your images effectively never leave your device — perfect for sensitive inventory or regulated environments."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Why can't it read my barcode?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Ensure the image is well-lit, in focus, and the barcode is not damaged or obstructed. High contrast between the bars (or QR modules) and the background helps. For 1D barcodes, the bars need to be clearly resolved — very low resolution images may not work."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What's the difference between a barcode and a QR code?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "A QR code is a type of barcode. 'Barcode' is the umbrella term covering both 1D barcodes (the parallel-line patterns on grocery items, like UPC and EAN) and 2D barcodes (square patterns that store data in two dimensions, like QR Code and Data Matrix). This tool reads all of them."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Can I use this for asset tracking?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes. This is the same scanning engine used inside Shelf, our asset management platform. For full asset tracking — inventory, custody, bookings, audit trails — sign up for a free Shelf account and use our mobile and web apps to scan codes and update records in real time."
-                        }
-                    }
-                ]
-            }
-        ]
-    };
+                question: "Does this upload my image to a server?",
+                answer: "No. All decoding happens locally in your browser using JavaScript. Your images effectively never leave your device — perfect for sensitive inventory or regulated environments.",
+            },
+            {
+                question: "Why can't it read my barcode?",
+                answer: "Ensure the image is well-lit, in focus, and the barcode is not damaged or obstructed. High contrast between the bars (or QR modules) and the background helps. For 1D barcodes, the bars need to be clearly resolved — very low resolution images may not work.",
+            },
+            {
+                question: "What's the difference between a barcode and a QR code?",
+                answer: "A QR code is a type of barcode. 'Barcode' is the umbrella term covering both 1D barcodes (the parallel-line patterns on grocery items, like UPC and EAN) and 2D barcodes (square patterns that store data in two dimensions, like QR Code and Data Matrix). This tool reads all of them.",
+            },
+            {
+                question: "Can I use this for asset tracking?",
+                answer: "Yes. This is the same scanning engine used inside Shelf, our asset management platform. For full asset tracking — inventory, custody, bookings, audit trails — sign up for a free Shelf account and use our mobile and web apps to scan codes and update records in real time.",
+            },
+        ],
+    });
 
     return (
         <PagefindWrapper type="Page" title="Free Online Barcode Scanner — QR, UPC, Code 128, EAN" keywords="barcode scanner online barcode reader scan barcode qr code scanner upc scanner ean scanner code 128 reader">
