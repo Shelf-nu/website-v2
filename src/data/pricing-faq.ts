@@ -1,12 +1,33 @@
+import {
+    formatUSD,
+    getAddOn,
+    services,
+    ssoAnnualCost,
+    tierProse,
+} from "./pricing.addons";
+import { pricingPlans } from "./pricing";
+
 export interface PricingFAQ {
     question: string;
     answer: string;
 }
 
+// Add-on figures are interpolated from src/data/pricing.addons.ts (verified
+// against Stripe) rather than typed as prose — this FAQ is the surface that
+// previously drifted, publishing "$170/yr" for a barcode add-on that has had
+// a live monthly price customers were already paying.
+const audits = getAddOn("audits")!;
+const barcodes = getAddOn("alternative-barcodes")!;
+const sso = getAddOn("sso")!;
+const ssoTiers = sso.tiers!;
+const migration = services.find((s) => s.id === "migration-support")!;
+const plusPlan = pricingPlans.find((p) => p.id === "plus")!;
+const teamPlan = pricingPlans.find((p) => p.id === "team")!;
+
 export const pricingFaqs: PricingFAQ[] = [
     {
         question: "What is your pricing?",
-        answer: "Shelf offers four plans: Personal (free), Plus ($34/month), Team ($67/month), and Enterprise (custom pricing). The Personal plan is designed for hobbyists and small personal collections. Plus is for power users who need unlimited custom fields and CSV import/export. Team unlocks multi-user collaboration with bookings and reservations. Enterprise adds SSO/SAML, dedicated hosting, custom agreements, and compliance documentation."
+        answer: `Shelf offers four plans: Personal (free), Plus (${plusPlan.priceMonthly}/month or ${plusPlan.priceYearly}/year), Team (${teamPlan.priceMonthly}/month or ${teamPlan.priceYearly}/year), and Enterprise (custom pricing). The Personal plan is designed for hobbyists and small personal collections. Plus is for power users who need unlimited custom fields and CSV import/export. Team unlocks multi-user collaboration with bookings and reservations. Enterprise adds SSO/SAML, dedicated hosting, custom agreements, and compliance documentation. Audits, Alternative Barcodes, and SSO are available as paid add-ons on the Team plan.`
     },
     {
         question: "How is an asset defined?",
@@ -26,15 +47,21 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "What does the SSO add-on cost?",
-        answer: "SSO (SAML — works with Microsoft Entra, Google Workspace, and other identity providers) is a paid add-on on the Team plan, priced per SSO user. On annual billing: $9/user/mo for the first 15 users, $4/user/mo for users 16–50, $1/user/mo for users 51–250, and $0.05/user/mo beyond 250. (Monthly billing is available at higher per-user rates.) Example: 20 SSO users ≈ $1,860/year on top of your plan. Automatic user provisioning is included with SSO at no extra charge. SSO applies to all users in the workspace. For large organizations we also offer an unlimited-user SSO option — contact us for a quote. Regular username/password users are always unlimited and included in the Team plan."
+        answer: `SSO (SAML 2.0 — works with Microsoft Entra, Google Workspace, Okta, and other identity providers) is a paid add-on on the Team plan, priced per user who signs in via SSO. On annual billing: ${ssoTiers
+            .map((t, i) => `${formatUSD(t.yearlyPerUser)}/user/mo for ${tierProse(t, i)}`)
+            .join(", ")}. Bands are cumulative, so the first ${ssoTiers[0].to} users always bill at the first-tier rate. Example: 20 SSO users is ${formatUSD(
+            ssoAnnualCost(20)
+        )}/year on top of your plan. On monthly billing the first ${ssoTiers[0].to} users are ${formatUSD(
+            ssoTiers[0].monthlyPerUser!
+        )}/user/mo; the higher bands are available on annual billing only. For large organizations we also offer an unlimited-user SSO licence that removes per-seat counting entirely — above roughly ${sso.unlimitedEnquiryThreshold} SSO users it usually works out cheaper than per-seat, so contact us for a quote. Automatic user provisioning (SCIM) is included with SSO at no extra charge, and SSO applies to all users in the workspace. Regular username/password users are always unlimited and included in the Team plan.`
     },
     {
         question: "What add-ons are available?",
-        answer: "Add-ons extend any Team workspace and can be turned on or off anytime from your workspace settings — you're never locked in. Audits ($37/mo or $205/yr): scan your inventory against what should be there and instantly see found, missing, and unexpected items. Alternative Barcodes ($170/yr): keep the labels already on your assets instead of re-tagging. If you add one mid-cycle on annual billing, you are only charged a prorated amount for the time remaining until your renewal."
+        answer: `Add-ons extend any Team workspace and can be turned on or off anytime from your workspace settings — you're never locked in. Audits (${formatUSD(audits.priceMonthly!)}/mo or ${formatUSD(audits.priceYearly!)}/yr): scan your inventory against what should be there and instantly see found, missing, and unexpected items. Alternative Barcodes (${formatUSD(barcodes.priceMonthly!)}/mo or ${formatUSD(barcodes.priceYearly!)}/yr): keep the labels already on your assets instead of re-tagging — supports Code128, Code39, EAN-13, DataMatrix, and QR codes. SSO/SAML is also available, priced per user who signs in. Both Audits and Alternative Barcodes are free to enable during the 7-day Team trial. If you add one mid-cycle on annual billing, you are only charged a prorated amount for the time remaining until your renewal.`
     },
     {
         question: "Can we run multiple workspaces?",
-        answer: "Yes. Each Team workspace is its own subscription at $67/month or $370/year — many organizations run one workspace per school, site, department, or client. Team members can be invited to multiple workspaces, so one person can work across all of them. Need several workspaces on a single annual invoice or PO? We do that — just ask. Running five or more workspaces, or want them under one agreement with SSO? Contact us — that is what our Enterprise agreements are for."
+        answer: `Yes. Each Team workspace is its own subscription at ${teamPlan.priceMonthly}/month or ${teamPlan.priceYearly}/year — many organizations run one workspace per school, site, department, or client. Team members can be invited to multiple workspaces, so one person can work across all of them. Need several workspaces on a single annual invoice or PO? We do that — just ask. Running five or more workspaces, or want them under one agreement with SSO? Contact us — that is what our Enterprise agreements are for.`
     },
     {
         question: "Can I upgrade or downgrade my plan?",
@@ -50,7 +77,9 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "Will you help us switch to Shelf?",
-        answer: "Yes — we will always point you in the right direction. Every plan supports self-serve CSV import, and our team is happy to advise on preparing your file and mapping your fields. How much hands-on help is included depends on your plan and the features you have licensed — and if you would rather have us do the migration for you (data, images, and codes moved into Shelf), our one-time Migration Support service starts at $175. If your assets are already labeled from another system, the Alternative Barcodes add-on lets you keep those labels with no re-tagging."
+        answer: `Yes — we will always point you in the right direction. Self-serve CSV import is available on the Plus, Team, and Enterprise plans, and our team is happy to advise on preparing your file and mapping your fields. How much hands-on help is included depends on your plan and the features you have licensed — and if you would rather have us do the migration for you (data, images, and codes moved into Shelf), our one-time Migration Support service starts at ${formatUSD(
+            migration.priceFrom
+        )}. If your assets are already labeled from another system, the Alternative Barcodes add-on lets you keep those labels with no re-tagging.`
     },
     {
         question: "Is my data secure?",

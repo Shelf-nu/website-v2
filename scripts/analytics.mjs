@@ -946,6 +946,49 @@ async function gscPageMetrics(pagePath, startDate, endDate) {
     };
 }
 
+/**
+ * Conversion metrics for an experiment measured in PostHog rather than GSC.
+ *
+ * Not every experiment is a SERP experiment. A change to on-page behaviour —
+ * a billing-toggle default, a CTA position — moves conversion without moving
+ * search at all, and pulling GSC numbers for it reports an unrelated metric
+ * as the result. Experiments opt in with `metric: "conversion"`.
+ */
+async function conversionMetrics(pagePath, eventName, startDate, endDate) {
+    // Both sides of the ratio must be scoped to the same page. trackEvent()
+    // stamps every custom event with page_path, so without that predicate the
+    // numerator would count the event firing anywhere on the site while the
+    // denominator stayed page-scoped — harmless for pricing_cta, which only
+    // fires on /pricing, but silently wrong for a site-wide event like
+    // demo_cta.
+    const rows = await phQuery(`
+        SELECT
+            countIf(event = '$pageview' AND properties.$pathname = '${pagePath}') AS views,
+            countIf(event = '${eventName}' AND properties.page_path = '${pagePath}') AS conversions
+        FROM events
+        WHERE timestamp >= toDate('${startDate}')
+          AND timestamp < toDate('${endDate}') + INTERVAL 1 DAY
+          AND ((event = '${eventName}' AND properties.page_path = '${pagePath}')
+               OR (event = '$pageview' AND properties.$pathname = '${pagePath}'))
+    `);
+
+    if (!rows || rows.length === 0) return null;
+    const [views, conversions] = rows[0];
+    if (!views) return null;
+
+    return {
+        views,
+        conversions,
+        rate: parseFloat(((conversions / views) * 100).toFixed(2)),
+    };
+}
+
+/** True for experiments measured in PostHog. Absent `metric` means GSC, so
+ *  every pre-existing experiment keeps its original behaviour untouched. */
+function isConversionExperiment(exp) {
+    return exp.metric === "conversion";
+}
+
 async function cmdExperiments() {
     const subcmd = args[1];
 
@@ -963,6 +1006,19 @@ async function cmdExperiments() {
         }
         console.log(`\n📐 Capturing baseline for ${exp.id} (${exp.page})...`);
         const [start, end] = exp.baseline.dateRange;
+
+        if (isConversionExperiment(exp)) {
+            const m = await conversionMetrics(exp.page, exp.conversionEvent, start, end);
+            if (m) {
+                Object.assign(exp.baseline, { ...m, capturedAt: new Date().toISOString() });
+                saveExperiments(data);
+                console.log(`  ✅ Baseline saved: ${m.views.toLocaleString()} views | ${m.conversions} ${exp.conversionEvent} | ${m.rate}% rate`);
+            } else {
+                console.log("  ⚠️  No PostHog data found for this page/date range.");
+            }
+            return;
+        }
+
         const metrics = await gscPageMetrics(exp.page, start, end);
         if (metrics) {
             exp.baseline.clicks = metrics.clicks;
@@ -1028,10 +1084,16 @@ async function cmdExperiments() {
         console.log(`  Before: "${exp.before}"`);
         console.log(`  After:  "${exp.after}"`);
 
+        const conv = isConversionExperiment(exp);
+
         // Show baseline if captured
         if (exp.baseline.capturedAt) {
             const b = exp.baseline;
-            console.log(`  BASELINE (${b.dateRange[0]} → ${b.dateRange[1]}):  ${b.clicks} clicks  |  ${b.impressions?.toLocaleString()} impr  |  ${b.ctr}% CTR  |  pos ${b.position}`);
+            console.log(
+                conv
+                    ? `  BASELINE (${b.dateRange[0]} → ${b.dateRange[1]}):  ${b.views?.toLocaleString()} views  |  ${b.conversions} ${exp.conversionEvent}  |  ${b.rate}% rate`
+                    : `  BASELINE (${b.dateRange[0]} → ${b.dateRange[1]}):  ${b.clicks} clicks  |  ${b.impressions?.toLocaleString()} impr  |  ${b.ctr}% CTR  |  pos ${b.position}`
+            );
         }
 
         // Auto-pull results for active experiments past their evaluation window
@@ -1040,14 +1102,15 @@ async function cmdExperiments() {
             const resultEnd = dateStr(new Date());
             console.log(`  ⏳ Auto-pulling results (${resultStart} → ${resultEnd})...`);
 
-            const metrics = await gscPageMetrics(exp.page, resultStart, resultEnd);
+            const metrics = conv
+                ? await conversionMetrics(exp.page, exp.conversionEvent, resultStart, resultEnd)
+                : await gscPageMetrics(exp.page, resultStart, resultEnd);
+
             if (metrics) {
-                exp.result.clicks = metrics.clicks;
-                exp.result.impressions = metrics.impressions;
-                exp.result.ctr = metrics.ctr;
-                exp.result.position = metrics.position;
-                exp.result.dateRange = [resultStart, resultEnd];
-                exp.result.capturedAt = new Date().toISOString();
+                Object.assign(exp.result, metrics, {
+                    dateRange: [resultStart, resultEnd],
+                    capturedAt: new Date().toISOString(),
+                });
                 exp.status = "evaluating";
                 updated = true;
             }
@@ -1056,15 +1119,20 @@ async function cmdExperiments() {
         // Show results comparison if available
         if (exp.result.capturedAt) {
             const r = exp.result;
-            console.log(`  RESULT   (${r.dateRange[0]} → ${r.dateRange[1]}):  ${r.clicks} clicks  |  ${r.impressions?.toLocaleString()} impr  |  ${r.ctr}% CTR  |  pos ${r.position}`);
+            const b = exp.baseline;
+            const pct = (now, then) => (then ? `${(((now - then) / then) * 100).toFixed(0)}%` : "n/a");
 
-            if (exp.baseline.capturedAt) {
-                const b = exp.baseline;
-                const clicksDelta = b.clicks ? `${((r.clicks - b.clicks) / b.clicks * 100).toFixed(0)}%` : "n/a";
-                const imprDelta = b.impressions ? `${((r.impressions - b.impressions) / b.impressions * 100).toFixed(0)}%` : "n/a";
-                const ctrDelta = b.ctr ? `${((r.ctr - b.ctr) / b.ctr * 100).toFixed(0)}%` : "n/a";
-                const posDelta = b.position ? (r.position - b.position).toFixed(1) : "n/a";
-                console.log(`  CHANGE:  ${clicksDelta} clicks  |  ${imprDelta} impr  |  ${ctrDelta} CTR  |  ${posDelta > 0 ? "+" : ""}${posDelta} pos`);
+            if (conv) {
+                console.log(`  RESULT   (${r.dateRange[0]} → ${r.dateRange[1]}):  ${r.views?.toLocaleString()} views  |  ${r.conversions} ${exp.conversionEvent}  |  ${r.rate}% rate`);
+                if (b.capturedAt) {
+                    console.log(`  CHANGE:  ${pct(r.views, b.views)} views  |  ${pct(r.conversions, b.conversions)} ${exp.conversionEvent}  |  ${pct(r.rate, b.rate)} rate`);
+                }
+            } else {
+                console.log(`  RESULT   (${r.dateRange[0]} → ${r.dateRange[1]}):  ${r.clicks} clicks  |  ${r.impressions?.toLocaleString()} impr  |  ${r.ctr}% CTR  |  pos ${r.position}`);
+                if (b.capturedAt) {
+                    const posDelta = b.position ? (r.position - b.position).toFixed(1) : "n/a";
+                    console.log(`  CHANGE:  ${pct(r.clicks, b.clicks)} clicks  |  ${pct(r.impressions, b.impressions)} impr  |  ${pct(r.ctr, b.ctr)} CTR  |  ${posDelta > 0 ? "+" : ""}${posDelta} pos`);
+                }
             }
         } else if (exp.status === "active" && exp.deployedAt) {
             const evalDate = new Date(new Date(exp.deployedAt).getTime() + exp.evaluateAfterDays * 24 * 60 * 60 * 1000);

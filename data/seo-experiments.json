@@ -1902,6 +1902,46 @@
         "wf_fbc2d7dc"
       ],
       "learnings": ""
+    },
+    {
+      "id": "exp-047",
+      "page": "/pricing",
+      "field": "pricing.billingToggleDefault",
+      "metric": "conversion",
+      "conversionEvent": "pricing_cta",
+      "before": "Billing toggle defaults to Monthly. ~90% of pricing_cta clicks fire with billing='monthly', so nearly every visitor reads every price at its highest figure: Team $67/mo, Audits $37/mo, Alternative Barcodes $18.50/mo, SSO from $15/user/mo.",
+      "after": "Billing toggle defaults to Yearly. Same visitors read Team $30.83/mo (billed annually as $370/yr), Audits $17.08/mo, Alternative Barcodes $14.17/mo, SSO from $9/user/mo. Monthly remains one click away and every annual price is labelled 'billed annually as $X/yr'.",
+      "hypothesis": "Baseline shows the overwhelming majority of pricing_cta clicks carry billing='monthly' (the default) and target the Free plan, so almost nobody discovers the annual pricing and the page anchors on its most expensive presentation. Defaulting to Yearly should lift pricing_cta rate off its steady ~15% by removing sticker shock, and shift the Team monthly:yearly mix toward yearly. Annual billing also suits the institutional buyer, who needs a PO figure, and improves cash and churn. RISK: if the rate does NOT move, that is real evidence price presentation is not the constraint on this page, which is itself worth knowing before further pricing work. Not a dark pattern: the page already advertises 'Save up to 54%' and every annual figure states its yearly total.",
+      "baseline": {
+        "dateRange": [
+          "2026-07-05",
+          "2026-08-04"
+        ],
+        "views": 2494,
+        "conversions": 386,
+        "rate": 15.48,
+        "capturedAt": "2026-08-05T13:51:01.715Z"
+      },
+      "result": {
+        "views": null,
+        "conversions": null,
+        "rate": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
+      "status": "planned",
+      "deployedAt": null,
+      "evaluateAfterDays": 28,
+      "tags": [
+        "conversion",
+        "pricing",
+        "untested-lever",
+        "not-a-serp-experiment"
+      ],
+      "learnings": ""
     }
   ]
 }

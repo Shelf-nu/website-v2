@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Frontmatter } from "./content/schema";
 import { ContentType } from "./mdx";
 import type { PricingPlan } from "../data/pricing";
-
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
+import { addOns } from "@/data/pricing.addons";
+import { BASE_URL } from "./site-url";
 
 /* ------------------------------------------------------------------ */
 /*  Shared generateMetadata builder for every MDX content type         */
@@ -417,6 +417,54 @@ export function pricingSoftwareApplicationJsonLd(
             };
         });
 
+    // Add-on offers, so agents parsing structured data get the same numbers a
+    // human reads on the page. Per-seat add-ons (SSO) advertise their entry
+    // rate with a UnitPriceSpecification carrying the per-user unit, since a
+    // bare `price` would read as a flat workspace fee.
+    const addOnOffers = addOns.flatMap((addOn) => {
+        const entryTier = addOn.tiers?.[0];
+        // Monthly where one exists, else the flat annual figure. Never fall
+        // back to 0 — an add-on with no monthly price and no tiers is a
+        // permitted shape, and emitting price "0" would advertise a paid
+        // add-on as free in structured data. Omit the offer instead.
+        const price = entryTier
+            ? entryTier.yearlyPerUser
+            : (addOn.priceMonthly ?? addOn.priceYearly);
+        if (price === null || price === undefined) return [];
+
+        // Per-seat add-ons recur monthly per user; flat add-ons recur monthly
+        // per workspace. billingDuration says how long one charge covers, so
+        // it is 1 MON in both cases — not 12, which would claim the $9 buys a
+        // whole year rather than a single month.
+        const isPerSeat = Boolean(entryTier);
+        const isMonthlyRate = isPerSeat || addOn.priceMonthly !== null;
+
+        return [{
+            "@type": "Offer",
+            name: `${addOn.name} add-on`,
+            description: addOn.description,
+            price: String(price),
+            priceCurrency: "USD",
+            url: `${BASE_URL}/pricing`,
+            category: "Add-on",
+            availability: "https://schema.org/InStock",
+            priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price: String(price),
+                priceCurrency: "USD",
+                unitText: isPerSeat ? "USER" : "WORKSPACE",
+                billingIncrement: 1,
+                billingDuration: isMonthlyRate ? 1 : 12,
+                billingPeriod: isMonthlyRate ? "P1M" : "P1Y",
+                ...(isPerSeat && { referenceQuantity: {
+                    "@type": "QuantitativeValue",
+                    value: 1,
+                    unitCode: "MON",
+                } }),
+            },
+        }];
+    });
+
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -429,7 +477,7 @@ export function pricingSoftwareApplicationJsonLd(
         operatingSystem: "Web, iOS, Android",
         url: BASE_URL,
         downloadUrl: "https://app.shelf.nu",
-        offers,
+        offers: [...offers, ...addOnOffers],
     };
 }
 

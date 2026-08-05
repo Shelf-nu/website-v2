@@ -24,6 +24,8 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { pricingSoftwareApplicationJsonLd } from "@/lib/seo";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
+import { AddOnsSection } from "@/components/pricing/addons-section";
+import { addOns, formatAddOnPrice } from "@/data/pricing.addons";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -34,8 +36,10 @@ const pricingSocialProof = [
     { name: "University of Missouri", logo: "/logos/university-of-missouri.webp" },
 ];
 
-// Helper to convert structured data back to the list format for the card view
-function getDisplayFeatures(plan: PricingPlan): string[] {
+// Helper to convert structured data back to the list format for the card view.
+// `isYearly` only affects the Team card's add-on bullets, which carry live
+// prices derived from src/data/pricing.addons.ts — never hardcode them here.
+function getDisplayFeatures(plan: PricingPlan, isYearly: boolean): string[] {
     switch (plan.id) {
         case "free":
             return [
@@ -63,9 +67,10 @@ function getDisplayFeatures(plan: PricingPlan): string[] {
                 "Booking calendar & availability",
                 "Booking PDFs (pull lists)",
                 "DIVIDER",
-                "Alternative Barcodes — keep existing labels (add-on)",
-                "Audits — inventory verification (add-on)",
-                "SSO / SAML / SCIM (add-on)"
+                ...addOns.map(
+                    (addOn) =>
+                        `${addOn.name} — ${formatAddOnPrice(addOn, isYearly)}`
+                )
             ];
         case "enterprise":
             return [
@@ -202,7 +207,7 @@ export default function PricingPage() {
                                 </div>
 
                                 <ul className="space-y-3">
-                                    {getDisplayFeatures(plan).map((feature, idx) => (
+                                    {getDisplayFeatures(plan, isYearly).map((feature, idx) => (
                                         feature === "DIVIDER" ? (
                                             <li key={`divider-${idx}`} className="pt-3 border-t border-border-subtle mt-3">
                                                 <span className="text-[10px] font-bold text-subtle uppercase tracking-widest block mb-2">Add-ons</span>
@@ -238,6 +243,11 @@ export default function PricingPage() {
                         </Card>
                     ))}
                 </div>
+
+                {/* Add-ons — prices derive from src/data/pricing.addons.ts, which is
+                    verified against Stripe. Sits directly under the plan cards because
+                    add-ons attach to Team and are where expansion revenue lives. */}
+                <AddOnsSection isYearly={isYearly} />
 
                 {/* Mobile App callout — included with every plan.
                     Outer wrapper is a div (not a Link) because the AppStoreBadge
