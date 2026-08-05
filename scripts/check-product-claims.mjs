@@ -190,7 +190,27 @@ for (const { file, rules } of workList) {
   // every explanation into a self-inflicted failure. Only applies to .ts/.tsx —
   // in MDX a leading `*` is a bullet or bold marker, not a comment.
   const isCode = /\.tsx?$/.test(file);
-  const isComment = (line) => isCode && /^\s*(\/\/|\/\*|\*)/.test(line);
+
+  // Track block-comment state rather than testing each line in isolation: a
+  // `/*` opener followed by an unprefixed continuation line (no leading `*`)
+  // would otherwise be scanned as code and fail CI on a price mentioned
+  // purely in prose.
+  let inBlockComment = false;
+  const isComment = (line) => {
+    if (!isCode) return false;
+    const trimmed = line.trim();
+    if (inBlockComment) {
+      if (trimmed.includes("*/")) inBlockComment = false;
+      return true;
+    }
+    if (trimmed.startsWith("//")) return true;
+    if (trimmed.startsWith("/*") || trimmed.startsWith("*")) {
+      // Opener without a closer on the same line starts a block.
+      if (trimmed.startsWith("/*") && !trimmed.includes("*/")) inBlockComment = true;
+      return true;
+    }
+    return false;
+  };
 
   lines.forEach((line, i) => {
     if (isComment(line)) return;

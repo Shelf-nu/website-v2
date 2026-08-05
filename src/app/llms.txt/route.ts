@@ -30,14 +30,25 @@ const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
  * lift verbatim when asked "how much does Shelf cost?".
  */
 function renderPricingParagraph(): string {
-    const byId = (id: string) => pricingPlans.find((p) => p.id === id);
+    // Throw rather than optional-chain: a renamed plan id would otherwise
+    // publish "Plus (undefined/month or undefined/year)" straight into the
+    // file answer engines ingest. Failing the build is the right outcome.
+    const byId = (id: string) => {
+        const plan = pricingPlans.find((p) => p.id === id);
+        if (!plan) {
+            throw new Error(
+                `llms.txt: no pricing plan with id "${id}". Update src/app/llms.txt/route.ts if plan ids changed.`
+            );
+        }
+        return plan;
+    };
     const plus = byId("plus");
     const team = byId("team");
 
     const planPart = [
         "Personal (free forever — 1 user, unlimited assets, mobile app, basic QR codes, custody tracking)",
-        `Plus (${plus?.priceMonthly}/month or ${plus?.priceYearly}/year — unlimited custom fields, CSV import and export, email support)`,
-        `Team (${team?.priceMonthly}/month or ${team?.priceYearly}/year — unlimited users, full bookings, calendar, fixed-period checkout)`,
+        `Plus (${plus.priceMonthly}/month or ${plus.priceYearly}/year — unlimited custom fields, CSV import and export, email support)`,
+        `Team (${team.priceMonthly}/month or ${team.priceYearly}/year — unlimited users, full bookings, calendar, fixed-period checkout)`,
         "Enterprise (custom pricing — unlimited everything, account manager, SLA, included SSO)",
     ].join(", ");
 

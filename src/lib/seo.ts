@@ -422,32 +422,48 @@ export function pricingSoftwareApplicationJsonLd(
     // human reads on the page. Per-seat add-ons (SSO) advertise their entry
     // rate with a UnitPriceSpecification carrying the per-user unit, since a
     // bare `price` would read as a flat workspace fee.
-    const addOnOffers = addOns.map((addOn) => {
+    const addOnOffers = addOns.flatMap((addOn) => {
         const entryTier = addOn.tiers?.[0];
-        const price = entryTier ? entryTier.yearlyPerUser : addOn.priceMonthly;
+        // Monthly where one exists, else the flat annual figure. Never fall
+        // back to 0 — an add-on with no monthly price and no tiers is a
+        // permitted shape, and emitting price "0" would advertise a paid
+        // add-on as free in structured data. Omit the offer instead.
+        const price = entryTier
+            ? entryTier.yearlyPerUser
+            : (addOn.priceMonthly ?? addOn.priceYearly);
+        if (price === null || price === undefined) return [];
 
-        return {
+        // Per-seat add-ons recur monthly per user; flat add-ons recur monthly
+        // per workspace. billingDuration says how long one charge covers, so
+        // it is 1 MON in both cases — not 12, which would claim the $9 buys a
+        // whole year rather than a single month.
+        const isPerSeat = Boolean(entryTier);
+        const isMonthlyRate = isPerSeat || addOn.priceMonthly !== null;
+
+        return [{
             "@type": "Offer",
             name: `${addOn.name} add-on`,
             description: addOn.description,
-            price: String(price ?? 0),
+            price: String(price),
             priceCurrency: "USD",
             url: `${BASE_URL}/pricing`,
             category: "Add-on",
             availability: "https://schema.org/InStock",
             priceSpecification: {
                 "@type": "UnitPriceSpecification",
-                price: String(price ?? 0),
+                price: String(price),
                 priceCurrency: "USD",
-                unitText: entryTier ? "USER" : "MONTH",
+                unitText: isPerSeat ? "USER" : "WORKSPACE",
                 billingIncrement: 1,
-                ...(entryTier && { referenceQuantity: {
+                billingDuration: isMonthlyRate ? 1 : 12,
+                billingPeriod: isMonthlyRate ? "P1M" : "P1Y",
+                ...(isPerSeat && { referenceQuantity: {
                     "@type": "QuantitativeValue",
                     value: 1,
-                    unitText: "USER",
+                    unitCode: "MON",
                 } }),
             },
-        };
+        }];
     });
 
     return {

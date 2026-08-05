@@ -955,14 +955,20 @@ async function gscPageMetrics(pagePath, startDate, endDate) {
  * as the result. Experiments opt in with `metric: "conversion"`.
  */
 async function conversionMetrics(pagePath, eventName, startDate, endDate) {
+    // Both sides of the ratio must be scoped to the same page. trackEvent()
+    // stamps every custom event with page_path, so without that predicate the
+    // numerator would count the event firing anywhere on the site while the
+    // denominator stayed page-scoped — harmless for pricing_cta, which only
+    // fires on /pricing, but silently wrong for a site-wide event like
+    // demo_cta.
     const rows = await phQuery(`
         SELECT
             countIf(event = '$pageview' AND properties.$pathname = '${pagePath}') AS views,
-            countIf(event = '${eventName}') AS conversions
+            countIf(event = '${eventName}' AND properties.page_path = '${pagePath}') AS conversions
         FROM events
         WHERE timestamp >= toDate('${startDate}')
           AND timestamp < toDate('${endDate}') + INTERVAL 1 DAY
-          AND (event = '${eventName}'
+          AND ((event = '${eventName}' AND properties.page_path = '${pagePath}')
                OR (event = '$pageview' AND properties.$pathname = '${pagePath}'))
     `);
 

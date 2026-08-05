@@ -25,8 +25,10 @@
  * the website says exactly what the in-app onboarding modal says.
  */
 
-/** One band of a per-seat tiered price. Bands are CUMULATIVE — the first 15
- *  seats always bill at the tier-1 rate even when the workspace has 200. */
+/** One band of a per-seat tiered price. Bands are CUMULATIVE — seats in the
+ *  first band always bill at the tier-1 rate even when the workspace has 200.
+ *  Any prose stating the boundary must read it from tiers[0].to, never a
+ *  literal, or the copy will silently contradict the rendered table. */
 export interface AddOnPriceTier {
     /** Human label, e.g. "First 15 users" */
     label: string;

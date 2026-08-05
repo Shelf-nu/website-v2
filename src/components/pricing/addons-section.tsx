@@ -100,8 +100,9 @@ function TierTable({ addOn }: { addOn: AddOn }) {
                 </tbody>
             </table>
             <p className="text-[11px] text-caption px-3 py-2 bg-muted/20 border-t border-border-subtle leading-relaxed">
-                Per user, per month. Bands are cumulative — the first 15 always bill
-                at the first-tier rate. Bands above the first are annual billing only.
+                Per user, per month. Bands are cumulative — the first{" "}
+                {addOn.tiers[0].to} always bill at the first-tier rate. Bands above
+                the first are annual billing only.
                 {addOn.unlimitedEnquiryThreshold && (
                     <>
                         {" "}

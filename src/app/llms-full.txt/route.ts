@@ -62,7 +62,7 @@ function renderPricing(): string {
 
         if (addOn.tiers) {
             parts.push(
-                "SSO is licensed per user who signs in via SSO; bands are cumulative, so the first 15 users always bill at the first-tier rate.",
+                `SSO is licensed per user who signs in via SSO; bands are cumulative, so the first ${addOn.tiers[0].to} users always bill at the first-tier rate.`,
                 ""
             );
             for (const tier of addOn.tiers) {
