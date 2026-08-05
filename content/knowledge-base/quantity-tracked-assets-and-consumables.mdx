@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-08-04"
+updated: "2026-08-05"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -130,7 +130,9 @@ Ask for more than the dates allow and Shelf refuses with the exact shortfall: *"
 
 ### Reading the asset page
 
-The **Available** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, earmarked to a kit, or physically checked out. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across.
+The **Available** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, held by a kit, or checked out on its own. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across.
+
+Units a kit holds are counted once, under **In kits**, whether the kit is sitting on the shelf or out on a booking. **Checked out (bookings)** is the fuller picture: every unit physically out, loose ones and kit-held ones together. The two rows overlap on purpose, so don't add them up.
 
 Locations are listed separately, on **In locations**, and don't reduce anything. A sandbag can be in Studio A and still be free to book.
 
