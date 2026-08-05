@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Frontmatter } from "./content/schema";
 import { ContentType } from "./mdx";
 import type { PricingPlan } from "../data/pricing";
+import { addOns } from "../data/pricing.addons";
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
 
@@ -417,6 +418,38 @@ export function pricingSoftwareApplicationJsonLd(
             };
         });
 
+    // Add-on offers, so agents parsing structured data get the same numbers a
+    // human reads on the page. Per-seat add-ons (SSO) advertise their entry
+    // rate with a UnitPriceSpecification carrying the per-user unit, since a
+    // bare `price` would read as a flat workspace fee.
+    const addOnOffers = addOns.map((addOn) => {
+        const entryTier = addOn.tiers?.[0];
+        const price = entryTier ? entryTier.yearlyPerUser : addOn.priceMonthly;
+
+        return {
+            "@type": "Offer",
+            name: `${addOn.name} add-on`,
+            description: addOn.description,
+            price: String(price ?? 0),
+            priceCurrency: "USD",
+            url: `${BASE_URL}/pricing`,
+            category: "Add-on",
+            availability: "https://schema.org/InStock",
+            priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price: String(price ?? 0),
+                priceCurrency: "USD",
+                unitText: entryTier ? "USER" : "MONTH",
+                billingIncrement: 1,
+                ...(entryTier && { referenceQuantity: {
+                    "@type": "QuantitativeValue",
+                    value: 1,
+                    unitText: "USER",
+                } }),
+            },
+        };
+    });
+
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -429,7 +462,7 @@ export function pricingSoftwareApplicationJsonLd(
         operatingSystem: "Web, iOS, Android",
         url: BASE_URL,
         downloadUrl: "https://app.shelf.nu",
-        offers,
+        offers: [...offers, ...addOnOffers],
     };
 }
 

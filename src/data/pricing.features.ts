@@ -20,6 +20,12 @@
  *    - Source: app/utils/subscription.server.ts
  */
 
+import { addOnPriceSummary, formatUSD, getAddOn } from "./pricing.addons";
+
+// Add-on price labels come from src/data/pricing.addons.ts (verified against
+// Stripe), so the comparison table can never disagree with the add-ons section.
+const addOnLabel = (id: string) => `Add-on — ${addOnPriceSummary(getAddOn(id)!)}`;
+
 export type AvailabilityState =
     | "included"
     | "not-included"
@@ -567,8 +573,8 @@ export const pricingFeatures: PricingFeature[] = [
         metadata: {
             free: "Not available",
             plus: "Not available",
-            team: "Add-on — $170/yr",
-            enterprise: "Add-on — $170/yr",
+            team: addOnLabel("alternative-barcodes"),
+            enterprise: addOnLabel("alternative-barcodes"),
         },
     },
     {
@@ -679,8 +685,8 @@ export const pricingFeatures: PricingFeature[] = [
         metadata: {
             free: "Not available",
             plus: "Not available",
-            team: "Add-on — $37/mo or $205/yr",
-            enterprise: "Add-on — $37/mo or $205/yr",
+            team: addOnLabel("audits"),
+            enterprise: addOnLabel("audits"),
         },
     },
 
@@ -707,7 +713,9 @@ export const pricingFeatures: PricingFeature[] = [
         metadata: {
             free: "Not available",
             plus: "Not available",
-            team: "Add-on — from $9/user/mo (annual)",
+            team: `Add-on — from ${formatUSD(
+                getAddOn("sso")!.tiers![0].yearlyPerUser
+            )}/user/mo (annual)`,
             enterprise: "Included",
         },
     },
