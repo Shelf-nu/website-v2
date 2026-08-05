@@ -21,6 +21,7 @@ const ARTICLES = {
   "configure-permissions": "articles/configure-permissions.mjs",
   "kit-location": "articles/kit-location.mjs",
   "import-update-columns": "articles/import-update-columns.mjs",
+  "qt-availability": "articles/qt-availability.mjs",
 };
 
 const slug = process.argv[2];

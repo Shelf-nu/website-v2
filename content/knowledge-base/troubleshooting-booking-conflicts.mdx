@@ -3,11 +3,11 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-04-17"
+updated: "2026-08-05"
 layout: "knowledge-base"
 ---
 
-Shelf prevents double-bookings automatically — if two people try to reserve the same asset for overlapping dates, the second booking is blocked. This article explains how conflict prevention works and what to do when you hit a scheduling issue.
+Shelf prevents double-bookings automatically — if two people try to reserve the same asset for overlapping dates, the second booking is blocked. For [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables), where one record stands for a pool of identical units, the check is about counts rather than identity: the question is whether enough units are free for your dates. This article explains how conflict prevention works in both cases and what to do when you hit a scheduling issue.
 
 ---
 
@@ -41,6 +41,54 @@ When you book a kit, Shelf checks every item inside it. If even one component ha
 1. Open the kit → **Assets** tab
 2. Check each item's **Bookings** tab or look at the calendar for the date range you want
 3. Resolve the conflict on the blocking item (cancel, shorten, or remove it from the kit)
+
+---
+
+## Quantity-tracked assets: "Stock conflict" and "Insufficient stock"
+
+Pooled stock is checked the same way a single asset is: Shelf won't let you reserve units that aren't free for your dates, and it says so when you confirm the booking or change what's on it.
+
+What it can't prevent is a pool getting **smaller after** a booking is already confirmed. Two everyday things do that: a previous booking comes back late, or someone hands units out as custody in the meantime. Cancelling somebody's booking behind their back would be worse than telling them, so Shelf flags the booking instead.
+
+**Amber "Stock conflict" pill on a bookings list.** One of that booking's pooled items is short for its dates. You'll see the pill on the Bookings index, on an asset's or kit's **Bookings** tab, on **My bookings**, and on a team member's bookings. Open the booking to see which item it is.
+
+**Red "Insufficient stock" badge on an asset row inside a booking.** That's the item. It reserves more units than are free once custody, other bookings, and active checkouts are counted, and check-out is blocked at that quantity until it's sorted. Either way works:
+
+1. Open the row's dropdown, choose **Adjust quantity**, and lower it to fit. The dialog shows what's available for your dates. **Reducing always works**, even on a booking that's already short, so you never have to cancel to get out of it.
+2. Or free units elsewhere: check in the late booking, release the custody, shorten or cancel an overlapping booking, or restock.
+
+**Amber "Checked out elsewhere" badge.** Not a blocker, just a heads-up. Your dates are fine; some units are simply out on another booking right now and are due back before yours starts. On **used-up** stock it's a maybe rather than a promise: those units are consumed when the other booking is checked in, not returned, so the pool can end up smaller. If that leaves you short, the badge turns into the red one above and a restock clears it.
+
+### "Only X of Y units available in this window"
+
+You asked for more units than are free on **your booking's dates**. The figure is about those dates, not the whole calendar, so it's often higher than you'd expect: a booking that ends before yours begins isn't competing with you. Ten sandbags booked out 7 at a time in three different weeks still leaves 3 free in each of those weeks.
+
+Two things count against you no matter what dates you pick:
+
+- **Overdue bookings.** Nobody knows when a late return is coming back, so its units stay unavailable for every date until someone checks it in.
+- **Units in custody or earmarked to a kit.** These come off the pool before dates are considered at all.
+
+### "Cannot reduce quantity below commitments"
+
+You tried to lower an asset's **total** quantity below the units already promised out. Shelf blocks this so stock can't vanish from under a booking that depends on it. Release the custody, remove the units from the kit, or reduce the overlapping bookings first, then lower the total.
+
+---
+
+## A booking already underway took an item your reservation was holding
+
+A booking that has already started outranks a reservation that was created after it started. If someone's booking is **Ongoing** or **Overdue** and it still has an item to hand out, it can check that item out even when your later reservation also holds it for an overlapping period.
+
+This closes a dead end rather than opening one. A booking that had already begun couldn't previously check out its own remaining items once anyone reserved them afterwards, and there was no way to resolve it from inside Shelf.
+
+Nothing happens silently. **Both bookings get a note on their activity timeline** naming the other booking and the items involved. On the reservation, it reads along the lines of *"...were checked out by [booking], which overlaps this reservation and is already in progress. You may need to replace them before this booking starts."* If you're the one who lost an item, swap in a replacement before your booking starts, or shorten the booking that's holding it.
+
+Three things still block, exactly as before:
+
+- **Two reservations clashing.** Neither has started, so the usual rule applies and the second one can't be created.
+- **An item physically checked out** on another booking that's in progress.
+- **An item in someone's custody.**
+
+This applies to individually tracked items only. Pooled stock is counted rather than claimed, so it never takes this path.
 
 ---
 
@@ -82,3 +130,4 @@ See [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-inc
 - [Extending Booking End Dates](/knowledge-base/extending-booking-end-dates-in-shelf)
 - [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns)
 - [Availability View: Complete Guide](/knowledge-base/availability-view-complete-guide)
+- [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables)

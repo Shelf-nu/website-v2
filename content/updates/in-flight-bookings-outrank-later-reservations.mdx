@@ -1,0 +1,14 @@
+---
+title: "A Booking Already Underway Now Outranks a Later Reservation"
+description: "An Ongoing or Overdue booking can check out its remaining items even when a reservation created after it started also holds them. Both bookings get a note naming the clash."
+date: "2026-07-31"
+layout: "update"
+---
+
+A booking that had already started could get stuck. If anyone reserved one of its items *after* it began, that reservation blocked the in-flight booking from ever handing the item out, and there was no way to resolve it from inside Shelf. The item's row still showed as **Available**, so the action was offered right up to the moment it failed with "Some assets are already booked or checked out elsewhere".
+
+The priority now runs the sensible way round. A booking that is **Ongoing** or **Overdue** outranks a reservation created after it started, and can check out the items it is already holding.
+
+Nothing happens quietly. **Both bookings get a note on their activity timeline** naming the other booking and the items involved, so the reservation's owner finds out straight away rather than at their own check-out. If a reservation loses an item, swap in a replacement before it starts, or shorten the booking that's holding it.
+
+The rules that mattered before still hold: two reservations clashing still block each other, an item physically checked out on another in-flight booking still blocks, and an item in someone's custody still blocks. This applies to individually tracked items only, since pooled stock is counted rather than claimed.

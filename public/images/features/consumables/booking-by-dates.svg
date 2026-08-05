@@ -1,0 +1,51 @@
+<svg width="100%" viewBox="0 0 680 480" role="img" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<title>Booking pooled stock is counted per date range</title>
+<desc>Three booking timelines across three weeks. A single camera booked across weeks one and two blocks a second, overlapping booking. A pool of ten sandbags allows three separate seven-unit bookings in three different weeks, because never more than seven are needed at the same moment. The same pool turns away an eight-unit booking in week two, which already has a seven-unit booking, because only three units are free that week. A footnote explains that warnings exist for pools that shrink after a booking is confirmed.</desc>
+<rect x="0" y="0" width="680" height="480" rx="14" fill="#ffffff" stroke="#e8edf3" stroke-width="1"/>
+<text x="340" y="36" text-anchor="middle" font-size="19" font-weight="700" fill="#0f172a">Pooled stock is counted for your dates</text>
+
+<text x="271" y="72" text-anchor="middle" font-size="11" fill="#94a3b8">Week 1</text>
+<text x="422" y="72" text-anchor="middle" font-size="11" fill="#94a3b8">Week 2</text>
+<text x="573" y="72" text-anchor="middle" font-size="11" fill="#94a3b8">Week 3</text>
+<line x1="347" y1="82" x2="347" y2="360" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="498" y1="82" x2="498" y2="360" stroke="#e2e8f0" stroke-width="1"/>
+
+<rect x="32" y="92" width="148" height="52" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="48" y="114" font-size="15" font-weight="700" fill="#0f172a">One camera</text>
+<text x="48" y="132" font-size="11" fill="#64748b">Individually tracked</text>
+<rect x="200" y="94" width="290" height="24" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+<text x="345" y="110" text-anchor="middle" font-size="11.5" fill="#0369a1">Booked</text>
+<rect x="351" y="124" width="139" height="24" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+<text x="420" y="140" text-anchor="middle" font-size="11.5" fill="#991b1b">Blocked</text>
+
+<line x1="32" y1="166" x2="648" y2="166" stroke="#e2e8f0" stroke-width="1"/>
+
+<rect x="32" y="180" width="148" height="52" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="48" y="202" font-size="15" font-weight="700" fill="#0f172a">10 sandbags</text>
+<text x="48" y="220" font-size="11" fill="#64748b">Tracked by quantity</text>
+<rect x="200" y="182" width="139" height="24" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+<text x="269" y="198" text-anchor="middle" font-size="11.5" fill="#0369a1">7 units</text>
+<rect x="351" y="182" width="139" height="24" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+<text x="420" y="198" text-anchor="middle" font-size="11.5" fill="#0369a1">7 units</text>
+<rect x="502" y="182" width="139" height="24" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+<text x="571" y="198" text-anchor="middle" font-size="11.5" fill="#0369a1">7 units</text>
+<rect x="200" y="216" width="441" height="26" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="420" y="233" text-anchor="middle" font-size="11.5" fill="#334155">All three fit. Never more than 7 of the 10 are needed at once.</text>
+
+<line x1="32" y1="254" x2="648" y2="254" stroke="#e2e8f0" stroke-width="1"/>
+
+<rect x="32" y="268" width="148" height="52" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="48" y="290" font-size="15" font-weight="700" fill="#0f172a">10 sandbags</text>
+<text x="48" y="308" font-size="11" fill="#64748b">Overlapping dates</text>
+<rect x="351" y="270" width="139" height="24" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+<text x="420" y="286" text-anchor="middle" font-size="11.5" fill="#0369a1">7 units</text>
+<rect x="351" y="300" width="139" height="24" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+<text x="420" y="316" text-anchor="middle" font-size="11.5" fill="#991b1b">8 units</text>
+<rect x="200" y="334" width="441" height="26" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+<text x="420" y="351" text-anchor="middle" font-size="11.5" fill="#991b1b">Turned away. Only 3 of the 10 are free that week.</text>
+
+<rect x="32" y="380" width="616" height="76" rx="10" fill="#fff7ed" stroke="#fed7aa"/>
+<text x="52" y="404" font-size="12.5" font-weight="700" fill="#9a3412">Warnings are about what happens afterwards</text>
+<text x="52" y="424" font-size="11.5" fill="#9a3412">A pool can shrink once a booking is confirmed: gear comes back late, or units get handed out.</text>
+<text x="52" y="442" font-size="11.5" fill="#9a3412">Shelf flags the booking instead of cancelling it, and the quantity can always be lowered.</text>
+</svg>

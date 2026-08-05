@@ -1,0 +1,22 @@
+---
+title: "Quantity Availability Is Now Calculated Per Booking Window"
+description: "Bookings that don't overlap no longer compete for the same pooled stock, an over-reserved booking can always be reduced, and over-commitment is surfaced with Stock conflict and Insufficient stock badges."
+date: "2026-07-30"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/quantity-overview-card.webp"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#quantity-in-bookings"
+layout: "update"
+---
+
+Booking [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) now asks the right question: how many units are free **on your dates**, rather than how many have ever been booked.
+
+The difference matters most when stock is shared. A pool of 10 sandbags booked out 7 at a time in three different weeks needs only 7 at any one moment, so 3 stay free in each of those weeks. Shelf used to add all three together, decide 21 units were needed at once, show a negative **Available** on the asset page, and block check-out. The obvious escape, reducing the over-booked reservation, was rejected too, so the only way out was cancelling.
+
+What changed:
+
+- **Dates are part of the count.** A booking that ends before yours begins no longer competes with you. The exception is an overdue booking: nobody knows when a late return is coming back, so its units keep counting until it's checked in.
+- **The asset page separates now from later.** **Available** is what's on the shelf right now. Units promised to future bookings sit on their own **Reserved (bookings)** row, so a reservation three weeks out no longer makes today's stock look smaller than it is.
+- **Lowering a quantity always works**, whatever state the booking is in, so a booking that's short can be fixed rather than cancelled. Asking for more than the dates allow is refused with the exact shortfall.
+- **You'll be told when a booking falls short.** A pool can shrink after a booking is confirmed, when a previous booking runs late or someone hands units out as custody. Instead of quietly cancelling, Shelf marks the booking with an amber **Stock conflict** pill on the bookings list and a red **Insufficient stock** badge on the item itself. A separate amber **Checked out elsewhere** badge is just a heads-up: those units are due back before your booking starts, or, on used-up stock, may be consumed at check-in instead of returned.
+- **Stock can't be pulled out from under a booking.** Lowering an asset's total quantity below what's already promised to custody, kits, or overlapping bookings is now blocked.
+
+Nothing needs fixing by hand. Pools that were showing a negative available figure resolve on their own.

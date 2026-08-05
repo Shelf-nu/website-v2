@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-07-29"
+updated: "2026-08-05"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -59,7 +59,7 @@ When you add or edit an asset, you pick how it should be tracked:
 
 Quantity-tracked assets can behave in one of two ways after they're handed out or checked out:
 
-- **Used up (one-way)** — Units are consumed and not expected back. Checking out 50 gloves permanently reduces the count by 50. Best for disposables: gloves, masks, single-use kits.
+- **Used up (one-way)** — Units are consumed and not expected back. Check out 50 gloves and the count permanently drops by 50 when the booking is checked in, which defaults to consuming everything that went out. Best for disposables: gloves, masks, single-use kits.
 - **Returnable (two-way)** — Units are checked out and returned, with a consumption report on the way back. Check out 10 cables; when they come back you report what returned and what was lost or used up. Returned units go back into available stock and the rest are deducted. Best for reusable supplies that occasionally go missing.
 
 When new stock arrives, you can **restock** a quantity-tracked asset to increase its count. Every quantity change is logged for an audit trail.
@@ -105,13 +105,52 @@ Individually tracked assets look and behave exactly as before in the app. See [G
 
 ## Quantity in bookings
 
-You can reserve a quantity of a pooled asset for a booking. Available stock is calculated as:
+The promise is the same one Shelf makes for a camera or a laptop: **you can't reserve something that isn't there.** What changes is the question being asked. A camera is one specific thing, so the question is whether anyone else has it. A pool of sandbags is a count, so the question is how many are free on your dates.
 
-```
-Available = Total quantity − In custody − Reserved in bookings
-```
+Shelf checks that at the moment it matters, when you confirm a booking or change what's on it, and it locks the asset while it checks. Two people confirming at the same second can't both slip through.
 
-When you reserve units in a booking, the available count drops immediately, so two bookings can't reserve the same stock. For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes. That reconciliation runs on the web and in the Companion app, so a partial return can be settled on the floor.
+### Dates matter, not just totals
+
+The count is worked out for **your booking's dates**, not for the calendar as a whole. Take a pool of 10 sandbags:
+
+- Three separate bookings of 7 sandbags, one in each of three different weeks, are all fine. Only 7 are ever needed at the same time, so 3 stay free in every one of those weeks.
+- Two bookings of 7 and 8 sandbags in the **same** week are not. That's 15 at once out of 10, so the second one is turned away while only 3 are free.
+
+![Three booking timelines across three weeks. One camera booked across weeks one and two blocks a second overlapping booking. A pool of ten sandbags allows three separate seven-unit bookings in three different weeks, because never more than seven are needed at once. The same pool turns away an eight-unit booking in a week that already has a seven-unit booking, because only three units are free that week.](/images/features/consumables/booking-by-dates.svg)
+
+This is the part that surprises people coming from individually tracked gear, where a booked item is simply gone for anyone else. A pool isn't gone, it's counted, so gear that comes back before your booking starts is yours to book.
+
+The one thing that ignores dates is an **overdue** booking. Nobody knows when a late return is coming back, so its units keep counting against every date until someone checks it in.
+
+### Picking a quantity
+
+Open the asset's row on the booking and choose **Adjust quantity**. The dialog tells you what you've got to work with for these dates, written plainly as *"4 of 12 sandbags available"* with the date range underneath, plus how many units other bookings are holding. If your role can see other people's bookings, a **View bookings** link takes you to them.
+
+Ask for more than the dates allow and Shelf refuses with the exact shortfall: *"Only 3 of 10 units available in this window — reduce the quantity to continue."* Going the other way, **lowering a quantity always works**, no matter what state the booking is in.
+
+### Reading the asset page
+
+The **Available** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, held by a kit, or checked out on its own. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across.
+
+Units a kit holds are counted once, under **In kits**, whether the kit is sitting on the shelf or out on a booking. **Checked out (bookings)** is the fuller picture: every unit physically out, loose ones and kit-held ones together. The two rows overlap on purpose, so don't add them up.
+
+Locations are listed separately, on **In locations**, and don't reduce anything. A sandbag can be in Studio A and still be free to book.
+
+![A quantity-tracked asset's overview page, with the Quantity Overview card in the right sidebar listing total quantity, available, in locations, in custody, unit of measure, min quantity and consumption behavior](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/quantity-overview-card.webp)
+
+### If a booking is flagged
+
+Since the check runs when you book, you shouldn't be able to over-reserve a pool in the first place. What no system can prevent is the pool getting **smaller after the fact**: a previous booking comes back late, or someone hands units out as custody in the meantime. Rather than quietly cancel a booking somebody is relying on, Shelf marks it and lets a human decide:
+
+- **Stock conflict**, an amber pill on any bookings list, means one of that booking's pooled items is short for its dates. Open the booking to see which.
+- **Insufficient stock**, a red badge on an item's row, is the item in question. Lower the quantity, or free units elsewhere by releasing custody or checking in the late booking.
+- **Checked out elsewhere**, an amber badge, is not a blocker. Your dates are fine; some units just happen to be out right now and are due back before you need them. On **used-up** stock, read it as a maybe rather than a promise: units that go out are consumed when that booking is checked in, not returned, so the pool can end up smaller. If that leaves you short, the row turns red and a restock clears it.
+
+Stock is protected from the other side too. You can't lower an asset's total quantity below what's already promised to custody, kits, or overlapping bookings.
+
+### Coming back
+
+For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes. That reconciliation runs on the web and in the Companion app, so a partial return can be settled on the floor.
 
 ---
 
@@ -123,7 +162,27 @@ The value you set on an asset is the **per-unit** value. For a quantity-tracked 
 
 ## Low-stock alerts
 
-If you set a **min quantity**, Shelf watches the available count for that asset. When a stock adjustment or custody assignment takes the count to or below the threshold, the workspace owner is notified by email so you can reorder before you run out. The **Low stock** badge on the asset page clears automatically when stock rises back above the threshold through a restock or returns.
+If you set a **min quantity**, Shelf watches the available count for that asset. When a stock adjustment, a custody assignment, or a booking check-in takes the count to or below the threshold, the **workspace owner and every admin** get an email so someone can reorder before you run out, and whoever made the change gets an in-app notification.
+
+The email is sent **once per crossing**, not once per decrement. An item that is already flagged stays quiet until it recovers, so drawing a pool down over several days does not fill anyone's inbox. When stock rises back above the threshold through a restock or returns, the same people get a **Back in stock** email and the **Low stock** badge on the asset page clears itself.
+
+### Finding everything that is running low
+
+The alert tells you about one item at a time. To see the whole picture:
+
+1. Open **Assets** with the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide) enabled.
+2. Click **Filter**, then tick **Low stock only** (labelled *at or below reorder threshold*). The list narrows to quantity-tracked assets at or below their minimum.
+3. Optionally add the **Min quantity** column from the column picker so each item's threshold sits next to its live count.
+
+![The advanced asset index Filter popover, with the Low stock only checkbox described as "at or below reorder threshold".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/low-stock-filter.webp)
+
+The filter clears with the rest of your filters, and it counts toward the filter badge on the **Filter** button.
+
+---
+
+## Every quantity change is logged
+
+Quick adjustments are not the only thing recorded. Changing the quantity on the asset edit form, changing the **min quantity** threshold, and the decrements a booking check-in applies each write an entry to the asset's **Activity** tab with the previous and new value and the person responsible, plus a stock adjustment against the pool. Whatever route stock took, the history explains it.
 
 ---
 
@@ -151,4 +210,5 @@ For the full decision framework, including when a fleet of identical units belon
 - [Adding New Assets](/knowledge-base/adding-new-assets) — the full asset creation walkthrough
 - [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — capture business-specific data
 - [How to Create a Booking](/knowledge-base/how-to-create-a-booking) — reserve assets, including quantities
+- [Troubleshooting: Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts), for when a booking is blocked or a pool is over-reserved
 - [Using Categories to Organize Your Asset Inventory](/knowledge-base/using-categories-to-organize-your-asset-inventory)
