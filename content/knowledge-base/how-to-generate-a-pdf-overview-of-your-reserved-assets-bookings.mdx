@@ -3,7 +3,7 @@ title: "How to Generate a PDF Overview of Your Reserved Assets (Bookings)"
 description: "The Shelf bookings feature enables users to pre-book assets from inventory and generate printable PDF overviews, which is valuable for event preparation and equipment loan tracking."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-03"
+updated: "2026-08-05"
 layout: "knowledge-base"
 ---
 
@@ -28,8 +28,14 @@ When you generate a PDF, the server creates a comprehensive document containing:
 - Custodian responsible for the booking
 - Booking period (start and end dates/times)
 - Booking description
-- Detailed asset data (name, kit, category, location, QR code)
+- The asset table, with a number, image, name, quantity, kit, category, location, and QR code for every booked line
 - Date of PDF generation
+
+## One Row per Booked Line
+
+The table prints one row per booked line rather than one per asset. For individually tracked gear the two are the same thing: one item, one row.
+
+It matters for [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables), where the same pool can reach a booking from more than one direction. Say a booking holds 10 sandbags: 4 booked loose, 3 carried in by kit *Grip A*, and 3 by kit *Grip B*. The PDF prints three sandbag rows, of 4, 3, and 3, each naming its own kit (the loose row leaves the Kit column empty). Before, those slices were collapsed into a single row showing one quantity and one kit name, which hid where the rest of the units were coming from.
 
 ## Practical Applications
 

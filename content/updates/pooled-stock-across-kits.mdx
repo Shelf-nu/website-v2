@@ -1,0 +1,17 @@
+---
+title: "Pooled Stock Held in Kits Now Counts Correctly"
+description: "A quantity-tracked asset that lives in one or more kits is no longer double-counted on the asset page, no longer blocks its own booking at checkout, and prints one pull-list row per kit."
+date: "2026-08-05"
+layout: "update"
+readMoreUrl: "/knowledge-base/kits#quantity-tracked-stock-in-kits"
+---
+
+When a [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) sits in a kit, its units were being counted twice: once as held by the kit, and again as checked out. Three things went wrong because of it, and all three are fixed.
+
+**The asset page could show a negative Available.** Kit-held units are counted once now, on the **In kits** row. **Available** subtracts custody, kit slices, and loose checkouts. **Checked out (bookings)** still shows every unit physically out, kit-held ones included, so that number is unchanged.
+
+**Checkout could refuse a booking holding its own kits.** A booking with 4 sandbags booked loose plus 3 in one kit and 3 in another was told *"requested 10, only 4 available"* and could not be checked out at all, even though every one of those units belonged to it. It goes out in one action now.
+
+**The pull-list PDF hid where units came from.** A pooled asset booked from several sources collapsed into one row showing a single quantity and a single kit name. The PDF prints one row per source instead, each with its own quantity and kit, so whoever is packing can see that 3 come from *Grip A* and 3 from *Grip B*.
+
+Nothing to do on your side. The corrections apply to existing bookings and assets the next time you open them.
