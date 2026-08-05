@@ -2,9 +2,8 @@ import { Metadata } from "next";
 import { Frontmatter } from "./content/schema";
 import { ContentType } from "./mdx";
 import type { PricingPlan } from "../data/pricing";
-import { addOns } from "../data/pricing.addons";
-
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
+import { addOns } from "@/data/pricing.addons";
+import { BASE_URL } from "./site-url";
 
 /* ------------------------------------------------------------------ */
 /*  Shared generateMetadata builder for every MDX content type         */

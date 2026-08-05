@@ -1,4 +1,5 @@
 import { getAllContent, type ContentType, type MDXContent } from "@/lib/mdx";
+import { BASE_URL } from "@/lib/site-url";
 import { pricingPlans } from "@/data/pricing";
 import {
     addOns,
@@ -8,8 +9,6 @@ import {
 } from "@/data/pricing.addons";
 
 export const dynamic = "force-static";
-
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
 
 /**
  * Pricing block for the full bundle. This file previously shipped with NO

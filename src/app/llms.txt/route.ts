@@ -13,6 +13,7 @@
  * The curated link index below is genuinely editorial (hand-written one-line
  * descriptions per URL) and stays inline. Add new pages here when they ship.
  */
+import { BASE_URL } from "@/lib/site-url";
 import { pricingPlans } from "@/data/pricing";
 import {
     addOns,
@@ -22,8 +23,6 @@ import {
 } from "@/data/pricing.addons";
 
 export const dynamic = "force-static";
-
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.shelf.nu";
 
 /**
  * Prose pricing summary — the paragraph an answer engine is most likely to
