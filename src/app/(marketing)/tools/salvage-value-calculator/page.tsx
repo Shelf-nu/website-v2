@@ -11,7 +11,6 @@ import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 const jsonLd = buildToolPageJsonLd({
     name: "Shelf Salvage Value Calculator",
-    applicationCategory: "FinanceApplication",
     url: "https://www.shelf.nu/tools/salvage-value-calculator",
     description:
         "Free salvage value calculator — estimate residual value for equipment at end of useful life using industry benchmarks by category.",

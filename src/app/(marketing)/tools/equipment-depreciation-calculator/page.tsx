@@ -11,7 +11,6 @@ import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 const jsonLd = buildToolPageJsonLd({
     name: "Shelf Equipment Depreciation Calculator",
-    applicationCategory: "FinanceApplication",
     url: "https://www.shelf.nu/tools/equipment-depreciation-calculator",
     description:
         "Free equipment depreciation calculator — compare 4 methods (straight-line, declining balance, double declining, sum-of-years-digits) with full schedules.",
