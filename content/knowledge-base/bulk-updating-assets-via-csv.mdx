@@ -3,13 +3,15 @@ title: "Bulk Updating Assets via CSV"
 description: "Use the Update Existing Assets workflow to edit asset records in bulk — export to CSV, make changes in Excel or Google Sheets, preview every diff, then apply."
 category: "Assets"
 date: "2026-04-06"
-updated: "2026-08-03"
+updated: "2026-08-06"
 layout: "knowledge-base"
 ---
 
 The **Update Existing Assets** feature lets you edit up to 1,000 asset records per file using a CSV. The workflow has three stages: upload your edited CSV, preview every change in a spreadsheet-style diff, and confirm to apply.
 
 This is useful when you need to reassign dozens of assets to a new location, correct category assignments across your inventory, group a fleet under an asset model, reset low-stock thresholds on your consumables, or update custom field values for a large group of assets without editing them one by one.
+
+The round trip is **Export → edit → Import**, and the **Import-ready** export format is built for it: it carries an `id` column so every row finds its asset, and it writes the quantity fields in the shape this workflow expects.
 
 ## Before You Start
 
@@ -26,13 +28,15 @@ Start with a CSV export from your Asset Index — this ensures every row has the
 1. Navigate to **Assets** in your workspace.
 2. (Optional) Apply filters to narrow down to the assets you want to update.
 3. Select the assets using the checkboxes, or click **Select all**.
-4. Click **Export selection**, keep the **Standard** format, and click **Download CSV**.
+4. Click **Export selection**, choose the **Import-ready** format, and click **Download CSV**.
 
 ![Selecting assets in the Asset Index to export for bulk update](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/selecttoexport.jpg)
 
-> **Important:** Your export must include the **Asset ID** or **ID** column. Shelf uses these values to match each row in your edited CSV back to the correct asset record. Standard exports from the Asset Index include these columns automatically.
+> **Import-ready is the format to pick.** It always writes an `id` column as its first column, in either column scope, so every row can be matched back to the asset it came from. It also writes the quantity fields in the shape this workflow expects, which saves the manual pass a Standard export needs. The same file still works for creating assets in another workspace, so one format now covers both jobs.
 
-> **Use the Standard format, not Import-ready.** The **Import-ready** format writes the importer's own lowercase headers (`title`, `valuation`, `quantity`) and carries no `Asset ID` or `ID` column, so this workflow has nothing to match rows on and stops with an error. Import-ready files are for creating assets in another workspace through **Assets → Import**. See [Choosing an export format](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format).
+**Standard exports work too.** If you already have one, or you prefer its readable labels, you can upload it as long as it carries an **Asset ID** or **ID** column. Standard only includes `ID` when that column is visible in your index or you pick the **All columns** scope, so check before you edit. Both header styles are accepted in the same file, and header matching ignores capitalization, so `Asset model`, `asset model`, and `assetModel` all land on the same field. See [Choosing an export format](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format).
+
+> **Never use the Workspace Backup CSV.** Its category, tags, and asset model cells hold raw stored data rather than plain names. Shelf now recognizes a backup file and stops with an explanation instead of proposing nonsense changes, but the fix is the same either way: export again from the Asset Index.
 
 ---
 
@@ -42,40 +46,42 @@ Open the exported CSV in your preferred spreadsheet application and make your ch
 
 ### What you can update
 
-Column headers are matched **exactly** against the labels Shelf writes in a Standard export, so keep them as exported. A header Shelf doesn't recognize is listed as an unrecognized column and ignored, it does not stop the file.
+Keep the headers as exported. Shelf reads both header styles, the readable labels a Standard export writes and the lowercase keys an Import-ready export writes, and matching ignores capitalization. A header Shelf doesn't recognize is listed as an unrecognized column and ignored, it does not stop the file.
 
-| Column header | Applies to | Notes |
-|---|---|---|
-| `Name` | All assets | Cannot be cleared |
-| `Category` | All assets | Created automatically if the name is new |
-| `Location` | All assets | Created automatically if the name is new |
-| `Tags` | All assets | Comma-separated inside one cell. Created automatically if new |
-| `Value` | All assets | Plain number. Currency symbols and thousands separators are stripped for you |
-| `Available to book` | All assets | `Yes` or `No` only |
-| `Asset model` | Individually tracked only | Matched by name, case-insensitive, created automatically if new |
-| `Quantity` | Quantity-tracked only | Whole number, no unit in the cell |
-| `Min quantity` | Quantity-tracked only | Whole number, the low-stock threshold |
-| `Unit of measure` | Quantity-tracked only | Free text, for example `boxes` |
-| `Consumption type` | Quantity-tracked only | `ONE_WAY` or `TWO_WAY` |
-| Your custom fields | All assets | Text, Boolean, Date, Option, Number, Currency |
+| Standard header | Import-ready header | Applies to | Notes |
+|---|---|---|---|
+| `Name` | `title` | All assets | Cannot be cleared |
+| `Description` | `description` | All assets | Plain text. Cannot be cleared |
+| `Category` | `category` | All assets | Created automatically if the name is new |
+| `Location` | `location` | All assets | Created automatically if the name is new |
+| `Tags` | `tags` | All assets | Comma-separated inside one cell. Created automatically if new |
+| `Value` | `valuation` | All assets | Plain number. Currency symbols and thousands separators are stripped for you |
+| `Available to book` | `bookable` | All assets | `Yes` or `No` only |
+| `Asset model` | `assetModel` | Individually tracked only | Matched by name, case-insensitive, created automatically if new |
+| `Quantity` | `quantity` | Quantity-tracked only | Whole number, no unit in the cell |
+| `Min quantity` | `minQuantity` | Quantity-tracked only | Whole number, the low-stock threshold |
+| `Unit of measure` | `unitOfMeasure` | Quantity-tracked only | Free text, for example `boxes` |
+| `Consumption type` | `consumptionType` | Quantity-tracked only | `ONE_WAY` or `TWO_WAY` |
+| Your custom fields | `cf:Name,type:TYPE` | All assets | Text, Boolean, Date, Option, Number, Currency |
 
 A column that doesn't apply to a row's tracking method is skipped and the rest of the row still applies. On an individually tracked asset the four quantity columns are ignored silently, since they come along for the ride in an export. On a quantity-tracked asset an `Asset model` cell is flagged in the preview with a warning so you can see the model didn't take, and every other cell on that row still updates.
 
+A custom field column names a field that must already exist in your workspace. If the preview lists one as unrecognized, create it under **Settings → Custom fields** first and re-analyze. Only the field's own name needs creating, not the whole `cf:…,type:…` header.
+
 ### What you cannot update
 
-- **Description**, because multiline text loses its formatting through CSV
 - **Status** and **Custody**, which have their own workflows
 - **Kit**, which has its own assignment flow
 - **Tracking method**, which is fixed when an asset is created. Individually tracked cannot become quantity-tracked, or the reverse
 
-These columns are safely skipped if present in your file. They will not cause errors or overwrite existing values.
+These columns are safely skipped if present in your file. They will not cause errors or overwrite existing values. An Import-ready export carries `kit`, `custodian`, `type`, `qrId`, `imageUrl`, and the `barcode_*` columns for the sake of the create flow, and this workflow ignores every one of them.
 
-### The export is not re-uploadable as-is for quantity
+If a file matches your assets but carries no column this workflow can write, Shelf says so rather than reporting "no changes detected", so a wrong file no longer reads as a file with nothing to change.
 
-Two things need a manual pass before a Standard export can update quantity-tracked stock:
+### Quantity columns depend on the export format
 
-- **`Quantity` exports with its unit attached.** An asset with a unit of measure is written as `10 boxes`, and this workflow needs the number on its own. Leave `10` in the cell or the quantity change is flagged in the preview and skipped.
-- **`Min quantity`, `Unit of measure`, and `Consumption type` are not part of the export at all.** Add those columns yourself, using exactly those header names, with one row per asset you want to change.
+- **Import-ready needs no manual pass.** It already carries `minQuantity`, `unitOfMeasure`, and `consumptionType`, and its `quantity` cell is a plain number.
+- **Standard needs two fixes.** `Quantity` is written with its unit attached, as `10 boxes`, and this workflow needs the number on its own. Leave `10` in the cell or the quantity change is flagged in the preview and skipped. `Min quantity`, `Unit of measure`, and `Consumption type` are not in a Standard export at all, so add those columns yourself using exactly those header names.
 
 ### Empty cells
 
@@ -83,12 +89,17 @@ Two things need a manual pass before a Standard export can update quantity-track
 
 **These are never cleared by an empty cell:**
 
-- `Name` and boolean fields, which cannot be emptied at all
+- `Name`, `Description`, and boolean fields, which cannot be emptied at all
 - `Asset model`, `Quantity`, `Min quantity`, `Unit of measure`, and `Consumption type`, which keep their current value when the cell is blank. Change these on the asset itself if you need to remove them
+
+### Assets with stock in more than one location
+
+A quantity-tracked asset can have its units spread across several **placements**, and a CSV has only one `Location` cell per row to describe them. Rather than guess which placement you meant, Shelf flags the location change on those rows with *"This asset has units in multiple locations, bulk location update isn't supported"* and skips just that field. Every other change on the row still applies. Move those units from the asset's location panel instead, as described in [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables#where-the-units-are).
 
 ### Tips
 
-- Keep the **Asset ID** and **ID** columns exactly as exported, do not edit them.
+- Keep the identifier column (`id`, **ID**, or **Asset ID**) exactly as exported, do not edit it.
+- A Standard export writes `Uncategorized` in the Category cell for an asset that has no category. Leaving that word in place keeps the asset uncategorized rather than creating a category called "Uncategorized". If your workspace genuinely has a category by that name, it is matched as normal.
 - Boolean fields, including **Available to book**, accept only `Yes` or `No` (case-insensitive, whitespace-tolerant). `true`, `false`, `1`, and `0` are not recognized.
 - Date fields require `YYYY-MM-DD` format.
 - Categories, locations, tags, and asset models that do not yet exist in your workspace are **created automatically** when you apply.
@@ -110,11 +121,12 @@ Shelf analyzes your file and shows a **spreadsheet-style preview** of every chan
 ![Spreadsheet-style preview showing old and new values side by side before applying](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/updatechecker.jpg)
 
 - Each row shows the asset name alongside every field that will change, with the old and new values side by side.
-- **Validation warnings** are shown for fields with bad date formats, invalid numbers, or unrecognized values. A warned field is the only thing skipped: the row's other changes still apply. This is where a `10 boxes` quantity cell or an `Asset model` cell on a quantity-tracked asset shows up.
-- **Unrecognized columns** (ones that do not map to any known field or custom field) are listed separately — they will be ignored, not rejected.
+- **Validation warnings** are shown for fields with bad date formats, invalid numbers, or unrecognized values. A warned field is the only thing skipped: the row's other changes still apply. This is where a `10 boxes` quantity cell, an `Asset model` cell on a quantity-tracked asset, or a location change on a multi-placement asset shows up.
+- **Unrecognized columns** (ones that do not map to any known field or custom field) are listed separately, they will be ignored, not rejected. A custom field column is shown by its field name, so the name in the list is the one to create under **Settings → Custom fields**.
+- The change count matches what will actually be written. Rows whose only changes are warned are not counted toward it.
 - You can click **Re-analyze** to re-process the file after adjusting it.
 
-If the file has no identifier column (`Asset ID` or `ID`), or contains no data rows, Shelf will show an error before reaching the preview stage.
+If the file has no identifier column, contains no data rows, carries nothing this workflow can update, or turns out to be a workspace backup export, Shelf shows an error before reaching the preview stage.
 
 ---
 
@@ -135,6 +147,14 @@ Shelf applies the changes and shows a **results page** with a summary of what su
 ### What happens if a row has an unrecognized asset ID?
 
 Rows that cannot be matched to an existing asset are skipped and listed in the results report as unmatched.
+
+### Can I use the same export file to create assets somewhere else and update them here?
+
+Yes. An Import-ready export serves both. Upload it to another workspace through **Assets → Import** and it creates assets there, ignoring the `id` column, since those ids belong to the workspace that issued them. Upload the same file here and it updates the assets it came from.
+
+### Which columns can I safely delete from the file?
+
+Any of them except the identifier column. Deleting a column means "leave this field alone", which is different from leaving the column in place with an empty cell. See [Empty cells](#empty-cells).
 
 ### Can I update assets across multiple locations or categories in one file?
 

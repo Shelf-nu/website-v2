@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-03"
+updated: "2026-08-06"
 layout: "knowledge-base"
 ---
 
@@ -12,7 +12,7 @@ Shelf supports two CSV workflows for assets:
 - **Create new assets** — this guide covers importing a CSV file to add new asset records to your inventory.
 - **Update existing assets** — if you want to bulk-edit records already in Shelf, use the [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) workflow instead.
 
-The two use different column names, so a file built for one is not a file for the other. This guide's headers are the importer's own keys (`title`, `valuation`, `assetModel`, `quantity`). The update workflow reads the labels a Standard export writes (`Name`, `Value`, `Asset model`, `Quantity`) and matches rows on `Asset ID` or `ID`.
+Both read the header keys this guide describes (`title`, `valuation`, `assetModel`, `quantity`), so one **Import-ready** export serves either flow: upload it to create assets in another workspace, or upload it to the update flow to edit the assets it came from. The update flow additionally accepts the display labels a Standard export writes (`Name`, `Value`, `Asset model`, `Quantity`), and it matches rows on the `id`, `ID`, or `Asset ID` column.
 
 Shelf enables users to import assets through CSV (Comma-Separated Values) files. The platform provides a template-based approach with validation to ensure data integrity during the import process.
 
@@ -22,7 +22,7 @@ To begin importing assets:
 
 
 ![Asset import page in Shelf with CSV upload option](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/importing-csv-1.webp)
-1. Download the CSV template or barcode-enabled version from Shelf (or, if you're moving assets in from another Shelf workspace, use an **Import-ready** export instead: [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format))
+1. Download the CSV template or barcode-enabled version from Shelf (or, if you're moving assets in from another Shelf workspace, use an **Import-ready** export instead: [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format)). An Import-ready file carries an `id` column, which this flow ignores, so the destination workspace issues its own ids. The same file can be re-uploaded to [update the assets it came from](/knowledge-base/bulk-updating-assets-via-csv) instead of creating new ones
 2. Add your asset information following the provided format
 3. Save the file with UTF-8 encoding
 4. Navigate to Assets then Import in your workspace
@@ -44,6 +44,7 @@ To begin importing assets:
 
 | Column | Required | Purpose | Example |
 |--------|----------|---------|---------|
+| `id` | No | Present in Import-ready exports. **Ignored when creating assets**, and used by the update flow to match rows | "cm3x1a2b0000abcd" |
 | `title` | Yes | Asset name | "MacBook Pro 13-inch" |
 | `description` | No | Detailed information | "Company laptop with 256GB storage" |
 | `category` | No | Asset category | "Laptops" |

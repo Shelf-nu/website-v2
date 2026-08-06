@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-03"
+updated: "2026-08-06"
 layout: "knowledge-base"
 ---
 
@@ -30,7 +30,7 @@ If your CSV import fails, partially imports, or creates unexpected records, chec
 
 This happens when you use the **Import** flow (which creates new assets) instead of the **Update Existing Assets** flow (which matches by ID and updates in place).
 
-- To **update** existing assets: go to the Assets index → Actions → **Update Existing Assets** (not Import)
+- To **update** existing assets: go to **Assets → Import → Update existing** (not the plain Import flow)
 - The update flow matches rows to existing assets by their **ID** column
 - Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv)
 
@@ -48,16 +48,28 @@ This happens when you use the **Import** flow (which creates new assets) instead
 
 In **Update Existing Assets**, an unrecognized or inapplicable column never stops the file. It is listed in the preview and skipped, so the usual symptom is that everything else updated and one column did nothing. The common causes:
 
-- **The header is spelled differently from the export label.** Headers are matched exactly against what a Standard export writes. The value column is `Value`, not `Valuation`. A header Shelf doesn't recognize is listed under unrecognized columns and ignored.
-- **The quantity cell still has its unit in it.** A Standard export writes `10 boxes` for a pooled asset. The update workflow needs `10`. A cell it can't read as a whole number is flagged in the preview with a warning and skipped, while the row's other changes still apply.
-- **The quantity columns aren't in the export.** `Min quantity`, `Unit of measure`, and `Consumption type` can be updated, but a Standard export doesn't produce them. Add the columns yourself with exactly those names.
+- **The header isn't one Shelf writes.** Both header styles are accepted, the Standard export's labels (`Value`, `Asset model`) and the Import-ready export's keys (`valuation`, `assetModel`), and capitalization doesn't matter. What does matter is spelling: a header that is neither is listed under unrecognized columns and ignored.
+- **A custom field column names a field that doesn't exist here.** The update flow writes to existing custom fields, it does not create them. The preview lists the field by name, so create that field under **Settings → Custom fields** and re-analyze.
+- **The quantity cell still has its unit in it.** A Standard export writes `10 boxes` for a pooled asset. The update workflow needs `10`. A cell it can't read as a whole number is flagged in the preview with a warning and skipped, while the row's other changes still apply. An Import-ready export writes a plain number, so it doesn't hit this.
+- **The quantity columns aren't in the export.** `Min quantity`, `Unit of measure`, and `Consumption type` are not in a Standard export. Add the columns yourself with exactly those names, or export **Import-ready**, which already includes them.
+- **The asset has stock in more than one location.** A `Location` cell can't say which placement you meant, so the location change is flagged with a warning and skipped while the rest of the row applies. Move those units from the asset's location panel.
 - **`Asset model` was set on a quantity-tracked asset.** Models group individually tracked assets only. The preview shows a warning on that cell, the model is not linked, and the rest of the row updates as normal.
 - **A quantity column was set on an individually tracked asset.** Those cells are ignored without a warning, since they ride along in every export.
 - **You tried to change `Tracking method`.** Asset type is fixed at creation, so the cell is ignored whatever it says.
 - **A blank cell didn't clear the value.** `Asset model`, `Quantity`, `Min quantity`, `Unit of measure`, and `Consumption type` keep their current value when the cell is empty. Clear them on the asset itself.
-- **You uploaded an Import-ready export.** Import-ready files have no `Asset ID` or `ID` column, so there is nothing to match rows on and the upload stops before the preview. Export again with the **Standard** format.
 
 Full column reference: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv#what-you-can-update).
+
+---
+
+## Update flow: the file is rejected before the preview
+
+Four checks run before Shelf builds a preview, each with its own message:
+
+- **No identifier column.** The file needs `id`, `ID`, or `Asset ID`. An **Import-ready** export always has one, in either column scope. A Standard export only carries `ID` when that column is visible in your index or you pick the **All columns** scope.
+- **Nothing updatable in the file.** The identifier matched, but every other column is either unrecognized or one this flow never writes (Status, Kit, Custody). This usually means the wrong file. Export **Import-ready** and use that.
+- **It's a workspace backup export.** The backup from **Workspace settings → General** stores category, tags, and asset model as raw data rather than names, so it can't be matched to real entities. Export from the Asset Index instead.
+- **Too many rows.** The limit is 1,000 assets per file. Split larger files into batches.
 
 ---
 
