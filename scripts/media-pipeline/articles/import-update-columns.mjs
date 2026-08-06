@@ -6,7 +6,12 @@
  *
  * Shows: "What you can update" (asset model + qty-tracked columns), the
  * empty-cell exceptions, and "How assets are matched" as rewritten by
- * shelf.nu #2776.
+ * shelf.nu #2776 and again by #2813 (Import-ready is now the recommended
+ * export format, and Description became updatable).
+ *
+ * The assertions below pin #2813's copy specifically, so this run doubles
+ * as the deployment probe: if production has not shipped #2813 yet, the
+ * script throws instead of publishing a screenshot of the old instructions.
  */
 
 import { mkdtemp, rm } from "node:fs/promises";
@@ -46,6 +51,18 @@ async function main() {
       .locator('text="Asset model"')
       .first()
       .waitFor({ state: "visible" });
+
+    // #2813 markers. Step 1 now recommends the Import-ready format, and
+    // Description moved from "Not supported yet" into the updatable list.
+    await page
+      .locator("text=/In the export dialog/")
+      .first()
+      .waitFor({ state: "visible" });
+    await page
+      .locator("text=/Name, Description, Category/")
+      .first()
+      .waitFor({ state: "visible" });
+
     await heading.scrollIntoViewIfNeeded();
     await page.waitForTimeout(600);
 

@@ -21,6 +21,9 @@ const ARTICLES = {
   "configure-permissions": "articles/configure-permissions.mjs",
   "kit-location": "articles/kit-location.mjs",
   "import-update-columns": "articles/import-update-columns.mjs",
+  "import-ready-export": "articles/import-ready-export.mjs",
+  "date-time-preferences": "articles/date-time-preferences.mjs",
+  "low-stock-visibility": "articles/low-stock-visibility.mjs",
   "qt-availability": "articles/qt-availability.mjs",
 };
 
