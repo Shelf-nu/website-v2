@@ -1,0 +1,18 @@
+---
+title: "Consumables now count down when a custody hold ends"
+description: "A used-up consumable's units are marked as consumed rather than returned to the pool when someone's hold ends, and you can hand back whatever wasn't used."
+date: "2026-08-06"
+image: "/images/features/consumables/consumption-types.svg"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#quantity-aware-custody"
+layout: "update"
+---
+
+A quantity-tracked asset's **consumption type** now decides what happens on both routes stock leaves by. It already applied at booking check-in. It now applies when a custody hold ends too.
+
+On a **used-up (one-way)** consumable, the custody row's action reads **Mark as consumed** instead of Release. The dialog asks how many units leave that person's hold, and how many of those were actually used up. The used-up units come off the asset's total for good; anything left over goes back into the available pool. So a crew that took 40 pairs of gloves and used 10 hands the other 30 back in a single action, rather than the whole 40 returning to stock as before.
+
+**Returnable (two-way) assets are unchanged.** The action is still Release, the units still go back to the pool, and the total still doesn't move.
+
+The outcome is decided from the asset itself, so it is the same on the web and in the Companion app. The split is written to the asset's Activity tab as its own log entry, and a consume that takes available stock to or below the min quantity fires the usual low-stock alert.
+
+Worth one check on your own data: because consumption type previously applied at check-in only, a consumable that was handed out as custody and released got its units back. If a consumable's count reads higher than the shelf does, edit the quantity once to bring it in line.
