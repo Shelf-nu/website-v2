@@ -10,7 +10,7 @@
  * apps/webapp/app/modules/asset-index-settings/helpers.ts (minQuantity: "Min quantity")
  */
 
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import {
@@ -74,6 +74,7 @@ async function main() {
     Object.values(urls).forEach((u) => console.log(`  OK ${u}`));
   } finally {
     await browser.close();
+    await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
   }
 }
 

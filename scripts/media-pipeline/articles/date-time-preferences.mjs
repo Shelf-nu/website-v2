@@ -10,7 +10,7 @@
  * "Week starts on", "Time zone", live preview "Dates will look like:")
  */
 
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import {
@@ -70,9 +70,14 @@ async function main() {
 
     // Assert the last row and the Save control are actually on screen before
     // shooting, so a layout change fails the run instead of publishing a
-    // half-cropped card.
+    // half-cropped card. The Save button is the bottom edge of the card, so
+    // asserting it is what proves nothing below the preview line was cut off.
     await page
       .locator('text="Dates will look like:"')
+      .first()
+      .waitFor({ state: "visible" });
+    await page
+      .locator('button:has-text("Save"), [type="submit"]:has-text("Save")')
       .first()
       .waitFor({ state: "visible" });
 
@@ -93,6 +98,7 @@ async function main() {
     Object.values(urls).forEach((u) => console.log(`  OK ${u}`));
   } finally {
     await browser.close();
+    await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
   }
 }
 

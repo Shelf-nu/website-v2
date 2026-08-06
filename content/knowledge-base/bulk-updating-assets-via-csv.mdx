@@ -74,7 +74,7 @@ A custom field column names a field that must already exist in your workspace. I
 - **Kit**, which has its own assignment flow
 - **Tracking method**, which is fixed when an asset is created. Individually tracked cannot become quantity-tracked, or the reverse
 
-These columns are safely skipped if present in your file. They will not cause errors or overwrite existing values. An Import-ready export carries `kit`, `custodian`, `type`, `qrId`, `imageUrl`, and the `barcode_*` columns for the sake of the create flow, and this workflow ignores every one of them.
+These columns are safely skipped if present in your file. They will not cause errors or overwrite existing values. An Import-ready export carries `kit`, `custodian`, `type`, and the `barcode_*` columns for the sake of the create flow, and this workflow ignores every one of them. (`qrId` and `imageUrl` are left out of Import-ready exports entirely, since QR codes belong to the workspace that issued them and images are not carried across yet.)
 
 If a file matches your assets but carries no column this workflow can write, Shelf says so rather than reporting "no changes detected", so a wrong file no longer reads as a file with nothing to change.
 
