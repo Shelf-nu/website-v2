@@ -433,9 +433,15 @@ export function pricingSoftwareApplicationJsonLd(
         if (price === null || price === undefined) return [];
 
         // Per-seat add-ons recur monthly per user; flat add-ons recur monthly
-        // per workspace. billingDuration says how long one charge covers, so
-        // it is 1 MON in both cases — not 12, which would claim the $9 buys a
-        // whole year rather than a single month.
+        // per workspace. billingDuration states how long a single charge
+        // covers, so it is one month in both cases — not a year, which would
+        // claim the per-user rate buys twelve months.
+        //
+        // billingDuration takes an ISO-8601 Duration directly. There is NO
+        // `billingPeriod` property on UnitPriceSpecification — an earlier
+        // version of this code invented one, which is what tripped the
+        // schema.org validator on /pricing.
+        // https://schema.org/UnitPriceSpecification
         const isPerSeat = Boolean(entryTier);
         const isMonthlyRate = isPerSeat || addOn.priceMonthly !== null;
 
@@ -454,8 +460,7 @@ export function pricingSoftwareApplicationJsonLd(
                 priceCurrency: "USD",
                 unitText: isPerSeat ? "USER" : "WORKSPACE",
                 billingIncrement: 1,
-                billingDuration: isMonthlyRate ? 1 : 12,
-                billingPeriod: isMonthlyRate ? "P1M" : "P1Y",
+                billingDuration: isMonthlyRate ? "P1M" : "P1Y",
                 ...(isPerSeat && { referenceQuantity: {
                     "@type": "QuantitativeValue",
                     value: 1,
