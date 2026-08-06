@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-08-05"
+updated: "2026-08-06"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -59,7 +59,7 @@ When you add or edit an asset, you pick how it should be tracked:
 
 Quantity-tracked assets can behave in one of two ways after they're handed out or checked out:
 
-- **Used up (one-way)** — Units are consumed and not expected back. Check out 50 gloves and the count permanently drops by 50 when the booking is checked in, which defaults to consuming everything that went out. Best for disposables: gloves, masks, single-use kits.
+- **Used up (one-way)** — Units are consumed and not expected back, so the count permanently drops when they are settled. This applies on **both** routes stock leaves by: checking in a booking, and ending a custody hold. Either way the default is to consume everything that went out, and you can record a smaller number if some came back unused. Best for disposables: gloves, masks, single-use kits.
 - **Returnable (two-way)** — Units are checked out and returned, with a consumption report on the way back. Check out 10 cables; when they come back you report what returned and what was lost or used up. Returned units go back into available stock and the rest are deducted. Best for reusable supplies that occasionally go missing.
 
 When new stock arrives, you can **restock** a quantity-tracked asset to increase its count. Every quantity change is logged for an audit trail.
@@ -72,7 +72,26 @@ For quantity-tracked assets, custody is by portion rather than all-or-nothing:
 
 - Assign part of the pool to a person — for example, "20 of 100 USB-C cables to Sarah." The available count drops by 20.
 - Several team members can hold different quantities of the same asset at once.
-- Releasing custody — fully or partially — returns those units to the available pool.
+- Ending a hold, fully or partially, settles those units according to the asset's [consumption type](#consumption-types).
+
+### Ending a hold on returnable stock
+
+On a **returnable (two-way)** asset the custody row's action is **Release**. Enter how many units to hand back, up to what that person holds, and they go straight back into the available pool. The asset's total quantity does not change, because nothing was used up.
+
+### Ending a hold on a consumable
+
+On a **used-up (one-way)** asset the same row reads **Mark as consumed**, because a consumable's units are not expected back. The dialog asks two questions:
+
+1. **Units to release**, meaning how many leave that person's hold.
+2. **Of those, how many were used up?**, pre-filled to all of them, which is the usual answer for a consumable.
+
+Whatever you record as used up is **permanently removed from the asset's total quantity** and cannot be restored. Anything left over goes back into the available pool, so a crew that took 40 pairs of gloves and used 10 can hand the other 30 back in one action rather than writing off all 40.
+
+The asset's **Activity** tab records the outcome in the same words, for example *"ended Sarah's hold on 40 unit(s): 10 consumed and 30 returned to stock"*, and a consume that takes available stock to or below the min quantity triggers the usual [low-stock alert](#low-stock-alerts).
+
+Shelf decides this from the asset itself rather than from where the request came from, so the outcome is the same whether you end the hold on the web or from the Companion app.
+
+> **Worth a one-time check.** Consumption type used to be applied at booking check-in only, so units handed out as custody and then released went back into stock whatever the asset's type. If a consumable's count reads higher than what is actually on the shelf, that is the likely reason. Edit the quantity on the asset once to bring it in line, and it stays in line from here.
 
 ---
 
@@ -96,7 +115,7 @@ Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app 
 - The **assets list** shows a quantity pill on each pooled asset's row.
 - The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
 - Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign.
-- Tap a holder's custody row to **release** units back to the pool. The amount is capped at the units that person can release.
+- Tap a holder's custody row to end their hold. The amount is capped at the units that person can release. On a returnable asset the units go back to the pool; on a **used-up** consumable they are consumed and the total drops, the same as on the web, because the outcome follows the asset rather than the device. The current app release still labels this action "release" on both kinds of asset, and a future release brings the wording and the partial used-up field in line with the web.
 - On a booking, check out part of a pooled line and leave the rest booked, then record the return with the same **Returned / Lost / Damaged** split (or **Consumed / Lost / Damaged** for consumables) the web check-in drawer uses.
 
 Individually tracked assets look and behave exactly as before in the app. See [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) for the full mobile walkthrough.
@@ -182,7 +201,17 @@ The filter clears with the rest of your filters, and it counts toward the filter
 
 ## Every quantity change is logged
 
-Quick adjustments are not the only thing recorded. Changing the quantity on the asset edit form, changing the **min quantity** threshold, and the decrements a booking check-in applies each write an entry to the asset's **Activity** tab with the previous and new value and the person responsible, plus a stock adjustment against the pool. Whatever route stock took, the history explains it.
+Quick adjustments are not the only thing recorded. Changing the quantity on the asset edit form, changing the **min quantity** threshold, the decrements a booking check-in applies, and the units consumed when a custody hold ends each write an entry to the asset's **Activity** tab with the previous and new value and the person responsible, plus a stock adjustment against the pool. Consumed and returned units are logged separately, so a partial settlement shows both halves. Whatever route stock took, the history explains it.
+
+---
+
+## Editing stock in bulk
+
+Resetting thresholds across a shelf of supplies, or correcting counts after a stocktake, is faster from a spreadsheet than one asset at a time. Export the assets, edit the file, and upload it to **Assets → Import → Update existing**, which previews every change before anything is saved. `Quantity`, `Min quantity`, `Unit of measure`, and `Consumption type` are all updatable this way.
+
+Pick the **Import-ready** export format for this. It already includes all four columns and writes the quantity as a plain number. A Standard export writes the quantity with its unit attached, as `10 boxes`, and does not include the other three at all, so it needs a manual pass first.
+
+An asset whose units sit in more than one location is the one exception: the `Location` column is flagged and skipped on those rows, because a single cell cannot say which placement you meant. Everything else on the row still applies. Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
 
 ---
 

@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/consumables-tracking"
 date: "2026-06-30"
-updated: "2026-08-04"
+updated: "2026-08-06"
 seo:
   title: "Consumables Tracking Software — Track Supplies by Quantity | Shelf"
   description: "Track consumables and supplies by quantity alongside your assets. Units of measure, min-quantity low-stock alerts, Used-up or Returnable consumption, and quantity-aware custody, bookings, and kits — open source, free to start."
@@ -60,7 +60,7 @@ Your **available** quantity is computed live as you go: the total, minus what's 
 
 Every quantity-tracked item has a **consumption type** that matches how it's actually used:
 
-- **Used up**: a one-way consumable. Once it's issued, it's gone — paper, reagents, disposable gloves.
+- **Used up**: a one-way consumable. Once it's issued, it's gone — paper, reagents, disposable gloves. Shelf applies that on both routes stock leaves by, a booking check-in and a custody hand-out, so the count drops either way.
 - **Returnable**: a two-way pool. Units go out and come back, and a **consumption report** is recorded at check-in so you capture how much was actually used versus returned.
 
 ![Used up versus returnable consumption: used-up stock is consumed and not expected back, while returnable stock is checked out and reconciled at check-in into what returned versus what was used.](/images/features/consumables/consumption-types.svg)
@@ -71,7 +71,9 @@ For day-to-day stock changes, **quick adjustments** keep counts honest: restock 
 
 ## Quantity-aware custody
 
-Custody works at the unit level. Assign **any portion** of a pool to a person, release any portion back, and let **multiple people each hold a share** of the same item at once — each custodian's quantity is tracked separately. Hand 5 of 20 radios to one crew lead and 10 to another, and Shelf knows exactly who's holding what.
+Custody works at the unit level. Assign **any portion** of a pool to a person and let **multiple people each hold a share** of the same item at once — each custodian's quantity is tracked separately. Hand 5 of 20 radios to one crew lead and 10 to another, and Shelf knows exactly who's holding what.
+
+Ending a hold follows the item's consumption type, so the stock figure stays honest without anyone remembering a rule. Returnable units go back into the available pool. A **used-up** consumable is marked as consumed instead, and those units come off the total for good. When only part of a hand-out was actually used, record that: a crew that took 40 pairs of gloves and used 10 hands the other 30 back in the same action. The split is written to the item's activity log, and a consume that crosses the minimum triggers the low-stock alert below.
 
 ---
 
@@ -93,7 +95,7 @@ To see everything running low at once, open the [advanced asset index](/knowledg
 
 ## Every stock change is on the record
 
-Quick adjustments aren't the only thing tracked. Changing a count on the asset edit form, or changing the **min quantity** threshold itself, writes its own entry to the asset's **Activity** tab with the old and new value and who made the change, and the decrements a booking check-in applies are logged the same way. However stock moved, it left a trail, so "who took 40 cables and when" has an answer without anyone keeping a side spreadsheet.
+Quick adjustments aren't the only thing tracked. Changing a count on the asset edit form, or changing the **min quantity** threshold itself, writes its own entry to the asset's **Activity** tab with the old and new value and who made the change, and the decrements a booking check-in or a consumable hand-out applies are logged the same way, with consumed and returned units recorded separately. However stock moved, it left a trail, so "who took 40 cables and when" has an answer without anyone keeping a side spreadsheet.
 
 ---
 
