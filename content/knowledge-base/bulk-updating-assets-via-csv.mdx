@@ -3,7 +3,7 @@ title: "Bulk Updating Assets via CSV"
 description: "Use the Update Existing Assets workflow to edit asset records in bulk — export to CSV, make changes in Excel or Google Sheets, preview every diff, then apply."
 category: "Assets"
 date: "2026-04-06"
-updated: "2026-08-06"
+updated: "2026-08-07"
 layout: "knowledge-base"
 ---
 
@@ -170,7 +170,9 @@ No. Tracking method is fixed when an asset is created, so a `Tracking method` co
 
 ### How do I assign an asset model to a whole fleet at once?
 
-Add an `Asset model` column and put the model name in every row. Names are matched case-insensitively and a model that doesn't exist yet is created for you, so you can name a new fleet in the same file that assigns it. Models apply to individually tracked assets only, see [Asset Models](/glossary/asset-models).
+If the model is the only thing you are changing, you do not need a CSV at all: select the units in the asset index and use **Actions → Update asset model**, which also has a **Remove from asset model** counterpart. See [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf#grouping-a-fleet-into-an-asset-model).
+
+Use this workflow when the model rides along with other edits. Add an `Asset model` column and put the model name in every row. Names are matched case-insensitively and a model that doesn't exist yet is created for you, so you can name a new fleet in the same file that assigns it. Models apply to individually tracked assets only, see [Asset Models](/glossary/asset-models).
 
 ### Can I restock a quantity-tracked asset through this workflow?
 
