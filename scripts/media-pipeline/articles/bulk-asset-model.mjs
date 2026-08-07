@@ -51,6 +51,16 @@ async function main() {
     await page.locator('text="Update asset model"').first().click();
     // Assert the dialog rendered before shooting it.
     await page.locator('text="Select asset model"').first().waitFor({ state: "visible" });
+    /**
+     * The shot exists to show the quantity-tracked warning, which renders only
+     * when the selection actually holds pooled stock. Assert it rather than
+     * hope for it: a page-one selection with no QT asset would otherwise
+     * publish a screenshot the article's surrounding copy contradicts.
+     */
+    await page
+      .locator("text=/quantity-tracked asset\\(s\\) in your selection will be skipped/")
+      .first()
+      .waitFor({ state: "visible" });
     await page.waitForTimeout(1200);
     await initAnnotations(page);
     await caption(page, "Pick one model for the whole selection. Category, value and custody are left alone.");
