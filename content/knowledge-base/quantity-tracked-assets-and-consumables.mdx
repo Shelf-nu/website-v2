@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-08-06"
+updated: "2026-08-07"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -217,7 +217,7 @@ An asset whose units sit in more than one location is the one exception: the `Lo
 
 ## Asset models (optional)
 
-You can group individually tracked assets under an **[Asset Model](/glossary/asset-models)** (for example, "Dell Latitude 5550") so that shared defaults — like category and valuation — are pre-filled when you create new assets from that model. Asset models are managed under **Settings → Asset models**, and you can bulk-create assets from a model. Models also unlock [booking by model](/features/bookings#book-by-model): reserve "4x" of a model and scan any 4 units at pickup. Note that models group individually tracked assets only; a quantity-tracked pool cannot join a model.
+You can group individually tracked assets under an **[Asset Model](/glossary/asset-models)** (for example, "Dell Latitude 5550") so that shared defaults — like category and valuation — are pre-filled when you create new assets from that model. Asset models are managed under **Settings → Asset models**, and you can bulk-create assets from a model. To group units you already own, select them in the asset index and use **Actions → Update asset model**, or **Remove from asset model** to ungroup them. Models also unlock [booking by model](/features/bookings#book-by-model): reserve "4x" of a model and scan any 4 units at pickup. Note that models group individually tracked assets only; a quantity-tracked pool cannot join a model, and quantity-tracked assets caught in a bulk grouping are skipped with a count rather than failing the batch.
 
 ---
 

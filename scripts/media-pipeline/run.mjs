@@ -25,6 +25,7 @@ const ARTICLES = {
   "date-time-preferences": "articles/date-time-preferences.mjs",
   "low-stock-visibility": "articles/low-stock-visibility.mjs",
   "qt-availability": "articles/qt-availability.mjs",
+  "bulk-asset-model": "articles/bulk-asset-model.mjs",
 };
 
 const slug = process.argv[2];

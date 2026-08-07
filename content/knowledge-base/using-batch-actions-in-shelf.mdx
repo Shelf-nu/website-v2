@@ -1,16 +1,16 @@
 ---
 title: "Using Batch Actions in Shelf"
-description: "Shelf's batch actions feature enables performing operations on multiple assets simultaneously, streamlining asset management workflows and saving time when updating inventory at scale."
+description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-06-24"
+updated: "2026-08-07"
 layout: "knowledge-base"
 ---
 
 <InlineVideo
   mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/batch-actions-flow.mp4"
   webm="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/batch-actions-flow.webm"
-  alt="How to use batch actions in Shelf — select assets, then choose from 14 bulk operations"
+  alt="How to use batch actions in Shelf: select assets, then choose from the bulk operations in the Actions menu"
 />
 
 ## How to Use Batch Actions
@@ -32,21 +32,53 @@ Click the "Actions" dropdown menu located in the top right corner after making y
 
 ### Step 4: Choose Batch Actions
 
-Available operations include:
+Available operations, in the order they appear in the menu:
 
+- **Download QR Codes**: Get the QR labels for every selected asset in one file
+- **Create audit**: Start a new audit covering the selected assets
+- **Add to existing audit**: Fold the selected assets into an audit that is already running
 - **Release custody**: Remove the current custodian from selected assets
-- **Assign custody**: Assign a new custodian to selected assets
-- **Assign Tags**: Add tags to assets in bulk
-- **Remove Tags**: Remove tags from assets in bulk
+- **Assign custody**: Assign a new custodian to selected assets (self-service users see **Take custody**)
+- **Assign tags**: Add tags to assets in bulk
+- **Remove tags**: Remove tags from assets in bulk
 - **Update location**: Change the location of selected assets
 - **Update category**: Modify the category of selected assets
+- **Update asset model**: Group the selected assets into one [Asset Model](/glossary/asset-models)
+- **Remove from asset model**: Take the selected assets out of whatever model they belong to
+- **Add to kit**: Put the selected assets into a kit
+- **Remove from kit**: Take the selected assets out of their kit
 - **Mark as available**: Make items bookable/reservable in bulk
 - **Mark as unavailable**: Make items unbookable/unreservable in bulk
 - **Delete**: Remove selected assets from inventory
 
+Some entries grey out when the selection does not suit them, with a short explanation on hover. **Release custody** needs every selected asset to be in custody, **Assign custody** needs them all to be available, and **Add to kit** and **Delete** are blocked while anything in the selection is checked out. The audit entries only appear for roles that can create or update audits.
+
+![The asset index Actions menu, with Update asset model and Remove from asset model listed under Update category](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bulk-asset-model-menu.webp)
+
 ### Step 5: Complete Action
 
 Follow the prompts to finalize your chosen operation. Once the action succeeds, Shelf clears your selection automatically, so you can move straight on to the next batch without unselecting everything first. (Read-only operations like exporting data or downloading QR codes keep your selection, since they don't change anything.)
+
+## Grouping a Fleet into an Asset Model
+
+**Update asset model** is how you put a fleet you already own under one [Asset Model](/glossary/asset-models), without opening each asset's edit form or re-importing a CSV.
+
+1. Filter or search the index down to the units you want to group, then select them.
+2. Open **Actions** and choose **Update asset model**.
+3. Pick the model in the picker, or use **Create new asset model** to make one on the spot.
+4. Click **Confirm**.
+
+![The Group assets into an asset model dialog, warning that quantity-tracked assets in the selection will be skipped](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bulk-asset-model-dialog.webp)
+
+Three things are worth knowing before you confirm:
+
+- **Only the model link changes.** Category, value, and custody are left exactly as they are. A model's default category and valuation are create-time conveniences, so they are not applied retroactively to assets you group this way.
+- **Quantity-tracked assets are skipped, not rejected.** Asset models group individually tracked units only. A mixed selection still works: the individually tracked assets are grouped and the dialog tells you up front how many will be skipped. The result message repeats the count afterwards.
+- **Assets already in another model are moved.** The confirmation says how many changed model, which is your signal that a different model's book-by-model pool just got smaller.
+
+**Remove from asset model** is the reverse and has its own menu item. It ungroups every selected asset and leaves everything else about them untouched.
+
+If nothing changes, Shelf says so rather than reporting a silent success: you will see **No assets updated** with the reason, whether that is your filters no longer matching anything, the assets already being in that model, or none of them having been in a model to begin with.
 
 ## Tips for Effective Use
 
