@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-07-06"
+updated: "2026-08-07"
 layout: "knowledge-base"
 ---
 
@@ -28,6 +28,8 @@ When a booking is **Reserved** and ready to go, the **Check Out** button now off
 - **Scan to check out** — opens a dedicated scanner so you can check out items individually as they're picked up.
 
 A separate **Scan to check out** entry button also appears on the booking page. Once every item has been checked out, that entry point disappears — there's nothing left to scan.
+
+Once the booking is **Ongoing** or **Overdue**, the same button reads **Check out remaining** instead of **Check out**. It does what the name says: it takes out everything on the booking that hasn't gone out yet, including anything you added after checkout began.
 
 {/* TODO: Screenshot needed: the booking Check Out dropdown showing "Check Out" and "Scan to check out" options (PR #2625) */}
 
@@ -76,6 +78,8 @@ Once items start leaving, the booking's asset list adds **"Checked out on"** and
 ### Adding More Items While a Booking Is Open
 
 Because the booking stays open like a tab, you can keep adding to it after checkout has already started. Add assets or kits to an **Ongoing** or **Overdue** booking from the asset page, a kit page, the booking's **Manage assets** modal, the bulk **Add to booking** panel, or by scanning, and they join the booking as line items that stay **Available** until you check them out. Adding something mid-booking never force-checks it out, so a late addition waits its turn just like anything else you haven't handed over yet.
+
+When you are ready to hand it over, a late addition checks out exactly like the rest of the list: scan it with **Scan to check out**, tick its row and use **Actions → Check out selected items**, or use the checkout button, which reads **Check out remaining** once a booking is Ongoing or Overdue and takes out everything still waiting in one go. This is true no matter how the booking got started, including one that was checked out all at once with the plain **Check out** button, and it covers quantity-tracked lines as well as individual assets.
 
 The one thing Shelf won't allow is pulling in an item that's already checked out on another active booking, which would double-book it.
 

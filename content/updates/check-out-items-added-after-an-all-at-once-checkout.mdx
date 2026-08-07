@@ -1,0 +1,20 @@
+---
+title: "Items Added to an Ongoing Booking Now Check Out Properly"
+description: "An asset added to a booking that was checked out all at once could not be handed over afterwards. Check out remaining now picks it up, quantity-tracked lines included, and availability counts no longer hide phantom units."
+date: "2026-08-06"
+readMoreUrl: "/knowledge-base/progressive-checkout-of-bookings#adding-more-items-while-a-booking-is-open"
+layout: "update"
+---
+
+Bookings are meant to stay open like a tab: you can keep adding assets and kits to one that is already **Ongoing** or **Overdue**, and they wait as **Available** until you hand them over. That worked when the booking had been checked out item by item. It did not work when the booking had been checked out all at once with the plain **Check out** button.
+
+On those bookings, anything added later was treated as if it had already gone out with everything else:
+
+- An **individually tracked** asset stayed *Available* and **Check out remaining** refused the batch, with an error naming an unrelated asset. That failure took the genuinely outstanding items down with it, so nothing got checked out.
+- A **quantity-tracked** asset could not be checked out on that booking at all.
+
+Both are fixed. Shelf now reads each asset's own live status instead of inferring "everything already left" from the booking, so a late addition keeps its real remaining quantity and checks out normally, by scanning, from **Actions → Check out selected items**, or with **Check out remaining**. Assets that were on the booking at the moment of the all-at-once checkout still correctly report nothing left to take.
+
+The same inference was feeding availability. A quantity-tracked asset added to one of these bookings was counted as fully checked out, which inflated its checked-out figure and subtracted units that were never actually out from what the pool could still be booked for. Those units are back where they belong, so **Availability** and the bookable counts on [pooled stock](/knowledge-base/quantity-tracked-assets-and-consumables) read true again.
+
+Nothing changes for bookings that were checked out progressively, or for any booking outside **Ongoing** and **Overdue**.
