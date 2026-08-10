@@ -3,7 +3,7 @@ title: "Configure What Self Service and Base Users Can See"
 description: "Administrators can customize permission settings in Shelf to control what Self Service and Base users can see regarding custody and booking information for assets, allowing for precise control over team member access."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-04-09"
+updated: "2026-08-10"
 layout: "knowledge-base"
 ---
 
@@ -38,7 +38,8 @@ This feature has been carefully designed to handle special cases:
 
 - Users can always see custody and booking information for assets assigned to them, regardless of their role.
 - When custody visibility is disabled, Self Service and Base users will see a "Private" badge instead of custodian names on asset lists.
-- Without booking visibility permissions, users will only see their own bookings in the calendar and booking lists.
+- Without booking visibility permissions, users will only see their own bookings. That applies everywhere bookings are listed or searched: the **Bookings** index, the calendar, the command palette, a workspace data export, and the **Add to booking** picker on an asset or kit page. Turn the toggle on and all five surfaces open up together, so a booking a user can find in one place is a booking they can find in the others.
+- Draft bookings are the one exception the toggle never reaches. A booking still in **Draft** is visible only to the person who created it, whatever the setting says.
 
 ## Why This Matters
 

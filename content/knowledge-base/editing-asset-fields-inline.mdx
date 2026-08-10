@@ -3,7 +3,7 @@ title: "Editing Asset Fields Inline"
 description: "Edit asset fields directly from the asset detail page in a single click — no need to open the full edit form. Covers what's editable inline, who can do it, and how it interacts with custom fields and validation."
 category: "Assets"
 date: "2026-05-08"
-updated: "2026-05-08"
+updated: "2026-08-10"
 layout: "knowledge-base"
 ---
 
@@ -40,7 +40,7 @@ For everything else (name, primary image, QR code, etc.) the **Edit** button on 
 
 All custom fields configured for the asset's category appear in a single alphabetically-sorted list on the asset page. Fields that have a value show their value with a pencil icon for editors; fields that don't yet have a value show **Not set** with the same pencil icon. Field positions stay stable as you fill them in — no jumping around when values are added or cleared.
 
-If you change the asset's **Category**, the custom fields list refreshes to match the new category's definitions. Values for fields that exist in both the old and new category are preserved; fields that only exist in the old category are no longer shown but are not deleted.
+If you change the asset's **Category**, the custom fields list refreshes to match the new category's definitions. Values for fields that exist in both the old and new category are preserved. A value left behind by a field that only belongs to the old category is still shown, but read-only: it has no pencil icon, because saving to a field outside the asset's current category is rejected. Re-assign the asset to that category to make the field editable again.
 
 See: [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) for setting up custom fields on a category.
 
@@ -49,7 +49,7 @@ See: [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fiel
 Inline editing follows the same permissions model as the full edit form:
 
 - **Owners and Admins** see and can edit every field
-- **Self-service users and Base users** see only fields with values; they cannot enter edit mode
+- **Self-service users and Base users** see every custom field that has a value, read-only. Fields still sitting at **Not set** are hidden from them, since there is nothing to read and nothing they can fill in.
 
 Editors who don't have permission to update a particular field will not see the pencil icon for that field.
 

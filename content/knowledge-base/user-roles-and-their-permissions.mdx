@@ -3,7 +3,7 @@ title: "User Roles and Their Permissions"
 description: "See what each Shelf user role can do — a full permissions matrix for Owner, Administrator, Self-service and Base, plus how to restrict who books equipment."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-08-06"
+updated: "2026-08-10"
 layout: "knowledge-base"
 ---
 
@@ -37,7 +37,7 @@ The most common question — especially for universities and multi-department te
 2. **Hide other people's gear** — leave **custody visibility** and **booking visibility** off (the default) and Base/Self-service users see only what they're involved with. Flip them on when you'd rather everyone see who has what. Both live in **Settings ▸ Workspace ▸ Permissions** — no need to leave this for another page, though there's a [full walkthrough with screenshots](/knowledge-base/configure-what-self-service-and-base-users-can-see) if you want it.
 3. **Separate departments entirely** — give each department its own **workspace**. Assets, members, and roles are fully isolated between workspaces.
 
-Asset notes stay with Admins and Owners regardless of those toggles. Base and Self-service users can open an asset and see its details, but the **Activity** tab, which holds the notes and the last-scan record, is not shown to them at all. Audit activity is different: every role can read audit notes, so the Activity tab on an audit stays visible.
+Asset notes stay with Admins and Owners regardless of those toggles. Base and Self-service users can open an asset and see its details, including every **custom field** that has a value, read-only. Being unable to *manage* custom fields is about creating and editing definitions in Settings, not about reading what an asset records. What is not shown to them is the **Activity** tab, which holds the notes and the last-scan record. Audit activity is different: every role can read audit notes, so the Activity tab on an audit stays visible.
 
 <Callout type="takeaway" title="Honest note for evaluators">
 Shelf's roles are **fixed rather than fully custom** — there's no per-person role editor, and access is granted by role and workspace, not asset-by-asset. The three levers above cover the vast majority of "restrict who can touch what" setups. If you have a specific structure in mind, [book a demo](/demo) and we'll map it to the right mix of roles, toggles, and workspaces.
@@ -93,6 +93,7 @@ Every checkmark is what the role can actually do in Shelf today.
   headers={["Owner", "Administrator", "Self-service", "Base"]}
   rows={[
     { label: "View and search assets", values: [true, true, true, true] },
+    { label: "Read the custom field values recorded on an asset", values: [true, true, true, true] },
     { label: "View an asset's Activity tab (notes and scan history)", values: [true, true, false, false] },
     { label: "Add, edit and delete assets", values: [true, true, false, false] },
     { label: "Import and export asset data", values: [true, true, false, false] },

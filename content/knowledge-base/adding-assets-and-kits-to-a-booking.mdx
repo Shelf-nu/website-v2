@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-07"
+updated: "2026-08-10"
 layout: "knowledge-base"
 ---
 
@@ -60,6 +60,8 @@ Ask for more than the dates allow and Shelf refuses, naming the shortfall. Lower
 You don't have to finalize the whole list before checkout begins. You can add assets and kits to a booking that's already **Ongoing** or **Overdue** using the same **Manage assets** modal, the **Add to booking** option on an asset or kit page, the bulk **Add to booking** panel, or by scanning.
 
 Items added to an active booking join it as line items and stay **Available** until you check them out. They aren't force-checked-out just because the booking is already underway, which fits the [progressive checkout](/knowledge-base/progressive-checkout-of-bookings) flow where gear leaves in stages. The only thing you can't add is an item that's already checked out on another active booking, since that would double-book it.
+
+Which bookings the **Add to booking** picker offers follows the workspace's booking-visibility setting, the same rule the **Bookings** index and the command palette use. Self-service and Base users are shown their own bookings by default, and every booking in the workspace except other people's **Drafts** once an admin switches the setting on in **Settings ▸ Workspace ▸ Permissions**. A booking still in Draft is only ever visible to the person who created it, whatever the setting says. The list stays the same whether you scroll it or type to search it. See [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see).
 
 Checking a late addition out works the same three ways as anything else on the booking: **Check out remaining** from the checkout button, scanning it with **Scan to check out**, or ticking its row and using **Actions → Check out selected items**. That holds whether the booking was originally checked out item by item or all at once with the **Check out** button, and it applies to quantity-tracked lines as well as individual assets.
 
