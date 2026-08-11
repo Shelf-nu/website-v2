@@ -1,6 +1,6 @@
 ---
 title: "Inventory value now counts every unit of a quantity-tracked asset"
-description: "Total value now multiplies an asset's per-unit value by its quantity everywhere value is summed — the dashboard, location and kit totals, bookings, reports, and CSV exports."
+description: "Total value now multiplies an asset's per-unit value by a quantity everywhere value is summed, and each screen counts the units it is actually about: stock on the dashboard, kit units on a kit, booked units on a booking."
 date: "2026-07-02"
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/add-assets-form.webp"
 readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables"
@@ -9,4 +9,6 @@ layout: "update"
 
 The value you set on an asset has always been its **per-unit** value. Now that assets can be [tracked by quantity](/knowledge-base/quantity-tracked-assets-and-consumables), Shelf multiplies that per-unit value by the quantity on hand to get the pool's true total worth — a box of 100 cables at €2 each counts as €200, not €2.
 
-That quantity-aware total now flows through every place value is summed: the dashboard inventory-value tile, location and kit totals, a booking's total asset value (including the pull-list PDF), the value-based reports (Asset Distribution, Asset Inventory, Idle Assets, Custody Snapshot, Overdue Items), and CSV exports. Individually tracked assets are unchanged — with a quantity of one, per-unit and total are the same number.
+Quantity-aware totals now reach every place value is summed, and each one counts the units it is actually about. The dashboard inventory-value tile and the **Asset Inventory**, **Asset Distribution** and **Idle Assets** reports count your full stock. A kit's total counts the units that kit holds. A booking's total, including the pull-list PDF, counts the units booked for those dates. The **Custody Snapshot** report counts what each custodian is holding, and value at risk on **Overdue Items** counts what is still out. A standard CSV export carries both numbers: **Value** stays per-unit and **Total value** is quantity-aware.
+
+Individually tracked assets are unchanged. With a quantity of one, per-unit and total are the same number. See [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables#what-total-value-counts) for the full breakdown.
