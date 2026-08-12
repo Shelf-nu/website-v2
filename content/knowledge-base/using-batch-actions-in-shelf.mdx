@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-07"
+updated: "2026-08-12"
 layout: "knowledge-base"
 ---
 
@@ -70,9 +70,10 @@ Follow the prompts to finalize your chosen operation. Once the action succeeds, 
 
 ![The Group assets into an asset model dialog, warning that quantity-tracked assets in the selection will be skipped](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bulk-asset-model-dialog.webp)
 
-Three things are worth knowing before you confirm:
+A few things are worth knowing before you confirm:
 
 - **Only the model link changes.** Category, value, and custody are left exactly as they are. A model's default category and valuation are create-time conveniences, so they are not applied retroactively to assets you group this way.
+- **The picture is the exception, and it is not stored on the asset.** If the model has a cover image, every grouped unit that has no photo of its own starts showing it immediately, and ungrouping takes it away again. Units with their own photo keep it. See [Asset Models](/glossary/asset-models#one-cover-image-for-the-whole-fleet).
 - **Quantity-tracked assets are skipped, not rejected.** Asset models group individually tracked units only. A mixed selection still works: the individually tracked assets are grouped and the dialog tells you up front how many will be skipped. The result message repeats the count afterwards.
 - **Assets already in another model are moved.** The confirmation says how many changed model, which is your signal that a different model's book-by-model pool just got smaller.
 
