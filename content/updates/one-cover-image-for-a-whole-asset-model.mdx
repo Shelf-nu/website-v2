@@ -1,0 +1,23 @@
+---
+title: "One Cover Image for a Whole Asset Model"
+description: "Upload a product photo once on an asset model and every unit of that model that has no photo of its own shows it, across the asset index, reports, PDFs, and the mobile app."
+date: "2026-08-12"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/asset-model-image-field.webp"
+readMoreUrl: "/glossary/asset-models#one-cover-image-for-the-whole-fleet"
+layout: "update"
+---
+
+Forty identical monitors used to mean picking and uploading the same photo forty times, and storing forty copies of it. [Asset models](/glossary/asset-models) now carry a cover image of their own. Upload it once under **Settings → Asset models**, on the same form as the model's name, default category, and default valuation. It accepts PNG, JPG, JPEG, and WebP up to 8 MB.
+
+![The Asset model form with its new Image field, which accepts PNG, JPG, JPEG, or WebP up to 8 MB](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/asset-model-image-field.webp)
+
+**The picture is resolved, not copied.** An asset shows its own image if it has one, otherwise its model's, otherwise the standard placeholder. Because nothing is written onto the individual records, four things follow:
+
+- Replacing the model's image changes every unit that inherits it, immediately. The form tells you the reach before you upload: *"Used by 12 assets that don't have an image of their own."*
+- A unit's own photo always wins, and the model's image is never overwritten by it.
+- Grouping a fleet into a model with **Actions → Update asset model** gives those units the picture straight away. Ungrouping, or deleting the model, takes it away again and leaves each unit with its own photo or the placeholder.
+- It reaches every surface that already shows an asset image: the asset index, the asset page, booking and kit lists, reports, audits, the booking PDF, and the Shelf Companion app on your phone, with no app update needed.
+
+On an asset's edit form, **Use the model's image instead** drops that asset's own photo so it follows the model again. Assets with no model image behind them now have **Remove image**, which clears the photo back to the placeholder.
+
+There is a migration benefit too. A CSV still cannot carry photos, but the importer recreates asset models by name, so one upload on the model in the destination workspace gives an entire imported fleet its pictures.

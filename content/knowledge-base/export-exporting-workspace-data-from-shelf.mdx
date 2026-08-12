@@ -3,7 +3,7 @@ title: "Exporting Data from Shelf"
 description: "Export asset data from Shelf as CSV: selected assets, filtered results, or a full workspace backup. Covers the Standard and Import-ready formats, what each includes, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-06"
+updated: "2026-08-12"
 layout: "knowledge-base"
 ---
 
@@ -77,7 +77,7 @@ Import-ready exports are built for exactly this. Export from the source workspac
 Two fields are deliberately left out:
 
 - **QR IDs** are tied to the workspace that owns them, so they can't travel. Assets get fresh QR codes in the destination workspace.
-- **Images** aren't carried over yet, so asset photos need to be re-added after the import.
+- **Images** aren't carried over yet, so asset photos need to be re-added after the import. For a fleet of identical units there is a shortcut: the importer recreates your [asset models](/glossary/asset-models) by name, so uploading one cover image on the model in the destination workspace gives every unit of that model a picture in a single step.
 
 Everything else, including barcodes and custom field values with their types, comes across. See [Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the import side.
 

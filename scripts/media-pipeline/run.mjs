@@ -26,6 +26,7 @@ const ARTICLES = {
   "low-stock-visibility": "articles/low-stock-visibility.mjs",
   "qt-availability": "articles/qt-availability.mjs",
   "bulk-asset-model": "articles/bulk-asset-model.mjs",
+  "asset-model-cover-image": "articles/asset-model-cover-image.mjs",
 };
 
 const slug = process.argv[2];

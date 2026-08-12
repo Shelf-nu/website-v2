@@ -11,7 +11,7 @@ personas:
   - "education"
 canonicalUrl: "/glossary/asset-models"
 date: "2026-07-03"
-updated: "2026-08-07"
+updated: "2026-08-12"
 
 seo:
   title: "What Are Asset Models? | Definition & Examples"
@@ -30,6 +30,7 @@ This sits between the two tracking methods in Shelf: [individually tracked asset
 ## Why group units under a model
 
 - **Consistent records**: new units inherit the model's defaults, so a fleet of 30 laptops does not drift into 30 slightly different records.
+- **One picture for the whole fleet**: upload a photo once on the model and every unit that has no photo of its own shows it.
 - **Per-unit accountability stays intact**: each unit keeps its own QR label, custody, maintenance reminders, and audit trail, so you always know exactly who has which unit.
 - **Book by model**: reservations can target the model instead of a specific unit.
 - **Group a fleet you already own**: select the units in the asset index, then **Actions → Update asset model**. You can create the model from inside the picker, and **Remove from asset model** ungroups a selection the same way. Only the model link changes: category, value, and custody stay as they are, and quantity-tracked assets in the selection are skipped rather than blocking the batch. See [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf#grouping-a-fleet-into-an-asset-model). If you are changing several fields at once, an `Asset model` column in [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) does the same job as part of a wider edit, matching names case-insensitively and creating a model that doesn't exist yet.
@@ -39,6 +40,29 @@ This sits between the two tracking methods in Shelf: [individually tracked asset
 ## Book by model
 
 With units grouped under a model, a booking can reserve a quantity of that model without picking units up front: reserve "4x HDMI cable", and at pickup staff scan whichever 4 physical units they hand out. Any unit of the model fulfils the reservation, and the booking records exactly which units went out. Bookings, including reserving by model, are part of the Team plan.
+
+---
+
+## One cover image for the whole fleet
+
+A model carries an optional **Image**, set under **Settings → Asset models** when you create or edit the model. It accepts PNG, JPG, JPEG, and WebP up to 8 MB.
+
+Shelf then picks the picture an asset displays in this order:
+
+1. the asset's own image, if it has one
+2. otherwise its model's cover image
+3. otherwise the standard placeholder
+
+Nothing is copied onto the individual records. The model holds one file and every unit without a picture of its own points at it, which has four practical consequences:
+
+- **Replacing the model's image updates every unit that inherits it**, right away. The form tells you the reach before you upload: *"Used by 12 assets that don't have an image of their own."*
+- **A unit's own photo always wins.** Upload a picture on one laptop of the fleet and only that laptop changes. The model's image is never overwritten.
+- **Ungrouping is clean.** Take a unit out of the model, or delete the model, and that unit falls back to its own photo, or to the placeholder if it never had one.
+- **It shows everywhere the asset does**: the asset index, the asset page, booking and kit lists, reports, audits, the booking PDF, and the Shelf Companion app on your phone.
+
+On an asset's own edit form, **Use the model's image instead** drops that asset's photo so it follows the model again. An asset with no model image behind it gets **Remove image**, which clears the photo back to the placeholder.
+
+This also reaches fleets you import. A CSV still cannot carry photos, but if the rows name an asset model that has a cover image, the imported units show it the moment they land.
 
 ---
 
