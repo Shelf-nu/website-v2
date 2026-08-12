@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /** Screenshots for shelf.nu#2774 — asset model cover images.
  *
- * Two shots, both read-only (nothing is submitted, no image is uploaded into
- * the demo workspace):
- *   1. the Asset model form's Image row with its "uploaded once" subheading
- *   2. an existing model's edit form showing the blast-radius hint
- *      ("Used by N assets that don't have an image of their own")
+ * One shot, read-only: nothing is submitted and no image is uploaded into the
+ * demo workspace. It captures the Asset model form's Image row with its
+ * "uploaded once" subheading. The blast-radius hint ("Used by N assets that
+ * don't have an image of their own") is deliberately not captured; see the
+ * note in main().
  */
 import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
@@ -35,7 +35,7 @@ async function main() {
     page.setDefaultTimeout(60000);
     await loginToShelf(page);
 
-    console.log("📸 1/2 Asset model form, Image row...");
+    console.log("📸 Asset model form, Image row...");
     await navigateTo(page, "/settings/asset-models/new");
     // Assert the field is actually deployed before shooting it.
     await page
