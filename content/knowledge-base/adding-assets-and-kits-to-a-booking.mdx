@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-10"
+updated: "2026-08-13"
 layout: "knowledge-base"
 ---
 
@@ -42,6 +42,27 @@ If you or other users have configured one or more kits you'll be able to utilize
 2. Switch from **Assets** to **Kits** using the tabs
 3. Select one or multiple kits
 4. Click **Confirm** to add your selection of kits to the booking
+
+## Settling a model reservation
+
+If the booking reserves gear by [Asset Model](/glossary/asset-models) rather than by specific unit, those reservations are listed in their own **Unassigned model reservations** section above the assets table. The heading reads "4 of 6 units still to assign, across 2 models", and each row states its own share the same way, such as "1 of 2 units still to assign". The rows always name both numbers, what is left and what was promised, so a lone figure can never be misread as the other one.
+
+A reservation is settled by putting a matching asset on the booking. Every route counts:
+
+- Ticking it in the **Manage assets** modal
+- Scanning it with **Scan to add assets**
+- Adding it in bulk from the asset index with **Add to booking**
+- Scanning it in the [Shelf Companion app](/mobile-app)
+
+Whichever door the asset comes through, Shelf matches it against an outstanding reservation for its model and ticks the reservation down. Only genuinely new rows count, so re-saving the **Manage assets** dialog with the same selection never discharges a reservation twice.
+
+Reservations that are still outstanding show as an amber **N units unassigned** pill on the bookings index, next to the asset count. A booking made entirely of reservations therefore reads "0 assets" with the pill beside it, rather than looking empty. Those units are genuinely held and unavailable to anyone else, and a booking cannot be checked out while any reservation is outstanding, so the pill is the list telling you there is still gear to find.
+
+## Reading the counts on a booking
+
+The header above the assets table names what it counts: **"18 assets and 2 kits"**, or plainly **"7 assets"** when there are no kits. A kit is one row holding several assets, so a row count can never match the bookings index's asset count on its own. Naming both kinds makes the difference self-evident, and each kit row states its own member count.
+
+Model reservations are counted separately, in their own section, and are never folded into the assets figure. That is deliberate: reserved units have no physical asset behind them yet, so blending them in would make a half-assigned booking look identical to a finished one.
 
 ## Adjusting the quantity on a pooled asset
 
