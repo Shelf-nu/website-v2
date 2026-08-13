@@ -3,7 +3,7 @@ title: "Privacy Policy"
 description: "Understand how Shelf collects, stores and protects your organization's asset information and personal data."
 ---
 
-**Last updated: 25 May 2026**
+**Last updated: 13 August 2026**
 
 ## Introduction
 At Shelf.nu, we respect your privacy and are committed to protecting your personal data. This privacy policy explains how we collect, process, and store your personal data, and your rights regarding that data.
@@ -24,6 +24,7 @@ We collect several types of personal data, including:
 - Booking records
 - Asset modification logs
 - Notes and other content you add to records
+- Scan records, including the time of the scan and, where the device or browser provides it and you have allowed it, the location at which the scan was made
 
 We do not use any of this data for tracking across apps or websites, and we do not use it for advertising.
 
@@ -35,6 +36,7 @@ We collect this data to:
 - Associate team members with your account
 - Maintain accurate business records of asset custody and usage
 - Enable organizations to track their equipment effectively
+- Show an asset's last known location to the organization that owns it
 - Provide audit trails for asset management
 - Support legitimate business documentation needs
 
@@ -81,13 +83,20 @@ We process and store this data in the EU (Frankfurt). Personal data not essentia
 
 ## Mobile Application
 
-Shelf provides a companion mobile app for iOS (Shelf Companion) that connects to your existing Shelf workspace for field operations such as QR/barcode scanning, asset lookups, custody handoffs, and live audits. The mobile app communicates with the same Shelf API as the web platform — there is no separate backend. The following disclosures apply specifically to the mobile app:
+Shelf provides a companion mobile app for iOS and Android (Shelf Companion) that connects to your existing Shelf workspace for field operations such as QR/barcode scanning, asset lookups, custody handoffs, and live audits. The mobile app communicates with the same Shelf API as the web platform — there is no separate backend. The following disclosures apply specifically to the mobile app:
 
 **Camera access** — The app requests access to your device camera for two purposes: (1) live QR code and barcode scanning to identify assets — this camera feed is processed on the device and is not itself recorded or stored; and (2) optionally capturing an asset's main image when you update it from the asset detail screen. Photos you capture or attach this way are uploaded to and stored by Shelf via the same Shelf API as the web platform, linked to your account, and used only to provide the service. They are not used for tracking or advertising.
 
-**On-device storage** — Authentication tokens are stored securely on your device using the iOS Keychain (via Expo SecureStore). These tokens are cleared when you sign out.
+**On-device storage** — Authentication tokens are stored securely on your device using the platform's secure storage (the iOS Keychain, and the Android Keystore-backed equivalent, via Expo SecureStore). These tokens are cleared when you sign out.
 
-**No additional data collection** — The mobile app does not collect location data, device identifiers, analytics, telemetry, or crash reports beyond what the web platform already describes in this policy. All data flows through the same Shelf API documented above.
+**Location access** — The app can attach the device's location to a scan, so that an asset's record shows where it was last seen. This matches the behaviour of the web app, which already records the browser's location on a scan.
+
+- **It is optional.** The app asks for location permission once, the first time you open the scanner. If you decline, scanning and every other feature continue to work normally; scans simply carry no coordinates. You can change the permission at any time in your device settings.
+- **Foreground only.** The app requests "while using the app" location. It does not track your device in the background, and it does not follow assets continuously between scans.
+- **What is stored.** When permission is granted, the latitude and longitude at the time of the scan are sent to the same Shelf API as the web platform and stored on the resulting scan record, alongside the existing scan details. A position older than five minutes is discarded rather than attached.
+- **What it is used for.** Showing your team an asset's last known location. Location is never used for advertising, and it is not shared with third parties or used to track you across other apps or websites.
+
+**Other data collection** — Beyond the camera, photo and location access described above, the mobile app does not collect device identifiers, analytics, telemetry, or crash reports beyond what the web platform already describes in this policy. All data flows through the same Shelf API documented above.
 
 **Children's privacy** — The app is not directed to children under 13. We do not knowingly collect personal information from children. If you believe a child under 13 has provided us with personal information, please contact us so we can promptly remove it.
 
