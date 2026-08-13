@@ -1,0 +1,33 @@
+---
+title: "Model Reservations You Can Count and Settle Any Way You Add Gear"
+description: "Reserved model units now tick down whenever a matching asset lands on the booking, not only when it is scanned. Every count on a booking says what it counts."
+date: "2026-08-12"
+image: "/images/updates/add-assets-to-bookings.jpg"
+readMoreUrl: "/knowledge-base/adding-assets-and-kits-to-a-booking"
+layout: "update"
+---
+
+If your team reserves gear by [Asset Model](/glossary/asset-models), two things about that flow have changed for the better.
+
+## A reservation is settled by adding the asset, however you add it
+
+Reserving "3 of this model" is a promise to supply three units. Until now, exactly one thing in Shelf could turn that promise into real assets: the scanner. Ticking the very asset the booking had reserved in **Manage assets** left the reservation outstanding, and an outstanding reservation blocks check-out. A workspace without a scanner to hand could create a perfectly reasonable reservation and then be left with two options, neither good: delete the reservation, or leave the booking stuck.
+
+Settling a reservation is now a property of the asset arriving on the booking rather than of the device it arrived with. **Manage assets**, the web scanner, bulk **Add to booking** from the asset index, and the [Companion app](/mobile-app) all discharge reservations identically.
+
+Re-saving the **Manage assets** dialog with the same selection does not double-count. Only genuinely new rows discharge a reservation, so a three-unit reservation can never reach "3 of 3" with two physical assets behind it.
+
+## Every count now says what it counts
+
+A customer reported that the bookings index showed **7 assets** for a booking whose page said **11 items**. Both numbers were right. Neither said what it was counting: the index counted concrete assets, and the booking page counted asset and kit rows plus outstanding model reservations, then called the total "items".
+
+Correcting the number would have missed the real problem. Blending reserved units into the count hid the thing that matters most, that the booking is not ready to leave. A half-assigned booking looked identical to a finished one, and a booking made entirely of reservations read as "0 assets" with nothing to suggest anything was on it.
+
+So the counts were named instead:
+
+- Outstanding reservations moved into their own **Unassigned model reservations** section above the assets table, headed "4 of 6 units still to assign, across 2 models".
+- The assets header reads **"18 assets and 2 kits"**, or **"7 assets"** when there are no kits, instead of "20 items". With no kits on the booking it now matches the index exactly.
+- The bookings index carries an amber **"4 units unassigned"** pill next to the asset count, so a booking with gear still to find is visible in the list.
+- Each reservation row states its own remainder, "1 of 2 units still to assign", rather than a bare count that could be read as either the promise or what is left.
+
+Two activity-log faults went with it: adding a single asset to a booking wrote the same line twice, and adding a kit from the kit's own page wrote no line at all. Both feeds now record exactly one accurate entry.
