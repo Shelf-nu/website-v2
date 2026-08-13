@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-08-05"
+updated: "2026-08-13"
 layout: "knowledge-base"
 ---
 
@@ -96,6 +96,32 @@ You can also set or change the location from **Actions → Edit** on the kit pag
 - **Clearing a kit's location** leaves individually tracked members where they are and releases the quantity-tracked slices.
 
 > **Location is not custody.** A kit's location says where the gear is; custody says who has it. The two are tracked separately and can be changed independently.
+
+## Changing Kit Contents and Existing Bookings
+
+Swapping a member out of a kit, a network switch in a rack for example, affects bookings that already carry that kit. What happens depends on how far each booking has got.
+
+| Booking status | What happens to the asset on that booking |
+|---|---|
+| **Draft**, **Reserved** | It is removed from the booking. Nothing has physically left the store, so the booking follows the kit's contents. |
+| **Ongoing**, **Overdue** | It stays, listed under its kit with a **Removed from kit** label. It is physically checked out, and taking it off would break custody and check-in. |
+| **Complete**, **Archived**, **Cancelled** | It stays, listed under its kit with a **Removed from kit** label, as a record of what actually went out on that job. |
+
+The rule in one line: **the asset stays on the booking if the booking has ever left the planning stage.**
+
+This is why a finished booking no longer rewrites its own history. Taking an asset out of a kit used to make that asset appear as a loose item on every past booking that had used the kit, so a completed job retroactively looked like it had gone out with a stray asset rather than a complete kit.
+
+Because a row carrying the **Removed from kit** label looks otherwise identical to a current kit member, and the kit header counts the rows shown, a booking can read "3 assets" beside a kit that now holds 2. The label is what explains the difference. It disappears by itself if you put the asset back in the same kit. The [pull-list PDF](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings) carries the same information as printed text in the Kit cell, since a printout has nothing to hover over.
+
+**You are told before you confirm.** Removing an asset from a kit names the bookings it affects, in two groups, because the outcomes differ: **Reserved** bookings, where the asset will be taken off, and bookings **already in progress**, where it stays and is marked as removed from the kit. Completed, archived, and cancelled bookings are left out of the warning, since nothing can be done about them and a popular kit could list dozens. The warning informs, it does not block. Blocking would make routine kit maintenance impossible whenever anything was reserved or out. Only people who can edit kits see it, because only they can do the removal.
+
+**Duplicating a booking matches what you see.** Duplicating a draft copies its current contents exactly. Duplicating an older booking re-resolves each kit to its **current** members, and the confirmation lists both what has been added to the kit and what has been removed since the original.
+
+<Callout type="info" title="Older bookings keep their old behaviour">
+
+Kit membership that was already deleted before this shipped cannot be recovered, because the record naming the kit is gone. Those rows stay standalone on their bookings. Everything from this release forward is tracked correctly.
+
+</Callout>
 
 ## Assigning Custody
 
