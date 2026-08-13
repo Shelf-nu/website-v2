@@ -1,0 +1,32 @@
+---
+title: "Changing a Kit No Longer Rewrites Finished Bookings"
+description: "Removing an asset from a kit now follows the state of each booking that holds it, and tells you which bookings it affects before you confirm."
+date: "2026-08-12"
+image: "/images/updates/add-assets-to-bookings.jpg"
+readMoreUrl: "/knowledge-base/kits"
+layout: "update"
+---
+
+Teams change kit contents as a matter of routine, swapping a network switch in a rack or retiring a lens from a camera kit. Until now that had a side effect nobody asked for: the asset you removed turned into a loose item on **every** booking that had ever used the kit, including bookings that finished months ago. A completed job would retroactively look like it had gone out with a stray asset instead of a complete kit.
+
+## Removing an asset now follows each booking's state
+
+| Booking status | What happens to the asset on that booking |
+|---|---|
+| **Draft**, **Reserved** | It is removed from the booking. Nothing has physically left the store, so the booking follows the kit. |
+| **Ongoing**, **Overdue** | It stays, under its kit, labelled **Removed from kit**. It is checked out, and removing it would break custody and check-in. |
+| **Complete**, **Archived**, **Cancelled** | It stays, under its kit, labelled **Removed from kit**, as a record of what went out on that job. |
+
+The rule in one line: the asset stays on the booking if the booking has ever left the planning stage.
+
+The **Removed from kit** label matters because such a row otherwise looks exactly like a current kit member, and the kit header counts the rows it shows. A booking can read "3 assets" beside a kit that now holds 2, and the label is what explains the gap. Put the asset back in the same kit and the label goes away on its own. Pull-list PDFs carry the same note as printed text, since paper has nothing to hover over.
+
+## You are told which bookings are affected
+
+Removing an asset from a kit now names the bookings involved before you confirm, split into the two groups whose outcomes differ: **reserved** bookings, where the asset will be taken off, and bookings **already in progress**, where it stays and is marked. It informs rather than blocks, because blocking would make routine kit maintenance impossible any time something was reserved or out.
+
+## Duplicating a booking matches what you see
+
+Duplicating a draft copies its contents exactly. Duplicating an older booking re-resolves each kit to its current members, and the confirmation now lists both what has been added to the kit and what has been removed since the original. That second list has never been able to display before.
+
+Kit membership deleted before this release cannot be recovered, since the record naming the kit is already gone; those rows stay standalone. Everything from here forward is tracked correctly.
