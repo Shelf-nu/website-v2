@@ -1,0 +1,48 @@
+---
+title: "Shelf Companion 1.3.0: Scan Location, QR Claiming, and Stock Corrections"
+description: "Companion 1.3.0 is live on the App Store and Google Play: record where a scan happened, claim a brand new QR label without leaving the app, correct stock counts from the floor, and read every date in your own format."
+date: "2026-08-12"
+image: "/images/updates/shelf-mobile-app.jpg"
+readMoreUrl: "/knowledge-base/shelf-ios-companion-getting-started"
+layout: "update"
+---
+
+**Shelf Companion v1.3.0** is live on the [App Store](https://apps.apple.com/app/id6765639874) and [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). It closes the last two gaps our own documentation listed as "not in the app yet", and adds stock corrections from the floor.
+
+## Where a scan happened
+
+The web scanner has always recorded the browser's location on a scan, so an asset's record could show where it was last seen. The phone could not, which was the one place the feature mattered most.
+
+Now it can. Scan a QR label and the app attaches the phone's coordinates to that scan.
+
+It is opt-in and stays that way. The app asks for location permission once, the first time you open the scanner, and never asks again. Decline and everything works exactly as before, with scans simply carrying no coordinates. The app only reads location while you have it open, never in the background, and a scan is never held up waiting for a fix. You can change the permission at any time in your phone's settings.
+
+See the Mobile Application section of our [privacy policy](/privacy) for the full disclosure.
+
+## Claim a brand new QR label in the app
+
+A sticker straight off a new label sheet belongs to no workspace yet, and claiming it used to bounce you out to the browser mid-aisle.
+
+Admins and owners now do it in the app. Scan an unclaimed code and you get two choices: **Create New Asset** or **Link Existing Asset**. Either one claims the code into the workspace you are currently in, then carries straight on into the asset. Base and self-service members cannot claim codes in Shelf at all, so they still get **Link in Browser**.
+
+## Correct stock without going back to a desk
+
+Quantity-tracked assets get an **Adjust** button on the quantity card. Choose add or remove, enter the amount, write a short reason. Adding is recorded as a restock, removing as a loss, so a count you fix on the shelf lands in the asset's history with your note attached rather than as a number that silently changed.
+
+The **Available** figure also turns amber once it drops to or below the asset's minimum quantity, matching the low-stock rule on the web.
+
+## Ending a hold on a consumable
+
+Releasing a hold on a [used-up consumable](/knowledge-base/quantity-tracked-assets-and-consumables) now asks the same second question the web asks: **"Of those, how many were used up?"**. It pre-fills the full amount, since that is the usual case. What you mark as used up leaves the workspace total and the rest returns to the pool. Before this, the app treated both kinds of asset the same way.
+
+## Dates in your own format
+
+The app now reads the date format, time format, week start, and time zone you set in your Shelf [account settings](/knowledge-base/date-time-and-timezone-preferences) on the web. Booking dates, due countdowns, audit timestamps, and custody history all match what you see on the desktop. There is nothing to configure in the app.
+
+## Also in this release
+
+- **Bookings built from model reservations no longer read as empty.** A row shows "0 assets · 5 reserved" instead of a bare "0 assets", because those units are genuinely held and unavailable to everyone else.
+- **The fulfil scanner names extra units separately.** Scan units the booking had not reserved and the submit button reads, for example, "Assign 4 · add 2 · check out", so you see both jobs before committing.
+- **Quantity-tracked display parity**: per-member unit counts on kit detail, and one booking row per reserved slice.
+
+Update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion) to get all of this.

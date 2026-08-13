@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone. Covers QR scanning, kits, audits, custody, bookings, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-08-12"
+updated: "2026-08-13"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -50,7 +50,9 @@ Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR 
 
 - If the code is linked to an asset in your workspace, the app jumps straight to the asset detail screen.
 - If the code already belongs to your workspace but is not linked to an asset yet (a sticker you claimed earlier, or a code whose asset was deleted), the app offers **Create Asset**. Tap it and the asset creation screen opens with that code attached, so the asset you save is linked to the physical label straight away. You need asset-creation permission in the workspace to see the button.
-- If the code has not been claimed by any workspace yet (a fresh sticker off a new label sheet), the app offers **Link in Browser** and hands the claim step to the web app. Codes that belong to a kit open in the browser as well.
+- If the code has not been claimed by any workspace yet (a fresh sticker off a new label sheet), what happens depends on your role. **Admins and owners** claim it without leaving the app: the app offers **Create New Asset** and **Link Existing Asset**, and either one claims the code into the workspace you are currently in before continuing. **Base and self-service members** cannot claim codes, so they still get **Link in Browser** and the web app handles it. Codes that belong to a kit open in the browser for everyone.
+
+**Where a scan happened.** From version 1.3.0 the app can record the phone's location on a scan, so an asset's record shows where it was last seen. The app asks for location permission once, the first time you open the scanner. It is entirely optional: decline and scanning works exactly as before, just without coordinates. The app only uses location while you have it open, never in the background, and a scan is never delayed waiting for a fix. This brings the app in line with the web scanner, which has always recorded the browser's location. You can change your mind at any time in your phone's settings.
 
 **Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, hard to reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners; the lookup itself needs no add-on (running a full audit still requires the [Audits add-on](/features/audits)).
 
@@ -108,7 +110,9 @@ Draft bookings are visible only to the person who created them, exactly as on th
 
 **Build out a booking by scanning.** Open a draft booking and tap **Scan to Add Assets**, then scan the assets and kits you're packing. Kits expand to their member assets automatically.
 
-**Reserve by model, then scan the actual units.** If your workspace groups identical gear under [Asset Models](/glossary/asset-models), the booking's **Models** tab reserves a count rather than specific units: reserve "4x HDMI cable" now, adjust the quantity later, or remove the reservation. The booking detail shows what is still outstanding. When it is time to hand the gear over, tap **Scan to assign & check out** and the fulfil scanner opens with the reserved models listed and a live "2/4 assigned" counter. Scan the physical units, submit, and Shelf assigns those exact units to the reservations and checks the booking out in one step. The CTA is there for admins and owners, who are the roles allowed to fulfil a reserved booking. See [Book by Model](/features/bookings#book-by-model) for how the same flow works on the web.
+**Reserve by model, then scan the actual units.** If your workspace groups identical gear under [Asset Models](/glossary/asset-models), the booking's **Models** tab reserves a count rather than specific units: reserve "4x HDMI cable" now, adjust the quantity later, or remove the reservation. The booking detail shows what is still outstanding. When it is time to hand the gear over, tap **Scan to assign & check out** and the fulfil scanner opens with the reserved models listed and a live "2/4 assigned" counter. Scan the physical units, submit, and Shelf assigns those exact units to the reservations and checks the booking out in one step. If you scan units the booking had not reserved, the submit button names both jobs separately, for example "Assign 4 · add 2 · check out", so you can see what is being added on top of the reservation before you commit. The CTA is there for admins and owners, who are the roles allowed to fulfil a reserved booking. See [Book by Model](/features/bookings#book-by-model) for how the same flow works on the web.
+
+Reserved units that have no physical unit behind them yet are counted on the bookings list too. A row reads "0 assets · 5 reserved" rather than a bare "0 assets", so a booking built entirely from model reservations never looks empty. Those units are genuinely held and unavailable to anyone else.
 
 **Manage the booking's lifecycle.** Reserve, cancel, archive, delete, or duplicate a booking without leaving the app.
 
@@ -131,6 +135,12 @@ The full custody chain is logged with timestamps. The web app's audit log shows 
 
 **Quantity-tracked assets.** For assets [tracked by quantity](/knowledge-base/quantity-tracked-assets-and-consumables) (cables, gloves, other pooled supplies), custody is by portion rather than all-or-nothing. The asset detail screen shows the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a row for each holder. Tap **Assign** to give a set number of units to a teammate (capped at what's available to assign), or tap a holder's row to **release** units back to the pool. Individually tracked assets keep the same one-tap assign and release.
 
+**Ending a hold on a consumable.** If the asset is a [one-way consumable](/knowledge-base/quantity-tracked-assets-and-consumables) (gaffer tape, batteries, anything that gets used up rather than returned), releasing a hold asks a second question: **"Of those, how many were used up?"**. It pre-fills the full amount, because using the whole hold is the usual case. Whatever you mark as used up leaves the workspace total; the rest goes back to the pool. Assets that come back intact never see this question.
+
+**Correcting stock from the floor.** The quantity card on the asset detail screen has an **Adjust** button. Tap it, choose whether you are adding or removing units, enter the amount, and add a short reason. Adding is recorded as a restock and removing as a loss, so a stock count you correct on the shelf lands in the asset's history with your note attached rather than as an unexplained change. The sheet tells you how many units are actually removable as you type.
+
+**Low stock at a glance.** When the available units drop to or below the minimum you set for the asset, the **Available** figure on the detail screen turns amber. It uses the same rule as the web, so an asset flagged low on your phone is flagged low on the web too.
+
 ## Workspace Add-Ons — What the App Shows
 
 The app respects whether your workspace has an add-on enabled:
@@ -143,9 +153,10 @@ The app respects whether your workspace has an add-on enabled:
 
 For clarity, these are real, intentional gaps. They are on our radar, but they are not in the app today:
 
-- **GPS / last-known-location capture on scan.**
-- **Claiming a brand new QR code inside the app.** A sticker that no workspace has claimed yet still goes through the web app for the claim step. Once a code belongs to your workspace, creating an asset for it works on the phone.
+- **Claiming a brand new QR code as a base or self-service member.** Admins and owners can now claim an unclaimed sticker in the app (see step 4). Everyone else still goes through the web app for that one step.
 - **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
+
+Two items that used to sit on this list shipped in version 1.3.0 and have moved into the guide above: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners).
 
 ## Opening Shelf Links in the App
 

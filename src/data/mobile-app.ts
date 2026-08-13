@@ -69,12 +69,14 @@ export const builtForApp = [
     "Custody handoffs between team members",
     "Creating, editing, and checking bookings in and out at the point of use",
     "Scanning reserved models into a booking to assign and check out",
+    "Claiming a brand new QR label into the workspace (admins and owners)",
+    "Correcting stock counts on the shelf, with a reason attached",
     "On-the-go dashboard monitoring",
 ];
 
 export const bestOnWeb = [
     "Creating and configuring audits",
-    "Claiming brand new QR labels into a workspace",
+    "Claiming brand new QR labels as a base or self-service member",
     "Bulk asset imports and complex edits",
     "Custom field setup and administration",
     "User/role management and permissions",
@@ -115,6 +117,10 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     {
         question: "Can I capture audit evidence (photos, notes) from the app?",
         answer: "Yes. Tap any row in the scanned-items list during an audit to open the evidence sheet, write a condition note, and attach a photo taken with the camera or picked from your photo library. Each row shows how many pieces of evidence it carries, and everything lands on the same audit record you see on the web.",
+    },
+    {
+        question: "Does the app track my location?",
+        answer: "No. The app can attach the phone's location to a QR scan, so an asset's record shows where it was last seen. That is the same thing the web scanner has always done with the browser's location. It asks once, the first time you open the scanner, and declining changes nothing else: scanning keeps working, the scans just carry no coordinates. Location is only read while the app is open, never in the background, and it is never used for advertising or shared with third parties. See the Mobile Application section of our privacy policy for the full disclosure.",
     },
     {
         question: "Can I manage my whole organization from the app?",

@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-08-12"
+updated: "2026-08-13"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -115,7 +115,9 @@ Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app 
 - The **assets list** shows a quantity pill on each pooled asset's row.
 - The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
 - Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign.
-- Tap a holder's custody row to end their hold. The amount is capped at the units that person can release. On a returnable asset the units go back to the pool; on a **used-up** consumable they are consumed and the total drops, the same as on the web, because the outcome follows the asset rather than the device. The current app release still labels this action "release" on both kinds of asset, and a future release brings the wording and the partial used-up field in line with the web.
+- Tap a holder's custody row to end their hold. The amount is capped at the units that person can release. On a returnable asset the units go back to the pool. On a **used-up** consumable the app asks a second question, **"Of those, how many were used up?"**, pre-filled with the whole hold because that is the usual case. What you mark as used up leaves the total; the rest returns to the pool. This matches the web split exactly.
+- Tap **Adjust** on the quantity card to correct the stock figure itself. Choose add or remove, enter the amount, and give a reason. Adding is recorded as a restock and removing as a loss, so a shelf count you fix in the aisle lands in the asset's history with your note rather than as an unexplained change.
+- The **Available** figure turns amber when it drops to or below the asset's minimum quantity, using the same low-stock rule as the web.
 - On a booking, check out part of a pooled line and leave the rest booked, then record the return with the same **Returned / Lost / Damaged** split (or **Consumed / Lost / Damaged** for consumables) the web check-in drawer uses.
 
 Individually tracked assets look and behave exactly as before in the app. See [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) for the full mobile walkthrough.
