@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-08-13"
+updated: "2026-08-14"
 layout: "knowledge-base"
 ---
 
@@ -100,6 +100,14 @@ You can also set or change the location from **Actions → Edit** on the kit pag
 ## Changing Kit Contents and Existing Bookings
 
 Swapping a member out of a kit, a network switch in a rack for example, affects bookings that already carry that kit. What happens depends on how far each booking has got.
+
+### Adding a member
+
+A booking that carries a kit carries the kit as a unit, so an asset you add to the kit is added to the bookings that already hold that kit and are still **Draft**, **Reserved**, **Ongoing** or **Overdue**. It appears under the kit on those bookings, at the kit's own quantity for a quantity-tracked member, so a kit that gains a part does not leave its live bookings short of it. Completed, archived and cancelled bookings are left alone: they are a record of what went out.
+
+Only the bookings holding **this** kit are touched. That matters when a quantity-tracked asset belongs to several kits at once, which is common for shared stock like banners, cabling and fixings. A booking that holds a different kit containing the same shared asset is a different booking's business and is not changed.
+
+### Removing a member
 
 | Booking status | What happens to the asset on that booking |
 |---|---|
