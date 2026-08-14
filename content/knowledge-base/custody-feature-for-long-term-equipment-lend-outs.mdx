@@ -3,6 +3,7 @@ title: "Custody Feature for Long-Term Equipment Lend-Outs"
 description: "The custody feature functions like an indefinite checkout system, allowing organizations to track which team members have borrowed assets without specifying return dates or locations."
 category: "Bookings & Custody"
 date: "2024-06-01"
+updated: "2026-08-14"
 layout: "knowledge-base"
 ---
 
@@ -33,7 +34,25 @@ When a custodian returns the asset to the equipment room and you wish to make it
 
 The Actions button displays the Release custody option.
 
-**Note:** Assets in custody display a blue status badge. Upon release, the asset becomes fully available again.
+**Note:** Assets in custody display a blue status badge. Releasing custody clears that hold. The asset returns to **Available** unless something else is still holding it, which is covered below.
+
+## Custody and Bookings Are Separate Commitments
+
+An asset can be spoken for in two independent ways: someone holds it in custody, or a booking has checked it out. Custody never decides the outcome of a booking, and the two are now kept strictly apart.
+
+**You cannot give custody of an asset that is checked out.** Try it and Shelf refuses with *"[Asset] is currently checked out on a booking, so it cannot be given to a custodian. Check the booking in first."* An individually tracked asset is one physical item, so a custody claim while it is out on a booking is a genuine conflict rather than something to quietly allow.
+
+**Releasing custody does not check a booking in.** If an asset is both in someone's custody and checked out on a booking, releasing the custody leaves it **Checked out**. It does not go back into the available pool while it is physically out on a job. Check the booking in to complete the return.
+
+**A kit takes what it can.** Assigning custody of a kit gives its members to the custodian, except any member that is currently checked out on a booking. Those members keep their **Checked out** status, and the kit's custody applies to the rest.
+
+The rule in one line: **checked out outranks in custody, which outranks available.** Only the booking flow can take an asset out of **Checked out**.
+
+## Quantity-Tracked Pools Can Be Both at Once
+
+A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is a pool rather than a single item, so both commitments can be true of the same asset at the same time: 20 units with a custodian, 5 out on a booking, the rest on the shelf. Each figure is counted on its own row of the **Quantity Overview** card, and **Available** is what is left after all of them.
+
+For the same reason, a booking that draws on the free units of a pool is a valid booking. The bookings list does not flag it as containing unavailable assets just because some other units of that pool happen to be in someone's custody. If the booked quantity genuinely exceeds what is available, that shows up as its own stock warning on the item's row. See [Troubleshooting booking conflicts](/knowledge-base/troubleshooting-booking-conflicts).
 
 ## Important
 
@@ -44,3 +63,5 @@ Only individuals with appropriate custody permissions can grant or remove custod
 - [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
 - [How to create a Booking](/knowledge-base/how-to-create-a-booking)
 - [Adding assets and kits to a Booking](/knowledge-base/adding-assets-and-kits-to-a-booking)
+- [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables)
+- [Troubleshooting Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts)
