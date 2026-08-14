@@ -3,7 +3,7 @@ title: "Configure What Self Service and Base Users Can See"
 description: "Administrators can customize permission settings in Shelf to control what Self Service and Base users can see regarding custody and booking information for assets, allowing for precise control over team member access."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-12"
+updated: "2026-08-14"
 layout: "knowledge-base"
 ---
 
@@ -49,6 +49,7 @@ Both settings govern **what a person can see**. Neither one changes what they ar
 - **A booking's custodian is not asset custody.** Base and Self-service users can name themselves as the custodian on a booking they create, which is how a booking request works, even though neither can be handed custody of an asset by themselves. Administrators and Owners see everyone in all three lists.
 - **Searching a picker never widens it.** Typing into a custodian or booking dropdown searches inside what that person is already allowed to see. It cannot surface a name or a booking the list would not have shown on its own, and email addresses are never part of what a search returns.
 - **Booking visibility does not grant editing.** Seeing other people's bookings is not the same as being able to change them. A Self-service or Base user still acts only on their own.
+- **The custody restriction is not just the badge.** With custody visibility off, the custodian's name and email are withheld from the page data itself rather than hidden in the display, and the custodian filter is refused rather than answered. That holds everywhere the filter can be applied, including **Select all** and the bulk actions and QR label downloads that run on a selection, so a filtered list cannot be used to work out who holds what. Administrators and Owners are unaffected and keep the filter.
 
 ## Why This Matters
 

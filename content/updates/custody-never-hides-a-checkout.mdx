@@ -1,0 +1,28 @@
+---
+title: "Custody No Longer Hides a Checkout"
+description: "Assigning or releasing custody can no longer overwrite an asset's Checked out status, so availability figures stop overstating free stock."
+date: "2026-08-14"
+image: "/images/updates/enhanced-user-permissions.jpg"
+readMoreUrl: "/knowledge-base/custody-feature-for-long-term-equipment-lend-outs"
+layout: "update"
+---
+
+Custody and bookings are two independent ways an asset can be spoken for, but an asset carries a single status. Until now, whichever action happened last won, and both directions were wrong.
+
+Assigning custody to an asset that already had units out on an ongoing booking overwrote **Checked out**. Every part of Shelf that answers "is this off the shelf" reads that status, so those checked-out units stopped being counted and the **Available** figure overstated free stock by exactly the booked quantity. Releasing custody was worse: it put a physically absent asset back onto every picker, list and availability sum as **Available**.
+
+## One rule now, everywhere
+
+Checked out outranks in custody, which outranks available. Only the booking flow can take an asset out of **Checked out**, and no custody action can talk over it.
+
+- **Giving custody of an asset that is checked out is refused**, with a message naming the asset and telling you to check the booking in first. An individually tracked asset is one physical item, so this is a real conflict worth seeing rather than something to allow quietly.
+- **Releasing custody leaves a checked-out asset checked out.** It rejoins the available pool when the booking is checked in, not before.
+- **A kit takes custody of what it can.** Members that are out on a booking keep their **Checked out** status and the kit's custody applies to the rest.
+
+The rule now holds on every route: the asset page, kit custody, adding an asset to a kit that is already in custody, kit deletion, the bulk custody actions, and the mobile release endpoint.
+
+## Pools are counted, not flagged
+
+A quantity-tracked asset is a pool, so 20 units with a custodian and 5 out on a booking can both be true of the same asset. Those are separate rows on the Quantity Overview card and **Available** is what is left after both.
+
+For the same reason, the bookings list no longer marks a booking as containing unavailable assets just because some other units of a pooled asset are in someone's custody. Handing out 20 of 29 units still leaves 9 bookable, and a booking drawing on those free units is valid. A booking that genuinely asks for more than is available still gets its own stock warning on the item's row.
