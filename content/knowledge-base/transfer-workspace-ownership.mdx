@@ -3,7 +3,7 @@ title: "Transferring Workspace Ownership"
 description: "How to make another team member the owner of your workspace, what changes for the new and previous owner, and how your subscription is handled. The transfer is permanent."
 category: "Team"
 date: "2026-07-27"
-updated: "2026-07-27"
+updated: "2026-08-14"
 layout: "knowledge-base"
 ---
 
@@ -14,8 +14,17 @@ To make someone else the owner of your workspace, you transfer ownership from yo
 ## Before You Start
 
 - You must be the **current owner** of the workspace.
-- The person you are transferring to must already be an **Administrator** in the workspace. If they are not, [change their role to Administrator](/knowledge-base/changing-user-roles-in-shelf) first. If the workspace has no other admins, the transfer button stays disabled.
-- This applies to **Team workspaces**. A Personal workspace has a single user, so there is no one to transfer it to.
+- The person you are transferring to must already be an **Administrator** in the workspace. If they are not, [change their role to Administrator](/knowledge-base/changing-user-roles-in-shelf) first. If the workspace has no other admins, the transfer button does not act and tells you to change a team member's role to Administrator first.
+- This applies to **Team workspaces**. A Personal workspace has a single user, so there is no one to transfer it to. Open a Personal workspace's General settings and the card says so, and points you at the alternative: changing the email address on your account. See the [FAQs](#faqs) below.
+
+## Where to Find It
+
+There are two ways in, and both land on the same card:
+
+- **Workspace settings → General**, in the **Transfer workspace ownership** card.
+- **Workspace settings → Team**, on the owner's row in the member list. The **Transfer ownership** button there takes you straight to the card.
+
+Every state of the card links back to this article, so you can read the consequences before you start.
 
 ## How to Transfer Ownership
 
@@ -27,6 +36,15 @@ To make someone else the owner of your workspace, you transfer ownership from yo
 6. Tick **I understand this action cannot be undone**, then click **Transfer ownership**.
 
 The transfer takes effect immediately. Both you and the new owner receive a confirmation email.
+
+## If You Are Not the Owner
+
+Administrators cannot transfer ownership, but they can now see who can. Both places name the owner instead of showing nothing:
+
+- **Workspace settings → General** shows the card with the line *"Only the workspace owner can transfer ownership of this workspace"*, with the owner's email address in it.
+- **Workspace settings → Team** shows a **Transfer ownership** button on the owner's row that does not act, and names the owner when you hover it.
+
+This matters most when an owner has handed day-to-day management to an administrator. Ask the owner to run the transfer, or ask them to make you the owner so you can manage the workspace and its billing yourself.
 
 ## What Changes After the Transfer
 
@@ -65,4 +83,7 @@ Only administrators can become the owner. [Change their role to Administrator](/
 No. You stay in the workspace as an Administrator, with your assets and history intact. You only lose owner-level control, such as billing.
 
 **Can I transfer a Personal workspace?**
-No. Personal workspaces are single-user. Ownership transfer applies to Team workspaces with at least one other administrator.
+No. Personal workspaces are single-user, so ownership transfer applies to Team workspaces with at least one other administrator. To hand a Personal workspace to someone else, change the email address on the account instead, under **Account settings → General**. The card on a Personal workspace's General settings says the same and links you there.
+
+**I am an administrator and I cannot find the transfer anywhere.**
+That is expected. Only the owner can run the transfer. Workspace settings → General and Workspace settings → Team both name the current owner, so you know who to ask.
