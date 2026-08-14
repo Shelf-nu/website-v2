@@ -76,7 +76,6 @@ export const builtForApp = [
 
 export const bestOnWeb = [
     "Creating and configuring audits",
-    "Claiming brand new QR labels as a base or self-service member",
     "Bulk asset imports and complex edits",
     "Custom field setup and administration",
     "User/role management and permissions",
@@ -120,7 +119,7 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     },
     {
         question: "Does the app track my location?",
-        answer: "No. The app can attach the phone's location to a QR scan, so an asset's record shows where it was last seen. That is the same thing the web scanner has always done with the browser's location. It asks once, the first time you open the scanner, and declining changes nothing else: scanning keeps working, the scans just carry no coordinates. Location is only read while the app is open, never in the background, and it is never used for advertising or shared with third parties. See the Mobile Application section of our privacy policy for the full disclosure.",
+        answer: "Not continuously, and never in the background. The app can attach the phone's location to a QR scan, so an asset's record shows where it was last seen. That is the same thing the web scanner has always done with the browser's location. It asks once, the first time you open the scanner, and declining changes nothing else: scanning keeps working, the scans just carry no coordinates. Location is only read while the app is open, never in the background, and it is never used for advertising or shared with third parties. See the Mobile Application section of our privacy policy for the full disclosure.",
     },
     {
         question: "Can I manage my whole organization from the app?",
