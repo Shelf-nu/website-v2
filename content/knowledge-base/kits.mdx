@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-08-14"
+updated: "2026-08-17"
 layout: "knowledge-base"
 ---
 
@@ -61,6 +61,14 @@ A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumabl
 On the asset's **Quantity Overview** card, every kit's slice adds into the **In kits** row. Those units are counted there once, whether the kit is sitting on the shelf or out on a booking, and they are not part of **Available**. The **Checked out (bookings)** row is a different measure: it counts every unit physically out right now, the loose ones and the kit-held ones together. The two rows overlap on purpose, so don't add them up.
 
 A single booking can hold the same pool from more than one direction, some units booked loose and more carried in by the kits you added. Checking the booking out hands over every slice it holds, and the [pull-list PDF](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings) prints one row per source so the packer can see which kit each portion belongs to.
+
+### Booking the Free Units Directly
+
+Being in a kit does not take a pooled asset off the table. **Book** on a quantity-tracked asset's own page works normally even when the asset belongs to one kit or several, because what you are booking is the free part of the pool — the units no kit has claimed. Book 2 sandbags on their own while *Grip A* and *Grip B* keep their 3 each, and the same availability check that runs everywhere else keeps you from over-committing the pool for those dates.
+
+**Individually tracked** assets are the ones that must go out with their kit. One of those lives entirely inside a single kit, so booking it on its own would double-book the very same physical item. The **Book** button on such an asset stays disabled and links you to the kit instead.
+
+Both rules are the same wherever you start from: the asset's own page, a multi-select on the assets index, or the asset picker inside a booking.
 
 ## Kit Location
 

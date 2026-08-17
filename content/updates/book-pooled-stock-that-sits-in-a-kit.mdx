@@ -1,0 +1,13 @@
+---
+title: "Book Pooled Stock Directly, Even When It Sits in a Kit"
+description: "A quantity-tracked asset that belonged to a kit could not be booked from its own page, although the same booking worked from the booking's asset picker. The free units are bookable from everywhere now."
+date: "2026-08-17"
+readMoreUrl: "/knowledge-base/kits#booking-the-free-units-directly"
+layout: "update"
+---
+
+Reported by a customer with 6 units of one item, 2 of them free after the rest were allocated. Booking those 2 worked from inside a booking, but **Book → Create new booking** on the asset's own page was greyed out with *"Cannot book this asset directly because it's part of a kit. Please book the kit instead."* Two surfaces, one asset, opposite answers.
+
+The rule behind that message is right for **individually tracked** assets: one of those lives entirely inside a single kit, so booking it separately would double-book the same physical item. It was being applied to [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables) too, where it does not hold. A kit claims only a slice of a pool, the same pool can sit in several kits at once, and whatever no kit claimed is genuinely free to book.
+
+Now the **Book** action on a pooled asset works from the asset page and from a selection on the assets index, matching what the booking's own asset picker always allowed. Availability for your dates is still checked when you confirm, so the free units are bookable and the claimed ones are not. Individually tracked kit members stay blocked, and the message now links to the right kit — for an asset that belonged to several, it used to link to whichever one came first.
