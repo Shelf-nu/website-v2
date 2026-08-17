@@ -3,11 +3,13 @@ title: "Transferring Workspace Ownership"
 description: "How to make another team member the owner of your workspace, what changes for the new and previous owner, and how your subscription is handled. The transfer is permanent."
 category: "Team"
 date: "2026-07-27"
-updated: "2026-08-14"
+updated: "2026-08-17"
 layout: "knowledge-base"
 ---
 
 To make someone else the owner of your workspace, you transfer ownership from your workspace settings. Only the current owner can do this, and the transfer is permanent.
+
+This is the **only** way ownership moves. Owner is not one of the choices in the **Change role** dialog, and it cannot be granted by an invitation or a [CSV user import](/knowledge-base/inviting-users-via-csv-upload) — those offer Administrator, Self-service and Base only. Everything that has to travel with ownership, from the subscription to the confirmation emails, is handled by the transfer, which is why there is a single route rather than several.
 
 {/* TODO: Screenshot needed: Workspace settings → General → "Transfer workspace ownership" card with the new-owner dropdown open. Not automated: the card lists real team member names and emails, and running it on production performs a real, irreversible ownership change. */}
 
@@ -87,3 +89,6 @@ No. Personal workspaces are single-user, so ownership transfer applies to Team w
 
 **I am an administrator and I cannot find the transfer anywhere.**
 That is expected. Only the owner can run the transfer. Workspace settings → General and Workspace settings → Team both name the current owner, so you know who to ask.
+
+**Can we remove the owner from the workspace instead?**
+No. The owner's access cannot be revoked while they own the workspace, and the **Revoke access** action tells you so. That would leave nobody able to manage billing or hand ownership on, with no route back through the interface. Transfer ownership to another administrator first; the previous owner then becomes an ordinary administrator and can be revoked like anyone else. The same applies to accounts managed by an identity provider: deprovisioning the owner through SSO fails rather than stranding the workspace.

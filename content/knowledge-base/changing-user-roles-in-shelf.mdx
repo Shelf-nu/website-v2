@@ -3,7 +3,7 @@ title: "Changing User Roles in Shelf"
 description: "Change a team member's role directly from Workspace Settings. Covers the Change role dialog, what happens to their assets and bookings when you lower a role, and who is allowed to make the change."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-07-27"
+updated: "2026-08-17"
 layout: "knowledge-base"
 ---
 
@@ -49,6 +49,17 @@ Raising a role, for example from Base to Administrator, transfers nothing. Nothi
 **Revoke access**, in the same **Actions** menu, is a different action: it removes the person from the workspace rather than adjusting what they can do. They become a Non-Registered Member (NRM), which keeps all their assets, custody records, and history intact, and you can invite them back later from the Non-Registered Members section.
 
 Use **Change role** when someone stays on the team with different permissions, and **Revoke access** when they are leaving.
+
+### Who Can Revoke Access
+
+Revoking is the stronger of the two actions, so it follows the same hierarchy as changing a role:
+
+- **Administrators and the workspace owner** can revoke a Base or Self-service user.
+- **Only the workspace owner can revoke an Administrator.** For an administrator, the menu item is greyed out with the reason on hover: *"Only the workspace owner can revoke an Administrator's access."*
+- **The workspace owner's access cannot be revoked by anyone**, including the owner. Shelf answers with *"This user owns the workspace. Transfer ownership to someone else first, then revoke their access."* This is deliberate: revoking the owner would leave the workspace with no one able to manage billing or hand ownership on, and there is no way back through the interface. [Transfer ownership](/knowledge-base/transfer-workspace-ownership) first, then revoke.
+- **You cannot revoke your own access.**
+
+The same rule holds when memberships are managed by your identity provider. If SSO deprovisioning tries to remove the person who owns the workspace, the request fails rather than stranding the workspace — transfer ownership first, then deprovision.
 
 ## Related Articles
 

@@ -3,7 +3,7 @@ title: "Inviting Users via CSV Upload"
 description: "Shelf allows you to invite multiple users simultaneously by uploading a CSV file containing their information, making it useful for onboarding teams or departments all at once."
 category: "Other"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-08-17"
 layout: "knowledge-base"
 ---
 
@@ -38,6 +38,8 @@ Shelf enables bulk user invitations through CSV file uploads, making it particul
 - Email addresses must be valid
 - First row reserved for column headers
 
+**There is no OWNER role in this file.** An import can create Administrators, Self-service and Base users, and nothing else. Ownership moves only through [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership), which demotes the outgoing owner, handles the subscription, and emails both people — none of which an invite can do.
+
 ### Required Columns
 
 - **role**: User's workspace role (ADMIN, BASE, or SELF_SERVICE)
@@ -67,6 +69,16 @@ SELF_SERVICE,jane.smith@company.com
 - Summary provided of successful invites and errors
 - New users must accept invitation to gain access
 
+### If a Role Is Wrong
+
+Every row's role is checked before a single invitation goes out, and a bad value stops the whole file rather than being quietly skipped. Shelf names the rows to fix, using the row numbers you see in your spreadsheet:
+
+> Roles must be one of ADMIN, BASE, SELF_SERVICE. Ownership cannot be granted by invite — use ownership transfer instead. Problem rows: row 4 ("OWNER"), row 9 ("admin").
+
+Correct those cells and upload the file again. Nothing from a rejected file is sent, so there is no half-finished import to unpick and no need to work out which of your ten listed people actually got an email.
+
+Note the second example: `admin` in lower case is rejected too. The column is case-sensitive, so the three accepted values have to be typed exactly as `ADMIN`, `BASE`, and `SELF_SERVICE`.
+
 ## Important Notes
 
 - All entries validated before processing
@@ -77,7 +89,7 @@ SELF_SERVICE,jane.smith@company.com
 ## Troubleshooting
 
 - Verify CSV uses comma delimiter
-- Check roles are correctly capitalized
+- Check roles are correctly capitalized, and that none of them says `OWNER`
 - Ensure all email addresses are valid
 - Confirm users are not already workspace members
 
