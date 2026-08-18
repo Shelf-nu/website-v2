@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-12"
+updated: "2026-08-17"
 layout: "knowledge-base"
 ---
 
@@ -24,7 +24,12 @@ Access the Assets page in your Shelf workspace.
 ### Step 2: Select Assets
 
 - Use checkboxes adjacent to each asset for individual selection
-- Click "Select all XX entries" to choose all assets on the current page
+- The checkbox in the header row ticks everything on the page you are looking at
+- Once anything is selected, a **Select all XX entries** link appears next to the count. It reaches every asset that matches your current search and filters, across every page, not just the ones on screen
+
+**Select all follows your filters, not the whole workspace.** This is the part worth being sure about before you use a destructive action. Search the index down to 12 items, click **Select all 12 entries**, and the action that follows applies to those 12 — not to the whole inventory. Clear your filters first and the same link covers everything, which is then exactly what you asked for. The count in the link is the number the action will touch, so read it before you confirm.
+
+The same rule holds for the other lists that offer bulk actions, including the **Tags** list and the **Assets** and **Kits** tabs on a location. Filter the list, select all, and the action stays inside what you filtered to.
 
 ### Step 3: Access Actions Menu
 
@@ -84,7 +89,7 @@ If nothing changes, Shelf says so rather than reporting a silent success: you wi
 ## Tips for Effective Use
 
 - Combine batch actions with filters and sorting to locate and update specific asset groups efficiently
-- Verify your selection before performing irreversible actions like deletion
+- Verify your selection before performing irreversible actions like deletion — check the count next to **Select all** matches what you expect to change
 - Use batch updates for routine tasks such as reassigning equipment after team changes or updating locations following office relocations
 
 By mastering batch actions, you maintain accurate, up-to-date asset inventory with minimal effort.

@@ -1,0 +1,21 @@
+---
+title: "Select All Now Stays Inside Your Filters on Tags and Locations"
+description: "Deleting tags, or removing assets and kits from a location, after using Select all on a filtered list acted on everything rather than on what you had filtered to. Both now match the list you were looking at."
+date: "2026-08-17"
+readMoreUrl: "/knowledge-base/using-batch-actions-in-shelf"
+layout: "update"
+---
+
+**Select all XX entries** is meant to mean "everything matching what I have filtered to, across every page". On two lists it was reaching further than that, and the count on screen did not warn you.
+
+- **Deleting tags.** Filter the tag list down to 3, use **Select all**, delete — and every tag in the workspace went, taking the categorisation off every asset and booking carrying them.
+- **Removing assets or kits from a location.** Filter a location's items down to 10 laptops, use **Select all**, remove — and everything at that location was removed.
+
+Both now do what the list in front of you says. The filters you can see are the ones the action uses, and an unfiltered **Select all** still means the whole list, which was always the intended behaviour for that case.
+
+Two things worth knowing:
+
+- **Nothing was ever wrong with what you clicked.** The selection dialog had always sent your filters along; the two actions on the receiving end were not reading them. There is no habit to change and no setting to check.
+- **Explicit selections were never affected.** Ticking rows one by one always acted on exactly those rows.
+
+Tag deletion also reports the number of tags it actually removed, rather than a fixed message that could disagree with what happened. Deleting tags and removing items from a location are both permanent, so the count next to **Select all** is worth a glance before you confirm.
