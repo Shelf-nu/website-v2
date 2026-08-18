@@ -3,7 +3,7 @@ title: "User Roles and Their Permissions"
 description: "See what each Shelf user role can do — a full permissions matrix for Owner, Administrator, Self-service and Base, plus how to restrict who books equipment."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-08-17"
+updated: "2026-08-18"
 layout: "knowledge-base"
 ---
 
@@ -66,7 +66,7 @@ Administrators have comprehensive access to the workspace across all locations. 
 - **Managing assets:** create, update, archive and delete equipment; manage categories, tags, custom fields and locations; and oversee custody transfers.
 - **Managing users:** invite other users to the workspace and adjust the roles of existing users.
 - **Team member notes:** add private, workspace-scoped notes to any team member's profile. Notes are only visible to Admins and Owners. See [Admin Notes on Team Members](/knowledge-base/admin-notes-on-team-members).
-- **Managing bookings:** create, update and fulfil (check in/out) bookings, including those started by other users.
+- **Managing bookings:** create, update and fulfil (check in/out) bookings, including those started by other users, and delete, archive or cancel any of them in bulk.
 - **Running audits:** create, manage, archive and delete audits, in addition to performing them.
 - **Managing settings:** full access to the workspace's settings and configuration, including the permission toggles that control what Self-service and Base users can see.
 
@@ -76,7 +76,7 @@ Self-service users sit between Base and Administrator. They have more autonomy t
 
 - **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle other people's custody.
 - **Custody:** self-assign and self-remove custody of assets.
-- **Bookings:** book assets for themselves and **check them out and back in on their own** — no admin needed.
+- **Bookings:** book assets for themselves and **check them out and back in on their own**, no admin needed. Their own bookings are also the limit of what they can act on in bulk: selecting rows and choosing Delete, Archive or Cancel touches only the bookings that belong to them, even when a workspace setting lets them see everyone else's.
 - **Audits:** can be assigned to audits and perform them — scanning items and adding audit notes — but cannot create, archive, or delete audits.
 - **Settings:** view and edit their own account details only. They cannot invite or manage other team members.
 
@@ -85,7 +85,7 @@ Self-service users sit between Base and Administrator. They have more autonomy t
 Base is the foundational role — ideal for the widest group of users, such as students or occasional borrowers:
 
 - **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle custody.
-- **Bookings:** create **booking requests** for themselves. They **cannot** check out or check in gear themselves — only an Administrator can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it.
+- **Bookings:** create **booking requests** for themselves. They **cannot** check out or check in gear themselves — only an Administrator can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it. Bulk Delete, Archive and Cancel apply to their own bookings only.
 - **Audits:** can be assigned to audits and perform them — scanning items and adding audit notes — but cannot create, archive, or delete audits.
 - **Settings:** limited to their own account details. They cannot invite or manage other team members.
 
