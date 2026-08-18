@@ -1,0 +1,16 @@
+---
+title: "A Reserved Booking Always Holds Something"
+description: "Reserving an empty booking is now refused everywhere, on the web and in the Shelf Companion app, and a reserved booking can no longer be emptied by removing its last item."
+date: "2026-08-18"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-empty.webp"
+readMoreUrl: "/knowledge-base/troubleshooting-booking-conflicts#reserve-is-greyed-out"
+layout: "update"
+---
+
+A booking that is **Reserved** but holds nothing reserves nothing. It cannot be checked out, it shows on the index as an empty row, and nobody can tell from the outside that it is not holding gear for someone. Two doors led to that state, and both are now closed.
+
+**Reserving.** The website already greyed out **Reserve** when a booking had neither assets nor model reservations, or when it held an asset marked unavailable. Those checks lived only in the web form, so the Shelf Companion app could reserve a booking the website turned away. Both rules are now enforced on the server, which means every surface follows them: the phone refuses exactly what the website refuses. Shelf also re-checks them at the instant you reserve, so an edit made by someone else while you have the booking open cannot slip through.
+
+**Removing.** Taking the last asset or model reservation off a booking that is already **Reserved** is now refused. Cancel the booking if you no longer need it, or add the replacement first. **Draft**, **Ongoing** and **Overdue** bookings are unaffected, since pulling an item off a booking that is already underway is a normal correction.
+
+The wording of all three reasons is now identical on the web tooltip, the app, and the server response, so the reason you read is the same one wherever you hit it. Existing empty reservations are untouched.

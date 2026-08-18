@@ -27,6 +27,7 @@ const ARTICLES = {
   "qt-availability": "articles/qt-availability.mjs",
   "bulk-asset-model": "articles/bulk-asset-model.mjs",
   "asset-model-cover-image": "articles/asset-model-cover-image.mjs",
+  "booking-reserve-blocked": "articles/booking-reserve-blocked.mjs",
 };
 
 const slug = process.argv[2];

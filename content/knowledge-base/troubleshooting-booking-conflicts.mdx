@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-05"
+updated: "2026-08-18"
 layout: "knowledge-base"
 ---
 
@@ -31,6 +31,8 @@ An admin may have marked the asset as **not available for bookings**. This is se
 3. Only admins and owners can toggle this setting
 
 Common reasons an asset is marked unavailable: it's in maintenance, out for repair, decommissioned, or reserved for a specific department outside the booking system.
+
+If the asset is already sitting on a booking that is still in **Draft**, that booking cannot be reserved while the toggle is off. Take the asset off the booking, or switch the toggle back on, and **Reserve** becomes available again.
 
 ---
 
@@ -111,6 +113,26 @@ If a previous booking is overdue (asset not checked in by the scheduled end), it
 3. Admins can also force-release custody from the asset's page → **Actions → Release custody**
 
 See [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns) if only some items from a kit booking were returned.
+
+---
+
+## Reserve is greyed out
+
+A booking only moves from **Draft** to **Reserved** when it can hold what it promises. Three things block that, and the button's tooltip names which one:
+
+- **"Add assets or reserve at least one model on this booking before you reserve it."** The booking is empty. Add an asset, or reserve a count against an [Asset Model](/glossary/asset-models). Either one is enough on its own.
+- **"This booking holds assets marked as unavailable."** Something on it has its **Available for bookings** toggle off. Remove that item, or switch the toggle back on.
+- **"This booking holds assets already booked for that period."** Something on it is committed to another booking inside your dates. Remove it, or change the dates.
+
+![Draft booking with no assets: the Reserve button is greyed out and its tooltip reads "Add assets or reserve at least one model on this booking before you reserve it"](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-empty.webp)
+
+![Draft booking holding an unavailable asset: the same Reserve button reads "This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving"](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-unavailable.webp)
+
+Shelf checks all three again on the server at the moment you reserve, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The same checks now cover the [Shelf Companion app](/mobile-app), so the phone refuses exactly what the website refuses.
+
+### A reserved booking cannot be emptied
+
+Once a booking is **Reserved**, removing its last asset or model reservation is refused with *"A reserved booking must keep at least one asset or model reservation."* Cancel the booking if you no longer need it, or add the replacement item first. **Draft**, **Ongoing** and **Overdue** bookings can still be emptied, since taking an item off a booking that is already underway is a normal correction.
 
 ---
 
