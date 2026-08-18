@@ -10,7 +10,7 @@ personas:
   - "education"
 canonicalUrl: "/features/asset-search"
 date: "2025-01-01"
-updated: "2026-04-15"
+updated: "2026-08-18"
 seo:
   title: "Asset Search — Find Any Item Instantly | Shelf"
   description: "Search your entire asset database by name, custodian, category, status, or custom fields. Instant results at any scale."
@@ -40,7 +40,21 @@ When teams cannot find assets quickly, they waste time, create duplicate records
 
 ### Multi-Field Search
 
-Shelf searches across all fields simultaneously. Type a custodian name, a serial number, a category label, or a custom field value — the search engine queries everything at once and returns matching results ranked by relevance.
+One search box, ten places to look. A single term is matched against all of these at once, and an asset surfaces if any one of them hits:
+
+| Type this | Shelf matches |
+|---|---|
+| A name or a few words from a description | The asset's **name** and **description** |
+| `SAM-0042` | The asset's **Shelf Asset ID** |
+| A QR code ID, or a barcode value read off a label | The asset's **QR code** and any **barcode** on it |
+| `Cameras`, `Studio B` | Its **category**, and **any location it is placed in** |
+| `fragile`, `on loan` | Its **tags** |
+| A colleague's name | Whoever currently has it **in custody** |
+| A serial number, PO number, warranty date | The values recorded in your **custom fields** |
+
+Two details worth knowing. An asset stocked across several locations is found by any of them, not only its main one. And you can separate up to ten terms with commas to match any of them, so `studio a, lens` returns everything in Studio A alongside anything named "lens".
+
+Results come back in whatever order you have the list sorted by, so a search is a filter over your existing view rather than a separate ranked results screen.
 
 ![Asset index filtered to cameras — 23 matches across categories and locations](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/search-hero.webp)
 
@@ -60,7 +74,7 @@ Search results appear as you type. There is no need to press enter and wait for 
 
 ### Works at Any Scale
 
-Whether your database contains 50 assets or 50,000, search performance stays consistent. Shelf is designed for growing inventories, so adding more records does not degrade the experience.
+Whether your database contains 50 assets or 50,000, search stays quick. Each of the sources above is looked up separately, narrowed to your own workspace first, and served by its own database index, including the custom field values. A workspace with 14,000 assets searches in roughly the time a small one does.
 
 ---
 
