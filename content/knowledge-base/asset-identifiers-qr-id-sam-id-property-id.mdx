@@ -1,19 +1,19 @@
 ---
-title: "Asset Identifiers: QR ID, SAM ID, and Property ID"
-description: "Shelf has three ways to identify an asset — the system QR ID, sequential SAM IDs, and your own Property IDs. This guide explains each, when to use them, and how to choose which one shows on your list views and printed labels."
+title: "Asset Identifiers: QR ID, SAM ID, and Your Own Reference Numbers"
+description: "Shelf gives every asset a system QR ID and a sequential SAM ID, and a text custom field carries your own numbering scheme. This guide explains each, when to use them, and how to choose which one shows on your list views and printed labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-05-27"
+updated: "2026-08-18"
 layout: "knowledge-base"
 ---
 
 <InlineVideo
   mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/sequential-ids-flow.mp4"
   webm="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/sequential-ids-flow.webm"
-  alt="Asset identifiers in Shelf — QR ID, SAM ID, and Property ID"
+  alt="Asset identifiers in Shelf: the QR ID, the SAM ID, and the preferred display code setting"
 />
 
-Shelf has **three ways to identify an asset**, and a **workspace setting** — *Preferred display code* — that controls which identifier appears next to each asset on list views (and underneath the code on downloaded QR labels). This article covers all of them.
+Shelf gives every asset **two identifiers of its own**, and there is a third way to carry the numbering scheme you already use. A **workspace setting**, *Preferred display code*, controls which identifier appears next to each asset on list views, and underneath the code on downloaded QR labels. This article covers all of them.
 
 > **What's new (May 2026):** the *QR Code Display* setting has been renamed to **Preferred display code** and expanded. Workspaces with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) can now choose a barcode type (Code 128, Code 39, DataMatrix, External QR, or EAN-13) as the workspace default, and override the choice per asset. See [Section 4](#4-preferred-display-code--the-workspace-setting) below.
 
@@ -23,9 +23,11 @@ Shelf has **three ways to identify an asset**, and a **workspace setting** — *
 |---|---|---|---|
 | **QR Code ID** | Shelf (auto) | `clxegnjcm005b11tn2cszkw6c` | The canonical system ID; the target of every QR code |
 | **SAM ID (Sequential Asset Number)** | Shelf (auto) | `SAM-0001`, `SAM-0042` | Human-friendly reference used in conversation, reports, labels |
-| **Property ID** | You (optional) | `LAPTOP-001`, `CAM-02` | Your own numbering scheme, if you have one. Supports custom URL lookups. |
+| **Your own reference number** | You (optional) | `LAPTOP-001`, `CAM-02` | Your existing numbering scheme, held in a text [custom field](/knowledge-base/adding-additional-fields-to-assets) you create and name yourself |
 
-All three are searchable. If a label gets damaged and the QR can't be scanned, you can type any of the three into Quick Find (⌘K) to locate the asset and [relink a fresh QR code](/knowledge-base/understanding-qr-code-swapping-and-management-in-shelf).
+All of them are searchable. If a label gets damaged and the QR can't be scanned, type any of them into Quick Find (⌘K) to locate the asset and [relink a fresh QR code](/knowledge-base/understanding-qr-code-swapping-and-management-in-shelf).
+
+> **Looking for a field called "Property ID"?** There isn't one, and there is no `/property/...` lookup URL. Shelf does not ship a dedicated slot for your own identifier, because a custom field does the same job and lets you call it whatever your team already calls it. [Section 3](#3-your-own-reference-numbers) covers how to set that up.
 
 ---
 
@@ -76,58 +78,38 @@ Not currently — it's fixed at `SAM` (Shelf Asset Management). Custom prefixes 
 
 ---
 
-## 3. Property ID — your own identifier
+## 3. Your own reference numbers
 
-Property IDs let you record **your own** identifier on an asset — on top of the QR Code ID and SAM ID. Useful when:
+Most teams arriving at Shelf already have a numbering scheme, and it is usually printed on stickers that are still on the equipment. You keep it by creating a text [custom field](/knowledge-base/adding-additional-fields-to-assets) and putting your existing values in it. That covers the three cases people ask about:
 
 - You're migrating from an existing tracking system and need to preserve old labels or numbers in your records.
 - Your organisation already has a numbering scheme (e.g. `LAPTOP-001`, `CAM-02`, `VEH-004`).
 - You want asset references that embed meaning (asset type, department, location).
 
-> **Important — Property ID does NOT print on QR labels.** The Property ID is a stored value you can search and reference, not a printable label format. Only **QR Code ID** or **SAM ID** can appear under the QR code on a downloaded Shelf label — see [section 4](#4-preferred-display-code--the-workspace-setting) below for how to control that. If you need your own IDs on the printed labels themselves, that is a custom-template workflow, not a built-in Property ID feature.
+Shelf has no separate built-in field for this, on purpose. A custom field does everything a dedicated one would, and it carries your own name for the thing.
 
-### Setting a Property ID
+### Setting it up
 
-1. When creating or editing an asset, locate the **Property ID** field.
-2. Enter any string (letters, numbers, hyphens).
-3. Save.
+1. Go to **Workspace settings → Custom fields** and create a field of type **Text**.
+2. Name it whatever your team already calls it: **Tag Number**, **Inventory ID**, **Asset Tag**, **Old Asset No.**
+3. Mark it **required** if every asset in your workspace is supposed to have one.
+4. Open an asset and fill the field in, or bring the values in during import.
 
-Property IDs are optional. If you don't set one, nothing changes — the asset still has its system ID and SAM ID.
+Nothing about the asset's QR Code ID or SAM ID changes. Your own number sits alongside them.
 
-### Bulk-importing Property IDs from your old system
+If you want several parallel schemes, for example a manufacturer serial number *and* an internal tag number, create a field for each. There is no limit of one.
 
-Migrating from another asset tracker? Your existing IDs can come in via CSV import. Map your old-ID column to **Property ID** (or to a custom field — see below) when uploading. The imported value is searchable from Quick Find and the asset index, exactly like a Property ID set by hand. See [Importing Assets to Shelf — CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
+### Bringing your existing numbers in from your old system
 
-### Alternative: Use a custom field for your own identifier scheme
+Migrating from another asset tracker? Your existing IDs come in via CSV import. Add a column named exactly after your custom field and map your old-ID column to it when uploading. The imported values are searchable from Quick Find and the asset index straight away, exactly like values typed in by hand. See [Importing Assets to Shelf — CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
 
-If you want a different field name (e.g. **Tag Number**, **Inventory ID**, **Old Asset No.**), or you want multiple parallel ID columns, create a [custom field](/knowledge-base/adding-additional-fields-to-assets) of type **Text**. You can:
+> **Your own numbers do not print on Shelf's QR labels.** Only the **QR Code ID** or the **SAM ID** can appear under the code on a downloaded Shelf label, and [section 4](#4-preferred-display-code--the-workspace-setting) covers how to choose between them. If you need your own IDs physically on the labels, that is a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) you design and print yourself.
 
-- Name it anything that matches your existing system
-- Make it required for new assets if you rely on it
-- Include it as a column when importing assets via CSV — old IDs from your previous system land directly in the new field
-- Search for assets by that value from the asset index and Quick Find
+### Best practices
 
-A custom field behaves like the built-in Property ID for search, display, and import. The same caveat applies: **a custom-field value does not appear on the printed QR label** — only QR Code ID or SAM ID can show there.
-
-### The Property ID custom URL
-
-Every Property ID gets a custom lookup URL:
-
-```
-https://app.shelf.nu/property/YOUR-PROPERTY-ID
-```
-
-Example: if your Property ID is `LAPTOP-001`, visiting `https://app.shelf.nu/property/LAPTOP-001` redirects to the full asset page. This is useful for:
-
-- Printing QR codes that encode your Property ID URL instead of the Shelf URL (requires a custom label template — see [Printing Custom Branded QR Labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf)).
-- Typing a familiar ID directly into your browser when you need to look something up fast.
-- Sharing a compact link with team members.
-
-### Property ID best practices
-
-- Keep them unique within your workspace — Shelf doesn't enforce uniqueness on Property IDs.
-- Use a consistent naming convention (pick a separator and stick to it).
-- Consider encoding type or location information (`LAB-OSC-003` tells you it's a lab oscilloscope without looking up the asset).
+- Keep the values unique within your workspace. A custom field does not enforce uniqueness, so two assets can both claim `LAPTOP-001` and searching for it will return both.
+- Use a consistent naming convention, and pick one separator and stick to it.
+- Consider encoding type or location information: `LAB-OSC-003` tells you it's a lab oscilloscope without looking the asset up.
 
 ---
 
@@ -261,7 +243,7 @@ Chips render from loader-fetched data, not from the in-progress edit state. Afte
 
 ### Hiding the SAM ID column in the asset index
 
-If your team relies on Property IDs or a custom field for day-to-day reference and the SAM ID column is creating noise, you can hide it from the asset index:
+If your team relies on its own reference numbers in a custom field for day-to-day work and the SAM ID column is creating noise, you can hide it from the asset index:
 
 1. Open the **asset index**.
 2. Click **Configure columns** (the column-toggle control above the table).
@@ -278,31 +260,35 @@ See: [Advanced Asset Index — Complete Guide](/knowledge-base/advanced-asset-in
 
 ### Can I use all three identifier types at once?
 
-Yes. Every asset automatically has a QR Code ID and a SAM ID. You can optionally add a Property ID on top. All three are searchable in Quick Find and the asset index.
+Yes. Every asset automatically has a QR Code ID and a SAM ID, and you can carry your own reference number on top in a text custom field. All of them are searchable in Quick Find and the asset index.
 
 ### Which one should I use when searching?
 
-Whichever you remember. Shelf's search resolves all three. If you see an asset labelled `SAM-0042`, type `SAM-0042` or just `42`. If you see a Property ID like `LAPTOP-001` on a sticker, type that.
+Whichever you remember. Shelf's search resolves all of them. If you see an asset labelled `SAM-0042`, type `SAM-0042` or just `42`. If you see one of your own numbers like `LAPTOP-001` on a sticker, type that.
 
 ### What if I delete an asset and want the SAM ID back?
 
 SAM IDs are not reused. A deleted asset's SAM ID stays out of circulation — this preserves historical accuracy. The next new asset receives the next unused number.
 
-### Can I change a Property ID after assigning it?
+### Does Shelf have a "Property ID" field?
 
-Yes — open the asset, edit the Property ID field, save. The old value is replaced.
+No. There is no Property ID field on the asset form, no Property ID import column, and no `app.shelf.nu/property/...` lookup URL. Your own numbering scheme lives in a text custom field you create and name yourself, which is searchable, importable, and can be made required. [Section 3](#3-your-own-reference-numbers) walks through it.
 
-### Do Property IDs need to be unique?
+### Can I change my own reference number after setting it?
 
-Shelf doesn't enforce uniqueness on Property IDs, so technically two assets can share one. In practice, keep them unique — you'll have a bad time searching if two assets both claim `LAPTOP-001`.
+Yes. Open the asset, edit the custom field, and save. The old value is replaced.
+
+### Do my own reference numbers need to be unique?
+
+Shelf doesn't enforce uniqueness on custom field values, so two assets can share one. In practice, keep them unique. You'll have a bad time searching if two assets both claim `LAPTOP-001`.
 
 ### Will changing the Preferred display code setting break existing labels?
 
 No. The QR codes on existing printed labels encode the canonical asset URL, not the displayed text — scanning them still resolves to the right asset regardless of the setting. The setting only affects (a) the chips on list views in the app, and (b) what value Shelf prints under the QR on the *next* label you download. For (b), only the QR Code ID and SAM ID preferences change the printed text; barcode-type preferences don't affect printed labels yet (see "What it does NOT affect" in Section 4 above).
 
-### Can I print my own Property ID (or a custom-field value) on the QR labels Shelf generates?
+### Can I print my own reference number on the QR labels Shelf generates?
 
-Not in the default downloaded labels. The **Preferred display code** setting picks among **QR Code ID**, **SAM ID**, or — with the alternative-barcodes add-on — a barcode type as the value shown on list-view chips, with QR Code ID and SAM ID also appearing as the text under the code on downloaded labels. Property IDs and custom-field values are stored on the asset and searchable, but Shelf does not currently inject them into the printed label format. If you need your own IDs physically on the labels, the path today is a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) using unclaimed QR codes — you design the layout in your own tool and print externally.
+Not in the default downloaded labels. The **Preferred display code** setting picks among **QR Code ID**, **SAM ID**, or — with the alternative-barcodes add-on — a barcode type as the value shown on list-view chips, with QR Code ID and SAM ID also appearing as the text under the code on downloaded labels. Custom field values are stored on the asset and searchable, but Shelf does not currently inject them into the printed label format. If you need your own IDs physically on the labels, the path today is a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) using unclaimed QR codes — you design the layout in your own tool and print externally.
 
 ### Can I override the preferred display code on a single asset?
 
@@ -324,7 +310,7 @@ Yes — workspace-preference changes emit `ORGANIZATION_QR_ID_DISPLAY_PREFERENCE
 
 Owner and Administrator roles. Base and Self-Service users see the chips on every list view but the controls themselves are hidden.
 
-### My team uses Property IDs (or a custom field) for our IDs and the SAM ID column is confusing. Can I hide it?
+### My team uses its own IDs in a custom field and the SAM ID column is confusing. Can I hide it?
 
 Yes. Open the asset index, click **Configure columns**, uncheck **SAM ID**, and save. The SAM ID stays assigned and remains searchable in Quick Find — you have just removed the column from the table.
 
@@ -335,4 +321,4 @@ Yes. Open the asset index, click **Configure columns**, uncheck **SAM ID**, and 
 - [Printing Custom Branded QR Code Labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) — design your own template around unclaimed codes
 - [Using Shelf QR Codes with Avery Label Sheets](/knowledge-base/using-shelf-qr-codes-with-avery-label-sheets) — the simple label-printing path
 - [Understanding QR Code Swapping](/knowledge-base/understanding-qr-code-swapping-and-management-in-shelf) — re-link a damaged label to a new code
-- [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — configure custom fields alongside Property IDs
+- [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets) — create the text custom field that carries your own reference numbers
