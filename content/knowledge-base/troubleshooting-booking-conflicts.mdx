@@ -121,18 +121,18 @@ See [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-inc
 A booking only moves from **Draft** to **Reserved** when it can hold what it promises. Three things block that, and the button's tooltip names which one:
 
 - **"Add assets or reserve at least one model on this booking before you reserve it."** The booking is empty. Add an asset, or reserve a count against an [Asset Model](/glossary/asset-models). Either one is enough on its own.
-- **"This booking holds assets marked as unavailable."** Something on it has its **Available for bookings** toggle off. Remove that item, or switch the toggle back on.
-- **"This booking holds assets already booked for that period."** Something on it is committed to another booking inside your dates. Remove it, or change the dates.
+- **"This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving."** Something on it has its **Available for bookings** toggle off.
+- **"This booking holds assets already booked for that period. Remove them, or change the dates, before reserving."** Something on it is committed to another booking inside your dates.
 
-![Draft booking with no assets: the Reserve button is greyed out and its tooltip reads "Add assets or reserve at least one model on this booking before you reserve it"](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-empty.webp)
+![Draft booking with no assets: the Reserve button is greyed out and its tooltip reads "Add assets or reserve at least one model on this booking before you reserve it."](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-empty.webp)
 
-![Draft booking holding an unavailable asset: the same Reserve button reads "This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving"](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-unavailable.webp)
+![Draft booking holding an unavailable asset: the same Reserve button reads "This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving."](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-unavailable.webp)
 
-Shelf checks all three again on the server at the moment you reserve, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The same checks now cover the [Shelf Companion app](/mobile-app), so the phone refuses exactly what the website refuses.
+The server re-checks all three at the moment you reserve, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The first two come back word for word. The already-booked one is caught by the conflict check, which is more specific and names the assets that clash rather than repeating the tooltip. These checks now cover the [Shelf Companion app](/mobile-app) too, so the phone refuses exactly what the website refuses.
 
 ### A reserved booking cannot be emptied
 
-Once a booking is **Reserved**, removing its last asset or model reservation is refused with *"A reserved booking must keep at least one asset or model reservation."* Cancel the booking if you no longer need it, or add the replacement item first. **Draft**, **Ongoing** and **Overdue** bookings can still be emptied, since taking an item off a booking that is already underway is a normal correction.
+Once a booking is **Reserved**, removing its last asset or model reservation is refused with *"A reserved booking must keep at least one asset or model reservation. Cancel the booking instead, or add a replacement first."* **Draft**, **Ongoing** and **Overdue** bookings can still be emptied, since taking an item off a booking that is already underway is a normal correction.
 
 ---
 

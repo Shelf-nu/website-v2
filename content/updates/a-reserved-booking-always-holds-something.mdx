@@ -13,4 +13,4 @@ A booking that is **Reserved** but holds nothing reserves nothing. It cannot be 
 
 **Removing.** Taking the last asset or model reservation off a booking that is already **Reserved** is now refused. Cancel the booking if you no longer need it, or add the replacement first. **Draft**, **Ongoing** and **Overdue** bookings are unaffected, since pulling an item off a booking that is already underway is a normal correction.
 
-The wording of all three reasons is now identical on the web tooltip, the app, and the server response, so the reason you read is the same one wherever you hit it. Existing empty reservations are untouched.
+One wording now backs each rule, so the reason the tooltip gives you is the reason the server gives back. The third greyed-out reason, an asset already booked for your dates, is refused by the conflict check instead, which is more useful because it names the assets that clash. The matching note inside the Companion app arrives with its next release; the refusal itself is already live there, because it is enforced on the server. Existing empty reservations are untouched.

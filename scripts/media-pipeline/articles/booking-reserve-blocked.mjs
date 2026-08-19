@@ -97,9 +97,10 @@ async function shoot(page, id, expectText, captionText, file, tmpDir) {
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-reserveblocked-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   const urls = {};
   try {
+    browser = await launchBrowser();
     const context = await createContext(browser);
     const page = await context.newPage();
     page.setDefaultTimeout(60000);
