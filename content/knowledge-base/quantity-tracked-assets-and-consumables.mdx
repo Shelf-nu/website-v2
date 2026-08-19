@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-08-13"
+updated: "2026-08-19"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -73,6 +73,7 @@ For quantity-tracked assets, custody is by portion rather than all-or-nothing:
 - Assign part of the pool to a person — for example, "20 of 100 USB-C cables to Sarah." The available count drops by 20.
 - Several team members can hold different quantities of the same asset at once.
 - Ending a hold, fully or partially, settles those units according to the asset's [consumption type](#consumption-types).
+- Custody and a booking are separate commitments on the same pool, so 20 units can sit with a custodian while 5 are checked out on a booking and the rest stay on the shelf. Releasing the custody does not check the booking in. See [Quantity-Tracked Pools Can Be Both at Once](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs#quantity-tracked-pools-can-be-both-at-once).
 
 ### Ending a hold on returnable stock
 
@@ -106,6 +107,20 @@ Placements come from two directions:
 
 The two are independent, so a pool can be partly placed by hand and partly held by kits at the same time. Take the asset out of the kit and the kit's slice is released back to unplaced.
 
+### When Locations Hold More Than You Own
+
+Placements record where units are, so lowering the total can leave them describing units that no longer exist. The usual case is a **used-up consumable**: end a custody hold on 5 of 87 gaffer tape rolls and the total drops to 82, but the placements still say 87 are in the store.
+
+Most of the time nothing needs to happen, because the unplaced pool absorbs it — place 50 of 100 cables, consume 10, and the placements are still true. Drift only starts once every unit is placed and there is no unplaced residual left to take the hit. Shelf handles that in three ways:
+
+- **The asset's Quantity Overview card tells you.** An **Over-placed** row appears with the real figure, not a tidied-up zero: *"Locations claim 5 rolls more than this asset's total. Open 'Manage placements' and lower the location that lost them."*
+- **Where the source is obvious, Shelf fixes it for you.** If the units sat at a single location, that placement is trimmed automatically as part of the same change. Nothing to do.
+- **Where it is not, Shelf asks rather than guesses.** With units spread across several locations, nothing records which room the consumed units left, so writing a number into one of them would be inventing a fact. The Over-placed row stands until you say which location lost them.
+
+Open **Manage placements** on an over-placed asset and the dialog explains the state instead of reporting your own untouched numbers back at you as an error: *"These locations hold 87 rolls between them, but the asset's total is now 82. Stock was used up while every unit was assigned to a location, so 5 rolls are still recorded somewhere they no longer are. Lower the location that lost them, then save."* Save stays disabled until the sum fits.
+
+Only placements you set by hand are counted here. A kit's slice is measured on its own and never makes an asset read as over-placed.
+
 ---
 
 ## On the mobile app
@@ -119,6 +134,8 @@ Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app 
 - Tap **Adjust** on the quantity card to correct the stock figure itself. Choose add or remove, enter the amount, and give a reason. Adding is recorded as a restock and removing as a loss, so a shelf count you fix in the aisle lands in the asset's history with your note rather than as an unexplained change.
 - The **Available** figure turns amber when it drops to or below the asset's minimum quantity, using the same low-stock rule as the web.
 - On a booking, check out part of a pooled line and leave the rest booked, then record the return with the same **Returned / Lost / Damaged** split (or **Consumed / Lost / Damaged** for consumables) the web check-in drawer uses.
+- A **kit** screen shows how many units of a pooled asset that kit holds, as an `×20 rolls` label on the member's row, so you can see the kit's slice without opening the asset.
+- On a **booking**, a pooled asset that is on the booking more than once lists each commitment separately, each with its own count and where it came from: `20 rolls booked · Kit: Camera A` above `5 rolls booked · Standalone`. One row per commitment, so a kit's units and a loose reservation of the same stock never collapse into a single figure you cannot take apart.
 
 Individually tracked assets look and behave exactly as before in the app. See [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) for the full mobile walkthrough.
 
@@ -167,7 +184,7 @@ Since the check runs when you book, you shouldn't be able to over-reserve a pool
 - **Insufficient stock**, a red badge on an item's row, is the item in question. Lower the quantity, or free units elsewhere by releasing custody or checking in the late booking.
 - **Checked out elsewhere**, an amber badge, is not a blocker. Your dates are fine; some units just happen to be out right now and are due back before you need them. On **used-up** stock, read it as a maybe rather than a promise: units that go out are consumed when that booking is checked in, not returned, so the pool can end up smaller. If that leaves you short, the row turns red and a restock clears it.
 
-Stock is protected from the other side too. You can't lower an asset's total quantity below what's already promised to custody, kits, or overlapping bookings.
+Stock is also protected when you reduce the total quantity. You can't lower an asset's total quantity below what's already promised to custody, kits, or overlapping bookings — nor below what your [manual placements](#when-locations-hold-more-than-you-own) already claim. Try it, on the edit form, with a quick adjustment, or through a CSV update, and Shelf refuses with the numbers: *"Cannot reduce 'Gaffer tape' to 40 rolls — 55 rolls are assigned to locations. Lower the placements first, then reduce the total."* Nothing has physically moved in that case, so you get the chance to unplace first rather than being left with a figure to reconcile afterward.
 
 ### Coming back
 

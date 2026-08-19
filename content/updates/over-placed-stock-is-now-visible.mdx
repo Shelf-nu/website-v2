@@ -1,0 +1,21 @@
+---
+title: "Locations That Hold More Than You Own Now Say So"
+description: "Using up stock while every unit was assigned to a location used to leave a hidden mismatch and a placements dialog that refused to save. The real figure is now on the asset, and lowering a total below its placements is refused up front."
+date: "2026-08-17"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#when-locations-hold-more-than-you-own"
+layout: "update"
+---
+
+For [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables), placements record where units are and the total records how many you own. Using up a consumable lowers the total without touching the placements, and once every unit was assigned to a location there was no spare pool left to absorb the difference — so the two quietly disagreed.
+
+You would not find out until later. The asset card showed **Unplaced 0** where the honest figure was negative, and the next perfectly ordinary edit to the placements was refused with *"Sum of placements (87) exceeds the asset's total quantity (82)"* — an error about numbers you had not touched.
+
+## What changed
+
+- The asset's **Quantity Overview** card now carries an **Over-placed** row with the real amount and what to do about it, instead of clamping it to zero.
+- Where the units clearly came from one location, that placement is trimmed automatically as part of the same change, so the common case sorts itself out.
+- Where the stock is spread across several locations, nothing in the record says which room the units left, so Shelf leaves the row standing and asks rather than writing in a number that was never true.
+- Opening **Manage placements** on an asset that is already over-placed now explains what happened and points at the fix, rather than reading your own figures back to you as a validation error.
+- Lowering a total below what your placements claim is refused up front, on the edit form, on a quick adjustment, and through a CSV update: *"Cannot reduce 'Gaffer tape' to 40 rolls — 55 rolls are assigned to locations. Lower the placements first, then reduce the total."*
+
+Assets whose stock is only partly placed are unaffected, which is most of them. Only placements you set by hand count towards this; a kit's slice is measured on its own and never makes an asset read as over-placed.
