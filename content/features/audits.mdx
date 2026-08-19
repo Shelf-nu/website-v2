@@ -11,10 +11,10 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-08-18"
+updated: "2026-08-19"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
-  description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Export PDF and CSV reports. Paid add-on with 7-day free trial."
+  description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Download a PDF audit receipt with the full asset list. Paid add-on with 7-day free trial."
   keywords:
     - "asset audit software"
     - "physical inventory audit"
@@ -25,7 +25,7 @@ seo:
 
 # Audits
 
-Audits let you verify that your physical inventory matches your records. Define which assets should be in a location, hand someone a phone, and let them scan. Shelf flags what was found, what is missing, and what showed up unexpectedly. When the audit is complete, export a PDF or CSV report.
+Audits let you verify that your physical inventory matches your records. Define which assets should be in a location, hand someone a phone, and let them scan. Shelf flags what was found, what is missing, and what showed up unexpectedly. When the audit is complete, download a PDF receipt that carries the counts, the full asset list, and the photos your auditor took.
 
 Audits is a paid add-on available on any Shelf plan, with a 7-day free trial to test it on your own inventory.
 
@@ -96,7 +96,15 @@ After an audit is completed, the same tile changes its word: everything nobody r
 
 ### 4. Complete and Report
 
-When scanning is finished, complete the audit. Completing is also what settles the numbers: everything still unscanned becomes **Missing**. Shelf sends a summary email to the audit creator with counts of found, missing, and unexpected assets. Export the full results as a **PDF report** or **CSV file** for compliance documentation, insurance records, or internal review.
+When scanning is finished, complete the audit. Completing is also what settles the numbers: everything still unscanned becomes **Missing**. Shelf sends a summary email to the audit creator with counts of found, missing, and unexpected assets.
+
+For the record itself, open the audit and choose **Actions → Download Receipt**. The receipt is a PDF holding the audit's details (who created it, who it was assigned to, and when it was created, started and completed), the Expected / Found / Missing / Unexpected counts, every photo captured during the count, a line-item table of each asset with its category, location, status and QR code, and the full activity log. Anyone who can view the audit can download it, at any point, not only after completion.
+
+![The Actions menu on a completed audit, with Download Receipt as the export item](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audit-download-receipt.webp)
+
+The audit's **Activity** tab has a separate **Export activity CSV** button once the audit has activity on it. That file is the note log (date, author, type, and content), not the asset list, so it suits an evidence trail rather than a spreadsheet of results.
+
+![The Activity tab of an audit, with the Export activity CSV button above the note log](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audit-activity-csv.webp)
 
 ---
 
@@ -121,7 +129,7 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Notes and photos per scan**: Document conditions, discrepancies, or issues as you go, from the web app or from the Shelf Companion app on iPhone and Android. Photos can be taken with the camera on the spot or picked from the photo library.
 - **Real-time progress**: Live counts of expected, found, not scanned, and unexpected assets update as scanning happens, on the audit itself and in the audit list.
 - **Location context in scan list**: When auditing by tag, category, or any non-location filter, each asset in the scan list shows its current location beneath its name — helping auditors identify where they need to look without leaving the scan view. Location is automatically hidden when the audit is scoped to a specific location to avoid redundancy.
-- **PDF and CSV export**: Generate reports for compliance, insurance, or management review.
+- **PDF audit receipt**: **Actions → Download Receipt** produces one document with the counts, the full asset table, the audit photos, and the activity log, for compliance, insurance, or management review. The Activity tab exports its note log separately as CSV.
 - **Completion notifications**: Email summaries sent automatically when an audit is completed.
 - **Full audit lifecycle management**: Archive completed or cancelled audits to remove them from the default list while keeping the data accessible. When the data is no longer needed, permanently delete archived audits — individually or in bulk — removing all scan records, notes, and images. Archive individually or in bulk from the **Actions** dropdown; delete follows the same pattern with a type-to-confirm safety step.
 - **One-click recurring audits**: Duplicate any Completed, Cancelled, or Archived audit to re-run it on the same asset list. The copy starts clean (no notes, no scans, no assignee, no due date) and inherits the source's name, description, and scope. If the source's assets have shifted, Shelf reports the dropped count up front and blocks the duplicate if every asset is gone — no silent failures.
@@ -182,7 +190,9 @@ Currently, each audit session supports a single assigned scanner. For large-scal
 
 ### How do I export audit results?
 
-Completed audits can be exported as PDF reports or CSV files. The PDF includes a summary with found, missing, and unexpected counts. The CSV provides detailed line-item data for further analysis.
+Open the audit, click the actions menu, and choose **Download Receipt**. Shelf builds a PDF containing the audit details, the Expected / Found / Missing / Unexpected statistics, any photos taken during the count, a numbered table of every asset with its category, location, status and QR code, and the activity log. It is available to anyone who can view the audit, whether or not the audit has been completed.
+
+There is no CSV of the asset results. The one CSV an audit produces is **Export activity CSV** on the **Activity** tab, which downloads the note log with a date, author, type and content column. If you need audit results in a spreadsheet, export the assets themselves from the [asset index](/knowledge-base/export-exporting-workspace-data-from-shelf) and reconcile against the receipt.
 
 ### Can I cancel an audit?
 
