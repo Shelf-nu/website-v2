@@ -136,6 +136,44 @@ export const pricingFeatures: PricingFeature[] = [
         },
     },
     {
+        id: "asset-models",
+        category: "Asset Management",
+        name: "Asset Models",
+        description:
+            "Reusable make/model records that carry a shared photo and specs to every asset built from them",
+        availability: {
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
+    },
+    {
+        id: "quantity-tracking",
+        category: "Asset Management",
+        name: "Quantity Tracking & Consumables",
+        description:
+            "Track pooled stock as a single record with a running count, a unit of measure, and low-stock alerts",
+        availability: {
+            free: "included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
+    },
+    {
         id: "kits",
         category: "Asset Management",
         name: "Kits",
