@@ -33,9 +33,10 @@ const COMPLETED_AUDIT = "cmpqvmujp002dqbi0wcj66g9l"; // "Find these" — 42/9/33
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-auditexport-"));
   console.log(`Working in: ${tmpDir}`);
-  const browser = await launchBrowser();
+  let browser;
   const urls = {};
   try {
+    browser = await launchBrowser();
     const context = await createContext(browser);
     const page = await context.newPage();
     page.setDefaultTimeout(60000);
@@ -87,7 +88,7 @@ async function main() {
     );
     Object.values(urls).forEach((u) => console.log(`  OK ${u}`));
   } finally {
-    await browser.close();
+    if (browser) await browser.close();
     await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
   }
 }
