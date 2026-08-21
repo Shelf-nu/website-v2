@@ -3,7 +3,7 @@ title: "Date, Time, and Time Zone Preferences"
 description: "Choose how dates and times appear for your Shelf account: date order, 12 or 24-hour clock, which day the week starts on, and your time zone. The setting follows you across the app, exports, PDFs, and emails."
 category: "Getting Started"
 date: "2026-08-04"
-updated: "2026-08-13"
+updated: "2026-08-21"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -82,6 +82,16 @@ Emails follow the **recipient's** preferences rather than the sender's. If you b
 
 ---
 
+## Working hours are the one exception
+
+[Working hours](/knowledge-base/working-hours-set-operating-schedules-for-your-workspace) are not shown on your clock, and they are not meant to be. A workspace's opening times describe when a **physical place** is open, so 09:00 to 17:00 means 09:00 to 17:00 on site for everybody. It does not become 02:00 to 10:00 because you are reading it from another continent. The settings page and the booking form both say so: *Local hours of the physical location*.
+
+Closed-day overrides work the same way. The 24th is closed on the 24th, for everyone.
+
+Your **Time zone** setting still decides how the booking's own start and end times are read when you fill the form in. If you book equipment kept in a different country, set your Time zone preference to the site's location so the window is judged the way the schedule was written, and so every date you see lines up with the place the equipment is.
+
+---
+
 ## What you will see the first time
 
 Shelf detects your format and time zone from your browser the first time you sign in and saves those as concrete values, so a new account already reads correctly before anyone touches the settings. Existing accounts are filled in the same way on their next visit.
@@ -97,6 +107,9 @@ Files are formatted at the moment they are generated. Export again and the new f
 
 **My colleague sees a different time on the same booking.**
 That is expected if you are in different time zones. You are both looking at the same moment, shown on your own clock. Check the **Time zone** row on each account if the difference does not match the offset you expect.
+
+**Why do the workspace's working hours not shift to my time zone?**
+Because they are the opening times of a physical location, not a timestamp. Everything else in Shelf is a moment in time and is shown on your clock; a working-hours window is a statement about a building. See [the exception above](#working-hours-are-the-one-exception).
 
 **Can I set this for the whole workspace at once?**
 No. The preference is per user by design, so a distributed team does not have to settle on one region's conventions. Each person sets their own once and it holds everywhere.
