@@ -3,7 +3,7 @@ title: "Transferring Workspace Ownership"
 description: "How to make another team member the owner of your workspace, what changes for the new and previous owner, and how your subscription is handled. The transfer is permanent."
 category: "Team"
 date: "2026-07-27"
-updated: "2026-08-17"
+updated: "2026-08-21"
 layout: "knowledge-base"
 ---
 
@@ -24,7 +24,9 @@ This is the **only** way ownership moves. Owner is not one of the choices in the
 There are two ways in, and both land on the same card:
 
 - **Workspace settings → General**, in the **Transfer workspace ownership** card.
-- **Workspace settings → Team**, on the owner's row in the member list. The **Transfer ownership** button there takes you straight to the card.
+- **Workspace settings → Team**, from the **Transfer ownership** button at the top of the page, next to **Import Users** and **Invite a user**. It takes you straight to the card. It sits in the page header rather than on a member's row, because transferring is a page-level action and not something you do to one person's row.
+
+![Workspace settings, Team tab. The Transfer ownership button sits in the page header next to Import Users and Invite a user, and the owner's row has an empty Actions cell](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/transfer-ownership-team-header.webp)
 
 Every state of the card links back to this article, so you can read the consequences before you start.
 
@@ -44,7 +46,7 @@ The transfer takes effect immediately. Both you and the new owner receive a conf
 Administrators cannot transfer ownership, but they can now see who can. Both places name the owner instead of showing nothing:
 
 - **Workspace settings → General** shows the card with the line *"Only the workspace owner can transfer ownership of this workspace"*, with the owner's email address in it.
-- **Workspace settings → Team** shows a **Transfer ownership** button on the owner's row that does not act, and names the owner when you hover it.
+- **Workspace settings → Team** shows the **Transfer ownership** button greyed out. Hover it, or tap it on a phone, and it names the owner. Screen readers are told the same reason, so the button is never just a dead grey control.
 
 This matters most when an owner has handed day-to-day management to an administrator. Ask the owner to run the transfer, or ask them to make you the owner so you can manage the workspace and its billing yourself.
 
@@ -88,7 +90,7 @@ No. You stay in the workspace as an Administrator, with your assets and history 
 No. Personal workspaces are single-user, so ownership transfer applies to Team workspaces with at least one other administrator. To hand a Personal workspace to someone else, change the email address on the account instead, under **Account settings → General**. The card on a Personal workspace's General settings says the same and links you there.
 
 **I am an administrator and I cannot find the transfer anywhere.**
-That is expected. Only the owner can run the transfer. Workspace settings → General and Workspace settings → Team both name the current owner, so you know who to ask.
+That is expected. Only the owner can run the transfer. Workspace settings → General and Workspace settings → Team both name the current owner, so you know who to ask. On the Team page, hover or tap the greyed-out **Transfer ownership** button at the top to read their address.
 
 **Can we remove the owner from the workspace instead?**
 No. The owner's access cannot be revoked while they own the workspace, and the **Revoke access** action tells you so. That would leave nobody able to manage billing or hand ownership on, with no route back through the interface. Transfer ownership to another administrator first. The previous owner becomes an administrator, and the **new** owner can then revoke their access — revoking an administrator is an owner-only action, so it has to be done by whoever holds ownership at that point. The same applies to accounts managed by an identity provider: deprovisioning the owner through SSO fails rather than stranding the workspace.
