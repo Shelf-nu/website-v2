@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-06-12"
+updated: "2026-08-18"
 layout: "knowledge-base"
 ---
 
@@ -25,7 +25,7 @@ You need three things in place:
 
 1. **Assets in Shelf** — at least a few items in the location you plan to audit. If your inventory is empty, [add some assets first](/knowledge-base/adding-new-assets).
 2. **QR labels on those assets** — the audit scan page reads QR codes to confirm physical presence. If you haven't printed labels yet, see [Using Shelf QR Codes with Avery Label Sheets](/knowledge-base/using-shelf-qr-codes-with-avery-label-sheets) or [Printing Custom Branded QR Code Labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
-3. **Audits activated** — from the sidebar, click **Audits**. If you haven't activated the add-on yet, Shelf will prompt you to start the 7-day trial. No credit card required.
+3. **Audits activated** — from the sidebar, click **Audits**. If you haven't activated the add-on yet, Shelf shows an unlock page. Only the **workspace owner** can start the trial or subscribe, since it is the owner's card the add-on bills to and each workspace gets the free trial once. Administrators and everyone else see "Contact your workspace owner to enable the Audits add-on for your organization" instead of the buttons. No credit card is required to start the trial.
 
 ---
 
@@ -38,7 +38,7 @@ You need three things in place:
    - **Description** *(optional)* — instructions for the person doing the scan (e.g. "Scan each asset and provide a condition photo")
    - **Due date** *(optional)* — when the audit should be completed by
 4. **Select which assets to include** — you can scope by location, category, tag, or any combination. Shelf builds the "expected" asset list from your current records.
-5. **Assign the audit** *(optional)* — pick a team member who'll do the scanning. If you leave this blank, any admin can open the scan page.
+5. **Assign the audit** *(optional)* — pick a team member who'll do the scanning. Admins and owners can perform any audit in the workspace whether or not it is assigned, so assigning is how you hand the job to a **self-service** or **base** user. It also tells everyone else whose job it is.
 6. Click **Save** to create the session
 
 > **Shortcut: start an audit from your Locations or Kits.** Instead of building the scope inside the dialog, you can kick off an audit straight from a list page. On the **Locations** page (or the **Kits** page), tick one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates a single audit covering the union of every asset across the selected locations or kits — ideal for a room-by-room sweep or for confirming kit contents are complete. If you select all with a search or filter active, only the matching rows are included. You'll still name the audit and (optionally) assign it before it's created.
@@ -51,13 +51,15 @@ You need three things in place:
 
 Click into the audit you just created. The **Overview** tab shows:
 
-- **Statistics** — Expected / Found / Missing / Unexpected counts (all zeros at the start)
+- **Statistics** — Expected / Found / Not scanned / Unexpected counts. On a fresh audit, everything sits under **Not scanned**, because nothing has been counted yet
 - **Audit Information** — status, created date, assignee, due date
-- **Asset list** — every asset Shelf expects to find, with an "Expected" status chip
+- **Asset list** — every asset Shelf expects to find, each with a **Not scanned** chip until someone reaches it
 
 This is your live dashboard. As scanning progresses, the counters update in real time.
 
-![Audit overview with Expected 19, Found 0, Missing 19 — ready to scan](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-overview.webp)
+![Audit overview with Expected 20, Found 0, Not scanned 20, ready to scan](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-overview-pending.webp)
+
+Note what a new audit does **not** say. Nothing is called missing yet, because nobody has looked. Shelf saves that word for the moment you complete the audit.
 
 ---
 
@@ -74,22 +76,24 @@ Each scan registers the asset as **Found**. The progress bar updates live: "Audi
 
 You can also **Add comment** or **Add image** per asset during the scan — useful for documenting condition, damage, or wrong labels.
 
-![Audit scan page with progress bar and asset list showing Pending / Expected status chips](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
+![Audit scan page with the progress bar and each scanned row marked Expected or Unexpected](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
 
 ---
 
 ## Step 4: Review Results
 
-Go back to the **Overview** tab at any point to check progress. Four statuses:
+Go back to the **Overview** tab at any point to check progress. Every asset carries one of these:
 
 | Status | Meaning |
 |---|---|
 | **Found** | Scanned and matches the expected list |
-| **Missing** | Expected but never scanned — the item might be misplaced, lost, or mislabelled |
+| **Not scanned** | On the expected list, nobody has reached it yet. This is what you see for the whole of a running audit |
 | **Unexpected** | Scanned but NOT on the expected list — the item has moved from another location, or was never recorded |
-| **Pending** | Not yet scanned |
+| **Missing** | What **Not scanned** turns into the moment you complete the audit: expected, never scanned, and now on the record as such |
 
-Use the **Filter by audit status** dropdown to isolate missing or unexpected items for follow-up.
+**Missing only appears after you complete the audit.** Until then an unscanned asset is simply one you have not got to, so the statistics tile, the asset rows, the audits list, and the PDF receipt all read **Not scanned** instead. That means a count you started this morning never tells you half your inventory is missing, and when the word does appear it is a finding rather than a state of play.
+
+Use the **Filter by audit status** dropdown to isolate items for follow-up. The filter follows the same rule: it offers **Not scanned assets** while the audit is open and **Missing assets** once it is completed.
 
 ---
 
@@ -129,6 +133,13 @@ If you found value during the trial, the add-on is available on every Shelf plan
 
 ## FAQ
 
+### Who can perform an audit?
+
+- **Owners and administrators** can scan, add notes and photos, and complete **any** audit in their workspace, assigned or not. Assigning an audit to someone else does not lock an admin out of it.
+- **Self-service and base users** can only work on audits they have been assigned to. Everything else in the audit list is out of reach for them.
+
+The rule is the same on the web and in the [Shelf Companion](/mobile-app) app, so an action that works in the browser works on the phone too.
+
 ### Can multiple people scan the same audit?
 
 Currently, each audit session supports a single assigned scanner. For large-scale audits, create multiple sessions scoped to different areas and assign each to a different team member.
@@ -137,9 +148,13 @@ Currently, each audit session supports a single assigned scanner. For large-scal
 
 Yes. You don't have to build the scope inside the **New Audit** dialog. On the **Locations** page or the **Kits** page, select one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates one audit covering the union of every asset across the selected locations or kits. Selecting all with a search or filter applied audits only the matching rows. This is the fastest way to start a multi-location or multi-kit audit, and it requires the same permission as the **New Audit** button — so anyone who can already create audits can use it.
 
+### Why does my audit say "Not scanned" instead of "Missing"?
+
+Because the count is not finished. An expected asset nobody has reached yet reads **Not scanned** for as long as the audit is open. Complete the audit and everything still unscanned becomes **Missing**, on the statistics tile, on the asset rows, in the audits list, and on the PDF receipt you download.
+
 ### What happens to assets marked "Missing"?
 
-Nothing is automatically changed in your Shelf database. Missing means "expected but not scanned" — you decide what action to take: follow up with the last known custodian, mark as lost, or investigate.
+Nothing is automatically changed in your Shelf database. Missing means "expected, and never scanned before the audit closed" — you decide what action to take: follow up with the last known custodian, mark as lost, or investigate.
 
 ### Can I re-open a completed audit?
 
