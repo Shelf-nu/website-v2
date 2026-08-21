@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-18"
+updated: "2026-08-21"
 layout: "knowledge-base"
 ---
 
@@ -128,7 +128,13 @@ A booking only moves from **Draft** to **Reserved** when it can hold what it pro
 
 ![Draft booking holding an unavailable asset: the same Reserve button reads "This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving."](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-unavailable.webp)
 
-The server re-checks all three at the moment you reserve, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The first two come back word for word. The already-booked one is caught by the conflict check, which is more specific and names the assets that clash rather than repeating the tooltip. These checks now cover the [Shelf Companion app](/mobile-app) too, so the phone refuses exactly what the website refuses.
+The server re-checks all three at the moment you reserve, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The first two come back word for word. These checks now cover the [Shelf Companion app](/mobile-app) too, so the phone refuses exactly what the website refuses.
+
+The already-booked one is different, and worth recognising, because it is the only one whose wording changes between the tooltip and the refusal. The tooltip warns you in general terms; the refusal names the culprits. It arrives under the heading **Booking conflict** and reads:
+
+> Cannot reserve booking. Some assets are already booked or checked out: *[first asset]*, *[second asset]*, *[third asset]* and 2 more. Please remove conflicted assets and try again.
+
+At most three assets are listed by name, and the rest are counted. Take those items off the booking or move your dates, and the reserve goes through. Checking out runs the same check and answers the same way, with *Cannot check out booking* in place of the first phrase, so an item that someone else picked up between your reservation and your collection is named rather than hidden behind a generic failure.
 
 ### A reserved booking cannot be emptied
 
