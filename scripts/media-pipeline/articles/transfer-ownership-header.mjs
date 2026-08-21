@@ -33,12 +33,44 @@ async function main() {
     await navigateTo(page, "/settings/team/users");
 
     // Assert the shipped placement before shooting, so selector drift throws
-    // instead of publishing a caption the image does not show.
+    // instead of publishing a caption the image does not show. The caption
+    // claims two things: the button is not a row action, and it sits beside
+    // Import Users / Invite a user. Both are asserted.
     const btn = page.locator('text="Transfer ownership"').first();
     await btn.waitFor({ state: "visible", timeout: 30000 });
     await page.locator('text="Invite a user"').first().waitFor({ state: "visible" });
-    const inRow = await btn.evaluate((el) => !!el.closest("tr"));
-    if (inRow) throw new Error("Transfer ownership is still inside a table row");
+
+    const placement = await btn.evaluate((el) => {
+      const inRow = !!el.closest("tr");
+      // Walk up until an ancestor holds all three controls. A shared ancestor
+      // that is not <body> or <main> is what "next to" means on screen.
+      const labels = ["Transfer ownership", "Import Users", "Invite a user"];
+      let node = el.parentElement;
+      let depth = 0;
+      while (node && depth < 6) {
+        const texts = Array.from(node.querySelectorAll("button, a")).map((n) =>
+          (n.innerText || "").trim()
+        );
+        if (labels.every((l) => texts.includes(l))) {
+          return { inRow, groupTag: node.tagName, groupDepth: depth, groupSize: texts.filter(Boolean).length };
+        }
+        node = node.parentElement;
+        depth += 1;
+      }
+      return { inRow, groupTag: null, groupDepth: null, groupSize: null };
+    });
+
+    if (placement.inRow) {
+      throw new Error("Transfer ownership is still inside a table row");
+    }
+    if (!placement.groupTag) {
+      throw new Error(
+        "Transfer ownership does not share an action group with Import Users and Invite a user"
+      );
+    }
+    console.log(
+      `  placement OK: <${placement.groupTag}> holds all three actions at depth ${placement.groupDepth}`
+    );
 
     await initAnnotations(page);
     await highlight(page, 'text:Transfer ownership', { spotlight: true, padding: 8 });
