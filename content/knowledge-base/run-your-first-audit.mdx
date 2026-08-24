@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-08-18"
+updated: "2026-08-24"
 layout: "knowledge-base"
 ---
 
@@ -53,6 +53,7 @@ Click into the audit you just created. The **Overview** tab shows:
 
 - **Statistics** — Expected / Found / Not scanned / Unexpected counts. On a fresh audit, everything sits under **Not scanned**, because nothing has been counted yet
 - **Audit Information** — status, created date, assignee, due date
+- **Findings** — the notes and photos people record as they go, grouped by the asset each one is about. On a fresh audit it reads *Nothing was recorded during this audit*
 - **Asset list** — every asset Shelf expects to find, each with a **Not scanned** chip until someone reaches it
 
 This is your live dashboard. As scanning progresses, the counters update in real time.
@@ -75,6 +76,8 @@ Two ways to register assets:
 Each scan registers the asset as **Found**. The progress bar updates live: "Audit: Studio B (Equipment Check) • 3/19 found".
 
 You can also **Add comment** or **Add image** per asset during the scan — useful for documenting condition, damage, or wrong labels.
+
+Those two buttons sit on assets you have **not** scanned yet as well as on the ones you have. That is deliberate: the empty shelf where the camera should have been is worth photographing, and the note belongs on the audit whether or not the item ever turned up.
 
 ![Audit scan page with the progress bar and each scanned row marked Expected or Unexpected](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
 
@@ -105,7 +108,7 @@ When scanning is done:
 2. Shelf sends a **summary email** to the audit creator with final counts
 3. From the completed audit's overview, click **Actions → Download Receipt** to export a **PDF report** with found/missing/unexpected breakdowns
 
-The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review.
+The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review. It carries a **Findings** section as well as the counts: your completion note and its photos first, then one block per asset holding what was written about that item next to the pictures taken of it.
 
 ---
 
@@ -139,6 +142,22 @@ If you found value during the trial, the add-on is available on every Shelf plan
 - **Self-service and base users** can only work on audits they have been assigned to. Everything else in the audit list is out of reach for them.
 
 The rule is the same on the web and in the [Shelf Companion](/mobile-app) app, so an action that works in the browser works on the phone too.
+
+### Where do the notes and photos end up?
+
+On the audit's **Overview** tab, in the **Findings** column on the right.
+
+**About this audit** comes first: the completion note and any photos of the count as a whole. Under it, one card per asset somebody recorded something about, with the note, who wrote it, when, and the photographs of that same item together.
+
+The asset table below points you at them. Every row that carries something shows a small chip counting the notes and the photos separately, and clicking it opens that asset's notes and images. On a long list that chip is how you tell the one item worth following up from the rest.
+
+Findings holds what **people** recorded. Shelf's own trail (statuses changing, the audit being started and completed) stays on the **Activity** tab, and that tab is where the note log downloads as CSV.
+
+![One asset's Findings card, with the condition note above the photographs taken of the same item](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audit-findings-asset.webp)
+
+### Can I record a note on something I could not find?
+
+Yes, and it is one of the more useful things you can do. **Add comment** and **Add image** appear on rows that are still **Not scanned**, so you can photograph the empty slot or write down what the storeroom manager told you. The note stays on the audit record and prints in the receipt's **Findings** section, whether or not that asset was ever scanned.
 
 ### Can multiple people scan the same audit?
 
