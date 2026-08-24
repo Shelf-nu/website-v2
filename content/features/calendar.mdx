@@ -10,7 +10,7 @@ personas:
   - "operations"
 canonicalUrl: "/features/calendar"
 date: "2025-01-01"
-updated: "2026-08-04"
+updated: "2026-08-24"
 seo:
   title: "Asset Booking Calendar | Visual Reservations | Shelf"
   description: "See equipment availability at a glance with Shelf's visual booking calendar. Month, week, and day views with color-coded status."
@@ -57,7 +57,17 @@ The calendar reads in each person's own settings. Weeks start on the day you cho
 
 ### Color-Coded Status
 
-Each booking is color-coded to reflect its current status -- reserved, checked out, available, or overdue. Users can scan the calendar and immediately understand the state of every asset without reading individual records.
+Each booking is color-coded to reflect its current status, so you can scan the calendar and understand the state of every reservation without opening one:
+
+| Status | Colour |
+|---|---|
+| Reserved | Blue |
+| Ongoing (checked out) | Purple |
+| Overdue | Red |
+| Complete | Green |
+| Draft, Cancelled, Archived | Grey |
+
+These are the same colours a booking wears everywhere else in Shelf: on the bookings list, on the booking itself, and on an asset's own bookings. A booking that reads as a problem in one view reads as a problem in all of them.
 
 ![Day view of the booking calendar with a multi-day booking shown as a full-height block](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/calendar-day.webp)
 
@@ -65,7 +75,7 @@ Each booking is color-coded to reflect its current status -- reserved, checked o
 
 ### Overdue Highlighting
 
-Items that have not been returned by their scheduled end time are highlighted automatically. Equipment managers can spot overdue assets in seconds and follow up before the delay cascades into the next reservation.
+Items that have not been returned by their scheduled end time turn red automatically. Equipment managers can spot overdue assets in seconds and follow up before the delay cascades into the next reservation.
 
 ---
 
