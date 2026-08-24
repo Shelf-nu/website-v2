@@ -3,7 +3,7 @@ title: "Asset Identifiers: QR ID, SAM ID, and Your Own Reference Numbers"
 description: "Shelf gives every asset a system QR ID and a sequential SAM ID, and a text custom field carries your own numbering scheme. This guide explains each, when to use them, and how to choose which one shows on your list views and printed labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-08-18"
+updated: "2026-08-24"
 layout: "knowledge-base"
 ---
 
@@ -121,14 +121,17 @@ Every list row in Shelf now ends with a small chip showing each asset's chosen i
 
 ### Where chips appear
 
-The same chip vocabulary renders on every list view, so a label on the warehouse floor matches the row on the screen:
+The same chip vocabulary renders on every list view, so a label on the warehouse floor matches the row on the screen. Both **assets and kits** carry codes, and both get the chip:
 
 - `/assets` — both **Simple** and **Advanced** index modes (in Advanced mode the chip lives inside the QR ID and SAM ID columns).
-- `/kits` and the asset list inside a kit's detail page.
-- `/locations`.
-- The booking detail page.
+- `/kits`, and the asset list inside a kit's detail page.
+- A location's **Assets** tab and its **Kits** tab, plus the **Add kits** picker you open from there.
+- The booking detail page: the asset rows, the kit group headers, and the assets sidebar.
 - The "add assets/kits to booking" modals.
+- The kits **Availability** view, on the row label at the left of each kit's timeline.
 - The audit overview.
+
+![A location's Kits tab, where each kit row carries the same code chip as the Kits page](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/kit-code-chip-location.webp)
 
 ### Who can change it
 
@@ -163,9 +166,17 @@ Workspaces with the [alternative-barcodes add-on](/knowledge-base/alternative-ba
 
 Without the add-on the five barcode-type options are hidden from the dropdown — QR Code ID and SAM ID remain available to everyone.
 
+### Kits do not have a SAM ID
+
+The setting is one choice for the whole workspace, and it covers kits as well as assets. **SAM IDs are an asset-only identifier**, so on a workspace that prefers SAM ID every kit row falls back to its QR Code ID and shows the quieter outlined chip. Hover it and the chip says so: *Your workspace prefers SAM ID, which kits do not have. Showing the QR Code ID instead.*
+
+There is nothing to fix on your side. A kit has no SAM ID field and no place to set one, so the fallback is the answer rather than a gap in your data. If you want kits and assets to read the same way on every list, prefer **QR Code ID**, which both always have.
+
+The per-asset override has the same boundary: **"Preferred display code for this asset"** lives on the asset edit page, and kits have no equivalent.
+
 ### What this setting affects
 
-- **List-view code chips** — every row across all the surfaces listed in "Where chips appear" above.
+- **List-view code chips** — every row across all the surfaces listed in "Where chips appear" above, for kits as well as assets.
 - **Printed QR labels** — *only when the preference is QR Code ID or SAM ID*. Those are the two options whose value also appears underneath the code on the default Download output. A SAM-ID preference also adds the SAM prefix to bulk-download filenames (e.g. `SAM-0001_Laptop_Dell_abc123.png` instead of `Laptop_Dell_abc123.png`).
 
 ### What it does NOT affect
