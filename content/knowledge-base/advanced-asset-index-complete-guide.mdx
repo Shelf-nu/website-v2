@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-04"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -20,6 +20,8 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 3. **You're done** — the advanced features become available immediately
 
 ![Assets index after enabling advanced mode, showing the extended toolbar](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/enable-advanced-2.webp)
+
+> **On a phone, advanced mode steps aside.** Below tablet width the index says *"Advanced mode is currently not available on mobile"* and offers a **Change to simple mode** button. The setting is per workspace, so switching to simple on your phone switches it on your desktop too. Simple mode is the one to use on a small screen; everything in this guide is a desktop or tablet feature.
 
 > **Feedback and requests**: the team welcomes suggestions about batch actions, column configuration, and filters. Email [hello@shelf.nu](mailto:hello@shelf.nu) or contact your account manager.
 
@@ -39,6 +41,51 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 - "Select all" or "Deselect all" for quick configuration
 
 **Pro tip**: Show only necessary columns for your current task to maintain a clean view.
+
+### Every Column You Can Show
+
+**Name** is fixed and always first. Everything below it can be switched on or off and dragged into the order you want. The **Shown by default** column is what a brand-new workspace starts with, not a limit: switch any of them on whenever you need it.
+
+| Column | Shown by default | What it holds |
+|---|---|---|
+| **Asset ID** | Yes | The workspace's own sequential ID, `SAM-0017` style |
+| **QR ID** | Yes | The ID printed on the Shelf QR label |
+| **Status** | Yes | Available, In custody, Checked out |
+| **Description** | Yes | Truncated to fit the row |
+| **Value** | Yes | Per-unit value. On a pooled asset this is the value of one unit, not the stock |
+| **Available to book** | Yes | Whether the asset can go on a booking at all |
+| **Created at** | Yes | When the asset record was made |
+| **Updated at** | Yes | Last change to the record |
+| **Category** | Yes | One category per asset |
+| **Tags** | Yes | Two shown, the rest behind `+N` |
+| **Location** | Yes | Where the asset is. Pooled stock can sit in several, so this can overflow |
+| **Kit** | Yes | The kit the asset belongs to |
+| **Custody** | Yes | Who is holding it |
+| **Upcoming Reminder** | Yes | The next [asset reminder](/knowledge-base/asset-reminders) due |
+| **Upcoming Bookings** | Yes | Bookings this asset is committed to |
+| **Actions** | Yes | The per-row menu |
+| **ID** | No | Shelf's internal record ID, the one the [bulk update](/knowledge-base/bulk-updating-assets-via-csv) flow matches rows on |
+| **Quantity** | No | Units held, for [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) assets |
+| **Min quantity** | No | The low-stock threshold |
+| **Tracking method** | No | Individually tracked or quantity-tracked |
+| **Asset model** | No | The [asset model](/glossary/asset-models) the unit belongs to |
+| **Code128**, **Code39**, **DataMatrix**, **External QR**, **EAN-13** | Yes, when barcodes are on | One column per barcode type. See [Alternative Barcodes](/knowledge-base/alternative-barcodes) |
+| Your custom fields | No | One column per field you have defined |
+
+The five barcode columns only exist once **Alternative Barcodes** is enabled on the workspace. They are added switched on, so they appear the first time you look after enabling.
+
+**Total value** is not in this list, and that is on purpose. It is written into CSV exports as a separate column, so a pooled asset's per-unit **Value** and its total both reach the spreadsheet, but it is not a column you can put on screen. See [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf).
+
+### When a Cell Holds More Than It Can Show
+
+A table cell sets the height of its row, so a cell that stacked everything it held would stretch every other column in that row with it. Columns that can hold several values cap what they render on one line and collapse the rest into a small `+N` control:
+
+- **Tags** and the five **barcode** columns show two, then `+N`
+- **Location**, **Kit** and **Custody** show the primary one, then `+N`
+
+Hover or tab to a `+N` and it lists what is hidden. On a barcode column it does more than that: clicking `+N` opens the code preview on the first hidden barcode, and the dialog's own selector reaches the rest, so a code past the cap is still one click from being displayed large enough to scan off the screen.
+
+This is why a row stays the same height whether an asset carries one barcode or six.
 
 ## Advanced Filtering System
 
