@@ -28,6 +28,11 @@ const ARTICLES = {
   "bulk-asset-model": "articles/bulk-asset-model.mjs",
   "asset-model-cover-image": "articles/asset-model-cover-image.mjs",
   "booking-reserve-blocked": "articles/booking-reserve-blocked.mjs",
+  "audit-export-receipt": "articles/audit-export-receipt.mjs",
+  "audit-findings": "articles/audit-findings.mjs",
+  "transfer-ownership-header": "articles/transfer-ownership-header.mjs",
+  "kit-code-chips": "articles/kit-code-chips.mjs",
+  "bulk-update-row-count": "articles/bulk-update-row-count.mjs",
 };
 
 const slug = process.argv[2];
