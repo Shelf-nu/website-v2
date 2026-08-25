@@ -3,7 +3,7 @@ title: "Alternative Barcodes (Barcode, Datamatrix, QR Code)"
 description: "Learn about Shelf's alternative barcode feature that extends beyond standard QR codes, enabling organizations to integrate multiple barcode formats into their asset tracking systems."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-05-27"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -84,6 +84,12 @@ The **Workspace default** row in the radio group also tells you what it will res
 ### Finding an asset by its barcode value
 
 On the booking detail page (when filtering the assets attached to a booking) and on the audit asset picker, you can now type a barcode value into the search box and the matching asset will appear. Useful when you have a sticker in hand and want to jump to the row that represents it. Both surfaces are backed by GIN trigram indexes on `Barcode.value` and `Qr.id`, so the substring search stays fast even on large workspaces.
+
+### A column per barcode type on the advanced index
+
+Enabling barcodes also adds five columns to the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide#every-column-you-can-show), one for each type: **Code128**, **Code39**, **DataMatrix**, **External QR** and **EAN-13**. Each shows only the asset's barcodes of that type, so you can sort or scan down a single format without the others in the way. They arrive switched on, and you can turn any of them off from the **Columns** control.
+
+An asset that carries several codes of one type shows the first two on one line and collapses the rest into a `+N`. Hovering it lists the hidden values; clicking it opens the code preview, from where the dialog's own selector reaches every code on the asset. That keeps a row carrying six codes the same height as a row carrying one, which matters when you are reading down a long list.
 
 ### Activity log
 
