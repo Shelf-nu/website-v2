@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-06"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -14,7 +14,7 @@ If your CSV import fails, partially imports, or creates unexpected records, chec
 ## "Some rows failed" or partial import
 
 - **Missing title**: every row needs a `title` value. The importer does not reject blank titles — those rows still create asset records, just with no name, which you'd then have to clean up by hand. Validate that every row's `title` column is populated before uploading.
-- **Encoding**: save your CSV as **UTF-8**. Excel sometimes saves as ANSI or Windows-1252, which corrupts special characters (accents, non-Latin scripts). In Excel: File → Save As → choose "CSV UTF-8".
+- **Encoding**: save your CSV as **UTF-8**. Excel sometimes saves as ANSI or Windows-1252, which corrupts special characters (accents, non-Latin scripts). In Excel: File → Save As → choose "CSV UTF-8". A file you exported from Shelf already carries a UTF-8 byte order mark, so it opens with the right alphabet and re-saving it keeps the encoding. Shelf's importer strips the mark on the way back in, so it never lands in your data. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
 - **Extra commas or line breaks inside a cell**: if a description field contains commas, the cell must be wrapped in double quotes. Most spreadsheet apps handle this automatically — but copy-pasted data from websites sometimes breaks the quoting.
 
 ---
@@ -64,8 +64,9 @@ Full column reference: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updat
 
 ## Update flow: the file is rejected before the preview
 
-Four checks run before Shelf builds a preview, each with its own message:
+Several checks run before Shelf builds a preview, each with its own message:
 
+- **An unbalanced quote.** A double quote that is opened and never closed runs every row after it together, so the file Shelf receives is not the file you meant to send. The usual source is an inches mark typed into a cell, as in `24" Monitor`. This one is caught as soon as the file is picked, and **Analyze file** stays disabled until it is fixed. Wrap the cell in quotes and double the inner one, `"24"" Monitor"`, or save the file from a spreadsheet application, which escapes it for you.
 - **No identifier column.** The file needs `id`, `ID`, or `Asset ID`. An **Import-ready** export always has one, in either column scope. A Standard export only carries `ID` when that column is visible in your index or you pick the **All columns** scope.
 - **Nothing updatable in the file.** The identifier matched, but every other column is either unrecognized or one this flow never writes (Status, Kit, Custody). This usually means the wrong file. Export **Import-ready** and use that.
 - **It's a workspace backup export.** The backup from **Workspace settings → General** stores category, tags, and asset model as raw data rather than names, so it can't be matched to real entities. Export from the Asset Index instead.
@@ -73,13 +74,25 @@ Four checks run before Shelf builds a preview, each with its own message:
 
 ---
 
+## The row count looks far too high
+
+The panel under the upload area counts **assets**, not lines. A description typed with paragraph breaks lives in one quoted cell, and those breaks are part of the value.
+
+If a file of a few hundred assets once reported several times that many rows, re-open the screen and check again: the count now reads the whole file and honours quoted fields, so it matches the number of assets. The update itself was never affected, because the server has always parsed the file properly. Only the number in front of you was wrong.
+
+The **1,000 assets per file** limit is counted the same way, so a file with multi-line descriptions is measured by its assets rather than by its lines.
+
+---
+
 ## File too large
 
-Shelf's import handles most file sizes, but very large CSVs (10,000+ rows) may time out on slower connections. If this happens:
+This one is about the **Import** flow that creates new assets. It takes a file of any size, but very large CSVs (10,000+ rows) may time out on slower connections. If this happens:
 
-- Split the file into batches of 2,000–5,000 rows
+- Split the file into batches of 2,000 to 5,000 rows
 - Import each batch separately
 - All batches land in the same workspace
+
+**Update existing is different.** It stops at **1,000 assets per file** whatever your connection, because each row can trigger several database calls. Split for that flow at 1,000, not at 2,000.
 
 ---
 

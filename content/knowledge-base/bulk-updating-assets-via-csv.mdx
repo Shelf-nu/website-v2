@@ -3,7 +3,7 @@ title: "Bulk Updating Assets via CSV"
 description: "Use the Update Existing Assets workflow to edit asset records in bulk — export to CSV, make changes in Excel or Google Sheets, preview every diff, then apply."
 category: "Assets"
 date: "2026-04-06"
-updated: "2026-08-07"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -51,7 +51,7 @@ Keep the headers as exported. Shelf reads both header styles, the readable label
 | Standard header | Import-ready header | Applies to | Notes |
 |---|---|---|---|
 | `Name` | `title` | All assets | Cannot be cleared |
-| `Description` | `description` | All assets | Plain text. Cannot be cleared |
+| `Description` | `description` | All assets | Plain text, line breaks allowed inside the quoted cell. Cannot be cleared |
 | `Category` | `category` | All assets | Created automatically if the name is new |
 | `Location` | `location` | All assets | Created automatically if the name is new |
 | `Tags` | `tags` | All assets | Comma-separated inside one cell. Created automatically if new |
@@ -115,6 +115,22 @@ A quantity-tracked asset can have its units spread across several **placements**
 The same rules are printed on that page, so you can check a column without leaving Shelf.
 
 ![The Update existing assets page listing which columns can be updated, the empty-cell exceptions, and how rows are matched](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/import-update-columns.webp)
+
+### What the upload check reports
+
+As soon as Shelf has the file, and before you click **Analyze file**, a small panel under the upload area names the file, says which identifier column it found, and counts the columns and data rows.
+
+**The row count counts assets, not lines.** A description typed with paragraph breaks is written into one quoted cell, and its line breaks belong to the value rather than separating records. A file of 174 assets whose descriptions carry paragraph breaks reports 174 data rows, not the several hundred lines they occupy. The count is read from the whole file, so it does not change with file size.
+
+![The upload check on the Update existing assets screen, reading "Matching by ID, 3 columns, 2 data rows" for a file whose two descriptions each run to several lines](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bulk-update-row-count.webp)
+
+**A stray quote is named.** A double quote that is opened and never closed swallows every row after it, so the file that reaches Shelf is not the file you think you uploaded. The usual source is an inches mark typed straight into a cell, as in `24" Monitor`. Shelf refuses the file and says what is wrong:
+
+> Unbalanced quote: a `"` is opened and never closed, so the rows after it run together. Write a literal quote as two (`""`).
+
+**Analyze file** stays disabled until you fix it. The fix is to wrap the cell in quotes and double the inner one, so `24" Monitor` becomes `"24"" Monitor"`. Easier still, let your spreadsheet application write the file: Excel, Numbers, LibreOffice and Google Sheets all quote and escape for you when you save as CSV.
+
+![The upload check refusing a file with an unbalanced quote, with the Analyze file button disabled](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bulk-update-unbalanced-quote.webp)
 
 Shelf analyzes your file and shows a **spreadsheet-style preview** of every change before anything is saved:
 

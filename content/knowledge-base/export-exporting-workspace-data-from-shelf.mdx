@@ -3,7 +3,7 @@ title: "Exporting Data from Shelf"
 description: "Export asset data from Shelf as CSV: selected assets, filtered results, or a full workspace backup. Covers the Standard and Import-ready formats, what each includes, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-19"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -98,6 +98,14 @@ Typical fields included:
 
 The workspace backup is broader and includes internal fields not intended for re-import.
 
+### How the file is encoded
+
+Every CSV Shelf hands you is written as UTF-8 and carries a byte order mark, and the download says `charset=utf-8` on the wire. That mark is what tells a spreadsheet application which alphabet it is reading. Without it, Excel falls back to whatever codepage the machine happens to use, and Arabic, Cyrillic, Greek, Hebrew, CJK and even plain accented Latin come out as unreadable symbols.
+
+So a file exported from Shelf opens correctly on the first try, in Excel, Numbers, LibreOffice and Google Sheets, with no import wizard and no encoding to pick. It holds for all of them: the asset index export, the workspace backup, bookings, report exports, non-registered members, and the activity note exports on assets, bookings, audits and locations.
+
+The mark does not travel into your data. Shelf's own importer strips it, so a file you export, edit and upload again round-trips cleanly, and so does a file Excel saved with a mark of its own.
+
 ### Dates in exported files
 
 Dates in a CSV are written in **your own** date format, time format, and time zone, the ones set under **Account settings → General**, so a downloaded file reads the same way the screen does. A colleague with different settings who exports the same assets gets the same dates written their way. See [Date, Time and Timezone Preferences](/knowledge-base/date-time-and-timezone-preferences).
@@ -167,6 +175,11 @@ Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-a
 
 - Click the **Columns** control and verify the fields you want are enabled
 - Reorder columns before exporting — the CSV respects the current display order
+
+**Non-Latin characters look like symbols in Excel?**
+
+- Re-download the file. Exports now carry a UTF-8 byte order mark, so Excel reads the alphabet correctly without an import wizard. Files downloaded before that change need to be exported again.
+- If a re-exported file still looks wrong, check whether the file was opened and re-saved in an application that dropped the encoding on the way.
 
 **Too much data to export at once?**
 

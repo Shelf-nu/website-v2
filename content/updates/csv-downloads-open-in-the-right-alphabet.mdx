@@ -1,0 +1,15 @@
+---
+title: "Every CSV download now opens in the right alphabet"
+description: "Exports are written as UTF-8 with a byte order mark, so Arabic, Cyrillic, Greek, CJK and accented Latin names open correctly in Excel instead of arriving as unreadable symbols."
+date: "2026-08-25"
+readMoreUrl: "/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded"
+layout: "update"
+---
+
+If your inventory is named in anything other than plain unaccented English, a CSV downloaded from Shelf could open in Excel as a page of unreadable symbols. It was reported against the **Asset Distribution** report, where Arabic category and location names came out as garbage.
+
+The bytes Shelf sent were always correct UTF-8. The file just never said so, and a spreadsheet application that is not told which alphabet it is reading falls back to whatever codepage the machine happens to use.
+
+Every CSV download now carries a UTF-8 byte order mark and declares `charset=utf-8`, so the file opens correctly on the first try with no import wizard and no encoding to choose. That covers the asset index export, the workspace backup, bookings, all eleven report exports, non-registered members, the activity note exports on assets, bookings, audits and locations, and the results report from a bulk update.
+
+Nothing changes about what is in the file, and re-importing still works: Shelf's importer strips the mark on the way back in, exactly as it already did for files that Excel had saved with one. Files you downloaded before today are unaffected, so export them again if you need a readable copy.

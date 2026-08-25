@@ -3,6 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -63,6 +64,8 @@ Compliance and utilization reports use color to flag entries that need attention
 ## Export the Result
 
 Every report supports **CSV export**. Click **Export** at the top right of any report to download the data shown.
+
+Report CSVs are written as UTF-8 with a byte order mark, so category, location and custodian names in any alphabet open correctly in Excel without an import wizard. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
 
 Reports with charts also support **PDF download** — Shelf renders the charts and tables into a print-ready document. PDF download is available for chart-based reports (Booking Compliance, Top Booked Assets, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Asset Distribution); reports without a chart — Asset Inventory, Idle Assets, Overdue Items, Custody Snapshot, and Top Booked Kits — export to CSV. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
 
