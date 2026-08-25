@@ -3,7 +3,7 @@ title: "Custody Feature for Long-Term Equipment Lend-Outs"
 description: "The custody feature functions like an indefinite checkout system, allowing organizations to track which team members have borrowed assets without specifying return dates or locations."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-14"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -35,6 +35,20 @@ When a custodian returns the asset to the equipment room and you wish to make it
 The Actions button displays the Release custody option.
 
 **Note:** Assets in custody display a blue status badge. Releasing custody clears that hold. The asset returns to **Available** unless something else is still holding it, which is covered below.
+
+## Where You Can See Who Holds an Asset
+
+Custody is not only visible on the asset itself. Every list that answers "where is my gear" carries the custodian too:
+
+- The **asset page**, where the blue **In custody** badge sits beside the status and the **Custody** card on the overview names the holder.
+- The **Assets index**, in its **Custody** column.
+- A **location's Assets tab**, in its **Custodian** column, so you can see at a glance which items stored there are already spoken for. This column is the broader one: it names whoever is holding the asset, whether that is a direct custody assignment or a booking it is checked out on.
+
+![A location's Assets tab, with a Custodian column naming who holds each item and a dash on the ones that are free](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-on-location-page.webp)
+
+An asset that several people hold units of shows its **primary custodian** wherever a list has room for one name, alongside a **Partial custody** badge. Open the asset for the full picture: the **Quantity Overview** card breaks the pool down by what is in custody, in kits, checked out and available.
+
+What Self-service and Base users see here follows the workspace's custody-visibility setting. With it off, a grey **private** badge stands in place of the name and the custodian filter is refused, so a list cannot be used to work out who holds what. Administrators and Owners are unaffected. See [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see).
 
 ## Custody and Bookings Are Separate Commitments
 

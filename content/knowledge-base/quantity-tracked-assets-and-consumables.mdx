@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-08-19"
+updated: "2026-08-25"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -145,7 +145,7 @@ Individually tracked assets look and behave exactly as before in the app. See [G
 
 The promise is the same one Shelf makes for a camera or a laptop: **you can't reserve something that isn't there.** What changes is the question being asked. A camera is one specific thing, so the question is whether anyone else has it. A pool of sandbags is a count, so the question is how many are free on your dates.
 
-Shelf checks that at the moment it matters, when you confirm a booking or change what's on it, and it locks the asset while it checks. Two people confirming at the same second can't both slip through.
+Shelf checks that at the moment it matters, and it locks the asset while it checks, so two people confirming at the same second can't both slip through. Every way units get onto a booking goes through the same check: confirming the booking, adjusting a row's quantity, editing what the booking holds, and **scanning items onto it**, on the web and in the Companion app alike. There is no back door where a pool can be over-committed by picking a different route in.
 
 ### Dates matter, not just totals
 
@@ -164,7 +164,7 @@ The one thing that ignores dates is an **overdue** booking. Nobody knows when a 
 
 Open the asset's row on the booking and choose **Adjust quantity**. The dialog tells you what you've got to work with for these dates, written plainly as *"4 of 12 sandbags available"* with the date range underneath, plus how many units other bookings are holding. If your role can see other people's bookings, a **View bookings** link takes you to them.
 
-Ask for more than the dates allow and Shelf refuses with the exact shortfall: *"Only 3 of 10 units available in this window — reduce the quantity to continue."* Going the other way, **lowering a quantity always works**, no matter what state the booking is in.
+Ask for more than the dates allow and the dialog stops you before it submits: *Only 3 sandbags available. Please reduce the quantity.* If the pool shrank while the dialog sat open, the refusal comes back from the server instead, and it names the asset and both numbers: *Only 3 sandbags available for "Sandbag (Counterweight)" in this window — you requested 12. Reduce the quantity to continue.* Going the other way, **lowering a quantity always works**, no matter what state the booking is in.
 
 ### Reading the asset page
 

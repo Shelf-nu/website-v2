@@ -3,6 +3,7 @@ title: "Using External Barcode Scanners with Shelf"
 description: "Shelf supports handheld and wireless barcode scanners on the desktop interface, allowing you to scan QR asset tags using barcode scanning equipment for rapid processing of multiple items."
 category: "Other"
 date: "2024-06-01"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -61,7 +62,7 @@ The Scan to Add interface allows you to scan multiple assets in succession:
 3. Each scanned asset will appear in the list below the input field
 4. Once you have scanned all desired assets, click **Confirm** to add them to your booking
 
-Shelf will also show any potential conflicts directly from the scan to add interface.
+Shelf will also show any potential conflicts directly from the scan to add interface, and it refuses the ones that would double-commit something. An individually tracked asset that is already reserved or checked out over your booking's dates is turned away. A [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset is turned away when the units the booking would then hold are more than the pool can supply on those dates, so a fast run of scans cannot push a pool past what you own. Scanning is held to exactly the same rule as adding items through **Manage assets**.
 
 ## Tips for Optimal Barcode Scanner Performance
 
