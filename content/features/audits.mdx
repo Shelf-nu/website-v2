@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-08-24"
+updated: "2026-08-25"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Download a PDF audit receipt with the full asset list. Paid add-on with 7-day free trial."
@@ -124,7 +124,9 @@ The audit's **Activity** tab has a separate **Export activity CSV** button once 
 
 ---
 
-### 5. Duplicate, Archive, and Delete for Record-Keeping
+### 5. Edit, Duplicate, Archive, and Delete for Record-Keeping
+
+While an audit is still **Pending** or **Active**, admins and owners can open it and choose **Actions → Edit details** to change its name, description, due date and assignee. A count that slips by a week or passes to a different person is a quick edit rather than a rebuild. Once the audit reaches a terminal state the record is fixed, which is what makes its receipt worth keeping.
 
 Once a completed or cancelled audit is no longer actively referenced, admins and owners can **archive** it. Archived audits are removed from the default audit list but remain accessible by filtering for the **Archived** status.
 
@@ -210,6 +212,14 @@ Currently, each audit session supports a single assigned scanner. For large-scal
 Open the audit, click the actions menu, and choose **Download Receipt**. Shelf builds a PDF containing the audit details, the Expected / Found / Missing / Unexpected statistics, any photos taken during the count, a numbered table of every asset with its category, location, status and QR code, and the activity log. It is available to anyone who can view the audit, whether or not the audit has been completed.
 
 There is no CSV of the asset results. The one CSV an audit produces is **Export activity CSV** on the **Activity** tab, which downloads the note log with a date, author, type and content column. If you need audit results in a spreadsheet, export the assets themselves from the [asset index](/knowledge-base/export-exporting-workspace-data-from-shelf) and reconcile against the receipt.
+
+### Can I change an audit's name, due date, or assignee after creating it?
+
+Yes, while it is still running. Open the audit, click the actions menu (⋯), and choose **Edit details**. The dialog updates the audit's name, description, due date and assignee in one go, so a count that slips a week or moves to a different person does not have to be rebuilt from scratch.
+
+This is an **Admin or Owner** action, and it is available on **Pending** and **Active** audits only. Once an audit is Completed, Cancelled or Archived its record is fixed, which is what makes the PDF receipt worth keeping. To re-run a finished audit on the same scope, duplicate it instead.
+
+The audit's **scope** is not editable here. The asset list is set when the audit is created, so use Duplicate if you need a different set of assets.
 
 ### Can I cancel an audit?
 
