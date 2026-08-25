@@ -28,7 +28,6 @@ const ARTICLES = {
   "bulk-asset-model": "articles/bulk-asset-model.mjs",
   "asset-model-cover-image": "articles/asset-model-cover-image.mjs",
   "booking-reserve-blocked": "articles/booking-reserve-blocked.mjs",
-  "custody-on-location-page": "articles/custody-on-location-page.mjs",
 };
 
 const slug = process.argv[2];
