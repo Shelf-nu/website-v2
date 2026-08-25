@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-21"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -48,7 +48,7 @@ When you book a kit, Shelf checks every item inside it. If even one component ha
 
 ## Quantity-tracked assets: "Stock conflict" and "Insufficient stock"
 
-Pooled stock is checked the same way a single asset is: Shelf won't let you reserve units that aren't free for your dates, and it says so when you confirm the booking or change what's on it.
+Pooled stock is checked the same way a single asset is: Shelf won't let you reserve units that aren't free for your dates, and it says so at the moment you commit them. Every route counts, so there is no door that skips the check: confirming the booking, adjusting a row's quantity, editing what the booking holds, and scanning items onto it, from the web or from the Companion app.
 
 What it can't prevent is a pool getting **smaller after** a booking is already confirmed. Two everyday things do that: a previous booking comes back late, or someone hands units out as custody in the meantime. Cancelling somebody's booking behind their back would be worse than telling them, so Shelf flags the booking instead.
 
@@ -61,9 +61,13 @@ What it can't prevent is a pool getting **smaller after** a booking is already c
 
 **Amber "Checked out elsewhere" badge.** Not a blocker, just a heads-up. Your dates are fine; some units are simply out on another booking right now and are due back before yours starts. On **used-up** stock it's a maybe rather than a promise: those units are consumed when the other booking is checked in, not returned, so the pool can end up smaller. If that leaves you short, the badge turns into the red one above and a restock clears it.
 
-### "Only X of Y units available in this window"
+### "Only N units available"
 
-You asked for more units than are free on **your booking's dates**. The figure is about those dates, not the whole calendar, so it's often higher than you'd expect: a booking that ends before yours begins isn't competing with you. Ten sandbags booked out 7 at a time in three different weeks still leaves 3 free in each of those weeks.
+You asked for more units than are free on **your booking's dates**. The **Adjust booked quantity** dialog stops you first, with *Only 3 sandbags available. Please reduce the quantity.* If the pool shrank while the dialog was open, the same refusal arrives from the server with the asset and both figures named: *Only 3 sandbags available for "Sandbag (Counterweight)" in this window — you requested 12. Reduce the quantity to continue.*
+
+A reservation made by [asset model](/glossary/asset-models) rather than by specific unit has its own wording, *Only 3 of 5 available in this window — reduce the quantity to continue*, because a model reservation is measured against the units of that model rather than against one asset's pool.
+
+Whichever wording you get, the figure is about **your dates**, not the whole calendar, so it's often higher than you'd expect: a booking that ends before yours begins isn't competing with you. Ten sandbags booked out 7 at a time in three different weeks still leaves 3 free in each of those weeks.
 
 Two things count against you no matter what dates you pick:
 

@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-18"
+updated: "2026-08-25"
 layout: "knowledge-base"
 ---
 
@@ -58,6 +58,8 @@ A reservation is settled by putting a matching asset on the booking. Every route
 
 Whichever door the asset comes through, Shelf matches it against an outstanding reservation for its model and ticks the reservation down. Only genuinely new rows count, so re-saving the **Manage assets** dialog with the same selection never discharges a reservation twice.
 
+Reserving by model is counted the same way a pool is. Shelf works out how many units of that model are free for your dates at the moment you reserve, and holds the model still while it does, so two people reserving the last units of the same model at the same second cannot both be told yes.
+
 Reservations that are still outstanding show as an amber **N units unassigned** pill on the bookings index, next to the asset count. A booking made entirely of reservations therefore reads "0 assets" with the pill beside it, rather than looking empty. Those units are genuinely held and unavailable to anyone else, and a booking cannot be checked out while any reservation is outstanding, so the pill is the list telling you there is still gear to find.
 
 ## Reading the counts on a booking
@@ -82,7 +84,9 @@ Ask for more than the dates allow and Shelf refuses, naming the shortfall. Lower
 
 You don't have to finalize the whole list before checkout begins. You can add assets and kits to a booking that's already **Ongoing** or **Overdue** using the same **Manage assets** modal, the **Add to booking** option on an asset or kit page, the bulk **Add to booking** panel, or by scanning.
 
-Items added to an active booking join it as line items and stay **Available** until you check them out. They aren't force-checked-out just because the booking is already underway, which fits the [progressive checkout](/knowledge-base/progressive-checkout-of-bookings) flow where gear leaves in stages. The only thing you can't add is an item that's already checked out on another active booking, since that would double-book it.
+Items added to an active booking join it as line items and stay **Available** until you check them out. They aren't force-checked-out just because the booking is already underway, which fits the [progressive checkout](/knowledge-base/progressive-checkout-of-bookings) flow where gear leaves in stages.
+
+Two things are refused rather than added. An individually tracked item that's already checked out on another active booking is turned away, since that would double-book it. And a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) item is turned away when the units the booking would then hold, the ones already on it plus the ones you're adding, are more than the pool can supply on these dates. That applies however the item arrives, including by scanning, so a scan can't quietly push a pool past what it has. Units carried in by a kit are counted on the kit's own terms, not against the loose pool.
 
 Which bookings the **Add to booking** picker offers follows the workspace's booking-visibility setting, the same rule the **Bookings** index and the command palette use. Self-service and Base users are shown their own bookings by default, and every booking in the workspace except other people's **Drafts** once an admin switches the setting on in **Settings ▸ Workspace ▸ Permissions**. A booking still in Draft is only ever visible to the person who created it, whatever the setting says. The list stays the same whether you scroll it or type to search it. See [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see).
 
