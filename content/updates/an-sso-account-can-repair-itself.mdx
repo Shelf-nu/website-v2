@@ -1,0 +1,25 @@
+---
+title: "An SSO Account That Cannot Take Custody Now Repairs Itself"
+description: "A rare half-written SSO account left someone able to sign in but impossible to give custody to. The two records are now written together, and existing accounts fix themselves on the next sign-in."
+date: "2026-08-26"
+image: "/images/updates/enhanced-user-permissions.jpg"
+readMoreUrl: "/knowledge-base/sso-with-google-workspace"
+layout: "update"
+---
+
+Granting someone access through [SSO](/knowledge-base/sso-with-google-workspace) writes two things: their access to the workspace, and the team-member record that [custody](/features/custody) is assigned to. Those were written separately. If the second one failed, the account was left in a state nobody could see and nobody could fix — the person signed in normally and saw the workspace, but could not be given custody of an asset and never appeared in the list of people you can hand something to.
+
+Signing in again did not help. The check at the top of that flow found the workspace access already present and took the "you already have access" path, which assumes the rest of the account is intact.
+
+Two changes, because either alone would have been half a fix:
+
+- **The grant is now atomic.** Both records are written in one transaction, so the state cannot be created.
+- **The existing-access path repairs what it finds.** Any account already in that state gets its missing team-member record the next time that person signs in, provided their group still maps to a role. A revoked group is *removing* access, not restoring it, so the repair correctly does not fire there.
+
+If you think someone is affected, ask them to sign out and sign back in. Nothing needs re-inviting.
+
+## Changing your email address is safer too
+
+When you [change your email address](/knowledge-base/how-to-change-your-email-address), Shelf updates the sign-in system first and the database second. If the second step failed, the automatic rollback of the first was fired and never checked — so the two could silently disagree, with sign-in resolving your account by the new address and the account itself still recorded under the old one. That locks you out of both web and mobile with no way back on your own.
+
+The rollback is now awaited and checked, and if it fails the message names **both** addresses, because repairing that by hand means knowing which is which. The error you see also keeps the specific reason instead of being flattened to "Failed to update email", which read as *nothing happened* — the opposite of the truth in exactly the case that matters.

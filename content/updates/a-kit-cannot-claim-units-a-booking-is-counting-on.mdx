@@ -1,0 +1,26 @@
+---
+title: "A Kit Can No Longer Claim Units a Booking Is Counting On"
+description: "Adding quantity-tracked stock to a kit now leaves alone the units future reservations rely on, and stops subtracting the kit's own booked slices twice."
+date: "2026-08-26"
+image: "/images/updates/introducing-kits.jpg"
+readMoreUrl: "/knowledge-base/kits"
+layout: "update"
+---
+
+A kit holding a slice of [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables) holds it **indefinitely** — those units stay with the kit until you take them out. A reservation, by contrast, has promised specific units for a specific window.
+
+Until now the arithmetic that decides how many units a kit may take did not know about reservations at all. It counted only what was physically out today, which answers *"what is on the road right now"* rather than *"what is already spoken for"*. So a kit could quietly claim units a future booking was relying on, and that booking could then never be checked out.
+
+Reservations are now counted, and counted the right way: as the **peak held at any one moment**, not the sum of every booking. A kit slice has to be free at every future instant, so it competes with the busiest day on the calendar — but two reservations three weeks apart never hold the same units at once, and adding them together would refuse allocations that are perfectly safe.
+
+## The opposite mistake, fixed at the same time
+
+The same formula was also subtracting units a kit had booked **through its own slice** — once as the kit's allocation and again as a booking. Those units were removed twice, so the picker under-reported what was free. Only standalone reservations count now.
+
+## What you will notice
+
+**A kit that could previously take more units will be offered fewer**, on assets with reservations against them. That is the correct figure rather than a reduction, but if you saw the old number it will look like one, which is why it is worth saying out loud.
+
+If a kit already holds more than the new ceiling, nothing locks: the quantity box keeps your current figure so you can lower it.
+
+The picker and the check that runs when you save now share one implementation, so the form can no longer offer a number the save would refuse.

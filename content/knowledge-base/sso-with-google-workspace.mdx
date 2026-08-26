@@ -3,7 +3,7 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Enterprise or Organization plan only."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-07-11"
+updated: "2026-08-26"
 layout: "knowledge-base"
 ---
 
@@ -181,6 +181,14 @@ This happens when:
 **What to do:** Contact your IT administrator and ask them to assign you to the appropriate workspace group in your identity provider (e.g., Google Workspace). Once assigned, log out and log back in — Shelf will redirect you to your workspace automatically.
 
 > **Note:** Your personal workspace still exists in the background, but it is not accessible while you are signed in via SSO.
+
+### Signed In, but Nobody Can Give You Custody?
+
+A rare failure used to leave an SSO account half-created: the user could sign in and see the workspace, but no team-member record existed for them, so they could not be given [custody](/features/custody) of an asset and did not appear where custodians are chosen. Nothing the user or the administrator could do from the interface fixed it, because every later sign-in saw the workspace access already in place and assumed the rest was too.
+
+Both halves are now closed. The two records are written together, so the state cannot be created in the first place, and **any account already in it repairs itself the next time that person signs in** — as long as their group still maps to a role. Nothing needs to be re-invited or re-created.
+
+If someone is affected, ask them to sign out and sign back in. If they still do not appear as an available custodian afterwards, that is a group mapping problem rather than this one — check [Step 9](#step-9-map-google-workspace-groups-inside-shelf).
 
 ---
 

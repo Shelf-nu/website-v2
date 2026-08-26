@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-08-17"
+updated: "2026-08-26"
 layout: "knowledge-base"
 ---
 
@@ -61,6 +61,20 @@ A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumabl
 On the asset's **Quantity Overview** card, every kit's slice adds into the **In kits** row. Those units are counted there once, whether the kit is sitting on the shelf or out on a booking, and they are not part of **Available**. The **Checked out (bookings)** row is a different measure: it counts every unit physically out right now, the loose ones and the kit-held ones together. The two rows overlap on purpose, so don't add them up.
 
 A single booking can hold the same pool from more than one direction, some units booked loose and more carried in by the kits you added. Checking the booking out hands over every slice it holds, and the [pull-list PDF](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings) prints one row per source so the packer can see which kit each portion belongs to.
+
+### How Many Units a Kit Can Take
+
+When you add a quantity-tracked asset to a kit, the quantity box has a ceiling, and the ceiling is what is genuinely free for a kit to hold indefinitely. Starting from the asset's total, Shelf sets aside:
+
+- the slices **other kits** already hold
+- units in someone's **custody** directly (a kit's own custody is not counted twice)
+- units **reservations are relying on**
+
+That third one is the point. A kit slice has no dates on it — the kit keeps those units until you take them out — so it has to be free at *every* future instant, which means it competes with the busiest moment on the calendar rather than with today. Two reservations three weeks apart never hold the same units at once, so Shelf takes the **highest number held at any one time**, not the sum of every booking. Ten of a hundred cables booked in March and ten more in May costs the kit ten, not twenty.
+
+If a kit already holds more than the ceiling — stock was reduced, or the calendar filled up after the kit was built — the box does not lock you out. It keeps your current figure so you can lower it.
+
+**A note if these numbers used to be higher.** Reservations were previously left out of this arithmetic, so a kit could be offered units that a future booking was already counting on, and that booking could then never be checked out. The smaller number is the correct one, not a new restriction.
 
 ### Booking the Free Units Directly
 
