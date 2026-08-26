@@ -1,0 +1,48 @@
+---
+title: "Shelf Companion 1.4.0: A Booking Calendar, and Audit Evidence You Can Read Back"
+description: "Companion 1.4.0 is live on the App Store and Google Play: see your bookings as a month, add photos and notes to an audit scan and read them back, and see an asset's model and asset ID on the phone."
+date: "2026-08-26"
+image: "/images/updates/shelf-mobile-app.jpg"
+readMoreUrl: "/knowledge-base/shelf-ios-companion-getting-started"
+layout: "update"
+---
+
+**Shelf Companion v1.4.0** is live on the [App Store](https://apps.apple.com/app/id6765639874) and [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Bookings gain a calendar, audit evidence becomes something you can find and read back, and a handful of things the web had always shown finally appear on the phone.
+
+## Bookings have a calendar
+
+The bookings list answers *what is coming up*. What it could never show is **shape** — that one week is packed and the rest of the month is open, which is the thing a rental operation needs to know before saying yes to another job.
+
+The Bookings screen now has two lenses, switched from the header. The calendar draws a coloured band across every day a booking runs, so a five-day job reads as one continuous run rather than five identical dots, and overlapping jobs stack. When a day holds more bookings than the cell can draw, the most urgent ones win the space — overdue before ongoing, ongoing before reserved — and the rest are counted as **+N**, because a grid you read to judge risk must never hide the alarming thing to make room for the routine one.
+
+Tap a day and the panel underneath lists what is booked on it, each row tapping through to the booking. On a team workspace the panel carries a **New booking** button that starts a booking on the day you tapped. Pull down to refresh and a booking someone else just made on the web appears without leaving the screen.
+
+Search and the status pills apply to both lenses. And because the grid shows one month while the list is date-blind, a row underneath reads **"N more outside this month"** and jumps to the next booking's date, so switching lens never makes bookings quietly disappear.
+
+## Audit evidence, found and read back
+
+Attaching a condition note or a photo to a scanned asset has been possible since 1.1.0, but the only affordance was a small chevron on the row — so people finished audits without ever discovering it.
+
+Each scanned row now carries an explicit **Add photo/note** action, and a one-time hint names it the first time a row appears. Once a row holds evidence, the action becomes a count of what it carries.
+
+Evidence is also readable now. On the audit's asset list, a row that carries evidence says what it holds — "1 note, 2 photos" — and tapping it opens the full record: every note and every photo, with who recorded it and when. Notes and photos are counted separately on purpose: one note plus one photo is not the same thing as two photos, so summing them would make two rows look identical when they are not.
+
+## An audit in progress stops reading like an alarm
+
+An expected asset nobody has reached yet now reads **Not scanned** on the phone, exactly as it does on the web, and only becomes **Missing** once you complete the audit. The filter pills follow the same rule — **Not scanned** while the audit is open, **Missing** once it is finished — and audit colours and wording now come from one shared source, so the two platforms can no longer drift apart.
+
+An audit with no specific assignee says **Unassigned · admins and owners can scan**, so it is clear who is expected to pick it up.
+
+## Assets and bookings show more
+
+- **Asset detail names the Asset Model and the Asset ID**, the workspace's own sequential label such as `SAM-0017`. That is the value the scanner's **Enter code** field accepts, so the phone can now tell you an asset's SAM instead of only taking one. Search results print it under the name too, so a SAM search shows which record matched.
+- **Booking detail names who created the booking**, on a **Created by** row, and shows the booking's tags as chips in their workspace colours. Custodian and creator are often different people.
+
+## Fixes
+
+- **Booking times you pick on the phone are your account's times.** The date and time pickers now work in the time zone from your Shelf [date and time preferences](/knowledge-base/date-time-and-timezone-preferences) rather than the handset's zone. Anyone whose phone zone differed from their Shelf preference used to pick one time and see another the moment they saved.
+- **Booking dates on the home screen include the month again.**
+- **Every status badge meets accessibility contrast standards**, in light and dark mode.
+- **Switching workspace with an unclaimed QR code waiting to be linked no longer claims the sticker into the wrong workspace.** The app stops and tells you to scan it again from the workspace you want it in.
+
+Take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Everything above needs 1.4.0 — an older install keeps working, it just does not have these.
