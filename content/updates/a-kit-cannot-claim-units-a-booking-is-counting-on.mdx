@@ -15,12 +15,16 @@ Reservations are now counted, and counted the right way: as the **peak held at a
 
 ## The opposite mistake, fixed at the same time
 
-The same formula was also subtracting units a kit had booked **through its own slice** — once as the kit's allocation and again as a booking. Those units were removed twice, so the picker under-reported what was free. Only standalone reservations count now.
+The same formula was also subtracting units a kit had booked **through its own slice** — once as the kit's allocation and again as a booking. Those units were removed twice, so the picker under-reported what was free.
+
+Only standalone reservations count now, and the distinction is drawn **per line rather than per booking**. One booking can hold the same pool from two directions at once — some units loose, some carried in by this kit — and only the kit's own contribution is excluded. The loose units on that same booking still count against the ceiling, because nothing else has set them aside.
 
 ## What you will notice
 
 **A kit that could previously take more units will be offered fewer**, on assets with reservations against them. That is the correct figure rather than a reduction, but if you saw the old number it will look like one, which is why it is worth saying out loud.
 
-If a kit already holds more than the new ceiling, nothing locks: the quantity box keeps your current figure so you can lower it.
+One thing the peak rule does **not** do is hold the total still. It answers what is *reserved* at a given moment; for [used-up consumables](/knowledge-base/quantity-tracked-assets-and-consumables) the pool itself shrinks every time a booking consumes stock at check-in, so bookings that never overlap still draw it down one after another. The ceiling is read against today's total, not a permanent allowance.
+
+If a kit already holds more than the ceiling, nothing locks: the quantity box keeps your current figure so you can lower it.
 
 The picker and the check that runs when you save now share one implementation, so the form can no longer offer a number the save would refuse.

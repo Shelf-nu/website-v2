@@ -68,11 +68,13 @@ When you add a quantity-tracked asset to a kit, the quantity box has a ceiling, 
 
 - the slices **other kits** already hold
 - units in someone's **custody** directly (a kit's own custody is not counted twice)
-- units **reservations are relying on**
+- units **standalone reservations are relying on** — measured per line, not per booking, so a booking that carries some units loose *and* some through this kit only has its loose units counted here (this kit's own contribution is already set aside on the line above)
 
 That third one is the point. A kit slice has no dates on it — the kit keeps those units until you take them out — so it has to be free at *every* future instant, which means it competes with the busiest moment on the calendar rather than with today. Two reservations three weeks apart never hold the same units at once, so Shelf takes the **highest number held at any one time**, not the sum of every booking. Ten of a hundred cables booked in March and ten more in May costs the kit ten, not twenty.
 
-If a kit already holds more than the ceiling — stock was reduced, or the calendar filled up after the kit was built — the box does not lock you out. It keeps your current figure so you can lower it.
+The ceiling is a reading of the pool as it stands today, and for [used-up consumables](/knowledge-base/quantity-tracked-assets-and-consumables) today's total keeps falling: every booking that consumes stock at check-in takes those units out permanently, so bookings that never overlap still eat the pool one after another. The peak rule is about what is *reserved* at a moment in time; it does not hold the total still.
+
+So a kit can end up holding more than the ceiling — the total was reduced, consumables were used up, or the calendar filled in after the kit was built. The box does not lock you out when that happens. It keeps your current figure so you can lower it.
 
 **A note if these numbers used to be higher.** Reservations were previously left out of this arithmetic, so a kit could be offered units that a future booking was already counting on, and that booking could then never be checked out. The smaller number is the correct one, not a new restriction.
 
