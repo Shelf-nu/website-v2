@@ -170,7 +170,7 @@ The app respects whether your workspace has an add-on enabled:
 
 - **Audits add-on enabled** — Audits tab is active. You can run and complete audits.
 - **Audits add-on not enabled** — Audits tab shows an informational "Contact your admin" message. No upgrade link or paywall — those live on the web side, where billing happens.
-- **Barcodes add-on** — Multiple registered barcodes per asset are honoured on the asset detail screen as the feature matures. Full multi-code parity on mobile is a 1.x item.
+- **Barcodes add-on** — The app's scanners read every code type Shelf registers: QR, Code 128, Code 39, DataMatrix and EAN-13, on both the general scanner and the audit scanner. Scanning any registered code lands on its asset. What the app does **not** yet do is *list* an asset's registered barcodes on the detail screen — for the full set of codes on an asset, and to add or edit them, use the web. See [Alternative barcodes](/knowledge-base/alternative-barcodes).
 
 ## What the App Does Not Do Yet
 
@@ -178,6 +178,7 @@ For clarity, these are real, intentional gaps. They are on our radar, but they a
 
 - **Claiming a brand new QR code as a base or self-service member.** Admins and owners can now claim an unclaimed sticker in the app (see step 4). Claiming is an administrator's job on every platform, so this is a role limit rather than a mobile one.
 - **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
+- **Listing an asset's registered barcodes.** The scanners read every code type; the detail screen does not yet show which codes an asset carries. Adding and editing codes is a web job.
 
 This guide describes **version 1.4.0**, live on the App Store and Google Play. Two items that used to sit on the list above shipped in 1.3.0 and moved into the guide: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners). If your app is older, take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion) — the booking calendar, the audit evidence action, and the model and asset ID rows all need 1.4.0.
 
@@ -187,7 +188,7 @@ If you have Shelf Companion installed, tapping a Shelf link on your phone — an
 
 ## Where to Go Next
 
-- [Shelf Companion overview](/mobile-app) — product page with screenshots, features, and the App Store link.
+- [Shelf Companion overview](/mobile-app) — product page with screenshots, features, and the App Store and Google Play links.
 - [Getting started with Shelf](/knowledge-base/getting-started) — if you are still setting up your workspace, start here first.
 - [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) — you'll want labels on your assets before scanning at scale.
 - [Bookings overview](/features/bookings), [Kits overview](/features/kits), and [Audits overview](/features/audits) — read up on the workflows you'll be running from the floor.
