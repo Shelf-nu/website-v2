@@ -3,7 +3,7 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Enterprise or Organization plan only."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-08-26"
+updated: "2026-08-27"
 layout: "knowledge-base"
 ---
 
@@ -194,7 +194,7 @@ If someone is affected, ask them to sign out and sign back in. If they still do 
 
 ## Setting a Custom Display Name (SSO Users)
 
-When you sign in via SSO, Shelf uses the first and last name provided by your identity provider (e.g., Google Workspace). If you want a different name to appear throughout the platform — in bookings, notes, audit reports, and team pages — you can set a custom **Display Name**.
+When you sign in via SSO, Shelf uses the first and last name provided by your identity provider (e.g., Google Workspace). If your colleagues know you by something else, set a custom **Display Name** and Shelf uses it instead wherever it names you.
 
 ### How to Set Your Display Name
 
@@ -203,7 +203,26 @@ When you sign in via SSO, Shelf uses the first and last name provided by your id
 3. Find the **Display Name** card
 4. Enter your preferred display name and save
 
-Your display name will override your SSO-provided name everywhere it appears in Shelf: booking custodian labels, asset notes, audit PDFs, and the team users page.
+### Where Your Display Name Appears
+
+Everywhere the web app names a person, it now names you by your display name. That covers:
+
+- The custodian and creator chips on the **assets**, **kits**, **bookings** and **locations** lists, on calendar cards, and on an audit's asset list
+- The **Custody** column on the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide), including its simple-mode equivalent
+- **Notes** and activity entries on assets, bookings, kits, locations and audits, on the entry you have just typed as well as on older ones
+- The **dashboard**'s custodian widgets, the **command palette**, [reports](/features/reports), and **audit PDFs**
+- The greeting at the top of emails Shelf sends you, which uses your display name where you have one and your first name otherwise, so it stays a greeting rather than reading out a full name
+
+**Searching and sorting follow it too.** Typing a colleague's display name in the asset search finds what they are holding, and sorting a team list by name orders by the display name where one is set. A name you can see but cannot search for would not be much of a name.
+
+### Where It Deliberately Does Not Appear
+
+Four places keep the legal name on purpose, and each is doing a job the display name would break:
+
+- **The Shelf Companion app** still shows the name your identity provider supplied. The mobile API sends your display name now, but the app's own screens pick it up in a future release rather than the shipped one.
+- **Invoices and billing documents** carry the name registered for billing. An invoice is a financial record.
+- **Directory sync (SCIM)** exchanges the `givenName` and `familyName` your identity provider owns, because that is the protocol's contract with your IdP rather than a screen anyone reads.
+- **The Team page** shows both, which is the point of it. See below.
 
 > **Note:** The Display Name card is only shown for SSO users. Users who signed up with email/password manage their name through the standard first name and last name fields.
 

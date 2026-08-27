@@ -1,0 +1,18 @@
+---
+title: "A Display Name Is Now the Name Everyone Sees"
+description: "The display name an SSO user sets now reaches every screen that names a person, and every search that looks for one. It used to reach a handful."
+date: "2026-08-27"
+image: "/images/updates/improved-team-management.jpg"
+readMoreUrl: "/knowledge-base/sso-with-google-workspace#where-your-display-name-appears"
+layout: "update"
+---
+
+Setting a display name told Shelf what to call you. Most of Shelf went on calling you something else.
+
+The custodian chip on a list row was the clearest case, and the one a customer reported: the row showed the legal name from the identity provider even where the page had already worked out the right one. That single component draws the assets, kits, bookings and locations lists, the calendar cards and the audit asset lists, so it accounted for most of the screens anyone actually looks at. The advanced asset index had its own version of the problem, building the custodian name in SQL that had never heard of display names. And roughly ninety other places quietly dropped the field somewhere between the query that fetched it and the code that needed it.
+
+Being called by a name you asked us not to use is not a cosmetic complaint, so this was a sweep rather than a patch to the reported screen. Your display name now appears wherever the web app names you: list rows and calendar cards, the Custody column, notes and activity entries, the dashboard, the command palette, reports, audit PDFs, and the greeting on emails we send you.
+
+**Search and sort came with it.** A colleague's display name now finds what they are holding, and sorting by name orders by the name on screen. A name you can see but cannot search for is still the wrong name.
+
+Four places keep the legal name deliberately: invoices, because an invoice is a financial record; directory sync, which exchanges the given and family names your identity provider owns; the Team page, which shows both on purpose so an administrator can match one to the other; and the Shelf Companion app, whose own screens pick this up in a future release. The mobile API already sends the display name.
