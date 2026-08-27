@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-08-24"
+updated: "2026-08-27"
 layout: "knowledge-base"
 ---
 
@@ -81,6 +81,21 @@ Those two buttons sit on assets you have **not** scanned yet as well as on the o
 
 ![Audit scan page with the progress bar and each scanned row marked Expected or Unexpected](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
 
+### Undoing a Scan
+
+Scan the wrong label and you can take it straight back off. Every scanned row on the scan page carries a **bin icon** at the end of it, and clicking it removes that scan from the audit.
+
+What happens next depends on what you scanned:
+
+- **An asset that was on the expected list** goes back to **Not scanned**, and the time of the scan and the name of the person who made it are cleared with it. It is as though nobody had reached that shelf yet.
+- **An asset that was not on the list** leaves the audit entirely. Nothing but the scan put it there, so removing the scan removes the row.
+
+The Found, Not scanned and Unexpected counts are then recounted from the rows themselves rather than nudged down by one, so the totals can never drift away from the list they summarise. The **Activity** tab records who removed which scan.
+
+You are not limited to the scans you made in this sitting. Reopening the scan page restores everything already recorded on the audit into the list, so a mis-scan from yesterday morning is as removable as one from a minute ago.
+
+Removal only works while the audit is still running. Once it is **Completed** or **Cancelled** its numbers have been reported, and Shelf refuses the change with *"This audit is no longer live, so its scans cannot be changed."*
+
 ---
 
 ## Step 4: Review Results
@@ -105,10 +120,22 @@ Use the **Filter by audit status** dropdown to isolate items for follow-up. The 
 When scanning is done:
 
 1. Click **Complete Audit** (bottom-right of the scan page, or from the Actions dropdown on the overview)
-2. Shelf sends a **summary email** to the audit creator with final counts
-3. From the completed audit's overview, click **Actions → Download Receipt** to export a **PDF report** with found/missing/unexpected breakdowns
+2. Check the **Audit Summary** in the confirmation dialog. It states the Expected, Found, Missing and Unexpected counts one last time, and completing cannot be undone
+3. Add a **Completion Note** and up to five photos if you have closing observations. Both are optional, and both print in the receipt's Findings section
+4. Confirm with **Complete Audit**. Shelf sends a **summary email** to the audit creator with final counts
+5. From the completed audit's overview, click **Actions → Download Receipt** to export a **PDF report** with found/missing/unexpected breakdowns
 
 The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review. It carries a **Findings** section as well as the counts: your completion note and its photos first, then one block per asset holding what was written about that item next to the pictures taken of it.
+
+### Completing an Audit Where Nothing Was Found
+
+An audit that turns up nothing is still a finding, and often an urgent one: the cupboard is empty, the van was cleared out, the room was cleaned before anyone counted it. You can complete it.
+
+The confirmation dialog says what that decision means before anything is written:
+
+> No assets were scanned. Completing now marks all 20 expected assets as missing.
+
+Confirm and every expected asset is recorded as **Missing**, exactly as an asset you scanned past would have been. The receipt, the counts and the audits list all read the same way they would after any other completion.
 
 ---
 
@@ -158,6 +185,16 @@ Findings holds what **people** recorded. Shelf's own trail (statuses changing, t
 ### Can I record a note on something I could not find?
 
 Yes, and it is one of the more useful things you can do. **Add comment** and **Add image** appear on rows that are still **Not scanned**, so you can photograph the empty slot or write down what the storeroom manager told you. The note stays on the audit record and prints in the receipt's **Findings** section, whether or not that asset was ever scanned.
+
+### I scanned the wrong thing. Can I take it back?
+
+Yes, while the audit is still running. Click the **bin icon** at the end of the scanned row on the scan page. An expected asset returns to **Not scanned** with the scan time and scanner cleared; an asset that was not on the list disappears from the audit altogether. The counts are recounted from the rows, and the **Activity** tab keeps a record of who removed what.
+
+Reopening the scan page restores every scan already on the audit, so this is not limited to the ones you made in this sitting. A **Completed** or **Cancelled** audit refuses the change: its numbers have already been reported.
+
+### Can I complete an audit if I found nothing at all?
+
+Yes, and Shelf tells you what that means first. The confirmation dialog says *"No assets were scanned. Completing now marks all N expected assets as missing."* Confirm and every expected asset is recorded as **Missing**. An empty cupboard is a finding worth putting on the record, not a reason to leave the audit hanging.
 
 ### Can multiple people scan the same audit?
 
