@@ -16,7 +16,7 @@ layout: "knowledge-base"
 ## Step-by-Step Process
 
 1. Navigate to **Settings > Team** in your workspace
-2. Select the **NRM** tab to view your non-registered members
+2. Select the **Non-registered members** tab
 3. Find the NRM you want to convert
 4. Click the **Actions** icon next to their name
 5. Select **Invite user** from the dropdown menu
@@ -29,7 +29,7 @@ layout: "knowledge-base"
 The dropdown holds three entries in all: **Invite user**, **Edit** (change the member's name) and **Delete**. **Invite user** is unavailable in a personal workspace, where a tooltip explains that you cannot invite users to one. See [Personal vs Team workspaces](/knowledge-base/introduction-to-workspaces) if that is what you are looking at.
 
 
-![NRM actions menu with the Invite user, Edit and Delete entries](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/converting-nrms-1.webp)
+![The NRM Actions menu open on a member's row, showing Invite user, Edit and Delete](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/nrm-actions-menu.webp)
 
 ![Invite modal for converting an NRM to a user](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/converting-nrms-2.webp)
 The NRM will receive an email invitation to create their Shelf account. Once they accept, they will have self-service access to your workspace while maintaining their existing asset relationships and history.
@@ -49,6 +49,10 @@ The NRM will receive an email invitation to create their Shelf account. Once the
 Shelf refuses to delete an NRM who currently holds custody, and says so instead of going ahead:
 
 > The team member you are trying to delete has custody over 3 assets or kits. Please release custody or check-in those items before deleting the user.
+
+![The Unable to delete team member dialog, explaining that the member still holds custody](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/nrm-delete-refused.webp)
+
+The **Custodies** column on the Non-registered members list tells you this before you try. A member showing `0` deletes without argument.
 
 The reason is that deleting an NRM does not erase them, it retires them. Their record and every custody attached to it survive the delete, so an NRM removed while still holding equipment would become an invisible custodian: the assets go on reading "in custody by" a name that no longer appears in the NRM list or in any custodian picker, and the only way to find what they hold is to open assets one at a time.
 
