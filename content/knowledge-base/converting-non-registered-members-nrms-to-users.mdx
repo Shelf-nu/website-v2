@@ -3,7 +3,7 @@ title: "Converting Non-Registered Members (NRMs) to Users"
 description: "As your team grows and evolves, you may want to give some of your Non-Registered Members (NRMs) direct access to Shelf."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-08-27"
 layout: "knowledge-base"
 ---
 
@@ -19,14 +19,17 @@ layout: "knowledge-base"
 2. Select the **NRM** tab to view your non-registered members
 3. Find the NRM you want to convert
 4. Click the **Actions** icon next to their name
-5. Select **Send invite** from the dropdown menu
-6. In the modal that appears, enter:
+5. Select **Invite user** from the dropdown menu
+6. In the **Invite team members** dialog, enter:
    - Their email address
    - Select their role
-7. Click **Send invite** to complete the process
+   - Optionally, a personal note explaining why you are inviting them
+7. Click **Send Invite** to complete the process
+
+The dropdown holds three entries in all: **Invite user**, **Edit** (change the member's name) and **Delete**. **Invite user** is unavailable in a personal workspace, where a tooltip explains that you cannot invite users to one. See [Personal vs Team workspaces](/knowledge-base/introduction-to-workspaces) if that is what you are looking at.
 
 
-![NRM actions menu with send invite option](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/converting-nrms-1.webp)
+![NRM actions menu with the Invite user, Edit and Delete entries](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/converting-nrms-1.webp)
 
 ![Invite modal for converting an NRM to a user](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/converting-nrms-2.webp)
 The NRM will receive an email invitation to create their Shelf account. Once they accept, they will have self-service access to your workspace while maintaining their existing asset relationships and history.
@@ -36,6 +39,25 @@ The NRM will receive an email invitation to create their Shelf account. Once the
 - The NRM will remain in your system until they accept the invitation
 - Their current asset assignments and custody history will be preserved after conversion
 - You can track pending invitations in the **Users** tab under **Team > Pending Invites**
+
+## Deleting a Non-Registered Member
+
+**Delete** in the same Actions dropdown removes an NRM from the workspace, and the confirmation is honest about the one thing it costs you: *"After deleting a team member you will no longer be able to give them custody over an asset."*
+
+### A Member Who Is Holding Something Cannot Be Deleted
+
+Shelf refuses to delete an NRM who currently holds custody, and says so instead of going ahead:
+
+> The team member you are trying to delete has custody over 3 assets or kits. Please release custody or check-in those items before deleting the user.
+
+The reason is that deleting an NRM does not erase them, it retires them. Their record and every custody attached to it survive the delete, so an NRM removed while still holding equipment would become an invisible custodian: the assets go on reading "in custody by" a name that no longer appears in the NRM list or in any custodian picker, and the only way to find what they hold is to open assets one at a time.
+
+Two details worth knowing:
+
+- **Kits count as well as assets.** Holding an empty kit is enough to block the delete. An empty kit writes no per-asset custody rows, so a member holding only one would otherwise look unencumbered.
+- **The rule is enforced when the delete is written**, not when the page was drawn. If somebody assigns custody to that member while you are looking at the list, the delete is still refused rather than going through on a stale answer.
+
+To go ahead, release custody or check the items back in first, then delete. The same rule applies when you select several members and delete them in bulk: the refusal names assets and kits in the same way and asks you to release custody first.
 
 ## Support
 

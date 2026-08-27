@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-25"
+updated: "2026-08-27"
 layout: "knowledge-base"
 ---
 
@@ -70,9 +70,11 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 | **Tracking method** | No | Individually tracked or quantity-tracked |
 | **Asset model** | No | The [asset model](/glossary/asset-models) the unit belongs to |
 | **Code128**, **Code39**, **DataMatrix**, **External QR**, **EAN-13** | Yes, when barcodes are on | One column per barcode type. See [Alternative Barcodes](/knowledge-base/alternative-barcodes) |
-| Your custom fields | No | One column per field you have defined |
+| Your custom fields | Added switched on | One column per **active** field you have defined |
 
 The five barcode columns only exist once **Alternative Barcodes** is enabled on the workspace. They are added switched on, so they appear the first time you look after enabling.
+
+Custom-field columns follow the same rule and follow the field itself. Creating an active field adds its column for everyone, switched on; deactivating the field removes the column again; reactivating or renaming it keeps whatever visibility and position you had chosen. A field created as inactive gets no column until you activate it. See [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fields-to-assets#what-active-and-inactive-do-to-your-asset-index-column).
 
 **Total value** is not in this list, and that is on purpose. It is written into CSV exports as a separate column, so a pooled asset's per-unit **Value** and its total both reach the spreadsheet, but it is not a column you can put on screen. See [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf).
 
