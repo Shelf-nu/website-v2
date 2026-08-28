@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-08-27"
+updated: "2026-08-28"
 layout: "knowledge-base"
 ---
 
@@ -95,6 +95,17 @@ The Found, Not scanned and Unexpected counts are then recounted from the rows th
 You are not limited to the scans you made in this sitting. Reopening the scan page restores everything already recorded on the audit into the list, so a mis-scan from yesterday morning is as removable as one from a minute ago.
 
 Removal only works while the audit is still running. Once it is **Completed** or **Cancelled** its numbers have been reported, and Shelf refuses the change with *"This audit is no longer live, so its scans cannot be changed."*
+
+### If an Asset Is Deleted After It Was Scanned
+
+An audit is a historical record, so a scan keeps its meaning even after the asset behind it is gone. Every scan stores the asset's name and whether the audit expected it, at the moment it is scanned.
+
+Delete that asset later and the scan page still shows the row, named **"Camera body A (deleted)"**, still counted as found, and still badged **Expected** if the audit had expected it. The row becomes read-only, since there is no asset left to open, comment on or photograph. A scan recorded before Shelf began storing names, whose asset has since gone, reads **"Deleted asset"** with the code that was scanned.
+
+A live asset always shows its **current** name, not the stored one, so renaming an asset mid-audit is reflected straight away. The stored name is there to survive deletion, not to freeze naming.
+
+One thing to know: the asset table on the audit's **overview** lists the assets the audit is scoped to, and a deleted asset is no longer one of them, so it has no row there while the audit's counts still include it. The scan page is where the full scan history lives.
+
 
 ---
 
@@ -195,6 +206,10 @@ Reopening the scan page restores every scan already on the audit, so this is not
 ### Can I complete an audit if I found nothing at all?
 
 Yes, and Shelf tells you what that means first. The confirmation dialog says *"No assets were scanned. Completing now marks all N expected assets as missing."* Confirm and every expected asset is recorded as **Missing**. An empty cupboard is a finding worth putting on the record, not a reason to leave the audit hanging.
+
+### What happens to an audit if I delete an asset that was already scanned?
+
+The scan stays. Its row on the scan page keeps the name the asset had when it was scanned, marked **(deleted)**, and it still counts toward the audit's found total and still shows whether the audit expected it. The row is read-only from then on, because there is no asset page left behind it. The asset table on the audit's overview lists the assets the audit is scoped to, so a deleted asset has no row there.
 
 ### Can multiple people scan the same audit?
 
