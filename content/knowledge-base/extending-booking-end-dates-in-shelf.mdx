@@ -3,7 +3,7 @@ title: "Extending Booking End Dates in Shelf"
 description: "This guide explains how to prolong existing bookings in Shelf's asset management system without creating new ones, useful for situations where assets are needed longer than initially planned."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-08-28"
 layout: "knowledge-base"
 ---
 
@@ -51,9 +51,17 @@ The "Extend Booking" option remains unavailable for **RESERVED** status bookings
 
 Upon extending a booking, an email notification is sent to the relevant team members informing them of the extension and the new end date. This ensures transparent communication regarding asset availability.
 
+## What Extending Does Not Change
+
+Extending moves the booking's live end date. It does not move the **planned** end date, which is fixed when the booking is created, edited as a draft, or reserved, and frozen from the moment the booking starts.
+
+That distinction is what the [Booking Compliance report](/knowledge-base/getting-started-with-reports#how-booking-compliance-decides-on-time-or-late) measures against. A booking that was due Friday and is extended to Monday leaves Overdue Items straight away, because it is no longer late against its current deadline. When it comes back on Monday it is still recorded as a late return, because the deadline it was agreed to was Friday. Extending keeps operations moving; it is not a way to clear a late return from the record.
+
 ## Data Export Considerations
 
-When exporting an extended booking, both the original booking period and the final end date will be visible, ensuring a complete history of the booking is maintained.
+The booking CSV export carries both periods in four columns: **Planned start date** and **Planned end date** hold what was agreed, **Actual start date** and **Actual end date** hold where the booking finished up. On an extended booking the two end dates differ, so the full history is preserved.
+
+The booking's PDF overview shows an **Original period** row underneath the booking period whenever the two differ.
 
 ## Use Cases
 
@@ -67,7 +75,7 @@ Booking extension supports various scenarios including:
 
 ## Permissions
 
-The ability to extend bookings is available to users with administrator permissions in the Shelf system. Consult the [user roles and permissions](/knowledge-base/user-roles-and-their-permissions) documentation for additional permission details.
+Owners, Administrators and Self-service users can extend a booking. Base users cannot: the **Extend Booking** action does not appear for them. Consult the [user roles and permissions](/knowledge-base/user-roles-and-their-permissions) documentation for additional permission details.
 
 ## Related Resources
 

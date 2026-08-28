@@ -3,7 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
-updated: "2026-08-25"
+updated: "2026-08-28"
 layout: "knowledge-base"
 ---
 
@@ -60,6 +60,36 @@ Reports are laid out in three layers:
 3. **Tables** at the bottom — the underlying records that make up the numbers.
 
 Compliance and utilization reports use color to flag entries that need attention — late bookings, idle assets that have not moved in months, or custodians with overdue items.
+
+## How Booking Compliance Decides On Time or Late
+
+Booking Compliance answers one question: was the deadline the custodian agreed to honoured? The report says so in its own words, in the **How it's calculated** line under the headline rate.
+
+![The Booking Compliance report showing the On-Time Return Rate, the How it's calculated explainer, and the Return Status column with late durations](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-compliance-calculation.webp)
+
+Four rules govern every number on the page.
+
+**It measures against the planned end date, not the current one.** A booking's planned period is fixed when the booking is created, edited as a draft, or reserved, and it is frozen from the moment the booking starts. Extending a booking, or checking it in early, moves the live dates and leaves the planned dates alone. So a booking that was due Friday and came back Monday is a late return, whether or not someone extended it to Monday first.
+
+**A return inside 15 minutes of the scheduled end is on time.** That grace absorbs the walk back to the counter and the scan at the desk, so a queue at the cage does not read as a compliance failure.
+
+**Only finished or overdue bookings are counted.** **Complete** and **Archived** bookings are measured against their check-in time. **Overdue** bookings are always late, by definition. Drafts, reservations, bookings currently **Ongoing** and cancelled bookings are left out: they have not run yet, are still inside their window, or never happened. A reservation archived without ever being checked out is excluded too, so it neither helps nor hurts your rate. See [what archiving means for reports](/knowledge-base/archiving-bookings#what-archiving-means-for-reports).
+
+**A booking is counted in the period its planned end falls in.** Because the planned end never moves, a booking stays in the same period for its whole life instead of sliding into the next month when someone extends it.
+
+The **Return Status** column shows the verdict per booking: **On time**, or how far past the deadline it came back, as `1d 8h late`.
+
+### Why Booking Compliance and Overdue Items Can Disagree
+
+The two reports ask different questions, so for an extended booking they will legitimately give different answers.
+
+| | Booking Compliance | Overdue Items |
+|---|---|---|
+| Question | Was the agreed plan honoured? | What is late right now? |
+| Measures against | The planned end date | The current end date |
+| An extended booking | Still measured against the original deadline | Measured against the new deadline |
+
+An overdue booking extended to next week disappears from Overdue Items straight away, because it is no longer late against its current deadline. It still counts as a late return in Booking Compliance once it comes back, because the deadline it was agreed to has already passed. Extending a booking is a way to keep operations moving, not a way to clear a late return from the record.
 
 ## Export the Result
 
