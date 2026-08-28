@@ -1,0 +1,95 @@
+---
+title: "Why You Can't Invite Anyone to a Personal Workspace"
+description: "A Personal workspace holds one person and cannot have members. Here is how to tell which kind of workspace you are in, what Shelf now shows you, and how to move to a Team workspace so you can invite people."
+category: "Workspaces"
+date: "2026-08-26"
+updated: "2026-08-26"
+layout: "knowledge-base"
+seo:
+  title: "Can't Invite Team Members to Shelf? You're in a Personal Workspace"
+  description: "If Users and Pending invites are locked in Shelf, you are in a Personal workspace. Personal workspaces hold one person. Here is how to create a Team workspace and invite your team."
+---
+
+If you are trying to add someone to Shelf and cannot find the invite button, the reason is almost always the same: **you are in a Personal workspace, and a Personal workspace holds exactly one person.**
+
+That is by design rather than a bug or a missing permission. It is also the single most common question our support desk gets, so this article explains how to tell, what changes, and how to move.
+
+## How to Tell Which Kind of Workspace You Are In
+
+Open the workspace switcher at the top of the sidebar. It names the workspace you are currently in.
+
+Then look at **Settings → Team**. In a Personal workspace you will see:
+
+- A panel headed **"Inviting people needs a Team workspace"**, which expands to explain that "Personal workspaces are for one person. Team workspaces add teammates, shared custody, and bookings."
+- **Users** and **Pending invites** in the nav, shown but **locked**, with the tooltip *"Inviting users is available on Team workspaces"*.
+- **Non-registered members**, which is the one Team page a Personal workspace can use.
+
+Those locked items are deliberate. They used to be hidden entirely, and going to `/settings/team/users` directly bounced you to General settings with no explanation — which is what made this so hard to work out on your own.
+
+## Every Account Has a Personal Workspace
+
+Every Shelf account is created with a Personal workspace, and it stays yours even after you join or create other workspaces. If you were invited to someone else's team, you have two workspaces: yours and theirs. Landing in the wrong one is common — see [Can't Find Your Team Workspace?](/knowledge-base/cant-find-your-team-workspace).
+
+Two things are not available in a Personal workspace:
+
+| | Personal workspace | Team workspace |
+| --- | --- | --- |
+| **Registered users** | Just you | Invite as many as you need, no per-seat charge |
+| **[Bookings](/features/bookings)** | Not available | Included |
+| **[Non-registered members](/knowledge-base/onboarding-your-team-members)** | Available | Available |
+| **[Custody](/features/custody)**, assets, kits, locations, QR labels | Available | Available |
+
+**Non-registered members are not a workaround for this.** They are name-only records for assigning custody to someone — a contractor, a student, a visitor — and they cannot log in, so they never see your workspace. If the person needs to open Shelf themselves, they need to be a user, and users need a Team workspace.
+
+## What Happens at Signup
+
+When you create a Shelf account, the `/welcome` screen asks you to pick **Personal** or **Team**, and each card now says what the choice costs you rather than only what it offers. The Personal card reads: *"For one person. You won't be able to invite teammates or use bookings. Includes 3 custom fields and branded QR labels."*
+
+If you told us during onboarding that more than one person will use Shelf, the **Team** option is pre-selected for you. Choose Personal anyway and Shelf shows a caution naming the team size you gave, with a one-click **Switch to Team**.
+
+None of this locks you in. It is there because "you can always switch later" was doing a lot of unearned work: switching means creating a *second*, Team workspace, not converting the one you are in.
+
+## How to Get a Workspace You Can Invite People To
+
+Go to **Settings → Team**. The button in that panel takes you to the right place for your account, and there are three cases:
+
+| What the button says | What it means |
+| --- | --- |
+| **Start a Team trial** | Your plan does not include a Team workspace yet, and your free trial is still available. No credit card required. |
+| **Upgrade to Team** | Your plan does not include a Team workspace and your free trial has already been used. |
+| **Create a Team workspace** | Your plan already entitles you to one — you simply have not created it yet. Nothing to buy. |
+
+You can also reach it from the workspace switcher: open it while you are in a Personal workspace and take **Invite your team**.
+
+The result is a **new** Team workspace that you own. Your Personal workspace stays exactly as it is; nothing is converted and nothing is lost.
+
+Once the Team workspace exists, invite people from **Settings → Team → Users**, or in bulk with a [CSV upload](/knowledge-base/inviting-users-via-csv-upload). See [Onboarding Your Team Members](/knowledge-base/onboarding-your-team-members) for what each role can do.
+
+## Moving Your Assets Across
+
+Assets live in one workspace at a time, but you can copy them into the new one with a CSV round trip — export the selection in the **Import-ready** format, then import it in the Team workspace. Categories, tags, locations, custodians, asset models, kits, and custom fields are recreated by name. Full steps: [Moving assets to another workspace](/knowledge-base/export-exporting-workspace-data-from-shelf#moving-assets-to-another-workspace).
+
+## FAQs
+
+### Can I convert my Personal workspace into a Team workspace?
+
+No. A Team workspace is created alongside your Personal one, and you keep both. This is why the old "you can always switch later" wording was replaced — you switch workspaces, you do not convert one.
+
+### I am paying for Shelf. Why does it still say I cannot invite anyone?
+
+Two different things decide this. Whether you can create a Team workspace comes from your **plan**, while the Audits and Alternative Barcodes **add-ons** are bought per workspace and can be active on a Personal workspace without changing your plan. So you can genuinely be a paying customer and still be sitting in a workspace that holds one person. **Settings → Team** always shows the correct next step for your account.
+
+### Does inviting people cost extra per person?
+
+No. On the Team plan, user seats are unlimited and included in the base price. See [pricing](/pricing).
+
+### I invited someone and they cannot find the workspace.
+
+That is a different problem — see [Can't Find Your Team Workspace?](/knowledge-base/cant-find-your-team-workspace) and [Invite Not Received](/knowledge-base/troubleshooting-invite-not-received).
+
+## Related Articles
+
+- [Introduction to Workspaces](/knowledge-base/introduction-to-workspaces)
+- [Onboarding Your Team Members](/knowledge-base/onboarding-your-team-members)
+- [How to Upgrade to Team](/knowledge-base/how-to-upgrade-to-team)
+- [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions)
