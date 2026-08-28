@@ -3,7 +3,7 @@ title: "Asset Identifiers: QR ID, SAM ID, and Your Own Reference Numbers"
 description: "Shelf gives every asset a system QR ID and a sequential SAM ID, and a text custom field carries your own numbering scheme. This guide explains each, when to use them, and how to choose which one shows on your list views and printed labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-08-24"
+updated: "2026-08-28"
 layout: "knowledge-base"
 ---
 
@@ -54,9 +54,15 @@ SAM IDs are clean, human-friendly numbers assigned automatically in order: `SAM-
 ### How SAM IDs work
 
 - **Automatic assignment**: new assets receive the next number in sequence.
-- **Workspace-scoped**: each workspace has its own independent sequence starting at `SAM-0001`.
-- **Permanent once assigned**: deleted assets keep their SAM ID — numbers aren't reused, which keeps the historical record clean.
+- **Workspace-scoped**: each workspace has its own independent sequence, and the first asset in a workspace is `SAM-0001`.
+- **Permanent once assigned**: a number is never reused, so a deleted asset's number is retired with it and the historical record stays clean.
 - **Non-breaking**: SAM IDs are display identifiers; URLs and integrations continue to use the QR Code ID.
+
+### Deleting an asset leaves a gap, on purpose
+
+Because a number is retired with the asset it belonged to, deleting assets leaves gaps in the sequence, and the next asset you create carries on above the highest number the workspace has ever issued rather than filling one in. A workspace that has issued up to `SAM-0480` and then deleted forty assets still hands the next one `SAM-0481`.
+
+That is what keeps a SAM ID a stable reference. A number you wrote on a purchase order, or read off a printed label, can only ever have meant one asset.
 
 ### Enabling SAM IDs
 
