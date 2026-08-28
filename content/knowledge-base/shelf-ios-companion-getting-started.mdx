@@ -1,16 +1,16 @@
 ---
 title: "Getting Started with Shelf Companion for iPhone"
-description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone. Covers QR scanning, kits, audits, custody, bookings, and multi-workspace switching."
+description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-08-18"
+updated: "2026-08-26"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
-  description: "How to download Shelf Companion from the App Store, sign in with your existing Shelf account, and start scanning assets, building kits and bookings, running audits, and managing custody from iPhone."
+  description: "How to download Shelf Companion from the App Store or Google Play, sign in with your existing Shelf account, and start scanning assets, building kits and bookings, running audits, and managing custody from your phone."
 ---
 
-Shelf Companion is the free iOS app for your Shelf workspace. It puts the field-side workflows of Shelf — scanning, kits, audits, custody, bookings — directly on your iPhone. The web platform stays your source of truth for workspace setup, configuration, billing, reporting, and admin work.
+Shelf Companion is the free app for your Shelf workspace, on iPhone and on Android. It puts the field-side workflows of Shelf — scanning, kits, audits, custody, bookings — directly on the phone. The web platform stays your source of truth for workspace setup, configuration, billing, reporting, and admin work.
 
 This guide walks through downloading the app, signing in, and using each of the core flows.
 
@@ -19,18 +19,19 @@ This guide walks through downloading the app, signing in, and using each of the 
 Before installing Shelf Companion:
 
 - **An existing Shelf account.** The app does not create a separate account or workspace — it connects to your current Shelf workspace using the same login. If you do not have one yet, sign up free at [app.shelf.nu/join](https://app.shelf.nu/join).
-- **iPhone running iOS 15.1 or later.**
+- **An iPhone running iOS 15.1 or later, or an Android phone.** Both stores carry the same release, built from the same code — version 1.4.0 is iOS build 35 and Android version 15.
 - Optional: assets in your workspace already labelled with Shelf QR codes (or registered Code 128, Code 39, EAN-13, DataMatrix, or external QR codes). If you do not have labels yet, you can still browse and act on assets manually — see [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
 
 The app is **free with any Shelf plan**, including the free Personal tier. Nothing is sold through the app. If your workspace does not have an add-on enabled (for example, the Audits add-on), the app shows an informational message rather than a paywall.
 
 ## 1. Download the App
 
-Search the App Store for **"Shelf Companion"** or open the direct link:
+Search the App Store or Google Play for **"Shelf Companion"**, or open the direct link for your phone:
 
-[Download Shelf Companion on the App Store](https://apps.apple.com/app/id6765639874)
+- [Download Shelf Companion on the App Store](https://apps.apple.com/app/id6765639874) (iPhone)
+- [Download Shelf Companion on Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion) (Android)
 
-The app is published by **Shelf Asset Management, Inc.**, in the Productivity / Business category, age rating 4+. Global App Store propagation can take up to about a day after a release — the direct link works immediately.
+The app is published by **Shelf Asset Management, Inc.**, in the Productivity / Business category, age rating 4+. Global store propagation can take up to about a day after a release — the direct links work immediately.
 
 ## 2. Sign In
 
@@ -38,11 +39,13 @@ Open the app and tap **Sign in**. Use the same email and password you use at [ap
 
 If your team uses SSO, tap **Sign in** and the app opens your organization's SSO flow in a secure in-app browser — the same login screen you use on the web. Your identity provider handles the password, one-time code, and any multi-factor step, then returns you to the app signed in. This works on both iPhone and Android. If you have not configured SSO yet, see [User roles and their permissions](/knowledge-base/user-roles-and-their-permissions) and the [SSO setup guide](/knowledge-base/sso-with-google-workspace).
 
-After sign-in, your session is held securely on the device using iOS Keychain. Signing out clears the token.
+After sign-in, your session is held in the phone's own secure storage — the iOS Keychain on iPhone, the Android Keystore on Android. Signing out clears the token.
 
 ## 3. Switch Workspaces (if you have more than one)
 
 If you belong to multiple Shelf workspaces, tap **Settings** in the app and choose the workspace you want to act in. You can switch at any time. The app respects each workspace's role-based access — base user, self-service member, admin, owner — so you only see and do what you are entitled to do.
+
+**Where a fresh sign-in lands.** The app opens the workspace you last chose in Shelf, the same one the web opens for you. If you have never chosen one, you land in your personal workspace. SSO users are never shown a personal workspace on any platform, so they land in a team workspace their administrator assigned. This is decided on the server, so it applies to the app you already have — there is nothing to update.
 
 ## 4. Scan a QR Code or Barcode
 
@@ -54,6 +57,8 @@ Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR 
 
 **Where a scan happened.** From version 1.3.0 the app can record the phone's location on a scan, so an asset's record shows where it was last seen. The app asks for location permission once, the first time you open the scanner. It is entirely optional: decline and scanning works exactly as before, just without coordinates. The app only uses location while you have it open, never in the background, and a scan is never delayed waiting for a fix. This brings the app in line with the web scanner, which has always recorded the browser's location. You can change your mind at any time in your phone's settings.
 
+If you switch workspaces while an unclaimed code is waiting to be linked, the app stops rather than claiming the sticker into the wrong place: it tells you **"The scanned QR code belongs to the workspace you started in. Scan it again from this workspace to link it here."** and takes you back.
+
 **Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, hard to reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners; the lookup itself needs no add-on (running a full audit still requires the [Audits add-on](/features/audits)).
 
 **Scanning several items for one action.** When you scan a run of assets for a bulk action (assign or release custody, or update location), the app gathers them into a list. If any scanned item can't take that action, the app shows a per-item **blocker** card you clear with one tap, and keeps the submit button disabled until every item is eligible. This mirrors the web scanner, so you never push a batch that would half-fail.
@@ -64,9 +69,11 @@ The **Search assets** box on the Assets tab matches the same fields the search o
 
 If searching your phone by tag or by a word from the description used to come back empty while the same search worked on the web, that gap is closed. The search runs on the server, so the app you already have picks it up with no update to install.
 
+Each result also prints the asset's **SAM ID** under its name, so when you search by a SAM you can see which record matched rather than guessing from the title.
+
 ## 6. View Asset Detail
 
-The asset detail screen shows the asset image, current status, category, location, who currently has custody, and recent activity history. From here you can:
+The asset detail screen shows the asset image, current status, category, location, who currently has custody, and recent activity history. It also names the asset's **Asset Model** and its **Asset ID** — the workspace's own sequential label, such as `SAM-0017`. That is the same value the scanner's **Enter code** field accepts, so the phone can now tell you an asset's SAM instead of only taking one. From here you can:
 
 - **Update the asset's location** — useful when you move an asset between rooms, buildings, vehicles, or job sites.
 - **Assign or release custody** — hand the asset to a teammate, or release custody when it comes back.
@@ -91,10 +98,16 @@ If your workspace has the [Audits add-on](/features/audits) enabled, you can run
 
 - Open the audit from the audits list.
 - Walk to the location and start scanning assets.
-- Watch the **Found / Expected / Unexpected / Pending** counts update in real time as you scan. Urgency surfaces in the UI as you go.
+- Watch the progress read-out at the top update in real time as you scan: **"12 of 20 found"** with a percentage and a bar, and beneath it the breakdown — how many are still **not scanned**, and how many turned up **unexpected**. One glance rather than four boxes to add up.
 - When the audit is complete, tap **Complete audit**. The audit creator receives a summary email.
 
-**Add evidence as you scan.** Tap any row in the scanned-items list to open the evidence sheet for that asset. From there you can write a condition note and attach a photo, either taken with the camera on the spot or picked from the photo library. Each row shows a badge with how many pieces of evidence it carries, so you can see at a glance what has been documented. Notes and photos land on the same audit record the web app writes to.
+**"Not scanned", not "missing".** An expected asset nobody has reached yet reads **Not scanned** for as long as the audit is open, and only becomes **Missing** once you complete the audit. The app uses exactly the same words, filters, and colours as the web for this, so a count you start in the morning never reads as though half the inventory has vanished. The filter pills follow the same rule: **Not scanned** is offered while the audit is open, **Missing** once it is finished.
+
+**Audits nobody was assigned to.** An audit with no specific assignee shows **Unassigned · admins and owners can scan**, so it is clear who is expected to pick it up rather than leaving the row looking unowned.
+
+**Add evidence as you scan.** Each scanned row carries an explicit **Add photo/note** action — tap it (or the row) to open the evidence sheet, write a condition note, and attach a photo taken with the camera on the spot or picked from the photo library. Once a row holds evidence the action becomes a count of what it carries. The first time a scanned row appears, a one-time hint points the action out: *"Tap a scanned item to add a photo or condition note."* Notes and photos land on the same audit record the web app writes to.
+
+**Read the evidence back.** On the audit's asset list, any row that carries evidence says what it holds — "1 note, 2 photos" — and tapping it opens the full record: every note and every photo, each with who recorded it and when. Notes and photos are counted separately on purpose, so one note plus one photo never collapses into an ambiguous "2".
 
 If your workspace does not have the Audits add-on enabled, the app shows an informational "Contact your admin" message rather than a paywall or upgrade link.
 
@@ -106,6 +119,12 @@ For workspaces using [Bookings](/features/bookings), the app now handles a booki
 
 Draft bookings are visible only to the person who created them, exactly as on the web, so an unfinished draft never shows up in a colleague's list.
 
+**See the month instead of the list.** The Bookings screen has two lenses, and the list/calendar switch sits in the header. The calendar draws one coloured band per booking across the days it runs, so a five-day job reads as a single run rather than five separate dots, and a week that is fully committed looks different from one that is not. A day that holds more bookings than the cell can draw shows the most urgent ones first — overdue before ongoing, ongoing before reserved — and a **+N** for the rest.
+
+Tap a day and the panel underneath lists what is booked on it, each row with its status and a tap through to the booking. An empty day says **"Nothing booked on this day."** On a team workspace the panel also carries a **New booking** button that starts a booking on the day you tapped. Pull down to refresh, so a booking someone else just made on the web appears without leaving the screen.
+
+The search box and the status pills apply to both lenses; sorting is a list-only control. Because the grid shows one month while the list is date-blind, a row under the calendar says **"N more outside this month"** and jumps you to the next booking's date rather than letting those bookings quietly disappear.
+
 **Create or edit a booking.** Tap **New booking** to set the name, dates, and custodian right on the phone, then add the gear and reserve it. Reserving follows exactly the same rules as the web: the booking has to hold at least one asset or one model reservation, and nothing on it can be marked unavailable or already booked for those dates. Those checks run on the server, so the app can no longer reserve something the website turns away, including an empty booking. See [Troubleshooting: Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts) for the three reasons and how to clear each one. You can also open an existing booking to edit its details or reschedule it. Availability-aware pickers only offer assets and kits that are free for the window you chose, so you don't reserve gear that's already committed elsewhere. The asset, kit, model, location, and team-member pickers all page through your full inventory as you scroll, so nothing is stranded past the first page.
 
 **Build out a booking by scanning.** Open a draft booking and tap **Scan to Add Assets**, then scan the assets and kits you're packing. Kits expand to their member assets automatically.
@@ -114,6 +133,8 @@ Draft bookings are visible only to the person who created them, exactly as on th
 
 Reserved units that have no physical unit behind them yet are counted on the bookings list too. A row reads "0 assets · 5 reserved" rather than a bare "0 assets", so a booking built entirely from model reservations never looks empty. Those units are genuinely held and unavailable to anyone else.
 
+**Who made it, and what it is tagged with.** The booking detail names the person who created the booking on a **Created by** row, and shows the booking's [tags](/knowledge-base/what-is-a-tag-in-shelf-and-what-can-they-be-used-for) as chips in their workspace colours. The custodian and the creator are often different people, so both are worth reading before you act on someone else's booking.
+
 **Manage the booking's lifecycle.** Reserve, cancel, archive, delete, or duplicate a booking without leaving the app.
 
 **Check out one item at a time or in bulk.** You can check out a selected subset of a booking's assets rather than all at once (progressive check-out). A lifecycle **progress bar** tracks each item through Reserved, Checked out, and Returned, so a half-packed booking reads accurately.
@@ -121,6 +142,8 @@ Reserved units that have no physical unit behind them yet are counted on the boo
 **Check items back in.** Use the in-app scanner to check items in as they return. Scan-to-check-in only accepts assets that are actually in this booking, expands kit codes to their in-booking members, and won't double-return an item that is already back.
 
 **Record what came back for quantity-tracked stock.** When a booking includes [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables), checking them in asks how many units came back in what condition. Returnable stock splits across **Returned**, **Lost**, and **Damaged**; consumables split across **Consumed**, **Lost**, and **Damaged**. The sheet defaults every remaining unit to the normal outcome, so the everyday "it all came back" case is a single confirm, and a colour-coded bar shows the split before you submit. You can also check out part of a quantity-tracked line and leave the rest booked. Returned units go back to the pool, while units marked consumed, lost, or damaged are logged against the booking and come out of stock.
+
+**Times you pick are your account's times.** When you set a booking's start and end on the phone, the date and time pickers work in the time zone from your Shelf [date and time preferences](/knowledge-base/date-time-and-timezone-preferences), not the zone your handset happens to be in. Pick 9:00 and the booking reads 9:00 afterwards, wherever you are standing. Before this, anyone whose phone zone differed from their Shelf preference picked one time and saw another the moment they saved.
 
 Roles apply: self-service members act on their own bookings; admins and owners act on behalf of others. The app enforces the same permission, ownership, and status rules as the web, so you can never do more from the phone than your role allows.
 
@@ -147,7 +170,7 @@ The app respects whether your workspace has an add-on enabled:
 
 - **Audits add-on enabled** — Audits tab is active. You can run and complete audits.
 - **Audits add-on not enabled** — Audits tab shows an informational "Contact your admin" message. No upgrade link or paywall — those live on the web side, where billing happens.
-- **Barcodes add-on** — Multiple registered barcodes per asset are honoured on the asset detail screen as the feature matures. Full multi-code parity on mobile is a 1.x item.
+- **Barcodes add-on** — The app's scanners read every code type Shelf registers: QR, Code 128, Code 39, DataMatrix and EAN-13, on both the general scanner and the audit scanner. Scanning any registered code lands on its asset. What the app does **not** yet do is *list* an asset's registered barcodes on the detail screen — for the full set of codes on an asset, and to add or edit them, use the web. See [Alternative barcodes](/knowledge-base/alternative-barcodes).
 
 ## What the App Does Not Do Yet
 
@@ -155,8 +178,9 @@ For clarity, these are real, intentional gaps. They are on our radar, but they a
 
 - **Claiming a brand new QR code as a base or self-service member.** Admins and owners can now claim an unclaimed sticker in the app (see step 4). Claiming is an administrator's job on every platform, so this is a role limit rather than a mobile one.
 - **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
+- **Listing an asset's registered barcodes.** The scanners read every code type; the detail screen does not yet show which codes an asset carries. Adding and editing codes is a web job.
 
-Two items that used to sit on this list shipped in version 1.3.0 and have moved into the guide above: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners).
+This guide describes **version 1.4.0**, live on the App Store and Google Play. Two items that used to sit on the list above shipped in 1.3.0 and moved into the guide: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners). If your app is older, take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion) — the booking calendar, the audit evidence action, and the model and asset ID rows all need 1.4.0.
 
 ## Opening Shelf Links in the App
 
@@ -164,7 +188,7 @@ If you have Shelf Companion installed, tapping a Shelf link on your phone — an
 
 ## Where to Go Next
 
-- [Shelf Companion overview](/mobile-app) — product page with screenshots, features, and the App Store link.
+- [Shelf Companion overview](/mobile-app) — product page with screenshots, features, and the App Store and Google Play links.
 - [Getting started with Shelf](/knowledge-base/getting-started) — if you are still setting up your workspace, start here first.
 - [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf) — you'll want labels on your assets before scanning at scale.
 - [Bookings overview](/features/bookings), [Kits overview](/features/kits), and [Audits overview](/features/audits) — read up on the workflows you'll be running from the floor.
