@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-08-07"
+updated: "2026-08-28"
 layout: "knowledge-base"
 ---
 
@@ -73,7 +73,9 @@ The **Actions** menu matches your current selection: **Check out** is greyed out
 
 ### Tracking Who Took What, and When
 
-Once items start leaving, the booking's asset list adds **"Checked out on"** and **"Checked out by"** columns — mirroring the existing check-in columns — so you can see exactly when each item left and who processed it. (For kits, Shelf shows the kit-level status rather than per-asset dates.)
+As soon as one item has been scanned out, the booking's asset list adds **"Checked out on"** and **"Checked out by"** columns, mirroring the existing check-in columns, so you can see when each item left and who processed it. (For kits, Shelf shows the kit-level status rather than per-asset dates.)
+
+The columns fill in from the scanning and bulk sessions that recorded each handover. An item that went out with the plain **Check out** button, which takes everything at once in a single action, shows a dash in both columns, and a booking checked out entirely that way does not show the columns at all. Shelf records the checkout of every item either way, so check-in and reporting are unaffected; it is only these two display columns that need a session to name a time and a person.
 
 ### Adding More Items While a Booking Is Open
 
@@ -89,11 +91,20 @@ Progressive checkout introduces a legitimate new situation: an **Ongoing** booki
 
 Shelf handles this honestly so your records and reports stay accurate:
 
-- **Progressive check-in** won't let you check in an item that was never checked out — there's nothing to return.
+- **Progressive check-in** won't let you check in an item that was never checked out, since there's nothing to return. It refuses with *"Cannot check in assets that were never checked out: [item names]."*
+- An item you have **already** checked in is refused separately, with *"These assets are already checked in."*, so the reason you see matches the reason you were stopped.
 - **Quick and full check-in** won't log or label never-checked-out items as "returned." They're skipped from the activity log, system notes, and the per-row **Returned** badge.
 - A **kit** only counts as returned once all of its assets were actually checked out — so a kit that went out incomplete won't be marked fully returned.
 
 Unlike check-in, progressive checkout **never auto-completes** the booking. Checking out the last item simply finishes the checkout phase; you still check the items back in when they return.
+
+## Mixing All-at-Once and Scanning on One Booking
+
+The two checkout styles combine freely on the same booking. A common shape is a whole list going out with **Check out** in the morning, then an item added later in the day and scanned out on its own.
+
+Shelf now records the fact of checkout **on each line of the booking**, at the moment that line goes out, rather than inferring it from the booking as a whole. That is what lets the two styles mix. Whether an item can be checked back in is answered by that item's own record, so adding a scanned handover to a booking that started all at once does not change the standing of anything already out.
+
+> **If you saw "Cannot check in assets that were never checked out" on items the page showed as Checked out**, that was this. Shelf was reading the question at the level of the booking, so a booking that started with the **Check out** button and later gained a single scanned item stopped recognising everything the button had sent out. It is fixed, and no action is needed on your side.
 
 ## Best Practices
 
