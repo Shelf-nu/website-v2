@@ -648,7 +648,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Reports & Exports",
         name: "Reports",
         description:
-            "Ten ready-to-run reports across bookings, assets, and custody (Booking Compliance, Top Booked Assets, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. Every report exports to CSV; chart-based reports also export to PDF.",
+            "Ready-to-run reports across bookings, assets, and custody (Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. Every report exports to CSV; chart-based reports also export to PDF.",
         availability: {
             free: "included",
             plus: "included",
