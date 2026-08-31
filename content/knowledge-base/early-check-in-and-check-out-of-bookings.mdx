@@ -37,10 +37,12 @@ Every booking carries two periods, and adjusting the dates at check-out or check
 
 | | What it holds | When it is written |
 |---|---|---|
-| **Planned period** | The dates that were agreed | Creating the booking, editing it while it is still a draft, and reserving it |
-| **Actual period** | The dates the booking really ran | Extending the booking, and the date adjustments offered at early check-out and early check-in |
+| **Planned period** | The dates that were agreed | Creating the booking, and editing it while it is still a draft. Fixed once it is reserved |
+| **Actual period** | The dates the booking really ran | Extending the booking, checking in a booking that is **Overdue**, and the date adjustments offered at early check-out and early check-in |
 
-The planned period is frozen from the moment the booking starts. Nothing that happens afterwards moves it: not an early check-in, not an early check-out, and not an [extension](/knowledge-base/extending-booking-end-dates-in-shelf).
+The planned period is frozen from the moment the booking is reserved. Nothing that happens afterwards moves it: not an early check-in, not an early check-out, and not an [extension](/knowledge-base/extending-booking-end-dates-in-shelf).
+
+One path onto the actual end date is not a choice anyone makes. **Checking in a booking that is already Overdue always moves its end date to the moment it came back**, with no dialog and no option to decline, because the booking has to record when the gear actually returned. That is the ordinary way an actual end date comes to differ from a planned one, and it is why the [Booking Compliance report](/knowledge-base/getting-started-with-reports#how-booking-compliance-decides-on-time-or-late) reads the planned end rather than the live one. The early check-out and early check-in adjustments below are the ones you are asked about.
 
 ### Where to Read Both Periods
 
@@ -51,7 +53,7 @@ The booking page itself shows the actual period. If you need the agreed dates al
 
 ## Important Notes
 
-- While a booking is still a draft, editing its dates moves both periods together. The planned period only becomes fixed once the booking is reserved or starts.
+- While a booking is still a draft, editing its dates moves both periods together. The planned period only becomes fixed once the booking is reserved.
 - Scheduled reminders and overdue notifications follow the actual dates, not the planned ones. Adjust the end date at check-in and the reminders follow it.
 - The [Booking Compliance report](/knowledge-base/getting-started-with-reports#how-booking-compliance-decides-on-time-or-late) measures returns against the **planned** end date, so an early return is on time and a booking extended past its deadline is still recorded as a late return. Overdue Items uses the actual end date, because it answers what is late right now.
 
