@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-25"
+updated: "2026-08-31"
 layout: "knowledge-base"
 ---
 
@@ -143,6 +143,18 @@ At most three assets are listed by name, and the rest are counted. Take those it
 ### A reserved booking cannot be emptied
 
 Once a booking is **Reserved**, removing its last asset or model reservation is refused with *"A reserved booking must keep at least one asset or model reservation. Cancel the booking instead, or add a replacement first."* **Draft**, **Ongoing** and **Overdue** bookings can still be emptied, since taking an item off a booking that is already underway is a normal correction.
+
+---
+
+## An asset reads Checked out and no booking has it
+
+If an asset shows **Checked out** but nothing on its Bookings tab is Ongoing or Overdue, and every booking it appears on is finished, it was almost certainly stamped by a kit rather than by a check-out.
+
+A kit carries its own status column, and that column could go stale. Checking a booking in works out which kits to release from the assets' **current** membership, so a kit whose assets were detached while the booking was live was invisible at check-in and kept reading **Checked out** long after the booking completed. Adding any asset to a kit in that state stamped the new asset **Checked out** as well, against a booking that had already ended. Nothing then cleared it, and the asset blocked check-out of every booking it was later added to.
+
+**This no longer happens.** The stamp is now taken from the booking rows the same action writes, and only for bookings that are **Ongoing** or **Overdue**. An asset added to a kit sitting on a **Draft** or **Reserved** booking still joins the booking and keeps its current status, since nothing has physically left.
+
+An asset already stuck this way needs a hand. Custody and kit actions deliberately never take an asset out of **Checked out**, because only the booking flow owns that exit, and in this case there is no live booking to check in. [Contact support](/contact) with the asset name and the kit it belongs to, and the record can be corrected.
 
 ---
 

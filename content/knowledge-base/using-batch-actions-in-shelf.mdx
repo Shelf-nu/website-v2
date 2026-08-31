@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-17"
+updated: "2026-08-31"
 layout: "knowledge-base"
 ---
 
@@ -57,6 +57,8 @@ Available operations, in the order they appear in the menu:
 - **Delete**: Remove selected assets from inventory
 
 Some entries grey out when the selection does not suit them, with a short explanation on hover. **Release custody** needs every selected asset to be in custody, **Assign custody** needs them all to be available, and **Add to kit** and **Delete** are blocked while anything in the selection is checked out. The audit entries only appear for roles that can create or update audits.
+
+One refusal arrives after you confirm rather than as a greyed-out entry. **Release custody** is turned down if any asset in the selection is in custody *because its kit is*, with *"This asset is in custody because its kit is. Release the kit's custody instead."* Nothing in the batch is released when that happens, so a mixed selection is refused whole rather than half applied. Release the kit's custody, or take the asset out of the kit, and run the batch again. See [Custody a kit put there belongs to the kit](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs#custody-a-kit-put-there-belongs-to-the-kit).
 
 ![The asset index Actions menu, with Update asset model and Remove from asset model listed under Update category](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bulk-asset-model-menu.webp)
 
