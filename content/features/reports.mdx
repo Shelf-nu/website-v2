@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/features/reports"
 date: "2026-04-30"
-updated: "2026-08-28"
+updated: "2026-08-31"
 seo:
   title: "Equipment Reports & Analytics | Shelf"
   description: "Run booking compliance, utilization, custody, and inventory reports in Shelf. Filter by category, location, and timeframe. Export to CSV or PDF."
@@ -80,9 +80,19 @@ Reports combine **KPI cards** for headline numbers, **charts** for trends and di
 
 ![Booking Compliance report showing KPI cards, an on-time vs late chart, and the underlying booking table](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-booking-compliance.webp)
 
+### Values That Add Up
+
+Shelf holds one value per unit, and every money figure in a report multiplies it by the quantity that figure is about: the units booked for value at risk, the units placed at a location for a location bucket, the units a custodian holds for a custody total. A headline number and the breakdown beneath it always reconcile, and stock you have not placed anywhere is carried under **No Location** rather than dropped, so the parts sum to the whole.
+
+For teams tracking cabling, batteries, sandbags or any pooled supply, that is the difference between a report you can hand to finance and one you have to rebuild in a spreadsheet first.
+
+---
+
 ### Export the Result
 
 Every report can be exported to **CSV** for further analysis in a spreadsheet or BI tool. Chart-based reports can additionally be downloaded as a **PDF** that captures the rendered visualization alongside the data — handy for board packs and customer reviews. Reports without a chart (Asset Inventory, Custody Snapshot, Overdue Items, Idle Assets, Top Booked Kits) export to CSV.
+
+The Asset Inventory and Custody Snapshot exports carry the arithmetic rather than only the result: quantity, unit value and total value as separate columns, in the CSV and totalled the same way in the PDF.
 
 ---
 
@@ -108,7 +118,7 @@ The Custody Snapshot report makes it impossible to argue about who has what — 
 
 ## Benefits
 
-- **Self-serve** — Operations managers run reports themselves, without waiting on engineering or exporting to BI tools
+- **Self-serve** — Operations managers run reports themselves, without waiting on engineering or exporting to BI tools. Reports are an Administrator and Owner surface, included on every plan
 - **Filterable** — Every report supports filters that match how teams already organize their inventory
 - **Shareable** — URLs encode the filters, so a saved view can be sent to a colleague or bookmarked
 - **Exportable** — CSV for analysis, PDF for distribution

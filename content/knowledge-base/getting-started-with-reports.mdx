@@ -91,9 +91,34 @@ The two reports ask different questions, so for an extended booking they will le
 
 An overdue booking extended to next week disappears from Overdue Items straight away, because it is no longer late against its current deadline. It still counts as a late return in Booking Compliance once it comes back, because the deadline it was agreed to has already passed. Extending a booking is a way to keep operations moving, not a way to clear a late return from the record.
 
+## How Money Is Counted
+
+Several reports put a value on things: Asset Distribution, Overdue Items, Asset Inventory and Custody Snapshot. Shelf stores one **value per unit** on an asset, and every money figure in a report is that per-unit value multiplied by the quantity the figure is actually about.
+
+Which quantity that is depends on what the number is answering:
+
+| Where you see it | What it multiplies by |
+|---|---|
+| Overdue Items, value at risk | The units **booked** on the overdue booking |
+| Asset Distribution, category and status buckets | The asset's **workspace stock** |
+| Asset Distribution, location buckets | The units **placed at that location** |
+| Asset Inventory | The asset's **workspace stock** |
+| Custody Snapshot | The units **that custodian holds** |
+
+For an individually tracked asset all of these are one, so its value appears once and the distinction never comes up. For [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables) it is the difference between a report that adds up and one that does not: a $100 item with 5 units booked is $500 of value at risk, not $100.
+
+A headline figure and the breakdown underneath it now always agree. A pool split across two locations has its value split with it, and any units you have not placed anywhere are carried under **No Location**, so the location buckets add up to the same total as the headline rather than quietly losing the remainder.
+
 ## Export the Result
 
 Every report supports **CSV export**. Click **Export** at the top right of any report to download the data shown.
+
+Two of those files spell the value arithmetic out rather than leaving you to redo it in a spreadsheet:
+
+- **Asset Inventory** carries **Quantity**, **Unit Value** and **Total Value**.
+- **Custody Snapshot** carries **Units Held**, **Unit Value** and **Total Value**.
+
+The PDF versions total the same way, so a printed report and the CSV behind it never disagree.
 
 Report CSVs are written as UTF-8 with a byte order mark, so category, location and custodian names in any alphabet open correctly in Excel without an import wizard. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
 
@@ -101,7 +126,11 @@ Reports with charts also support **PDF download** — Shelf renders the charts a
 
 ## Who Can Run Reports
 
-All workspace members with access to assets can open the Reports index. The data shown in each report is automatically scoped to the workspace and to the records the user is permitted to see.
+**Reports are for Administrators and Owners.** A report reads across every booking, custodian and asset value in the workspace at once, which is a wider question than any single page answers, so the whole area is theirs.
+
+**Reports** has never appeared in the sidebar for **Self-service** and **Base** users. It is now refused by direct link as well: the report pages, the CSV export and the PDF export all turn those two roles away, so a bookmarked or forwarded report URL no longer opens for them. Neither of the workspace [visibility toggles](/knowledge-base/configure-what-self-service-and-base-users-can-see) changes this, and reports remain included on every plan.
+
+What each report shows is still scoped to the workspace it was run in.
 
 ## Common Reports by Use Case
 
