@@ -91,7 +91,7 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "What reports does Shelf include?",
-        answer: "Shelf ships with ten built-in operational reports across bookings, assets, and custody — Booking Compliance, Top Booked Assets, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, and Custody Snapshot. Each report has timeframe and filter controls; URL state encodes the filters so views are bookmarkable. Every report exports to CSV and chart-based reports also export to PDF. Reports are included on every plan, including the free Personal plan."
+        answer: "Shelf ships with built-in operational reports across bookings, assets, and custody — Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, and Custody Snapshot. Each report has timeframe and filter controls; URL state encodes the filters so views are bookmarkable. Every report exports to CSV and chart-based reports also export to PDF. Reports are included on every plan, including the free Personal plan. Within a workspace, opening and exporting reports is available to owners and administrators; self-service and base users do not see the Reports area."
     },
     {
         question: "Do I have to install the Shelf Companion app to use Shelf?",
