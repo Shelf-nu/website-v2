@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-08-28"
+updated: "2026-08-31"
 layout: "knowledge-base"
 ---
 
@@ -95,6 +95,31 @@ The Found, Not scanned and Unexpected counts are then recounted from the rows th
 You are not limited to the scans you made in this sitting. Reopening the scan page restores everything already recorded on the audit into the list, so a mis-scan from yesterday morning is as removable as one from a minute ago.
 
 Removal only works while the audit is still running. Once it is **Completed** or **Cancelled** its numbers have been reported, and Shelf refuses the change with *"This audit is no longer live, so its scans cannot be changed."*
+
+#### Undoing a Scan in the Companion App
+
+From [Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) **1.5.0**, the same correction is available on the phone, where a mis-scan is most likely to happen in the first place.
+
+1. On the audit's scanned list, **tap the row** you want to take back. The sheet that holds its notes and photos opens.
+2. Scroll to the foot of the sheet and tap **Remove scan**.
+3. Confirm. The app asks *"Remove this scan?"* and explains that the asset *"goes back to how it was before you scanned it. You can scan it again."*
+
+The outcome matches the web exactly: an expected asset returns to **Not scanned**, an unexpected one leaves the audit, and the counts recount from the rows.
+
+When the row carries evidence, the sheet adds *"Your notes and photos stay on the audit."* That is literally true. Evidence is attached to the audit's row for the asset rather than to the scan, so undoing a mis-scan never costs you the photo you took, and the evidence is still there if you scan the asset again.
+
+A **Completed** or **Cancelled** audit refuses the removal on the phone for the same reason it does on the web.
+
+#### What a Scanned Row Says on the Phone
+
+Also from 1.5.0, a scanned row's second line answers **where the asset is** instead of repeating the word *Found*, which every row on that list already was:
+
+- **An asset the audit expected** shows its **location**, so a walk through a room tells you which of the found items are not where your records say they should be.
+- **An asset the audit did not expect** reads **Not on this audit**, with its location after it when it has one. For that row, not belonging here is the useful fact.
+
+The count of unexpected assets at the top of the screen is **tappable**: it filters the scanned list to just those, and tapping again restores the rest. Notes and photos are counted separately on each row, so one note plus one photo never reads the same as two photos.
+
+**Archived audits are reachable from the app**, with an **Archived** filter, and the **All** filter includes them. An audits list you were used to on the phone will get longer.
 
 ### If an Asset Is Deleted After It Was Scanned
 

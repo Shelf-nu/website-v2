@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/solutions/open-source-asset-management"
 date: "2026-03-06"
-updated: "2026-05-25"
+updated: "2026-08-31"
 seo:
   title: "Open Source Asset Management Software — Free QR Tracking | Shelf"
   description: "Free, open-source asset management — cloud-hosted or self-host. QR tracking, custody logs, and booking calendars. Start tracking in minutes, no setup required. AGPL licensed. 3,000+ teams."
@@ -93,7 +93,7 @@ See: [Workspaces](/features/workspaces)
 
 ### Reports
 
-Ten built-in operational reports (Booking Compliance, Top Booked Assets, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. CSV export on every report; chart-based reports also export to PDF. Available on every plan, including the self-hosted free version.
+Built-in operational reports (Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. CSV export on every report; chart-based reports also export to PDF. Available on every plan, including the self-hosted free version. Workspace admins and owners can open them.
 
 See: [Reports](/features/reports)
 
@@ -115,7 +115,9 @@ The hosted version is not a stripped-down product — it runs the same open-sour
 
 For organizations with strict data residency, compliance, or air-gapped network requirements, Shelf can also be self-hosted with Docker. The AGPL license allows free use, modification, and deployment. Self-hosting requires PostgreSQL and Supabase — setup documentation is available in the GitHub repository.
 
-Self-host Shelf without binding yourself to any vendor's app store: the web app installs as a PWA on any phone for everyone, with no Apple or Google dependency in your stack. Hosted Shelf customers can additionally use the free [Shelf Companion app](/mobile-app) on the iOS App Store and Google Play. Both paths share the same Shelf workspace and data.
+Self-host Shelf without binding yourself to any vendor's app store: the web app installs as a PWA on any phone for everyone, with no Apple or Google dependency in your stack.
+
+From version 1.5.0, the free [Shelf Companion app](/mobile-app) can also sign in against a self-hosted instance rather than only Shelf Cloud. Tap **Connect to a private server** on the sign-in screen, enter your organization's domain, and the app points itself at your server for scanning, audits, custody and bookings. Two conditions apply: Shelf registers your domain first, and your instance is reachable from the phone over HTTPS. See [Connect Shelf Companion to your own Shelf server](/knowledge-base/connect-shelf-companion-to-your-own-server). The PWA remains the app-store-free path, and every path shares the same workspace and data.
 
 ---
 

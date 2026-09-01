@@ -28,7 +28,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Field Audits",
         description:
-            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan and read them back later, complete the audit when done.",
+            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan and read them back later, take a mis-scan back off, and complete the audit when done. Scanned rows say where each asset lives, and anything the audit did not expect is counted separately.",
         icon: ClipboardCheck,
     },
     {
@@ -71,6 +71,8 @@ export const builtForApp = [
     "Reading a month of bookings as a calendar and creating one on the day you tapped",
     "Scanning reserved models into a booking to assign and check out",
     "Claiming a brand new QR label into the workspace (admins and owners)",
+    "Taking a mis-scan back off a live audit, without losing the notes and photos on it",
+    "Signing in against your organization's own Shelf server instead of Shelf Cloud",
     "Correcting stock counts on the shelf, with a reason attached",
     "On-the-go dashboard monitoring",
 ];
@@ -101,6 +103,14 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     {
         question: "Where can I get the app?",
         answer: "Shelf Companion is live on the App Store (iPhone) and Google Play (Android). Search for \"Shelf Companion\", or download directly — iOS: https://apps.apple.com/app/id6765639874 · Android: https://play.google.com/store/apps/details?id=com.shelf.companion. Sign in with your existing Shelf account.",
+    },
+    {
+        question: "Can I use the app with a self-hosted Shelf server?",
+        answer: "Yes, from version 1.5.0. Tap \"Connect to a private server\" on the sign-in screen and enter your organization's domain — the field takes your work email, your company's domain, or your Shelf server address. The app then points itself at your instance, and you sign in with your password or your company's single sign-on against your own server. Two things have to be true first: Shelf has to register your domain (that is a change on Shelf's side and needs no new app build), and your instance has to be reachable from the phone over HTTPS. A domain Shelf has not registered is refused rather than quietly sent to Shelf Cloud. You can return to Shelf Cloud at any time from the sign-in screen or from Settings. See: /knowledge-base/connect-shelf-companion-to-your-own-server",
+    },
+    {
+        question: "Can I correct a scan I did not mean to make during an audit?",
+        answer: "Yes, from version 1.5.0. Tap the scanned row to open its notes and photos, then tap Remove scan at the foot of the sheet and confirm. An asset the audit expected goes back to Not scanned; an asset that was never on the list leaves the audit, because nothing but the scan put it there. The counts recount from the rows. Notes and photos you already attached stay on the audit, because evidence hangs off the audit's row for the asset rather than off the scan. A Completed or Cancelled audit refuses the change, on the phone and on the web alike.",
     },
     {
         question: "Do I need a Shelf account?",
