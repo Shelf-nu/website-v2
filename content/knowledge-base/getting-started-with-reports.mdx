@@ -107,7 +107,9 @@ Which quantity that is depends on what the number is answering:
 
 For an individually tracked asset all of these are one, so its value appears once and the distinction never comes up. For [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables) it is the difference between a report that adds up and one that does not: a $100 item with 5 units booked is $500 of value at risk, not $100.
 
-A headline figure and the breakdown underneath it now always agree. A pool split across two locations has its value split with it, and any units you have not placed anywhere are carried under **No Location**, so the location buckets add up to the same total as the headline rather than quietly losing the remainder.
+A headline figure and the breakdown underneath it now agree. A pool split across two locations has its value split with it rather than counted at full value in both, so the category and status breakdowns each add back up to the headline.
+
+Locations carry one deliberate exception. **No Location** is the bucket for assets with no placement recorded anywhere, and it holds their full value, but the unplaced remainder of a *partly* placed pool is not added to it — six units at a location and four not yet put anywhere contribute six. That keeps the bucket describing exactly the assets you reach by clicking it. On a workspace that keeps partly-placed stock, then, the location buckets can total less than the headline. Category and status always account for every unit.
 
 ## Export the Result
 

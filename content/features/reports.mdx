@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/features/reports"
 date: "2026-04-30"
-updated: "2026-08-31"
+updated: "2026-09-02"
 seo:
   title: "Equipment Reports & Analytics | Shelf"
   description: "Run booking compliance, utilization, custody, and inventory reports in Shelf. Filter by category, location, and timeframe. Export to CSV or PDF."
@@ -82,7 +82,9 @@ Reports combine **KPI cards** for headline numbers, **charts** for trends and di
 
 ### Values That Add Up
 
-Shelf holds one value per unit, and every money figure in a report multiplies it by the quantity that figure is about: the units booked for value at risk, the units placed at a location for a location bucket, the units a custodian holds for a custody total. A headline number and the breakdown beneath it always reconcile, and stock you have not placed anywhere is carried under **No Location** rather than dropped, so the parts sum to the whole.
+Shelf holds one value per unit, and every money figure in a report multiplies it by the quantity that figure is about: the units booked for value at risk, the units placed at a location for a location bucket, the units a custodian holds for a custody total. An asset split across two sites is counted at each one for the units it actually has there, not twice at full value, so **Asset Distribution** breaks the same total down three ways — by category, by location and by status — and each breakdown adds back up to the headline.
+
+**No Location** is the bucket for assets with no placement recorded anywhere, and it carries their full value. Stock that is *partly* placed is the one deliberate exception: an asset with six units at a location and four not yet put anywhere contributes only the six, and the remaining four are not folded into **No Location**. That bucket has to describe exactly the assets you get when you click it, which is the assets with no placement at all. So on a workspace that keeps partly-placed stock, the location breakdown can total less than the headline — by design, and only there. Category and status always account for every unit.
 
 For teams tracking cabling, batteries, sandbags or any pooled supply, that is the difference between a report you can hand to finance and one you have to rebuild in a spreadsheet first.
 

@@ -16,7 +16,7 @@ On the demo workspace before the fix, Asset Distribution's headline read **$44,7
 One rule, applied everywhere: every money number multiplies the per-unit value by the quantity that number is actually about.
 
 - **Overdue Items** row value at risk counts the units **booked** on the overdue booking, the same arithmetic as the KPI directly above it.
-- **Asset Distribution** category and status buckets count **workspace stock**. Location buckets count the units **placed at that location**, and the unplaced remainder of a partly placed pool is carried under **No Location**, so the buckets sum to the headline instead of quietly losing it.
+- **Asset Distribution** category and status buckets count **workspace stock**, so both add back up to the headline. Location buckets count the units **placed at that location**, so a pool split across two sites has its value split with it rather than counted twice. **No Location** covers assets with no placement recorded anywhere; the unplaced remainder of a *partly* placed pool is deliberately left out of it, because that bucket has to match the assets you get when you click through to it.
 - **Asset Inventory** and **Custody Snapshot** exports total the same way in CSV and in PDF.
 
 For an individually tracked asset every one of those quantities is one, so nothing about it changes. The difference is in pooled stock: a $100 item with 5 units out on a late booking is $500 at risk, and it used to read $100.
