@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-08-31"
+updated: "2026-09-02"
 layout: "knowledge-base"
 ---
 
@@ -48,7 +48,7 @@ Kits can exist in three states:
 
 - **Available**: Ready for assignment to a person or booking
 - **In Custody**: Currently held by a person; unavailable for reassignment until released
-- **Checked Out**: Assigned to a booking and unavailable for reassignment
+- **Checked Out**: Assigned to a booking and unavailable for reassignment. It clears when the bookings holding it end and nothing of the kit's own is still out
 
 ## Kit Assets
 
@@ -140,6 +140,10 @@ Only the bookings holding **this** kit are touched. That matters when a quantity
 | **Complete**, **Archived**, **Cancelled** | It stays, listed under its kit with a **Removed from kit** label, as a record of what actually went out on that job. |
 
 The rule in one line: **the asset stays on the booking if the booking has ever left the planning stage.**
+
+**The kit is still released when that booking ends.** A member you pull out mid-job stays on the booking under its kit, so the booking keeps its own record of which kit sent the item. Ending that booking reads that record alongside the kit's current contents, so the kit returns to **Available** even though its membership changed while the job was running. This holds for every way a booking ends: checking it in, cancelling it, or deleting it, one at a time or several at once from the bookings index. A check-in split over several sessions releases the kit once its last outstanding item is back.
+
+Before this, a kit in that position stayed **Checked Out** with nothing actually out. That is not a cosmetic badge: such a kit cannot be added to a live booking, is filtered out of the booking and add-to-kit pickers, and there is no button anywhere that clears it. A kit stuck that way before this shipped still needs [support](/contact) to correct the record, since the booking that would have released it has already finished.
 
 This is why a finished booking no longer rewrites its own history. Taking an asset out of a kit used to make that asset appear as a loose item on every past booking that had used the kit, so a completed job retroactively looked like it had gone out with a stray asset rather than a complete kit.
 

@@ -3,7 +3,7 @@ title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
 description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-17"
+updated: "2026-09-02"
 layout: "knowledge-base"
 ---
 
@@ -107,6 +107,12 @@ To make the progress bar match how people actually think about returns, a worksp
 - **Kit as one unit**: Each standalone asset counts as one item, and each kit counts as one item. A kit only counts as checked in once **every** asset inside it has been returned — a kit with some (but not all) of its assets back still counts as outstanding. The progress label reads **"items"** with the note *"Kits count as one item."*
 
 In both modes the underlying check-in is identical — you still check in individual assets, and the per-asset list, scanner drawer, and CSV export always count assets individually. The setting only changes how the **progress bar** on the booking page tallies and displays its total.
+
+### When a kit goes back to Available
+
+A kit's own status is a separate question from the progress bar, and it follows one rule: a kit returns to **Available** once something of its own has come back in this session and nothing of its own is still out. Both halves are measured per item, so a kit is neither held open by another kit's outstanding item nor released by another kit's return. A quantity-tracked item still owing units counts as outstanding, so its kit keeps reading **Checked Out** until the last unit is logged.
+
+Returning a kit across several sessions works the same way as returning it in one. Earlier sessions used to leave behind records that kept the kit reading **Checked Out** after everything had come back; the last session that settles the kit now releases it. See [Kits](/knowledge-base/kits#removing-a-member).
 
 ### Turning on kit-as-a-unit counting
 

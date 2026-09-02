@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-31"
+updated: "2026-09-02"
 layout: "knowledge-base"
 ---
 
@@ -154,9 +154,13 @@ If an asset shows **Checked out** but nothing on its Bookings tab is Ongoing or 
 
 A kit carries its own status column, and that column could go stale. Checking a booking in works out which kits to release from the assets' **current** membership, so a kit whose assets were detached while the booking was live was invisible at check-in and kept reading **Checked out** long after the booking completed. Adding any asset to a kit in that state stamped the new asset **Checked out** as well, against a booking that had already ended. Nothing then cleared it, and the asset blocked check-out of every booking it was later added to.
 
-**This no longer happens.** The stamp is now taken from the booking rows the same action writes, and only for bookings that are **Ongoing** or **Overdue**. An asset added to a kit sitting on a **Draft** or **Reserved** booking still joins the booking and keeps its current status, since nothing has physically left.
+**The stamp no longer spreads.** It is now taken from the booking rows the same action writes, and only for bookings that are **Ongoing** or **Overdue**. An asset added to a kit sitting on a **Draft** or **Reserved** booking still joins the booking and keeps its current status, since nothing has physically left.
 
-An asset already stuck this way needs a hand. Custody and kit actions deliberately never take an asset out of **Checked out**, because only the booking flow owns that exit, and in this case there is no live booking to check in. [Contact support](/contact) with the asset name and the kit it belongs to, and the record can be corrected.
+**And the kit no longer goes stale in the first place.** Ending a booking now works out which kits to release from two things rather than one: the assets' current membership, and the booking's own record of which kit each item went out under. That record survives a detach, so a kit whose members were pulled out mid-job is found and released when the booking is checked in, cancelled or deleted — one booking at a time or several at once from the index. Two neighbouring cases come with it. A check-in spread over several sessions releases the kit once its last outstanding item is back, instead of staying stuck on what earlier sessions left behind. And an asset that belongs to two kits releases both, where before only one of them was ever cleared.
+
+**Custody is not the cause here.** Handing an asset to someone reads **In custody**, a different badge, and custody actions are barred from touching **Checked out** at all: assigning custody skips an asset that is checked out, and releasing custody leaves it checked out. So if the badge in front of you says **Checked out**, custody did not put it there and releasing custody will not clear it.
+
+An asset left stuck before this shipped still needs a hand. Only the booking flow can take an asset out of **Checked out**, and the booking that stamped it has already finished, so there is nothing left to check in. [Contact support](/contact) with the asset name and the kit it belongs to, and the record can be corrected.
 
 ---
 
