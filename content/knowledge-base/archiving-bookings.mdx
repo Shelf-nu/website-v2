@@ -3,7 +3,7 @@ title: "Archiving Bookings"
 description: "Move finished bookings out of your active list, manually or automatically. Covers which bookings can be archived, the auto-archive settings, and what archiving means for reporting."
 category: "Bookings & Custody"
 date: "2026-07-22"
-updated: "2026-08-18"
+updated: "2026-09-02"
 layout: "knowledge-base"
 ---
 
@@ -48,6 +48,20 @@ If **Archive** isn't in the menu, the booking isn't eligible. Check its status a
 Completed bookings and past-due reserved bookings in your selection are moved to the archive together. If your selection includes a booking that can't be archived, Shelf tells you rather than archiving part of the batch.
 
 Bulk actions respect who owns a booking. An administrator or the workspace owner can archive, cancel or delete any booking in the workspace this way. A self-service or base user acts on their own bookings only, including when they use **Select all**, and including in workspaces where an admin has switched on booking visibility so they can see everyone else's. Seeing a booking has never meant being able to change it, and the bulk actions follow the same rule as the buttons on a single booking.
+
+### Cancelling or deleting in bulk leaves other commitments alone
+
+When a selection contains bookings that are **Ongoing** or **Overdue**, the gear on them has physically left, so each asset gets its own answer rather than the whole selection being swept back onto the shelf together. Shelf takes the strongest commitment that survives the batch:
+
+| What still holds the asset | Where it lands |
+|---|---|
+| Another **Ongoing** or **Overdue** booking outside your selection | Stays **Checked out** for that booking |
+| No other live booking, but a team member holds it in custody | **In custody** |
+| Nothing at all | **Available** |
+
+Bookings leaving in the same batch are not counted as each other's commitment, so two bookings that share an asset both genuinely let go of it. A custody record is left in place either way — it is a separate hold, and a booking exit has no business deleting it.
+
+This is the rule the single-booking **Cancel** and **Delete** buttons have followed for a long time. The bulk actions now match them, where before they wrote **Available** across the whole selection and could put an asset someone still had back into the pool for anyone to book.
 
 ---
 
