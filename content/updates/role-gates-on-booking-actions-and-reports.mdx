@@ -1,0 +1,30 @@
+---
+title: "A Role Now Decides What the Booking Actions Menu Offers, and Who Opens Reports"
+description: "Base and Self-service users no longer see bulk booking actions their role cannot complete, and the Reports pages and exports are refused for those roles by direct link as well as in the sidebar."
+date: "2026-08-28"
+image: "/images/updates/enhanced-user-permissions.jpg"
+readMoreUrl: "/knowledge-base/user-roles-and-their-permissions"
+layout: "update"
+---
+
+Two access rules that the app already intended are now enforced where it counts.
+
+## The bulk Actions menu on a booking
+
+On a booking's asset list, the bulk **Actions** menu asked only one question before opening: are you this booking's custodian. A Base user is the custodian of every booking they create, so past **Draft** the menu still offered them **Check in selected items** and **Remove assets/kits**. Check-in came back as an error, which was merely annoying. Remove went through, and removing an item from a live booking sends that asset back to the available pool, so the two ended up doing the same thing by different routes. A customer reported it.
+
+The per-row menu had the correct rule written into it all along. That rule now lives in one place and every surface asks it: the bulk menu, the action behind it, and the mobile remove endpoint.
+
+| Role | Can take items off a booking while it is |
+|---|---|
+| Owner, Administrator | Draft, Reserved, Ongoing or Overdue |
+| Self-service | Draft or Reserved, on their own booking |
+| Base | Draft only, on their own booking |
+
+A **Complete**, **Archived** or **Cancelled** booking is a closed record and its contents do not change for anyone. Nothing changes for Administrators and Owners, including the existing disabled-with-a-reason state on a closed booking. When a role holds none of the three bulk actions for the booking in front of it, the **Actions** button is no longer drawn at all rather than opening an empty sheet.
+
+## The Reports area
+
+**Reports** has been hidden from the sidebar for Base and Self-service users since it launched, but the pages themselves were gated on asset permissions as a stand-in, so a bookmarked or shared link still opened them. Reports read across every booking, custodian and asset value in the workspace at once, which is a wider question than either of the [visibility toggles](/knowledge-base/configure-what-self-service-and-base-users-can-see) answers.
+
+The report pages, the CSV export and the PDF export now require the same access the sidebar has always implied: Administrators and Owners. Nothing changes for anyone reaching Reports through the app's own navigation, and reports remain included on every plan.

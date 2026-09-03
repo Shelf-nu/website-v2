@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-25"
+updated: "2026-08-31"
 layout: "knowledge-base"
 ---
 
@@ -35,6 +35,22 @@ Clicking Add assets will open an asset manager modal that allows you to browse a
 You can also select several rows and remove them in one action, mixing loose assets and kits in the same selection. Removing a kit takes the units it carries and leaves any copy of the same asset that was added to the booking separately, so a selection only ever removes what you picked.
 
 A **Reserved** booking has to keep at least one asset or one model reservation. Take the last one off and Shelf refuses, because a reserved booking holding nothing reserves nothing and can never be checked out. Add the replacement first, or cancel the booking instead. **Draft** bookings are unaffected, and so are **Ongoing** and **Overdue** ones, where pulling an item off a live booking is a normal correction.
+
+### How far removal stays open, by role
+
+Removing an item is not only a question of the booking's status. It is also a question of what your role is allowed to do at that status.
+
+| Role | Can remove items while the booking is |
+|---|---|
+| Owner, Administrator | Draft, Reserved, Ongoing or Overdue |
+| Self-service | Draft or Reserved, on their own booking |
+| Base | Draft only, on their own booking |
+
+Nobody edits the contents of a **Complete**, **Archived** or **Cancelled** booking. Those are closed records and have to stay as they went out.
+
+The reason Self-service and Base stop where they do is the same reason they cannot check a booking in. Taking an item off a booking that is already Ongoing or Overdue reconciles that asset back to available, which is a return, and a return is check-in. For Base the line sits one status earlier because a Base user is already refused the *adding* half once a booking is reserved: the way to change a reserved request is to cancel it and create a new one.
+
+When your role holds none of the bulk actions for the booking in front of you, the **Actions** button is not shown at all, rather than opening a menu with nothing usable in it.
 
 ## Adding kits to a booking
 
