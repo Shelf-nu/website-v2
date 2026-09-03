@@ -3,7 +3,7 @@ title: "Introduction to Bookings"
 description: "This guide explains the fundamental concepts of Shelf's Bookings feature, which enables users to reserve equipment for specific time periods while preventing double-bookings."
 category: "Bookings & Custody"
 date: "2026-03-30"
-updated: "2026-07-22"
+updated: "2026-09-03"
 layout: "knowledge-base"
 ---
 
@@ -42,7 +42,7 @@ You can check out the whole booking at once with **Check Out**, or hand items ou
 ![2. Reserved](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df607_65d35f406742ee28457b7e19_Reserved.png)
 ### 3. Ongoing
 
-The **Check-out** action has been performed. Assets now have a **Checked out** status and are in the custodian's possession. The booking becomes **Ongoing** as soon as the **first** item is checked out, so a booking can be Ongoing while some items are still being handed out — those still read **Available** until they leave. A segmented **Booked / Checked out / Returned** lifecycle bar tracks where everything is. Administrators cannot take or assign custody during this phase. A **Check-in** action moves the booking to **Completed**. You can also **Delete** or **Cancel**.
+The **Check-out** action has been performed. Assets now have a **Checked out** status and are in the custodian's possession. The booking becomes **Ongoing** as soon as the **first** item is checked out, so a booking can be Ongoing while some items are still being handed out — those still read **Available** until they leave. A segmented **Booked / Partial / Fully out / Returned** lifecycle bar tracks where everything is (**Partial** only ever holds a quantity-tracked line with some of its units out). Administrators cannot take or assign custody during this phase. A **Check-in** action moves the booking to **Completed**, but only once every line that went out has been checked back in. You can also **Delete** or **Cancel**.
 
 
 ![3. Ongoing](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df61a_65d35f49a8a6b96788073a9a_Ongoing.png)
@@ -55,6 +55,8 @@ The booking's end date/time has passed without check-in. The system automaticall
 ### 5. Completed
 
 Assets have been returned and **Checked in**. The booking status changes to **Completed**, and asset statuses return to **Available**. You can now **Delete** or **Archive** the booking.
+
+A booking reaches **Completed** once everything that actually went out has been checked back in. Shelf reads that per line: an item that was never checked out has nothing to return and never holds the booking open, while an item that did go out has to be reconciled first, whichever way it left. Check-in is only offered while a booking is **Ongoing** or **Overdue**, which is why the booking waits rather than closing early. See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings#when-a-mixed-booking-finishes).
 
 
 ![5. Completed](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df617_65d35f5e180a8e89af8537ca_Completed.png)
