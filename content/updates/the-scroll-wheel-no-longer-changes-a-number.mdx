@@ -1,0 +1,17 @@
+---
+title: "The Scroll Wheel No Longer Changes a Number You Typed"
+description: "Chromium browsers were stepping a focused number field on every wheel tick, so scrolling down to reach Save could quietly alter the value on the way."
+date: "2026-09-03"
+image: "/images/updates/improved-asset-page.jpg"
+layout: "update"
+---
+
+Type `1250` into an asset's **Value**, scroll down the page to reach **Save**, and the field reads `1247` by the time you get there.
+
+Chromium-based browsers, which is Chrome and Edge among others, step the value of a focused number field on every tick of the mouse wheel while the pointer is resting over it. Nothing on screen announces it. The number simply is not the one you typed by the time you save it, and there is no reason to look again at a field you already filled in.
+
+## What changed
+
+Shelf now cancels the wheel while a number field has focus, and does nothing else with it. Typing, pasting, the arrow keys and the field's own spinner arrows all behave exactly as before. Focus stays where you put it rather than being dropped, and the page scrolls normally again the moment you click away. Read-only number fields never stepped in the first place, so their wheel is left alone, as are text fields, date fields and everything else.
+
+The guard covers all 45 number fields in the app. The ones where a stray tick does the most quiet damage are the obvious candidates: an asset's value and quantity, the unit counts in the check-out and check-in scanner drawers, quantities in **Manage assets** on a booking, a kit or a location, the counts when you reserve by asset model, and location placements.

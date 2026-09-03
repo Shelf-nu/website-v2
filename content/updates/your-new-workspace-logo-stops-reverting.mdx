@@ -1,0 +1,19 @@
+---
+title: "Your New Workspace Logo Stops Reverting"
+description: "Replacing a workspace image now sticks, instead of appearing to work and then flipping back to the old logo half a minute later."
+date: "2026-09-03"
+image: "/images/updates/team-workspaces.jpg"
+layout: "update"
+---
+
+Upload a new logo for your workspace and it appears straight away. Half a minute later it turns back into the old one, and reloading does not help. The new image had been saved the whole time. What you were looking at was your own browser's cached copy of the previous one.
+
+Three things lined up to produce that. A workspace image is replaced in place, so its address never changes. The address is served with a year-long cache lifetime, which is what makes the logo appear instantly on every page you open. And Shelf papered over the collision by tacking a changing value onto the address for 30 seconds after an update: inside that window you saw the new logo, and the moment it lapsed the address reverted to the plain one and your browser served the copy it had been holding. That flip was the revert.
+
+## What changed
+
+The address now carries a version that moves only when the stored image can actually have changed, and stays put the rest of the time. A new upload gets a new address, so the browser has to fetch it. Nothing else does, so the long caching that keeps logos instant still works.
+
+There is nothing to do on your side, even if you already had the old image stuck. Opening any page picks up the versioned address, which goes around whatever your browser had cached.
+
+It applies everywhere Shelf draws a stored image: the workspace switcher in the sidebar, workspace lists, the invite dialog, and the PDFs Shelf generates for bookings, audits and reports. Asset and kit photos were never part of this. They are served a different way and were always current.
