@@ -1,0 +1,22 @@
+---
+title: "Booking Compliance measures the deadline that was agreed"
+description: "Late returns were being recorded as on time the moment they were resolved. Compliance now measures against the planned end date, so your on-time rate reflects what actually happened."
+date: "2026-08-27"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-compliance-calculation.webp"
+readMoreUrl: "/knowledge-base/getting-started-with-reports#how-booking-compliance-decides-on-time-or-late"
+layout: "update"
+---
+
+**Your on-time rate is about to change, and the new number is the honest one.**
+
+Checking in an overdue booking moves its end date to the moment it came back. That is deliberate: the actual period is what the booking really ran. But Booking Compliance was measuring lateness against that rewritten date rather than the deadline the custodian agreed to, which meant every late return was recorded as on time the instant someone resolved it. A workspace's rate climbed toward 100% no matter how the equipment actually came back.
+
+Compliance now reads the **planned** end date on every axis: which timeframe a booking belongs to, the due date shown in its row, and how late it was. Two write-side holes that were quietly emptying that column are closed at the same time. Extending a booking no longer moves the planned deadline, so an extension can no longer clear a late return from the report, and checking a booking in no longer discards the plan of a booking that had been extended.
+
+**What you will see.** Organisations that have resolved late returns will see their on-time rate drop. Nothing about the equipment changed; the previous figure was not measuring late returns at all. Bookings that were extended are affected in both directions: they are measured against the deadline originally agreed, and ones that were extended and then checked in will re-enter the late column as new returns come in.
+
+Rows whose planned end had already been overwritten cannot be recovered, so they read as on time until they are superseded by newer bookings.
+
+**Booking Compliance and Overdue Items can now disagree, on purpose.** Compliance asks whether the agreed plan was honoured, so it uses the planned end. Overdue Items asks what is late right now, so it uses the current one. An overdue booking that gets extended leaves Overdue Items immediately and still counts as a late return when it comes back.
+
+The report states its own rule under the headline number: a booking counts as on time if it came back within 15 minutes of its scheduled end, and an overdue booking always counts as late.
