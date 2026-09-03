@@ -1,0 +1,24 @@
+---
+title: "Bulk Cancel and Delete Keep Other Commitments"
+description: "Cancelling or deleting several bookings at once no longer marks every asset on them Available. Each asset keeps the strongest hold that survives the batch."
+date: "2026-09-01"
+image: "/images/updates/bulk-select-actions.jpg"
+readMoreUrl: "/knowledge-base/archiving-bookings"
+layout: "update"
+---
+
+Cancel or delete one booking and Shelf looks at each asset on it before deciding what its status should be, because an asset can be committed in more than one place at a time. Doing the same to several bookings at once did not: **Cancel** and **Delete** on the bookings index wrote **Available** across every asset on every Ongoing or Overdue booking in the selection.
+
+That is the dangerous direction to get wrong. An asset out on booking A and also listed on booking B read as free the moment somebody bulk-cancelled B, while a borrower still had it for A. The same went for an asset a team member was holding in custody — the custody record survived, but the asset's status stopped saying so, and the availability figures took the status at its word.
+
+## What happens now
+
+Both bulk paths give each asset its own answer, keeping the strongest commitment that outlives the batch:
+
+- **Checked out** — another Ongoing or Overdue booking outside the selection still has it.
+- **In custody** — no other live booking, but a team member holds it.
+- **Available** — nothing else is holding it.
+
+Bookings dropped in the same batch do not count as each other's commitment. Without that, two bookings on their way out vouch for one another and pin a shared asset to **Checked out** against nothing, which is the failure that has no exit at all.
+
+Nothing changes for a selection of Draft, Reserved, Completed or Archived bookings: their gear never left, so there is no status to reconcile. Custody records are untouched throughout — a booking leaving has no business deleting a hold it did not create.
