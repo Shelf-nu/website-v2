@@ -1,0 +1,120 @@
+---
+title: "Connect Shelf Companion to Your Own Shelf Server"
+description: "Point the Shelf Companion app at your organization's own Shelf instance instead of Shelf Cloud: what has to be registered first, how to connect, how to sign in, and what each refusal means."
+category: "Getting Started"
+date: "2026-08-31"
+updated: "2026-08-31"
+layout: "knowledge-base"
+seo:
+  title: "Connect Shelf Companion to a Self-Hosted Shelf Server"
+  description: "Use the Shelf Companion iPhone and Android app with a self-hosted Shelf instance. Registration, connecting, single sign-on, switching back to Shelf Cloud, and every error explained."
+---
+
+From **Shelf Companion 1.5.0**, the app can sign in against a Shelf server that is not Shelf Cloud. If your organization runs its own Shelf instance, your field crew can use the same native scanner, audits, custody and bookings against your own data.
+
+Earlier versions of the app only ever talked to Shelf Cloud. Self-hosted teams had the web app and the [installable web app](/knowledge-base/shelf-mobile-app) on the phone, and nothing else.
+
+---
+
+## Before you start
+
+Three things have to be true. Two of them are your administrator's job, not yours.
+
+1. **The app is on version 1.5.0 or newer.** Update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Older builds have no **Connect to a private server** control at all.
+2. **Shelf has registered your domain.** The app asks Shelf Cloud which instance a domain belongs to, and Shelf Cloud answers from a registry it maintains. A domain nobody has registered is refused rather than sent to Cloud by default. Registering one is a change on Shelf's side, so it takes effect without a new app release. Contact Shelf to have your domain added.
+3. **Your server is reachable from the phone over HTTPS.** Plain HTTP is refused before the app sends anything. If your instance only answers on the company network, the phone needs to be on that network or on VPN.
+
+<Callout type="info" title="Nothing changes for Shelf Cloud users">
+
+If your team uses [app.shelf.nu](https://app.shelf.nu), you do not need any of this. Sign in on the first screen as normal. This article is only for organizations running their own Shelf server.
+
+</Callout>
+
+---
+
+## Connect the app to your server
+
+1. Open Shelf Companion. On the sign-in screen, tap **Connect to a private server**.
+2. Under **Your organization**, enter your domain. The field accepts **your work email**, **your company's domain**, or **your Shelf server address**, so whichever one you know is the one to type. `acme.com` is the shape it expects.
+3. Tap **Connect**.
+
+The app looks the domain up, fetches your server's configuration, and points itself there. The sign-in screen then names your server instead of Shelf Cloud.
+
+If you were already signed in somewhere, the app warns you first: *"Connecting to a different server signs you out of this one."* Changing servers ends the current session by design, because a session belongs to the server that issued it.
+
+---
+
+## Sign in
+
+Sign in with the same credentials you use on your organization's Shelf web app. Both paths work:
+
+- **Email and password**, as on the web.
+- **Single sign-on**, if your organization has [SSO configured](/knowledge-base/sso-with-google-workspace) on that server.
+
+Some servers are set up to accept single sign-on only. On those, the app hides the password fields and offers SSO alone. That is set centrally by Shelf for the server, and it is a presentation choice in the app rather than a security control: your server's own rules decide what a sign-in attempt is allowed to do.
+
+Once you are in, everything works as it does on Shelf Cloud: [scanning](/knowledge-base/shelf-ios-companion-getting-started), [audits](/knowledge-base/run-your-first-audit), custody, and bookings, against your own workspace and your own data.
+
+---
+
+## Switch back to Shelf Cloud
+
+You are never stuck on one server.
+
+- **From the sign-in screen**, tap **Disconnect from [your server]**.
+- **From Settings**, tap the server row and choose **Disconnect**.
+
+Either way, the app tells you first that changing servers signs you out. It then returns to Shelf Cloud and asks you to sign in again.
+
+The Settings row also offers **Connect to a different server**, so a contractor who works across two Shelf instances can move between them without reinstalling anything.
+
+---
+
+## What each refusal means
+
+The connect screen names the reason rather than failing generically. What you see maps to a specific cause:
+
+| Message | What it means | What to do |
+|---|---|---|
+| *"Enter your organization's domain, for example acme.com."* | The text is not a usable domain. | Check for a typo, a stray space, or a pasted full URL with a path on the end. |
+| *"[domain] isn't set up for a private server. Check with your administrator."* | Shelf has no server registered for that domain. | Confirm the domain with your administrator, and ask them to have Shelf register it. |
+| *"Can't reach Shelf to look up that domain. Check your connection and try again."* | The phone could not reach Shelf Cloud to run the lookup. | Check the phone's connection and retry. |
+| *"That server isn't set up securely. Contact your administrator."* | The registered address is not HTTPS. | Your administrator needs to serve the instance over HTTPS. |
+| *"Can't reach your organization's Shelf server. If you're off the company network, connect to VPN and try again."* | The lookup worked, but the phone could not reach the server itself. | Join the company network or VPN, then retry. |
+| *"That server isn't set up for the Shelf app. Contact your administrator."* | The server answered, but not with a configuration the app can use. | Your administrator should confirm the instance is current and its mobile configuration is enabled. |
+| *"This Shelf server needs to be updated before the app can connect."* | The server is running a Shelf version older than the app supports. | Your administrator needs to upgrade the instance. |
+| *"[server] requires a newer version of Shelf. Update the app to continue."* | Your server requires a newer app than this phone has. | Tap **Update Shelf** on the same screen to open the store listing. Retrying will not help. |
+
+The last one is the only failure the screen offers a button for, because it is the only one a retry cannot fix.
+
+---
+
+## Frequently asked questions
+
+### Does this mean any self-hosted Shelf works with the app?
+
+Not automatically. Your domain has to be in the registry Shelf Cloud answers from, and your instance has to be reachable over HTTPS. The app deliberately refuses an unregistered domain rather than falling back to Shelf Cloud, so nobody signs into the wrong place by accident.
+
+### Does the lookup expose our server to anyone?
+
+The lookup answers one domain at a time and never lists the registry, so it cannot be used to enumerate who runs a private Shelf server. It is also rate limited, which caps how fast anyone could guess at domains.
+
+### Do I need a separate account for the app?
+
+No. You use the account you already have on that server, with the same workspaces, roles and permissions.
+
+### Can I be signed into two servers at once?
+
+No. One server at a time, per device. Switching signs you out of the one you are leaving, and the app confirms before it does.
+
+### Where do I ask to have our domain registered?
+
+Contact Shelf. It is a server-side change on Shelf Cloud and needs no new app build, so it takes effect for everyone on your team as soon as it is made.
+
+---
+
+## Related
+
+- [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started)
+- [Install Shelf on your phone or desktop](/knowledge-base/shelf-mobile-app)
+- [Open source and self-hosted Shelf](/solutions/open-source-asset-management)

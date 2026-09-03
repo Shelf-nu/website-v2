@@ -1,0 +1,61 @@
+---
+title: "Shelf Companion 1.5.0: Connect the App to Your Own Server, and a Scanner That Says What Happened"
+description: "Companion 1.5.0 is live on the App Store and Google Play: sign in against your organization's own Shelf server, jump to a code that lives in another of your workspaces, undo a mis-scan during an audit, and see where each scanned asset lives."
+date: "2026-08-31"
+image: "/images/updates/shelf-mobile-app.jpg"
+readMoreUrl: "/knowledge-base/connect-shelf-companion-to-your-own-server"
+layout: "update"
+---
+
+**Shelf Companion v1.5.0** is live on the [App Store](https://apps.apple.com/app/id6765639874) and [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). The app can now sign in against a Shelf server that is not Shelf Cloud, the scanner explains results it used to swallow, and an audit scan can be taken back off.
+
+## The app can point at your own Shelf server
+
+Until now the Companion app only ever talked to Shelf Cloud, so teams running their own Shelf instance had the web app and nothing else on the phone.
+
+The sign-in screen now carries **Connect to a private server**. Tap it, enter your organization's domain, and the app looks up which Shelf instance that domain belongs to and points itself there. The field takes your work email, your company's domain, or your Shelf server address, because someone who knows only one of the three should not have to guess the others. From then on you sign in with your password or your company's single sign-on against your own server, and the scanner, audits, custody and bookings all run against your data.
+
+Shelf Cloud is always one tap away again, from the sign-in screen or from **Settings**. Changing servers signs you out of the one you are leaving, and the app says so before it does anything.
+
+One thing to know before you try it: **your domain has to be registered with Shelf first.** The lookup is answered from a registry Shelf maintains, over HTTPS only, so entering a domain Shelf has not registered comes back as "not set up for a private server" rather than quietly sending you to Cloud. Registering a domain is a change on Shelf's side and needs no new app build. [How to connect the app to your own server](/knowledge-base/connect-shelf-companion-to-your-own-server) walks through it.
+
+## The scanner tells you what actually happened
+
+Three scans used to end in a result that did not match what the app had done.
+
+- **A code from another of your workspaces.** The card now names the workspace the asset or kit lives in and offers **Switch & view**, which changes workspace and opens the record in one tap. It reads as amber rather than red, because a code sitting in your own other workspace is a routine hit with a fix attached, not a failed scan. A code from a workspace that is not yours stays red, because there is nowhere to go.
+- **Scanning something twice.** A repeat now reads **Already Scanned**, with *"This asset is already in your list."* That is a different thing from a scan that failed, and it no longer looks like one.
+- **Scanning a kit while fulfilling a reservation.** Fulfilling matches scans against a booking's model lines and a kit has no model line, so a kit scan could never fulfil anything. Instead of a green card that went nowhere, the app now says *"Kits aren't matched when fulfilling reservations. Scan the kit's individual assets."*
+
+## An audit scan comes back off, on the phone
+
+Removing a mis-scan from a live audit [arrived on the web](/updates/an-audit-can-be-corrected-while-it-runs) with the endpoint the app needed, and the button for it is here now.
+
+Open a scanned row, and the sheet that holds its notes and photos carries **Remove scan** at the foot. Confirming answers *"goes back to how it was before you scanned it. You can scan it again."* An asset the audit expected returns to **Not scanned**; an asset that was never on the list leaves the audit, because nothing but the scan put it there. When the row holds evidence, the sheet adds *"Your notes and photos stay on the audit."* That is true: evidence hangs off the audit's row for the asset rather than off the scan, so undoing a mis-scan never costs you the photo you took.
+
+As on the web, a **Completed** or **Cancelled** audit refuses the change. Its numbers have been reported.
+
+## Audit rows say where, not "Found"
+
+A scanned row used to repeat the word **Found**, which every row on the list already was.
+
+The second line now carries the asset's **location** instead, so a walk through a room tells you which of the found items are not where they should be. An asset the audit did not expect says **Not on this audit**, with its location after it when it has one, because for that row the useful fact is that it does not belong here.
+
+The count of those unexpected assets sits at the top and is **tappable**: it filters the scanned list down to just them, and tapping again puts the rest back. Notes and photos are counted separately on each row, so one note plus one photo never reads the same as two photos.
+
+**Archived audits are reachable from the phone**, with an **Archived** filter, and **All** now includes them. An audits list you were used to will get longer.
+
+## Bookings
+
+- **A personal workspace explains itself.** The Bookings tab used to look broken there. It now says **Bookings live in team workspaces**, and offers to switch to one you belong to, or tells you to create one on the web if you have none.
+- **Days that have already passed no longer offer a new booking**, and a new booking opens with a start time you can actually save.
+- **Archive is available on reserved bookings that are past their end date**, matching the web.
+
+## Fixes
+
+- **The app opens in the workspace you last chose on that device.** [The server-side half of this](/updates/the-app-opens-the-workspace-you-last-used) shipped in August and applied to the app you already had; the device remembering your choice is new here. It is stored under a new key, so the first launch of 1.5.0 falls back to the server's answer once. If you belong to several workspaces, the app may open somewhere unexpected exactly one time, and then remembers.
+- **Delete Account opens the right page** instead of one that did not exist.
+- **Amount custom fields show their currency** rather than a bare number.
+- **Creating another asset no longer claims it will link a QR code it will not.**
+
+Take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Everything above needs 1.5.0. An older install keeps working, it just does not have these.
