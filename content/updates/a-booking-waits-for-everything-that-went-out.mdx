@@ -1,0 +1,30 @@
+---
+title: "A Booking Waits for Everything That Went Out"
+description: "Completion is now judged item by item, so a booking that mixes the Check out button with scanning no longer closes itself while stock is still on the road."
+date: "2026-09-03"
+image: "/images/updates/partial-check-ins.jpg"
+readMoreUrl: "/knowledge-base/progressive-checkout-of-bookings"
+layout: "update"
+---
+
+Shelf decided when a booking was finished by asking a question about the **booking**: has anything on it been scanned out? If the answer was yes, only the units those scans recorded were treated as owing a return.
+
+The **Check out** button records no scans. So a booking checked out with the button, then given a single scanned handover later in the day, stopped counting everything the button had sent out. On a booking that mixed individually tracked gear with [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables), the last individual return closed the booking while the pooled units were still with the custodian.
+
+That is worse than a wrong number on a page. Check-in is only offered while a booking is **Ongoing** or **Overdue**, so once the booking closed there was no way left to record those units coming back. They stayed reading as checked out, against a booking that had already finished.
+
+## What changed
+
+Completion is judged **per item, from that item's own record**, with no booking-level mode switch. An item that went out has to be reconciled before the booking can close, whether it left on a scan or with the button. An item that never left the shelf carries no obligation and never holds the booking open. For a quantity-tracked line the same rule is counted in units: scanned units come from the scan, and the units the button sent out are counted from the line itself.
+
+This is the same rule the check-in screen already used to decide what you are allowed to check in, so an item now blocks completion exactly when it is still checkinable.
+
+## A finished booking says what it is holding
+
+The other half of the old reading showed up on the completed page: a single scan made every other returned item on the booking render as though it had never been checked out.
+
+A **Complete** or **Archived** booking now reports its records rather than assuming everything came back. Items with a recorded return read **Returned**. Items that went out with no return recorded stay **Fully out**, and a quantity line with only some units back reads **Partial**, so a closed booking that is still holding gear says so. Older bookings checked out all at once, before Shelf recorded checkout on each line, have nothing to read per line and still show as fully returned.
+
+## If this already happened to you
+
+New bookings cannot close this way. A booking that already closed with stock outstanding still needs its counts corrected by hand, because the units were never checked in and the booking can no longer accept a check-in. Contact support with the booking and we will put it right with you.

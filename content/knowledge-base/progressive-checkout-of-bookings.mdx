@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-08-28"
+updated: "2026-09-03"
 layout: "knowledge-base"
 ---
 
@@ -35,15 +35,22 @@ Once the booking is **Ongoing** or **Overdue**, the same button reads **Check ou
 
 ### The Booking Lifecycle Bar
 
-When a booking has any progressive checkout or check-in activity, the single check-in progress bar is replaced by a segmented **lifecycle bar** that shows the whole journey at a glance:
+When a booking has any progressive checkout or check-in activity, the single check-in progress bar is replaced by a segmented **lifecycle bar** that shows the whole journey at a glance. Its legend has four buckets:
 
-- **Booked** (gray) — reserved items not yet checked out
-- **Checked out** (purple) — items currently in the custodian's hands
-- **Returned** (green) — items already checked back in
+- **Booked** (gray): reserved items not yet checked out
+- **Partial** (amber): a quantity-tracked line with some, but not all, of its units out
+- **Fully out** (purple): items currently in the custodian's hands
+- **Returned** (green): items already checked back in
+
+Only [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) lines can sit in **Partial**, because an individually tracked asset has either left or it hasn't. The bar's tooltip says as much: *"Partial means a quantity-tracked asset has some, but not all, units out."*
 
 The headline above the bar adapts to the phase you're in. While any items are still **Booked**, it reads **"Check-out progress"** and counts how many items have left. Once everything has left, it switches to **"Check-in progress"** and counts how many have come back. A legend underneath shows the exact count in each bucket.
 
-{/* TODO: Screenshot needed: the segmented Booked / Checked out / Returned lifecycle bar on a booking (PR #2625) */}
+{/* TODO: Screenshot needed: the segmented Booked / Partial / Fully out / Returned lifecycle bar on a booking (PR #2625) */}
+
+#### What a Finished Booking Shows
+
+A **Complete** or **Archived** booking reports what its records actually say, rather than assuming everything came back. A line that went out and was checked back in reads **Returned**. A line that went out with no return recorded against it stays **Fully out**, and a quantity-tracked line with only some of its units back reads **Partial**, so a closed booking still holding gear says so on its face. Older bookings that were checked out all at once, before Shelf recorded checkout on each line, have nothing to read per line and still show as fully **Returned**.
 
 If your workspace counts [each kit as a single unit](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns#how-the-check-in-progress-bar-counts-kits), the lifecycle bar honors that setting too — the tooltip reads *"Kits count as one item."* Otherwise every asset is counted individually, with the tooltip *"All assets inside kits are counted individually."*
 
@@ -105,6 +112,14 @@ The two checkout styles combine freely on the same booking. A common shape is a 
 Shelf now records the fact of checkout **on each line of the booking**, at the moment that line goes out, rather than inferring it from the booking as a whole. That is what lets the two styles mix. Whether an item can be checked back in is answered by that item's own record, so adding a scanned handover to a booking that started all at once does not change the standing of anything already out.
 
 > **If you saw "Cannot check in assets that were never checked out" on items the page showed as Checked out**, that was this. Shelf was reading the question at the level of the booking, so a booking that started with the **Check out** button and later gained a single scanned item stopped recognising everything the button had sent out. It is fixed, and no action is needed on your side.
+
+### When a Mixed Booking Finishes
+
+A booking is finished when everything that actually went out has come back, and that is judged line by line from each line's own record, exactly the way check-in eligibility is. A line that never left carries no return obligation and never holds the booking open. A line that did leave has to be reconciled before the booking can close, whether it left on a scan or with the **Check out** button.
+
+For a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line the obligation is counted in units. Units that a scan recorded are counted from the scan; units the **Check out** button sent out are counted from the line itself, even though no scan ever named them. Both kinds have to be settled before the booking closes.
+
+> **If a booking of yours closed itself while stock was still out**, that was the same booking-level reading. One scanned handover put the whole booking into "only scanned units count" mode, so quantity-tracked stock the **Check out** button had sent out stopped counting toward completion. The booking then completed on the last individual return while those units were still on the road, and check-in is only offered on an **Ongoing** or **Overdue** booking, so there was no longer a way to record them coming back. New bookings can no longer end that way. If you have a closed booking whose stock never got checked back in, contact support and we will correct the counts with you.
 
 ## Best Practices
 
