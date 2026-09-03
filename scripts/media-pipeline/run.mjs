@@ -33,6 +33,8 @@ const ARTICLES = {
   "transfer-ownership-header": "articles/transfer-ownership-header.mjs",
   "kit-code-chips": "articles/kit-code-chips.mjs",
   "bulk-update-row-count": "articles/bulk-update-row-count.mjs",
+  "custody-on-location-page": "articles/custody-on-location-page.mjs",
+  "nrm-actions-and-delete": "articles/nrm-actions-and-delete.mjs",
 };
 
 const slug = process.argv[2];

@@ -3,7 +3,7 @@ title: "Activity Logs for Bookings"
 description: "The Activity tab in each booking provides a complete timeline of events and notes, helping teams keep track of conversations, updates, and system changes in one central place."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-17"
+updated: "2026-08-27"
 layout: "knowledge-base"
 ---
 
@@ -27,11 +27,12 @@ Activity Logs serve these key functions:
 
 Shelf automatically records major booking events, including:
 
-- Status changes (Booked, In Progress, Closed)
-- Schedule and description edits
-- Asset or kit additions and removals
-- Partial and complete check-outs
-- Partial and complete check-ins
+- **Status changes**, naming the badge the booking moved from and the badge it moved to. The statuses are the ones you see on the booking itself: **Draft**, **Reserved**, **Ongoing**, **Overdue**, **Complete**, **Cancelled** and **Archived**. Some transitions say what happened in words as well, so a booking that ran past its end date reads *"Booking became overdue"* and one archived by Shelf reads *"Booking was automatically archived"*
+- **Field edits**, one entry per field that moved, each naming the old value and the new one: name, description, start date, end date, custodian and tags
+- **Assets and kits added or removed**, with a link to each one and the quantity where the asset is quantity-tracked
+- **Model-level reservations** created, resized, cancelled and settled (see below)
+- **Check-outs and check-ins**, partial and complete, naming what each one covered
+- **Quantity dispositions** recorded at check-in for quantity-tracked assets
 
 ### Team Notes
 
@@ -40,6 +41,15 @@ Users can add their own entries:
 - Compose notes in Markdown with live previews
 - Edit or remove your own notes at any time
 - Clear attribution shows who added the note and when
+
+### Model-Level Reservations
+
+Reserving a number of units of an [asset model](/glossary/asset-models) rather than a named asset leaves its own trail, and the trail follows the quantity rather than just the fact that something changed:
+
+- Creating one reads *"reserved **3 × Sony A7 III** for this booking."*
+- Changing the number reads *"increased the **Sony A7 III** reservation from **2** to **5**."*, or *decreased* the same way
+- Cancelling reads *"cancelled the **3 × Sony A7 III** reservation for this booking."*, so the entry that removes the commitment states the same count as the one that made it
+- Each unit that gets assigned to the reservation, by scanning a specific one of them in, reads *"assigned Sony A7 III #0042 (Sony A7 III) to this booking — 2 × Sony A7 III remaining."*, with the asset named as a link. One entry per unit, so a promise of three can always be traced back to the three assets that filled it
 
 ## Formatting and Readability
 

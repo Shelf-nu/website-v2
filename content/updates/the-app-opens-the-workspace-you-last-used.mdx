@@ -1,0 +1,13 @@
+---
+title: "The Mobile App Opens the Workspace You Last Used"
+description: "Shelf Companion now lands in the same workspace the web opens for you, instead of whichever one the database happened to return first."
+date: "2026-08-26"
+image: "/images/updates/shelf-mobile-app.jpg"
+layout: "update"
+---
+
+If you belong to more than one workspace, the [Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) app opens one of them for you when you sign in. Which one was never actually decided — the app takes the first workspace the server sends, and the server had no order at all. For someone invited to a team, that routinely meant landing in their own empty personal workspace and having to switch every time.
+
+The server now returns workspaces in a defined order, and it is the same hierarchy the web has always used: the workspace you last chose, then your personal workspace if you have not chosen one, then the rest. SSO users are never offered a personal workspace on any platform, so they land in a team workspace their administrator assigned.
+
+This is a server change, so it applies to the app you already have. There is nothing to update and nothing to configure.

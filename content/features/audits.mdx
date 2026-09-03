@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-08-25"
+updated: "2026-08-31"
 seo:
   title: "Asset Audits — Physical Inventory Verification | Shelf"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Download a PDF audit receipt with the full asset list. Paid add-on with 7-day free trial."
@@ -69,6 +69,8 @@ Assign the audit to a team member, or just start scanning yourself — owners an
 
 The scan page is purpose-built for audits — separate from regular check-in/check-out — so there is no confusion about what workflow is active.
 
+A scan can be taken back off. Every scanned row carries a bin icon, and removing a scan puts an expected asset back to **Not scanned** or drops an unexpected one out of the audit entirely. The counts are recounted from the rows rather than nudged down, so a corrected audit reports the truth rather than an approximation of it. Correction is only open while the audit is live: once it is Completed or Cancelled its numbers have been reported and the scans are fixed.
+
 ![Dedicated audit scan page with asset list and scanner / camera toggle](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
 
 ---
@@ -84,7 +86,7 @@ As scanning progresses, Shelf tracks each expected asset in real time:
 
 Nothing is called missing while the count is still going on. A running audit only ever tells you what has been found and what has not been reached yet, so the word means something when it finally appears.
 
-Auditors can add notes and photos to any asset during the audit, documenting damage, wrong labels, or condition issues. This works on the web and in the [Shelf Companion app](/mobile-app): open a row, write a condition note, and attach a photo from the camera or the photo library. A badge on each row shows how much evidence it already carries, and everything lands on the same audit record.
+Auditors can add notes and photos to any asset during the audit, documenting damage, wrong labels, or condition issues. This works on the web and in the [Shelf Companion app](/mobile-app): open a row, write a condition note, and attach a photo from the camera or the photo library. A row that carries evidence says what it holds — "1 note, 2 photos" — and opens the full record, on the phone as well as the web, so the person still on the floor can read what a colleague wrote about the same item ten minutes earlier. Notes and photos are counted separately, so one note plus one photo never collapses into an ambiguous "2". Everything lands on the same audit record.
 
 **You do not have to find something to record something about it.** **Add comment** and **Add image** sit on rows nobody has scanned yet as well as on the ones already found, so a photo of the empty shelf where the camera should have been is part of the same record as the gear that turned up.
 
@@ -146,6 +148,7 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Dedicated scan page**: Purpose-built audit scanning interface, separate from check-in/check-out workflows.
 - **Notes and photos per scan**: Document conditions, discrepancies, or issues as you go, from the web app or from the Shelf Companion app on iPhone and Android. Photos can be taken with the camera on the spot or picked from the photo library. **Add comment** and **Add image** work on assets nobody has scanned yet as well, so the empty shelf gets photographed too.
 - **Findings, grouped by asset**: One column on the audit collects every note and photo people recorded, with the words and the pictures for the same item together. Each row in the asset table carries a chip counting what is on it, so a large count shows at a glance which items were worth writing about.
+- **Correct a mis-scan while the audit is live**: Remove a scan from the scan page and the asset goes back to Not scanned, or leaves the audit if nothing but the scan put it there. Counts are recomputed from the rows, and the change is attributed in the audit's activity. Scans are fixed once the audit is Completed or Cancelled.
 - **Real-time progress**: Live counts of expected, found, not scanned, and unexpected assets update as scanning happens, on the audit itself and in the audit list.
 - **Location context in scan list**: When auditing by tag, category, or any non-location filter, each asset in the scan list shows its current location beneath its name — helping auditors identify where they need to look without leaving the scan view. Location is automatically hidden when the audit is scoped to a specific location to avoid redundancy.
 - **PDF audit receipt**: **Actions → Download Receipt** produces one document with the counts, the full asset table, a Findings section pairing each asset's notes with its photos, and the activity log, for compliance, insurance, or management review. The Activity tab exports its note log separately as CSV.

@@ -28,7 +28,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Field Audits",
         description:
-            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan, complete the audit when done.",
+            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan and read them back later, complete the audit when done.",
         icon: ClipboardCheck,
     },
     {
@@ -40,7 +40,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Bookings, End to End",
         description:
-            "Create, edit, and reserve bookings from the phone with availability-aware asset, kit, and model pickers, then scan the actual units to assign and check out, and record what comes back on return.",
+            "Create, edit, and reserve bookings from the phone with availability-aware asset, kit, and model pickers, then scan the actual units to assign and check out, and record what comes back on return. Read the month as a calendar or the week as a list.",
         icon: CalendarCheck,
     },
     {
@@ -63,11 +63,12 @@ export const mobileAppFeatures: MobileAppFeature[] = [
 
 export const builtForApp = [
     "Field audits and inventory walks",
-    "Adding notes and photos to an audit scan",
+    "Adding notes and photos to an audit scan, and reading them back on the asset",
     "Scanning QR codes and barcodes on-site",
     "Quick asset lookups and status checks",
     "Custody handoffs between team members",
     "Creating, editing, and checking bookings in and out at the point of use",
+    "Reading a month of bookings as a calendar and creating one on the day you tapped",
     "Scanning reserved models into a booking to assign and check out",
     "Claiming a brand new QR label into the workspace (admins and owners)",
     "Correcting stock counts on the shelf, with a reason attached",
@@ -115,7 +116,7 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     },
     {
         question: "Can I capture audit evidence (photos, notes) from the app?",
-        answer: "Yes. Tap any row in the scanned-items list during an audit to open the evidence sheet, write a condition note, and attach a photo taken with the camera or picked from your photo library. Each row shows how many pieces of evidence it carries, and everything lands on the same audit record you see on the web.",
+        answer: "Yes. Each scanned row during an audit carries an Add photo/note action — tap it to write a condition note and attach a photo taken with the camera or picked from your photo library. Once a row holds evidence, the action becomes a count of what it carries, and rows on the audit's asset list say what they hold (\"1 note, 2 photos\") and open the full record: every note and photo, with who recorded it and when. Notes and photos are counted separately. Everything lands on the same audit record you see on the web.",
     },
     {
         question: "Does the app track my location?",
