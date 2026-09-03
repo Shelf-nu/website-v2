@@ -3,7 +3,7 @@ title: "Custody Feature for Long-Term Equipment Lend-Outs"
 description: "The custody feature functions like an indefinite checkout system, allowing organizations to track which team members have borrowed assets without specifying return dates or locations."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-25"
+updated: "2026-08-31"
 layout: "knowledge-base"
 ---
 
@@ -34,7 +34,7 @@ When a custodian returns the asset to the equipment room and you wish to make it
 
 The Actions button displays the Release custody option.
 
-**Note:** Assets in custody display a blue status badge. Releasing custody clears that hold. The asset returns to **Available** unless something else is still holding it, which is covered below.
+**Note:** Assets in custody display a blue status badge. Releasing custody clears that hold. The asset returns to **Available** unless something else is still holding it, which is covered below. If the asset is in custody because its **kit** is, the release is refused and you release the kit instead. See [Custody a kit put there belongs to the kit](#custody-a-kit-put-there-belongs-to-the-kit).
 
 ## Where You Can See Who Holds an Asset
 
@@ -61,6 +61,25 @@ An asset can be spoken for in two independent ways: someone holds it in custody,
 **A kit takes what it can.** Assigning custody of a kit gives its members to the custodian, except any member that is currently checked out on a booking. Those members keep their **Checked out** status, and the kit's custody applies to the rest.
 
 The rule in one line: **checked out outranks in custody, which outranks available.** Only the booking flow can take an asset out of **Checked out**.
+
+## Custody a Kit Put There Belongs to the Kit
+
+Giving a kit to someone puts every member asset into that person's custody too, and each of those holds is recorded as coming from the kit rather than from an operator. Those two origins are now kept apart.
+
+**A member cannot be released on its own.** Open a kit member and choose **Release custody** and Shelf refuses, under the heading *"Custody is managed by the kit"*, with *"This asset is in custody because its kit is. Release the kit's custody instead."* The same refusal answers the bulk **Release custody** action on the assets index and the [Shelf Companion](/mobile-app) app, which had been offering a live Release custody button on any kit member. Before this, releasing a member that way left the asset reading **Available** while the kit page still said it was in Alice's custody and still listed it as a member.
+
+**A member the kit is already holding cannot be handed to someone else either.** Assigning custody of that asset to a different person is refused with the same message, for the same reason: the kit has it. A kit member whose kit is *not* in custody has no kit-derived hold on it, so assigning custody to it directly works as usual.
+
+There are two ways to end a kit-derived hold, and both go through the kit:
+
+- **Release the kit's custody.** Every member hold it created clears with it.
+- **Take the asset out of the kit.** The kit's hold on that asset goes with it, and the asset returns to **Available** unless something else, an operator-assigned custody or a booking, is still holding it.
+
+Custody you assigned to an asset directly is untouched by any of this. It releases exactly as it always did, including on an asset that is also a kit member and carries both kinds of hold at once. In a bulk **Release custody** across a mixed selection, nothing is released at all if any asset in the selection is held by its kit: the whole action is refused rather than half applied, so you never end up with part of a batch released and no record of which part.
+
+The batch scanner already reached part of this. Its blocker list names **assets that are part of a kit** for both **Assign Custody** and **Release Custody**, and it always has. That check reads kit membership rather than where the hold came from, so it was never the same rule, and it was the only place the rule existed. The refusal above is what the asset page, the bulk index action and the app were missing.
+
+Quantity-tracked pools work differently and are unaffected. A pool can be held by several custodians at once and by a kit at the same time, so **Assign** and **Release Quantity Custody** act on one custodian's slice by name. Releasing your own slice never touches the units the kit is holding, and the kit's slice still clears only through the kit.
 
 ## Quantity-Tracked Pools Can Be Both at Once
 

@@ -1,0 +1,25 @@
+---
+title: "A Kit Is Released From What the Booking Recorded"
+description: "Pulling a member out of a kit while its booking was running used to leave the kit reading Checked Out forever, with no way to clear it. Ending the booking now finds the kit through the booking's own record."
+date: "2026-09-01"
+image: "/images/updates/kits-bookings-integration.jpg"
+readMoreUrl: "/knowledge-base/kits"
+layout: "update"
+---
+
+Swapping a part out of a kit while the kit is out on a job is ordinary maintenance. Until now it had an expensive side effect. Ending the booking worked out which kits to release by looking at what each asset belonged to **at that moment**, so a kit whose members had been pulled out during the job was invisible when the job ended, and it kept reading **Checked Out** with nothing out.
+
+That is not a cosmetic badge. A kit stuck in that state cannot be added to a live booking, is filtered out of the booking picker and the add-to-kit picker, and there is no button anywhere in Shelf that clears it.
+
+## What happens now
+
+A booking keeps its own record of which kit each item went out under, and that record survives the member leaving the kit. Ending a booking now reads both — the kit's current contents and the booking's record — so a kit is found and released either way. This applies wherever a booking ends: **check-in**, **cancel** and **delete**, on a single booking or across a selection on the bookings index.
+
+Two neighbouring cases are fixed by the same change:
+
+- **A check-in spread over several sessions** now releases the kit once its last outstanding item is back. Earlier sessions no longer leave residue that keeps the kit reading **Checked Out** after everything has returned.
+- **An asset that belongs to two kits** now releases both. Only one of them was ever cleared before.
+
+Releasing a kit is deliberately generous rather than exact: a kit named once too often is a harmless repeat of "this is available", while a kit missed once is stuck for good.
+
+Kits already stuck this way keep their status, because the booking that would have released them has already finished. [Contact support](/contact) with the kit name and we can correct the record.

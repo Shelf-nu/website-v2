@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-08-26"
+updated: "2026-09-02"
 layout: "knowledge-base"
 ---
 
@@ -48,7 +48,7 @@ Kits can exist in three states:
 
 - **Available**: Ready for assignment to a person or booking
 - **In Custody**: Currently held by a person; unavailable for reassignment until released
-- **Checked Out**: Assigned to a booking and unavailable for reassignment
+- **Checked Out**: Assigned to a booking and unavailable for reassignment. It clears when the bookings holding it end and nothing of the kit's own is still out
 
 ## Kit Assets
 
@@ -141,6 +141,10 @@ Only the bookings holding **this** kit are touched. That matters when a quantity
 
 The rule in one line: **the asset stays on the booking if the booking has ever left the planning stage.**
 
+**The kit is still released when that booking ends.** A member you pull out mid-job stays on the booking under its kit, so the booking keeps its own record of which kit sent the item. Ending that booking reads that record alongside the kit's current contents, so the kit returns to **Available** even though its membership changed while the job was running. This holds for every way a booking ends: checking it in, cancelling it, or deleting it, one at a time or several at once from the bookings index. A check-in split over several sessions releases the kit once its last outstanding item is back.
+
+Before this, a kit in that position stayed **Checked Out** with nothing actually out. That is not a cosmetic badge: such a kit cannot be added to a live booking, is filtered out of the booking and add-to-kit pickers, and there is no button anywhere that clears it. A kit stuck that way before this shipped still needs [support](/contact) to correct the record, since the booking that would have released it has already finished.
+
 This is why a finished booking no longer rewrites its own history. Taking an asset out of a kit used to make that asset appear as a loose item on every past booking that had used the kit, so a completed job retroactively looked like it had gone out with a stray asset rather than a complete kit.
 
 Because a row carrying the **Removed from kit** label looks otherwise identical to a current kit member, and the kit header counts the rows shown, a booking can read "3 assets" beside a kit that now holds 2. The label is what explains the difference. It disappears by itself if you put the asset back in the same kit. The [pull-list PDF](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings) carries the same information as printed text in the Kit cell, since a printout has nothing to hover over.
@@ -158,6 +162,14 @@ Kit membership that was already deleted before this shipped cannot be recovered,
 ## Assigning Custody
 
 Navigate to the kit page and select **Assign Custody**. Choose the team member to receive custody responsibility. The kit updates to reflect the new custodian.
+
+Every member asset goes into that person's custody with the kit, and each of those holds belongs to the kit rather than to whoever clicked. That has a consequence worth knowing before you go looking for it on the asset:
+
+- **Release custody on a single member is refused**, with *"This asset is in custody because its kit is. Release the kit's custody instead."* That answer is the same on the asset page, in the bulk **Release custody** action on the assets index, and in the [Shelf Companion](/mobile-app) app.
+- **Handing one member to a different person is refused too**, for the same reason.
+- **The two ways out both go through the kit.** Release the kit's custody and every member hold clears with it. Or take the asset out of the kit, which takes the kit's hold with it and returns the asset to **Available** unless something else is still holding it.
+
+Custody you assigned to an asset directly is separate and releases as it always did, even on an asset that also sits in a kit. See [Custody a kit put there belongs to the kit](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs#custody-a-kit-put-there-belongs-to-the-kit).
 
 ## Audit Trail
 

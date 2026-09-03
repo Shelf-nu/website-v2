@@ -3,7 +3,7 @@ title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
 description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-17"
+updated: "2026-09-03"
 layout: "knowledge-base"
 ---
 
@@ -95,7 +95,7 @@ The system features context-aware status management that handles complex scenari
 
 ## How the Check-in Progress Bar Counts Kits
 
-Once a booking has any progressive checkout or check-in activity, the simple check-in bar becomes a segmented **Booked / Checked out / Returned** lifecycle bar — gray for items still reserved, purple for items checked out, and green for items returned. The headline reads **"Check-out progress"** while items are still being handed out, then switches to **"Check-in progress"** once everything has left and you're tracking returns. The kit-counting behavior below applies to this bar in either phase. See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings) for the checkout side.
+Once a booking has any progressive checkout or check-in activity, the simple check-in bar becomes a segmented **Booked / Partial / Fully out / Returned** lifecycle bar: gray for items still reserved, amber for a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line with some but not all of its units out, purple for items fully checked out, and green for items returned. Only quantity-tracked lines can sit in **Partial**, which is what the bar's own tooltip says. The headline reads **"Check-out progress"** while items are still being handed out, then switches to **"Check-in progress"** once everything has left and you're tracking returns. The kit-counting behavior below applies to this bar in either phase. See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings) for the checkout side.
 
 The **Check-in progress** bar on a booking shows how much of the booking has been returned. By default it counts at the **asset** level — every asset is one item, including each asset inside a kit. For a booking built mostly from kits, that can be confusing: a single 30-piece camera kit reads as 30 separate items to check in, so "2 / 32" can look alarming when really only one standalone item and part of one kit are still out.
 
@@ -107,6 +107,12 @@ To make the progress bar match how people actually think about returns, a worksp
 - **Kit as one unit**: Each standalone asset counts as one item, and each kit counts as one item. A kit only counts as checked in once **every** asset inside it has been returned — a kit with some (but not all) of its assets back still counts as outstanding. The progress label reads **"items"** with the note *"Kits count as one item."*
 
 In both modes the underlying check-in is identical — you still check in individual assets, and the per-asset list, scanner drawer, and CSV export always count assets individually. The setting only changes how the **progress bar** on the booking page tallies and displays its total.
+
+### When a kit goes back to Available
+
+A kit's own status is a separate question from the progress bar, and it follows one rule: a kit returns to **Available** once something of its own has come back in this session and nothing of its own is still out. Both halves are measured per item, so a kit is neither held open by another kit's outstanding item nor released by another kit's return. A quantity-tracked item still owing units counts as outstanding, so its kit keeps reading **Checked Out** until the last unit is logged.
+
+Returning a kit across several sessions works the same way as returning it in one. Earlier sessions used to leave behind records that kept the kit reading **Checked Out** after everything had come back; the last session that settles the kit now releases it. See [Kits](/knowledge-base/kits#removing-a-member).
 
 ### Turning on kit-as-a-unit counting
 
