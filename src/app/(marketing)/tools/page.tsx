@@ -8,7 +8,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
-    title: 'Free Tools for Asset Management | Shelf',
+    title: 'Free Tools for Asset Management',
     description: 'Free utilities for asset tracking teams. Scan barcodes (QR, UPC, Code 128, EAN), generate labels, run depreciation calculations, and manage equipment more efficiently.',
     alternates: { canonical: "https://www.shelf.nu/tools" },
 };

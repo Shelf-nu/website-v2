@@ -10,7 +10,7 @@ import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
-    title: "Asset Management Concepts | Shelf",
+    title: "Asset Management Concepts",
     description: "Explore core frameworks like the asset lifecycle and circular economy — and how they apply to modern equipment management.",
     alternates: { canonical: "https://www.shelf.nu/concepts" },
 };

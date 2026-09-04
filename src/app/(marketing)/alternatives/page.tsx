@@ -13,7 +13,7 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "Shelf Alternatives & Comparisons | Shelf",
+    title: "Shelf Alternatives & Comparisons",
     description:
         "Compare Shelf to other asset management solutions. See feature-by-feature breakdowns of why teams switch to Shelf.",
     alternates: { canonical: "https://www.shelf.nu/alternatives" },
