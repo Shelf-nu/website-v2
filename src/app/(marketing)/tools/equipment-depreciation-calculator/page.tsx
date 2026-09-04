@@ -35,7 +35,7 @@ const jsonLd = buildToolPageJsonLd({
 });
 
 export const metadata: Metadata = {
-    title: "Free Equipment Depreciation Calculator — 4 Methods Compared | Shelf",
+    title: "Free Equipment Depreciation Calculator — 4 Methods Compared",
     description:
         "Calculate equipment depreciation using Straight-Line, Declining Balance, Double Declining, or Sum-of-Years methods. Full year-by-year schedule with comparison chart. Free, no signup.",
     alternates: {

@@ -10,7 +10,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
-    title: 'Free Asset Label Designer & Tag Maker | Shelf',
+    title: 'Free Asset Label Designer & Tag Maker',
     description: 'Create and print professional asset labels and tags with QR codes. Free online label designer — exports to PNG, SVG, and PDF. No signup required.',
     alternates: {
         canonical: 'https://www.shelf.nu/tools/asset-label-designer'

@@ -12,7 +12,7 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "Asset Management Glossary | Shelf",
+    title: "Asset Management Glossary",
     description: "Clear definitions for asset tagging, check-in/check-out, ghost assets, preventive maintenance, and other key equipment management terms.",
     alternates: { canonical: "https://www.shelf.nu/glossary" },
 };

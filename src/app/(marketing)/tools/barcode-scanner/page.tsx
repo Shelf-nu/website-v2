@@ -10,7 +10,7 @@ import { G2Badge } from "@/components/sections/g2-badge";
 import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
-    title: 'Free Online Barcode Scanner — Scan QR, UPC, Code 128, EAN | Shelf',
+    title: 'Free Online Barcode Scanner — Scan QR, UPC, Code 128, EAN',
     description: 'Scan and decode any barcode from an image directly in your browser. Supports QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, PDF417 and more. Free, no signup, no upload — runs locally.',
     alternates: {
         canonical: '/tools/barcode-scanner',
