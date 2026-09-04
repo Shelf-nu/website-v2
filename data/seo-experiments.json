@@ -1961,7 +1961,17 @@
         ],
         "capturedAt": "2026-09-04T11:40:10.446Z"
       },
-      "result": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
       "status": "planned",
       "deployedAt": null,
       "evaluateAfterDays": 28,
@@ -1993,7 +2003,17 @@
         ],
         "capturedAt": "2026-09-04T11:40:24.872Z"
       },
-      "result": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
       "status": "planned",
       "deployedAt": null,
       "evaluateAfterDays": 28,
@@ -2024,7 +2044,17 @@
         ],
         "capturedAt": "2026-09-04T11:40:45.167Z"
       },
-      "result": null,
+      "result": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          null,
+          null
+        ],
+        "capturedAt": null
+      },
       "status": "planned",
       "deployedAt": null,
       "evaluateAfterDays": 60,
