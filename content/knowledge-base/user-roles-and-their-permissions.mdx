@@ -3,7 +3,7 @@ title: "User Roles and Their Permissions"
 description: "See what each Shelf user role can do — a full permissions matrix for Owner, Administrator, Self-service and Base, plus how to restrict who books equipment."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-08-31"
+updated: "2026-09-04"
 layout: "knowledge-base"
 ---
 
@@ -77,7 +77,7 @@ Self-service users sit between Base and Administrator. They have more autonomy t
 
 - **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle other people's custody.
 - **Custody:** self-assign and self-remove custody of assets.
-- **Bookings:** book assets for themselves and **check them out and back in on their own**, no admin needed. Their own bookings are also the limit of what they can act on in bulk: selecting rows and choosing Delete, Archive or Cancel touches only the bookings that belong to them, even when a workspace setting lets them see everyone else's. Taking items back off a booking stops at **Reserved**: a Self-service user can adjust their own reservation up to the point it goes out, but not after.
+- **Bookings:** book assets for themselves and **check them out and back in on their own**, no admin needed. The **Custodian** field on a booking they create holds their own name and nobody else's, on the web and in the [Shelf Companion](/mobile-app) app alike. Their own bookings are also the limit of what they can act on in bulk: selecting rows and choosing Delete, Archive or Cancel touches only the bookings that belong to them, even when a workspace setting lets them see everyone else's. Taking items back off a booking stops at **Reserved**: a Self-service user can adjust their own reservation up to the point it goes out, but not after.
 - **Audits:** can be assigned to audits and perform them — scanning items and adding audit notes — but cannot create, archive, or delete audits.
 - **Reports:** not available. **Reports** is hidden from the sidebar for this role and the pages, CSV and PDF exports behind it are refused, including by direct link.
 - **Settings:** view and edit their own account details only. They cannot invite or manage other team members.
@@ -87,7 +87,7 @@ Self-service users sit between Base and Administrator. They have more autonomy t
 Base is the foundational role — ideal for the widest group of users, such as students or occasional borrowers:
 
 - **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle custody.
-- **Bookings:** create **booking requests** for themselves. They **cannot** check out or check in gear themselves — only an Administrator can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it. Bulk Delete, Archive and Cancel apply to their own bookings only. Items can be taken back off the booking while it is still a **Draft**. Once it is reserved, the same rule that stops a Base user adding items also stops them removing any, so the way to change a reserved request is to cancel it and make a new one.
+- **Bookings:** create **booking requests** for themselves — the **Custodian** field offers their own name only, on the web and in the [Shelf Companion](/mobile-app) app alike. They **cannot** check out or check in gear themselves — only an Administrator can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it. Bulk Delete, Archive and Cancel apply to their own bookings only. Items can be taken back off the booking while it is still a **Draft**. Once it is reserved, the same rule that stops a Base user adding items also stops them removing any, so the way to change a reserved request is to cancel it and make a new one.
 - **Audits:** can be assigned to audits and perform them — scanning items and adding audit notes — but cannot create, archive, or delete audits.
 - **Reports:** not available, on the same terms as Self-service.
 - **Settings:** limited to their own account details. They cannot invite or manage other team members.
@@ -111,6 +111,7 @@ Every checkmark is what the role can actually do in Shelf today.
     { label: "Open the Reports area and export a report to CSV or PDF", values: [true, true, false, false] },
     { label: "Check out assets to themselves", values: [true, true, true, false] },
     { label: "Create booking requests", values: [true, true, true, true] },
+    { label: "Name someone other than themselves as a booking's custodian", values: [true, true, false, false] },
     { label: "Check out / check in their own bookings", values: [true, true, true, false] },
     { label: "Take items off their own booking while it is a Draft", values: [true, true, true, true] },
     { label: "Take items off their own booking once it is Reserved", values: [true, true, true, false] },
