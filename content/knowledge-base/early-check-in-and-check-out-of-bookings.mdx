@@ -1,9 +1,9 @@
 ---
 title: "Early Check-in and Check-out of Bookings"
-description: "Shelf's booking system allows users to check in or check out assets earlier than originally scheduled, while maintaining records of the original booking period for transparency and analytics purposes."
+description: "Shelf lets you check assets in or out earlier than scheduled, and keeps the period that was originally agreed alongside the one the booking really ran, so reporting still measures against the plan."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-04-14"
+updated: "2026-08-28"
 layout: "knowledge-base"
 ---
 
@@ -31,21 +31,31 @@ When checking in assets before the scheduled end date:
   - Adjust the date (updating the booking end date to now)
   - Proceed without changing dates
 
-## Original Booking Dates
+## The Planned Period and the Actual Period
 
-The system preserves original booking information:
+Every booking carries two periods, and adjusting the dates at check-out or check-in never overwrites the first one.
 
-- Initial booking dates are stored as `originalFrom` and `originalTo`
-- Original dates remain even when actual booking dates are adjusted
-- Booking details display both the actual and original booking periods
-- Access this information through your [booking data export](/knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out)
+| | What it holds | When it is written |
+|---|---|---|
+| **Planned period** | The dates that were agreed | Creating the booking, and editing it while it is still a draft. Fixed once it is reserved |
+| **Actual period** | The dates the booking really ran | Extending the booking, checking in a booking that is **Overdue**, and the date adjustments offered at early check-out and early check-in |
+
+The planned period is frozen from the moment the booking is reserved. Nothing that happens afterwards moves it: not an early check-in, not an early check-out, and not an [extension](/knowledge-base/extending-booking-end-dates-in-shelf).
+
+One path onto the actual end date is not a choice anyone makes. **Checking in a booking that is already Overdue always moves its end date to the moment it came back**, with no dialog and no option to decline, because the booking has to record when the gear actually returned. That is the ordinary way an actual end date comes to differ from a planned one, and it is why the [Booking Compliance report](/knowledge-base/getting-started-with-reports#how-booking-compliance-decides-on-time-or-late) reads the planned end rather than the live one. The early check-out and early check-in adjustments below are the ones you are asked about.
+
+### Where to Read Both Periods
+
+- **The booking CSV export** carries four date columns: **Planned start date**, **Planned end date**, **Actual start date** and **Actual end date**. See [exporting booking information](/knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out).
+- **The booking's PDF overview** adds an **Original period** row underneath the booking period, and only when the two differ.
+
+The booking page itself shows the actual period. If you need the agreed dates alongside it, use the PDF overview or the CSV export.
 
 ## Important Notes
 
-- When creating or updating draft bookings, both actual and original dates are updated
-- Original dates are preserved only during early check-in/check-out operations
-- Scheduled reminders and overdue notifications follow actual booking dates, not original dates
-- CSV exports include both actual and original booking dates
+- While a booking is still a draft, editing its dates moves both periods together. The planned period only becomes fixed once the booking is reserved.
+- Scheduled reminders and overdue notifications follow the actual dates, not the planned ones. Adjust the end date at check-in and the reminders follow it.
+- The [Booking Compliance report](/knowledge-base/getting-started-with-reports#how-booking-compliance-decides-on-time-or-late) measures returns against the **planned** end date, so an early return is on time and a booking extended past its deadline is still recorded as a late return. Overdue Items uses the actual end date, because it answers what is late right now.
 
 ## Use Cases
 
