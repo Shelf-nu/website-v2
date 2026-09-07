@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-09-03"
+updated: "2026-09-07"
 layout: "knowledge-base"
 ---
 
@@ -120,6 +120,16 @@ A booking is finished when everything that actually went out has come back, and 
 For a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line the obligation is counted in units. Units that a scan recorded are counted from the scan; units the **Check out** button sent out are counted from the line itself, even though no scan ever named them. Both kinds have to be settled before the booking closes.
 
 > **If a booking of yours closed itself while stock was still out**, that was the same booking-level reading. One scanned handover put the whole booking into "only scanned units count" mode, so quantity-tracked stock the **Check out** button had sent out stopped counting toward completion. The booking then completed on the last individual return while those units were still on the road, and check-in is only offered on an **Ongoing** or **Overdue** booking, so there was no longer a way to record them coming back. New bookings can no longer end that way. If you have a closed booking whose stock never got checked back in, contact support and we will correct the counts with you.
+
+## Sending an Item Out a Second Time
+
+A booking that is already **Ongoing** or **Overdue** still accepts a check-out. That is what lets you keep handing gear over after the booking has started, and it also means an item that has come back can go out again on the same booking — the tripod returned at lunchtime and taken out again for the afternoon shoot, on the booking that is still running.
+
+Both trips count. The second departure refreshes the item's check-out record and clears the check-in that closed the first one, so the row reads as out again rather than keeping the stamp from the trip that already ended. The booking then waits for that second trip to be checked back in before it can close, exactly as it waited for the first.
+
+For a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line the count is cumulative. An item that has gone out twice has sent out more units than it ever booked, and Shelf measures the obligation against everything that left rather than against the booked quantity, so a second batch of units still has to come back before the booking is finished.
+
+> **If a booking of yours completed while a second handover was still out**, this was why. The re-departure grew the count of units sent out but left the row still stamped as checked in, and the completion check read that stamp as proof the item was back. A booking whose items only ever went out once was never affected. New bookings cannot close this way; a booking that already closed with gear outstanding needs its counts corrected by hand, because check-in is only offered while a booking is **Ongoing** or **Overdue**. Contact support with the booking and we will put it right with you.
 
 ## Best Practices
 

@@ -1,7 +1,7 @@
 ---
 title: "A Booking Waits for Everything That Went Out"
 description: "Completion is now judged item by item, so a booking that mixes the Check out button with scanning no longer closes itself while stock is still on the road."
-date: "2026-09-03"
+date: "2026-09-07"
 image: "/images/updates/partial-check-ins.jpg"
 readMoreUrl: "/knowledge-base/progressive-checkout-of-bookings"
 layout: "update"
@@ -25,6 +25,14 @@ The other half of the old reading showed up on the completed page: a single scan
 
 A **Complete** or **Archived** booking now reports its records rather than assuming everything came back. Items with a recorded return read **Returned**. Items that went out with no return recorded stay **Fully out**, and a quantity line with only some units back reads **Partial**, so a closed booking that is still holding gear says so. Older bookings checked out all at once, before Shelf recorded checkout on each line, have nothing to read per line and still show as fully returned.
 
+## An item can go out twice, and both trips count
+
+The same reading had a second hole in it, in a booking shape that is entirely normal: an **Ongoing** booking still accepts check-outs, so an item that came back can be sent out again on the booking that is still running.
+
+On that second departure the count of units sent out grew, but the row kept the check-in stamp from the trip that had already ended — the write that was meant to clear it only ever looked at rows that had never been out. The completion check read that stale stamp as proof the item was back and let the booking close on gear that was physically out. Quantity-tracked lines had a third version of the same mistake: the obligation was capped at the booked quantity, which is right for one trip and too small for two.
+
+A second departure now refreshes the item's record properly, the completion check requires a check-in no older than the departure it answers, and a quantity line is measured against everything that actually left rather than against what it booked. A booking whose items only ever went out once is judged exactly as before.
+
 ## If this already happened to you
 
-New bookings cannot close this way. A booking that already closed with stock outstanding still needs its counts corrected by hand, because the units were never checked in and the booking can no longer accept a check-in. Contact support with the booking and we will put it right with you.
+New bookings cannot close this way, on either route. A booking that already closed with stock outstanding still needs its counts corrected by hand, because the units were never checked in and the booking can no longer accept a check-in. Contact support with the booking and we will put it right with you.
