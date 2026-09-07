@@ -3,7 +3,7 @@ title: "Introduction to Bookings"
 description: "This guide explains the fundamental concepts of Shelf's Bookings feature, which enables users to reserve equipment for specific time periods while preventing double-bookings."
 category: "Bookings & Custody"
 date: "2026-03-30"
-updated: "2026-07-22"
+updated: "2026-09-07"
 layout: "knowledge-base"
 ---
 
@@ -35,6 +35,8 @@ The booking is being configured. To proceed, you must fill in the Name, Start/En
 ### 2. Reserved
 
 The booking is fully configured. Assets become unavailable for overlapping bookings. The booking period is in the future and hasn't been checked out yet -- assets retain an **Available** status. Administrators can still take or assign custody. Options include **Check-out**, **Delete**, or **Cancel**.
+
+A reserved booking can also be sent back to **Draft** from the **Actions** menu with **Revert to Draft** — the way a reservation request is handed back for changes rather than refused. The booking keeps everything on it and becomes editable again, and Shelf emails the custodian to say so. See [Booking Notification Settings](/knowledge-base/booking-notification-settings#when-a-reservation-is-sent-back-to-draft).
 
 You can check out the whole booking at once with **Check Out**, or hand items out as they're picked up using **Scan to check out** (or **Actions > Check out selected items**). See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings).
 
@@ -81,6 +83,7 @@ The system sends automated emails to relevant team members at key stages:
 
 ![Notification mails](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df613_65d385967cb728f10d4946fe_booking-email.jpeg)
 - **Confirmation**: Sent when a booking reaches Reserved status
+- **Reverted to draft**: Sent when a reserved booking is sent back to Draft with **Revert to Draft**, so the custodian knows their reservation needs another look
 - **Check-out Reminder**: Sent 1 hour before the Start date/time
 - **Check-in Reminder**: Sent 1 hour before the End date/time
 - **Overdue**: Sent when the End date/time passes without check-in

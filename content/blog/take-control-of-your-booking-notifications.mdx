@@ -7,7 +7,7 @@ description: >-
 layout: blog
 canonicalUrl: /blog/take-control-of-your-booking-notifications
 date: "2026-03-30"
-updated: "2026-03-30"
+updated: "2026-09-07"
 author: carlos-virreira
 category: software-features-capabilities
 seo:
@@ -72,7 +72,7 @@ This transparency matters. When something goes wrong with a booking, the first q
 
 ### Smart Deduplication
 
-Recipients are deduplicated before sending. If someone appears in multiple layers (they are both the custodian and on the always-notify list), they receive one email, not two. The person performing an action is excluded from the immediate notification — they already know what they did — but scheduled reminders (checkout, check-in, overdue) still reach everyone.
+Recipients are deduplicated before sending. If someone appears in multiple layers (they are both the custodian and on the always-notify list), they receive one email, not two. The person performing an action is excluded from the immediate notification — they already know what they did — with two deliberate exceptions: the custodian and, while **Notify booking creator** is on, the creator, both of whom are on the list precisely to hold a complete record of the booking. Scheduled reminders (checkout, check-in, overdue) reach everyone regardless.
 
 ## Who This Is For
 

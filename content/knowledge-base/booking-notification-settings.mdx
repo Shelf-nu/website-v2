@@ -3,6 +3,7 @@ title: "Booking Notification Settings"
 description: "Control who receives booking email notifications at the workspace level and per booking. Configure creator notifications, admin broadcasts, always-notify users, and per-booking recipients."
 category: "Bookings & Custody"
 date: "2026-03-30"
+updated: "2026-09-07"
 layout: "knowledge-base"
 ---
 
@@ -12,7 +13,7 @@ Shelf lets you control exactly who receives email notifications for booking even
 
 For every booking email, Shelf determines recipients by combining these layers in order:
 
-1. **Custodian** — Always notified for all booking events. This cannot be turned off.
+1. **Custodian** — Always notified for all booking events. This cannot be turned off. The custodian has to be a Shelf user account for this to reach anyone: a booking held by a [Non-Registered Member](/knowledge-base/converting-non-registered-members-nrms-to-users) has no mailbox attached to it, so nothing is sent on their behalf.
 2. **Workspace defaults** — Configured in **Settings > Bookings**, applied to every booking unless overridden.
 3. **Per-booking recipients** — Specific users added on an individual booking, in addition to workspace defaults.
 
@@ -88,6 +89,7 @@ Base-role and Self-Service users do not see the full recipient list.
 | Booking Event | Custodian | Creator (if on) | All Admins (if on) | Always-Notify Users | Per-Booking Recipients |
 |---|---|---|---|---|---|
 | Reserved | Always | Yes | **Yes** | Yes | Yes |
+| Reverted to draft | Always | Yes | No | Yes | Yes |
 | Checkout Reminder | Always | Yes | No | Yes | Yes |
 | Checkin Reminder | Always | Yes | No | Yes | Yes |
 | Overdue | Always | Yes | No | Yes | Yes |
@@ -99,7 +101,17 @@ Base-role and Self-Service users do not see the full recipient list.
 
 **Note:** The All Admins column applies to the reservation event only. This is intentional — it is a broadcast signal that a new booking needs attention. Subsequent lifecycle events are targeted to specific people attached to the booking.
 
-**Note:** The person performing an action does not receive an email about it (they already know what they did). This exclusion does not apply to scheduled reminders (checkout reminder, check-in reminder, overdue) — those are sent to all recipients regardless.
+**Note:** The person performing an action is normally left out of the email it triggers — they already know what they did. Two recipients are exempt, because the whole point of their place on the list is a complete record of the booking: the **custodian** always receives the email, even when they are the one who acted, and so does the **creator** while **Notify booking creator** is on. Someone who is on the list for any other reason — an admin on the always-notify list, say — is left out of the email for their own action as before. The exclusion does not apply at all to scheduled reminders (checkout reminder, check-in reminder, overdue), which are sent to every recipient regardless of who did what.
+
+## When a Reservation Is Sent Back to Draft
+
+A reserved booking can be sent back to **Draft** from the booking's **Actions** menu, using **Revert to Draft**. It is the reply to a reservation request: the booking is not cancelled and nothing is lost, it simply becomes editable again so dates, items or the custodian can be changed and the booking reserved a second time. Administrators and Owners can do this on any reserved booking; a Base or Self-service user reaches the **Actions** menu only on a booking they are the custodian of, so they can send their own reservation back but nobody else's.
+
+Shelf now emails the same people this event would reach if it were any other lifecycle transition. The subject reads *"↩️ Booking reverted to draft (booking name)"*, and the body tells the recipient they can review the booking, make changes and submit it again.
+
+Recipients follow the **Reverted to draft** row in the matrix above: the custodian always, the creator while **Notify booking creator** is on, everyone on the always-notify list, and anyone added to that booking. The admin broadcast does **not** fire — that one is reserved for new reservation requests, and this event is the answer to a request rather than a new one.
+
+This matters most for the request-and-approve pattern. A Base or Self-service user submits a reservation with **Request reservation**, an administrator sends it back for changes, and until now the requester was told nothing: their booking quietly became a draft again and they found out the next time they opened it. Every other transition on a booking — reserved, cancelled, checked in, extended, deleted — already sent an email; this one was the gap.
 
 ## Related Articles
 
