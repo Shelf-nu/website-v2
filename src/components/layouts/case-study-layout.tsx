@@ -197,6 +197,27 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                             </div>
                         )}
 
+                        {/* Customer profile — the "are they like me?" scan, before the story starts */}
+                        {frontmatter.profile && frontmatter.profile.length > 0 && (
+                            <div className="mx-auto max-w-3xl mb-16 rounded-2xl border border-border/60 bg-card/50 overflow-hidden">
+                                <dl className="grid grid-cols-1 sm:grid-cols-2">
+                                    {frontmatter.profile.map((row) => (
+                                        <div
+                                            key={row.label}
+                                            className="border-b border-border/40 px-6 py-4 last:border-b-0 sm:[&:nth-last-child(2)]:border-b-0"
+                                        >
+                                            <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                                                {row.label}
+                                            </dt>
+                                            <dd className="mt-1 text-[0.95rem] leading-snug text-foreground">
+                                                {row.value}
+                                            </dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        )}
+
                         {/* Main Content - Centered */}
                         <div className="mx-auto max-w-3xl font-normal">
                             <div className="prose prose-lg dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-p:leading-relaxed prose-img:rounded-2xl prose-img:border prose-img:border-border/50">
@@ -252,10 +273,10 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                             <div className="bg-orange-50 border border-orange-100 rounded-2xl p-8 md:p-12 text-center md:text-left md:flex items-center justify-between gap-8">
                                 <div className="max-w-xl">
                                     <h3 className="text-2xl md:text-3xl font-bold text-orange-950 mb-3">
-                                        Ready to get organized?
+                                        {frontmatter.cta?.title || "Ready to get organized?"}
                                     </h3>
                                     <p className="text-orange-800/80 text-lg">
-                                        Join thousands of teams who track their assets with Shelf.
+                                        {frontmatter.cta?.body || "Join thousands of teams who track their assets with Shelf."}
                                     </p>
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">

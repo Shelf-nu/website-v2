@@ -98,6 +98,10 @@ export interface Frontmatter {
     location?: string;
     team_size?: string;
     featured_metrics?: { label: string; value: string }[];
+    /** "Are they like me?" spec sheet, shown under the metrics. Sector, scale, what they replaced. */
+    profile?: { label: string; value: string }[];
+    /** Closing CTA copy for this story. Falls back to the generic case-study wording. */
+    cta?: { title?: string; body?: string };
     nextStudy?: {
         title: string;
         slug: string;
