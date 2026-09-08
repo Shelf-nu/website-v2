@@ -273,6 +273,8 @@ const LINK_INDEX = `## Key Links
 - [Eastern Michigan University](${BASE_URL}/case-studies/eastern-michigan-university): Theatre and media equipment management at a state university.
 - [Arellano Associates](${BASE_URL}/case-studies/arellano-associates): Transformed event equipment management from Outlook chaos to real-time clarity.
 - [Kansas City Art Institute](${BASE_URL}/case-studies/kcai): Seamless migration from Cheqroom to Shelf.
+- [Industrial Artifacts — 10,000 One-of-a-Kind Objects](${BASE_URL}/case-studies/industrial-artifacts): An antique mall and auction house that moved 8,860 items off Sortly in under two weeks, keeping their existing barcodes, and now pulls 360-400 auction lots off the floor every month.
+- [Purdue University](${BASE_URL}/case-studies/purdue-university): Research and teaching equipment management at a major public university.
 
 ## Customers
 

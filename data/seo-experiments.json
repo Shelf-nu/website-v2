@@ -2066,6 +2066,107 @@
       ],
       "learnings": "",
       "startDate": "2026-09-04"
+    },
+    {
+      "id": "exp-051",
+      "page": "/alternatives/sortly",
+      "field": "title+description",
+      "before": "Title: \"Sortly Alternative — Free Equipment Tracking with QR Codes\". Description: \"Looking for a Sortly alternative? Shelf offers QR-based equipment tracking, equipment bookings, and a free tier — open source and built for teams.\"",
+      "after": "Title: \"Open Source Sortly Alternative — Bookings & No Item Limits\". Description: \"An antique mall moved 8,860 items off Sortly in under two weeks, keeping their barcodes. Open source, free to start, no item caps, and the bookings Sortly lacks.\"",
+      "hypothesis": "P7 rollout to the second /alternatives/* page, plus first-party migration proof in the snippet. QUERY-LEVEL probe (180d) shows the core Sortly cluster is already won on rank and losing on snippet: 25 queries, 1,447 impr, 39 clicks, held at pos 1.6-2.0 — 'sortly alternatives' 378 impr @ pos 2.0 / 3.7% CTR, 'sortly alternative' 383 impr @ pos 2.0 / 1.3% CTR. Position 2 should convert far above 2.7% aggregate, so the snippet is the binding constraint, not ranking. Do NOT evaluate on the page aggregate (exp-032 measured pos 9.9 / 0.62% across all queries and masked this cluster entirely — same failure mode as exp-028). Title follows P7 exactly as confirmed by exp-042 (snipe-it 0.78%->2.11% CTR on flat impressions at identical rank): lead with 'Open Source' (P2), keep the indexed ranking term 'Sortly Alternative' intact (A1), then name the two gaps Sortly verifiably has — no booking/reservation feature at all, and per-tier item caps (100 to 10,000+). 'Free' is dropped deliberately: pairing it with 'Bookings' would imply free team functionality, which is false (bookings are Team plan). A3 is satisfied because two magnets replace it — 'Open Source' and 'No Item Limits'. The description carries the Industrial Artifacts migration, which is the one claim on this SERP that no competitor, G2 or Capterra listing can make: a named customer who actually made this exact switch, with a number. Success at 28d: core-cluster CTR above 4% at held position, measured like-for-like on matched queries (S11). Failure: position slips below 3 on 'sortly alternative(s)' — revert immediately, that is A1 territory. REVISED after reading the query-level baseline: the free-intent queries are the page's best performers ('sortly alternative free' 12.9% CTR at pos 1.6, 'sortly free alternative' 8.89% at pos 2.0) while the plain head 'sortly alternative' converts at 1.77% on the most impressions (113) at pos 2.3. Dropping 'Free' from the title is therefore an A3 risk against the queries that currently work, so the description carries 'free to start' instead — truthful per the product rules (Team-plan bookings are not free, but starting is), and it keeps a free token in the snippet for those queries. The head query with the worst CTR and the best position is the one this experiment is really aimed at.",
+      "status": "planned",
+      "createdAt": "2026-09-08",
+      "evaluationWindowDays": 56,
+      "relatedPatterns": [
+        "P7",
+        "P2",
+        "P4",
+        "A1",
+        "A3",
+        "S11",
+        "S12"
+      ],
+      "notes": "Enabled by /case-studies/industrial-artifacts (PR #284). Evaluate at query level via a [page,query] GSC probe filtered to queries containing 'sortly', not the page aggregate. Window widened from the usual 28d to 56d: the core cluster runs ~1,447 impr / 39 clicks per 180d, so a 28d read would rest on ~6 clicks. CTR on ~450 impressions is the measurable signal; clicks are a tie-breaker, not the metric.",
+      "baseline": {
+        "dateRange": [
+          "2026-07-13",
+          "2026-09-06"
+        ],
+        "clicks": 39,
+        "impressions": 3823,
+        "ctr": 1.02,
+        "position": 19.2,
+        "capturedAt": "2026-09-08T11:25:56.335Z"
+      },
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-13",
+          "2026-09-06"
+        ],
+        "queries": 42,
+        "clicks": 15,
+        "impressions": 713,
+        "ctr": 2.1,
+        "position": 5.4,
+        "topQueries": [
+          {
+            "q": "sortly alternative free",
+            "clicks": 4,
+            "impr": 31,
+            "ctr": 12.9,
+            "pos": 1.6
+          },
+          {
+            "q": "sortly alternatives",
+            "clicks": 4,
+            "impr": 90,
+            "ctr": 4.44,
+            "pos": 1.7
+          },
+          {
+            "q": "sortly free alternative",
+            "clicks": 4,
+            "impr": 45,
+            "ctr": 8.89,
+            "pos": 2
+          },
+          {
+            "q": "sortly alternative",
+            "clicks": 2,
+            "impr": 113,
+            "ctr": 1.77,
+            "pos": 2.3
+          },
+          {
+            "q": "sortly vs",
+            "clicks": 1,
+            "impr": 1,
+            "ctr": 100,
+            "pos": 4
+          },
+          {
+            "q": "alternatives to sortly",
+            "clicks": 0,
+            "impr": 1,
+            "ctr": 0,
+            "pos": 2
+          },
+          {
+            "q": "asset panda vs sortly",
+            "clicks": 0,
+            "impr": 2,
+            "ctr": 0,
+            "pos": 24
+          },
+          {
+            "q": "best sortly alternatives",
+            "clicks": 0,
+            "impr": 3,
+            "ctr": 0,
+            "pos": 1.3
+          }
+        ]
+      }
     }
   ]
 }
