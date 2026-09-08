@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-08-31"
+updated: "2026-09-08"
 layout: "knowledge-base"
 ---
 
@@ -162,6 +162,16 @@ When scanning is done:
 5. From the completed audit's overview, click **Actions → Download Receipt** to export a **PDF report** with found/missing/unexpected breakdowns
 
 The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review. It carries a **Findings** section as well as the counts: your completion note and its photos first, then one block per asset holding what was written about that item next to the pictures taken of it.
+
+### What the Receipt Prints for Each Asset
+
+The receipt's last column is headed **Code**, and it prints the asset's code as text. Which code that is follows **Settings → General ▸ Preferred display code**, the same workspace choice the on-screen chips follow: a SAM ID workspace gets `SAM-0042`, a QR Code ID workspace gets the QR id, and a workspace with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) gets the barcode's value. Where an asset has no code of the preferred type, the receipt prints its QR Code ID with the type name underneath in small text.
+
+![The audit receipt preview's Assets table, whose last column is headed Code and prints each asset's code as text under the QR image](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/audit-receipt-code-column.webp)
+
+That matters for a receipt more than for most sheets. An audit is a claim about what was physically present, and a reviewer holding the paper has to be able to match a row to a shelf without a scanner.
+
+The QR image beside the code is optional. An Owner or Administrator can turn it off for the whole workspace under **Settings → General ▸ QR codes on PDFs**, by switching **Print QR codes on PDFs** off. The reason is the same one that applies to the [booking checklist](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings#turning-the-qr-image-off): the square on the receipt is the same code as the sticker on the item, so it can be scanned from a desk. The switch is on by default, the code prints either way, and it covers both sheets at once.
 
 ### Completing an Audit Where Nothing Was Found
 
