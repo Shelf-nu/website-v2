@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-09-04"
+updated: "2026-09-08"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -19,7 +19,7 @@ This guide walks through downloading the app, signing in, and using each of the 
 Before installing Shelf Companion:
 
 - **An existing Shelf account.** The app does not create a separate account or workspace — it connects to your current Shelf workspace using the same login. If you do not have one yet, sign up free at [app.shelf.nu/join](https://app.shelf.nu/join).
-- **An iPhone running iOS 15.1 or later, or an Android phone.** Both stores carry the same release, built from the same code — version 1.4.0 is iOS build 35 and Android version 15.
+- **An iPhone running iOS 15.1 or later, or an Android phone.** Both stores carry the same release, built from the same code, so the version number in the app matches on either platform. The current release is **1.5.0**.
 - Optional: assets in your workspace already labelled with Shelf QR codes (or registered Code 128, Code 39, EAN-13, DataMatrix, or external QR codes). If you do not have labels yet, you can still browse and act on assets manually — see [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
 
 The app is **free with any Shelf plan**, including the free Personal tier. Nothing is sold through the app. If your workspace does not have an add-on enabled (for example, the Audits add-on), the app shows an informational message rather than a paywall.
@@ -119,6 +119,12 @@ For workspaces using [Bookings](/features/bookings), the app now handles a booki
 
 Draft bookings are visible only to the person who created them, exactly as on the web, so an unfinished draft never shows up in a colleague's list.
 
+**Which bookings the list shows follows your workspace, not just your role.** A workspace can let Base and Self-service members see bookings they are not the custodian of, with the **Bookings visibility** toggle in **Settings ▸ Workspace ▸ Permissions**. The app reads that setting on all four of its booking surfaces: the **Bookings** list, the calendar, a booking's detail screen, and the booking sections on **Home**. With the toggle off, those members see their own bookings; with it on, they see the workspace's, minus other people's drafts.
+
+Until recently the app ignored the setting and decided from the role alone, so a Base member in a workspace that had switched it on saw every booking on the website and *"No active bookings"* on the phone, in the same workspace at the same moment. This was a server-side fix, so **there is nothing to install**: every phone with Shelf Companion already picked it up, whatever version it is running.
+
+Seeing more does not mean doing more. Reserve, check out, check in, cancel, archive, delete and every add or remove of gear keep the ownership rules they always had. And the custodian's **name** on those lists is governed by the separate **Custody visibility** toggle, so a workspace can open up bookings while still printing **private** where the holder's name would be. See [Configure what Self-service and Base users can see](/knowledge-base/configure-what-self-service-and-base-users-can-see).
+
 **See the month instead of the list.** The Bookings screen has two lenses, and the list/calendar switch sits in the header. The calendar draws one coloured band per booking across the days it runs, so a five-day job reads as a single run rather than five separate dots, and a week that is fully committed looks different from one that is not. A day that holds more bookings than the cell can draw shows the most urgent ones first — overdue before ongoing, ongoing before reserved — and a **+N** for the rest.
 
 Tap a day and the panel underneath lists what is booked on it, each row with its status and a tap through to the booking. An empty day says **"Nothing booked on this day."** On a team workspace the panel also carries a **New booking** button that starts a booking on the day you tapped. Pull down to refresh, so a booking someone else just made on the web appears without leaving the screen.
@@ -184,7 +190,9 @@ For clarity, these are real, intentional gaps. They are on our radar, but they a
 - **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
 - **Listing an asset's registered barcodes.** The scanners read every code type; the detail screen does not yet show which codes an asset carries. Adding and editing codes is a web job.
 
-This guide describes **version 1.4.0**, live on the App Store and Google Play. Two items that used to sit on the list above shipped in 1.3.0 and moved into the guide: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners). If your app is older, take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion) — the booking calendar, the audit evidence action, and the model and asset ID rows all need 1.4.0.
+This guide describes **version 1.5.0**, live on the App Store and Google Play since 31 August 2026. If your app is older, take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Two items that used to sit on the list above shipped in 1.3.0 and moved into the guide: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners). The booking calendar, the audit evidence action, and the model and asset ID rows need **1.4.0**. [Connecting to your own server](/knowledge-base/connect-shelf-companion-to-your-own-server), undoing an audit scan, and the scanner's clearer results need **1.5.0**.
+
+Anything Shelf changes on the server side reaches every installed version at once, whatever it says in Settings. The booking-visibility rule described in step 9 is one of those.
 
 ## Opening Shelf Links in the App
 
