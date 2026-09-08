@@ -134,10 +134,12 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                         >
                                             <source src={frontmatter.heroVideo} type="video/mp4" />
                                         </video>
-                                        {/* Readers who prefer reduced motion get the poster, not the loop */}
-                                        {frontmatter.heroVideoPoster && (
+                                        {/* Readers who prefer reduced motion get a still, not the loop.
+                                            Falls back to coverImage so a study that sets heroVideo
+                                            without a poster still shows something. */}
+                                        {(frontmatter.heroVideoPoster || frontmatter.coverImage) && (
                                             <Image
-                                                src={frontmatter.heroVideoPoster}
+                                                src={(frontmatter.heroVideoPoster || frontmatter.coverImage)!}
                                                 alt={frontmatter.title}
                                                 fill
                                                 priority
