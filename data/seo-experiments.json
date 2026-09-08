@@ -1972,8 +1972,8 @@
         ],
         "capturedAt": null
       },
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-09-08",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-5",
@@ -2014,8 +2014,8 @@
         ],
         "capturedAt": null
       },
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-09-08",
       "evaluateAfterDays": 28,
       "tags": [
         "batch-5",
@@ -2055,8 +2055,8 @@
         ],
         "capturedAt": null
       },
-      "status": "planned",
-      "deployedAt": null,
+      "status": "active",
+      "deployedAt": "2026-09-08",
       "evaluateAfterDays": 60,
       "tags": [
         "batch-5",
