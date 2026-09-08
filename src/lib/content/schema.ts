@@ -19,7 +19,17 @@ export interface Frontmatter {
     stage: "TOFU" | "MOFU" | "BOFU";
     intent: "informational" | "commercial" | "transactional";
 
-    cluster: {
+    /**
+     * Topic cluster the page belongs to.
+     *
+     * Content overwhelmingly uses a bare string (`cluster: "education"`) — 78
+     * files at the time of writing, against 2 that use the object form. Nothing
+     * reads this field: its only appearances in code are this declaration and
+     * the default in `getContentBySlug`. Both shapes are accepted so the type
+     * matches reality rather than flagging every new page that follows the
+     * majority convention. Prefer the string form for new content.
+     */
+    cluster: string | {
         name: string;
         role: "pillar" | "supporting";
     };
