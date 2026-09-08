@@ -1,0 +1,26 @@
+---
+title: "The booking reports now agree on what a booking is"
+description: "Drafts and cancellations no longer count as usage, a booking that spans your window counts in it, archived bookings stopped disappearing from Trends and Idle Assets, and kit rankings are frozen at the time of booking."
+date: "2026-09-07"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp"
+readMoreUrl: "/knowledge-base/getting-started-with-reports#what-counts-as-a-booking-in-each-report"
+layout: "update"
+---
+
+Three reports could give three different answers to "how many bookings?" for the same workspace and the same window. They now share one set of rules.
+
+**Drafts and cancellations are not usage.** Top Booked Assets, Monthly Booking Trends and Asset Utilization exclude both. "Total Bookings" means the same thing in Top Booked and in Trends. Booking Compliance keeps its own narrower definition, since only a returned or overdue booking can tell you whether a deadline was honoured, and its hero says so on the page.
+
+**A booking that spans your window counts in it.** Top Booked Assets, Asset Utilization and Top Booked Kits now select bookings that overlap the timeframe rather than only those starting inside it. A month-long booking read through a one-week lens is a booking that week.
+
+**Archiving no longer erases history.** Archiving rewrites a booking's status, so reports matching on Complete lost every completed booking as it aged into the archive. Monthly Booking Trends ("Completed") and Idle Assets ("last used") now count a checked-in archive as the real use it was. An archive that went straight from Reserved, never checked out, still counts as nothing.
+
+**One booking counts once per asset.** An asset that reaches a booking twice, loose and again inside a kit, is counted once for it.
+
+**Utilization is capped at 100%.** Days in use is the merged union of a booking's days inside the window rather than the sum, so two overlapping bookings of the same asset no longer count the same day twice.
+
+**Kit rankings are frozen at the time of booking.** Top Booked Kits credits a kit from what the booking recorded when the gear went out, not from the kit's membership today. Booking an asset on its own no longer credits a kit that happens to contain it, and editing a kit no longer rewrites its booking history.
+
+**"Unique Assets Booked" works.** The Monthly Booking Trends CSV has carried this column since launch and it read `0` for every workspace. It now counts the distinct assets booked in each month.
+
+These are corrections, so a report you ran last week can legitimately give a different figure today. Volumes and utilization generally come down, Trends completions and Idle Assets last-use generally improve, and kit rankings can reshuffle.
