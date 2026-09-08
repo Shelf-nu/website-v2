@@ -12,8 +12,11 @@ layout: "knowledge-base"
 The bookings feature allows you to pre-book assets from your available inventory. Whether you're preparing for a big event or just need to keep track of equipment loans, having a printable list can be incredibly useful. Here's how to generate a PDF overview:
 
 1. Navigate to any booking in your Shelf account
-2. Locate the action dropdown menu
-3. Click on "GENERATE PDF"
+2. Open the **Actions** dropdown in the top right
+3. Choose **Generate overview PDF**
+4. The checklist opens as a preview. Click **Download PDF** to save it
+
+The preview's own subtitle tells you how the list is ordered, for example *"Assets are sorted by Status (descending)."*
 
 **Tip:** The PDF respects the search you've applied to the booking's asset list. If you search the asset list first — by name, asset ID, category, location, tags, or code — the generated PDF includes only the matching items. On a large booking, this lets you print a focused pull list (for example, just the items stored in one location) instead of the full asset list.
 
@@ -43,6 +46,8 @@ If an asset has no code of the preferred type, the sheet prints its QR Code ID a
 
 Because the code is printed, a sheet can be matched to a shelf by eye. Before this, a workspace whose physical labels carry SAM IDs got a sheet with a QR square and nothing readable on it.
 
+![The booking checklist preview, with the Code column printing each asset's code as text under the QR image and the tick box beside it](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-checklist-code-column.webp)
+
 ### Turning the QR image off
 
 The QR square on the checklist is the **same code as the sticker on the item**. A phone cannot tell them apart, so scanning the sheet during a pack-out records a scan without anyone walking to the equipment, which is the opposite of what the scan is for.
@@ -53,6 +58,8 @@ If that matters to your team, an Owner or Administrator can switch the image off
 2. Find the **QR codes on PDFs** row, described as *"Control whether the QR image is printed on the booking checklist and the audit receipt."*
 3. Turn **Print QR codes on PDFs** off.
 4. Click **Save**.
+
+![Settings, General, the QR codes on PDFs row with the Print QR codes on PDFs switch turned on](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/qr-codes-on-pdfs-setting.webp)
 
 The switch is on by default, so nothing changes until you turn it off. It applies to both printed sheets, the booking checklist and the [audit receipt](/knowledge-base/run-your-first-audit#step-5-complete-the-audit), and it is a workspace setting rather than a checkbox on the print dialog: a control the person taking the shortcut can untick before printing is not a control.
 

@@ -188,7 +188,7 @@ The per-asset override has the same boundary: **"Preferred display code for this
 
 ### What it does NOT affect
 
-- **Printed QR labels for barcode-type preferences** — if your workspace prefers Code 128, Code 39, DataMatrix, External QR, or EAN-13, the downloaded **label** still shows the QR Code ID underneath the code today. (The two PDF **sheets** are different: they print the barcode value as text, so a barcode-type preference does reach them.) Barcode-type label printing is on the v1.1 roadmap. Until then, if you need a specific barcode value on the physical label itself, use a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
+- **Downloaded QR labels for barcode-type preferences.** If your workspace prefers Code 128, Code 39, DataMatrix, External QR, or EAN-13, the downloaded **label** still shows the QR Code ID underneath the code today. (The two PDF **sheets** are different: they print the barcode value as text, so a barcode-type preference does reach them.) Barcode-type label printing is on the v1.1 roadmap. Until then, if you need a specific barcode value on the physical label itself, use a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
 - **The QR code itself** — it still encodes the canonical asset URL regardless of the preference.
 - **Existing printed labels** — they keep working. The setting only affects the next label you download or print from Shelf.
 - **Integrations, exports, or URLs** — those continue to use the QR Code ID as the unique key.
