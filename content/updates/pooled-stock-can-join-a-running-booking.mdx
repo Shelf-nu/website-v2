@@ -1,0 +1,20 @@
+---
+title: "Pooled stock can join a booking that is already running"
+description: "A quantity-tracked asset with some units out was refused from an Ongoing or Overdue booking even when the rest of the pool was free. It is now judged on the units, not on a single status flag."
+date: "2026-09-07"
+image: "/images/updates/add-assets-to-bookings.jpg"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#a-pool-with-units-out-is-not-a-closed-door"
+layout: "update"
+---
+
+A [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset could not be added to an **Ongoing** or **Overdue** booking if **any** unit of it was out anywhere, even with the rest of the pool sitting free.
+
+An asset carries one status flag for the whole row, so a pool of 27 sandbags with 18 out reads `Checked out` while 9 are available. The add-to-booking guards were matching on that flag. The result was a contradiction on screen: the picker listed the asset and labelled it *"9 available"*, and the save then came back with *"The following assets are already checked out and cannot be added to the booking"*. On the **Manage assets** modal that refusal also answered a 500.
+
+The guards now count units. Every route agrees: **Manage assets**, **Add to existing booking** from an asset page, the assets-index bulk add, and the scan drawer, whose blocker was stopping a submit the server would have accepted.
+
+Nothing was loosened for individually tracked gear. One camera checked out elsewhere is still turned away, because there is one of it. And per-unit capacity for your dates is unchanged: ask for more than the pool can supply in that window and Shelf still refuses, under the same lock it always used.
+
+Two smaller things came with it. The scanner now separates the two reasons a row can be blocked, **Already checked out** for an individual asset and **No units available** for an exhausted pool. And a refused add prints its reason in the **Manage assets** dialog footer, where the action happened, instead of relying on a toast.
+
+**Still to come on the phone.** The [Shelf Companion](/mobile-app) app mirrors the old asset-grain rule when you scan items onto a booking, so this is a web fix today. The companion half rides the next app release.

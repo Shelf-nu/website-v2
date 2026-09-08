@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-31"
+updated: "2026-09-08"
 layout: "knowledge-base"
 ---
 
@@ -103,6 +103,10 @@ You don't have to finalize the whole list before checkout begins. You can add as
 Items added to an active booking join it as line items and stay **Available** until you check them out. They aren't force-checked-out just because the booking is already underway, which fits the [progressive checkout](/knowledge-base/progressive-checkout-of-bookings) flow where gear leaves in stages.
 
 Two things are refused rather than added. An individually tracked item that's already checked out on another active booking is turned away, since that would double-book it. And a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) item is turned away when the units the booking would then hold, the ones already on it plus the ones you're adding, are more than the pool can supply on these dates. That applies however the item arrives, including by scanning, so a scan can't quietly push a pool past what it has. Units carried in by a kit are counted on the kit's own terms, not against the loose pool.
+
+**A pooled asset with some units out is still addable.** The "already checked out" rule is about individually tracked items, where one unit is the whole asset. A [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) pool is a count, so 18 of 27 sandbags being out on other bookings says nothing about the 9 that are free. Those 9 can go onto your Ongoing or Overdue booking, and only the pool's own capacity for your dates can stop them. Until recently the guard read the asset's single status flag instead of counting units, so the picker offered the asset, labelled it "9 available", and then refused the save with *"The following assets are already checked out and cannot be added to the booking"*.
+
+When an add is refused, the **Manage assets** dialog now prints the reason in its own footer and stays open, so you can act on it without hunting for a toast.
 
 Which bookings the **Add to booking** picker offers follows the workspace's booking-visibility setting, the same rule the **Bookings** index and the command palette use. Self-service and Base users are shown their own bookings by default, and every booking in the workspace except other people's **Drafts** once an admin switches the setting on in **Settings ▸ Workspace ▸ Permissions**. A booking still in Draft is only ever visible to the person who created it, whatever the setting says. The list stays the same whether you scroll it or type to search it. See [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see).
 

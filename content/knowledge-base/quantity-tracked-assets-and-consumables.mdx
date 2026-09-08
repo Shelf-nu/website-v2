@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-08-26"
+updated: "2026-09-08"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -167,6 +167,14 @@ The one thing that ignores dates is an **overdue** booking. Nobody knows when a 
 Open the asset's row on the booking and choose **Adjust quantity**. The dialog tells you what you've got to work with for these dates, written plainly as *"4 of 12 sandbags available"* with the date range underneath, plus how many units other bookings are holding. If your role can see other people's bookings, a **View bookings** link takes you to them.
 
 Ask for more than the dates allow and the dialog stops you before it submits: *Only 3 sandbags available. Please reduce the quantity.* If the pool shrank while the dialog sat open, the refusal comes back from the server instead, and it names the asset and both numbers: *Only 3 sandbags available for "Sandbag (Counterweight)" in this window — you requested 12. Reduce the quantity to continue.* Going the other way, **lowering a quantity always works**, no matter what state the booking is in.
+
+### A pool with units out is not a closed door
+
+An individually tracked camera that is checked out somewhere else is simply unavailable: there is one of it, and someone has it. A pool is a count, so the same sentence does not apply. Twenty-seven sandbags with eighteen out on other bookings still has nine free, and those nine are yours to book, including onto a booking that is already **Ongoing** or **Overdue**.
+
+Shelf used to get this wrong on the way in. The add-to-booking guards read the asset's single status flag, which reads `Checked out` as soon as **any** unit leaves, so the picker would offer the asset, label it "9 available", and then refuse the save. Every route now counts units instead: the **Manage assets** modal, **Add to existing booking** from the asset page, the assets-index bulk add, and the scan drawer.
+
+What can still stop a pooled line is its own capacity for your dates, which is the check described above. The scanner distinguishes the two clearly: an individual asset that is out reads **Already checked out**, while a pool with nothing left for your window reads **No units available**, tooltip *"Every unit of this asset is already in custody, in a kit or reserved for the booking window."*
 
 ### Reading the asset page
 
