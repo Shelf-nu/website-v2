@@ -82,6 +82,12 @@ export interface Frontmatter {
     };
     logo?: string;
     coverImage?: string;
+    /** Looping, silent cover video. Takes the cover slot when present; coverImage stays the fallback. */
+    heroVideo?: string;
+    /** Poster for heroVideo. Also shown in place of the loop when the reader prefers reduced motion. */
+    heroVideoPoster?: string;
+    /** Credit for customer-supplied cover media, rendered under it. */
+    mediaCredit?: { text: string; href?: string };
     organization?: string;
     industryPage?: string;
     summary?: string;

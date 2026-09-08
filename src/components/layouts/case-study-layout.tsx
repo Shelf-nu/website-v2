@@ -113,18 +113,62 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                         </div>
                     </Container>
 
-                    {/* Cover Image — full-bleed below hero text */}
-                    {frontmatter.coverImage && (
+                    {/* Cover media — full-bleed below hero text. A silent looping video when the
+                        customer has one, otherwise the still. */}
+                    {(frontmatter.heroVideo || frontmatter.coverImage) && (
                         <Container className="pb-8">
                             <div className="relative w-full aspect-[21/9] max-h-[420px] overflow-hidden rounded-2xl border border-border/50 shadow-lg shadow-black/5">
-                                <Image
-                                    src={frontmatter.coverImage}
-                                    alt={frontmatter.title}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
+                                {frontmatter.heroVideo ? (
+                                    <>
+                                        <video
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            preload="metadata"
+                                            poster={frontmatter.heroVideoPoster}
+                                            aria-label={frontmatter.title}
+                                            className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+                                        >
+                                            <source src={frontmatter.heroVideo} type="video/mp4" />
+                                        </video>
+                                        {/* Readers who prefer reduced motion get the poster, not the loop */}
+                                        {frontmatter.heroVideoPoster && (
+                                            <Image
+                                                src={frontmatter.heroVideoPoster}
+                                                alt={frontmatter.title}
+                                                fill
+                                                priority
+                                                className="hidden object-cover motion-reduce:block"
+                                            />
+                                        )}
+                                    </>
+                                ) : (
+                                    <Image
+                                        src={frontmatter.coverImage!}
+                                        alt={frontmatter.title}
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
+                                )}
                             </div>
+                            {frontmatter.mediaCredit && (
+                                <p className="mt-3 text-xs text-muted-foreground">
+                                    {frontmatter.mediaCredit.href ? (
+                                        <a
+                                            href={frontmatter.mediaCredit.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:text-orange-600 transition-colors"
+                                        >
+                                            {frontmatter.mediaCredit.text}
+                                        </a>
+                                    ) : (
+                                        frontmatter.mediaCredit.text
+                                    )}
+                                </p>
+                            )}
                         </Container>
                     )}
 
