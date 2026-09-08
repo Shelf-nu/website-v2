@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-09-07"
+updated: "2026-09-08"
 layout: "knowledge-base"
 ---
 
@@ -90,7 +90,9 @@ Because the booking stays open like a tab, you can keep adding to it after check
 
 When you are ready to hand it over, a late addition checks out exactly like the rest of the list: scan it with **Scan to check out**, tick its row and use **Actions → Check out selected items**, or use the checkout button, which reads **Check out remaining** once a booking is Ongoing or Overdue and takes out everything still waiting in one go. This is true no matter how the booking got started, including one that was checked out all at once with the plain **Check out** button, and it covers quantity-tracked lines as well as individual assets.
 
-The one thing Shelf won't allow is pulling in an item that's already checked out on another active booking, which would double-book it.
+The one thing Shelf won't allow is pulling in an **individually tracked** item that's already checked out on another active booking, which would double-book it.
+
+[Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) stock is judged differently, because it is a count rather than a single thing. A pool with 18 of its 27 units out elsewhere still has 9 free, and those 9 can join your booking. What stops a pooled line is its own capacity for your dates, not the fact that some other units are out. The scanner says which of the two you have hit: an individual asset that is out reads **Already checked out**, and a pool with nothing left reads **No units available**, with the tooltip *"Every unit of this asset is already in custody, in a kit or reserved for the booking window."*
 
 ## The Mixed State: Items That Never Left
 
