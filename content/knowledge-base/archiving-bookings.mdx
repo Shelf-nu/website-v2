@@ -3,7 +3,7 @@ title: "Archiving Bookings"
 description: "Move finished bookings out of your active list, manually or automatically. Covers which bookings can be archived, the auto-archive settings, and what archiving means for reporting."
 category: "Bookings & Custody"
 date: "2026-07-22"
-updated: "2026-09-02"
+updated: "2026-09-08"
 layout: "knowledge-base"
 ---
 
@@ -91,11 +91,18 @@ Shelf re-checks each booking at the moment it's due to be archived. If the booki
 
 ## What Archiving Means for Reports
 
-A booking archived straight from **Reserved** was never checked back in, because it was never checked out. Counting it as an on-time return would inflate your numbers, so Shelf excludes these bookings from **Booking Compliance** reporting entirely. They neither help nor hurt your on-time rate.
+Archiving rewrites a booking's status, and the reports have to see through that. Two rules cover every case.
 
-Bookings archived from **Completed** are unaffected: they were returned, and they keep counting toward compliance exactly as before.
+**A booking archived straight from Reserved was never checked back in**, because it was never checked out. Counting it as an on-time return would inflate your numbers, so Shelf leaves these bookings out of **Booking Compliance** entirely. They neither help nor hurt your on-time rate, and they are not counted as a use anywhere else either.
 
-See [Getting Started with Reports](/knowledge-base/getting-started-with-reports) for the full reporting reference.
+**A booking archived from Completed still counts as a completed, returned booking.** It keeps counting toward compliance exactly as before, and it now also keeps counting in the two places that used to lose it:
+
+- **Monthly Booking Trends** counts it under "Completed" for its month, so tidying your bookings index no longer flattens last quarter's completion figures.
+- **Idle Assets** counts it as the asset's last use, so archiving a booking no longer makes the gear on it look untouched since the day before that booking existed.
+
+That was not true until recently. Both reports matched on the **Complete** status alone, so a completed booking dropped out of them the moment it aged into the archive, including through [auto-archiving](#auto-archiving). If your idle list has been longer than it should be, or a month's completions looked oddly low, this is why, and the figures correct themselves as soon as the report is re-run.
+
+See [Getting Started with Reports](/knowledge-base/getting-started-with-reports) for the full reporting reference, including [what counts as a booking in each report](/knowledge-base/getting-started-with-reports#what-counts-as-a-booking-in-each-report).
 
 ---
 

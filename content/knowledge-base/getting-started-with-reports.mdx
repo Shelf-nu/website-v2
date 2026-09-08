@@ -3,7 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
-updated: "2026-08-28"
+updated: "2026-09-08"
 layout: "knowledge-base"
 ---
 
@@ -33,23 +33,27 @@ Snapshot reports — **Asset Inventory**, **Custody Snapshot**, **Overdue Items*
 
 ## Apply Filters
 
-Each report exposes filters that match the underlying data:
+Two controls sit on the report page itself: the **timeframe picker** described above, and, on **Idle Assets**, an idle-threshold selector for how many days count as idle.
 
-| Report | Filters |
+The narrower filters are **URL parameters**. Add them to the address bar, or share a link that already carries them, and the report runs filtered. That is what makes "Idle Assets in the Amsterdam warehouse, last 90 days" a link you can bookmark and send to a colleague.
+
+| Report | Parameters it honours |
 |---|---|
-| Booking Compliance | Status, Custodian, Location |
-| Top Booked Assets | Category, Location |
-| Top Booked Kits | Category, Location |
-| Monthly Booking Trends | Category, Location |
-| Overdue Items | Custodian, Location |
-| Asset Inventory | Category, Location, Status |
-| Asset Activity Summary | Asset, Category |
-| Asset Utilization | Category, Location |
-| Idle Assets | Category, Location |
-| Asset Distribution | — |
-| Custody Snapshot | Team Member, Location |
+| Booking Compliance | None. Sorting only (`sortBy`, `sortOrder`) |
+| Top Booked Assets | `category`, `location` |
+| Top Booked Kits | None |
+| Monthly Booking Trends | None *(see the note below)* |
+| Overdue Items | `custodian` |
+| Asset Inventory | `categories`, `locations`, `statuses` (each accepts several values, comma-separated) |
+| Asset Activity Summary | `asset`, `category` |
+| Asset Utilization | `category`, `location` |
+| Idle Assets | `category`, `location`, plus `days` for the idle threshold |
+| Asset Distribution | None |
+| Custody Snapshot | `teamMember`, `location` |
 
-Filters are written into the URL, so you can **bookmark or share** a specific view of a report. A link to "Idle Assets in the Amsterdam warehouse, last 90 days" works for everyone with access to the workspace.
+> **Monthly Booking Trends ignores `category` and `location`.** The page accepts both parameters and then runs the report over every booking anyway. Nothing warns you, so a trends link that looks filtered is not. Its CSV export deliberately does not forward them either, rather than claim a filtering it does not perform. Wiring them up is tracked separately.
+
+Values are ids, not names. The easiest way to get one is to open the category, location, team member or asset in Shelf and copy the id out of its own URL.
 
 ## Read the Result
 
@@ -91,6 +95,28 @@ The two reports ask different questions, so for an extended booking they will le
 
 An overdue booking extended to next week disappears from Overdue Items straight away, because it is no longer late against its current deadline. It still counts as a late return in Booking Compliance once it comes back, because the deadline it was agreed to has already passed. Extending a booking is a way to keep operations moving, not a way to clear a late return from the record.
 
+## What Counts as a Booking in Each Report
+
+The booking reports used to disagree about their own headline. Three of them could give three different answers to "how many bookings?" for the same workspace and the same window. They now share one set of rules, and the rules are worth knowing because they explain figures that will have moved.
+
+**Drafts and cancelled bookings are not usage.** A draft is a plan and a cancellation never happened, so neither is counted in **Top Booked Assets**, **Monthly Booking Trends** or **Asset Utilization**. "Total Bookings" means the same thing in Top Booked and in Trends: real bookings, not plans.
+
+Booking Compliance keeps its own, narrower definition on purpose, because it answers a different question: only bookings with a measurable outcome (returned or overdue) can tell you whether a deadline was honoured. Its hero says so on the page.
+
+**A booking that spans the window counts in it.** Top Booked Assets, Asset Utilization and Top Booked Kits select bookings that **overlap** the timeframe rather than bookings that start inside it. A month-long booking viewed through a one-week lens is a booking that week, which is what anyone reading the report already assumed.
+
+**One booking counts once per asset.** An asset can reach one booking twice, loose and again inside a kit. It is now counted once for that booking, so a pack-out that happens to include a kit no longer inflates the asset's rank.
+
+**Archiving no longer erases history.** Archiving rewrites a booking's status, so reports that matched on **Complete** used to lose every completed booking the moment it aged into the archive. Both **Monthly Booking Trends** ("Completed") and **Idle Assets** ("last used") now count an archived booking as a real, returned use, as long as it was actually checked in. An archive that went straight from Reserved without ever being checked out still counts as nothing, because nothing went out. See [what archiving means for reports](/knowledge-base/archiving-bookings#what-archiving-means-for-reports).
+
+**Utilization cannot exceed 100%.** Days in use is the merged union of a booking's days inside the window, not the sum of them, so two overlapping bookings of the same asset no longer count the same Tuesday twice.
+
+**Kit rankings are frozen at the time of booking.** **Top Booked Kits** credits a kit from what the booking itself recorded when the gear went out, not from the kit's membership today. Two consequences: booking an asset on its own no longer credits a kit that happens to contain it, and editing a kit's contents no longer rewrites its booking history. Bookings made before Shelf started recording that provenance fall back to current membership.
+
+**"Unique Assets Booked" works.** The Monthly Booking Trends CSV has carried this column since launch and it read `0` for everyone. It is now populated with the count of distinct assets booked in each month.
+
+> **Your numbers will have moved.** These are corrections, not new features, so a report you ran last week and run again today can legitimately give a different figure. Utilization and trend volumes generally go down (drafts and cancellations dropped out); Trends "Completed" and Idle Assets "last used" generally improve (archived bookings came back); kit rankings can reshuffle.
+
 ## How Money Is Counted
 
 Several reports put a value on things: Asset Distribution, Overdue Items, Asset Inventory and Custody Snapshot. Shelf stores one **value per unit** on an asset, and every money figure in a report is that per-unit value multiplied by the quantity the figure is actually about.
@@ -115,12 +141,16 @@ Locations carry one deliberate exception. **No Location** is the bucket for asse
 
 Every report supports **CSV export**. Click **Export** at the top right of any report to download the data shown.
 
+**An export carries the same filters the page is showing.** If you opened a report with a `custodian` or `location` parameter on the URL, the CSV and the PDF run with it too, and the Booking Compliance CSV keeps the sort order you were reading. Before this, both exports quietly dropped the parameters and returned the whole workspace, so a filtered view on screen and the file it produced were two different reports. Monthly Booking Trends is the one exception, and it is deliberate: its query ignores category and location, so the export does not forward parameters that would not have done anything.
+
 Two of those files spell the value arithmetic out rather than leaving you to redo it in a spreadsheet:
 
 - **Asset Inventory** carries **Quantity**, **Unit Value** and **Total Value**.
 - **Custody Snapshot** carries **Units Held**, **Unit Value** and **Total Value**.
 
 The PDF versions total the same way, so a printed report and the CSV behind it never disagree.
+
+**Money reads in your workspace's currency.** Every monetary KPI now formats through the workspace currency set in **Settings → General**, on the page and in both exports. A handful of headline figures were still printing a hard-coded `$` regardless of that setting; they are not any more, so a EUR workspace no longer sees dollar signs on top of euro amounts. Number grouping stays US-style on purpose so a report file parses the same way wherever it is opened.
 
 Report CSVs are written as UTF-8 with a byte order mark, so category, location and custodian names in any alphabet open correctly in Excel without an import wizard. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
 

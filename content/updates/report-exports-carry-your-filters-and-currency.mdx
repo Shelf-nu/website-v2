@@ -1,0 +1,14 @@
+---
+title: "Report exports carry your filters, and money reads in your currency"
+description: "A filtered report used to export the whole workspace. The CSV and PDF now run with the same parameters the page is showing, and the last few hard-coded dollar signs are gone."
+date: "2026-09-07"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp"
+readMoreUrl: "/knowledge-base/getting-started-with-reports#export-the-result"
+layout: "update"
+---
+
+**Exports respect the page.** The CSV and PDF routes called the same query functions the report pages call, but dropped the filter arguments on the way, so a custody view narrowed to one team member exported every custodian in the workspace. Each export now forwards exactly what its page honours, and the Booking Compliance CSV keeps the sort order you were reading. The PDF button used to send only the timeframe, so it now seeds from the page's full query string as well.
+
+Monthly Booking Trends is a deliberate exception. Its query ignores category and location, so its export does not forward them rather than imply a filtering that is not happening.
+
+**Money reads in your workspace's currency.** Five headline KPI figures were still printing a hard-coded `$` no matter what **Settings → General** said. They now format through the workspace currency, on the page and in both exports, so a EUR or GBP workspace no longer reads dollar signs on top of its own amounts. Number grouping stays US-style on purpose, so a report file parses the same way wherever it is opened.
