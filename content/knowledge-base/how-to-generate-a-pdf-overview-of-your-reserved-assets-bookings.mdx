@@ -3,7 +3,7 @@ title: "How to Generate a PDF Overview of Your Reserved Assets (Bookings)"
 description: "The Shelf bookings feature enables users to pre-book assets from inventory and generate printable PDF overviews, which is valuable for event preparation and equipment loan tracking."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-06"
+updated: "2026-09-08"
 layout: "knowledge-base"
 ---
 
@@ -30,8 +30,35 @@ When you generate a PDF, the server creates a comprehensive document containing:
 - Custodian responsible for the booking
 - Booking period (start and end dates/times)
 - Booking description
-- The asset table, with a number, image, name, quantity, kit, category, location, and QR code for every booked line
+- The asset table, with a number, image, name, quantity, kit, category, location, and **Code** for every booked line
 - Date of PDF generation
+
+## The Code Column
+
+The last column of the asset table is headed **Code**, and it prints two things: a tick box, and the asset's code as text.
+
+The code is whatever your workspace has chosen under **Settings → General ▸ Preferred display code**. A workspace set to SAM ID prints `SAM-0042`. A workspace on the default QR Code ID prints the QR id itself, which used to appear nowhere on the sheet. A workspace with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) set to Code 128, Code 39, DataMatrix, External QR or EAN-13 prints that barcode's **value** as text. There is no barcode image on the sheet, only the value, so this works for every preference rather than only the two free ones.
+
+If an asset has no code of the preferred type, the sheet prints its QR Code ID and puts the type name underneath in small text, so a picker holding the paper can tell a fallback from the real thing. On screen that same explanation lives in a tooltip, and paper has no hover.
+
+Because the code is printed, a sheet can be matched to a shelf by eye. Before this, a workspace whose physical labels carry SAM IDs got a sheet with a QR square and nothing readable on it.
+
+### Turning the QR image off
+
+The QR square on the checklist is the **same code as the sticker on the item**. A phone cannot tell them apart, so scanning the sheet during a pack-out records a scan without anyone walking to the equipment, which is the opposite of what the scan is for.
+
+If that matters to your team, an Owner or Administrator can switch the image off for the whole workspace:
+
+1. Open **Settings → General**.
+2. Find the **QR codes on PDFs** row, described as *"Control whether the QR image is printed on the booking checklist and the audit receipt."*
+3. Turn **Print QR codes on PDFs** off.
+4. Click **Save**.
+
+The switch is on by default, so nothing changes until you turn it off. It applies to both printed sheets, the booking checklist and the [audit receipt](/knowledge-base/run-your-first-audit#step-5-complete-the-audit), and it is a workspace setting rather than a checkbox on the print dialog: a control the person taking the shortcut can untick before printing is not a control.
+
+With the image off, the tick box and the code stay and the rows get shorter. The sheet is still matchable by eye, which is why the printed code and this switch arrived together.
+
+This setting is available on every plan. It is not gated behind an add-on.
 
 ## One Row per Booked Line
 
@@ -52,4 +79,4 @@ Users have found numerous valuable applications for this feature:
 
 - Generate the PDF shortly before the booking start date to ensure up-to-date information.
 - Consider keeping both digital and physical copies for redundancy.
-- Use the QR codes on the PDF to quickly check in assets upon their return.
+- Check items in by scanning the label **on the item**, not the square on the sheet. Both encode the same asset, so scanning the paper records a check-in for gear nobody has looked at. If your team is likely to take that shortcut, turn **Print QR codes on PDFs** off in **Settings → General** and work from the printed code instead.

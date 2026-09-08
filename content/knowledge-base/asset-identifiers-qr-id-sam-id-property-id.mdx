@@ -3,7 +3,7 @@ title: "Asset Identifiers: QR ID, SAM ID, and Your Own Reference Numbers"
 description: "Shelf gives every asset a system QR ID and a sequential SAM ID, and a text custom field carries your own numbering scheme. This guide explains each, when to use them, and how to choose which one shows on your list views and printed labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-08-28"
+updated: "2026-09-08"
 layout: "knowledge-base"
 ---
 
@@ -184,10 +184,11 @@ The per-asset override has the same boundary: **"Preferred display code for this
 
 - **List-view code chips** — every row across all the surfaces listed in "Where chips appear" above, for kits as well as assets.
 - **Printed QR labels** — *only when the preference is QR Code ID or SAM ID*. Those are the two options whose value also appears underneath the code on the default Download output. A SAM-ID preference also adds the SAM prefix to bulk-download filenames (e.g. `SAM-0001_Laptop_Dell_abc123.png` instead of `Laptop_Dell_abc123.png`).
+- **The two printed PDF sheets.** The [booking checklist](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings#the-code-column) and the [audit receipt](/knowledge-base/run-your-first-audit#what-the-receipt-prints-for-each-asset). Both have a **Code** column that prints the resolved code as text, for **every** preference including the five barcode types, because a printed value needs no barcode image behind it. A fallback prints the QR Code ID with the type name underneath, which is the same explanation the on-screen chip puts in a tooltip.
 
 ### What it does NOT affect
 
-- **Printed QR labels for barcode-type preferences** — if your workspace prefers Code 128, Code 39, DataMatrix, External QR, or EAN-13, the printed label still shows the QR Code ID underneath the code today. Barcode-type label printing is on the v1.1 roadmap. Until then, if you need a specific barcode value on the physical label itself, use a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
+- **Printed QR labels for barcode-type preferences** — if your workspace prefers Code 128, Code 39, DataMatrix, External QR, or EAN-13, the downloaded **label** still shows the QR Code ID underneath the code today. (The two PDF **sheets** are different: they print the barcode value as text, so a barcode-type preference does reach them.) Barcode-type label printing is on the v1.1 roadmap. Until then, if you need a specific barcode value on the physical label itself, use a [custom-branded label template](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
 - **The QR code itself** — it still encodes the canonical asset URL regardless of the preference.
 - **Existing printed labels** — they keep working. The setting only affects the next label you download or print from Shelf.
 - **Integrations, exports, or URLs** — those continue to use the QR Code ID as the unique key.
