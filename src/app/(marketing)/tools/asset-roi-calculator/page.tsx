@@ -35,7 +35,7 @@ const jsonLd = buildToolPageJsonLd({
 });
 
 export const metadata: Metadata = {
-    title: "Free Asset Tracking ROI Calculator — Cost of Poor Equipment Management | Shelf",
+    title: "Free Asset Tracking ROI Calculator — Cost of Poor Equipment Management",
     description:
         "Calculate the annual cost of poor asset tracking: ghost assets, productivity loss, shrinkage, and duplicate purchases. Compare with Shelf to see your ROI. Free, no signup.",
     alternates: {

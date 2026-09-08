@@ -39,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/contact", priority: 0.7 },
         { path: "/migrate", priority: 0.7 },
         { path: "/demo", priority: 0.8 },
+        { path: "/mobile-app", priority: 0.8 },
         { path: "/customers", priority: 0.7 },
         { path: "/resources", priority: 0.7 },
         { path: "/brand-assets", priority: 0.3 },

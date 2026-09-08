@@ -35,7 +35,7 @@ const jsonLd = buildToolPageJsonLd({
 });
 
 export const metadata: Metadata = {
-    title: "Free Salvage Value Calculator — Equipment Residual Value Estimator | Shelf",
+    title: "Free Salvage Value Calculator — Equipment Residual Value Estimator",
     description:
         "Estimate equipment salvage value with industry benchmarks for computers, vehicles, furniture, medical equipment, and more. Visual timeline and category comparison. Free, no signup.",
     alternates: {

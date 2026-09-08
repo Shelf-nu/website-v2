@@ -10,7 +10,7 @@ import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
 export const metadata: Metadata = {
-    title: 'Free QR Code Generator (PNG & SVG) for Asset Labels | Shelf',
+    title: 'Free QR Code Generator (PNG & SVG) for Asset Labels',
     description: 'Create professional, high-resolution QR codes directly in your browser. Export to PNG or SVG. Perfect for asset tags, inventory labels, and equipment tracking. Free, no signup.',
     alternates: {
         canonical: 'https://www.shelf.nu/tools/qr-code-generator',
