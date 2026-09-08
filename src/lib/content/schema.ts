@@ -82,6 +82,12 @@ export interface Frontmatter {
     };
     logo?: string;
     coverImage?: string;
+    /** Looping, silent cover video. Takes the cover slot when present; coverImage stays the fallback. */
+    heroVideo?: string;
+    /** Poster for heroVideo. Also shown in place of the loop when the reader prefers reduced motion. */
+    heroVideoPoster?: string;
+    /** Credit for customer-supplied cover media, rendered under it. */
+    mediaCredit?: { text: string; href?: string };
     organization?: string;
     industryPage?: string;
     summary?: string;
@@ -92,6 +98,10 @@ export interface Frontmatter {
     location?: string;
     team_size?: string;
     featured_metrics?: { label: string; value: string }[];
+    /** "Are they like me?" spec sheet, shown under the metrics. Sector, scale, what they replaced. */
+    profile?: { label: string; value: string }[];
+    /** Closing CTA copy for this story. Falls back to the generic case-study wording. */
+    cta?: { title?: string; body?: string };
     nextStudy?: {
         title: string;
         slug: string;

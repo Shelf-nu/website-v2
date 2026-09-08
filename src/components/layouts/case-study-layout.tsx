@@ -47,8 +47,10 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
 
                         {/* Logo + Org Name Row */}
                         <div className="flex items-center gap-4 mb-8">
+                            {/* Tile is always white: customer logos are drawn for light
+                                backgrounds, and bg-card turned them invisible in dark mode. */}
                             {frontmatter.logo && (
-                                <div className="h-14 w-14 rounded-xl bg-card border border-border/60 p-2 shadow-sm flex items-center justify-center flex-shrink-0">
+                                <div className="h-14 w-14 rounded-xl bg-white border border-border/60 p-2 shadow-sm flex items-center justify-center flex-shrink-0">
                                     <Image
                                         src={frontmatter.logo}
                                         alt={frontmatter.organization || "Company logo"}
@@ -113,18 +115,64 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                         </div>
                     </Container>
 
-                    {/* Cover Image — full-bleed below hero text */}
-                    {frontmatter.coverImage && (
+                    {/* Cover media — full-bleed below hero text. A silent looping video when the
+                        customer has one, otherwise the still. */}
+                    {(frontmatter.heroVideo || frontmatter.coverImage) && (
                         <Container className="pb-8">
                             <div className="relative w-full aspect-[21/9] max-h-[420px] overflow-hidden rounded-2xl border border-border/50 shadow-lg shadow-black/5">
-                                <Image
-                                    src={frontmatter.coverImage}
-                                    alt={frontmatter.title}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
+                                {frontmatter.heroVideo ? (
+                                    <>
+                                        <video
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            preload="metadata"
+                                            poster={frontmatter.heroVideoPoster}
+                                            aria-label={frontmatter.title}
+                                            className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+                                        >
+                                            <source src={frontmatter.heroVideo} type="video/mp4" />
+                                        </video>
+                                        {/* Readers who prefer reduced motion get a still, not the loop.
+                                            Falls back to coverImage so a study that sets heroVideo
+                                            without a poster still shows something. */}
+                                        {(frontmatter.heroVideoPoster || frontmatter.coverImage) && (
+                                            <Image
+                                                src={(frontmatter.heroVideoPoster || frontmatter.coverImage)!}
+                                                alt={frontmatter.title}
+                                                fill
+                                                priority
+                                                className="hidden object-cover motion-reduce:block"
+                                            />
+                                        )}
+                                    </>
+                                ) : (
+                                    <Image
+                                        src={frontmatter.coverImage!}
+                                        alt={frontmatter.title}
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
+                                )}
                             </div>
+                            {frontmatter.mediaCredit && (
+                                <p className="mt-3 text-xs text-muted-foreground">
+                                    {frontmatter.mediaCredit.href ? (
+                                        <a
+                                            href={frontmatter.mediaCredit.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:text-orange-600 transition-colors"
+                                        >
+                                            {frontmatter.mediaCredit.text}
+                                        </a>
+                                    ) : (
+                                        frontmatter.mediaCredit.text
+                                    )}
+                                </p>
+                            )}
                         </Container>
                     )}
 
@@ -150,6 +198,27 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                        )}
+
+                        {/* Customer profile — the "are they like me?" scan, before the story starts */}
+                        {frontmatter.profile && frontmatter.profile.length > 0 && (
+                            <div className="mx-auto max-w-3xl mb-16 rounded-2xl border border-border/60 bg-card/50 overflow-hidden">
+                                <dl className="grid grid-cols-1 sm:grid-cols-2">
+                                    {frontmatter.profile.map((row) => (
+                                        <div
+                                            key={row.label}
+                                            className="border-b border-border/40 px-6 py-4 last:border-b-0 sm:[&:nth-last-child(2)]:border-b-0"
+                                        >
+                                            <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                                                {row.label}
+                                            </dt>
+                                            <dd className="mt-1 text-[0.95rem] leading-snug text-foreground">
+                                                {row.value}
+                                            </dd>
+                                        </div>
+                                    ))}
+                                </dl>
                             </div>
                         )}
 
@@ -208,10 +277,10 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                             <div className="bg-orange-50 border border-orange-100 rounded-2xl p-8 md:p-12 text-center md:text-left md:flex items-center justify-between gap-8">
                                 <div className="max-w-xl">
                                     <h3 className="text-2xl md:text-3xl font-bold text-orange-950 mb-3">
-                                        Ready to get organized?
+                                        {frontmatter.cta?.title || "Ready to get organized?"}
                                     </h3>
                                     <p className="text-orange-800/80 text-lg">
-                                        Join thousands of teams who track their assets with Shelf.
+                                        {frontmatter.cta?.body || "Join thousands of teams who track their assets with Shelf."}
                                     </p>
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
