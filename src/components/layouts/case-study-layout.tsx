@@ -47,8 +47,10 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
 
                         {/* Logo + Org Name Row */}
                         <div className="flex items-center gap-4 mb-8">
+                            {/* Tile is always white: customer logos are drawn for light
+                                backgrounds, and bg-card turned them invisible in dark mode. */}
                             {frontmatter.logo && (
-                                <div className="h-14 w-14 rounded-xl bg-card border border-border/60 p-2 shadow-sm flex items-center justify-center flex-shrink-0">
+                                <div className="h-14 w-14 rounded-xl bg-white border border-border/60 p-2 shadow-sm flex items-center justify-center flex-shrink-0">
                                     <Image
                                         src={frontmatter.logo}
                                         alt={frontmatter.organization || "Company logo"}
