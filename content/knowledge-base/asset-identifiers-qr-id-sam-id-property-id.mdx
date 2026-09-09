@@ -294,7 +294,7 @@ No. There is no Property ID field on the asset form, no Property ID import colum
 
 ### What if one of my barcode values looks like a SAM ID?
 
-It still resolves. A value with the SAM shape — letters, a hyphen, and four or more digits, such as `LAPTOP-0001` — is tested against your workspace's sequential IDs first. When no asset carries it, the scan falls through to your [barcodes](/knowledge-base/alternative-barcodes) and opens the asset or kit the value is registered on. An asset's real SAM ID always takes precedence, so your own sequence is never shadowed by a barcode someone typed onto another item.
+It still resolves. A value with the SAM shape — letters, a hyphen, and four or more digits, such as `LAPTOP-0001` — is tested against your workspace's sequential IDs first. When no asset carries it, the scan falls through to your [barcodes](/knowledge-base/alternative-barcodes) and opens the asset or kit the value is registered on. That fallback is part of the alternative-barcodes add-on: without it your workspace has no barcode values to fall back to, and a SAM-shaped code matching no asset still reports **SAM ID not found**. An asset's real SAM ID always takes precedence, so your own sequence is never shadowed by a barcode someone typed onto another item.
 
 ### Can I change my own reference number after setting it?
 
