@@ -3,7 +3,7 @@ title: "Asset Identifiers: QR ID, SAM ID, and Your Own Reference Numbers"
 description: "Shelf gives every asset a system QR ID and a sequential SAM ID, and a text custom field carries your own numbering scheme. This guide explains each, when to use them, and how to choose which one shows on your list views and printed labels."
 category: "Assets"
 date: "2026-04-16"
-updated: "2026-09-08"
+updated: "2026-09-09"
 layout: "knowledge-base"
 ---
 
@@ -291,6 +291,10 @@ SAM IDs are not reused. A deleted asset's SAM ID stays out of circulation — th
 ### Does Shelf have a "Property ID" field?
 
 No. There is no Property ID field on the asset form, no Property ID import column, and no `app.shelf.nu/property/...` lookup URL. Your own numbering scheme lives in a text custom field you create and name yourself, which is searchable, importable, and can be made required. [Section 3](#3-your-own-reference-numbers) walks through it.
+
+### What if one of my barcode values looks like a SAM ID?
+
+It still resolves. A value with the SAM shape — letters, a hyphen, and four or more digits, such as `LAPTOP-0001` — is tested against your workspace's sequential IDs first. When no asset carries it, the scan falls through to your [barcodes](/knowledge-base/alternative-barcodes) and opens the asset or kit the value is registered on. An asset's real SAM ID always takes precedence, so your own sequence is never shadowed by a barcode someone typed onto another item.
 
 ### Can I change my own reference number after setting it?
 
