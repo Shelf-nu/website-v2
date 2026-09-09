@@ -3,7 +3,7 @@ title: "How to Choose a Tracking Method"
 description: "One of it, a fleet of it, or a bin of it? A four-question guide to picking individual assets, Asset Models, or quantity tracking for each item type."
 category: "Assets"
 date: "2026-07-03"
-updated: "2026-08-07"
+updated: "2026-09-09"
 layout: "knowledge-base"
 seo:
   title: "Individual Assets, Asset Models, or Quantity Tracking?"
@@ -17,6 +17,9 @@ seo:
     - "book by model"
     - "individually tracked vs quantity tracked"
     - "how to track consumables"
+    - "QR code for each unit"
+    - "quantity asset QR code"
+    - "one QR code per item"
 ---
 
 One of it, a fleet of it, or a bin of it? Shelf gives you three ways to track what you own. Track one-of-a-kind items as **individual assets**, group fleets of identical units with **Asset Models**, or manage interchangeable stock as one record with a count using **quantity tracking**. The right answer differs per item type, and you can mix all three freely in one workspace.
@@ -89,9 +92,20 @@ The full feature tour is on [Consumables Tracking](/features/consumables-trackin
 
 <Callout type="info" title="One choice is permanent">
 
-You choose individual or quantity tracking when creating an item; that choice cannot be switched later, so decide per item type up front. Grouping under an Asset Model is the flexible part: individually tracked items can join, leave, or switch models at any time, one at a time on the asset's edit form or in bulk from the asset index **Actions** menu.
+You choose individual or quantity tracking when creating an item; that choice cannot be switched later, so decide per item type up front. Grouping under an Asset Model is the flexible part: individually tracked items can join, leave, or switch models at any time, one at a time on the asset's edit form or in bulk from the asset index **Actions** menu. Picked quantity and need a label on every unit after all? The steps are right below.
 
 </Callout>
+
+### Already created it as a quantity asset?
+
+There is no switch, but the fix is four steps. Say you set up "8 c-stands" as one quantity-tracked record and now want a QR label on every stand. Extra labels or barcodes on the pool will not do it: every code on a quantity-tracked record opens the same pool and the same count. You need one record per stand.
+
+1. **Settings → Asset models → New**: create a model, for example "C-stand".
+2. **Assets → New asset → Bulk create from model**: pick the model, set the name template to `C-stand {i}` and the count to 8. Each unit gets its own QR code. A batch can hold up to 100 units.
+3. On the assets list, select the new units and use **Actions → Download QR Codes** to print one label per unit.
+4. Delete the old quantity-tracked record once nothing is out on it. Its history goes with it, so do this before the pool has bookings you want to keep.
+
+From here on, a booking can reserve "3x C-stand" and you scan whichever three you grab at pickup.
 
 ---
 
