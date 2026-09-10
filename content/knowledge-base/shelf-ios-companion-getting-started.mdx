@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-09-08"
+updated: "2026-09-09"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -59,7 +59,7 @@ Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR 
 
 If you switch workspaces while an unclaimed code is waiting to be linked, the app stops rather than claiming the sticker into the wrong place: it tells you **"The scanned QR code belongs to the workspace you started in. Scan it again from this workspace to link it here."** and takes you back.
 
-**Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, hard to reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners; the lookup itself needs no add-on (running a full audit still requires the [Audits add-on](/features/audits)).
+**Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. This is handy when a label is damaged, hard to reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners; the lookup itself needs no add-on (running a full audit still requires the [Audits add-on](/features/audits)). A barcode value shaped like a SAM ID — `LAPTOP-0001`, say — resolves too: the app checks your sequential IDs first and then your workspace's [barcodes](/knowledge-base/alternative-barcodes), so a label printed in that shape no longer ends in **Lookup Failed**. That second step is part of the alternative-barcodes add-on; without it, a SAM-shaped code that matches no asset still fails. It all runs on the server, so the app you already have picks it up with nothing to install.
 
 **Scanning several items for one action.** When you scan a run of assets for a bulk action (assign or release custody, or update location), the app gathers them into a list. If any scanned item can't take that action, the app shows a per-item **blocker** card you clear with one tap, and keeps the submit button disabled until every item is eligible. This mirrors the web scanner, so you never push a batch that would half-fail.
 

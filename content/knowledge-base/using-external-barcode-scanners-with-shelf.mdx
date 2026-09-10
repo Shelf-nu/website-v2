@@ -3,7 +3,7 @@ title: "Using External Barcode Scanners with Shelf"
 description: "Shelf supports handheld and wireless barcode scanners on the desktop interface, allowing you to scan QR asset tags using barcode scanning equipment for rapid processing of multiple items."
 category: "Other"
 date: "2024-06-01"
-updated: "2026-08-25"
+updated: "2026-09-09"
 layout: "knowledge-base"
 ---
 
@@ -25,6 +25,29 @@ Shelf's scanner interface offers two modes:
 - **Barcode scanner mode**: Uses a connected handheld or wireless barcode scanner
 
 You can toggle between these modes using the dropdown in the top-right corner of the scanner interface. This article focuses specifically on using the **Barcode scanner mode**.
+
+## What the Scan Field Accepts
+
+The text field in **Barcode scanner** mode is not limited to Shelf's own QR codes. Whatever your scanner sends into it, or whatever you type by hand, is matched in this order:
+
+1. **A SAM ID** — the workspace's sequential asset number, such as `SAM-0042`. Anything shaped like one (letters, a hyphen, and four or more digits) is treated as a SAM ID first.
+2. **A Shelf QR code** — either the full URL printed in the label's code, or the bare QR ID underneath it.
+3. **A barcode value** — any Code 128, Code 39, DataMatrix, External QR or EAN-13 value registered on an asset or a kit in your workspace. This needs the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes).
+
+### When your barcode value looks like a SAM ID
+
+Plenty of teams label their gear with codes such as `LAPTOP-0001` or `TOOL-4712` — letters, a hyphen, and four or more digits. That is the same shape a SAM ID has, so a scan of one of those labels is treated as a SAM ID first.
+
+Shelf now checks both. If no asset in your workspace carries that sequential ID, the scan falls through to your workspace's own barcodes, and a label registered as a Code 128 (or any other supported type) on an asset or a kit resolves normally instead of stopping at **SAM ID not found**.
+
+Two details worth knowing:
+
+- **The SAM ID always wins.** If an asset really does carry `TOOL-4712` as its SAM ID *and* a different asset carries it as a barcode value, the scan opens the asset whose SAM ID it is.
+- **The fallback needs the add-on.** Without the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) there are no barcode values to fall back to, and a SAM-shaped code that matches no asset still reports **SAM ID not found**.
+
+This applies to the desktop scanner in **Barcode scanner** mode, to typed entry, and to the **Enter code** field in [Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started). It is a server-side change, so the phone picks it up with no app update to install.
+
+---
 
 ## Using a Barcode Scanner with Shelf
 

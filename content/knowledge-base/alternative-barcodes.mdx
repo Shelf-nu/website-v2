@@ -3,7 +3,7 @@ title: "Alternative Barcodes (Barcode, Datamatrix, QR Code)"
 description: "Learn about Shelf's alternative barcode feature that extends beyond standard QR codes, enabling organizations to integrate multiple barcode formats into their asset tracking systems."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-08"
+updated: "2026-09-09"
 layout: "knowledge-base"
 ---
 
@@ -86,6 +86,14 @@ The **Workspace default** row in the radio group also tells you what it will res
 ### Finding an asset by its barcode value
 
 On the booking detail page (when filtering the assets attached to a booking) and on the audit asset picker, you can now type a barcode value into the search box and the matching asset will appear. Useful when you have a sticker in hand and want to jump to the row that represents it. Both surfaces are backed by GIN trigram indexes on `Barcode.value` and `Qr.id`, so the substring search stays fast even on large workspaces.
+
+### Scanning a barcode value that looks like a SAM ID
+
+Barcode values such as `LAPTOP-0001` or `TOOL-4712` have the same shape as a Shelf [SAM ID](/knowledge-base/asset-identifiers-qr-id-sam-id-property-id#2-sam-id--sequential-asset-numbers) — letters, a hyphen, and four or more digits — so a scanner in text mode, and the **Enter code** field in the mobile app, read them as a SAM ID first.
+
+If no asset in your workspace carries that sequential ID, the lookup now falls through to your barcodes, and the label resolves to whichever asset or kit it is registered on. A value that is genuinely a SAM ID still wins, so an asset's own sequential number is never shadowed by someone else's barcode.
+
+Camera scans were never affected: a camera reads the symbology off the label, so a Code 128 has always gone straight to the barcode lookup.
 
 ### A column per barcode type on the advanced index
 
