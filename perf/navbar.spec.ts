@@ -11,17 +11,33 @@
  *
  * Expected today: elevated CLS during scroll, slow menu open on WebKit.
  * Starter budgets are lenient; ratchet in Phase 5.
+ *
+ * Scroll CLS is asserted in Chromium only, because WebKit has no Layout
+ * Instability API. Scroll frame timing is recorded in every browser. See
+ * perf/README.md.
  */
 
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 import {
   attachVitals,
+  canMeasureCLS,
+  CLS_UNMEASURABLE,
   readVitals,
   waitForVitalsSettle,
   measureCLSDelta,
 } from "./helpers/capture-vitals";
 
 const HOMEPAGE = "/";
+
+// Scroll in 200px increments, matching realistic user scroll speed.
+// page.mouse.wheel is unsupported on mobile WebKit, so use window.scrollBy
+// everywhere for portability.
+async function scrollHomepage(page: Page): Promise<void> {
+  for (let step = 0; step < 12; step++) {
+    await page.evaluate(() => window.scrollBy(0, 200));
+    await page.waitForTimeout(60);
+  }
+}
 
 // Starter budgets = current production (captured 2026-04-10) + safety margin.
 // Ratchet down as fixes land. See docs/perf-audit/baseline-2026-04-10.md.
@@ -94,22 +110,24 @@ test.describe("Navbar — menu + scroll regression gate", () => {
     ).toBeLessThan(MOBILE_MENU_OPEN_BUDGET_MS);
   });
 
-  test("scrolling the homepage doesn't shift layout", async ({ page }) => {
+  test("scrolling the homepage records frame timing + long tasks", async ({ page, browserName }) => {
     await attachVitals(page);
     await page.goto(HOMEPAGE);
     await waitForVitalsSettle(page, 1000);
 
-    // Install two measurements:
+    // Install two measurements. Neither has a budget yet: they are logged
+    // for every browser, and the test only asserts that frames were recorded.
     //
     //   1. Long-task observer (Chromium only — WebKit doesn't support this
-    //      entry type). Gives total main-thread blocking time >50ms tasks.
+    //      entry type, checked on 26.4). Gives total main-thread blocking
+    //      time >50ms tasks. Logged as "not measured" where unsupported.
     //
     //   2. rAF frame-duration recorder (all browsers). Captures every frame's
     //      duration during the recording window so we can compute max-frame,
     //      dropped frames (>16.67ms = below 60fps), and total jank budget.
     //      This is the metric that actually shows backdrop-filter cost on
     //      WebKit since long-task API isn't available there.
-    await page.evaluate(() => {
+    const longTasksSupported = await page.evaluate(() => {
       type W = {
         __longTasks: Array<{ duration: number; startTime: number }>;
         __frameDurations: number[];
@@ -126,8 +144,9 @@ test.describe("Navbar — menu + scroll regression gate", () => {
           }
         }).observe({ entryTypes: ["longtask"] });
       } catch {
-        // WebKit <17.4 doesn't support longtask PerformanceObserver — not fatal.
+        // Older engines throw on an unsupported entry type — not fatal.
       }
+      return PerformanceObserver.supportedEntryTypes.includes("longtask");
     });
 
     // Start the rAF frame recorder right before scrolling begins.
@@ -147,34 +166,14 @@ test.describe("Navbar — menu + scroll regression gate", () => {
       requestAnimationFrame(tick);
     });
 
-    const { delta } = await measureCLSDelta(page, async () => {
-      // Scroll in 200px increments, matching realistic user scroll speed.
-      // page.mouse.wheel is unsupported on mobile WebKit, so use window.scrollBy
-      // everywhere for portability.
-      for (let step = 0; step < 12; step++) {
-        await page.evaluate(() => window.scrollBy(0, 200));
-        await page.waitForTimeout(60);
-      }
-    }, 800);
+    await scrollHomepage(page);
+    await page.waitForTimeout(800);
 
     // Stop recording and drain one more frame.
     await page.evaluate(() => {
       (window as unknown as { __rafRecording: boolean }).__rafRecording = false;
     });
     await page.waitForTimeout(100);
-
-    const vitals = await readVitals(page);
-    if (vitals.clsEntries.length > 0) {
-      console.log("[scroll-cls] top entries:");
-      vitals.clsEntries
-        .sort((a, b) => b.value - a.value)
-        .slice(0, 5)
-        .forEach((e, i) =>
-          console.log(
-            `  ${i + 1}. value=${e.value.toFixed(4)} t=${e.startTime.toFixed(0)}ms sources=${e.sources.slice(0, 2).join(", ")}`,
-          ),
-        );
-    }
 
     const longTasks = await page.evaluate(
       () => (window as unknown as { __longTasks?: Array<{ duration: number; startTime: number }> }).__longTasks ?? [],
@@ -196,11 +195,38 @@ test.describe("Navbar — menu + scroll regression gate", () => {
       .reduce((sum, d) => sum + (d - 16.67), 0);
 
     console.log(
-      `[scroll-longtasks] count=${longTasks.length} total=${longTaskTotalMs.toFixed(0)}ms max=${longTaskMaxMs.toFixed(0)}ms`,
+      longTasksSupported
+        ? `[scroll-longtasks] count=${longTasks.length} total=${longTaskTotalMs.toFixed(0)}ms max=${longTaskMaxMs.toFixed(0)}ms`
+        : `[scroll-longtasks] not measured: ${browserName} has no 'longtask' entries`,
     );
     console.log(
       `[scroll-frames] n=${frameCount} avg=${avgFrameMs.toFixed(1)}ms max=${maxFrameMs.toFixed(1)}ms dropped=${droppedFrames} jank=${jankBudgetMs.toFixed(0)}ms`,
     );
+
+    expect(frameCount, "rAF recorder captured frames while scrolling").toBeGreaterThan(0);
+  });
+
+  test("scrolling the homepage doesn't shift layout", async ({ page }) => {
+    test.skip(!(await canMeasureCLS(page)), CLS_UNMEASURABLE);
+
+    await attachVitals(page);
+    await page.goto(HOMEPAGE);
+    await waitForVitalsSettle(page, 1000);
+
+    const { delta } = await measureCLSDelta(page, () => scrollHomepage(page), 800);
+
+    const vitals = await readVitals(page);
+    if (vitals.clsEntries.length > 0) {
+      console.log("[scroll-cls] top entries:");
+      vitals.clsEntries
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 5)
+        .forEach((e, i) =>
+          console.log(
+            `  ${i + 1}. value=${e.value.toFixed(4)} t=${e.startTime.toFixed(0)}ms sources=${e.sources.slice(0, 2).join(", ")}`,
+          ),
+        );
+    }
     console.log(`[scroll-cls] delta=${delta}`);
 
     expect(

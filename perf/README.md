@@ -1,7 +1,9 @@
 # Perf tests
 
 Playwright + web-vitals perf tests for shelf.nu. WebKit is a first-class
-project because the jank we care about is Safari-specific.
+project because the jank we care about is Safari-specific. The exception is
+CLS, which only Chromium can measure (see
+[CLS is measured in Chromium only](#cls-is-measured-in-chromium-only)).
 
 ## Running locally
 
@@ -24,7 +26,19 @@ auto-reuses it (see `reuseExistingServer: !process.env.CI`).
 | Spec file | Targets | Key assertions |
 |---|---|---|
 | `blog-sidebar.spec.ts` | "Blinking anchors on blog deep links" — blog-sidebar.tsx IO + accordion thrash | CLS on initial load, CLS on deep-link nav, CLS on TOC click |
-| `navbar.spec.ts` | "Menu jank" + "Scroll jank" — navbar.tsx scroll listener, top-banner collapse | Mega menu open ms, mobile menu open ms, scroll CLS, long-tasks, frame durations |
+| `navbar.spec.ts` | "Menu jank" + "Scroll jank" — navbar.tsx scroll listener, top-banner collapse | Mega menu open ms, mobile menu open ms, scroll CLS. Scroll long-tasks and frame durations are logged but have no budget yet |
+
+Where each test runs (a skipped test is reported as skipped, never as passed):
+
+| Test | webkit | chromium | mobile-safari |
+|---|---|---|---|
+| Blog: initial-load CLS | skip (no CLS) | runs | skip (no CLS) |
+| Blog: deep-link CLS | skip (no CLS) | runs | skip (no CLS) |
+| Blog: TOC-click CLS | skip (no CLS) | runs | skip (desktop-only TOC) |
+| Navbar: mega menu open | runs | runs | skip (desktop-only) |
+| Navbar: mobile menu open | skip (mobile-only) | skip (mobile-only) | runs |
+| Navbar: scroll frame timing + long tasks | runs (long tasks not measured) | runs | runs (long tasks not measured) |
+| Navbar: scroll CLS | skip (no CLS) | runs | skip (no CLS) |
 
 The "Search click jank" spec (`search.spec.ts`) is deferred — the
 placeholder PostHog / Crisp env vars used in CI break React hydration
@@ -34,11 +48,44 @@ in a follow-up PR once we've either (a) switched the CI build to use
 minimal real keys, or (b) properly blocked third-party scripts at the
 Playwright config level.
 
+## CLS is measured in Chromium only
+
+CLS comes from the Layout Instability API (`layout-shift` performance
+entries), and only Chromium implements it. WebKit leaves `layout-shift` out of
+`PerformanceObserver.supportedEntryTypes`, so web-vitals' `onCLS` never fires
+there. This was checked on Playwright's WebKit 26.4 (Desktop Safari and
+iPhone 14) on 2026-09-11. WebKit has no `longtask` entries either.
+
+Before 2026-09-11 the harness started CLS at 0, so every CLS assertion in the
+webkit and mobile-safari projects passed without measuring anything. A probe
+page that pushes its content down 400px read CLS 0.30 in Chromium and 0 in both
+WebKit projects. The audit baseline's conclusion that CLS is zero in WebKit
+(`docs/perf-audit/baseline-2026-04-10.md`) came from this bug.
+
+How the suite handles it now:
+
+- Each CLS test starts with
+  `test.skip(!(await canMeasureCLS(page)), CLS_UNMEASURABLE)`, so on WebKit it
+  shows up as skipped, not passed.
+- `canMeasureCLS()` checks for `layout-shift` support, the same check
+  web-vitals makes. It does not check the browser name, so if WebKit ships the
+  API, the CLS tests start running there on their own. The budgets were set
+  in Chromium, so review them when that happens.
+- `CLS` stays `null` until web-vitals reports it, and `readCLS()` /
+  `measureCLSDelta()` throw on null. A new CLS test that forgets the skip fails
+  loudly instead of passing at 0.
+- Scroll CLS and scroll frame timing are separate tests, so WebKit still
+  records frame durations, which is the Safari-specific signal.
+
+What the suite cannot catch is a layout shift that only happens in Safari.
+Lighthouse-CI runs Chromium too. Field data has the same gap: CrUX is
+Chrome-only, and any RUM script reads the same browser API.
+
 ## Starter budgets (lenient — ratchet in Phase 5)
 
-- CLS (blog load): **< 0.1** (target post-fix: < 0.05)
-- CLS (scroll): **< 0.05** (target post-fix: < 0.01)
-- Mega menu open: **< 2500ms** (target post-fix: < 300ms)
+- CLS (blog load, Chromium only): **< 0.1** (target post-fix: < 0.05)
+- CLS (scroll, Chromium only): **< 0.05** (target post-fix: < 0.01)
+- Mega menu open: **< 25000ms** (target post-fix: < 300ms)
 
 These budgets will be ratcheted down as fixes land so every PR must
 maintain-or-improve the current-production numbers.
@@ -57,11 +104,15 @@ maintain-or-improve the current-production numbers.
 The perf workflow is **not yet a required check on `main`** — Phase 5 adds that
 once the current-production baseline is stable.
 
+CI runs only the `webkit` and `chromium` projects, so the PR comment's
+**Skipped** count includes the four WebKit CLS tests.
+
 ## Where the numbers come from
 
 - Playwright uses the `web-vitals` library (v5) injected into each page via
   `perf/helpers/capture-vitals.ts`. Same library Google uses for CrUX, so
-  numbers match Lighthouse field data.
+  numbers match Lighthouse field data. CLS comes from Chromium only (see
+  above).
 - Lighthouse-CI runs a synthetic desktop-profile audit (cable-like throttling)
   and asserts against budgets in `lighthouserc.json`. Note the run count differs
   by trigger: `.github/workflows/perf.yml` passes

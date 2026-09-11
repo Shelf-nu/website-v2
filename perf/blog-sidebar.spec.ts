@@ -16,11 +16,17 @@
  *
  * Starter budgets are lenient (0.25) so tests pass today. Phase 5 ratchets
  * them down to the current-production value minus a safety margin.
+ *
+ * Every test here asserts CLS, so they all skip in WebKit, which has no
+ * Layout Instability API. See perf/README.md.
  */
 
 import { test, expect } from "@playwright/test";
 import {
   attachVitals,
+  canMeasureCLS,
+  CLS_UNMEASURABLE,
+  readCLS,
   readVitals,
   waitForVitalsSettle,
   measureCLSDelta,
@@ -41,6 +47,8 @@ const TOC_CLICK_CLS_BUDGET = 0.1;
 
 test.describe("Blog sidebar — TOC perf regression gate", () => {
   test("blog post initial load stays within CLS budget", async ({ page }) => {
+    test.skip(!(await canMeasureCLS(page)), CLS_UNMEASURABLE);
+
     await attachVitals(page);
     await page.goto(BLOG_POST);
     await waitForVitalsSettle(page, 1500);
@@ -49,13 +57,15 @@ test.describe("Blog sidebar — TOC perf regression gate", () => {
     console.log("[blog-load]", JSON.stringify(vitals, null, 2));
 
     expect(
-      vitals.CLS,
+      await readCLS(page),
       `initial blog post load (budget ${INITIAL_LOAD_CLS_BUDGET})`,
     ).toBeLessThan(INITIAL_LOAD_CLS_BUDGET);
     expect(vitals.LCP, "LCP should be reported").not.toBeNull();
   });
 
   test("deep-link navigation to a heading causes minimal shift", async ({ page }) => {
+    test.skip(!(await canMeasureCLS(page)), CLS_UNMEASURABLE);
+
     await attachVitals(page);
     await page.goto(BLOG_POST);
     await waitForVitalsSettle(page, 800);
@@ -86,6 +96,7 @@ test.describe("Blog sidebar — TOC perf regression gate", () => {
 
   test("clicking TOC links causes minimal shift", async ({ page, isMobile }) => {
     test.skip(isMobile, "blog sidebar TOC is desktop-only (hidden on mobile)");
+    test.skip(!(await canMeasureCLS(page)), CLS_UNMEASURABLE);
 
     await attachVitals(page);
     await page.goto(BLOG_POST);

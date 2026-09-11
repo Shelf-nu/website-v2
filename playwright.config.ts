@@ -4,7 +4,9 @@ import { defineConfig, devices } from "@playwright/test";
  * Playwright config for Shelf website perf tests.
  *
  * WebKit is a first-class project because the Shelf marketing site jank
- * we're hunting is Safari-specific. Chromium runs for parity.
+ * we're hunting is Safari-specific. Chromium runs for parity, and is the
+ * only project that can measure CLS: WebKit has no Layout Instability API,
+ * so the CLS tests skip there (see perf/README.md).
  *
  * Tests live in perf/ and expect a production build served at PERF_BASE_URL
  * (default http://localhost:4173). For local iteration:
