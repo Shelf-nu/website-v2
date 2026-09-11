@@ -74,8 +74,12 @@ export function ScaleBlock() {
                             {metrics.map((metric, index) => (
                                 <div key={index}>
                                     <div className="text-3xl font-bold text-heading mb-1 flex items-baseline">
+                                        {/* locales is pinned: without it NumberFlow formats with the
+                                            visitor's browser locale, so de-DE saw "450.000+" and
+                                            "99,999%", fr-FR "450 000+" and en-IN "4,50,000+". */}
                                         <NumberFlow
                                             value={hasStarted ? metric.value : 0}
+                                            locales="en-US"
                                             format={{ useGrouping: true, maximumFractionDigits: metric.decimalPlaces || 0 }}
                                         />
                                         <span>{metric.suffix}</span>
