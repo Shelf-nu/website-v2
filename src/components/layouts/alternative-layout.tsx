@@ -175,7 +175,8 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                     heroTagline={`Shelf vs ${competitor}`}
                     heroContent={<CompetitorVsShelf competitor={competitor} slug={competitorSlug} />}
                 >
-                    <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                    {/* CTA chrome (hero buttons, sidebar, mobile CTA) repeats on every comparison, so it stays out of the search index */}
+                    <div data-pagefind-ignore className="flex flex-col sm:flex-row gap-4 mt-4">
                         <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white" asChild>
                             <TrackedLink
                                 href={`https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=alt_${slugifiedCompetitor}_hero`}
@@ -206,7 +207,7 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                             </div>
 
                             {/* Sticky Sidebar */}
-                            <aside className="hidden lg:block">
+                            <aside data-pagefind-ignore className="hidden lg:block">
                                 <div className="sticky top-24 space-y-6">
                                     {/* CTA Card */}
                                     <div className="rounded-2xl border border-orange-200/60 bg-orange-50/50 dark:bg-orange-950/20 dark:border-orange-900/30 p-6">
@@ -325,7 +326,7 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
                         </div>
 
                         {/* Mobile CTA (shown below content on small screens) */}
-                        <div className="lg:hidden mt-12 rounded-2xl border border-orange-200/60 bg-orange-50/50 dark:bg-orange-950/20 dark:border-orange-900/30 p-8 text-center">
+                        <div data-pagefind-ignore className="lg:hidden mt-12 rounded-2xl border border-orange-200/60 bg-orange-50/50 dark:bg-orange-950/20 dark:border-orange-900/30 p-8 text-center">
                             <h3 className="font-bold text-xl text-foreground mb-2">
                                 Ready to switch from {competitor}?
                             </h3>

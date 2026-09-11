@@ -85,8 +85,8 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                                 </div>
                             </div>
 
-                            {/* Sticky Sidebar */}
-                            <aside className="hidden lg:block">
+                            {/* Sticky Sidebar — the same CTA chrome on every article, so kept out of the search index */}
+                            <aside data-pagefind-ignore className="hidden lg:block">
                                 <div className="sticky top-28 space-y-5">
                                     {/* Get Started CTA */}
                                     <div className="rounded-2xl border border-orange-200/60 bg-orange-50/50 dark:bg-orange-950/20 dark:border-orange-900/30 p-6">
@@ -166,8 +166,8 @@ export function KnowledgeBaseLayout({ frontmatter, children }: LayoutProps) {
                             </aside>
                         </div>
 
-                        {/* Mobile CTA (shown below content on small screens) */}
-                        <div className="lg:hidden mt-12 rounded-2xl border border-orange-200/60 bg-orange-50/50 dark:bg-orange-950/20 dark:border-orange-900/30 p-8 text-center">
+                        {/* Mobile CTA (shown below content on small screens; kept out of the search index) */}
+                        <div data-pagefind-ignore className="lg:hidden mt-12 rounded-2xl border border-orange-200/60 bg-orange-50/50 dark:bg-orange-950/20 dark:border-orange-900/30 p-8 text-center">
                             <h3 className="font-bold text-xl text-foreground mb-2">
                                 Ready to try Shelf?
                             </h3>
