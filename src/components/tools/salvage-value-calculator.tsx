@@ -106,7 +106,7 @@ export function SalvageValueCalculator() {
             `Purchase Price: ${formatCurrency(price)}`,
             `Useful Life: ${life} years`,
             `Asset Category: ${CATEGORY_LABELS[category]}`,
-            `Annual Depreciation Rate: ${rate}%`,
+            `Annual Depreciation Rate: ${rate}% of remaining value`,
             "",
             `Estimated Salvage Value: ${formatCurrency(result.salvageValue)}`,
             `Total Depreciation: ${formatCurrency(result.totalDepreciation)} (${result.depreciationPercent}%)`,
@@ -216,8 +216,9 @@ export function SalvageValueCalculator() {
                         </span>
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
-                        Auto-suggested based on category. Adjust to match your
-                        specific situation.
+                        Share of its remaining value the asset loses each
+                        year. Auto-suggested based on category. Adjust to match
+                        your specific situation.
                     </p>
                 </div>
             </div>

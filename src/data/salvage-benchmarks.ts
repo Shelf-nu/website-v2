@@ -1,6 +1,6 @@
 export interface SalvageBenchmark {
     label: string;
-    annualRate: number; // annual depreciation rate as decimal (e.g., 0.20 = 20%)
+    annualRate: number; // share of remaining value lost per year, as decimal (e.g., 0.20 = 20%)
     typicalLife: number; // typical useful life in years
 }
 
@@ -27,7 +27,9 @@ export const CATEGORY_LABELS: Record<AssetCategory, string> = {
 
 /**
  * Industry benchmark data for salvage value estimation.
- * Annual rates represent typical straight-line depreciation percentages.
+ * Annual rates are declining-balance rates (the share of its remaining value
+ * an asset loses each year), each about 1 / typicalLife. calculateSalvage in
+ * @/lib/salvage applies them that way.
  * Sources: general industry guides, IRS useful life tables.
  */
 export const SALVAGE_BENCHMARKS: Record<AssetCategory, SalvageBenchmark> = {
