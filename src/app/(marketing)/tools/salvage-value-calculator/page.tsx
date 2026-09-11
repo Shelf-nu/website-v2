@@ -21,7 +21,7 @@ const jsonLd = buildToolPageJsonLd({
         },
         {
             question: "Can salvage value be zero?",
-            answer: "Yes. Some assets (especially technology) may have zero or near-zero salvage value if they become obsolete. For MACRS tax depreciation, salvage value is always treated as zero. This calculator's estimate shrinks every year but never quite reaches zero, so if you expect to scrap or write off an asset, plan on zero instead.",
+            answer: "Yes. Some assets (especially technology) may have zero or near-zero salvage value if they become obsolete. For MACRS tax depreciation, salvage value is always treated as zero. This calculator's estimate shrinks every year without ever reaching zero, though it shows as $0 once it falls below 50 cents. If you expect to scrap or write off an asset, plan on zero instead.",
         },
         {
             question: "What's the difference between salvage and scrap value?",
@@ -197,10 +197,11 @@ export default function SalvageValueCalculatorPage() {
                                             depreciation, salvage value is
                                             always treated as zero. This
                                             calculator&apos;s estimate shrinks
-                                            every year but never quite reaches
-                                            zero, so if you expect to scrap or
-                                            write off an asset, plan on zero
-                                            instead.
+                                            every year without ever reaching
+                                            zero, though it shows as $0 once it
+                                            falls below 50 cents. If you expect
+                                            to scrap or write off an asset, plan
+                                            on zero instead.
                                         </p>
                                     </div>
                                     <div>
