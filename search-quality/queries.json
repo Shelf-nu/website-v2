@@ -19,7 +19,6 @@
     { "q": "reminders", "expect": "/features/asset-reminders" },
     { "q": "calendar", "expect": "/features/calendar" },
     { "q": "location tracking", "expect": "/features/location-tracking" },
-    { "q": "locations", "expect": "/features/location-tracking" },
     { "q": "workspaces", "expect": "/features/workspaces" },
     { "q": "workspace", "expect": "/features/workspaces" },
     { "q": "dashboard", "expect": "/features/dashboard" },
@@ -66,6 +65,7 @@
   "knownIssues": [
     { "q": "bookings", "expect": "/features/bookings", "note": "Term on 344/348 pages -> IDF~0, all scores ~0.03, order is noise. Not fixable by ranking/keywords." },
     { "q": "kits", "expect": "/features/kits", "note": "Core concept on most pages -> IDF~0, all scores ~0, order is noise (passed before by tie-luck, tipped by corpus churn). Same class as bookings." },
+    { "q": "locations", "expect": "/features/location-tracking", "note": "Core product word. Passes at #3, only 0.7% above #4 (/knowledge-base/locations-vs-categories-vs-tags) as of 2026-09-11, so any location wording on another page can flip it. Tracked here so CI can't go red on an unrelated PR; \"location tracking\" stays asserted." },
     { "q": "asset tracking", "expect": "/solutions/asset-tracking", "note": "Extremely generic head term; competes with the whole site." },
     { "q": "csv", "expect": "/knowledge-base/importing-assets-to-shelf-csv-guide", "note": "Real on-site query, currently ~#8. Verify/strengthen canonical import destination." },
     { "q": "rfid", "expect": null, "note": "Real on-site query with NO canonical page. Verify product support before creating one." },

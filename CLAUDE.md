@@ -64,6 +64,8 @@ out/                     # Build output (static HTML + pagefind index)
 - Use `keywords` prop to boost ranking for primary search terms (weight 10x).
 - Build writes index to `out/pagefind`; `search:dev` script copies to `public/pagefind` for dev.
 - The search dialog lazy-loads `/pagefind/pagefind.js` at runtime.
+- Text repeated on every page of a layout (CTA blocks, sidebars, button rows) gets `data-pagefind-ignore`, like the navbar and footer. Boilerplate inside `data-pagefind-body` makes its words worthless for ranking; the global CTA's "Book a demo" once pushed /demo to #5 for "demo".
+- `npm run search:quality` (after a build) checks that canonical pages rank for real queries. CI runs it on every PR; see `search-quality/README.md`.
 
 ### Forms
 - Demo form at `/demo` uses client-side Zod validation + fetch POST.
@@ -168,6 +170,7 @@ Deployed to **Cloudflare Pages** via GitHub Actions (`.github/workflows/deploy.y
 - **Preview**: deploys per PR, posts preview URL as a PR comment
 - Pipeline: `npm ci` → `npm run lint` → `npm run build` → `wrangler pages deploy`
 - Node version pinned in `.nvmrc` (22)
+- **Search quality** (`.github/workflows/search-quality.yml`): builds and runs `npm run search:quality` on every PR and every push to `main`, separate from the deploy. Not a required check: `main` has no branch protection, so every check is advisory. A red "Search quality" usually means a canonical page dropped out of the top 3 for its query (a failed build or install turns it red too).
 
 **Required GitHub secrets**:
 - `CLOUDFLARE_API_TOKEN` — Cloudflare API token with Pages edit permission

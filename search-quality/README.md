@@ -24,6 +24,17 @@ The Playwright config ([`playwright.search.config.ts`](../playwright.search.conf
 auto-serves `out/` on port 4174 (reuses an existing server if one is running).
 Chromium only — ranking is identical across engines.
 
+CI runs the same thing on every PR and every push to main
+([`.github/workflows/search-quality.yml`](../.github/workflows/search-quality.yml)).
+A miss shows up as a failed "Search quality" check, with an annotation naming the
+query and what outranked the expected page. Content PRs trip it too, and that's the
+point: new wording is what moves rankings. If one fails, fix it (see below) or move
+the query to `knownIssues` with a note saying why.
+
+Keep near-ties out of `queries`. If the expected page leads the 4th result by only a
+percent or two, wording on any other page can flip it, and the check goes red on an
+unrelated PR. Track those in `knownIssues` instead ("locations" is there for this reason).
+
 ## How to read the output
 
 - **Asserted** queries (`queries` in `queries.json`) must surface their `expect`

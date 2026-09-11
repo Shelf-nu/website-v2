@@ -1,0 +1,58 @@
+name: Search quality
+
+# Builds the site and checks that Cmd+K search still puts each canonical page in
+# the top 3 for its query (search-quality/queries.json). See search-quality/README.md.
+#
+# No `paths:` filter, on purpose. Content-only PRs are what move search rankings:
+# in September 2026 three content PRs (#196, #244, #284) pushed /demo to #5, and
+# content growth hid /features/workspaces entirely, for weeks, because nothing ran
+# the harness. It runs on pushes to main too, because Pagefind's index depends on
+# the whole site: two PRs that pass on their own can still fail together.
+#
+# Kept apart from deploy.yml so a search regression can never block or break a
+# deploy. It reports; it only blocks merging if it's made a required check.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  # Run it by hand from the Actions tab, e.g. before upgrading Pagefind.
+  workflow_dispatch:
+
+concurrency:
+  group: search-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  search-quality:
+    name: Search quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Chromium only: ranking is pure JS + WASM, identical in every engine.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: https://www.shelf.nu
+
+      # The config serves out/ itself. The `github` reporter turns each miss into an
+      # annotation on the PR, e.g. `"demo" should surface /demo in top 3 (got #5: …)`.
+      - name: Check canonical pages rank for their queries
+        run: npm run search:quality -- --reporter=list,github

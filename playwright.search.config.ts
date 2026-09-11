@@ -45,7 +45,8 @@ export default defineConfig({
   webServer: process.env.SEARCH_SKIP_SERVER
     ? undefined
     : {
-        command: `npx --yes serve out -l ${PORT}`,
+        // `serve` is a pinned devDependency, so CI never picks up a new release mid-run.
+        command: `npx serve out -l ${PORT}`,
         port: PORT,
         reuseExistingServer: !process.env.CI,
         timeout: 60_000,
