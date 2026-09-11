@@ -75,7 +75,11 @@ How the suite handles it now:
   `measureCLSDelta()` throw on null. A new CLS test that forgets the skip fails
   loudly instead of passing at 0.
 - Scroll CLS and scroll frame timing are separate tests, so WebKit still
-  records frame durations, which is the Safari-specific signal.
+  records frame durations. That is a real Safari signal on a Mac only. In CI,
+  headless WebKit on Linux runs just 2–21 frames per scroll test, where
+  Chromium runs about 90 (measured across 12 runs on 2026-09-11), so CI's
+  WebKit frame numbers are noise. The frame test therefore only logs; it has
+  no assertion that could fail at random.
 
 What the suite cannot catch is a layout shift that only happens in Safari.
 Lighthouse-CI runs Chromium too. Field data has the same gap: CrUX is
