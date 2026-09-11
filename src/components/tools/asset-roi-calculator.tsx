@@ -150,7 +150,7 @@ export function AssetRoiCalculator() {
                 "",
                 `Shelf ${SHELF_PLANS[plan].label} Plan: ${formatCurrency(comparison.annualShelfCost)}/yr`,
                 `Net Annual Savings: ${formatCurrency(comparison.netSavings)}`,
-                `ROI: ${comparison.roi}%`,
+                `ROI: ${comparison.roi.toLocaleString("en-US")}%`,
                 `Payback Period: ${comparison.paybackMonths} months`,
                 `3-Year Savings: ${formatCurrency(comparison.threeYearSavings)}`
             );
