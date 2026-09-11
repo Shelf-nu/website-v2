@@ -1,13 +1,19 @@
 import { test, expect } from "@playwright/test";
 import fixture from "./queries.json";
 import searchRanking from "../src/lib/search-ranking.json";
+import { searchWarmupTerms } from "../src/lib/search-warmup";
 
 /**
  * Search-quality regression harness.
  *
  * Loads the built Pagefind index (served from out/) and checks that real
- * queries surface the right canonical page — using the SAME ranking config the
- * app ships (src/lib/search-ranking.json), so the two can never drift.
+ * queries surface the right canonical page — using the SAME ranking config
+ * (src/lib/search-ranking.json) and chunk warmup (src/lib/search-warmup.ts) the
+ * app ships, so the two can never drift.
+ *
+ * Every query runs on a fresh Pagefind instance, like a visitor's first search.
+ * A shared instance keeps every index chunk the earlier queries loaded, so a
+ * query could pass or fail because of the fixture entries before it.
  *
  * `queries` are asserted (expected page must be within topN). `knownIssues` are
  * reported only — tracked so we can watch them improve, but they don't fail the
@@ -20,6 +26,8 @@ type Entry = { q: string; expect: string | null; note?: string };
 
 const SCAN_LIMIT = 25; // how deep to look for the expected page when reporting rank
 
+const withWarmup = (list: Entry[]) => list.map((e) => ({ ...e, warm: searchWarmupTerms(e.q) }));
+
 test("canonical pages rank for their queries", async ({ page }) => {
   await page.goto("/");
 
@@ -28,10 +36,12 @@ test("canonical pages rank for their queries", async ({ page }) => {
     async ({ ranking, queries, knownIssues, scanLimit }) => {
       // @ts-expect-error — Pagefind is loaded at runtime from the static index
       const pf = await import(/* webpackIgnore: true */ "/pagefind/pagefind.js");
-      await pf.init();
-      await pf.options({ ranking });
 
-      const rankOne = async (q: string, expectUrl: string | null) => {
+      const rankOne = async (q: string, warm: string, expectUrl: string | null) => {
+        await pf.destroy();
+        await pf.init();
+        await pf.options({ ranking });
+        if (warm) await pf.preload(warm);
         const s = await pf.search(q);
         const limit = Math.min(s.results.length, scanLimit);
         let rank: number | null = null;
@@ -46,10 +56,10 @@ test("canonical pages rank for their queries", async ({ page }) => {
         return { rank, total: s.results.length, top };
       };
 
-      const run = async (list: { q: string; expect: string | null }[]) => {
+      const run = async (list: { q: string; warm: string; expect: string | null }[]) => {
         const out = [];
         for (const item of list) {
-          const r = await rankOne(item.q, item.expect);
+          const r = await rankOne(item.q, item.warm, item.expect);
           out.push({ q: item.q, expect: item.expect, ...r });
         }
         return out;
@@ -59,8 +69,8 @@ test("canonical pages rank for their queries", async ({ page }) => {
     },
     {
       ranking: searchRanking,
-      queries: fixture.queries as Entry[],
-      knownIssues: fixture.knownIssues as Entry[],
+      queries: withWarmup(fixture.queries as Entry[]),
+      knownIssues: withWarmup(fixture.knownIssues as Entry[]),
       scanLimit: SCAN_LIMIT,
     },
   );

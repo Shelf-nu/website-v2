@@ -32,6 +32,38 @@ Chromium only — ranking is identical across engines.
 - **Known issues** (`knownIssues`) are reported with their current rank but never
   fail the run. They're the backlog — watch them improve over time.
 
+Each query runs on a fresh Pagefind instance, the way a visitor's first search
+does. With a shared instance, every index chunk an earlier query loaded stayed
+loaded, so a query could pass or fail depending on the entries above it.
+
+## Failures that aren't ranking problems
+
+Both of these showed up in September 2026 as harness failures ("demo" at #5,
+"workspaces" missing entirely). Neither could be fixed in `search-ranking.json`.
+
+- **Boilerplate that puts a word on every page.** Pagefind weighs each matched
+  word by how rare it is across the site, so a word on every page counts for
+  almost nothing. Then any rare word that merely *starts with* the query can
+  outscore the exact match. "Book a demo" in the global CTA, the KB sidebar and
+  the other templated CTAs put "demo" on 418 of 424 pages, so a case study
+  mentioning "demon statues" and the user-role guides about who can "demote"
+  whom outranked /demo. Rule: templated chrome that
+  repeats across a collection (CTA sections, sidebars, button rows) gets
+  `data-pagefind-ignore`, like the navbar and footer. Symptom: the expected page
+  scores near zero while pages with only a longer look-alike word rank above it.
+- **Pagefind 1.4 loads the wrong index chunk.** It picks the chunk from the word
+  as typed but matches by stem. When a chunk boundary falls between the two
+  ("workspac" | "workspace"), the search never sees the stem's chunk.
+  [`src/lib/search-warmup.ts`](../src/lib/search-warmup.ts) preloads each word's
+  prefixes first; the search dialog and this harness both call it. Symptom: a
+  query returns a handful of near-zero results and its obvious page is missing.
+
+Pagefind 1.5 fixes the chunk lookup upstream, but it also re-weights ranking. On
+the 2026-09-11 index, 1.5.2 with our ranking dropped this basket from 49 to 37
+of 51: short `/updates` posts outranked the canonical feature pages, even with
+`metaWeights.title` set to 0. Treat that upgrade as its own re-tune. Once it's
+done, the warmup can go.
+
 ## The discovery loop (keep search getting better)
 
 Search quality is demand-driven. Roughly monthly:

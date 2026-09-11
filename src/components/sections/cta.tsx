@@ -7,8 +7,10 @@ import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 
 export function CTA() {
+    // Site-wide chrome, kept out of the search index like the navbar and footer. Indexed on ~320 pages, its
+    // "Book a demo" helped put "demo" on nearly every page, which zeroed the term's weight and buried /demo.
     return (
-        <section className="py-24 bg-neutral-950 relative overflow-hidden">
+        <section data-pagefind-ignore className="py-24 bg-neutral-950 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
             <div className="absolute inset-0 bg-gradient-to-t from-orange-500/10 to-transparent pointer-events-none" />
             <Container className="relative text-center">

@@ -283,7 +283,8 @@ export function CaseStudyLayout({ frontmatter, children }: LayoutProps) {
                                         {frontmatter.cta?.body || "Join thousands of teams who track their assets with Shelf."}
                                     </p>
                                 </div>
-                                <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
+                                {/* The buttons are the same on every case study, so they stay out of the search index */}
+                                <div data-pagefind-ignore className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-0 shrink-0">
                                     <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-900/10" asChild>
                                         <TrackedLink
                                             href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=case_study_bottom_cta_signup"

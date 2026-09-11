@@ -5,6 +5,7 @@ import { Search, FileText, Loader2, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import searchRanking from "@/lib/search-ranking.json";
+import { searchWarmupTerms } from "@/lib/search-warmup";
 
 /* ------------------------------------------------------------------ */
 /*  Pagefind type stubs (loaded dynamically at runtime)               */
@@ -30,6 +31,7 @@ interface PagefindSearchResponse {
 
 interface PagefindInstance {
     search: (query: string, options?: { filters?: Record<string, string[]> }) => Promise<PagefindSearchResponse>;
+    preload: (query: string) => Promise<void>;
     filters: () => Promise<Record<string, Record<string, number>>>;
 }
 
@@ -171,6 +173,10 @@ export function SearchDialog() {
         debounceRef.current = setTimeout(async () => {
             try {
                 const filterOpts = activeFilter ? { filters: { type: [activeFilter] } } : undefined;
+                // Load the index chunks that hold each word's stem first, or a plural like "workspaces"
+                // can miss its own page. See search-warmup.ts; the harness does the same.
+                const warmup = searchWarmupTerms(query);
+                if (warmup) await pagefindRef.current!.preload(warmup);
                 const response = await pagefindRef.current!.search(query, filterOpts);
                 const data = await Promise.all(
                     response.results.slice(0, MAX_RESULTS).map((r) => r.data())

@@ -21,6 +21,7 @@
     { "q": "location tracking", "expect": "/features/location-tracking" },
     { "q": "locations", "expect": "/features/location-tracking" },
     { "q": "workspaces", "expect": "/features/workspaces" },
+    { "q": "workspace", "expect": "/features/workspaces" },
     { "q": "dashboard", "expect": "/features/dashboard" },
     { "q": "asset search", "expect": "/features/asset-search" },
     { "q": "asset pages", "expect": "/features/asset-pages" },
@@ -45,6 +46,7 @@
     { "q": "camera equipment", "expect": "/solutions/camera-equipment-check-out" },
 
     { "q": "demo", "expect": "/demo" },
+    { "q": "book a demo", "expect": "/demo" },
     { "q": "pricing", "expect": "/pricing" },
     { "q": "contact", "expect": "/contact" },
     { "q": "migrate", "expect": "/migrate" },
@@ -64,7 +66,6 @@
   "knownIssues": [
     { "q": "bookings", "expect": "/features/bookings", "note": "Term on 344/348 pages -> IDF~0, all scores ~0.03, order is noise. Not fixable by ranking/keywords." },
     { "q": "kits", "expect": "/features/kits", "note": "Core concept on most pages -> IDF~0, all scores ~0, order is noise (passed before by tie-luck, tipped by corpus churn). Same class as bookings." },
-    { "q": "book a demo", "expect": "/demo", "note": "Common terms (book/demo) sitewide; /demo is a thin form page." },
     { "q": "asset tracking", "expect": "/solutions/asset-tracking", "note": "Extremely generic head term; competes with the whole site." },
     { "q": "csv", "expect": "/knowledge-base/importing-assets-to-shelf-csv-guide", "note": "Real on-site query, currently ~#8. Verify/strengthen canonical import destination." },
     { "q": "rfid", "expect": null, "note": "Real on-site query with NO canonical page. Verify product support before creating one." },
