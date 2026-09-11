@@ -86,18 +86,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    // next/font variable classes go on <html>, not <body>: globals.css
+    // reads them in @theme, which Tailwind emits on :root (= <html>).
+    // On <body> they are undefined there and Geist silently falls back
+    // to the system font stack.
+    <html
+      lang="en"
+      className={cn(geistSans.variable, geistMono.variable)}
+      suppressHydrationWarning
+    >
       <head>
         {/* Preconnect hints removed — Crisp and PostHog are now deferred
             until idle, so early preconnects would be wasted connections. */}
       </head>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          geistSans.variable,
-          geistMono.variable
-        )}
-      >
+      <body className="min-h-screen bg-background font-sans antialiased">
         {/* Site-wide identity schema — Organization + WebSite. Emitted
             once here so every page (not just the homepage) advertises
             site-level identity to crawlers and LLMs. Per-page schemas
