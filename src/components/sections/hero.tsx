@@ -29,8 +29,10 @@ export function Hero({
 
             <Container className="relative">
                 {/* Centered Content Stack — no ScrollReveal here so LCP content
-                    is visible on first paint without waiting for JS hydration */}
-                <div className="max-w-4xl mx-auto text-center relative z-20">
+                    is visible on first paint without waiting for JS hydration.
+                    max-w-5xl is for the h1; every other child sets its own
+                    narrower width. */}
+                <div className="max-w-5xl mx-auto text-center relative z-20">
                     {/* Announcement Badge */}
                     <div className="mb-6 flex justify-center">
                         <Pill
@@ -77,8 +79,11 @@ export function Hero({
                         </div>
                     </div>
 
-                    {/* Main Heading */}
-                    <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-5 leading-[1.08]">
+                    {/* Main Heading. In Geist the 72px second line is ~910px, so
+                        the old 896px stack (max-w-4xl) left "use." alone on a
+                        third line. text-balance also makes the fallback font
+                        break where Geist does, so the font swap doesn't re-wrap. */}
+                    <h1 className="text-4xl font-bold tracking-tight text-balance text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-5 leading-[1.08]">
                         The equipment platform your team <span className="text-orange-600">will actually use.</span>
                     </h1>
 
