@@ -188,8 +188,13 @@ export default function PricingPage() {
                                             <span className="text-4xl font-extrabold tracking-tight text-heading">Custom</span>
                                         ) : (
                                             <>
+                                                {/* locales is pinned: without it NumberFlow formats with the
+                                                    visitor's browser locale, so en-GB saw "US$67", de-DE
+                                                    "67 $" and fr-FR "67 $US". formatUSD pins en-US for the
+                                                    same reason. */}
                                                 <NumberFlow
                                                     value={isYearly ? parseInt(plan.priceYearly.replace('$', '')) / 12 : parseInt(plan.priceMonthly.replace('$', ''))}
+                                                    locales="en-US"
                                                     format={{ style: 'currency', currency: 'USD', maximumFractionDigits: isYearly ? 2 : 0, trailingZeroDisplay: 'stripIfInteger' }}
                                                     className="text-4xl font-extrabold tracking-tight text-heading"
                                                 />
