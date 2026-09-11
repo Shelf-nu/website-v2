@@ -132,7 +132,7 @@ export function AssetRoiCalculator() {
         const lines = [
             "Asset Tracking ROI Analysis",
             "\u2500".repeat(40),
-            `Total Assets: ${assets.toLocaleString()}`,
+            `Total Assets: ${assets.toLocaleString("en-US")}`,
             `Average Value: ${formatCurrency(avgValue)}`,
             `Team Size: ${team}`,
             `Hourly Labor Cost: ${formatCurrency(hourly)}`,
@@ -371,9 +371,13 @@ export function AssetRoiCalculator() {
                     <p className="text-4xl font-bold text-red-600 tracking-tight">
                         {formatCurrency(breakdown.totalAnnualCost)}
                     </p>
+                    {/* toLocaleString is pinned to en-US: bare, it follows the
+                        visitor's browser locale, so de-DE read "100.000 assets
+                        worth $120,000,000" and a "4.490.332%" ROI. formatCurrency
+                        pins en-US for the same reason. */}
                     <p className="text-sm text-muted-foreground mt-2">
                         Based on{" "}
-                        {assets.toLocaleString()} assets worth{" "}
+                        {assets.toLocaleString("en-US")} assets worth{" "}
                         {formatCurrency(assets * avgValue)} total
                     </p>
                 </div>
@@ -480,7 +484,7 @@ export function AssetRoiCalculator() {
                                 ROI
                             </p>
                             <p className="text-xl font-bold text-emerald-600">
-                                {comparison.roi.toLocaleString()}%
+                                {comparison.roi.toLocaleString("en-US")}%
                             </p>
                         </div>
                         <div className="rounded-lg border bg-card p-4 text-center">
