@@ -21,7 +21,7 @@ const jsonLd = buildToolPageJsonLd({
         },
         {
             question: "Can salvage value be zero?",
-            answer: "Yes. Some assets (especially technology) may have zero or near-zero salvage value if they become obsolete. For MACRS tax depreciation, salvage value is always treated as zero.",
+            answer: "Yes. Some assets (especially technology) may have zero or near-zero salvage value if they become obsolete. For MACRS tax depreciation, salvage value is always treated as zero. This calculator's estimate shrinks every year but never quite reaches zero, so if you expect to scrap or write off an asset, plan on zero instead.",
         },
         {
             question: "What's the difference between salvage and scrap value?",
@@ -150,6 +150,19 @@ export default function SalvageValueCalculatorPage() {
                                             for full schedules.
                                         </li>
                                     </ul>
+                                    <p className="mt-4">
+                                        <strong>
+                                            How this calculator estimates it
+                                        </strong>
+                                        : each year the asset loses the same
+                                        share of its remaining value
+                                        (declining-balance depreciation), so
+                                        salvage value = purchase price × (1 −
+                                        annual rate)<sup>years</sup>. At 25% a
+                                        year, a $25,000 computer is worth about
+                                        $5,933 after five years ($25,000 ×
+                                        0.75<sup>5</sup>).
+                                    </p>
                                 </div>
                             </div>
 
@@ -182,7 +195,12 @@ export default function SalvageValueCalculatorPage() {
                                             salvage value if they become
                                             obsolete. For MACRS tax
                                             depreciation, salvage value is
-                                            always treated as zero.
+                                            always treated as zero. This
+                                            calculator&apos;s estimate shrinks
+                                            every year but never quite reaches
+                                            zero, so if you expect to scrap or
+                                            write off an asset, plan on zero
+                                            instead.
                                         </p>
                                     </div>
                                     <div>
