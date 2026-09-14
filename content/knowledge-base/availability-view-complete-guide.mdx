@@ -1,9 +1,9 @@
 ---
 title: "Availability View: Complete Guide"
-description: "The Availability View is a powerful feature within Shelf's Advanced Asset Index that provides calendar-based visibility into your asset availability, upcoming bookings, and important deadlines."
+description: "The Availability View turns Shelf's Assets index into a calendar: one row per asset, with a bar for every upcoming and live booking, so you can see what is free and when."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-04-13"
+updated: "2026-09-14"
 layout: "knowledge-base"
 ---
 
@@ -15,127 +15,150 @@ layout: "knowledge-base"
 
 ## Getting Started
 
-### Prerequisites
+### What you need
 
-- Advanced Asset Index must be enabled in your workspace
-- Team plan subscription (required for Bookings access)
-- At least one asset with booking or reminder data
+- A **Team** workspace. Bookings are a Team feature, and bookings are what the calendar draws.
+- A screen at least as wide as a tablet. On a phone-sized screen the toggle is hidden and the Assets index stays a list.
 
-### Accessing Availability View
+The view works in both index modes, the simple index and the [Advanced Asset Index](/knowledge-base/advanced-asset-index-complete-guide). You do not need to switch modes to use it.
 
-1. **Navigate to Advanced Asset Index** - Go to **Assets** in your sidebar, then click **Advanced Index - Explained** link, or access directly via the assets page toggle.
-2. **Switch to Availability View** - Look for the **calendar icon** in the toolbar. Click to toggle between List View and Availability View. Your view preference is saved per user.
+### Opening the Availability View
 
+1. Go to **Assets** in the sidebar.
+2. Next to the search box there are two buttons: **List view** and **Availability view** (the calendar icon). Click the calendar icon.
+3. To go back, click **List view**.
+
+The choice is part of the page address (`view=availability`), so you can bookmark the calendar or send the link to a colleague.
 
 ![Calendar toggle](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/availability-view-1.webp)
+
 ## Understanding the Interface
 
-### Calendar Layout
+### Calendar layout
 
-- **Timeline View**: Shows dates horizontally across the top
-- **Asset List**: Your assets displayed vertically on the left
-- **Booking Blocks**: Visual representations of reservations and deadlines
-- **Status Indicators**: Color-coded asset availability
+- **Asset rows**: every asset on the current page of the index gets a row on the left, with its photo, status and category. The header shows how many that is, for example *20 assets out of 42*. Move to the next page of the index to see the rest.
+- **Timeline**: dates run across the top. Switch between **Month**, **Week** and **Day**, step back and forward with the arrows, and jump back with **Today**.
+- **Booking bars**: each bar is one booking holding that asset, drawn from its start to its end.
 
+The calendar follows your own [date and time preferences](/knowledge-base/date-time-and-timezone-preferences): the first day of the week, 12 or 24-hour times, and your time zone.
 
 ![Availability view](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/availability-view-2.webp)
-### Booking Information Display
 
-When viewing bookings in Availability View, you will see:
+### Which bookings appear
 
-- **Start and end dates/times**
-- **Custodian name** (who has the booking)
-- **Booking description** (if specified)
-- **Status** (Ongoing, Complete, Overdue)
+The calendar draws bookings that are **Reserved**, **Ongoing** or **Overdue**. Those are the bookings that hold an asset now or will hold it later. Drafts are not drawn, and neither are completed, cancelled or archived bookings.
 
-## Key Features
+Each bar is colored by the booking's status:
 
-### 1. Future Planning
+- **Blue**: Reserved
+- **Purple**: Ongoing
+- **Red**: Overdue
+- **Green**: the asset has already come back from this live booking (see below)
 
-- **See weeks/months ahead**: Plan resource allocation in advance
-- **Identify conflicts**: Spot potential issues with custodies/bookings before they happen
-- **Capacity planning**: Understand asset utilization patterns
+### What a bar tells you
 
-### 2. Filter Integration
+The bar itself shows the booking's name. If your role lets you see custody, it also shows the custodian.
 
-Availability View works with all Advanced Index filters:
+Hover a bar for the details: the booking name and status badge, its start and end, the custodian, who created it, and its tags. If the asset is on the booking through a kit, the popup names the kit. For [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-and-consumables) it also shows how many units the booking holds.
 
-- **Category Filters** - Example: Filter to "Camera" category to see only camera equipment availability
-- **Location Filters** - Example: Filter to "Studio B" to see what is available at that location
-- **Status Filters** - Example: Filter to "Available" to see only assets ready for booking
-- **Custom Field Filters** - Example: Filter by "Project Type" custom field to see project-specific equipment
+Click a bar to open the booking in a new tab.
+
+## When an Asset Comes Back Early
+
+A booking often returns in pieces. Someone brings back one camera on Tuesday and keeps the rest until Friday. When an asset is checked in from a booking that is still **Ongoing** or **Overdue** (a [partial check-in](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns)), its bar on that booking **stops at the moment it was checked in** and turns **green**.
+
+- The bar reads **Returned** with the check-in time, followed by the booking name (and the custodian, if your role can see custody), so you can tell without hovering.
+- The hover popup keeps the booking's real status and its full period, and adds a **Returned** line with the time. The booking itself is still live; only this asset has left it.
+- The rest of the booking's assets keep their full purple or red bars until they come back too.
+
+This matches how bookings already treat the asset. From the moment it is checked in, it is free: it shows up when you add assets to a new booking, and a new booking can reserve it.
+
+A few cases keep the full bar:
+
+- **Quantity-tracked stock** turns green only once **every** booked unit is back. A pool with some units still out keeps its full bar.
+- If the asset goes out again on the same booking, its bar goes back to the booking's own color.
+- An asset added to a booking after the booking went out, and never handed over, keeps the planned bar.
+- The **Kits** index has its own availability view, and there a kit keeps its full bar until the booking ends.
+- The **Bookings → Calendar** page draws one bar per booking rather than per asset, so it keeps showing the booking's full period.
+
+## Using Filters and Search
+
+The calendar shows the same assets as the list, so whatever you have set on the index applies: the search box, the filters, and the sort order of the rows. Filter to a category, a location or a custom field value, then switch to the calendar to see only that equipment.
+
+- **Category**: filter to "Camera" to see only camera availability.
+- **Location**: filter to "Studio B" to see what that location holds and when it is free.
+- **Custom fields** (Advanced Asset Index): filter by a field such as "Project Type" to see project-specific equipment.
 
 ## Best Practices
 
-### 1. Regular Monitoring
+### 1. Regular monitoring
 
-- **Weekly Reviews**: Check Availability View every Monday for the upcoming week
-- **Monthly Planning**: Use month view for project planning and resource allocation
-- **Overdue Management**: Daily check for overdue items requiring follow-up
+- **Weekly reviews**: open the **Week** view every Monday for the coming week.
+- **Monthly planning**: use the **Month** view for project planning and resource allocation.
+- **Overdue follow-up**: red bars are bookings past their end date. Click one to open the booking and chase the return.
 
-### 2. Strategic Filtering
+### 2. Strategic filtering
 
-- **Project-Based Views**: Filter by custom fields for project-specific planning
-- **Location-Specific Planning**: Use location filters for multi-site organizations
-- **Equipment Type Focus**: Category filters for specialized equipment planning
+- **Project-based views**: filter by custom fields for project-specific planning.
+- **Location-specific planning**: use location filters for multi-site organizations.
+- **Equipment type focus**: use category filters for specialized equipment planning.
 
-### 3. Team Coordination
+### 3. Team coordination
 
-- **Share Screenshots**: Export views for team meetings and planning sessions
-- **Booking Coordination**: Use to avoid conflicts during busy periods
-- **Resource Requests**: Plan equipment requests based on availability gaps
+- **Share the link**: the calendar's address includes your filters, so a colleague who opens it sees the same equipment.
+- **Booking coordination**: check the calendar before busy periods to spot assets that are already spoken for.
+- **Early returns**: a green bar means that asset is back and can go out again before the booking ends.
 
-### 4. Maintenance Planning
+### 4. Maintenance planning
 
-- **Reminder Integration**: Schedule maintenance during low-demand periods
-- **Preventive Planning**: Use availability gaps for proactive maintenance
-- **Deadline Management**: Track warranty expiration and certification renewals
+- **Find the gaps**: look for stretches with no bars to schedule maintenance when nothing is booked.
+- **Reminders live elsewhere**: the calendar draws bookings only. Track warranty expirations and service dates with [Asset Reminders](/knowledge-base/asset-reminders).
 
 ## Common Use Cases
 
-### Event Planning
+### Event planning
 
-**Scenario: Planning a 3-day conference**
+**Scenario: planning a 3-day conference**
 
-1. Filter by "AV Equipment" category
-2. Switch to 3-day week view covering event dates
-3. Identify available projectors, cameras, and audio equipment
-4. Create bookings directly from availability view
+1. Filter the index to the "AV Equipment" category.
+2. Open the **Week** view on the week of the event.
+3. Find the projectors, cameras and audio equipment with no bar across the event dates.
+4. Switch to **List view**, tick those assets, and click **Book selection** to start the booking.
 
-### Production Scheduling
+### Production scheduling
 
-**Scenario: Video production company scheduling shoots**
+**Scenario: a video production company scheduling shoots**
 
-1. Filter by "Camera Equipment" and "Lighting" categories
-2. Use month view to see equipment availability
-3. Plan shoots around equipment availability
-4. Avoid conflicts with existing bookings
+1. Filter by the "Camera Equipment" and "Lighting" categories.
+2. Use the **Month** view to see equipment availability.
+3. Plan shoots around the gaps.
+4. Avoid conflicts with existing bookings.
 
-### Maintenance Coordination
+### Maintenance coordination
 
-**Scenario: IT department planning maintenance windows**
+**Scenario: an IT department planning maintenance windows**
 
-1. Filter by "IT Equipment" category
-2. Look for upcoming maintenance reminders
-3. Schedule maintenance during availability gaps
-4. Coordinate with existing booking schedules
+1. Filter by the "IT Equipment" category.
+2. Look for stretches with no bookings.
+3. Schedule maintenance in those gaps.
+4. Coordinate with any bookings that start soon after.
 
-### Multi-Location Resource Sharing
+### Multi-location resource sharing
 
-**Scenario: Equipment sharing between office locations**
+**Scenario: equipment sharing between office locations**
 
-1. Filter by specific location
-2. Identify underutilized equipment
-3. Plan transfers between locations
-4. Coordinate with transportation schedules
+1. Filter by a specific location.
+2. Identify equipment with few or no bookings.
+3. Plan transfers between locations.
+4. Coordinate with transportation schedules.
 
 ## Getting Help
 
 If you need assistance with Availability View:
 
-- **Knowledge Base**: Search for specific topics
-- **Support Chat**: Use the chat widget for real-time help
-- **Email Support**: Contact [support@shelf.nu](mailto:support@shelf.nu) for detailed questions
-- **Feature Requests**: Submit ideas through our feedback system
+- **Knowledge Base**: search for specific topics
+- **Support Chat**: use the chat widget for real-time help
+- **Email Support**: contact [support@shelf.nu](mailto:support@shelf.nu) for detailed questions
+- **Feature Requests**: send ideas through **Questions/Feedback** in the sidebar
 
-Availability View is included with all Team plan subscriptions and requires Advanced Asset Index to be enabled.
+Availability View is included in every Team workspace, in both the simple index and the Advanced Asset Index.
