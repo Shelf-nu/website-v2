@@ -93,6 +93,8 @@ The system features context-aware status management that handles complex scenari
 - "Available": Asset returned and ready for new bookings
 - "Checked out": Asset currently in use in this booking context
 
+An asset checked in early is free from that moment, and the [Availability View](/knowledge-base/availability-view-complete-guide#when-an-asset-comes-back-early) on the Assets index shows it: the asset's bar on the booking stops at its check-in time and turns green, while the items still out keep their full bar. Quantity-tracked stock keeps its full bar until every booked unit is back.
+
 ## How the Check-in Progress Bar Counts Kits
 
 Once a booking has any progressive checkout or check-in activity, the simple check-in bar becomes a segmented **Booked / Partial / Fully out / Returned** lifecycle bar: gray for items still reserved, amber for a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line with some but not all of its units out, purple for items fully checked out, and green for items returned. Only quantity-tracked lines can sit in **Partial**, which is what the bar's own tooltip says. The headline reads **"Check-out progress"** while items are still being handed out, then switches to **"Check-in progress"** once everything has left and you're tracking returns. The kit-counting behavior below applies to this bar in either phase. See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings) for the checkout side.
