@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-31"
+updated: "2026-09-14"
 layout: "knowledge-base"
 ---
 
@@ -83,6 +83,7 @@ A few things are worth knowing before you confirm:
 - **The picture is the exception, and it is not stored on the asset.** If the model has a cover image, every grouped unit that has no photo of its own starts showing it immediately, and ungrouping takes it away again. Units with their own photo keep it. See [Asset Models](/glossary/asset-models#one-cover-image-for-the-whole-fleet).
 - **Quantity-tracked assets are skipped, not rejected.** Asset models group individually tracked units only. A mixed selection still works: the individually tracked assets are grouped and the dialog tells you up front how many will be skipped. The result message repeats the count afterwards.
 - **Assets already in another model are moved.** The confirmation says how many changed model, which is your signal that a different model's book-by-model pool just got smaller.
+- **Every change is recorded on the asset.** Each asset whose model actually changed gets a note on its activity naming both sides, for example *changed the asset model from Model B to Model A*, and the change counts in the **Asset Activity Summary** report. Assets that were already in the chosen model get nothing, because nothing happened to them. The same record is written when you change or clear the model on a single asset's edit form, when an `Asset model` column changes it in a [CSV bulk update](/knowledge-base/bulk-updating-assets-via-csv), and when a model is deleted from **Settings → Asset models**.
 
 **Remove from asset model** is the reverse and has its own menu item. It ungroups every selected asset and leaves everything else about them untouched.
 
