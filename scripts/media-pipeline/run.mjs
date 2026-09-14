@@ -35,6 +35,8 @@ const ARTICLES = {
   "bulk-update-row-count": "articles/bulk-update-row-count.mjs",
   "custody-on-location-page": "articles/custody-on-location-page.mjs",
   "nrm-actions-and-delete": "articles/nrm-actions-and-delete.mjs",
+  "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
+  "checkin-receipt": "articles/checkin-receipt.mjs",
 };
 
 const slug = process.argv[2];
