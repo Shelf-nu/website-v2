@@ -74,6 +74,8 @@ export const builtForApp = [
     "Taking a mis-scan back off a live audit, without losing the notes and photos on it",
     "Signing in against your organization's own Shelf server instead of Shelf Cloud",
     "Correcting stock counts on the shelf, with a reason attached",
+    "Spreading pooled stock across locations, and seeing every location that holds it",
+    "Selecting a whole kit on a booking with one tap, to check it out, back in, or off the booking",
     "On-the-go dashboard monitoring",
 ];
 
