@@ -7,9 +7,11 @@
  * apps/webapp/app/components/booking/booking-checkin-receipt-pdf.tsx
  * apps/webapp/app/modules/booking/checkin-receipt.ts (stamp wording)
  *
- * Read-only: opens the Actions menu of an existing completed demo booking and
+ * Read-only: opens the Actions menu of one pinned, synthetic demo booking and
  * the receipt preview dialog (a GET). Nothing is created, submitted, printed,
- * or deleted.
+ * or deleted. The shots are uploaded to a public bucket, so the script refuses
+ * to run against anything but the known demo fixture: the workspace name, the
+ * booking name and the custodian's email are asserted before any capture.
  *
  * Set KEEP_DIR=<dir> to keep the PNGs for inspection, and NO_UPLOAD=1 to skip
  * the upload.
@@ -43,18 +45,11 @@ const STAMPS = [
   "Nothing was checked out",
 ];
 
-async function findCompletedBooking(page) {
-  await navigateTo(page, "/bookings?status=COMPLETE");
-  await page.waitForTimeout(2500);
-  const ids = await page.evaluate(() =>
-    Array.from(document.querySelectorAll('a[href^="/bookings/"]'))
-      .map((a) => a.getAttribute("href").split("/")[2])
-      .filter((id) => id && id.length > 10 && !["new"].includes(id))
-  );
-  const unique = [...new Set(ids)];
-  if (unique.length === 0) throw new Error("No completed booking found");
-  return unique;
-}
+// Synthetic demo fixture. Everything on it is sample data.
+const DEMO_WORKSPACE = "ACME, Inc.";
+const DEMO_BOOKING_ID = "cmc1t61p60045ogi9tlnovdv1";
+const DEMO_BOOKING_NAME = "Corporate Event";
+const DEMO_CUSTODIAN_EMAIL = "john@shelf.nu";
 
 async function openActions(page) {
   const trigger = page.getByRole("button", { name: /^Actions$/ }).first();
@@ -69,32 +64,30 @@ async function openActions(page) {
 
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-checkinreceipt-"));
-  const browser = await launchBrowser();
+  let browser;
   const urls = {};
   try {
+    browser = await launchBrowser();
     const context = await createContext(browser);
     const page = await context.newPage();
     page.setDefaultTimeout(60000);
     await loginToShelf(page);
 
-    const ids = await findCompletedBooking(page);
-    let chosen = null;
-    for (const id of ids.slice(0, 8)) {
-      await navigateTo(page, `/bookings/${id}/overview`);
-      await page.waitForTimeout(2000);
-      const entry = await openActions(page);
-      const enabled = await entry.isEnabled();
-      const rows = await page.evaluate(
-        () => document.querySelectorAll("table tbody tr").length
-      );
-      console.log(`  booking ${id}: receipt enabled=${enabled}, rows=${rows}`);
-      if (enabled && rows >= 2 && rows <= 12) {
-        chosen = id;
-        break;
+    await navigateTo(page, `/bookings/${DEMO_BOOKING_ID}/overview`);
+    await page.waitForTimeout(2000);
+    const bodyText = await page.evaluate(() => document.body.innerText);
+    for (const expected of [DEMO_WORKSPACE, DEMO_BOOKING_NAME]) {
+      if (!bodyText.includes(expected)) {
+        throw new Error(
+          `Not the demo fixture: page lacks ${JSON.stringify(expected)}`
+        );
       }
-      await page.keyboard.press("Escape");
     }
-    if (!chosen) throw new Error("No completed booking with an enabled entry");
+    const entryCheck = await openActions(page);
+    if (!(await entryCheck.isEnabled())) {
+      throw new Error("Receipt entry is disabled on the demo fixture");
+    }
+    const chosen = DEMO_BOOKING_ID;
 
     // Shot 1: the menu entry beside the checklist PDF.
     const entry = page
@@ -135,6 +128,13 @@ async function main() {
     await page.getByRole("button", { name: "Download PDF" }).waitFor();
     const stampText = await stamp.innerText();
     console.log(`  stamp: ${stampText}`);
+    const sheetText = await page.locator(".pdf-wrapper").first().innerText();
+    if (
+      !sheetText.includes(DEMO_WORKSPACE) ||
+      !sheetText.includes(DEMO_CUSTODIAN_EMAIL)
+    ) {
+      throw new Error("Receipt does not show the demo fixture's workspace and custodian");
+    }
     const sheet = page.locator(".pdf-wrapper").first();
     await sheet.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1500);
