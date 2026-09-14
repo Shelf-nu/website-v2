@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-09-09"
+updated: "2026-09-14"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -102,7 +102,7 @@ A pooled asset doesn't have to sit in one place. Its asset page lists every **pl
 
 Placements come from two directions:
 
-- **Manual placements** are the ones you set yourself. You can move units between locations from the placement row.
+- **Manual placements** are the ones you set yourself. You can move units between locations from the placement row, and in the [Shelf Companion](/mobile-app) app from the **Placements** button on the asset.
 - **Kit placements** appear when the asset is inside a [kit that has a location](/knowledge-base/kits#kit-location). The kit holds a slice of the pool, say 20 of the 100 cables, and those units follow the kit. They're marked **via kit** on the asset page; to move them, change the kit's location rather than editing the placement. Change the kit's quantity and the slice at its location follows.
 
 The two are independent, so a pool can be partly placed by hand and partly held by kits at the same time. Take the asset out of the kit and the kit's slice is released back to unplaced.
@@ -131,6 +131,7 @@ Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app 
 
 - The **assets list** shows a quantity pill on each pooled asset's row.
 - The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
+- The same screen lists every location that holds units, one row each with its count, plus kit-held rows marked `via kit` and an **Unplaced** row for the rest. Tap **Placements** to open **Manage Placements**: add or remove locations, set each count with a stepper capped at the total, and watch the **Placed / Via kits / Unplaced** meter before you **Save placements**. It saves through the same rules as the web dialog, so the placements can never add up to more than the asset owns. Kit-held units are shown but can only be moved by moving the kit.
 - Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign.
 - Tap a holder's custody row to end their hold. The amount is capped at the units that person can release. On a returnable asset the units go back to the pool. On a **used-up** consumable the app asks a second question, **"Of those, how many were used up?"**, pre-filled with the whole hold because that is the usual case. What you mark as used up leaves the total; the rest returns to the pool. This matches the web split exactly.
 - Tap **Adjust** on the quantity card to correct the stock figure itself. Choose add or remove, enter the amount, and give a reason. Adding is recorded as a restock and removing as a loss, so a shelf count you fix in the aisle lands in the asset's history with your note rather than as an unexplained change.
