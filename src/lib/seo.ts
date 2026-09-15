@@ -40,16 +40,22 @@ export function contentImage(fm: Frontmatter): string | undefined {
 const SOCIAL_IMAGE_FORMATS = /\.(jpe?g|png|webp|gif)$/i;
 
 /**
- * `updated` from frontmatter, for dateModified. Dropped when it isn't a valid
- * date or predates `date`: a modified date before the publish date is a typo,
- * and Google reads it as a conflicting signal.
+ * `updated` from frontmatter, for dateModified. Dropped unless it is a real
+ * YYYY-MM-DD calendar date on or after `date`: a modified date before the
+ * publish date is a typo, and Google reads it as a conflicting signal.
  */
 export function contentModifiedDate(fm: Frontmatter): string | undefined {
-    if (!fm.updated) return undefined;
-    const modified = new Date(fm.updated).getTime();
-    if (Number.isNaN(modified)) return undefined;
-    if (fm.date && modified < new Date(fm.date).getTime()) return undefined;
-    return fm.updated;
+    const updated = typeof fm.updated === "string" ? fm.updated : undefined;
+    const match = updated?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!updated || !match) return undefined;
+    const [year, month, day] = match.slice(1).map(Number);
+    // Date.UTC rolls 2025-02-30 over to March 2, so a real date must round-trip.
+    const modified = new Date(Date.UTC(year, month - 1, day));
+    if (modified.getUTCFullYear() !== year || modified.getUTCMonth() !== month - 1 || modified.getUTCDate() !== day) {
+        return undefined;
+    }
+    if (fm.date && modified.getTime() < new Date(fm.date).getTime()) return undefined;
+    return updated;
 }
 
 /** Central config per content type. */
