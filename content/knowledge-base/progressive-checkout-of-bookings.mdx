@@ -22,16 +22,16 @@ It works like opening a tab: the booking is "open" from the very first item that
 
 ## How Progressive Checkout Works
 
-When a booking is **Reserved** and ready to go, the **Check Out** button now offers two ways to start:
+When a booking is **Reserved** and ready to go, the **Check out** button at the top of the booking opens a menu with two ways to start:
 
-- **Check Out** — the traditional all-at-once action that checks out every remaining item together.
-- **Scan to check out** — opens a dedicated scanner so you can check out items individually as they're picked up.
+- **Check out**: the traditional all-at-once action that checks out every remaining item together.
+- **Scan to check out**: opens a dedicated scanner so you can check out items individually as they're picked up.
 
-A separate **Scan to check out** entry button also appears on the booking page. Once every item has been checked out, that entry point disappears — there's nothing left to scan.
+Both options live in that one menu; there is no second scan button elsewhere on the page. Once every item has been checked out, **Scan to check out** is no longer offered, since there is nothing left to scan. When only one of the two options applies, Shelf shows it as a plain button instead of a menu.
 
 Once the booking is **Ongoing** or **Overdue**, the same button reads **Check out remaining** instead of **Check out**. It does what the name says: it takes out everything on the booking that hasn't gone out yet, including anything you added after checkout began.
 
-{/* TODO: Screenshot needed: the booking Check Out dropdown showing "Check Out" and "Scan to check out" options (PR #2625) */}
+![The Check out menu on a Reserved booking, offering Check out and Scan to check out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/progressive-checkout-dropdown.webp)
 
 ### The Booking Lifecycle Bar
 
@@ -56,7 +56,7 @@ If your workspace counts [each kit as a single unit](/knowledge-base/partial-che
 
 ### Checking Out by Scanning
 
-1. From the **Check Out** dropdown, choose **Scan to check out** (or click the **Scan to check out** entry button on the booking).
+1. From the **Check out** menu at the top of the booking, choose **Scan to check out**.
 2. The scanner opens with the booking's details and the lifecycle bar at the top.
 3. Scan each asset's QR code or barcode as it's handed over.
 4. Shelf validates every scan against the booking — it blocks items that aren't part of the booking, are already checked out, are in custody elsewhere, or break kit rules.
