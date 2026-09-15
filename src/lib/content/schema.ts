@@ -69,6 +69,8 @@ export interface Frontmatter {
 
     // Blog
     date?: string;
+    /** Last substantive revision. Emitted as dateModified; also stands in for `date` when that is missing. */
+    updated?: string;
     tags?: string[];
     readingTime?: string;
     image?: string;

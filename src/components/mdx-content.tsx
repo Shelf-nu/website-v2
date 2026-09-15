@@ -19,6 +19,36 @@ import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
 
+/** The slice of a hast tree that rehypeImageLoading walks. */
+interface HastNode {
+    type: string;
+    tagName?: string;
+    properties?: Record<string, unknown>;
+    children?: HastNode[];
+}
+
+/**
+ * Lazy-loads every markdown image after the first. Without it, every body
+ * image downloads on page load. The first stays eager because on some KB and
+ * update pages it opens the article, and a lazy image in the first viewport
+ * delays LCP.
+ */
+function rehypeImageLoading() {
+    return (tree: HastNode) => {
+        let seenFirst = false;
+        const walk = (node: HastNode) => {
+            if (node.type === "element" && node.tagName === "img") {
+                if (seenFirst) {
+                    node.properties = { ...node.properties, loading: "lazy", decoding: "async" };
+                }
+                seenFirst = true;
+            }
+            node.children?.forEach(walk);
+        };
+        walk(tree);
+    };
+}
+
 const components = {
     h1: (props: HtmlProps<"h1">) => (
         <h2 className="mt-8 scroll-m-20 text-4xl font-bold tracking-tight text-foreground lg:text-5xl" {...props} />
@@ -79,6 +109,8 @@ const components = {
         <ImageZoom
             src={typeof props.src === "string" ? props.src : undefined}
             alt={props.alt}
+            loading={props.loading}
+            decoding={props.decoding}
             className="rounded-xl border border-border/50 bg-muted shadow-sm w-full"
         />
     ),
@@ -127,7 +159,7 @@ const components = {
 export function MDXContent({ source }: { source: string }) {
     return (
         <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <MDXRemote source={source} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+            <MDXRemote source={source} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeImageLoading] } }} />
         </div>
     );
 }

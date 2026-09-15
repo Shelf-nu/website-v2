@@ -12,6 +12,8 @@ export function TrackingDecisionChart() {
             <div className="hidden md:block">
                 <ImageZoom
                     src="/images/knowledge-base/tracking-method-decision-chart.svg"
+                    loading="lazy"
+                    decoding="async"
                     alt="Decision flowchart with four questions that lead to one of three tracking methods in Shelf: individual assets for unique items, Asset Models for fleets of identical units tracked individually, or Quantity tracking for interchangeable stock counted as one record."
                     className="rounded-xl border border-border/50 bg-white p-4 shadow-sm w-full"
                 />

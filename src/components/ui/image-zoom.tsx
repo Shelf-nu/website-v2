@@ -1,14 +1,17 @@
 "use client"
 
 import { useState, useRef, useCallback, useEffect } from "react"
+import type { ImgHTMLAttributes } from "react"
 
 interface ImageZoomProps {
     src?: string
     alt?: string
     className?: string
+    loading?: ImgHTMLAttributes<HTMLImageElement>["loading"]
+    decoding?: ImgHTMLAttributes<HTMLImageElement>["decoding"]
 }
 
-export function ImageZoom({ src, alt, className }: ImageZoomProps) {
+export function ImageZoom({ src, alt, className, loading, decoding }: ImageZoomProps) {
     const [zoomed, setZoomed] = useState(false)
     const imgRef = useRef<HTMLImageElement>(null)
     const overlayRef = useRef<HTMLSpanElement | null>(null)
@@ -103,6 +106,8 @@ export function ImageZoom({ src, alt, className }: ImageZoomProps) {
             ref={imgRef}
             src={src}
             alt={alt || ""}
+            loading={loading}
+            decoding={decoding}
             className={`${className || "rounded-xl border border-border/50 bg-muted shadow-sm w-full"} my-8 transition-transform duration-300 ease-out ${
                 zoomed ? "cursor-zoom-out relative !rounded-lg !border-0 !shadow-2xl" : "cursor-zoom-in"
             }`}
