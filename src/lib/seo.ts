@@ -22,6 +22,36 @@ interface ContentSeoConfig {
     titleSuffix?: string;
 }
 
+/**
+ * The page's own image as an absolute URL: `image` (blog, updates, features…)
+ * or `coverImage` (case studies). Undefined when the frontmatter sets neither.
+ */
+export function contentImage(fm: Frontmatter): string | undefined {
+    const src = fm.image || fm.coverImage;
+    if (!src) return undefined;
+    return src.startsWith("http") ? src : `${BASE_URL}${src}`;
+}
+
+/**
+ * Formats Facebook, LinkedIn and X render in a link card. An AVIF or SVG
+ * og:image gives a blank card, which is worse than the generic one — but
+ * Google Images accepts both, so JSON-LD still uses the page's own image.
+ */
+const SOCIAL_IMAGE_FORMATS = /\.(jpe?g|png|webp|gif)$/i;
+
+/**
+ * `updated` from frontmatter, for dateModified. Dropped when it isn't a valid
+ * date or predates `date`: a modified date before the publish date is a typo,
+ * and Google reads it as a conflicting signal.
+ */
+export function contentModifiedDate(fm: Frontmatter): string | undefined {
+    if (!fm.updated) return undefined;
+    const modified = new Date(fm.updated).getTime();
+    if (Number.isNaN(modified)) return undefined;
+    if (fm.date && modified < new Date(fm.date).getTime()) return undefined;
+    return fm.updated;
+}
+
 /** Central config per content type. */
 export const CONTENT_SEO: Record<string, ContentSeoConfig> = {
     blog:             { type: "blog",           urlPrefix: "/blog",           ogType: "article", titleSuffix: "Shelf Blog" },
@@ -57,9 +87,15 @@ export function buildContentMetadata(
     const canonical = frontmatter.canonicalUrl
         ? (frontmatter.canonicalUrl.startsWith("http") ? frontmatter.canonicalUrl : `${BASE_URL}${frontmatter.canonicalUrl}`)
         : `${BASE_URL}${cfg.urlPrefix}/${slug}`;
-    const ogImage = frontmatter.image
-        ? (frontmatter.image.startsWith("http") ? frontmatter.image : `${BASE_URL}${frontmatter.image}`)
-        : `${BASE_URL}/og.webp`;
+    const pageImage = contentImage(frontmatter);
+    const socialImage = pageImage && SOCIAL_IMAGE_FORMATS.test(new URL(pageImage).pathname)
+        ? pageImage
+        : undefined;
+    // Only the generic card's size is known. Page images come in whatever size
+    // they were uploaded at (1920×1080, 1600×1066…), so don't claim 1200×630.
+    const ogImage = socialImage ?? `${BASE_URL}/og.webp`;
+    const ogImages = socialImage ? [{ url: socialImage }] : [{ url: ogImage, width: 1200, height: 630 }];
+    const modifiedTime = contentModifiedDate(frontmatter);
 
     const metadata: Metadata = {
         title,
@@ -71,9 +107,12 @@ export function buildContentMetadata(
             url: canonical,
             type: cfg.ogType,
             siteName: "Shelf",
-            images: [{ url: ogImage, width: 1200, height: 630 }],
+            images: ogImages,
             ...(cfg.ogType === "article" && frontmatter.date
                 ? { publishedTime: frontmatter.date }
+                : {}),
+            ...(cfg.ogType === "article" && modifiedTime
+                ? { modifiedTime }
                 : {}),
             ...(cfg.ogType === "article" && frontmatter.author
                 ? { authors: [frontmatter.author] }
@@ -129,6 +168,8 @@ export function breadcrumbJsonLd(items: BreadcrumbItem[]): Record<string, unknow
  * Renders a BlogPosting JSON-LD object. Use for blog posts.
  */
 export function blogPostingJsonLd(slug: string, fm: Frontmatter): Record<string, unknown> {
+    const image = contentImage(fm);
+    const modified = contentModifiedDate(fm);
     return {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -136,7 +177,8 @@ export function blogPostingJsonLd(slug: string, fm: Frontmatter): Record<string,
         description: fm.description,
         url: `${BASE_URL}/blog/${slug}`,
         ...(fm.date ? { datePublished: fm.date } : {}),
-        ...(fm.image ? { image: fm.image.startsWith("http") ? fm.image : `${BASE_URL}${fm.image}` } : {}),
+        ...(modified ? { dateModified: modified } : {}),
+        ...(image ? { image } : {}),
         author: {
             "@type": "Person",
             name: fm.author || "Shelf Team",
@@ -161,6 +203,8 @@ export function articleJsonLd(
     urlPath: string,
     fm: Frontmatter,
 ): Record<string, unknown> {
+    const image = contentImage(fm);
+    const modified = contentModifiedDate(fm);
     return {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -168,6 +212,8 @@ export function articleJsonLd(
         description: fm.description,
         url: `${BASE_URL}${urlPath}`,
         ...(fm.date ? { datePublished: fm.date } : {}),
+        ...(modified ? { dateModified: modified } : {}),
+        ...(image ? { image } : {}),
         author: {
             "@type": "Organization",
             name: "Shelf",
