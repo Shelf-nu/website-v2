@@ -40,7 +40,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Bookings, End to End",
         description:
-            "Create, edit, and reserve bookings from the phone with availability-aware asset, kit, and model pickers, then scan the actual units to assign and check out, and record what comes back on return. Read the month as a calendar or the week as a list.",
+            "Create, edit, and reserve bookings from the phone with availability-aware asset, kit, and model pickers, then scan gear out one item at a time or scan reserved units to assign and check out, and record what comes back on return. Read the month as a calendar or the week as a list.",
         icon: CalendarCheck,
     },
     {
@@ -76,6 +76,8 @@ export const builtForApp = [
     "Correcting stock counts on the shelf, with a reason attached",
     "Spreading pooled stock across locations, and seeing every location that holds it",
     "Selecting a whole kit on a booking with one tap, to check it out, back in, or off the booking",
+    "Scanning a booking's gear out one item at a time as it is handed over",
+    "Searching a long booking by asset, kit, category, or location",
     "On-the-go dashboard monitoring",
 ];
 
