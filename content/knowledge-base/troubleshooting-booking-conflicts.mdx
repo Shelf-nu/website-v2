@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-09-02"
+updated: "2026-09-16"
 layout: "knowledge-base"
 ---
 
@@ -36,13 +36,39 @@ If the asset is already sitting on a booking that is still in **Draft**, that bo
 
 ---
 
-## Booking a kit — one item in the kit is blocked
+## Booking a kit — the kit itself, or one item inside it
 
-When you book a kit, Shelf checks every item inside it. If even one component has a conflicting booking, the entire kit booking is blocked. To find which item is the problem:
+A kit is one physical case, so **it can only be on one booking at a time for a given period** — the same exclusivity an individually tracked asset has, with the kit as the holder. Two checks can block a kit booking, and the wording tells you which one you hit.
+
+### The kit is already on another booking
+
+Another booking that overlaps your dates holds the kit if it is **Reserved**, or if it is **Ongoing** or **Overdue** and its share of the kit is still out. Reserving, checking out, extending or scanning onto your booking is refused under the heading **Booking conflict**:
+
+> Cannot reserve booking. Some kits are already booked or checked out for an overlapping period: *[first kit]*, *[second kit]*, *[third kit]* and 2 more. Please remove them and try again.
+
+At most three kits are listed by name and the rest are counted, the same shape the asset-level refusal uses. Take the kit off your booking, move your dates, or wait for the other booking to end.
+
+You are also warned before you get that far. A kit that is already spoken for shows an **"Already booked"** badge in the **Manage kits** picker and on the kit's row inside a booking, with the tooltip *"This kit is already added to a booking that is overlapping the selected time period."*
+
+An item that was **removed from the kit** after your booking was made no longer holds the kit — it is a standalone asset on that booking and is measured as one.
+
+### One item inside the kit is blocked
+
+Separately, Shelf checks every individually tracked item inside the kit. If one component has a conflicting booking of its own, the kit booking is blocked too. To find which item:
 
 1. Open the kit → **Assets** tab
 2. Check each item's **Bookings** tab or look at the calendar for the date range you want
 3. Resolve the conflict on the blocking item (cancel, shorten, or remove it from the kit)
+
+### Kits made only of quantity-tracked stock
+
+Until 15 September 2026 this was the gap. Pooled stock is counted rather than claimed, so a kit built entirely from [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) — a box of clamps, sandbags and cabling with no individually tracked item in it — had nothing to trip the item-level check, and two overlapping bookings could each reserve, check out and scan the same case with no warning anywhere. Kits that mixed in even one individually tracked item were always exclusive, through that item.
+
+The kit-level rule closes it for every kit, whatever it is made of.
+
+### What is still not checked
+
+**Adding** a kit to a booking that is already **Reserved** does not run the clash check. A double booking made that way is caught later, when someone tries to check out, fulfil, extend or scan — not at the moment the kit went on. Single assets have the same gap when they are added to a reserved booking, so this is one question for all of them rather than a kit-specific hole.
 
 ---
 
@@ -60,6 +86,8 @@ What it can't prevent is a pool getting **smaller after** a booking is already c
 2. Or free units elsewhere: check in the late booking, release the custody, shorten or cancel an overlapping booking, or restock.
 
 **Amber "Checked out elsewhere" badge.** Not a blocker, just a heads-up. Your dates are fine; some units are simply out on another booking right now and are due back before yours starts. On **used-up** stock it's a maybe rather than a promise: those units are consumed when the other booking is checked in, not returned, so the pool can end up smaller. If that leaves you short, the badge turns into the red one above and a restock clears it.
+
+**Neither badge appears on a row a kit supplied.** Both figures describe the **loose** pool — what is left after custody and kit slices are taken off it — and a kit-driven row does not draw on that pool. Its units come out of the kit's own slice, which is exactly what was already subtracted. A projector case holding the last two clamps in the workspace used to read *"requested 1, only 0 available"* on every pooled member, on the booking list and in the assets sidebar, while reserving and checking the booking out worked perfectly. The badges now follow the same rule the write paths always used, so the row stays clean. A member that was later **removed from the kit** is a standalone slice again, and is measured against the loose pool like any other.
 
 ### "Only N units available"
 
@@ -94,13 +122,13 @@ Three things still block, exactly as before:
 - **An item physically checked out** on another booking that's in progress.
 - **An item in someone's custody.**
 
-This applies to individually tracked items only. Pooled stock is counted rather than claimed, so it never takes this path.
+This applies to individually tracked items only. Pooled stock is counted rather than claimed, so it never takes this path. A **kit** does take it, though, because a kit is claimed rather than counted: a booking that is already in progress can check out a kit a later reservation also holds. No timeline note is written when it happens to a kit — that note exists for individually tracked items only — so check the kit's **Bookings** tab if a reservation of yours comes up short.
 
 ---
 
 ## Extending a booking hits a conflict
 
-If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. Options:
+If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. That check now covers kits as well as assets, so an extension that would run a kit into somebody else's booking is refused rather than allowed. Options:
 
 - Shorten your extension to end before the next booking starts
 - Ask the next booking's owner to shift their start date
