@@ -1,0 +1,30 @@
+---
+title: "Require the Explicit Check-out Flow"
+description: "A workspace can now make Admins or Self-service users scan or select the assets to check a booking out, instead of handing the whole booking over in one click."
+date: "2026-09-15"
+image: "/images/updates/partial-check-ins.jpg"
+readMoreUrl: "/knowledge-base/require-explicit-check-in-and-check-out"
+layout: "update"
+---
+
+Shelf has had an **Explicit check-in requirement** for a while: switch it on and a role has to scan the gear back in rather than closing the booking with one click. There was no twin for the other direction, so a workspace that wanted every departure verified could only ask people nicely.
+
+Now there is one. **Settings ▸ Workspace settings ▸ Bookings** carries a second card, **Explicit check-out requirement**, with a switch for Admins and a switch for Self-service users. Both start off, and only the workspace owner can change them.
+
+## What a covered role sees
+
+The one-click hand-out goes away, on every surface:
+
+- On the booking page, the check-out control offers only **Scan to check out**. **Check out** on a Reserved booking and **Check out remaining** on an Ongoing one are not shown.
+- In the Shelf Companion app, **Check Out All Assets** is hidden. **Select to Check Out** stays.
+- A request that reaches the server anyway is refused, with the reason spelled out rather than a generic failure.
+
+Everything that already makes you name the items stays open: the **Scan to check out** scanner, **Actions ▸ Check out selected items** on the booking's asset list, **Select to Check Out** on the phone, and fulfil-and-check-out on both.
+
+## Who it reaches
+
+The owner is always exempt, and Base users are not covered because they cannot check gear out in the first place. Someone who holds more than one role on a workspace is judged by their most privileged one, so a person who is both Self-service and Administrator is governed by the Admin switch.
+
+The check-in and check-out requirements are independent. Either can be on while the other is off, and each can apply to one role and not the other.
+
+The phone half of this reached devices over the air on 15 September 2026. An older copy of the app still shows **Check Out All Assets**; tapping it gets the refusal and nothing is checked out.
