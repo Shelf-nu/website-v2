@@ -1,13 +1,13 @@
 ---
 title: "Connect Shelf Companion to Your Own Shelf Server"
-description: "Point the Shelf Companion app at your organization's own Shelf instance instead of Shelf Cloud: what has to be registered first, how to connect, how to sign in, and what each refusal means."
+description: "Point the Shelf Companion app at your organization's own Shelf instance instead of Shelf Cloud: the private-server license and its monthly fee, what has to be registered first, how to connect, how to sign in, and what each refusal means."
 category: "Getting Started"
 date: "2026-08-31"
-updated: "2026-08-31"
+updated: "2026-09-16"
 layout: "knowledge-base"
 seo:
   title: "Connect Shelf Companion to a Self-Hosted Shelf Server"
-  description: "Use the Shelf Companion iPhone and Android app with a self-hosted Shelf instance. Registration, connecting, single sign-on, switching back to Shelf Cloud, and every error explained."
+  description: "Use the Shelf Companion iPhone and Android app with a self-hosted Shelf instance. Licensing and fees, registration, connecting, single sign-on, switching back to Shelf Cloud, and every error explained."
 ---
 
 From **Shelf Companion 1.5.0**, the app can sign in against a Shelf server that is not Shelf Cloud. If your organization runs its own Shelf instance, your field crew can use the same native scanner, audits, custody and bookings against your own data.
@@ -21,7 +21,7 @@ Earlier versions of the app only ever talked to Shelf Cloud. Self-hosted teams h
 Three things have to be true. Two of them are your administrator's job, not yours.
 
 1. **The app is on version 1.5.0 or newer.** Update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Older builds have no **Connect to a private server** control at all.
-2. **Shelf has registered your domain.** The app asks Shelf Cloud which instance a domain belongs to, and Shelf Cloud answers from a registry it maintains. A domain nobody has registered is refused rather than sent to Cloud by default. Registering one is a change on Shelf's side, so it takes effect without a new app release. Contact Shelf to have your domain added.
+2. **Shelf has registered your domain.** The app asks Shelf Cloud which instance a domain belongs to, and Shelf Cloud answers from a registry it maintains. A domain nobody has registered is refused rather than sent to Cloud by default. Registration comes with a **private-server license**, sold as a monthly subscription. [Contact sales](/contact) to set it up; the licensing section below has the details. Registering a domain is a change on Shelf's side, so it takes effect without a new app release.
 3. **Your server is reachable from the phone over HTTPS.** Plain HTTP is refused before the app sends anything. If your instance only answers on the company network, the phone needs to be on that network or on VPN.
 
 <Callout type="info" title="Nothing changes for Shelf Cloud users">
@@ -29,6 +29,18 @@ Three things have to be true. Two of them are your administrator's job, not your
 If your team uses [app.shelf.nu](https://app.shelf.nu), you do not need any of this. Sign in on the first screen as normal. This article is only for organizations running their own Shelf server.
 
 </Callout>
+
+---
+
+## Licensing and fees
+
+Running Shelf on your own server is free under the [AGPL license](/solutions/open-source-asset-management). Connecting the Companion app to that server is not part of the open-source license. It is a service Shelf provides, and it needs a **private-server license** from Shelf.
+
+- **The license is a monthly subscription.** Sales will confirm the current fee for your organization.
+- **The license is what gets your domain registered.** The registry the app looks up is maintained by Shelf, and your domain goes into it once the license is in place.
+- **Get in touch before your team tries to connect.** Until the license is set up and the domain registered, the app refuses it with *"[domain] isn't set up for a private server."*
+
+[Contact sales](/contact) to get a license and the fees associated with it. Registration follows on Shelf's side, so it reaches everyone on your team without an app update.
 
 ---
 
@@ -93,7 +105,7 @@ The last one is the only failure the screen offers a button for, because it is t
 
 ### Does this mean any self-hosted Shelf works with the app?
 
-Not automatically. Your domain has to be in the registry Shelf Cloud answers from, and your instance has to be reachable over HTTPS. The app deliberately refuses an unregistered domain rather than falling back to Shelf Cloud, so nobody signs into the wrong place by accident.
+Not automatically. Your domain has to be in the registry Shelf Cloud answers from, which comes with a private-server license from Shelf, and your instance has to be reachable over HTTPS. The app deliberately refuses an unregistered domain rather than falling back to Shelf Cloud, so nobody signs into the wrong place by accident.
 
 ### Does the lookup expose our server to anyone?
 
@@ -107,9 +119,13 @@ No. You use the account you already have on that server, with the same workspace
 
 No. One server at a time, per device. Switching signs you out of the one you are leaving, and the app confirms before it does.
 
+### Is there a cost to connect the app to our own server?
+
+Yes. Self-hosting Shelf itself is free under the AGPL license, but connecting the Companion app to a private server needs a license from Shelf, billed as a monthly subscription. [Contact sales](/contact) for the fees.
+
 ### Where do I ask to have our domain registered?
 
-Contact Shelf. It is a server-side change on Shelf Cloud and needs no new app build, so it takes effect for everyone on your team as soon as it is made.
+[Contact sales](/contact). Registration comes with the private-server license. It is a server-side change on Shelf Cloud and needs no new app build, so it takes effect for everyone on your team as soon as it is made.
 
 ---
 
