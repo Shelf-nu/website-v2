@@ -32,7 +32,7 @@
 
 ## Calendar feed (verified 2026-09-17 against product origin/main + a live feed fetched from app.shelf.nu)
 - **Subscribable booking calendar feed: LIVE since 2026-07-09** (shelf.nu PR #2602 merged; production migration applied the same day). Calendar page → **Subscribe** (or Account Settings → Calendars) → **Generate calendar link** gives a secret `https://app.shelf.nu/api/calendar/feed/<token>.ics` URL; the **Add to calendar** button opens it as `webcal://`.
-- Works with **Google Calendar, Outlook, Apple Calendar** (any RFC 5545 client). **Team plan.**
+- Works with **Google Calendar, Outlook, Apple Calendar** (any RFC 5545 client). **Team and Enterprise plans.**
 - **One-way, read-only.** Includes reserved / ongoing / overdue / complete bookings from ~1 month back to 1 year ahead (drafts, cancelled, archived excluded). Each event: booking name + asset count, custodian (omitted if the member can't see custody), asset list, link to the booking, and a **reminder 1 day before the booking ends** ("Equipment due back tomorrow").
 - Scope mirrors the member's in-app visibility: admins who see all bookings get the whole workspace (a shared team calendar); self-service/base get their own bookings.
 - Calendar apps refresh subscribed calendars on their own schedule; the feed itself is cached for 5 minutes.
