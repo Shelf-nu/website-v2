@@ -372,6 +372,25 @@ export const pricingFeatures: PricingFeature[] = [
         },
     },
     {
+        id: "calendar-feed",
+        category: "Bookings & Reservations",
+        name: "Calendar Feed",
+        description:
+            "Live, read-only feed of bookings into Google Calendar, Outlook, or Apple Calendar",
+        availability: {
+            free: "not-included",
+            plus: "not-included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "not-included",
+            tier_1: "not-included",
+            tier_2: "included",
+            custom: "included",
+        },
+    },
+    {
         id: "availability-view",
         category: "Bookings & Reservations",
         name: "Availability View",
