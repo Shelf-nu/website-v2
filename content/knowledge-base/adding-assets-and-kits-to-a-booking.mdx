@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-16"
+updated: "2026-09-17"
 layout: "knowledge-base"
 ---
 
@@ -63,7 +63,7 @@ If you or other users have configured one or more kits you'll be able to utilize
 
 ## Settling a model reservation
 
-If the booking reserves gear by [Asset Model](/glossary/asset-models) rather than by specific unit, those reservations are listed in their own **Unassigned model reservations** section above the assets table. The heading reads "4 of 6 units still to assign, across 2 models", and each row states its own share the same way, such as "1 of 2 units still to assign". The rows always name both numbers, what is left and what was promised, so a lone figure can never be misread as the other one.
+If the booking reserves gear by [Asset Model](/glossary/asset-models) rather than by specific unit, those reservations are listed in their own **Unassigned model reservations** section above the assets table. A long list shows ten models at a time, with *Showing 1-10 of 40 models* and page arrows underneath, so the assets table stays within reach. The heading reads "4 of 6 units still to assign, across 2 models", and each row states its own share the same way, such as "1 of 2 units still to assign". The rows always name both numbers, what is left and what was promised, so a lone figure can never be misread as the other one.
 
 A reservation is settled by putting a matching asset on the booking. Every route counts:
 
@@ -77,6 +77,15 @@ Whichever door the asset comes through, Shelf matches it against an outstanding 
 Reserving by model is counted the same way a pool is. Shelf works out how many units of that model are free for your dates at the moment you reserve, and holds the model still while it does, so two people reserving the last units of the same model at the same second cannot both be told yes.
 
 Reservations that are still outstanding show as an amber **N units unassigned** pill on the bookings index, next to the asset count. A booking made entirely of reservations therefore reads "0 assets" with the pill beside it, rather than looking empty. Those units are genuinely held and unavailable to anyone else, and a booking cannot be checked out while any reservation is outstanding, so the pill is the list telling you there is still gear to find.
+
+### Reserved units stay reserved when someone books by name
+
+A model reservation holds a number of units, not particular ones, so the risk is another booking on the same dates picking one of those units by name. Shelf counts that too. As long as the model has units to spare beyond what other bookings reserved, you can add one by name as usual. Once the reservations take up every free unit, the rest of that model is off limits for those dates:
+
+- In **Manage assets**, each remaining unit of the model shows a **Reserved by model** badge and its checkbox can't be ticked. The tooltip reads *"Other bookings reserved every free unit of this asset's model for the selected dates. Change the dates, or pick an asset of another model."*
+- Every other way in is refused as well: scanning the unit onto the booking (on the web or in the [Shelf Companion app](/mobile-app)), reserving a draft that already holds one, and extending a booking into dates where the model is spoken for. The refusal names the model and does the arithmetic for you.
+
+If your own booking reserves the model, naming units of it fills that reservation first, so those units are never counted twice against you. See [Troubleshooting: Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts#some-assets-cannot-be-booked-by-name-for-these-dates) for the message and what to do about it.
 
 ## Reading the counts on a booking
 
