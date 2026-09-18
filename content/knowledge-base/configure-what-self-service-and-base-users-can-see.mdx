@@ -3,7 +3,7 @@ title: "Configure What Self Service and Base Users Can See"
 description: "Administrators can customize permission settings in Shelf to control what Self Service and Base users can see regarding custody and booking information for assets, allowing for precise control over team member access."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-08"
+updated: "2026-09-18"
 layout: "knowledge-base"
 ---
 
@@ -53,7 +53,7 @@ Both settings govern **what a person can see**. Neither one changes what they ar
 - **Booking visibility does not grant editing.** Seeing other people's bookings is not the same as being able to change them. A Self-service or Base user still acts only on their own. That holds on the phone too: the app opened up what those users can *read*, and every write path on a booking (reserve, check out, check in, cancel, archive, delete, add or remove gear) keeps the ownership guard it already had.
 - **The custody restriction is not just the badge.** With custody visibility off, the custodian's name and email are withheld from the page data itself rather than hidden in the display, and the custodian filter is refused rather than answered. That holds everywhere the filter can be applied, including **Select all** and the bulk actions and QR label downloads that run on a selection, so a filtered list cannot be used to work out who holds what. Administrators and Owners are unaffected and keep the filter.
 - **It reaches every surface, not just the lists.** The same rule applies on an individual asset's page and a kit's page, in the [Shelf Companion](/mobile-app) app on the asset list, the kit list and a kit's detail screen, and in the team-member list inside the **Assign Quantity Custody** dialog on a quantity-tracked asset. Opening one item at a time gets a Self-service or Base user no further than the index does, and neither does opening a picker on the phone rather than in the browser.
-- **A checked-out item's holder is covered too.** When an asset is out on a booking it has no custodian in the usual sense — the person responsible is the booking's custodian, which Shelf shows in the same place. That name follows the same rule, so turning custody visibility off does not leave it readable on checked-out gear.
+- **A checked-out item's holder is covered too.** When an asset is out on a booking it has no custodian in the usual sense — the person responsible is the booking's custodian, which Shelf shows in the same place. That name follows the same rule, so turning custody visibility off does not leave it readable on checked-out gear. The exception is a booking that is yours: when you are its custodian, the asset page and the kit page show you **In custody of** your name **via** the booking, whatever the setting says. If an asset sits on more than one active booking, the card names the one it actually went out on.
 - **Your own custody is always yours to see.** Every one of these surfaces still shows a person their own holdings, including on a kit whose other members are held by colleagues. The restriction hides other people, never the item in your own hands.
 - **Neither toggle opens Reports.** The **Reports** area reads across every booking, custodian and asset value in the workspace at once, which is a wider question than either toggle answers. It stays with Administrators and Owners whatever the toggles are set to, and the report pages and their CSV and PDF exports are refused for Self-service and Base users even by direct link.
 
