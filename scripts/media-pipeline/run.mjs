@@ -37,6 +37,7 @@ const ARTICLES = {
   "nrm-actions-and-delete": "articles/nrm-actions-and-delete.mjs",
   "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
   "checkin-receipt": "articles/checkin-receipt.mjs",
+  "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
 };
 
 const slug = process.argv[2];

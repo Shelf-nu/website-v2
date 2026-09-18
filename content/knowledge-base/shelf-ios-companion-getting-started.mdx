@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-09-14"
+updated: "2026-09-15"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -149,7 +149,11 @@ The search box and the status pills apply to both lenses; sorting is a list-only
 
 **Build out a booking by scanning.** Open a draft booking and tap **Scan to Add Assets**, then scan the assets and kits you're packing. A kit brings in its members, and only the ones the booking does not already hold.
 
-**Kits stay together on the booking.** A booking that holds a kit shows the kit as **one row**, the same way the web booking page does. The row shows the kit's name and image, how many of its assets are on the booking, its category and location, and its status. Kit rows start closed: tap one to see the assets inside, and tap again to close it. When you **Select to Check Out**, **Select to Check In** or **Select to Remove**, tapping the kit row selects every asset in it that can take that action. You can still open it and pick single assets. Removing a whole kit is only sent as a kit removal when the booking holds every asset in it and all of them are selected. Anything less removes just the assets you picked, so members nobody selected stay on the booking.
+**Kits stay together on the booking.** A booking that holds a kit shows the kit as **one row**, the same way the web booking page does. The row shows the kit's name and image, how many of its assets are on the booking, its category and location, and its status. Kit rows start closed: tap one to see the assets inside, and tap again to close it.
+
+**A kit is picked as one thing.** When you **Select to Check Out**, **Select to Check In** or **Select to Remove**, the kit row gets a single tick box. Tap the row once and it picks every asset in the kit that can take that action (in check-in, only the ones still out). Tap it again to drop the kit. The assets inside a kit have no tick box of their own, and tapping one while you are selecting does nothing, so part of a kit can't go out, come back or leave the booking by accident. The web booking page works the same way. Starting a selection leaves your kits open or closed as they were, and the arrow at the end of a kit row still opens it, so you can look inside before you pick it. Assets that are not in a kit keep their own tick box.
+
+The button at the bottom counts a kit as one item and says what it will act on, for example **Check Out 1 Kit & 1 Asset**, **Check In 3 Assets** or **Remove 2 Kits**. On the phone, an asset in a kit leaves a booking only together with its kit; to take off a single asset from a kit, use the web booking page. Removing a kit is sent as a kit removal when the booking holds every asset in it. If the booking holds only some of them, picking the kit removes the assets it does hold.
 
 A kit added from the phone also keeps its grouping on the web booking page. Before, a kit added in the app arrived as loose assets, and neither the phone nor the web could show it as a kit again.
 
@@ -161,7 +165,19 @@ Reserved units that have no physical unit behind them yet are counted on the boo
 
 **Manage the booking's lifecycle.** Reserve, cancel, archive, delete, or duplicate a booking without leaving the app.
 
-**Check out one item at a time or in bulk.** You can check out a selected subset of a booking's assets rather than all at once (progressive check-out). A lifecycle **progress bar** tracks each item through Reserved, Checked out, and Returned, so a half-packed booking reads accurately.
+**Find one item on a big booking.** Each asset on a booking shows where it is kept, on a location line under its name, the same way the web booking page does. Kit members show their own location too. Above the list, the **Search assets & kits** box narrows what you see as you type. It matches an asset's name, category and location, and the name, category and location of its kit. When one asset in a kit matches, the whole kit comes back, so you never see part of a kit. If nothing matches, the list says **No assets match**. Searching only changes what is on screen: anything you already selected stays selected, and the button still counts all of it. The phone's search does not look at SAM IDs, tags, QR codes or barcode values, and it treats commas as part of the text. Use the scanner to find an item by its label.
+
+**Check out one item at a time or in bulk.** You don't have to check out a whole booking at once (progressive check-out). A reserved booking offers three ways to hand gear over:
+
+- **Check Out All Assets** checks out everything in one go. It is offered while the booking is **Reserved**.
+- **Scan to Check Out** opens the scanner for this booking. Scan each asset or kit as you hand it over. The scanner only takes assets that are on this booking and still waiting to go out. Anything else is refused with the reason, for example **Not in This Booking**, **Already Checked Out** or **In Custody**. A kit's code adds its assets that can go out, and scanning the same kit again tells you **Already Covered**. Tap the button at the bottom, for example **Check Out 2 Assets**, to send the list. The scanner stays open while the booking still has gear to hand over, and takes you back to the booking once everything is out.
+- **Select to Check Out** lets you tick the assets and kits you are handing over, then check them out together.
+
+The first check-out moves the booking to **Ongoing**. After that, **Check Out All Assets** is gone, but **Scan to Check Out** and **Select to Check Out** stay on the booking until everything has gone out, so you can hand over the rest later. A lifecycle **progress bar** tracks each item through Reserved, Checked out, and Returned, so a half-packed booking reads accurately.
+
+Scanning a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset checks out every unit of it that is still waiting on the booking. To take fewer units, use **Select to Check Out**, which asks how many. A booking that still has model reservations waiting for a physical unit has to be fulfilled first with **Scan to assign & check out** (see above).
+
+Scan to Check Out and Select to Check Out follow the same rules as the server. Administrators and Owners see them on any booking. Self-service members see them only on bookings they created or are the custodian of. Base members can't check gear out, so they see neither.
 
 **Check items back in.** Use the in-app scanner to check items in as they return. Scan-to-check-in only accepts assets that are actually in this booking, expands kit codes to their in-booking members, and won't double-return an item that is already back.
 
@@ -206,7 +222,7 @@ For clarity, these are real, intentional gaps. They are on our radar, but they a
 - **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
 - **Listing an asset's registered barcodes.** The scanners read every code type; the detail screen does not yet show which codes an asset carries. Adding and editing codes is a web job.
 
-This guide describes **version 1.5.0**, live on the App Store and Google Play since 31 August 2026. Grouping a booking's kits and the **Manage Placements** editor reached 1.5.0 through an over-the-air update on 10 September 2026, so the version number did not change. The app downloads an update like this in the background when you open it and uses it from the next time you open it. If your app is older, take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Two items that used to sit on the list above shipped in 1.3.0 and moved into the guide: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners). The booking calendar, the audit evidence action, and the model and asset ID rows need **1.4.0**. [Connecting to your own server](/knowledge-base/connect-shelf-companion-to-your-own-server), undoing an audit scan, and the scanner's clearer results need **1.5.0**.
+This guide describes **version 1.5.0**, live on the App Store and Google Play since 31 August 2026. Grouping a booking's kits and the **Manage Placements** editor reached 1.5.0 through an over-the-air update on 10 September 2026, so the version number did not change. **Scan to Check Out**, picking a kit as one thing, and the booking's location lines and search followed the same way on 14 September 2026. The app downloads an update like this in the background when you open it and uses it from the next time you open it. If your app is older, take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Two items that used to sit on the list above shipped in 1.3.0 and moved into the guide: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners). The booking calendar, the audit evidence action, and the model and asset ID rows need **1.4.0**. [Connecting to your own server](/knowledge-base/connect-shelf-companion-to-your-own-server), undoing an audit scan, and the scanner's clearer results need **1.5.0**.
 
 Anything Shelf changes on the server side reaches every installed version at once, whatever it says in Settings. The booking-visibility rule described in step 9 is one of those.
 
