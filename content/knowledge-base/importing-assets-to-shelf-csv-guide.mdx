@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-06"
+updated: "2026-09-18"
 layout: "knowledge-base"
 ---
 
@@ -34,7 +34,7 @@ To begin importing assets:
 
 ### Basic Format Rules
 
-- **Delimiter:** Comma (`,`) or semicolon (`;`). Shelf auto-detects whichever character appears more often across the whole file — pick one and stick to it.
+- **Delimiter:** Comma (`,`) or semicolon (`;`). Shelf auto-detects whichever character appears more often **between cells**. Commas and semicolons inside a double-quoted cell, such as a long description, are not counted, so they cannot tip the choice. Pick one delimiter and stick to it.
 - **Quoting:** Wrap any value containing the delimiter, a double quote, or a newline in double quotes (`"…"`). Escape an internal `"` by doubling it (`""`). This matters for `tags` and multi-value `barcode_*` cells in a comma-delimited file, and for `cf:…,type:…` custom-field headers in a comma-delimited file (see [Custom Fields](#custom-fields) below).
 - **Encoding:** UTF-8 recommended. Other encodings are auto-detected and converted, and a UTF-8 BOM is accepted.
 - **Header row:** First row must contain column headers. Headers are **case-sensitive** and **strictly validated** against Shelf's allow-list — an unknown header aborts the entire import with "Invalid header provided."
@@ -72,6 +72,8 @@ To begin importing assets:
 **`imageUrl` semantics:** any publicly reachable `http(s)` URL works — the link no longer has to end in `.png`, `.jpg`, or `.jpeg`. Dynamic image endpoints (for example an ASP.NET handler like `https://host/GetImage.ashx?guid=…` that serves image bytes from a query string) import correctly. Shelf downloads the URL and confirms the file is a real image (PNG, JPEG, GIF, WebP, or BMP) from its contents, not from the URL text, so a link that doesn't actually return an image is rejected after the download attempt.
 
 **Multi-value cells:** `tags` (and the `barcode_*` columns below) hold multiple values separated by commas **inside a single cell**. In a comma-delimited file the cell must be double-quoted (`"high-priority,fragile"`); in a semicolon-delimited file no quoting is needed.
+
+**A value that contains a comma:** wrap that one value in double quotes inside the cell, so Shelf reads it as one value rather than splitting it. Because those quotes sit inside the cell, the whole cell must be quoted too and the inner quotes doubled, whichever delimiter the file uses. For two tags, `Berlin, DE` and `small`, the cell is written `"""Berlin, DE"",small"`. The same rule applies to a barcode value such as `SN-2024,001`. Leave off the outer quotes and the row goes wrong. In a comma-delimited file, `"Berlin, DE",small` becomes two cells: the tag is `Berlin, DE`, `small` lands in the next column, and every value after it moves one column to the right. In a semicolon-delimited file, Shelf cannot read the file at all. In a spreadsheet application, type `"Berlin, DE",small` into the cell and the application adds the outer quotes when it saves as CSV. A cell with no quotes in it, like `a,b,c`, still means three values. An [Import-ready export](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format) writes these cells correctly for you.
 
 ## Advanced Features
 
@@ -138,6 +140,7 @@ Enable the add-on first if any of these columns contain data you need.
 **Barcode rules:**
 
 - For multiple barcodes of the **same type** on one asset, separate values with commas inside that single cell (e.g. `LAT5550-001,LAT5550-002`). In a comma-delimited file the cell must be wrapped in double quotes.
+- A barcode value that itself contains a comma (Code128, DataMatrix and ExternalQR all allow one) must be quoted inside the cell, as described under [multi-value cells](#standard-columns). Otherwise it is read as two barcodes.
 - Values must be unique within the file and across your workspace; duplicates are surfaced before import.
 - Code128, Code39, DataMatrix, and EAN13 are upper-cased on save; ExternalQR preserves the original case.
 
@@ -226,6 +229,7 @@ If you see a partial-import result, check your Asset Index for what was created,
 **Tags not separating:**
 - Separate tags with commas inside a single cell: `electronics,laptop,portable`. Spaces around commas are trimmed automatically, so `electronics, laptop` resolves to the tag `laptop`, not ` laptop`.
 - In a comma-delimited file the whole `tags` cell must be wrapped in double quotes (`"electronics,laptop"`); in a semicolon-delimited file no quoting is needed.
+- A tag whose name contains a comma, such as `Berlin, DE`, is split in two unless that name is quoted inside the cell. See [multi-value cells](#standard-columns) for the exact form.
 
 **Custodian not found:**
 - The `custodian` column is matched by **name**, not email. Use the exact display name (e.g. `John Doe`).
