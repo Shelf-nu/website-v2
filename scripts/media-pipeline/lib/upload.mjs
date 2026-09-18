@@ -18,6 +18,9 @@ const MIME_TYPES = {
  * @returns {Promise<string>} Public URL of the uploaded file
  */
 export async function upload(localPath, bucketPath, retries = 3) {
+  if (!Number.isInteger(retries) || retries < 1) {
+    throw new Error(`upload(): retries must be an integer >= 1, got ${retries}`);
+  }
   const { url, serviceKey, bucket } = getSupabaseConfig();
   const ext = extname(localPath).toLowerCase();
   const mimeType = MIME_TYPES[ext];

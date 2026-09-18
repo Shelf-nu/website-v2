@@ -29,7 +29,7 @@ const jsonLd = buildToolPageJsonLd({
         },
         {
             question: "Can I share this analysis?",
-            answer: "Yes. All inputs are saved in the URL, so you can copy the page link to share your exact scenario. You can also use the 'Copy Summary' button to get a plain text version for emails or reports.",
+            answer: "Yes. All inputs are saved in the URL, so you can copy the page link to share your exact scenario. You can also use the “Copy Summary” button to get a plain text version for emails or reports.",
         },
     ],
 });

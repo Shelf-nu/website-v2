@@ -102,7 +102,9 @@ async function main() {
 
     // Find the "Leave a note" input
     const noteInput = clipPage.locator('input[placeholder="Leave a note"]').first();
-    if (await noteInput.count() > 0) {
+    // Fail the run rather than publish a clip that skips the note it narrates.
+    await noteInput.waitFor({ state: "visible" });
+    {
       await initAnnotations(clipPage);
       await highlight(clipPage, 'input[placeholder="Leave a note"]', { spotlight: true, padding: 6 });
       await clipPage.waitForTimeout(1500);

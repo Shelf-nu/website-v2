@@ -631,6 +631,7 @@ export function DemoForm() {
                                         className="min-h-[80px]"
                                         value={formData.message}
                                         onChange={(e) => updateField("message", e.target.value)}
+                                        aria-invalid={!!fieldErrors.message}
                                     />
                                     <FieldError error={fieldErrors.message} />
                                 </div>
@@ -643,6 +644,7 @@ export function DemoForm() {
                                         placeholder="e.g. Google, a colleague, Product Hunt..."
                                         value={formData.heardAbout}
                                         onChange={(e) => updateField("heardAbout", e.target.value)}
+                                        aria-invalid={!!fieldErrors.heardAbout}
                                     />
                                     <FieldError error={fieldErrors.heardAbout} />
                                 </div>

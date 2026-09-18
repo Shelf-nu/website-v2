@@ -162,7 +162,7 @@ export function BlogSidebar() {
                     <a
                         href="/demo"
                         className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                        onClick={() => trackEvent("demo_click", { source: "blog_sidebar" })}
+                        onClick={() => trackEvent("demo_cta", { location: "blog_sidebar" })}
                     >
                         Or book a demo
                         <ArrowRight className="h-3 w-3" />

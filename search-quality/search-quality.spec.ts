@@ -47,7 +47,9 @@ test("canonical pages rank for their queries", async ({ page }) => {
         let rank: number | null = null;
         for (let i = 0; i < limit; i++) {
           const d = await s.results[i].data();
-          if (expectUrl && d.url && d.url.includes(expectUrl)) {
+          // Exact page match, so `/updates/foo` cannot satisfy `/updates`.
+          const path = d.url ? d.url.replace(/\.html$/, "").replace(/\/index$/, "").replace(/\/$/, "") || "/" : null;
+          if (expectUrl && path === expectUrl) {
             rank = i + 1;
             break;
           }

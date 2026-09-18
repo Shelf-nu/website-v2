@@ -130,10 +130,10 @@ node scripts/analytics.mjs experiments capture-baseline <id>  # Capture baseline
 node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed (starts evaluation timer)
 ```
 
-**Reading the funnel / revenue data — three traps, all hit in practice:**
+**Reading the funnel / revenue data — four traps, all hit in practice:**
 
 1. **Never compare raw `subscription_cancelled` events against `upgrade_completed` events and call the difference churn.** Most cancels are expiring trials from accounts that never paid; others are Stripe plan swaps firing cancel+create as a pair. `revenue` splits them three ways.
-2. **PostHog cannot measure churn at all, and `revenue` says so.** The app's revenue events only start **2026-06-13**, so every customer who upgraded before that looks like "no upgrade on record" and is indistinguishable from an expiring trial. The command's post-upgrade-cancel count is a **floor, not the churn rate**. Real figures come from Stripe → Billing overview → Churn (as of 2026-07-29: 2.6% subscriber churn, 0.8% net MRR churn, 48 churned YTD against 85 new, retention cohorts flattening at 67–95%).
+2. **PostHog cannot measure the true churn rate, and `revenue` says so.** The app's revenue events only start **2026-06-13**, so every customer who upgraded before that looks like "no upgrade on record" and is indistinguishable from an expiring trial. The command's post-upgrade-cancel count is a **floor, not the churn rate**. Real figures come from Stripe → Billing overview → Churn (as of 2026-07-29: 2.6% subscriber churn, 0.8% net MRR churn, 48 churned YTD against 85 new, retention cohorts flattening at 67–95%).
 3. **PostHog measures MRR *added*, not total MRR.** Total MRR ($8.7k), subscriber counts (223), trial conversion (700 trials → 58 converted) and retention cohorts live in **Stripe → Billing overview** only.
 4. **Website sessions cannot be joined to revenue.** The app emits only server-side events and no `app.shelf.nu` client events exist, so anonymous browser IDs never stitch to user IDs. Fixing this needs `posthog.identify(userId)` client-side in the product repo.
 

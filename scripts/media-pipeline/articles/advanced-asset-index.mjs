@@ -87,7 +87,10 @@ async function main() {
 
       // Show availability view
       await chapterCard(clipPage, "Views", "List View and Availability Calendar", 2500);
-      await navigateTo(clipPage, "/assets?view=availability");
+      // Use the real toolbar toggle so a broken toggle fails the run.
+      await navigateTo(clipPage, "/assets");
+      await clipPage.locator('[aria-label="Switch to availability view"]').first().click();
+      await clipPage.waitForURL((url) => url.searchParams.get("view") === "availability");
       await clipPage.waitForTimeout(2000);
       await initAnnotations(clipPage);
       await caption(clipPage, "Switch to Availability View to see booking timelines across your assets");

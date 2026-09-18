@@ -55,7 +55,7 @@ async function main() {
     // #2813 markers. Step 1 now recommends the Import-ready format, and
     // Description moved from "Not supported yet" into the updatable list.
     await page
-      .locator("text=/In the export dialog/")
+      .locator("text=/In the export dialog, choose the\\s+Import-ready\\s+format/")
       .first()
       .waitFor({ state: "visible" });
     await page

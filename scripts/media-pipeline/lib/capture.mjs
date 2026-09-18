@@ -13,6 +13,7 @@ export async function screenshot(page, outputPath, options = {}) {
       await el.screenshot({ path: outputPath });
       return outputPath;
     }
+    throw new Error(`screenshot(): no element matches selector "${options.selector}"`);
   }
   await page.screenshot({ path: outputPath, fullPage: options.fullPage || false });
   return outputPath;

@@ -45,7 +45,7 @@
       "TTFB_ms": 65,
       "CLS": 0
     },
-    "note": "Dramatically faster than desktop chromium (16x on menu, 14x on search first-results). Suggests the jank is desktop-specific — mobile users aren't affected."
+    "note": "Dramatically faster than desktop chromium (16x on menu, 14x on search first-results). Suggests the jank may be desktop-specific. Headless emulation only, so real mobile devices were not verified."
   },
   "webkit_desktop": {
     "blog_post_load": {
