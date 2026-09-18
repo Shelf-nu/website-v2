@@ -42,8 +42,8 @@ export function ScaleBlock() {
     }, [isInView]);
 
     const metrics = [
-        { value: 450000, suffix: "+", label: "assets tracked" },
-        { value: 13000, suffix: "+", label: "active users" },
+        { value: 750, suffix: "k", label: "assets tracked" },
+        { value: 20, suffix: "k+", label: "active users" },
         { value: 50, suffix: "+", label: "countries" },
         { value: 99.999, suffix: "%", label: "historical uptime", decimalPlaces: 3 },
     ];

@@ -105,6 +105,8 @@ Three-layer analytics, all free:
 - `demo_cta` — "Book a demo" clicks (distinct from `demo_form_submit`, which is the successful submission)
 - `tool_calculate` / `tool_share` / `tool_interact` — calculator usage, not conversion intent
 - `role_picker_completed` — role selection
+- `home_interact` — homepage controls that are segment signals, not conversions: `element` = `hero_tab` | `trust_segment` | `ask_the_team`, plus `value` (the tab or segment id)
+- `home_question_open` — a question opened in the homepage's "Questions we get every week" section (`question` = its id, e.g. `self-host`, `sso`, `barcodes`). Tells us what a visitor is worried about
 
 **Every signup CTA fires `signup_click` with a `location` prop** (`navbar`, `kb_sidebar`, `tool_salvage`, `pricing_feature_table`, …). Keep it that way — until 2026-07-29 the calculator CTAs fired `tool_cta_click` instead, and that single naming split made every by-page conversion query undercount the tools cluster by ~10×. Group by `location`, never invent a second event name for the same user action.
 
