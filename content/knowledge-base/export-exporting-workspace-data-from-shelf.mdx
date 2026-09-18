@@ -3,7 +3,7 @@ title: "Exporting Data from Shelf"
 description: "Export asset data from Shelf as CSV: selected assets, filtered results, or a full workspace backup. Covers the Standard and Import-ready formats, what each includes, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-25"
+updated: "2026-09-18"
 layout: "knowledge-base"
 ---
 
@@ -60,6 +60,8 @@ When you click **Export selection**, Shelf asks two questions before it builds t
 
 - **Standard**: a readable spreadsheet that mirrors what's on your screen: display labels, formatted values, and a total value column. Use it for reporting, insurance schedules, budget reviews, and anything a person will read.
 - **Import-ready**: the same assets written with the importer's own column headers and values. Use it whenever the file is going back into Shelf. It does two jobs from one download: upload it into another workspace through **Assets → Import** to recreate the assets there, or upload it to **Assets → Import → Update existing** to edit the very assets it came from.
+
+An Import-ready export quotes every cell. Where a tag name or a barcode value contains a comma, it is also quoted inside its cell, so `Berlin, DE` comes back as one tag when you upload the file again. The Standard export lists tags for a reader, separated by commas, so use Import-ready for any file that goes back into Shelf.
 
 An Import-ready export always starts with an `id` column, in either column scope. That is what lets the update flow match each row back to its asset. The create flow ignores the column, since those ids belong to the workspace that issued them.
 

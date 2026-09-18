@@ -3,7 +3,7 @@ title: "Bulk Updating Assets via CSV"
 description: "Use the Update Existing Assets workflow to edit asset records in bulk — export to CSV, make changes in Excel or Google Sheets, preview every diff, then apply."
 category: "Assets"
 date: "2026-04-06"
-updated: "2026-08-25"
+updated: "2026-09-18"
 layout: "knowledge-base"
 ---
 
@@ -54,7 +54,7 @@ Keep the headers as exported. Shelf reads both header styles, the readable label
 | `Description` | `description` | All assets | Plain text, line breaks allowed inside the quoted cell. Cannot be cleared |
 | `Category` | `category` | All assets | Created automatically if the name is new |
 | `Location` | `location` | All assets | Created automatically if the name is new |
-| `Tags` | `tags` | All assets | Comma-separated inside one cell. Created automatically if new |
+| `Tags` | `tags` | All assets | Comma-separated inside one cell. A tag name that contains a comma must be quoted inside the cell ([how](/knowledge-base/importing-assets-to-shelf-csv-guide#standard-columns)); an Import-ready export writes it that way. Created automatically if new |
 | `Value` | `valuation` | All assets | Plain number. Currency symbols and thousands separators are stripped for you |
 | `Available to book` | `bookable` | All assets | `Yes` or `No` only |
 | `Asset model` | `assetModel` | Individually tracked only | Matched by name, case-insensitive, created automatically if new |
