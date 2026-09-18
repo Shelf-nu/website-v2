@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-09-16"
+updated: "2026-09-17"
 layout: "knowledge-base"
 ---
 
@@ -126,9 +126,31 @@ This applies to individually tracked items only. Pooled stock is counted rather 
 
 ---
 
+## "Some assets cannot be booked by name for these dates"
+
+You tried to put a specific unit on a booking, and every free unit of its [asset model](/glossary/asset-models) is already reserved by model on other bookings for your dates. A model reservation promises a number of units without naming them, so a unit picked by name elsewhere would leave that booking short when it comes to collect. Shelf refuses instead. The message names each model and shows the count:
+
+> Some assets cannot be booked by name for these dates:
+> "Dell Latitude 5550": 1 unit requested by name, but 2 units are reserved by model on other bookings for these dates and only 0 more can be booked.
+> Remove them, or change the dates.
+
+If units of that model are in custody or already booked by name on other bookings, the line says so as well, so the numbers add up.
+
+You'll usually see the warning before this. In **Manage assets**, those units carry a **Reserved by model** badge and can't be selected. The refusal covers the other ways a unit gets onto a booking: scanning it on, reserving a draft that already holds it, or extending the dates. Reserving shows the message in full. The website's scan drawer does not display it yet: the unit is not added, but no message appears. If a scanned unit doesn't land on the booking, check whether its model is reserved for your dates.
+
+What you can do:
+
+- Pick a unit of a different model, or a different item altogether
+- Move your dates outside the reserved period
+- Ask the owner of the other booking whether their reservation still needs that many units
+
+Your own reservation doesn't count against you twice. If your booking reserves the model, picking or scanning units of it fills that reservation first.
+
+---
+
 ## Extending a booking hits a conflict
 
-If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. That check now covers kits as well as assets, so an extension that would run a kit into somebody else's booking is refused rather than allowed. Options:
+If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. That check now covers kits as well as assets, so an extension that would run a kit into somebody else's booking is refused rather than allowed. It also covers model reservations: if the extra days run into a period where other bookings have reserved every free unit of a model, and your booking holds one of those units by name, the extension is refused with [the by-name message](#some-assets-cannot-be-booked-by-name-for-these-dates). Options:
 
 - Shorten your extension to end before the next booking starts
 - Ask the next booking's owner to shift their start date
@@ -166,7 +188,7 @@ The already-booked one is different, and worth recognising, because it is the on
 
 > Cannot reserve booking. Some assets are already booked or checked out: *[first asset]*, *[second asset]*, *[third asset]* and 2 more. Please remove conflicted assets and try again.
 
-At most three assets are listed by name, and the rest are counted. Take those items off the booking or move your dates, and the reserve goes through. Checking out runs the same check and answers the same way, with *Cannot check out booking* in place of the first phrase, so an item that someone else picked up between your reservation and your collection is named rather than hidden behind a generic failure.
+At most three assets are listed by name, and the rest are counted. Take those items off the booking or move your dates, and the reserve goes through. A draft that holds a unit of a model other bookings have fully reserved is refused at the same moment, with [its own message](#some-assets-cannot-be-booked-by-name-for-these-dates) rather than a tooltip. Checking out runs the same check and answers the same way, with *Cannot check out booking* in place of the first phrase, so an item that someone else picked up between your reservation and your collection is named rather than hidden behind a generic failure.
 
 ### A reserved booking cannot be emptied
 

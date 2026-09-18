@@ -1,0 +1,27 @@
+---
+title: "Units Reserved by Model Stay Reserved"
+description: "A booking could pick a unit by name that another booking had already reserved by model. Shelf now counts model reservations whenever a unit is added by name, and marks those units in the picker."
+date: "2026-09-16"
+image: "/images/updates/add-assets-to-bookings.jpg"
+readMoreUrl: "/knowledge-base/adding-assets-and-kits-to-a-booking#reserved-units-stay-reserved-when-someone-books-by-name"
+layout: "update"
+---
+
+Reserving by [asset model](/glossary/asset-models) lets a booking hold "2 laptops" without choosing which two. That promise now holds against every other booking on the same dates, including ones that pick units by name.
+
+## What was missing
+
+Shelf already stopped two model reservations from over-committing the same model. What it did not count was a unit named directly. Say a model has 3 laptops, 1 is in custody, and booking A reserves 2 by model. Booking B, on the same dates, could still add one of the 2 free laptops by name. Both bookings saved, and A was left needing 2 laptops from a pool that had 1.
+
+## What happens now
+
+Whenever a unit is added to a booking by name, Shelf checks it against the model reservations on other bookings for those dates:
+
+- In **Manage assets**, units of a fully reserved model show a **Reserved by model** badge and can't be ticked.
+- Scanning such a unit onto a booking, on the web or in the Shelf Companion app, is refused.
+- Reserving a draft that already holds one is refused, so a draft put together before the reservation existed can't slip past it.
+- Extending a booking into a period where the model is fully reserved is refused if the booking holds a unit of it.
+
+The refusal names the model and shows the count, for example *"Dell Latitude 5550": 1 unit requested by name, but 2 units are reserved by model on other bookings for these dates and only 0 more can be booked.*
+
+A model with units to spare works as before, and a booking that reserves the model itself can still fill its own reservation by picking or scanning units of it.
