@@ -3,7 +3,7 @@ title: "Privacy Policy"
 description: "Understand how Shelf collects, stores and protects your organization's asset information and personal data."
 ---
 
-**Last updated: 13 August 2026**
+**Last updated: 18 September 2026**
 
 ## Introduction
 At Shelf.nu, we respect your privacy and are committed to protecting your personal data. This privacy policy explains how we collect, process, and store your personal data, and your rights regarding that data.
@@ -47,9 +47,22 @@ Our data processing is based on:
 - Legal obligations (supporting audit and accounting requirements)
 - User consent (for optional features like profile pictures)
 
-## Data Processor
+## Data Processors
 We use Supabase as our database provider, which processes and stores your personal data on our behalf. Supabase has implemented adequate security measures to protect your personal data and prevent unauthorised access, disclosure, modification, or destruction.
 Shelf has carefully reviewed Supabase's Data Processing Addendum and is satisfactory for our use case.
+
+The following service providers process personal data as part of running Shelf (app.shelf.nu and the Shelf Companion mobile app):
+- **Supabase**: database, sign-in accounts and file storage, in AWS region eu-central-1 (Frankfurt, Germany)
+- **Fly.io**: application servers, in Amsterdam, the Netherlands
+- **Cloudflare**: the edge network that all traffic to app.shelf.nu passes through, and page-view analytics
+- **Resend, sending through Amazon SES**: delivery of sign-in codes, invitations and notifications (recipient address and message content), in the United States
+- **Stripe**: billing. Card details are entered on Stripe's own pages and never reach Shelf; Stripe receives the billing contact's name and email address
+- **Sentry**: error monitoring, in the United States. Error reports can include user and workspace identifiers
+- **Microsoft Clarity**: page-usage recordings and heatmaps of the web application
+- **Crisp**: support chat. When you open the in-app chat, your name and email address are shared with Crisp
+- **PostHog**: product analytics (sign-up, upgrade and cancellation events, keyed by an internal user ID)
+- **MapTiler**: map images on location pages
+- **OpenStreetMap Nominatim**: turns location addresses into map coordinates (address text only)
 
 ## Data Retention
 For active accounts, we retain your personal data for as long as necessary to fulfill the purposes outlined in this privacy policy. For deleted accounts:
@@ -59,7 +72,7 @@ For active accounts, we retain your personal data for as long as necessary to fu
 
 ## Data Security
 We take appropriate technical and organizational measures to ensure that your personal data is secure and protected from unauthorized access, disclosure, modification, or destruction. Our security measures include:
-- EU-based hosting (Frankfurt)
+- Data stored in the EU: database and files in Frankfurt, Germany; application servers in Amsterdam, the Netherlands
 - TLS 1.3 encryption for data in transit
 - AES-256 encryption for stored data
 - Strict access controls
@@ -79,7 +92,7 @@ Asset custody records, check-out histories, and booking logs must be maintained 
 - Comply with legal obligations (accounting, auditing)
 - Establish chain of custody for legal claims if needed
 - Document proper asset handling and business operations
-We process and store this data in the EU (Frankfurt). Personal data not essential for business records (like profile pictures or optional information) can be deleted upon request.
+We store this data in the EU, in Frankfurt, Germany, and our application servers process it in Amsterdam, the Netherlands. Some of the service providers listed under Data Processors, such as email delivery and error monitoring, operate in the United States. Personal data not essential for business records (like profile pictures or optional information) can be deleted upon request.
 
 ## Mobile Application
 
