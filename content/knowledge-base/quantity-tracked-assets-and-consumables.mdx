@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-09-14"
+updated: "2026-09-16"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -194,6 +194,8 @@ Since the check runs when you book, you shouldn't be able to over-reserve a pool
 - **Stock conflict**, an amber pill on any bookings list, means one of that booking's pooled items is short for its dates. Open the booking to see which.
 - **Insufficient stock**, a red badge on an item's row, is the item in question. Lower the quantity, or free units elsewhere by releasing custody or checking in the late booking.
 - **Checked out elsewhere**, an amber badge, is not a blocker. Your dates are fine; some units just happen to be out right now and are due back before you need them. On **used-up** stock, read it as a maybe rather than a promise: units that go out are consumed when that booking is checked in, not returned, so the pool can end up smaller. If that leaves you short, the row turns red and a restock clears it.
+
+Those last two badges are about the **loose** pool, so **a row a kit put on the booking carries neither of them**. Its units come out of the kit's own slice, which was already taken off the loose pool before these figures were worked out. A kit whose members have no loose units left used to read *"requested 1, only 0 available"* in red on every pooled member, while reserving and checking that booking out worked perfectly — the badge was the only thing that disagreed. A member later removed from the kit goes back to being measured against the loose pool.
 
 Stock is also protected when you reduce the total quantity. You can't lower an asset's total quantity below what's already promised to custody, kits, or overlapping bookings — nor below what your [manual placements](#when-locations-hold-more-than-you-own) already claim. Try it, on the edit form, with a quick adjustment, or through a CSV update, and Shelf refuses with the numbers: *"Cannot reduce 'Gaffer tape' to 40 rolls — 55 rolls are assigned to locations. Lower the placements first, then reduce the total."* Nothing has physically moved in that case, so you get the chance to unplace first rather than being left with a figure to reconcile afterward.
 

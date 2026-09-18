@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-09-14"
+updated: "2026-09-16"
 layout: "knowledge-base"
 ---
 
@@ -62,6 +62,8 @@ On the asset's **Quantity Overview** card, every kit's slice adds into the **In 
 
 A single booking can hold the same pool from more than one direction, some units booked loose and more carried in by the kits you added. Checking the booking out hands over every slice it holds, and the [pull-list PDF](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings) prints one row per source so the packer can see which kit each portion belongs to.
 
+**A kit member's row inside a booking carries no stock badge.** The red **Insufficient stock** and amber **Checked out elsewhere** badges both measure the *loose* pool — the part no kit has claimed — and a row a kit supplied does not come from there. A projector case whose clamps are all spoken for by kits used to light up every pooled member in red while reserving and checking the booking out worked fine. Those rows are now left alone, on the same rule the check-out guard has always used. A member removed from the kit is a standalone slice again, and is measured against the loose pool like anything else.
+
 ### How Many Units a Kit Can Take
 
 When you add a quantity-tracked asset to a kit, the quantity box has a ceiling, and the ceiling is what is genuinely free for a kit to hold indefinitely. Starting from the asset's total, Shelf sets aside:
@@ -87,6 +89,29 @@ Checking those 2 loose sandbags out leaves both kits alone. A kit reads **Checke
 **Individually tracked** assets are the ones that must go out with their kit. One of those lives entirely inside a single kit, so booking it on its own would double-book the very same physical item. The **Book** button on such an asset stays disabled and links you to the kit instead.
 
 Both rules are the same wherever you start from: the asset's own page, a multi-select on the assets index, or the asset picker inside a booking.
+
+## One Booking at a Time
+
+A kit is one physical case, so **it can only be on one booking at a time for a given period**. That is the same exclusivity an individually tracked asset has, with the kit as the thing being claimed. A second booking whose dates overlap is refused when it tries to reserve, check out, extend, or scan the kit onto itself:
+
+> Cannot reserve booking. Some kits are already booked or checked out for an overlapping period: *Projector case A*. Please remove them and try again.
+
+Before you reach that, the kit shows an **"Already booked"** badge in the **Manage kits** picker and on the kit's row inside a booking.
+
+Two details decide whether a kit counts as held:
+
+- A booking **holds** the kit while it is **Reserved**, or while it is **Ongoing** or **Overdue** and its share of the kit is still out. A booking that has handed everything back no longer holds it.
+- An asset **removed from the kit** after a booking was made does not hold the kit. It carries on as a standalone item on that booking — see [Changing Kit Contents and Existing Bookings](#changing-kit-contents-and-existing-bookings) below.
+
+### Why this is worth knowing
+
+Kits that mix in even one individually tracked asset were always exclusive, because that asset blocked the second booking. A kit built **entirely** from quantity-tracked stock — clamps, sandbags, cabling, with no individually tracked item in it — had nothing to trip that check, so until 15 September 2026 two overlapping bookings could each reserve and check out the same case. Nothing on screen said so. The kit-level rule covers every kit now, whatever it holds.
+
+**One gap remains.** *Adding* a kit to a booking that is already **Reserved** does not run the check. The clash shows up later, at check-out, fulfil, extend or scan, rather than when the kit went on. Single assets behave the same way when they are added to a reserved booking.
+
+### It does not stop you booking the loose units
+
+Exclusivity is about the **kit**, not about the pool a member draws from. Booking 2 loose sandbags while *Grip A* keeps its 3 is unaffected, exactly as described above — the kit is not on your booking, so there is nothing to clash with.
 
 ## Kit Location
 

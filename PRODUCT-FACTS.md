@@ -30,6 +30,14 @@
 - **Book-by-model** ("reserve 4x of a model, scan any 4 at pickup") is LIVE in production since 2026-06-29 (PR #2337). It rides on bookings, so it is **Team plan**. Keep "Asset Models on every plan" separate from "book by model" (paid).
 - **Low-stock alerts**: email to the workspace owner + in-app notification to whoever made the change, fired on stock adjustments and custody assignments (not yet on booking check-in consumption — issue #2677). ❌ Never say "the alert clears when stock recovers" — only the on-page **Low stock** badge clears automatically; there is no recovery notification.
 
+## Calendar feed (verified 2026-09-17 against product origin/main + a live feed fetched from app.shelf.nu)
+- **Subscribable booking calendar feed: LIVE since 2026-07-09** (shelf.nu PR #2602 merged; production migration applied the same day). Calendar page → **Subscribe** (or Account Settings → Calendars) → **Generate calendar link** gives a secret `https://app.shelf.nu/api/calendar/feed/<token>.ics` URL; the **Add to calendar** button opens it as `webcal://`.
+- Works with **Google Calendar, Outlook, Apple Calendar** (any RFC 5545 client). **Team and Enterprise plans.**
+- **One-way, read-only.** Includes reserved / ongoing / overdue / complete bookings from ~1 month back to 1 year ahead (drafts, cancelled, archived excluded). Each event: booking name + asset count, custodian (omitted if the member can't see custody), asset list, link to the booking, and a **reminder 1 day before the booking ends** ("Equipment due back tomorrow").
+- Scope mirrors the member's in-app visibility: admins who see all bookings get the whole workspace (a shared team calendar); self-service/base get their own bookings.
+- Calendar apps refresh subscribed calendars on their own schedule; the feed itself is cached for 5 minutes.
+- ❌ **Never say:** "two-way calendar sync", "edit bookings from Outlook/Google", "real-time / instant sync", or that two-way sync is on the roadmap. None is built or committed.
+
 ## Social proof (verify before quoting)
 - "3,000+ teams"; **5.0 on G2**. Marquee customers incl. Chicago Bulls, UC Berkeley, British Airways, Kent State, USS Midway Museum, University of Missouri (`src/data/customer-logos.ts`).
 

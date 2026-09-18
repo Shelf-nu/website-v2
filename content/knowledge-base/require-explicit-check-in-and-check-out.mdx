@@ -1,0 +1,84 @@
+---
+title: "Require Explicit Check-in and Check-out"
+description: "Make Admins or Self-service users scan or select the assets instead of handing a whole booking over with one click. Two workspace settings, one per direction."
+category: "Bookings & Custody"
+date: "2026-09-16"
+updated: "2026-09-16"
+layout: "knowledge-base"
+---
+
+By default, anyone who can check a booking out can do it in one click: **Check out** sends everything on the booking at once, and **Quick check-in** takes it all back the same way. That is the right default for a small team that trusts its own count.
+
+Some workspaces want the count made with the gear in hand instead. Two settings do that, one for each direction, and they can be switched on for Admins, for Self-service users, or for both.
+
+![Settings → Bookings showing the Explicit check-in requirement and Explicit check-out requirement cards, each with a switch for Admins and one for Self Service](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-requirement-cards.webp)
+
+## Where to find them
+
+Go to **Settings ▸ Workspace settings ▸ Bookings**. Two cards sit next to each other:
+
+- **Explicit check-in requirement**
+- **Explicit check-out requirement**
+
+Each card holds two switches, **Require … for Admins** and **Require … for Self Service**. All four start off.
+
+**Only the workspace owner can change them.** An Administrator can read the cards but not save them, which is the point: a rule about how Admins hand gear out should not be one an Admin can lift.
+
+![The Explicit check-out requirement card, with the "Require explicit check-out for Admins" switch called out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-checkout-requirement.webp)
+
+## What each switch does
+
+### Explicit check-out requirement
+
+For a covered role, the one-click hand-out disappears and the server refuses it:
+
+- The check-out control on the booking page offers only **Scan to check out**. The **Check out** button on a Reserved booking, and **Check out remaining** on an Ongoing or Overdue one, are not shown.
+- In the [Shelf Companion](/mobile-app) app, **Check Out All Assets** is hidden on the booking screen. **Select to Check Out** stays.
+- If the request reaches the server anyway, it is refused: *"This workspace requires explicit check-out. Scan or select the assets to check them out."*
+
+What stays open is everything that already makes the person name the items:
+
+- **Scan to check out** — the [progressive check-out](/knowledge-base/progressive-checkout-of-bookings) scanner on the web.
+- **Actions ▸ Check out selected items** — ticking rows on the booking's asset list.
+- **Select to Check Out** on the phone.
+- **Fulfil and check out** — the scanner that settles a [model reservation](/glossary/asset-models) and checks out what it just assigned, on the web and on the phone.
+
+### Explicit check-in requirement
+
+The mirror image, on the way back:
+
+- The check-in control becomes a single **Check-in** button that opens the [explicit check-in scanner](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns#using-explicit-check-in-scanner-method) straight away. There is no dropdown and no quick check-in.
+- The server refuses a quick check-in from a covered role on the web and on the phone alike.
+
+## Which roles are covered
+
+| Role | Can the switch reach them? |
+|---|---|
+| **Owner** | Never. The owner is always exempt, on both settings. |
+| **Administrator** | Yes, with the "for Admins" switch. |
+| **Self-service** | Yes, with the "for Self Service" switch. |
+| **Base** | Not covered, and it does not need to be — a Base user cannot check gear out or in at all. See [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions). |
+
+A person can hold more than one role on a workspace. Shelf judges them by their **most privileged** role, so someone who is both Self-service and Administrator is treated as an Administrator by both settings — the Admin switch governs them, the Self-service one does not.
+
+The two settings are independent. Requiring explicit check-out says nothing about check-in, and either one can be on for Admins while it is off for Self-service.
+
+## What this is good for
+
+- **Verification at the counter.** Gear is scanned as it leaves the cage, so what the booking says went out is what physically went out.
+- **Staggered hand-offs.** A custodian collects half their kit in the morning and the rest after lunch. The requirement makes that the only way, so nobody closes the whole booking early by habit.
+- **Audit trails that hold up.** Every item carries its own check-out stamp rather than inheriting one from a booking-wide action.
+
+## Things worth knowing before you switch it on
+
+- **Existing bookings are not affected retroactively.** The rule applies to the next action someone takes, not to history.
+- **Phones need the current app.** The Companion app hides **Check Out All Assets** from a covered role once it has the update published on 15 September 2026. An older copy still shows the button; tapping it gets the server's refusal and nothing is checked out.
+- **A Reserved booking with nothing left to scan shows no check-out control** to a covered role, because the only option left was the one the requirement removes. The owner, who is exempt, can still complete it.
+- **Fulfil-and-check-out narrows under the rule.** It assigns the units you scanned and checks out only those, leaving the booking's other assets to be checked out separately. It refuses while a model reservation is still unassigned, and it refuses kits — use **Scan to check out** for those.
+
+## Related Articles
+
+- [Progressive Checkout: Hand Out Booking Items as They're Picked Up](/knowledge-base/progressive-checkout-of-bookings)
+- [Partial Check-ins: Efficiently Handle Incomplete Returns](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns)
+- [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions)
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
