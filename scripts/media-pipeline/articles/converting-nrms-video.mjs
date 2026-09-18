@@ -26,15 +26,9 @@ async function main() {
     console.log("📸 Capturing NRM page with actions...");
     await navigateTo(page, "/settings/team/nrm");
     // Click the ⋮ menu on the first NRM
-    const dotsBtnClicked = await page.evaluate(() => {
-      const rows = Array.from(document.querySelectorAll('table tbody tr'));
-      if (rows.length > 0) {
-        const btn = rows[0].querySelector('td:last-child button, td:last-child [aria-haspopup]');
-        if (btn) { btn.click(); return true; }
-      }
-      return false;
-    });
-    if (!dotsBtnClicked) throw new Error("No NRM actions button found");
+    await page.locator("table tbody tr").first().getByRole("button", { name: "Actions Trigger" }).click();
+    // Assert the NRM actions menu is open, so a click on another row control fails the run.
+    await page.locator('[role="menu"]').getByText("Invite user", { exact: true }).waitFor({ state: "visible" });
     await page.waitForTimeout(1500);
     await initAnnotations(page);
     await caption(page, "Click the ⋮ menu on any non-registered member to see conversion options — invite them to become a full user");
@@ -65,15 +59,8 @@ async function main() {
       await chapterCard(cp, "Convert to User", "Invite an NRM to Create an Account", 2500);
       await navigateTo(cp, "/settings/team/nrm");
       await cp.waitForTimeout(1000);
-      const clicked = await cp.evaluate(() => {
-        const rows = Array.from(document.querySelectorAll('table tbody tr'));
-        if (rows.length > 0) {
-          const btn = rows[0].querySelector('td:last-child button, td:last-child [aria-haspopup]');
-          if (btn) { btn.click(); return true; }
-        }
-        return false;
-      });
-      if (!clicked) throw new Error("No NRM actions button found in clip");
+      await cp.locator("table tbody tr").first().getByRole("button", { name: "Actions Trigger" }).click();
+      await cp.locator('[role="menu"]').getByText("Invite user", { exact: true }).waitFor({ state: "visible" });
       await cp.waitForTimeout(1500);
       await initAnnotations(cp);
       await caption(cp, "Click the ⋮ menu → invite the NRM via email — they'll create an account and keep their existing custodies");

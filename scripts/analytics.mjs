@@ -1382,7 +1382,11 @@ async function cmdRevenue() {
     }
     // Upgrades inside the reporting window (the full map spans all history).
     const cutoff = new Date(Date.now() - window * 864e5);
-    const inWindow = [...upFirst.values()].filter((u) => u.t >= cutoff);
+    // Every upgrade row in the window, not only each account's first one: an
+    // account that upgrades again (plus to team) inside the window adds MRR too.
+    const inWindow = ups
+        .map(([, t, tier, via, mrr]) => ({ t: new Date(t), tier, via, mrr: parseFloat(mrr) || 0 }))
+        .filter((u) => u.t >= cutoff);
     const newMrr = inWindow.reduce((a, b) => a + b.mrr, 0);
 
     // Instrumentation start — anything before this is invisible, which bounds
@@ -1409,7 +1413,8 @@ async function cmdRevenue() {
     console.log(`    within ±${SWAP_WINDOW_DAYS}d of own upgrade      : ${swap}  ← plan swap / re-subscribe, not churn`);
     console.log(`    >${SWAP_WINDOW_DAYS}d after own upgrade          : ${postUpgrade}  ← churn visible to PostHog`);
     if (firstUpgrade) {
-        console.log(`\n  ⚠️  upgrade_completed only exists from ${firstUpgrade.toISOString().slice(0, 10)} (~${historyDays}d).`);
+        const atLookback = historyDays >= UPGRADE_LOOKBACK_DAYS - 1;
+        console.log(`\n  ⚠️  ${atLookback ? `oldest upgrade_completed inside the ${UPGRADE_LOOKBACK_DAYS}d lookback is` : "upgrade_completed only exists from"} ${firstUpgrade.toISOString().slice(0, 10)} (~${historyDays}d).`);
         console.log(`     Every customer who upgraded before that date looks like "no upgrade on`);
         console.log(`     record", so the first bucket CONTAINS real churn and the third bucket is`);
         console.log(`     a FLOOR, not the true churn count. Do not report it as total churn.`);

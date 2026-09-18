@@ -43,9 +43,14 @@ async function main() {
     // Shot 2: Settings showing the Asset ID prefix configuration
     console.log("📸 Capturing Asset ID settings...");
     await navigateTo(page, "/settings/general");
-    // The Asset ID config is in the general settings — look for it
+    // The SAM ID control on this page is "Preferred display code" (there is no
+    // prefix setting). Assert it so the run cannot publish a generic page.
+    const displayCodeRow = page.locator('text="Preferred display code"').first();
+    await displayCodeRow.waitFor({ state: "visible" });
+    await displayCodeRow.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(800);
     await initAnnotations(page);
-    await caption(page, "Settings → General — configure the Asset ID prefix and format for your workspace");
+    await caption(page, "Settings → General → Preferred display code: choose whether lists show the SAM ID, QR ID or a barcode");
     const shot2 = await screenshot(page, join(tmpDir, "sequential-ids-2.png"));
     await clearAll(page);
     await ctx.close();

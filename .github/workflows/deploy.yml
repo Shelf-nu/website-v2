@@ -60,6 +60,7 @@ jobs:
       # can't fail a deploy — the script warns on network errors and fails only
       # on a definitive 4xx/5xx after retries.
       - name: Verify images resolve
+        timeout-minutes: 10
         run: npm run content:verify:images
 
       - name: Snapshot content changes

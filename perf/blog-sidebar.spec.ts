@@ -14,7 +14,7 @@
  * Expected today (before fix): elevated CLS on deep-link load and TOC clicks.
  * Expected after fix: CLS stays near zero.
  *
- * Starter budgets are lenient (0.25) so tests pass today. Phase 5 ratchets
+ * Starter budgets are 0.1 so tests pass today. Phase 5 ratchets
  * them down to the current-production value minus a safety margin.
  *
  * Every test here asserts CLS, so they all skip in WebKit, which has no

@@ -17,6 +17,20 @@ import { initAnnotations, highlight, callout, caption, chapterCard, clearAll } f
 
 const BUCKET_PREFIX = "knowledgebase";
 
+/**
+ * The index mode is a saved user setting; a `?mode=` URL param is ignored.
+ * Switch it with the real Simple/Advanced buttons and wait for the save, so
+ * the run fails instead of shooting whatever mode the account was left in.
+ */
+async function switchMode(p, mode) {
+  await navigateTo(p, "/assets");
+  await Promise.all([
+    p.waitForResponse((r) => r.url().includes("/api/asset-index-settings") && r.ok()),
+    p.locator(`[aria-label="Switch to ${mode} mode"]`).click(),
+  ]);
+  await p.waitForTimeout(2500);
+}
+
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-enable-advanced-"));
   console.log(`Working in: ${tmpDir}`);
@@ -30,7 +44,7 @@ async function main() {
 
     // Shot 1: Simple mode — force simple mode via URL, highlight the "Advanced" link
     console.log("📸 Capturing simple mode with Advanced link...");
-    await navigateTo(page, "/assets?mode=simple");
+    await switchMode(page, "simple");
     await initAnnotations(page);
     await highlight(page, "text:Advanced", { spotlight: true, padding: 6 });
     await callout(page, "text:Advanced", "Click Advanced to unlock column configuration, shared filters, and availability view", {
@@ -44,7 +58,7 @@ async function main() {
     // Shot 2: Advanced mode — show the enhanced toolbar
     console.log("📸 Capturing advanced mode...");
     await clearAll(page);
-    await navigateTo(page, "/assets?mode=advanced");
+    await switchMode(page, "advanced");
     await page.waitForTimeout(2000);
 
     await initAnnotations(page);
@@ -57,7 +71,7 @@ async function main() {
     console.log("🎬 Recording enable-advanced walkthrough...");
     const clipPath = await recordClip(browser, async (clipPage) => {
       await chapterCard(clipPage, "Simple Mode", "Your Default Asset Index", 2500);
-      await navigateTo(clipPage, "/assets?mode=simple");
+      await switchMode(clipPage, "simple");
       await initAnnotations(clipPage);
       await highlight(clipPage, "text:Advanced", { spotlight: true, padding: 6 });
       await callout(clipPage, "text:Advanced", "Click here to switch to Advanced", { label: "Advanced", side: "top" });
@@ -67,7 +81,7 @@ async function main() {
 
       await chapterCard(clipPage, "Advanced Mode", "Full Column Control + Filters + Views", 2500);
       // Navigate to advanced via URL
-      await navigateTo(clipPage, "/assets?mode=advanced");
+      await switchMode(clipPage, "advanced");
       await clipPage.waitForTimeout(2000);
       await initAnnotations(clipPage);
       await caption(clipPage, "Advanced mode — configure which columns show, save shared filters, toggle between list and calendar");

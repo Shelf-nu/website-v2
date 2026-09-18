@@ -17,7 +17,7 @@ const jsonLd = buildToolPageJsonLd({
     faqs: [
         {
             question: "Which depreciation method should I use?",
-            answer: "It depends on how your asset loses value. Straight-line works for most cases. Use an accelerated method (declining balance or double declining) for assets that lose value quickly in early years, like technology or vehicles. Toggle 'Compare all methods' above to see the difference.",
+            answer: "It depends on how your asset loses value. Straight-line works for most cases. Use an accelerated method (declining balance or double declining) for assets that lose value quickly in early years, like technology or vehicles. Toggle “Compare all methods” above to see the difference.",
         },
         {
             question: "What is salvage value?",

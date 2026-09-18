@@ -18,8 +18,9 @@ import { toWebP } from "../lib/convert.mjs";
 import { upload } from "../lib/upload.mjs";
 
 const BUCKET_PREFIX = "solutions";
-const DRY_RUN = !!process.env.DRY_RUN;
-const KEEP_TMP = !!process.env.KEEP_TMP;
+const isOn = (v) => /^(1|true|yes)$/i.test(v ?? "");
+const DRY_RUN = isOn(process.env.DRY_RUN);
+const KEEP_TMP = isOn(process.env.KEEP_TMP);
 
 // IDs captured during recon (2026-04-15). If demo data shifts, re-recon.
 const KIT_ID = "clx3baakg001qu5dlfmcgreqj"; // Basic Video Production Kit (10 assets + QR)
@@ -135,7 +136,7 @@ async function main() {
     }
   } finally {
     if (browser) await browser.close();
-    if (!KEEP_TMP && !DRY_RUN) {
+    if (!KEEP_TMP) {
       await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
     } else {
       console.log(`\n(tmp dir preserved: ${tmpDir})`);
