@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/hero";
 import { LogoGrid } from "@/components/sections/logo-grid";
+import { SolutionsPicker } from "@/components/sections/solutions-picker";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { getHomePageLogosForGrid } from "@/data/customer-logos";
@@ -26,6 +27,7 @@ export default function HomePage() {
             <Hero />
 
             <LogoGrid items={getHomePageLogosForGrid()} />
+            <SolutionsPicker />
             <FounderLetter />
 
             <FAQSection />
