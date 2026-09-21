@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-08-27"
+updated: "2026-09-21"
 layout: "knowledge-base"
 ---
 
@@ -94,6 +94,7 @@ This is why a row stays the same height whether an asset carries one barcode or 
 ### Text Fields (Name, Category, Location, etc.)
 
 - **is**: Exact match (e.g., `Location is "Server Room"`)
+- **Is in (incl. sub-locations)**: Location only. Matches the location you pick and every location under it. Plain **is** matches the one location and nothing below it. See [Sublocations](/knowledge-base/sublocations-organize-locations-into-hierarchies)
 - **is not**: Excludes exact match (e.g., `Category is not "Computers"`)
 - **contains**: Partial match (e.g., `Description contains "wireless"`)
 - **matches any**: Multiple exact matches
@@ -132,7 +133,44 @@ This is why a row stays the same height whether an asset carries one barcode or 
 
 The **Filter** panel carries a single checkbox, **Low stock only** (*at or below reorder threshold*), just above the **Add filter** row. It narrows the list to [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) whose available count has reached or fallen below their **Min quantity**, and it applies immediately rather than waiting for **Apply filters**.
 
-It stacks with everything else, so you can combine it with a location or category filter to see what a single stockroom needs. It also counts toward the filter badge on the **Filter** button and clears with **Clear all filters**. Add **Min quantity** from the column picker to see each item's threshold next to its live count.
+It stacks with everything else, so you can combine it with a location or category filter to see what a single stockroom needs. It also counts toward the filter badge on the **Filter** button and clears with **Clear all**. Add **Min quantity** from the column picker to see each item's threshold next to its live count.
+
+### Saved Filters
+
+A filter you use often can be saved and reused. Saved filters are part of the advanced index only.
+
+**Saving a filter**
+
+1. Open **Filter** and build the filter you want.
+2. Click **Apply filters**.
+3. Click **Save Filter**. It sits next to **Apply filters** in the same panel. It is greyed out until the filter is applied, and hovering it tells you so.
+4. Type a name and click **Save**.
+
+A saved filter stores your filters and your sort order. It does not store your columns. Columns stay a separate setting.
+
+**Using a saved filter**
+
+Click **Saved Filters** at the top right of the asset list and pick a name. The button shows how many you have saved. The list has a search box, and a check mark marks the filter you are looking at now.
+
+Each row in the list carries three controls:
+
+- The **star** moves the filter into a **Starred** group at the top of the list
+- **Rename** gives it a new name
+- **Delete** removes it, after Shelf asks you to confirm
+
+**Rename** and **Delete** appear when you hover the row.
+
+> **You can keep 20 saved filters.** The count is per person, per workspace. At 20, **Save Filter** stays greyed out until you delete one. Two of your saved filters cannot share a name.
+
+**Saved filters are personal**
+
+A saved filter belongs to the person who made it. Your colleagues do not see it, and you do not see theirs.
+
+To give a colleague the same view, apply the filter, copy the page address from your browser, and send it to them. The address carries the whole filter. A location travels as its own ID, so the link opens on the same location for everyone in the workspace. Your colleague opens the link and clicks **Save Filter** to keep a copy.
+
+**Shelf remembers your last filter**
+
+Shelf remembers the last filter you applied in each workspace. It keeps that in the browser you were using, so the list opens on the same filter the next time you come back. Open Shelf in a different browser or on a different computer and the list starts with no filter.
 
 ## Natural and Advanced Sorting
 
