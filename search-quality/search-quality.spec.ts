@@ -37,11 +37,13 @@ test("canonical pages rank for their queries", async ({ page }) => {
       // @ts-expect-error — Pagefind is loaded at runtime from the static index
       const pf = await import(/* webpackIgnore: true */ "/pagefind/pagefind.js");
 
-      const rankOne = async (q: string, warm: string, expectUrl: string | null) => {
+      const rankOne = async (q: string, warm: string[], expectUrl: string | null) => {
         await pf.destroy();
         await pf.init();
         await pf.options({ ranking });
-        if (warm) await pf.preload(warm);
+        // One term per call, exactly like the search dialog: Pagefind resolves a chunk for one word
+        // of a multi-word preload and silently drops the rest. See src/lib/search-warmup.ts.
+        for (const term of warm) await pf.preload(term);
         const s = await pf.search(q);
         const limit = Math.min(s.results.length, scanLimit);
         let rank: number | null = null;
@@ -58,7 +60,7 @@ test("canonical pages rank for their queries", async ({ page }) => {
         return { rank, total: s.results.length, top };
       };
 
-      const run = async (list: { q: string; warm: string; expect: string | null }[]) => {
+      const run = async (list: { q: string; warm: string[]; expect: string | null }[]) => {
         const out = [];
         for (const item of list) {
           const r = await rankOne(item.q, item.warm, item.expect);

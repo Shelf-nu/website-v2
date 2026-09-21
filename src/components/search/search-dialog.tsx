@@ -174,9 +174,11 @@ export function SearchDialog() {
             try {
                 const filterOpts = activeFilter ? { filters: { type: [activeFilter] } } : undefined;
                 // Load the index chunks that hold each word's stem first, or a plural like "workspaces"
-                // can miss its own page. See search-warmup.ts; the harness does the same.
-                const warmup = searchWarmupTerms(query);
-                if (warmup) await pagefindRef.current!.preload(warmup);
+                // can miss its own page. One term per call — Pagefind drops all but one word of a
+                // multi-word preload. See search-warmup.ts; the harness does the same.
+                for (const term of searchWarmupTerms(query)) {
+                    await pagefindRef.current!.preload(term);
+                }
                 const response = await pagefindRef.current!.search(query, filterOpts);
                 const data = await Promise.all(
                     response.results.slice(0, MAX_RESULTS).map((r) => r.data())
