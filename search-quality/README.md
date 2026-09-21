@@ -68,6 +68,12 @@ Both of these showed up in September 2026 as harness failures ("demo" at #5,
   [`src/lib/search-warmup.ts`](../src/lib/search-warmup.ts) preloads each word's
   prefixes first; the search dialog and this harness both call it. Symptom: a
   query returns a handful of near-zero results and its obvious page is missing.
+  The same lookup is wrong for multi-word input: it resolves a chunk for one word
+  and drops the rest, so in September 2026 "asset search" lost the word "search"
+  once a boundary moved to sit between "se" and "sh", and /features/asset-search
+  fell past #25. Preload the warmup terms **one per call** — handing them over as
+  one space-separated string runs them through that same broken path. Symptom: a
+  multi-word query returns exactly the results of one of its words on its own.
 
 Pagefind 1.5 fixes the chunk lookup upstream, but it also re-weights ranking. On
 the 2026-09-11 index, 1.5.2 with our ranking dropped this basket from 49 to 37
