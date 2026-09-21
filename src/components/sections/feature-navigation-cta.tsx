@@ -24,6 +24,19 @@ const FEATURE_LINKS = [
     { label: "Mobile App", href: "/mobile-app", badge: "New" },
 ] as const;
 
+const SOLUTION_LINKS = [
+    { label: "Asset Tracking Software", href: "/solutions/asset-tracking" },
+    { label: "Equipment Management Software", href: "/solutions/equipment-management" },
+    { label: "Equipment Reservation System", href: "/solutions/equipment-reservations" },
+    { label: "Equipment Checkout Software", href: "/solutions/equipment-check-in" },
+    { label: "IT Asset Management", href: "/solutions/it-asset-management" },
+    { label: "Open Source Asset Management", href: "/solutions/open-source-asset-management" },
+    { label: "Tool Tracking", href: "/solutions/tool-tracking" },
+] as const;
+
+const chipClass =
+    "inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors bg-secondary/50 border-border hover:border-orange-200 hover:bg-orange-50/50 text-muted-foreground hover:text-orange-700";
+
 export function FeatureNavigationCTA() {
     return (
         <section className="py-24 sm:py-32 bg-background border-t border-border/40 relative overflow-hidden">
@@ -90,6 +103,34 @@ export function FeatureNavigationCTA() {
                             className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors group"
                         >
                             View all features
+                            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+
+                        <h3 className="mt-16 mb-6 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                            Popular solutions
+                        </h3>
+                        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
+                            {SOLUTION_LINKS.map((solution, i) => (
+                                <motion.div
+                                    key={solution.label}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.05 }}
+                                >
+                                    <Link href={solution.href} className={chipClass}>
+                                        <ArrowRight className="h-4 w-4 text-orange-500" />
+                                        {solution.label}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        <Link
+                            href="/solutions"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors group"
+                        >
+                            View all solutions
                             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                     </div>
