@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-14"
+updated: "2026-09-21"
 layout: "knowledge-base"
 ---
 
@@ -69,6 +69,24 @@ One refusal arrives after you confirm rather than as a greyed-out entry. **Relea
 ### Step 5: Complete Action
 
 Follow the prompts to finalize your chosen operation. Once the action succeeds, Shelf clears your selection automatically, so you can move straight on to the next batch without unselecting everything first. (Read-only operations like exporting data or downloading QR codes keep your selection, since they don't change anything.)
+
+## Quantity-Tracked Assets in a Batch
+
+[Quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) are pools of interchangeable units rather than single items, so any action that needs to know *how many* units you mean cannot be decided for a whole batch at once. Five entries in the **Actions** menu skip them rather than guessing:
+
+| Action | Why it skips, and where to do it instead |
+|---|---|
+| **Assign custody** | Custody on a pool is by portion. Assign it on the asset, with the number of units. |
+| **Release custody** | The same, in reverse: end the hold on the asset's custody row. |
+| **Update location** | A placement is a location *plus* a count. Use **Manage placements** on the asset. |
+| **Add to kit** | A kit holds a slice of the pool, so the slice needs a size. Add it from the kit's manage-assets page. |
+| **Update asset model** | [Asset Models](/glossary/asset-models) group individually tracked units only. |
+
+In every case the dialog warns you **before** you confirm, naming how many of the selected assets will be skipped, so nothing is a silent no-op. The batch still runs on the individually tracked assets in the selection. If *every* asset you selected is quantity-tracked there is nothing left to act on, and the action is refused outright with the same reason.
+
+**What the records say.** A batch records only what it actually did. Move a tripod and a roll of gaffer tape to a new location together and the destination's own activity feed names the tripod alone, because the tape never moved. The same holds for an asset that was already at the location you picked: nothing happened to it, so nothing is written about it. Before 18 September 2026 the location's feed listed every asset you had selected, including the ones it skipped, which made a location's history claim stock that had never arrived. Feed entries written before that date can overstate what a bulk move brought in.
+
+**Update location also refuses assets that sit in a kit.** A kit owns its members' location, so a selection holding one is turned down with *"Cannot update location for assets that belong to kits: [kit names]. Update the kit locations instead."* Nothing in the batch moves when that happens. Change the kit's location instead, and every asset inside follows — see [Kit Location](/knowledge-base/kits#kit-location).
 
 ## Grouping a Fleet into an Asset Model
 

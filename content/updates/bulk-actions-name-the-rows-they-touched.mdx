@@ -1,0 +1,16 @@
+---
+title: "A bulk action's record now names exactly what it touched"
+description: "A location's activity feed lists only the assets a bulk move really brought in, and releasing several kits at once records each kit's own custodian instead of the first one's."
+date: "2026-09-18"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/batch-actions-1.webp"
+readMoreUrl: "/knowledge-base/using-batch-actions-in-shelf"
+layout: "update"
+---
+
+Two bulk actions did the right thing to your data and then described it wrongly in the history. Nothing was ever moved or released incorrectly — but the record of it was, and a record you cannot trust is not much of a record.
+
+**A location no longer claims stock that never arrived.** [Quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) are skipped by the bulk **Update location** action, because a placement needs a count as well as a place. The move itself always honoured that; the note written on the destination location's activity feed did not, and listed every asset you had selected. Move a tripod and a roll of gaffer tape together and the location's history said both had been added, when only the tripod had. The note now names only the assets the action actually moved — which also means an asset already at the location you picked is no longer written up as having arrived there.
+
+**Releasing several kits at once names the right person.** Select kits on the Kits index and use **Release custody**, and each asset's note and each `CUSTODY_RELEASED` event now carries the custodian of the kit *that asset* came through. Until now the whole batch borrowed the first selected kit's custodian, so releasing Sarah's kit and Tom's kit together left every asset in the batch recorded against Sarah — a false statement in a permanent asset history, and a wrong grouping in any report built on the released custodian.
+
+Records written before 18 September 2026 still carry the old values. If you have run either of these batches and something in an asset's or a location's history looks off, that is the likely reason. Everything from here on is written from what the action really did.
