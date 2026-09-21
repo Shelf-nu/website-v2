@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-09-16"
+updated: "2026-09-21"
 layout: "knowledge-base"
 ---
 
@@ -200,7 +200,9 @@ Custody you assigned to an asset directly is separate and releases as it always 
 
 ## Audit Trail
 
-Each individual asset page documents kit custody changes to designated persons, creating a transparent record of modifications.
+Each individual asset page documents kit custody changes to designated persons, creating a transparent record of modifications. A member's activity names the person whose custody started or ended and links the kit it came through, for example *"Alex released Sarah's custody via kit assignment **Camera Kit**"*.
+
+**Releasing several kits at once names each kit's own holder.** Select kits on the Kits index, or in the [Shelf Companion](/mobile-app) app, and use **Release custody**, and every asset's note and every `CUSTODY_RELEASED` event carries the custodian of the kit *that asset* came through. Before 18 September 2026 a batch like this took the first selected kit's custodian and wrote that one name against every asset in the batch, so releasing Sarah's kit and Tom's kit together left Tom's gear claiming Sarah had been holding it, and any report grouped by the released custodian counted them all against Sarah. Notes and events written before that date can name the wrong person; releases from a single kit were never affected, and nothing about who actually held what was ever wrong, only the record of it.
 
 ## Tracking Assignments
 

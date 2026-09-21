@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-09-16"
+updated: "2026-09-21"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -258,6 +258,10 @@ Resetting thresholds across a shelf of supplies, or correcting counts after a st
 Pick the **Import-ready** export format for this. It already includes all four columns and writes the quantity as a plain number. A Standard export writes the quantity with its unit attached, as `10 boxes`, and does not include the other three at all, so it needs a manual pass first.
 
 An asset whose units sit in more than one location is the one exception: the `Location` column is flagged and skipped on those rows, because a single cell cannot say which placement you meant. Everything else on the row still applies. Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
+
+### Batch actions on the asset index
+
+The **Actions** menu on the asset index works on individually tracked assets. Five of its entries — **Assign custody**, **Release custody**, **Update location**, **Add to kit** and **Update asset model** — skip quantity-tracked assets, because each of them needs a number of units that a single batch cannot supply. A mixed selection still runs on the individually tracked assets in it, and the dialog tells you up front how many will be skipped. Do these on the asset itself, where you can name the quantity. See [Quantity-Tracked Assets in a Batch](/knowledge-base/using-batch-actions-in-shelf#quantity-tracked-assets-in-a-batch).
 
 ---
 
