@@ -2167,6 +2167,19 @@
           }
         ]
       }
+    },
+    {
+      "id": "exp-052",
+      "page": "/solutions/asset-tracking",
+      "field": "internal-links",
+      "before": "Homepage body linked to /features/* only; solution pages were linked from the navbar and footer alone, and /solutions/equipment-management from neither. Most blog and knowledge base articles linked to no solution page. Five article links went through the old /better-asset-management redirect to the homepage.",
+      "after": "Homepage 'Popular solutions' chip row links to 7 solution pages with descriptive anchors (always in the static HTML). Footer lists Equipment Management. Contextual links added in the most-read articles, including the equipment management roundup -> /solutions/equipment-management. The five redirect links point at /solutions/asset-tracking.",
+      "hypothesis": "For the category head terms Google ranks the homepage or a blog roundup instead of the dedicated solution page, while the solution pages already have strong on-page content. The missing signal is links: almost all external links point at the homepage, and internal links to the solution pages were boilerplate only. Descriptive internal links from the homepage and from the articles that earn impressions should move the ranking URL to the solution page and lift its position. Also watch /solutions/equipment-management, /solutions/equipment-reservations, /solutions/equipment-check-in and /solutions/it-asset-management.",
+      "status": "planned",
+      "createdAt": "2026-09-21",
+      "evaluationWindowDays": 28,
+      "relatedPatterns": [],
+      "notes": "Verify at QUERY level per page (ranking URL + position for the head terms), not page-level averages. Internal-link effects are slower than title changes, hence the 28-day window. Capture the baseline before deploy with the experiments CLI."
     }
   ]
 }
