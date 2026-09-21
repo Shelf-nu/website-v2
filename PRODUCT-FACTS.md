@@ -38,6 +38,15 @@
 - Calendar apps refresh subscribed calendars on their own schedule; the feed itself is cached for 5 minutes.
 - ❌ **Never say:** "two-way calendar sync", "edit bookings from Outlook/Google", "real-time / instant sync", or that two-way sync is on the roadmap. None is built or committed.
 
+## Hosting, data location and sub-processors (verified 2026-09-18 against product origin/main + live production)
+- **Data:** Supabase (database, sign-in accounts, file storage) in AWS **eu-central-1, Frankfurt, Germany**.
+- **Application servers:** Fly.io in **Amsterdam, the Netherlands**. Fly.io is compute only; it holds no customer data at rest. Cloudflare sits in front of app.shelf.nu.
+- **Email:** Resend, sending through **Amazon SES in the United States** (sign-in codes, invitations, notifications).
+- **Full sub-processor list:** Supabase, Fly.io, Cloudflare, Resend (Amazon SES), Stripe, Sentry (US), Microsoft Clarity, Crisp, PostHog, MapTiler, OpenStreetMap Nominatim. Canonical wording lives on `/knowledge-base/data-flow-chart` and `/privacy`.
+- **Workspace isolation is in application code**: every query is scoped to the workspace, and a lint rule flags any query that is not. RLS is enabled with **zero policies**.
+- ❌ **Never say:** "Row Level Security" / "RLS policies", "Frankfurt (Fly.io EU region)", "Fly.io Frankfurt", or "customer data does not leave the EU" (email delivery and error monitoring run in the US). `scripts/check-product-claims.mjs` enforces the first two.
+- ✅ **Say:** "Data stored in the EU (Frankfurt), application servers in Amsterdam." "SOC 2 Type 2 certified infrastructure" is accurate (Supabase is SOC 2 Type 2); keep it.
+
 ## Social proof (verify before quoting)
 - "3,000+ teams"; **5.0 on G2**. Marquee customers incl. Chicago Bulls, UC Berkeley, British Airways, Kent State, USS Midway Museum, University of Missouri (`src/data/customer-logos.ts`).
 
