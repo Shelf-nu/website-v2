@@ -1,0 +1,34 @@
+---
+title: "Invite Emails Match Whatever the Capitals Are"
+description: "An invite made by CSV import no longer refuses the person it was sent to. Email addresses are compared without regard to letter case everywhere an invite is created, found, accepted, resent or cancelled."
+date: "2026-09-22"
+image: "/images/updates/enhanced-user-permissions.jpg"
+readMoreUrl: "/knowledge-base/inviting-users-via-csv-upload"
+layout: "update"
+---
+
+An email address means the same person however it is typed. Shelf now treats it that way throughout the invite flow.
+
+## The bug people actually hit
+
+The [CSV user import](/knowledge-base/inviting-users-via-csv-upload) stored an address exactly as the spreadsheet had it, capitals and all — `First.Last@company.com`. Accounts are stored in lower case. So when the invited person opened their link while signed in, Shelf compared the two, found them different, and refused with **"Wrong user"**. Opening the link signed out gave an error page rather than joining, for anyone who already had a Shelf account.
+
+The single "Invite a user" dialog already lowercased the address, so only invites made by CSV import carried capitals. That is a large share of the invites big teams send.
+
+## What changed
+
+The import stores addresses in lower case, trimmed of stray spaces. And every place an invite email is compared — the member check, the earlier-invite lookup, the pending-invite check, the account found on acceptance, cancel, and resend — now ignores letter case.
+
+Three side effects go with it:
+
+- A new invite for someone whose earlier invite carried capitals **reuses their existing team member** instead of creating a second one, so the person keeps the record that holds their history.
+- A CSV that lists **one address twice in different capitals** creates one invite, not two.
+- A CSV row for someone **already in the workspace** under different capitals is skipped, rather than inviting them again.
+
+A re-send now closes every earlier invite for that person **before** it issues the new one. The two steps used to run at the same time, so a slow invalidation could close the invite that had just been created.
+
+## Nothing to do on your side
+
+Invites already stored with capital letters work as they are. There is no data change, no backfill, and nothing to re-send. If someone was stuck on "Wrong user", ask them to open their existing link again.
+
+The team member's **name** still comes from the address exactly as you typed it in the CSV, because that name becomes the first name of the account created when the person accepts.
