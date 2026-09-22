@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-09-21"
+updated: "2026-09-22"
 layout: "knowledge-base"
 ---
 
@@ -102,6 +102,31 @@ When you are ready to hand it over, a late addition checks out exactly like the 
 The one thing Shelf won't allow is pulling in an **individually tracked** item that's already checked out on another active booking, which would double-book it.
 
 [Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) stock is judged differently, because it is a count rather than a single thing. A pool with 18 of its 27 units out elsewhere still has 9 free, and those 9 can join your booking. What stops a pooled line is its own capacity for your dates, not the fact that some other units are out. The scanner says which of the two you have hit: an individual asset that is out reads **Already checked out**, and a pool with nothing left reads **No units available**, with the tooltip *"Every unit of this asset is already in custody, in a kit or reserved for the booking window."*
+
+## Checking Out With Reserved Units Still Unassigned
+
+A booking that reserves gear by [Asset Model](/glossary/asset-models) holds a count of units rather than named ones, and those units are settled by putting matching assets on the booking. A unit that turns out to be damaged, or was simply never found, used to stop the whole booking: the only way through was to delete a reservation the operator had correctly made.
+
+That is no longer the rule. A check-out needs **at least one item to go out, and nothing more**.
+
+Check the booking out and Shelf names what is still open before it acts:
+
+> **Some reserved units aren't assigned**
+>
+> 2 × Dell Latitude and 1 × HP LaserJet are not assigned yet. They stay on the booking so you can scan them later or release them.
+
+Confirm, and the booking goes **Ongoing** carrying the items that are ready. The reservations stay open on the booking, so you can scan the units in later or hand them back with **Adjust quantity**. The same confirmation covers **Actions → Check out selected items**, and when the check-out is also early it carries the early-start question in the same dialog instead of stacking two.
+
+A booking made only of reservations still cannot go Ongoing empty, because nothing would leave.
+
+Which screen the **Check out** button opens depends on where the booking is:
+
+- **Reserved, with units still unassigned** — the fulfil scanner, which lists the models still to pull, counts down per model as you scan, and states in its footer how many reserved units are still unassigned.
+- **Ongoing or Overdue** — the ordinary **Scan to check out**, like any other booking. The reservations stay open and are settled from the reservation row's **Scan to assign** or **Assign from list**.
+
+If your workspace [requires the explicit check-out flow](/knowledge-base/require-explicit-check-in-and-check-out), only what you scanned goes out. Scanning an item that is already on the booking is how that item is checked out on this screen — it used to be refused as a duplicate.
+
+See [Adjusting or releasing a reservation](/knowledge-base/adding-assets-and-kits-to-a-booking#adjusting-or-releasing-a-reservation) for how to hand back units you are not going to find, including on a booking that is already out.
 
 ## The Mixed State: Items That Never Left
 

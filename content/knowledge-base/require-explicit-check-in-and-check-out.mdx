@@ -3,7 +3,7 @@ title: "Require Explicit Check-in and Check-out"
 description: "Make Admins or Self-service users scan or select the assets instead of handing a whole booking over with one click. Two workspace settings, one per direction."
 category: "Bookings & Custody"
 date: "2026-09-16"
-updated: "2026-09-16"
+updated: "2026-09-22"
 layout: "knowledge-base"
 ---
 
@@ -74,7 +74,8 @@ The two settings are independent. Requiring explicit check-out says nothing abou
 - **Existing bookings are not affected retroactively.** The rule applies to the next action someone takes, not to history.
 - **Phones need the current app.** The Companion app hides **Check Out All Assets** from a covered role once it has the update published on 15 September 2026. An older copy still shows the button; tapping it gets the server's refusal and nothing is checked out.
 - **A Reserved booking with nothing left to scan shows no check-out control** to a covered role, because the only option left was the one the requirement removes. The owner, who is exempt, can still complete it.
-- **Fulfil-and-check-out narrows under the rule.** It assigns the units you scanned and checks out only those, leaving the booking's other assets to be checked out separately. It refuses while a model reservation is still unassigned, and it refuses kits — use **Scan to check out** for those.
+- **Fulfil-and-check-out narrows under the rule.** It assigns the units you scanned and checks out only those, leaving the booking's other assets to be checked out separately. It refuses kits — use **Scan to check out** for those.
+- **A scan is required, not a complete booking.** Reserved model units nobody has assigned yet do not block the check-out: the scanner names them and asks you to confirm, and they stay open on the booking to be scanned later or released. What the rule does insist on is that the item going out is one **you scanned**, which is the point of the setting — a person handles every item that leaves. Scanning an item that is already on the booking is how that item gets checked out here; it used to be turned away as a duplicate, which left a covered role with no way to send those items out from this screen.
 
 ## Related Articles
 
