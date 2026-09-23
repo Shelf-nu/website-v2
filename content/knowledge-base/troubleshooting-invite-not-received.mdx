@@ -3,7 +3,7 @@ title: "Troubleshooting: Team Invite Not Received"
 description: "Invited someone to your Shelf workspace but they didn't get the email? Here's what to check."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-04-17"
+updated: "2026-09-22"
 layout: "knowledge-base"
 ---
 
@@ -29,19 +29,31 @@ If the address is wrong, cancel the invite and re-send to the correct one.
 
 ---
 
-## 3. Check if they already have an account
+## 3. The link opens but says "Wrong user"
+
+This is a different problem from the email not arriving, and it is fixed.
+
+An invite created by the [CSV user import](/knowledge-base/inviting-users-via-csv-upload) used to keep the capital letters of the address as typed, for example `First.Last@company.com`. The person's own account email is stored in lower case, so opening the invite link while signed in compared the two, found them different, and refused with **"Wrong user"**. Opening it signed out gave an error page rather than joining the workspace, if they already had an account.
+
+Shelf now matches an invite email without regard to letter case, everywhere it is compared. Invites already sitting in your workspace with capital letters work as they are — there is nothing to re-send and nothing to clean up. If the person is still stuck, they are hitting something else on this list.
+
+**"Wrong user" can also be genuine.** If the person is signed in to Shelf with a *different* address from the one you invited, the message is correct and the fix is theirs: sign out, then open the link again, or sign in with the invited address.
+
+---
+
+## 4. Check if they already have an account
 
 If the recipient already has a Shelf account under a different email, the invite may have landed in that account's workspace list — but they're logging in with the other email. Ask them to try logging in with the invited address.
 
 ---
 
-## 4. Re-send the invitation
+## 5. Re-send the invitation
 
-From **Settings → Team → Users → Pending Invites**, you can re-send. Each re-send generates a fresh link (the old one still works too, unless manually cancelled).
+From **Settings → Team → Users → Pending Invites**, you can re-send. A re-send issues a fresh link and **closes every earlier invite** for that person in this workspace, so only the newest link works. Tell the recipient to use the latest email; an older one will no longer let them in. Earlier invites are matched without regard to letter case, so a variant stored with capitals is closed too.
 
 ---
 
-## 5. Corporate email filters (IT-managed inboxes)
+## 6. Corporate email filters (IT-managed inboxes)
 
 Some organizations block emails from unknown senders or require domain whitelisting. If the recipient's IT team manages their inbox:
 

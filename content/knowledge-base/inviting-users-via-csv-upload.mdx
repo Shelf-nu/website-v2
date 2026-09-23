@@ -3,7 +3,7 @@ title: "Inviting Users via CSV Upload"
 description: "Shelf allows you to invite multiple users simultaneously by uploading a CSV file containing their information, making it useful for onboarding teams or departments all at once."
 category: "Other"
 date: "2024-06-01"
-updated: "2026-08-17"
+updated: "2026-09-22"
 layout: "knowledge-base"
 ---
 
@@ -79,11 +79,27 @@ Correct those cells and upload the file again. Nothing from a rejected file is s
 
 Note the second example: `admin` in lower case is rejected too. The column is case-sensitive, so the three accepted values have to be typed exactly as `ADMIN`, `BASE`, and `SELF_SERVICE`.
 
+### Capital Letters in an Email Address Do Not Matter
+
+An email address means the same person however it is typed, and Shelf now treats it that way. `First.Last@company.com` and `first.last@company.com` are one address, not two.
+
+That settles three things an import used to get wrong:
+
+- A row listing an address that is **already a member** in different capitals is skipped as already in the workspace, instead of inviting that person a second time.
+- A file listing **one address twice** in different capitals creates **one** invite, not two.
+- An address that already has a **pending invite** in different capitals is recognised as the same pending invite.
+
+Addresses are stored in lower case from the import onward, and leading or trailing spaces are trimmed. The team member's **name** still comes from the address exactly as you typed it, because that becomes the first name of the account created when the person accepts.
+
+Invites already sitting in your workspace with capital letters keep working as they are. Nothing about your existing data changed.
+
+> **If someone told you the invite link said "Wrong user"**, this was why, and it is fixed. An invite created by a CSV import kept the capitals, while the person's account email was lower case, so opening the link while signed in refused them. Signed out, someone who already had a Shelf account got an error page instead of joining. Both now work. See [Troubleshooting: Team Invite Not Received](/knowledge-base/troubleshooting-invite-not-received).
+
 ## Important Notes
 
 - All entries validated before processing
 - Invites sent via email with secure join link
-- Users already in workspace cannot be invited again
+- Users already in workspace cannot be invited again, whatever the capitalisation of the address
 - Email addresses must be correctly formatted
 
 ## Troubleshooting
