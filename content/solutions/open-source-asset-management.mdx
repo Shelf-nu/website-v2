@@ -11,7 +11,7 @@ personas:
   - "field"
 canonicalUrl: "/solutions/open-source-asset-management"
 date: "2026-03-06"
-updated: "2026-08-31"
+updated: "2026-09-23"
 seo:
   title: "Open Source Asset Management Software — Free QR Tracking"
   description: "Free, open-source asset management — cloud-hosted or self-host. QR tracking, custody logs, and booking calendars. Start tracking in minutes, no setup required. AGPL licensed. 3,000+ teams."
@@ -36,7 +36,7 @@ Most asset management software is a black box. You pay a monthly fee, your data 
 
 Open source changes this:
 
-- **Transparency**: The entire codebase is public. You can read every line of code that handles your data — no hidden tracking, no mystery logic.
+- **Transparency**: The entire codebase is public, including the parts under their own licence. You can read every line of code that handles your data — no hidden tracking, no mystery logic.
 - **No vendor lock-in**: Your data is never held hostage. Export anytime, inspect the schema, or migrate on your terms.
 - **Community-driven development**: Features are shaped by real teams using the product, not a sales roadmap. Issues and roadmap are public on GitHub.
 - **Trust by default**: When the code is open, claims are verifiable. Security, privacy, and data handling are auditable — not just promised.
@@ -115,6 +115,8 @@ The hosted version is not a stripped-down product — it runs the same open-sour
 
 For organizations with strict data residency, compliance, or air-gapped network requirements, Shelf can also be self-hosted with Docker. The AGPL license allows free use, modification, and deployment. Self-hosting requires PostgreSQL and Supabase — setup documentation is available in the GitHub repository.
 
+**One part of the repository is not open source.** The Companion mobile app in `apps/companion/` is source-available under the PolyForm Internal Use License 1.0.0: you can read it, build it and change it for your own company's internal operations, but you cannot distribute it or publish an app based on it. Everything the Shelf platform itself is made of — the web app, the server, the shared packages — stays AGPL-3.0. If your procurement policy requires an OSI-approved licence on everything you deploy, the platform meets it and the native phone app does not; the web app installed as a PWA is the app-store-free, fully AGPL path. The repository's own `LICENSE` files are the binding terms.
+
 Self-host Shelf without binding yourself to any vendor's app store: the web app installs as a PWA on any phone for everyone, with no Apple or Google dependency in your stack.
 
 From version 1.5.0, the free [Shelf Companion app](/mobile-app) can also sign in against a self-hosted instance rather than only Shelf Cloud. Tap **Connect to a private server** on the sign-in screen, enter your organization's domain, and the app points itself at your server for scanning, audits, custody and bookings. Two conditions apply: Shelf registers your domain first, and your instance is reachable from the phone over HTTPS. Running Shelf yourself stays free under the AGPL; the app connection is a separate private-server license from Shelf, billed as a monthly subscription, so [contact sales](/contact) to set it up. See [Connect Shelf Companion to your own Shelf server](/knowledge-base/connect-shelf-companion-to-your-own-server). The PWA remains the app-store-free path, and every path shares the same workspace and data.
@@ -180,7 +182,7 @@ Shelf does not currently offer a documented public API. The application uses int
 
 ### Can I self-host Shelf?
 
-Yes, if your organization requires it. Self-hosting needs Docker, PostgreSQL, and Supabase, and the software is free under the AGPL. Only the [Shelf Companion app's private-server connection](/knowledge-base/connect-shelf-companion-to-your-own-server) is licensed separately, as a monthly subscription from sales. Most teams prefer the hosted cloud version at [app.shelf.nu](https://app.shelf.nu/join) — it requires no setup, includes automatic updates, and has a free plan to get started.
+Yes, if your organization requires it. Self-hosting needs Docker, PostgreSQL, and Supabase, and the platform is free under the AGPL. Two things around the Companion phone app sit outside that: its [private-server connection](/knowledge-base/connect-shelf-companion-to-your-own-server) is a monthly subscription from sales, and the app's own source is under a separate source-available licence that allows internal use but not redistribution. Most teams prefer the hosted cloud version at [app.shelf.nu](https://app.shelf.nu/join) — it requires no setup, includes automatic updates, and has a free plan to get started.
 
 ### Does Shelf support SSO?
 
