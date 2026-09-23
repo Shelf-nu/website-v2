@@ -1,0 +1,20 @@
+{
+  "about": "Head terms watched by `node scripts/analytics.mjs head-terms`. `owner` is the shelf.nu path that is SUPPOSED to rank for the exact query; the command flags months where Google ranks a different shelf.nu URL. Add a term when a page is built or retargeted for it; keep `note` short.",
+  "terms": [
+    { "query": "equipment booking system", "owner": "/solutions/equipment-reservations", "note": "exp-048 title 2026-09-08; /features/bookings also targets it" },
+    { "query": "equipment booking software", "owner": "/solutions/equipment-reservations" },
+    { "query": "equipment reservation system", "owner": "/solutions/equipment-reservations" },
+    { "query": "equipment reservation software", "owner": "/solutions/equipment-reservations", "note": "pos ~4 with zero clicks = SERP feature (S8)" },
+    { "query": "equipment checkout software", "owner": "/solutions/equipment-check-in", "note": "pos 1–2, zero-click; AEO target, not CTR (S8/S12)" },
+    { "query": "check in check out software", "owner": "/solutions/equipment-check-in" },
+    { "query": "asset tracking software", "owner": "/solutions/asset-tracking", "note": "exp-052 internal links 2026-09-21; homepage held it at pos ~20" },
+    { "query": "free asset tracking software", "owner": "/solutions/asset-tracking" },
+    { "query": "equipment management software", "owner": "/solutions/equipment-management", "note": "blog roundup held it at pos 25–27 in Aug–Sep 2026; decide redirect after the exp-052 read" },
+    { "query": "equipment inventory software", "owner": "/solutions/equipment-management" },
+    { "query": "equipment tracking software", "owner": "/solutions/equipment-management" },
+    { "query": "tool tracking software", "owner": "/solutions/tool-tracking" },
+    { "query": "open source asset management", "owner": "/", "note": "homepage owns this by design (exp-002)" },
+    { "query": "open source asset management software", "owner": "/" },
+    { "query": "asset management software", "owner": "/", "note": "no dedicated page; domain-authority problem, not a page problem" }
+  ]
+}
