@@ -156,10 +156,23 @@ const components = {
     TrackingDecisionChart,
 };
 
+/**
+ * next-mdx-remote 6 strips every JS expression from MDX by default (blockJS).
+ * Our MDX comes only from content/ in this repo, and a few articles pass data
+ * as props, e.g. <ComparisonTable rows={[...]} /> and <StatBlock stats={[...]} />.
+ * The default would silently drop those props and render empty tables, so JS
+ * stays on. blockDangerousJS stays at its default (true): an expression that
+ * reaches eval, Function, process, require or .constructor fails the build.
+ */
+const mdxOptions = {
+    blockJS: false,
+    mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeImageLoading] },
+};
+
 export function MDXContent({ source }: { source: string }) {
     return (
         <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <MDXRemote source={source} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeImageLoading] } }} />
+            <MDXRemote source={source} components={components} options={mdxOptions} />
         </div>
     );
 }
