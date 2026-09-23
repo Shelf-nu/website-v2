@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-17"
+updated: "2026-09-23"
 layout: "knowledge-base"
 ---
 
@@ -70,13 +70,79 @@ A reservation is settled by putting a matching asset on the booking. Every route
 - Ticking it in the **Manage assets** modal
 - Scanning it with **Scan to add assets**
 - Adding it in bulk from the asset index with **Add to booking**
+- Adding a **kit** that carries a unit of the reserved model
 - Scanning it in the [Shelf Companion app](/mobile-app)
 
 Whichever door the asset comes through, Shelf matches it against an outstanding reservation for its model and ticks the reservation down. Only genuinely new rows count, so re-saving the **Manage assets** dialog with the same selection never discharges a reservation twice.
 
+### A unit inside a kit counts too
+
+A camera inside a kit is the same camera as a loose one, so it answers a reservation the same way. Add a kit that carries a unit of a reserved model and the reservation ticks down, whichever door the kit came through: the **Kits** tab in **Manage assets**, the kit page's **Add to booking**, the kit picker on a new booking, or scanning the kit.
+
+Until now only a unit picked on its own could settle a reservation. A kit was excluded deliberately, and the result read wrong on both sides: the booking said "2 of 3 still to assign" with the third camera physically on it inside a kit, while every other booking on those dates saw one fewer unit of that model than the workspace owns.
+
+Each physical unit answers **at most one reserved unit per booking**. A unit already on the booking as a loose row does not answer a second reservation when its kit is added as well.
+
+Rows that answered a reservation now say so. A booking asset row that discharged one carries a blue **Fulfils _model name_** chip, so the unit on the row explains the number that moved in the reservations section above it. The chip's tooltip reads *"This booking reserved units of Dell Latitude 5550 without naming them. This asset is one of the units that answered that reservation, so it counts toward it instead of adding to the booking on its own."*
+
+**Kits already on a booking are not settled retroactively.** Only a kit that arrives from now on answers a reservation. If a booking has been sitting with a kit on it and a reservation still open, take the kit off and add it again.
+
+Only individually tracked units answer a model reservation. [Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) stock carried in a kit is a pool rather than a named unit, and [Asset Models](/glossary/asset-models) group individually tracked assets only.
+
+### Scanning kits in Fulfil reservations & check out
+
+A **Reserved** booking with units still to assign routes its **Check out** through the **Fulfil reservations & check out** scanner. That scanner takes kits now. Scan one and it goes on the booking whole, its matching members assign outstanding reserved units on the way, and the kit's row in the list says how much it settles — for example **Assigns 2 reserved units**. A kit whose members assign nothing still goes out; it is simply listed as something the check-out adds on top. The scanner used to turn every kit away with *"Kits can't be checked out from the reservation scanner. Use Scan to check out for kits."*
+
+A unit that belongs to a kit is committed to that kit, so that scanner will not send it out alone. Scan one without scanning its kit and the submit is refused:
+
+> "Canon EOS R5 #0042" belongs to a kit, so it can't go out on its own. Scan the kit to take all of it, or scan another unit of the same model.
+
+Scan the kit instead and the whole case goes out. The refusal only covers a unit the scan would take out for the first time: a unit already on this booking is not being taken anywhere new, so it is left alone. Scanning a unit and the kit it lives in, in the same pass, books the unit once, not twice.
+
+When you scan onto a booking with **Scan to add** or **Scan to assign**, the same rule reads as the **Part of kit** badge on the unit, whose tooltip now names both ways out — *"Scan the kit's QR to take the whole kit, or remove the asset from the kit to use it on its own."*
+
 Reserving by model is counted the same way a pool is. Shelf works out how many units of that model are free for your dates at the moment you reserve, and holds the model still while it does, so two people reserving the last units of the same model at the same second cannot both be told yes.
 
-Reservations that are still outstanding show as an amber **N units unassigned** pill on the bookings index, next to the asset count. A booking made entirely of reservations therefore reads "0 assets" with the pill beside it, rather than looking empty. Those units are genuinely held and unavailable to anyone else, and a booking cannot be checked out while any reservation is outstanding, so the pill is the list telling you there is still gear to find.
+Reservations that are still outstanding show as an amber **N units unassigned** pill on the bookings index, next to the asset count. A booking made entirely of reservations therefore reads "0 assets" with the pill beside it, rather than looking empty. Those units are genuinely held and unavailable to anyone else, so the pill is the list telling you there is still gear to find.
+
+An outstanding reservation does not hold the booking back. You can [check out what is ready](#checking-out-while-units-are-still-unassigned) and leave the rest of the reservation open, and you can [adjust or release](#adjusting-or-releasing-a-reservation) the units you are not going to find.
+
+### Adjusting or releasing a reservation
+
+A reservation is a promise to supply a number of units, and promises change. A unit turns out to be damaged, one never gets collected, or the job simply needs fewer than you booked. You can correct the number **while the booking is Draft, Reserved, Ongoing or Overdue** — including after the booking has gone out.
+
+1. Find the reservation's row in the **Unassigned model reservations** section
+2. Open the row's menu and click **Adjust quantity**
+3. Enter the new number of reserved units, then click **Save**
+
+The **Adjust reservation** dialog states where the row stands — "1 of 3 units assigned so far" — and, when there is anything still unassigned, offers a one-click **Release the N units still unassigned**. Units you release go straight back to the pool for other bookings in that window.
+
+Two limits apply at every status:
+
+- **A reservation never drops below the units already assigned to it.** Those units are on the booking; the reservation is the record of how they got there. Setting the quantity to exactly the assigned count closes the reservation out and releases everything still unassigned.
+- **A reservation with assigned units is reduced, not removed.** **Remove** is only offered while nothing has been assigned yet.
+
+Lowering a reservation is never refused for lack of availability. Giving units back cannot need headroom, and measuring anyway used to block the case that matters most: a booking holding more units than the pool still contains, because a unit was retired or taken into custody mid-booking, could not release anything at all.
+
+The same numbers and the same floor apply on the **Models** tab inside **Manage assets**, where each row reads "3 reserved · 1 assigned · 12 total in workspace".
+
+Adjusting a reservation on a live booking matters beyond the booking itself: outstanding reservations on Ongoing and Overdue bookings keep counting against every other booking whose window overlaps, so a unit you are never going to hand over stays unavailable to everyone else until the reservation is reduced.
+
+### Checking out while units are still unassigned
+
+A check-out needs **at least one item to go out, and nothing more**. A reservation nobody has assigned yet no longer blocks it.
+
+When you check the booking out, Shelf names what is still open and asks you to confirm it:
+
+> **Some reserved units aren't assigned**
+>
+> 2 × Dell Latitude and 1 × HP LaserJet are not assigned yet. They stay on the booking so you can scan them later or release them.
+
+Confirm and the booking goes **Ongoing** with the items that are ready. The open reservations stay on the booking, where you can settle them later with **Scan to assign**, **Assign from list**, or release them with **Adjust quantity**. The same confirmation appears on **Check out selected items**, and it carries the early-check-out question in the same dialog when both apply, rather than stacking two prompts.
+
+What is refused is a check-out that would send **nothing** out. A booking made entirely of reservations cannot go Ongoing empty.
+
+A **Reserved** booking with outstanding reservations routes its **Check out** through the fulfil scanner, which lists what is still to pull and counts the unassigned units in its footer. Once the booking is underway, its remaining items go out through **Scan to check out** like any other booking, and the reservations stay open for **Scan to assign**.
 
 ### Reserved units stay reserved when someone books by name
 

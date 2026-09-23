@@ -1,0 +1,42 @@
+---
+title: "Check Out What Is Ready, Whatever Is Still Unassigned"
+description: "A booking that reserves gear by Asset Model can now be checked out with reserved units still unassigned, and a reservation can be adjusted or released for as long as the booking is live."
+date: "2026-09-22"
+image: "/images/updates/add-assets-to-bookings.jpg"
+readMoreUrl: "/knowledge-base/adding-assets-and-kits-to-a-booking#checking-out-while-units-are-still-unassigned"
+layout: "update"
+---
+
+If your team reserves gear by [Asset Model](/glossary/asset-models), one unit you cannot find used to stop the whole booking. A reservation for four projectors that only found three refused the check-out, and the only way through was to delete a reservation the operator had correctly made.
+
+Two changes fix that, and they are two halves of the same job.
+
+## A check-out needs one item to go out, and nothing more
+
+Reserved units nobody has assigned yet no longer block a check-out. Shelf names them before it acts:
+
+> **Some reserved units aren't assigned**
+>
+> 2 × Dell Latitude and 1 × HP LaserJet are not assigned yet. They stay on the booking so you can scan them later or release them.
+
+Confirm, and the booking goes **Ongoing** with the items that are ready. The open reservations stay on the booking, to be scanned in later or handed back. The same confirmation covers **Actions → Check out selected items**, and when the check-out is also early, both questions are asked in one dialog rather than two stacked ones.
+
+A booking made entirely of reservations still cannot go Ongoing, because nothing would leave.
+
+The rule now reads the same on the web, in the mobile API, and in the [Shelf Companion](/mobile-app) app, where **Check Out All**, **Select to Check Out** and both scanners confirm the unassigned units instead of refusing them.
+
+## A reservation stays adjustable while the booking is out
+
+Reserved quantities could previously only be changed while the booking was Draft or Reserved, and only from the **Models** tab inside **Manage assets**. Once the booking was checked out, the quantity was frozen — so a unit that turned out to be damaged, lost, or was never collected stayed reserved for the rest of the booking and kept counting against every other booking whose window overlapped.
+
+Now the reservation row's menu carries **Adjust quantity** on **Draft, Reserved, Ongoing and Overdue** bookings, with a one-click **Release the N units still unassigned**. Two limits hold at every status: a reservation never drops below the units already assigned to it, and a reservation with assigned units is reduced rather than removed, so the record of how those assets reached the booking survives.
+
+Lowering a reservation is no longer measured against availability. Giving units back cannot need headroom, and checking anyway refused the case that mattered most: a booking holding more units than the pool still contains could not release anything at all.
+
+The row menu's first item now reads **Assign from list**, so all three actions fit on one line.
+
+## Also in this release
+
+Under the workspace's [explicit check-out requirement](/knowledge-base/require-explicit-check-in-and-check-out), scanning an item that is already on the booking checks that item out. It used to be turned away as a duplicate and dropped from the payload, which left covered roles with no way to send those items out from the fulfil screen.
+
+On the phone, the app's model manager was already offered on Ongoing and Overdue bookings while the server refused every edit made there. It starts working with this change, on the copy of the app you already have, because the rule is enforced on the server. The matching floor on the phone's quantity stepper, which stops you typing a number below the units already assigned, arrives with the next phone update; until then the server is what refuses it.
