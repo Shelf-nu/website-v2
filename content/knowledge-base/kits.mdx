@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-09-21"
+updated: "2026-09-23"
 layout: "knowledge-base"
 ---
 
@@ -108,6 +108,14 @@ Two details decide whether a kit counts as held:
 Kits that mix in even one individually tracked asset were always exclusive, because that asset blocked the second booking. A kit built **entirely** from quantity-tracked stock — clamps, sandbags, cabling, with no individually tracked item in it — had nothing to trip that check, so until 15 September 2026 two overlapping bookings could each reserve and check out the same case. Nothing on screen said so. The kit-level rule covers every kit now, whatever it holds.
 
 **One gap remains.** *Adding* a kit to a booking that is already **Reserved** does not run the check. The clash shows up later, at check-out, fulfil, extend or scan, rather than when the kit went on. Single assets behave the same way when they are added to a reserved booking.
+
+### A kit's units settle model reservations
+
+If the booking reserves gear by [Asset Model](/glossary/asset-models) — "4 × Canon EOS R5" with no units named — the individually tracked members of a kit you add count toward it. A camera in a case is the same camera as a loose one, so adding the case ticks the reservation down, and each physical unit answers at most one reserved unit per booking.
+
+That holds however the kit arrives: the **Kits** tab in **Manage assets**, the kit page's **Add to booking**, the kit picker on a new booking, or a scan. Kits that were already on a booking before this are not settled retroactively — take the kit off and add it again to have its units counted.
+
+See [Settling a model reservation](/knowledge-base/adding-assets-and-kits-to-a-booking#settling-a-model-reservation).
 
 ### It does not stop you booking the loose units
 

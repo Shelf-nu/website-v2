@@ -10,7 +10,7 @@ personas:
   - "operations"
 canonicalUrl: "/features/bookings"
 date: "2025-01-01"
-updated: "2026-09-22"
+updated: "2026-09-23"
 seo:
   title: "Equipment Booking Software — Conflict-Free Reservations"
   description: "Reserve equipment without double-bookings. Visual booking calendar, availability checking, and pull-list PDFs for cameras, tools, laptops, and shared gear."
@@ -98,7 +98,9 @@ See: [Kits](/features/kits)
 
 Fleets of identical gear can be reserved without picking exact units up front. Group units under an [Asset Model](/glossary/asset-models) and reserve by model: a booking for "4x HDMI cable" is fulfilled at pickup by whichever 4 physical units you hand out. Any unit of the model fulfils the request, every unit keeps its own record and QR label, and the booking records exactly which units went out. Available on Team plans.
 
-Reservations are settled by putting a matching asset on the booking, whichever way you do it: scanning at pickup, picking it in **Manage assets**, adding it in bulk from the asset index, or scanning in the Companion app. The reservation ticks down the moment a matching unit lands on the booking, so a team without a scanner to hand is never stuck with a reservation it cannot discharge. Outstanding reservations sit in their own **Unassigned model reservations** section above the assets table, and each row says exactly what is left, for example "1 of 2 units still to assign".
+Reservations are settled by putting a matching asset on the booking, whichever way you do it: scanning at pickup, picking it in **Manage assets**, adding it in bulk from the asset index, adding a kit that carries a unit of the reserved model, or scanning in the Companion app. The reservation ticks down the moment a matching unit lands on the booking, so a team without a scanner to hand is never stuck with a reservation it cannot discharge. Outstanding reservations sit in their own **Unassigned model reservations** section above the assets table, and each row says exactly what is left, for example "1 of 2 units still to assign".
+
+A unit inside a kit answers a reservation exactly as a loose one does, and each physical unit answers at most one reserved unit per booking. Rows that answered one carry a blue **Fulfils _model name_** chip, so the unit on the row explains the count that moved above it. The **Fulfil reservations & check out** scanner takes kit scans as well, and each kit row states how many reserved units it settles.
 
 The whole loop also runs on the [Shelf Companion app](/mobile-app) for iPhone and Android: reserve or adjust a model reservation from the booking's Models tab, then open the fulfil scanner from **Scan to assign & check out**, watch the assigned counter tick as you scan the physical units, and assign plus check out in one submit.
 

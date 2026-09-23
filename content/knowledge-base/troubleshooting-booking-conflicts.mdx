@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-09-17"
+updated: "2026-09-23"
 layout: "knowledge-base"
 ---
 
@@ -123,6 +123,24 @@ Three things still block, exactly as before:
 - **An item in someone's custody.**
 
 This applies to individually tracked items only. Pooled stock is counted rather than claimed, so it never takes this path. A **kit** does take it, though, because a kit is claimed rather than counted: a booking that is already in progress can check out a kit a later reservation also holds. No timeline note is written when it happens to a kit — that note exists for individually tracked items only — so check the kit's **Bookings** tab if a reservation of yours comes up short.
+
+---
+
+## "... belongs to a kit, so it can't go out on its own"
+
+You are in the **Fulfil reservations & check out** scanner — the screen a **Reserved** booking with units still to assign opens from **Check out** — and you scanned a unit that lives in a [kit](/knowledge-base/kits):
+
+> "Canon EOS R5 #0042" belongs to a kit, so it can't go out on its own. Scan the kit to take all of it, or scan another unit of the same model.
+
+An individually tracked asset committed to a kit is not a free unit. Sending it out on its own would answer the reservation, check the booking out, and leave the case split — one item in the field, the rest on the shelf, with nothing on the booking saying so.
+
+Three ways through:
+
+- **Scan the kit.** The whole case goes on the booking and out with the check-out, and its matching members settle the reservation on the way. Scanning the unit as well is harmless; it is booked once, not twice.
+- **Scan a different unit** of the same [Asset Model](/glossary/asset-models) that is not in a kit.
+- **Take the asset out of the kit** first, if it genuinely should travel alone from now on.
+
+A unit that is **already on this booking** is never refused here — the scan is not taking it anywhere new.
 
 ---
 
