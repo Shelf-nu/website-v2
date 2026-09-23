@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-09-22"
+updated: "2026-09-23"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -166,6 +166,8 @@ The button at the bottom counts a kit as one item and says what it will act on, 
 A kit added from the phone also keeps its grouping on the web booking page. Before, a kit added in the app arrived as loose assets, and neither the phone nor the web could show it as a kit again.
 
 **Reserve by model, then scan the actual units.** If your workspace groups identical gear under [Asset Models](/glossary/asset-models), the booking's **Models** tab reserves a count rather than specific units: reserve "4x HDMI cable" now, adjust the quantity later, or remove the reservation. The booking detail shows what is still outstanding. When it is time to hand the gear over, tap **Scan to assign & check out** and the fulfil scanner opens with the reserved models listed and a live "2/4 assigned" counter. Scan the physical units, submit, and Shelf assigns those exact units to the reservations and checks the booking out in one step. If you scan units the booking had not reserved, the submit button names both jobs separately, for example "Assign 4 · add 2 · check out", so you can see what is being added on top of the reservation before you commit. The CTA is there for admins and owners, who are the roles allowed to fulfil a reserved booking. See [Book by Model](/features/bookings#book-by-model) for how the same flow works on the web.
+
+**Scan a kit into the fulfil scanner.** Scanning a kit's code on **Scan to assign & check out** used to come back with *"Kits can't be checked out from the reservation scanner"*. It works now: the kit goes on the booking whole, its individually tracked members assign outstanding reserved units of their model on the way, and the whole case goes out with the submit. A unit that belongs to a kit still cannot go out alone here — scan one without its kit and the answer is *"…" belongs to a kit, so it can't go out on its own. Scan the kit to take all of it, or scan another unit of the same model.* This was a server-side change, so **there is nothing to install**: every phone with Shelf Companion behaves this way, whatever version it is running. See [A unit inside a kit counts too](/knowledge-base/adding-assets-and-kits-to-a-booking#a-unit-inside-a-kit-counts-too).
 
 Reserved units that have no physical unit behind them yet are counted on the bookings list too. A row reads "0 assets · 5 reserved" rather than a bare "0 assets", so a booking built entirely from model reservations never looks empty. Those units are genuinely held and unavailable to anyone else.
 
