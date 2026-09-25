@@ -3,7 +3,7 @@ title: "Custody Feature for Long-Term Equipment Lend-Outs"
 description: "The custody feature functions like an indefinite checkout system, allowing organizations to track which team members have borrowed assets without specifying return dates or locations."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-18"
+updated: "2026-09-25"
 layout: "knowledge-base"
 ---
 
@@ -77,9 +77,9 @@ There are two ways to end a kit-derived hold, and both go through the kit:
 
 Custody you assigned to an asset directly is untouched by any of this. It releases exactly as it always did, including on an asset that is also a kit member and carries both kinds of hold at once. In a bulk **Release custody** across a mixed selection, nothing is released at all if any asset in the selection is held by its kit: the whole action is refused rather than half applied, so you never end up with part of a batch released and no record of which part.
 
-The batch scanner already reached part of this. Its blocker list names **assets that are part of a kit** for both **Assign Custody** and **Release Custody**, and it always has. That check reads kit membership rather than where the hold came from, so it was never the same rule, and it was the only place the rule existed. The refusal above is what the asset page, the bulk index action and the app were missing.
+The batch scanner already reached part of this. Its blocker list names **individually tracked assets that are part of a kit** for both **Assign Custody** and **Release Custody**, and it always has. That check reads kit membership rather than where the hold came from, so it was never the same rule, and it was the only place the rule existed. The refusal above is what the asset page, the bulk index action and the app were missing.
 
-Quantity-tracked pools work differently and are unaffected. A pool can be held by several custodians at once and by a kit at the same time, so **Assign** and **Release Quantity Custody** act on one custodian's slice by name. Releasing your own slice never touches the units the kit is holding, and the kit's slice still clears only through the kit.
+Quantity-tracked pools work differently and are unaffected. A pool can be held by several custodians at once and by a kit at the same time, so **Assign** and **Release Quantity Custody** act on one custodian's slice by name. Releasing your own slice never touches the units the kit is holding, and the kit's slice still clears only through the kit. The batch scanner follows the same split: a pool whose only held units came with its kit is listed as **held through a kit**, with the advice to scan the kit's QR instead.
 
 ## Quantity-Tracked Pools Can Be Both at Once
 
