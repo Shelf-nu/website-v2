@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-18"
+updated: "2026-09-25"
 layout: "knowledge-base"
 ---
 
@@ -39,6 +39,7 @@ To begin importing assets:
 - **Encoding:** UTF-8 recommended. Other encodings are auto-detected and converted, and a UTF-8 BOM is accepted.
 - **Header row:** First row must contain column headers. Headers are **case-sensitive** and **strictly validated** against Shelf's allow-list — an unknown header aborts the entire import with "Invalid header provided."
 - **File format:** Only `.csv` files accepted.
+- **Size:** Up to **1,000 assets per file**. A larger file is refused before anything is imported, with a message giving its row count. Split it and import the parts one at a time.
 
 ### Standard Columns
 
@@ -164,14 +165,20 @@ When importing assets with custodians and kits:
 
 ### Pre-Import Validation
 
-The system checks:
+Shelf checks the whole file before it writes anything. The checks cover:
 
 1. File format and encoding validity
 2. Header accuracy against supported columns
-3. QR code availability and status
-4. Barcode feature permissions
-5. Kit-custody conflict prevention
-6. Custom field format compliance
+3. The 1,000-asset limit
+4. Quantity-tracked columns on every row (`type`, `quantity`, `consumptionType` and the rest)
+5. Asset models on quantity-tracked rows, which are not allowed
+6. Custom field headers: an unknown type, a type that contradicts a field already in your workspace, or two columns giving the same field different types
+7. Custom field values that the column's type cannot accept
+8. QR code availability and status
+9. Barcode feature permissions
+10. Kit-custody conflict prevention
+
+If any check fails, **nothing is created**: no assets, and none of the categories, tags, locations, kits, custom fields or asset models the file names. For checks 3 to 7 the import page shows a **Row / Problem** table listing every problem it found, so one upload tells you everything to fix. The QR code, barcode and kit-custody checks still stop at the first problem with a message of their own. Row numbers match your spreadsheet (the header is row 1, so the first asset is row 2). A problem with the file as a whole, such as a faulty column header, is listed once under **File**. When a file has more than 100 problems, the table shows the first 100 and says how many there are in total.
 
 ### Import Execution Order
 
@@ -185,9 +192,9 @@ The system checks:
 
 ### Partial Imports on Failure
 
-Asset import is **not transactional**. Up-front validation catches header, QR, barcode, and kit/custody problems before any row is created — but once row creation begins, rows are processed one by one. If a row fails mid-file, the rows already created **persist** and the import aborts at the failing row. Re-importing the same file would then create duplicates of those earlier rows.
+A problem in your data can no longer leave half a file behind: the checks above run over every row first, and a file that fails them creates nothing, so you can fix it and upload the same file again.
 
-If you see a partial-import result, check your Asset Index for what was created, fix the failing row, and re-import only the remaining rows. For round-trip edits to existing assets, use [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) instead.
+Once those checks pass, rows are still written one by one rather than in a single transaction. A failure at that stage, such as a lost connection or a server timeout on a very large file, can leave the rows before it in place, and re-importing the same file would then create duplicates of them. If that happens, check your Asset Index for what was created and re-import only the remaining rows. For round-trip edits to existing assets, use [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) instead.
 
 ## Troubleshooting
 
@@ -253,7 +260,7 @@ If you see a partial-import result, check your Asset Index for what was created,
 
 ### Large Imports (1000+ assets)
 
-- Break into smaller batches
+- Break into files of at most 1,000 assets; a larger file is refused
 - Ensure stable internet connection
 - Allow extra time for processing
 - Account for image download time

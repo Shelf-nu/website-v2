@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-08-25"
+updated: "2026-09-25"
 layout: "knowledge-base"
 ---
 
@@ -11,7 +11,20 @@ If your CSV import fails, partially imports, or creates unexpected records, chec
 
 ---
 
-## "Some rows failed" or partial import
+## "Found N problems in your file. Nothing was imported."
+
+This is the **Import** flow checking your file before it writes anything. The table under the message lists every problem at once, by spreadsheet row number, so fix them all and upload the same file again. Nothing from the rejected attempt was saved, so there is nothing to clean up and no risk of duplicates. If the table says it is showing the first 100 problems, fix those and upload again to see the rest.
+
+The problems it most often reports:
+
+- **Quantity-tracked rows.** A `quantity` above 1 needs `type` set to `QUANTITY_TRACKED`, and a quantity-tracked row needs both `quantity` (at least 1) and `consumptionType` (`ONE_WAY` or `TWO_WAY`). The message names every column the row needs, not just the first one missing.
+- **An asset model on a quantity-tracked row.** Asset models group individually tracked assets only. Clear the `assetModel` cell or set `type` to `INDIVIDUAL`.
+- **Custom field columns.** An unknown type in a `cf:` header, a type that differs from a field of the same name already in your workspace, two columns naming the same field with different types, or a value the field's type cannot accept.
+- **Too many rows.** More than 1,000 assets in one file.
+
+---
+
+## Partial import or unexpected records
 
 - **Missing title**: every row needs a `title` value. The importer does not reject blank titles — those rows still create asset records, just with no name, which you'd then have to clean up by hand. Validate that every row's `title` column is populated before uploading.
 - **Encoding**: save your CSV as **UTF-8**. Excel sometimes saves as ANSI or Windows-1252, which corrupts special characters (accents, non-Latin scripts). In Excel: File → Save As → choose "CSV UTF-8". A file you exported from Shelf already carries a UTF-8 byte order mark, so it opens with the right alphabet and re-saving it keeps the encoding. Shelf's importer strips the mark on the way back in, so it never lands in your data. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
@@ -86,13 +99,7 @@ The **1,000 assets per file** limit is counted the same way, so a file with mult
 
 ## File too large
 
-This one is about the **Import** flow that creates new assets. It takes a file of any size, but very large CSVs (10,000+ rows) may time out on slower connections. If this happens:
-
-- Split the file into batches of 2,000 to 5,000 rows
-- Import each batch separately
-- All batches land in the same workspace
-
-**Update existing is different.** It stops at **1,000 assets per file** whatever your connection, because each row can trigger several database calls. Split for that flow at 1,000, not at 2,000.
+Both flows take up to **1,000 assets per file**. **Import** refuses a larger file before anything is created, with a message giving its row count; **Update existing** stops at the same number. Split a larger file into parts of 1,000 or fewer and upload them one at a time. All parts land in the same workspace.
 
 ---
 

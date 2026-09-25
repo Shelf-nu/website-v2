@@ -1,0 +1,17 @@
+---
+title: "Imports Check the Whole File First"
+description: "A CSV import now checks every row before it creates anything. A file with problems imports nothing and lists every problem at once, by spreadsheet row."
+date: "2026-09-25"
+image: "/images/updates/better-csv-imports.jpg"
+readMoreUrl: "/knowledge-base/importing-assets-to-shelf-csv-guide#pre-import-validation"
+layout: "update"
+---
+
+When you import assets from a CSV, Shelf now reads the whole file before it writes anything. If a row has a problem, **nothing is imported**, and the import page lists every problem it found in a **Row / Problem** table, numbered the way your spreadsheet numbers them.
+
+That changes two things you can rely on:
+
+- **One upload tells you everything to fix.** A file with a bad quantity on row 4 and an invalid custom field value on row 19 reports both, not just the first. Messages about quantity-tracked rows also name every column such a row needs, so you are not taught the format one upload at a time.
+- **A rejected file leaves nothing behind.** No assets, categories, tags, locations, kits, custom fields or asset models are created from it, so you can fix the file and upload it again without cleaning up or creating duplicates.
+
+Import now takes up to **1,000 assets per file**, the same limit as updating assets by CSV. Split a larger file and import the parts one at a time.
