@@ -3,7 +3,7 @@ title: "Batch Scanning Actions"
 description: "Shelf's Batch QR Scanning feature enables users to perform actions on multiple assets simultaneously by scanning their QR codes in succession, significantly improving efficiency when managing groups of assets."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-07-28"
+updated: "2026-09-25"
 layout: "knowledge-base"
 ---
 
@@ -42,6 +42,8 @@ Use this option to transfer custody of multiple assets to a team member in one o
 5. Select the team member to assign custody to from the dropdown
 6. Tap the orange **Assign custody** button to complete the action
 
+**Quantity-tracked assets.** A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is a pool of units, so its row in the list gets a **Qty** field showing how many units are free to hand over, for example `1 / 46`. It starts at 1; set it to the number the person is taking. Only free units count toward that maximum: units already in someone's custody, allocated to a kit or out on a booking are not offered. A pool with some units out can still be scanned, as long as some are left.
+
 ### Release Custody
 
 This option allows you to release multiple assets from custody simultaneously.
@@ -51,6 +53,10 @@ This option allows you to release multiple assets from custody simultaneously.
 3. The system will display a count of scanned assets
 4. After scanning all desired assets, tap **Continue**
 5. Review the list of assets and confirm the release
+
+**Quantity-tracked assets.** Each quantity-tracked row gets a **Qty** field capped at the units held in custody, so you can take back part of a hold. The release scan does not ask whose units to take back, so it works while **one** person holds units of that asset. If several people do, release it from the asset's own custody list, where each holder has a row. Units held because the asset's **kit** is in custody go back by releasing the kit.
+
+The **Qty** field is in the scanner on the web. The [Shelf Companion app](/knowledge-base/shelf-ios-companion-getting-started) does not ask for a number of units in its batch custody scanner yet.
 
 ### Update Location
 
@@ -73,9 +79,10 @@ When using batch actions, the system automatically checks for potential conflict
 ![Handling Conflicts](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67fd5f1bcd100df0ccc3c758_blocker_list.PNG)
 ### For Assign Custody
 
-- Assets already in custody of someone else
-- Assets currently checked out
-- Assets that are part of a kit
+- Individually tracked assets already in custody of someone else
+- Individually tracked assets currently checked out
+- Individually tracked assets that are part of a kit
+- Quantity-tracked assets with no units available: every unit is already in custody, allocated to a kit, or out on a booking
 - Kits already in custody
 - Kits with assets in custody
 - Kits that are checked out
@@ -83,8 +90,11 @@ When using batch actions, the system automatically checks for potential conflict
 
 ### For Release Custody
 
-- Assets not currently in custody
-- Assets that are part of a kit
+- Individually tracked assets not currently in custody
+- Individually tracked assets that are part of a kit
+- Quantity-tracked assets with no units in custody
+- Quantity-tracked assets held only through a kit (scan the kit's QR to release the whole kit)
+- Quantity-tracked assets held by more than one person (release them from the asset's custody list)
 - Kits not in custody
 - Invalid or unregistered QR codes
 

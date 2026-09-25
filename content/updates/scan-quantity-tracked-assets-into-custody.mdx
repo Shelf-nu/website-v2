@@ -1,0 +1,18 @@
+---
+title: "Scan Quantity-Tracked Assets Into and Out of Custody"
+description: "The scanner's Assign custody and Release custody actions now take quantity-tracked assets, with a quantity field on each scanned row."
+date: "2026-09-25"
+image: "/images/updates/improved-qr-scanner.jpg"
+readMoreUrl: "/knowledge-base/batch-scanning-actions#assign-custody"
+layout: "update"
+---
+
+You can now scan [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) with the scanner's **Assign custody** and **Release custody** actions, alongside individually tracked ones.
+
+Each scanned pool gets a **Qty** field. When assigning, it goes up to the units that are free to hand over, so units already with someone, in a kit or out on a booking are never offered twice. When releasing, it goes up to the units held in custody, so you can take back part of a hold.
+
+A pool with some units out no longer blocks the scan. Before, scanning one refused it as "checked out" or "in custody" as soon as a single unit was, even with most of the stock on the shelf. Now a pool is only blocked when it has nothing to give: no free units to assign, or no units in custody to release.
+
+A release scan takes units back from whoever holds them, so it works while one person holds units of that asset. If several people do, release from the asset's custody list, where each holder has a row.
+
+The quantity field is in the scanner on the web. The Shelf Companion app's batch custody scanner does not ask for a quantity yet.
