@@ -3,7 +3,7 @@ title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
 description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-16"
+updated: "2026-09-28"
 layout: "knowledge-base"
 ---
 
@@ -94,6 +94,8 @@ The system features context-aware status management that handles complex scenari
 - "Checked out": Asset currently in use in this booking context
 
 An asset checked in early is free from that moment, and the [Availability View](/knowledge-base/availability-view-complete-guide#when-an-asset-comes-back-early) on the Assets index shows it: the asset's bar on the booking stops at its check-in time and turns green, while the items still out keep their full bar. Quantity-tracked stock keeps its full bar until every booked unit is back.
+
+The asset page does not wait for the booking to finish. On a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset's **Quantity Overview** card, units you check in partway through a booking count as back on the shelf straight away. Send out 10 units of a pool of 20 with nothing else committed, check 4 back in, and the card reads **Available 14**, **Checked out (bookings) 6**, while the booking is still Ongoing. Units marked as used up leave the total and stop counting as checked out. The custody dialog uses the same figure, so you can assign returned units to someone right away.
 
 ## How the Check-in Progress Bar Counts Kits
 

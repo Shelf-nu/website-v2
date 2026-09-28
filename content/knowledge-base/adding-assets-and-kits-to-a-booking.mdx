@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-23"
+updated: "2026-09-28"
 layout: "knowledge-base"
 ---
 
@@ -74,6 +74,8 @@ A reservation is settled by putting a matching asset on the booking. Every route
 - Scanning it in the [Shelf Companion app](/mobile-app)
 
 Whichever door the asset comes through, Shelf matches it against an outstanding reservation for its model and ticks the reservation down. Only genuinely new rows count, so re-saving the **Manage assets** dialog with the same selection never discharges a reservation twice.
+
+**A unit that was already on the booking can still count, if you scan it.** Sometimes the right unit is on the booking, as a loose item, before the reservation it should answer: it was added before anyone reserved its model, or its model was changed after it was added. Scan it in **Fulfil reservations & check out** and it now answers the reservation. The row gets a green badge, *"Already here, now counts toward Dell Latitude 5550"*, and the progress count moves. This only works if the unit is not already counting toward a reservation and its model still has reserved units outstanding. A unit that is on the booking only inside a kit is not affected. A scan that matches no open reservation behaves as before. Re-saving **Manage assets** never does this: opening and saving a dialog is not a sign that someone meant to count a unit.
 
 ### A unit inside a kit counts too
 
