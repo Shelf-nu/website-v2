@@ -3,7 +3,7 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Enterprise or Organization plan only."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-08-27"
+updated: "2026-09-25"
 layout: "knowledge-base"
 ---
 
@@ -181,6 +181,16 @@ This happens when:
 **What to do:** Contact your IT administrator and ask them to assign you to the appropriate workspace group in your identity provider (e.g., Google Workspace). Once assigned, log out and log back in — Shelf will redirect you to your workspace automatically.
 
 > **Note:** Your personal workspace still exists in the background, but it is not accessible while you are signed in via SSO.
+
+### Removing Someone From a Group
+
+Shelf reads a person's groups each time they sign in with SSO. When they no longer belong to any group mapped to a workspace, that sign-in removes their access to it, the same way revoking access from the workspace does:
+
+- they can no longer open the workspace, and Shelf stops landing them in it;
+- they stop receiving its booking emails and can no longer be picked as a booking email recipient;
+- their name stays on the custody records and bookings they already have, so the history still reads correctly.
+
+The change is applied at their **next SSO sign-in**, so removing someone from a group in your identity provider takes effect in Shelf the next time they sign in.
 
 ### Signed In, but Nobody Can Give You Custody?
 
