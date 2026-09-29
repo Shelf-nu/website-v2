@@ -3,7 +3,7 @@ title: "Mastering Custom Fields in Shelf: Complete Guide to Asset Information Cu
 description: "An overview of field types that can be used as custom fields in Shelf, enabling organizations to customize their asset management systems to match specific workflow requirements."
 category: "Custom Fields"
 date: "2024-06-01"
-updated: "2026-05-20"
+updated: "2026-09-29"
 layout: "knowledge-base"
 ---
 
@@ -70,6 +70,8 @@ Dropdown menu with predefined choices ensuring data consistency.
 
 **Example:** Condition dropdown with options: New, Good, Fair, Needs Repair, Retired
 
+An Option field needs at least one option before you can save it. Type each choice into the builder and press enter. Spaces at the start and end of an option are trimmed, and a blank or repeated option is not added.
+
 ### Boolean
 
 Simple yes/no toggle for binary decisions and status tracking.
@@ -88,7 +90,7 @@ Specifically designed for monetary values with automatic currency formatting.
 
 **Key Features:**
 - Automatically formats with your organization's currency symbol
-- Only accepts positive values (perfect for costs, prices, budgets)
+- Accepts zero and positive values in the asset form (perfect for costs, prices, budgets)
 - Exports with proper currency formatting ($1,234.56)
 - Advanced filtering with currency-aware comparisons
 
@@ -105,7 +107,7 @@ Specifically designed for monetary values with automatic currency formatting.
 Flexible numeric field handling any numeric data including negatives.
 
 **Key Features:**
-- Accepts positive and negative values
+- Accepts positive and negative values, and zero
 - Precise decimal handling for measurements
 - Advanced filtering with flexible range queries
 - Plain number export (no formatting symbols)
@@ -116,6 +118,13 @@ Flexible numeric field handling any numeric data including negatives.
 - Quantity counts and inventory levels
 - Performance metrics and scores
 - Coordinates and technical measurements
+
+### Zero and empty in number fields
+
+For Amount and Number fields, **0** is a real answer and an empty field is not:
+
+- A **required** Amount or Number field accepts 0. Only an empty field is refused.
+- An **optional** field you leave empty stays empty. Shelf does not store it as 0.
 
 ## Advanced Custom Field Features
 
