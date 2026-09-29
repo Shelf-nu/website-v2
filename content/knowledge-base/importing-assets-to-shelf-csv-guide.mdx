@@ -178,7 +178,7 @@ Shelf checks the whole file before it writes anything. The checks cover:
 9. Barcode feature permissions
 10. Kit-custody conflict prevention
 
-If any check fails, **nothing is created**: no assets, and none of the categories, tags, locations, kits, custom fields or asset models the file names. For checks 3 to 7 the import page shows a **Row / Problem** table listing every problem it found, so one upload tells you everything to fix. The QR code, barcode and kit-custody checks still stop at the first problem with a message of their own. Row numbers match your spreadsheet (the header is row 1, so the first asset is row 2). A problem with the file as a whole, such as a faulty column header, is listed once under **File**. When a file has more than 100 problems, the table shows the first 100 and says how many there are in total.
+If any check fails, **nothing is created**: no assets, and none of the categories, tags, locations, kits, custom fields or asset models the file names. For checks 3 to 7 the import page shows a **Row / Problem** table listing every problem those checks found, so one upload shows all of them at once. The QR code, barcode and kit-custody checks still stop at the first problem with a message of their own. Row numbers match your spreadsheet (the header is row 1, so the first asset is row 2). A problem with the file as a whole, such as a faulty column header, is listed once under **File**. When a file has more than 100 problems, the table shows the first 100 and says how many there are in total.
 
 ### Import Execution Order
 
