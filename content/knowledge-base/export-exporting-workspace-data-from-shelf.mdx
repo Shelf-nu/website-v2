@@ -3,7 +3,7 @@ title: "Exporting Data from Shelf"
 description: "Export asset data from Shelf as CSV: selected assets, filtered results, or a full workspace backup. Covers the Standard and Import-ready formats, what each includes, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-21"
+updated: "2026-09-30"
 layout: "knowledge-base"
 ---
 
@@ -49,6 +49,8 @@ If you run the same report every month, save the filter once and pick it from **
 ![Workspace settings showing the Download CSV button for asset backup](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-workspace-csv.webp)
 
 > **Important**: QR codes are not included in the backup. Shelf's QR codes are tied to unique system IDs — if you restore a backup, the system issues new QR codes for the restored assets. Contact support if you need a full restoration.
+
+**What a restore brings back.** The backup carries each asset's category, tags, notes, custom field values, asset model, custody and location. For a quantity-tracked asset spread over several locations, it records how many units sit at each one, and a restore puts them back the same way, creating any location that does not exist yet. Kits are not part of the backup, so a restored asset comes back outside its kit, and units that sat in a kit come back without a location. Asset photos are not included either.
 
 ---
 
