@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-09-25"
+updated: "2026-09-30"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -46,7 +46,7 @@ When you add or edit an asset, you pick how it should be tracked:
 4. Fill in the quantity fields that appear:
    - **Quantity** — how many units you have (for example, 500)
    - **Unit of measure** — what they're counted in (for example, "pcs", "boxes", "liters")
-   - **Min quantity** *(optional)* — the low-stock threshold; Shelf alerts you when available stock drops to or below this number
+   - **Min quantity** *(optional)* — the low-stock threshold; Shelf alerts you when available stock drops to or below this number. Enter **0** to be alerted only when the item runs out
    - **Consumption type** — how the stock behaves after checkout (see [Consumption types](#consumption-types) below)
 5. Add a **Category**, **Tags**, **Location**, and any other fields as usual
 6. Click **Save**
@@ -229,6 +229,8 @@ Individually tracked assets are unaffected. With a quantity of one, per-unit and
 ## Low-stock alerts
 
 If you set a **min quantity**, Shelf watches the available count for that asset. When a stock adjustment, a custody assignment, or a booking check-in takes the count to or below the threshold, the **workspace owner and every admin** get an email so someone can reorder before you run out, and whoever made the change gets an in-app notification.
+
+A min quantity of **0** is a valid threshold: the alert then fires when the last available unit goes, for items you only want to hear about once they are gone. Leave the field blank if you want no alert at all.
 
 The email is sent **once per crossing**, not once per decrement. An item that is already flagged stays quiet until it recovers, so drawing a pool down over several days does not fill anyone's inbox. When stock rises back above the threshold through a restock or returns, the same people get a **Back in stock** email and the **Low stock** badge on the asset page clears itself.
 
