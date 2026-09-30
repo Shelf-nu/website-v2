@@ -3,7 +3,7 @@ title: "Inviting Users via CSV Upload"
 description: "Shelf allows you to invite multiple users simultaneously by uploading a CSV file containing their information, making it useful for onboarding teams or departments all at once."
 category: "Other"
 date: "2024-06-01"
-updated: "2026-09-22"
+updated: "2026-09-30"
 layout: "knowledge-base"
 ---
 
@@ -32,25 +32,26 @@ Shelf enables bulk user invitations through CSV file uploads, making it particul
 ### Base Rules
 
 - Use comma (,) as the delimiter
-- Valid roles: ADMIN, BASE, SELF_SERVICE
-- Role column is case-sensitive
+- Valid roles: ADMIN, BASE, SELF_SERVICE. Capitals do not matter, so `admin` works the same as `ADMIN`
 - Each row represents one new user
-- Email addresses must be valid
+- Each email address must be valid and appear only once in the file
 - First row reserved for column headers
+- Up to **1,000 users** per file. Split a larger list and import the parts one at a time
 
-**There is no OWNER role in this file.** An import can create Administrators, Self-service and Base users, and nothing else. Ownership moves only through [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership), which demotes the outgoing owner, handles the subscription, and emails both people — none of which an invite can do.
+**There is no OWNER role in this file.** An import can create Administrators, Self-service and Base users, and nothing else. Ownership moves only through [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership), which demotes the outgoing owner, handles the subscription, and emails both people. An invite can do none of that.
 
-### Required Columns
+### Columns
 
-- **role**: User's workspace role (ADMIN, BASE, or SELF_SERVICE)
-- **email**: User's email address
+- **role** *(required)*: the user's workspace role (ADMIN, BASE, or SELF_SERVICE)
+- **email** *(required)*: the user's email address
+- **teamMemberId** *(optional)*: the ID of a [non-registered member](/knowledge-base/converting-non-registered-members-nrms-to-users) in this workspace. When the person accepts, they take over that member, along with the custody and history recorded against it. Leave it blank to invite someone new. To find the IDs, open **Settings → Team → Non-registered members**, select the members, and click **Export Selection**: the file's **Id** column holds them.
 
 ### Sample CSV Format
 
 ```
-role,email
-ADMIN,john.doe@company.com
-SELF_SERVICE,jane.smith@company.com
+role,email,teamMemberId
+ADMIN,john.doe@company.com,
+SELF_SERVICE,jane.smith@company.com,cm7ep29mu0001slft9zw9e6sp
 ```
 
 ## Import Process
@@ -61,53 +62,53 @@ SELF_SERVICE,jane.smith@company.com
 4. Select prepared CSV file
 5. Click **Import now**
 
+![The Invite Users via CSV Upload dialog, listing the base rules, the optional teamMemberId column, and the note that the whole file is checked before anyone is invited](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/users-csv-import-dialog.webp)
+
+## The Whole File Is Checked First
+
+Shelf reads every row before it invites anyone. If any row has a problem, **nobody is invited and nothing is created**, and the dialog lists each problem in a **Row / Problem** table, using the row numbers you see in your spreadsheet. Fix those rows and upload the file again. There is no half-finished import to unpick.
+
+A row is refused when:
+
+- **The role is missing, or is not one of ADMIN, BASE or SELF_SERVICE.** That includes `OWNER`, since ownership moves only through ownership transfer.
+- **The email is missing or is not a valid address.** A name typed into the email column is caught here, instead of becoming an invite that can never be delivered.
+- **The same address is on an earlier row**, in any capitals. The later row is listed and names the row it repeats. Delete one of them.
+- **The same teamMemberId is on an earlier row.** One non-registered member can be claimed by one person.
+- **The teamMemberId is not a member of this workspace**, for example an ID copied from a different workspace.
+- **The address is on a domain that uses SSO** and cannot be invited this way. The problem says why: either your identity provider adds that domain's users for you, or the person has to sign up through SSO first.
+
+All problems are reported in one go, not one per upload. The table shows up to 100 at a time, so a file with more than that can take another upload.
+
+{/* TODO: Screenshot needed: the Row / Problem table after uploading a users CSV with a duplicate address and an invalid email (PR #3112). Not automated: producing it means submitting a file in the demo workspace, and the pipeline does not submit forms. */}
 
 ## After Import
 
-- Users receive email invitations
-- System validates all entries before processing
-- Summary provided of successful invites and errors
-- New users must accept invitation to gain access
-
-### If a Role Is Wrong
-
-Every row's role is checked before a single invitation goes out, and a bad value stops the whole file rather than being quietly skipped. Shelf names the rows to fix, using the row numbers you see in your spreadsheet:
-
-> Roles must be one of ADMIN, BASE, SELF_SERVICE. Ownership cannot be granted by invite — use ownership transfer instead. Problem rows: row 4 ("OWNER"), row 9 ("admin").
-
-Correct those cells and upload the file again. Nothing from a rejected file is sent, so there is no half-finished import to unpick and no need to work out which of your ten listed people actually got an email.
-
-Note the second example: `admin` in lower case is rejected too. The column is case-sensitive, so the three accepted values have to be typed exactly as `ADMIN`, `BASE`, and `SELF_SERVICE`.
+- Users receive email invitations with a secure join link
+- The summary lists who was invited and who was skipped
+- A person who is already a member, or already has a pending invite, is skipped rather than invited again. Skipping is not an error, so it does not stop the rest of the file
+- New users must accept the invitation to gain access
 
 ### Capital Letters in an Email Address Do Not Matter
 
-An email address means the same person however it is typed, and Shelf now treats it that way. `First.Last@company.com` and `first.last@company.com` are one address, not two.
-
-That settles three things an import used to get wrong:
+An email address means the same person however it is typed. `First.Last@company.com` and `first.last@company.com` are one address, not two.
 
 - A row listing an address that is **already a member** in different capitals is skipped as already in the workspace, instead of inviting that person a second time.
-- A file listing **one address twice** in different capitals creates **one** invite, not two.
+- A file listing **one address twice** in different capitals is refused as a duplicate, like any repeated address, so you choose which row to keep.
 - An address that already has a **pending invite** in different capitals is recognised as the same pending invite.
 
 Addresses are stored in lower case from the import onward, and leading or trailing spaces are trimmed. The team member's **name** still comes from the address exactly as you typed it, because that becomes the first name of the account created when the person accepts.
 
-Invites already sitting in your workspace with capital letters keep working as they are. Nothing about your existing data changed.
+Invites already sitting in your workspace with capital letters keep working as they are.
 
 > **If someone told you the invite link said "Wrong user"**, this was why, and it is fixed. An invite created by a CSV import kept the capitals, while the person's account email was lower case, so opening the link while signed in refused them. Signed out, someone who already had a Shelf account got an error page instead of joining. Both now work. See [Troubleshooting: Team Invite Not Received](/knowledge-base/troubleshooting-invite-not-received).
 
-## Important Notes
-
-- All entries validated before processing
-- Invites sent via email with secure join link
-- Users already in workspace cannot be invited again, whatever the capitalisation of the address
-- Email addresses must be correctly formatted
-
 ## Troubleshooting
 
-- Verify CSV uses comma delimiter
-- Check roles are correctly capitalized, and that none of them says `OWNER`
-- Ensure all email addresses are valid
-- Confirm users are not already workspace members
+- **Nothing was invited and a table of rows appeared.** The file was refused as a whole. Fix every row the table names and upload it again.
+- Verify the CSV uses a comma delimiter
+- Check that no role says `OWNER`
+- Make sure each address appears only once
+- Copy teamMemberId values from this workspace's **Non-registered members** export, not from another workspace
 
 ## Best Practices
 
