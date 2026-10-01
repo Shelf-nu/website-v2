@@ -77,7 +77,7 @@ A row is refused when:
 - **The teamMemberId is not a member of this workspace**, for example an ID copied from a different workspace.
 - **The address is on a domain that uses SSO** and cannot be invited this way. The problem says why: either your identity provider adds that domain's users for you, or the person has to sign up through SSO first.
 
-All problems are reported in one go, not one per upload. The table shows up to 100 at a time, so a file with more than that can take another upload.
+Every row is checked on each upload, and the table lists up to 100 problems. A file with more than that says *"Showing the first 100 of N problems. Fix these and upload again to see the rest."*
 
 {/* TODO: Screenshot needed: the Row / Problem table after uploading a users CSV with a duplicate address and an invalid email (PR #3112). Not automated: producing it means submitting a file in the demo workspace, and the pipeline does not submit forms. */}
 
