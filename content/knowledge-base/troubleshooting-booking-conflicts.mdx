@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-09-23"
+updated: "2026-10-01"
 layout: "knowledge-base"
 ---
 
@@ -32,7 +32,9 @@ An admin may have marked the asset as **not available for bookings**. This is se
 
 Common reasons an asset is marked unavailable: it's in maintenance, out for repair, decommissioned, or reserved for a specific department outside the booking system.
 
-If the asset is already sitting on a booking that is still in **Draft**, that booking cannot be reserved while the toggle is off. Take the asset off the booking, or switch the toggle back on, and **Reserve** becomes available again.
+If the asset is already sitting on a booking that is still in **Draft**, that booking cannot be reserved while the toggle is off. Hover the greyed-out **Reserve** button and its tooltip names the assets, up to five, with the kit each one sits in (for example *Barndoors in kit Aputure 120d II Kit 02*) and a count of any more. A kit on the booking that carries one of them shows an amber **Unavailable** badge beside its status, so you do not have to open every kit to find it. Take the asset off the booking, or switch the toggle back on, and **Reserve** becomes available again.
+
+The asset's own status chip can still read **Available**. That chip says the asset is on the shelf; **Available for bookings** is a separate setting, which is why the badge and the tooltip are the places to look.
 
 ---
 
@@ -193,12 +195,12 @@ See [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-inc
 A booking only moves from **Draft** to **Reserved** when it can hold what it promises. Three things block that, and the button's tooltip names which one:
 
 - **"Add assets or reserve at least one model on this booking before you reserve it."** The booking is empty. Add an asset, or reserve a count against an [Asset Model](/glossary/asset-models). Either one is enough on its own.
-- **"This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving."** Something on it has its **Available for bookings** toggle off.
+- **"This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving."** Something on it has its **Available for bookings** toggle off. The tooltip lists the assets underneath the sentence, up to five, with the kit each one sits in.
 - **"This booking holds assets already booked for that period. Remove them, or change the dates, before reserving."** Something on it is committed to another booking inside your dates.
 
 ![Draft booking with no assets: the Reserve button is greyed out and its tooltip reads "Add assets or reserve at least one model on this booking before you reserve it."](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-empty.webp)
 
-![Draft booking holding an unavailable asset: the same Reserve button reads "This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving."](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-unavailable.webp)
+![Draft booking holding unavailable assets: the Reserve button's tooltip reads "This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving." and lists Tascam DR-40X (ID123) and Sony Alpha 1 underneath](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-unavailable-named.webp)
 
 The server re-checks all three at the moment you reserve, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The first two come back word for word. These checks now cover the [Shelf Companion app](/mobile-app) too, so the phone refuses exactly what the website refuses.
 
@@ -207,6 +209,16 @@ The already-booked one is different, and worth recognising, because it is the on
 > Cannot reserve booking. Some assets are already booked or checked out: *[first asset]*, *[second asset]*, *[third asset]* and 2 more. Please remove conflicted assets and try again.
 
 At most three assets are listed by name, and the rest are counted. Take those items off the booking or move your dates, and the reserve goes through. A draft that holds a unit of a model other bookings have fully reserved is refused at the same moment, with [its own message](#some-assets-cannot-be-booked-by-name-for-these-dates) rather than a tooltip. Checking out runs the same check and answers the same way, with *Cannot check out booking* in place of the first phrase, so an item that someone else picked up between your reservation and your collection is named rather than hidden behind a generic failure.
+
+### A draft's model reservations no longer fit
+
+A draft's [model reservations](/glossary/asset-models) do not hold units, because a draft is still a plan. Shelf measures them when the draft is reserved, or checked out straight from Draft, against what the model can still supply for those dates. If they no longer fit, for example because another booking was reserved for the same units first, the booking stays a draft and you see this under **Booking conflict**:
+
+> Cannot reserve booking. Some model reservations no longer fit:
+> "Dell Latitude 5550": 4 units still to assign, but only 2 can be booked. 1 unit in custody and 3 units reserved by model on other bookings count against the pool for these dates.
+> Reduce them, or change the dates.
+
+Every short model gets its own line, and each line says what is taking the units: units in custody, units other bookings hold by name, units other bookings reserved by model. Lower the reservation to what can be booked, or move the dates, and reserve again. A booking that is already **Reserved** is not measured again at check-out, so a pool that shrinks after you reserved does not strand your booking at the counter.
 
 ### A reserved booking cannot be emptied
 
