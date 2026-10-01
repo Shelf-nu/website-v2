@@ -11,7 +11,7 @@ personas:
   - "education"
 canonicalUrl: "/glossary/asset-models"
 date: "2026-07-03"
-updated: "2026-09-23"
+updated: "2026-10-01"
 
 seo:
   title: "What Are Asset Models? | Definition & Examples"
@@ -33,13 +33,14 @@ This sits between the two tracking methods in Shelf: [individually tracked asset
 - **One picture for the whole fleet**: upload a photo once on the model and every unit that has no photo of its own shows it.
 - **Per-unit accountability stays intact**: each unit keeps its own QR label, custody, maintenance reminders, and audit trail, so you always know exactly who has which unit. Joining, leaving or switching a model is part of that trail: the unit's activity names the model it left and the one it joined.
 - **Book by model**: reservations can target the model instead of a specific unit.
+- **See the fleet at a glance**: the asset index's **Asset model view** lists your models instead of your assets, with how many units match your filters and where they are right now (in, out, in custody). Click a count to see the units behind it. See [Asset Model View](/knowledge-base/advanced-asset-index-complete-guide#asset-model-view).
 - **Group a fleet you already own**: select the units in the asset index, then **Actions → Update asset model**. You can create the model from inside the picker, and **Remove from asset model** ungroups a selection the same way. Only the model link changes: category, value, and custody stay as they are, and quantity-tracked assets in the selection are skipped rather than blocking the batch. See [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf#grouping-a-fleet-into-an-asset-model). If you are changing several fields at once, an `Asset model` column in [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) does the same job as part of a wider edit, matching names case-insensitively and creating a model that doesn't exist yet.
 
 ---
 
 ## Book by model
 
-With units grouped under a model, a booking can reserve a quantity of that model without picking units up front: reserve "4x HDMI cable", and at pickup staff scan whichever 4 physical units they hand out. Any unit of the model fulfils the reservation, and the booking records exactly which units went out. The reserved units are held for those dates: once reservations take up every free unit, another booking can't claim one by picking it by name, and the booking picker marks those units **Reserved by model**. Bookings, including reserving by model, are part of the Team plan.
+With units grouped under a model, a booking can reserve a quantity of that model without picking units up front: reserve "4x HDMI cable", and at pickup staff scan whichever 4 physical units they hand out. Any unit of the model fulfils the reservation, and the booking records exactly which units went out. The reserved units are held for those dates: once reservations take up every free unit, another booking can't claim one by picking it by name, and the booking picker marks those units **Reserved by model**. You can also start from the asset index: tick models in the **Asset model view** and use **Book selection** to create a booking that reserves them, or to add them to an open one. Bookings, including reserving by model, are part of the Team plan.
 
 A unit answers a reservation whether you pick it on its own or it arrives inside a [kit](/knowledge-base/kits) — a camera in a case is the same camera — and each physical unit answers at most one reserved unit per booking. Rows that answered one carry a blue **Fulfils _model name_** chip on the booking.
 
