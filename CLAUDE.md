@@ -22,7 +22,7 @@ Marketing website for [Shelf.nu](https://shelf.nu), an open-source asset managem
 
 ```bash
 npm run dev           # Dev server (localhost:3000)
-npm run build         # Full build: next build → pagefind index → copy to public/
+npm run build         # Full build: next build → pagefind index → strip keyword blocks → copy index to public/
 npm run start         # Serve static output: npx serve out
 npm run lint          # ESLint
 ```
@@ -62,6 +62,7 @@ out/                     # Build output (static HTML + pagefind index)
 - Pages are indexed via `<PagefindWrapper>` component with `data-pagefind-body`.
 - Use `type` prop for filter categories (Blog, Page, Feature, etc.).
 - Use `keywords` prop to boost ranking for primary search terms (weight 10x).
+- The `keywords` block exists only for the indexer. `npm run build` strips it from `out/` after indexing (`scripts/strip-pagefind-keywords.mjs`), so deployed pages carry no hidden keyword text; the index keeps the boost. Render `PagefindWrapper` from a server component: from a client component, hydration re-creates the block, and the build fails (that is why `/pricing/page.tsx` is a server wrapper around `PricingPageContent`).
 - Build writes index to `out/pagefind`; `search:dev` script copies to `public/pagefind` for dev.
 - The search dialog lazy-loads `/pagefind/pagefind.js` at runtime.
 - Text repeated on every page of a layout (CTA blocks, sidebars, button rows) gets `data-pagefind-ignore`, like the navbar and footer. Boilerplate inside `data-pagefind-body` makes its words worthless for ranking; the global CTA's "Book a demo" once pushed /demo to #5 for "demo".
