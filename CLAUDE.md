@@ -125,6 +125,7 @@ node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
 node scripts/analytics.mjs gsc-summary    [--days 30] # GSC overview + quick wins
 node scripts/analytics.mjs gsc-queries    [--days 30] # Top search queries (clicks, impr, CTR, pos)
 node scripts/analytics.mjs gsc-pages      [--days 30] # Top pages by search performance
+node scripts/analytics.mjs head-terms     [--months 6] # Which shelf.nu URL ranks per head term, per month (data/head-terms.json)
 node scripts/analytics.mjs experiments                        # Show all SEO experiments + auto-pull results
 node scripts/analytics.mjs experiments capture-baseline <id>  # Capture baseline GSC metrics for an experiment
 node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed (starts evaluation timer)

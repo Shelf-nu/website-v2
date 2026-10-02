@@ -19,6 +19,7 @@
  *   node scripts/analytics.mjs gsc-queries   [--days 30]
  *   node scripts/analytics.mjs gsc-pages     [--days 30]
  *   node scripts/analytics.mjs gsc-summary   [--days 30]
+ *   node scripts/analytics.mjs head-terms    [--months 6] [--term "…"]  # Which shelf.nu URL ranks per head term, per month (data/head-terms.json)
  *
  *   node scripts/analytics.mjs cf-vitals     [--days 14]   # Core Web Vitals (LCP/FCP/CLS/INP/TTFB)
  *   node scripts/analytics.mjs cf-summary    [--days 14]   # Cloudflare RUM traffic + referrers
@@ -1445,6 +1446,88 @@ async function cmdRevenue() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Head terms — which shelf.nu URL ranks, per month                   */
+/* ------------------------------------------------------------------ */
+
+const HEAD_TERMS_FILE = resolve(root, "data", "head-terms.json");
+
+/**
+ * For every head term in data/head-terms.json, print a monthly series of the
+ * shelf.nu URL Google actually ranks for the EXACT query, its position and
+ * the term's impressions/clicks, and flag the months where that URL is not
+ * the page meant to own the term.
+ *
+ * Why this exists: page-level averages hide the URL swap. In Sept 2026
+ * "equipment management software" looked like a page-2 term for the solution
+ * page, while GSC showed a blog roundup holding it at pos 26 and the solution
+ * page drawing 7 impressions. Personalised SERPs lie the other way (a signed-in
+ * Google showed the homepage at #2 while GSC said 27.6). This series is the
+ * honest read for the internal-link and consolidation experiments (exp-052+):
+ * did the ranking URL flip, and did the position move.
+ *
+ *   node scripts/analytics.mjs head-terms [--months 6] [--term "equipment booking system"]
+ */
+async function cmdHeadTerms() {
+    let cfg;
+    try {
+        cfg = JSON.parse(readFileSync(HEAD_TERMS_FILE, "utf-8"));
+    } catch {
+        console.error(`⚠️  Could not read ${HEAD_TERMS_FILE}`);
+        return;
+    }
+    const monthsIdx = args.indexOf("--months");
+    const months = monthsIdx >= 0 ? parseInt(args[monthsIdx + 1], 10) || 6 : 6;
+    const termIdx = args.indexOf("--term");
+    const only = termIdx >= 0 ? args[termIdx + 1] : null;
+    const terms = cfg.terms.filter((t) => !only || t.query === only);
+    if (terms.length === 0) {
+        console.error(`No head term matches "${only}" — see data/head-terms.json`);
+        return;
+    }
+
+    // Calendar-month buckets ending 3 days ago (GSC data lags 2–3 days); the
+    // last bucket is the partial current month and is marked with "*".
+    const end = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
+    const buckets = [];
+    for (let i = months - 1; i >= 0; i--) {
+        const first = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth() - i, 1));
+        const lastOfMonth = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0));
+        const partial = lastOfMonth >= end;
+        buckets.push({ label: dateStr(first).slice(0, 7), start: dateStr(first), end: dateStr(partial ? end : lastOfMonth), partial });
+    }
+    const short = (u) => u.replace(/^https?:\/\/(www\.)?shelf\.nu/, "") || "/";
+
+    console.log(`\n🎯 Head terms — ranking URL per month (query EQUALS; GSC ${buckets[0].start} → ${buckets[buckets.length - 1].end})\n${"=".repeat(104)}`);
+    console.log(`  ✓ owner page ranks   ✗ another shelf.nu URL holds the term   – no impressions   * partial month\n`);
+
+    for (const t of terms) {
+        console.log(`"${t.query}"   owner: ${t.owner}${t.note ? `   (${t.note})` : ""}`);
+        console.log(`  ${pad("month", 8)} ${rpad("impr", 6)} ${rpad("clicks", 6)}    ${pad("ranking URL", 44)} ${rpad("pos", 5)}   2nd URL`);
+        for (const b of buckets) {
+            const rows = await gscQuery(["page"], b.start, b.end, 3, [{ dimension: "query", operator: "equals", expression: t.query }]);
+            if (rows === null) return;
+            const label = b.label + (b.partial ? "*" : "");
+            if (rows.length === 0) {
+                console.log(`  ${pad(label, 8)} ${rpad("–", 6)} ${rpad("–", 6)}    –`);
+                continue;
+            }
+            rows.sort((a, c) => c.impressions - a.impressions);
+            const impr = rows.reduce((s, r) => s + r.impressions, 0);
+            const clicks = rows.reduce((s, r) => s + r.clicks, 0);
+            const [top, second] = rows;
+            const mark = short(top.keys[0]) === t.owner ? "✓" : "✗";
+            console.log(
+                `  ${pad(label, 8)} ${rpad(impr, 6)} ${rpad(clicks, 6)}  ${mark} ${pad(short(top.keys[0]).slice(0, 44), 44)} ${rpad(top.position.toFixed(1), 5)}` +
+                (second ? `   ${short(second.keys[0]).slice(0, 36)} ${second.impressions}i @${second.position.toFixed(0)}` : "")
+            );
+        }
+        console.log("");
+    }
+    console.log(`  Read the ranking URL and its position, not a page average: the average hides the URL swap.`);
+    console.log(`  A ✗ month means the owner page is not the one Google shows — the lever is links or consolidation, not the snippet.\n`);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Router                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -1463,6 +1546,7 @@ const COMMANDS = {
     "gsc-queries": cmdGscQueries,
     "gsc-pages": cmdGscPages,
     "gsc-summary": cmdGscSummary,
+    "head-terms": cmdHeadTerms,
     "cf-vitals": cmdCfVitals,
     "cf-summary": cmdCfSummary,
     "cf-pages": cmdCfPages,

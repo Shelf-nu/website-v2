@@ -1602,17 +1602,17 @@
         "capturedAt": "2026-07-23T09:41:40.314Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 165,
+        "impressions": 9209,
+        "ctr": 1.79,
+        "position": 6.7,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:52.565Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1621,7 +1621,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 170c/10,238i/1.66%/pos5.5 -> 155c/8,869i/1.75%/pos6.8. CTR +5% against a control that drifted +19%, so the rewrite did NOT beat the market; clicks (-9%) and impressions (-13%) both beat the control.\nCore check-in/check-out cluster (S1): 0.37% -> 0.28% CTR, pos 5.3 -> 6.2. Like-for-like (128 queries in both windows): -22% CTR, +0.9 pos.\nNOT JUDGEABLE EITHER WAY, and the reason is the finding: S7 query-row coverage is 12% pre / 8% post — the named queries account for 13 of 155 clicks, so neither view carries the page.\nTHE PREMISE IS REFUTED, which is worth more than the verdict (S8, now confirmed on the full window across two different titles): \"equipment checkout software\" holds pos 1.3->1.4 on 477->500 impressions at EXACTLY ZERO clicks in both windows; \"free check in check out software\" pos 2.2 both windows, zero clicks. These are AI-overview/SERP-feature placements. No title moves them, and the +374 clicks/mo forecast built on them was fiction.\nANSWER TO THE BATCH QUESTION \"did restored action verbs (P3) beat exp-029's version?\": unanswerable on this page and it always would have been. The page's impression base is dominated by zero-click SERP-feature queries, so it cannot serve as a test bed for any title pattern. Retire this page from CTR experimentation; route it to AEO instead.\n[R1 re-check 2026-09-23] Live <title> curled = 'Free Equipment Check-In and Check-Out Software — Scan, Return | Shelf Asset Management' — identical to the `after` string; the experiment copy has been live continuously since 2026-07-23. Verdict stands (S12: unfalsifiable on this page, query coverage 6%)."
     },
     {
       "id": "exp-040",
@@ -1642,17 +1642,17 @@
         "capturedAt": "2026-07-23T09:41:41.306Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 110,
+        "impressions": 14117,
+        "ctr": 0.78,
+        "position": 9.2,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.034Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1661,7 +1661,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 98c/10,453i/0.94%/pos8.9 -> 96c/13,654i/0.70%/pos9.3 — the headline -20% CTR is a TEXTBOOK S1 ARTEFACT. Impressions rose +31% on tangential queries (\"macrs\" 38->124i, \"depreciation calculator\" 11->71i, \"bonus depreciation calculator\" 99->117i), all near-zero-click, diluting the rate.\nCore calculator cluster (coverage 44% pre / 50% post, so the query view IS the truth here): 2.25% -> 2.17% CTR, pos 9.8 -> 9.5. Like-for-like (90 matched queries): 2.27% -> 2.26%, pos 9.0 -> 8.9. Flat on every axis.\nMoney query \"macrs depreciation calculator\": 3.41%@pos3.4 -> 3.47%@pos3.9 — unmoved.\nSmall positives: \"tax depreciation calculator\" 0.68%@4.1 -> 3.40%@3.5 (1->5 clicks); \"macrs depreciation calculation\" 0 -> 2 clicks.\nVERDICT VALUE IS THE NULL RESULT: deduping the doubled \"| Shelf\" brand suffix and swapping \"IRS Tables\"->\"IRS Pub 946\" is ranking-neutral AND CTR-neutral. That independently re-confirms exp-040's companion finding that suffix dedupe is safe, so the remaining doubled-suffix housekeeping can proceed without risk — but it buys nothing on its own. Do not spend an experiment slot on suffix dedupe again; fold it into other changes."
     },
     {
       "id": "exp-041",
@@ -1682,17 +1682,17 @@
         "capturedAt": "2026-07-23T09:41:42.248Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 8,
+        "impressions": 6250,
+        "ctr": 0.13,
+        "position": 10.1,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.368Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1701,7 +1701,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 7c/6,455i/0.11%/pos8.8 -> 7c/5,940i/0.12%/pos10.1. Identical click count on ~6k impressions.\nCore laptop/computer asset-tag cluster: 1 click -> 0 clicks, 0.03% -> 0.00%, pos 9.5 -> 9.9. Like-for-like (35 matched queries): same, -100% CTR, +0.4 pos.\nThe rewrite was A1-compliant (kept \"Asset Tags\" + \"Computers\", added \"Laptops\") and it changed nothing. Every core query still returns zero: \"laptop asset tag\" 304i@pos10 = 0c, \"asset tags for computers\" 170i@pos13.1 = 0c, \"computer asset tag\" 164i@pos9.4 = 0c.\nCONFIRMS THE INFORMATIONAL-INTENT TRAP: these searchers want to know what the sticker on their laptop IS, not to buy tagging software. The page sits at pos 9-13 on ~6,000 impressions and converts essentially none of it, under two very different titles. This is not a snippet problem and no title will fix it (S3-adjacent: right topic, wrong intent).\nDo not run further metadata experiments on this page. Confirmed at full window — the day-20 read holds."
     },
     {
       "id": "exp-042",
@@ -1722,17 +1722,17 @@
         "capturedAt": "2026-07-23T09:41:43.207Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 32,
+        "impressions": 6180,
+        "ctr": 0.52,
+        "position": 6.9,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.711Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1741,7 +1741,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nTHE ONLY CLEAN WIN IN BATCH 4, and it is clean because position was held exactly.\nTight core cluster (exact \"snipe(-)it alternative/alternatives/competitors\" + spelling variants): 3c/386i/0.78%/pos3.1 -> 8c/380i/2.11%/pos3.1. Impressions flat (386->380), position IDENTICAL (3.1->3.1), clicks 2.7x. With impressions and rank both held, the snippet is the only variable that moved.\nLike-for-like (13 matched queries): 1.93% -> 2.49% CTR (+29%) at pos 3.0 -> 3.1.\nStandouts: \"snipe-it alternatives\" 0% -> 5.26% at an unchanged pos 3.2->3.1; \"snipe it alternative\" 0% -> 3.33% at pos 3.5->3.0; \"snipeit alternatives\" 0% -> 4.35%.\nPage aggregate (0.54% -> 0.50%) is diluted by the brand-navigation cluster (\"snipeit\"/\"snipe-it\"/\"snipe it\", ~800 impressions at pos 7-11 that will never click through to a competitor's alternative page) — S1 again.\nCONFIRMS P7: on an \"X alternative\" SERP every competing title says the same category words, so naming the two features the incumbent verifiably lacks (bookings, native mobile app) is the only non-duplicated text available. Requires the gap to be real — Snipe-IT genuinely has neither. Pair with P2 (\"Open Source\" lead). This is now the highest-confidence format for /alternatives/* pages; apply it to the remaining competitor pages."
     },
     {
       "id": "exp-043",
@@ -1762,17 +1762,17 @@
         "capturedAt": "2026-07-23T09:41:45.709Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 3,
+        "impressions": 3029,
+        "ctr": 0.1,
+        "position": 14.2,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.980Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1781,7 +1781,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\n*** RANKING DAMAGE — REVERT RECOMMENDED. This is the exp-009 failure signature. ***\nCore qr+asset cluster: 1c/637i/0.16%/pos12.1 -> 0c/1,233i/0.00%/pos20.3 — a 8.2-spot collapse. It SURVIVES the like-for-like test (34 queries present in both windows: pos 12.2 -> 21.1, +8.9), so it is real demotion, not a composition artefact.\nCasualties are concentrated on the term the title ADDED (\"Tracking\"), while the term it KEPT (\"Asset Management\") barely moved:\n  ADDED-term queries: \"qr code asset tracking system\" pos 19.5 -> 52.3 (-32.8); \"asset tracking qr code\" 15.0 -> 29.2; \"qr code asset tracking software for enterprises\" 5.3 -> 15.4; \"asset tracking with qr codes\" 20.8 -> 30.0; \"qr asset tracking\" 19.7 -> 24.8.\n  KEPT-term queries: \"qr code asset management\" 10.5 -> 12.7; \"qr asset management\" 7.7 -> 9.3; \"qr code asset tracking\" 10.4 -> 11.1.\nMECHANISM CONFIRMED BY PAGE-LEVEL PROBE, and it corrects the earlier day-20 write-up: the cannibalising page is /solutions/asset-tracking, NOT /solutions/qr-code-asset-tracking (which the first pass named and which turns out to carry only 47 impressions — it cannibalises nothing). Per-query, the swap is explicit:\n  \"qr code asset tracking system\": /solutions/asset-tracking pos 17.0 -> 8.3 WHILE this blog went 19.5 -> 52.3.\n  \"qr asset tracking\": /solutions/asset-tracking holds pos 1.3 -> 1.4 throughout; the blog sinks 19.7 -> 24.8.\nA third URL, /blog/qr-code-asset-tagging-revolutionizing-..., is in the same pileup at pos 49-67 and also lost ground: this is a THREE-WAY internal collision on \"qr * asset tracking\", and /solutions/asset-tracking is the rightful owner.\nACTION: revert the title to \"The Importance of QR Code Asset Management in Business\" (or retitle to management-only wording with no \"Tracking\"), and treat the qr-tracking cluster as owned by /solutions/asset-tracking. The lever here is consolidation (S2), not metadata.\n[2026-09-23] The revert shipped as exp-049 in PR #276 (live 2026-09-08)."
     },
     {
       "id": "exp-044",
@@ -1802,17 +1802,17 @@
         "capturedAt": "2026-07-23T09:41:46.696Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 5,
+        "impressions": 1543,
+        "ctr": 0.32,
+        "position": 10.4,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:54.520Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1821,7 +1821,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 2c/1,486i/0.13%/pos10.2 -> 5c/1,500i/0.33%/pos10.4. CTR +154% against a +19% control looks like a win and is NOT reportable as one: it is 2 clicks becoming 5.\nS7 coverage is 0% in BOTH windows — not a single one of those clicks appears in any query row, so there is literally nothing to verify at query level. All 51-58 named queries return zero clicks in both windows.\nCore check-in/check-out cluster: 0 clicks -> 0 clicks. Position did improve, like-for-like (21 matched queries) pos 11.9 -> 10.6 (-1.4), with real movers: \"check in check out fixed asset software\" pos 10.5 -> 3.8, \"check in and check out fixed asset software\" 15.5 -> 4.0, \"check in check out software for fixed assets\" 11.9 -> 7.1.\nSo the A1-compliant \"Asset\" extension plausibly helped RANKING on the fixed-asset sub-cluster, and the page still earns ~0 clicks because a glossary/definition page loses the click to the dictionary-style SERP and the AI overview.\nBelow the measurement floor for a CTR verdict (S4-adjacent: 1,500 impr/27d is at the demand gate, but 5 clicks is not enough signal). Re-measure at 90 days if the fixed-asset ranking gains hold; do not re-run a metadata experiment here in the meantime."
     },
     {
       "id": "exp-045",
@@ -1842,17 +1842,17 @@
         "capturedAt": "2026-07-23T09:41:47.703Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 1,
+        "impressions": 1031,
+        "ctr": 0.1,
+        "position": 10.7,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:54.828Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1861,7 +1861,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 3c/1,035i/0.29%/pos10.0 -> 1c/972i/0.10%/pos10.6. S7 coverage 0% in both windows — the handful of clicks never appear in query rows.\nCore asset-panda cluster: 0 clicks -> 0 clicks in both windows. No CTR verdict is possible; the page has no clicks to move.\nRANKING DID IMPROVE, and this is the salvageable signal: like-for-like (22 matched queries) pos 10.9 -> 9.8, driven by the head alt-queries — \"asset panda alternative\" pos 6.7 -> 4.7 (162 impr), \"asset panda alternatives\" 7.5 -> 4.4 (85 impr). That is the same \"Open Source\"-lead change that won on exp-042, corroborating P7 at ranking level on a second page — just without the traffic to prove clicks.\nCONFIRMS S9: the description-led bet failed exactly as S9 predicts. The pricing cluster it was written for (\"asset panda pricing\" 119i, \"asset panda cost\", \"asset panda price\", \"how much does asset panda cost\") sits at pos 13.9-23.4 and returned ZERO clicks in both windows. At pos ~15 the snippet is never scrolled to; copy cannot rescue a query ranked below ~10.\nNEXT LEVER for this page is position on the alt-queries (now pos 4.4-4.7 and climbing), not more copy. Re-measure in 60-90 days — if it reaches pos 3 the P7 format should start converting as it did on snipe-it."
     },
     {
       "id": "exp-046",
@@ -1882,17 +1882,17 @@
         "capturedAt": "2026-07-23T09:41:48.554Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 2,
+        "impressions": 3437,
+        "ctr": 0.06,
+        "position": 15.6,
         "dateRange": [
-          null,
-          null
+          "2026-07-23",
+          "2026-08-20"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:55.285Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1901,7 +1901,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nVOID — NOT A LOSS. The experiment never ran long enough to be tested.\nDeployed 2026-07-23 (PR #198, commit 2e01287). Overwritten 2026-07-27 by PR #204 / commit 52c29e1 (\"content: retarget equipment-reservations for the equipment-scheduling query cluster\"), which replaced the title with \"Equipment Scheduling Software & Reservations | Shelf\". The exp-046 title was live for FOUR DAYS of a 27-day window.\nVerified per rule R1 by curling the live page on 2026-08-20: <title> is \"Equipment Scheduling Software & Reservations | Shelf | Shelf Asset Management\" — the exp-046 wording is absent.\nThe recorded numbers (aggregate 6c -> 2c, CTR 0.19% -> 0.06%; cluster pos 14.2 -> 12.7) measure PR #204's retarget, not this experiment. Do not attribute them to the \"Try Free\" change and do not feed them into A3.\n*** THE A3 REMEDY REMAINS UNTESTED. *** A3 says a \"Free\" magnet removed for truthfulness must be replaced rather than deleted; \"Try Free\" as the sanctioned replacement has still never had a fair window. Re-run it as a batch-5 experiment on a page that is not simultaneously being retargeted.\nSEPARATE BUG FOUND: the live title now carries a DOUBLED brand suffix — \"... | Shelf | Shelf Asset Management\" — because PR #204 wrote a manual \"| Shelf\" into the MDX frontmatter while the layout appends its own. Worth fixing in the doubled-suffix housekeeping pass (exp-040 confirms suffix dedupe is ranking-neutral, so the fix is safe).\nPROCESS RULE R1 EARNED ITS KEEP: this was caught only by curling the live title. Extend it to R2 — before deploying a metadata experiment, check no other in-flight content PR targets the same page.\n[2026-09-23] Same page now carries exp-048 (booking title, deployed 2026-09-08); live <title> is the exp-048 string. The A3 'Try Free' remedy remains untested — do not read exp-048 as its answer."
     },
     {
       "id": "exp-047",
