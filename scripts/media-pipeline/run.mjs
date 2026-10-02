@@ -38,6 +38,7 @@ const ARTICLES = {
   "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
   "checkin-receipt": "articles/checkin-receipt.mjs",
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
+  "asset-model-view": "articles/asset-model-view.mjs",
 };
 
 const slug = process.argv[2];
