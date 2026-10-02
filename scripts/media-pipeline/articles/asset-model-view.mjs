@@ -37,7 +37,8 @@ async function main() {
     const sheet = page.locator("[role=dialog]").first();
     await sheet.waitFor({ state: "visible" });
     await sheet.getByText("View all in list").waitFor({ state: "visible" });
-    await page.waitForTimeout(2000);
+    // "View all in list" also shows while the sheet loads, so wait for a row.
+    await sheet.locator("tbody tr").first().waitFor({ state: "visible" });
     console.log("sheet:", (await sheet.innerText()).split("\n").slice(0, 6).join(" | "));
     const sheetPng = await screenshot(page, join(OUT, "asset-model-view-sheet.png"));
     await page.keyboard.press("Escape");
