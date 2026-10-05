@@ -2310,6 +2310,20 @@
         ]
       },
       "deployedAt": "2026-09-21"
+    },
+    {
+      "id": "exp-053",
+      "page": "/alternatives/asset-panda",
+      "field": "faq-and-pricing-note",
+      "before": "No FAQ section, so the page emitted no FAQ structured data. The pricing paragraph quoted third-party Asset Panda figures without saying they were third-party or when they were checked.",
+      "after": "A 'Frequently Asked Questions' section before Case Studies with five questions (import from Asset Panda, is Shelf cheaper, configurable templates, mobile app, open source), emitted as FAQ JSON-LD. The pricing paragraph now says Asset Panda does not publish prices and that the figures are third-party reports checked on 5 October 2026. The 'Is Shelf cheaper' answer cites Capterra with the date.",
+      "hypothesis": "FAQ structured data plus a dated pricing answer lifts position for 'asset panda alternative(s)' (now 9.3 / 7.5) and CTR for 'asset panda pricing' (now position 15.4, 0 clicks)",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Same FAQ pattern as /alternatives/cheqroom (position 6.6). Verify at QUERY level. Link the FAQ pricing answer to /blog/asset-panda-pricing once that post is live. Capture the baseline before deploy with the experiments CLI.",
+      "evaluateAfterDays": 28,
+      "deployedAt": null
     }
   ]
 }
