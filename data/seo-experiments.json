@@ -2318,12 +2318,64 @@
       "before": "No FAQ section, so the page emitted no FAQ structured data. The pricing paragraph quoted third-party Asset Panda figures without saying they were third-party or when they were checked.",
       "after": "A 'Frequently Asked Questions' section before Case Studies with five questions (import from Asset Panda, is Shelf cheaper, configurable templates, mobile app, open source), emitted as FAQ JSON-LD. The pricing paragraph now says Asset Panda does not publish prices and that the figures are third-party reports checked on 5 October 2026. The 'Is Shelf cheaper' answer cites Capterra with the date.",
       "hypothesis": "FAQ structured data plus a dated pricing answer lifts position for 'asset panda alternative(s)' (now 9.3 / 7.5) and CTR for 'asset panda pricing' (now position 15.4, 0 clicks)",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Same FAQ pattern as /alternatives/cheqroom (position 6.6). Verify at QUERY level. Link the FAQ pricing answer to /blog/asset-panda-pricing once that post is live. Capture the baseline before deploy with the experiments CLI.",
       "evaluateAfterDays": 28,
-      "deployedAt": null
+      "deployedAt": "2026-10-05",
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 5,
+        "impressions": 3118,
+        "ctr": 0.16,
+        "position": 10,
+        "capturedAt": "2026-10-05T10:00:32.899Z"
+      },
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 4,
+        "clicks": 0,
+        "impressions": 1181,
+        "topQueries": [
+          {
+            "q": "asset panda alternative",
+            "clicks": 0,
+            "impr": 458,
+            "pos": 4.8,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda alternatives",
+            "clicks": 0,
+            "impr": 287,
+            "pos": 5,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda pricing",
+            "clicks": 0,
+            "impr": 374,
+            "pos": 15.4,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda cost",
+            "clicks": 0,
+            "impr": 62,
+            "pos": 13,
+            "page": "/alternatives/asset-panda"
+          }
+        ],
+        "note": "exact-query positions; the 9.3/7.5 in the hypothesis were variant averages",
+        "capturedAt": "2026-10-05"
+      }
     },
     {
       "id": "exp-054",
@@ -2332,13 +2384,58 @@
       "before": "No shelf.nu page targeted Asset Panda pricing queries; /alternatives/asset-panda caught 376 impressions a quarter for 'asset panda pricing' at position 15.4 with 0 clicks",
       "after": "Dedicated, dated pricing explainer",
       "hypothesis": "A dedicated page with a sourced, dated Asset Panda price table and worked totals answers the pricing query better than the alternatives page, so it should rank on page 1 for 'asset panda pricing' and 'asset panda cost' and earn clicks where the alternatives page earned none.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Target queries: asset panda pricing, asset panda cost, asset panda price, how much does asset panda cost, is asset panda free, asset panda pricing per user, asset panda enterprise pricing, asset panda onboarding fee. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%).",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T10:00:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 3,
+        "clicks": 0,
+        "impressions": 436,
+        "topQueries": [
+          {
+            "q": "asset panda pricing",
+            "clicks": 0,
+            "impr": 374,
+            "pos": 15.4,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda cost",
+            "clicks": 0,
+            "impr": 62,
+            "pos": 13,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "is asset panda free",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          }
+        ],
+        "note": "before launch these landed on /alternatives/asset-panda",
+        "capturedAt": "2026-10-05"
+      }
     },
     {
       "id": "exp-057",
@@ -2347,13 +2444,58 @@
       "before": "No shelf.nu page targeted sign-out sheet or checkout form queries; GSC showed zero impressions for 'equipment sign out sheet' (390 searches a month, US) and its variants. Page 1 was Pinterest, Etsy, a Reddit thread and PDFs.",
       "after": "New post with free downloadable templates (Excel sign-out log with overdue highlighting, printable PDF, Shelf-import-ready item list CSV)",
       "hypothesis": "A post that hands over an ungated Excel and PDF template, then explains where sheets fail, should reach page 1 for 'equipment sign out sheet' and 'equipment checkout form', where page 1 has no software vendor with a usable template. Signup effect is unknown; this is the first Shelf page aimed at searchers who have not yet looked for software.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Target queries: equipment sign out sheet, equipment sign-out sheet template, equipment checkout form, equipment checkout form template, tool sign out sheet, equipment sign out sheet excel, equipment sign out sheet pdf, equipment checkout sheet. Templates at /templates/equipment-sign-out-sheet.xlsx, /templates/equipment-sign-out-sheet.pdf, /templates/equipment-item-list.csv. A template_download PostHog event is NOT wired yet (follow-up PR); until it ships, downloads are not measured. Measure at query level, plus PostHog signup_click sessions by entry page.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T10:00:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 3,
+        "clicks": 0,
+        "impressions": 0,
+        "topQueries": [
+          {
+            "q": "equipment sign out sheet",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          },
+          {
+            "q": "equipment checkout form",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          },
+          {
+            "q": "tool sign out sheet",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          }
+        ],
+        "note": "zero impressions sitewide before launch",
+        "capturedAt": "2026-10-05"
+      }
     },
     {
       "id": "exp-056",
@@ -2362,13 +2504,120 @@
       "before": "2023 post, 958 words, generic benefits list with no placement, lookup or numbering guidance. Position 8 to 12 on laptop-tag queries (laptop asset tag 10.4, asset tags for laptops 9.4, computer asset tag 9.3, what is an asset tag on a laptop 7.0), 3 clicks a quarter, and Google's AI answer cites the page for its definition.",
       "after": "About 2,400-word guide that opens with a one-sentence definition, then a tag-type comparison table, placement per device class, firmware asset-tag lookup commands (Windows, Linux, macOS, Chromebook), Dell/Lenovo/HP tools, a numbering format, a school 1:1 section, printing options and a 4-question FAQ, with cited sources.",
       "hypothesis": "Answering the lookup and placement intents (how to find the asset tag number, dell asset tag, chromebook asset tag) and keeping the quotable definition lifts the page from positions 8-12 into the top 5 for laptop and computer asset tag queries and keeps the AI-answer citation.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Brief B1. URL, canonicalUrl and date kept; updated set to 2026-10-05. Measure at QUERY level: laptop asset tag, asset tag on laptop, asset tags for laptops, asset tags for computers, computer asset tag, school computer asset tags, what is an asset tag on a laptop, asset tag number on laptop, dell asset tag, chromebook asset tag. Check whether the AI answer still cites the page. Placement photos are a later human task.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 32,
+        "impressions": 21240,
+        "ctr": 0.15,
+        "position": 9.5,
+        "capturedAt": "2026-10-05T10:00:38.471Z"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 12,
+        "clicks": 1,
+        "impressions": 7298,
+        "topQueries": [
+          {
+            "q": "laptop asset tag",
+            "clicks": 0,
+            "impr": 1099,
+            "pos": 10.4,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag on laptop",
+            "clicks": 1,
+            "impr": 876,
+            "pos": 11.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tags for laptops",
+            "clicks": 0,
+            "impr": 844,
+            "pos": 9.4,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tags for computers",
+            "clicks": 0,
+            "impr": 716,
+            "pos": 12.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "computer asset tag",
+            "clicks": 0,
+            "impr": 544,
+            "pos": 9.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "computer asset tags",
+            "clicks": 0,
+            "impr": 541,
+            "pos": 10.6,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "what is an asset tag on a laptop",
+            "clicks": 0,
+            "impr": 484,
+            "pos": 7.0,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag number on laptop",
+            "clicks": 0,
+            "impr": 461,
+            "pos": 10.5,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag on computer",
+            "clicks": 0,
+            "impr": 443,
+            "pos": 8.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag computer",
+            "clicks": 0,
+            "impr": 442,
+            "pos": 7.8,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "school computer asset tags",
+            "clicks": 0,
+            "impr": 440,
+            "pos": 9.8,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag laptop",
+            "clicks": 0,
+            "impr": 408,
+            "pos": 13.6,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          }
+        ],
+        "note": "query level on the rewritten post; AI answer cited this page for \"asset tags for laptops\" on 2026-10-05",
+        "capturedAt": "2026-10-05"
+      }
     },
     {
       "id": "exp-055",
@@ -2377,13 +2626,65 @@
       "before": "No shelf.nu page targeted Sortly pricing queries ('sortly pricing' 170 US searches a month); /alternatives/sortly ranks 1.9 for 'sortly free alternative' and 8.2 for 'sortly free' with no dated pricing answer",
       "after": "Dedicated, dated Sortly pricing explainer: plan table sourced from sortly.com/pricing and the Sortly help center, year-two cost calculated from Sortly's own renewal terms, free plan limits, worked totals, and Shelf prices for the same team sizes",
       "hypothesis": "Third-party pages on page 1 copy the introductory price and disagree with each other. A dated page that shows the year-two price from Sortly's own terms, and the free plan's exact limits, should rank on page 1 for 'sortly pricing' and 'sortly free plan' and convert like the Sortly alternative page.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Target queries: sortly pricing, sortly cost, sortly free plan, sortly free plan limits, is sortly free, sortly price increase, sortly renewal price, sortly alternative free. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%). Link from /alternatives/sortly (pricing row + FAQ) is a follow-up.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T10:00:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 4,
+        "clicks": 9,
+        "impressions": 269,
+        "topQueries": [
+          {
+            "q": "sortly pricing",
+            "clicks": 0,
+            "impr": 2,
+            "pos": 3,
+            "page": "/alternatives/sortly"
+          },
+          {
+            "q": "sortly free plan",
+            "clicks": 0,
+            "impr": 20,
+            "pos": 9.2,
+            "page": "/alternatives/sortly"
+          },
+          {
+            "q": "sortly free alternative",
+            "clicks": 4,
+            "impr": 71,
+            "pos": 2,
+            "page": "/alternatives/sortly"
+          },
+          {
+            "q": "sortly alternative",
+            "clicks": 5,
+            "impr": 176,
+            "pos": 3.5,
+            "page": "/alternatives/sortly"
+          }
+        ],
+        "note": "before launch these landed on /alternatives/sortly",
+        "capturedAt": "2026-10-05"
+      }
     }
   ]
 }
