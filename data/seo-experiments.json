@@ -2576,7 +2576,7 @@
             "q": "what is an asset tag on a laptop",
             "clicks": 0,
             "impr": 484,
-            "pos": 7.0,
+            "pos": 7,
             "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
           },
           {
@@ -2693,13 +2693,106 @@
       "before": "936-word post (updated May 2026) with a short comparison table and generic definitions. Position 7.6 to 11.3 for 'asset management vs inventory management' and its variants, 23.7 for 'asset and inventory management', 19 to 24 for 'asset and inventory management system'. no measurable signup clicks in 90 days.",
       "after": "About 2,000-word rewrite that opens with a one-sentence definition pair, then an 11-row decision table (identity, lifespan, what you count vs book vs depreciate, balance sheet, typical tools, owner), a section on supplies that sit between the two, 'can one tool do both' with Shelf's individually tracked plus quantity-tracked model as the worked example, an ITAM vs inventory section, and a 5-question FAQ from People also ask, with cited sources.",
       "hypothesis": "Page 1 for these queries is weak (forum threads, a county schools PDF, community posts). A quotable definition pair plus a decision table and direct answers to the People-also-ask questions should lift the page into the top 5 for 'asset management vs inventory management' and 'it asset management vs inventory management', and onto page 1 for 'asset and inventory management system', by showing equipment and supplies tracked in one workspace.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Brief B3. URL, canonicalUrl and date kept; updated set to 2026-10-05. Measure at QUERY level: asset management vs inventory management, inventory management vs asset management, asset and inventory management, asset and inventory management system, it asset management vs inventory management, inventory vs asset, asset vs inventory, difference between asset management and inventory management. Check whether the AI answer cites the page.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 6,
+        "impressions": 6309,
+        "ctr": 0.1,
+        "position": 14.2,
+        "capturedAt": "2026-10-05T11:27:21.305Z"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 10,
+        "clicks": 0,
+        "impressions": 2599,
+        "topQueries": [
+          {
+            "q": "asset management vs inventory management",
+            "clicks": 0,
+            "impr": 860,
+            "pos": 11.3,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset and inventory management",
+            "clicks": 0,
+            "impr": 486,
+            "pos": 23.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "manajemen aset vs manajemen inventaris",
+            "clicks": 0,
+            "impr": 196,
+            "pos": 8.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset tracking and inventory management",
+            "clicks": 0,
+            "impr": 190,
+            "pos": 25.9,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "what's the difference between a basic stock tracker and real inventory management software?",
+            "clicks": 0,
+            "impr": 183,
+            "pos": 8.9,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "is it worth switching from separate asset and inventory tools to one platform?",
+            "clicks": 0,
+            "impr": 170,
+            "pos": 6.4,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "inventory and asset management",
+            "clicks": 0,
+            "impr": 158,
+            "pos": 17.2,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset and inventory management system",
+            "clicks": 0,
+            "impr": 138,
+            "pos": 21.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "difference between asset and inventory",
+            "clicks": 0,
+            "impr": 110,
+            "pos": 9,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset vs inventory",
+            "clicks": 0,
+            "impr": 108,
+            "pos": 13.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          }
+        ],
+        "note": "query level on the rewritten post",
+        "capturedAt": "2026-10-05"
+      }
     },
     {
       "id": "exp-061",
@@ -2708,13 +2801,24 @@
       "before": "No shelf.nu page targeted asset register or equipment inventory template queries; GSC showed zero impressions for 'fixed asset register' (260 searches a month, US), 'asset register' (140), 'fixed asset register template' (70), 'equipment inventory template' (140) and variants. Two 2024 'asset registry' posts (781 and 484 words) never ranked. Page 1 for 'asset register template' had no AI answer and no software vendor with a usable template.",
       "after": "New post with three free downloads: a fixed asset register in Excel (straight-line depreciation, accumulated depreciation and net book value formulas, 5 example rows), an equipment inventory list in Excel and CSV whose headers are Shelf's exact import headers (8 example rows). The two 2024 registry posts 301 to it.",
       "hypothesis": "An ungated register template with working depreciation formulas, plus an inventory list that imports into Shelf, should reach page 1 for 'asset register template' and 'equipment inventory template', where page 1 is directories, a Notion template and Pinterest. Consolidating the two thin registry posts gives the new URL their link equity.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Brief C3. Target queries: asset register template, fixed asset register template, asset register template excel, fixed asset register, asset register, equipment inventory template, equipment inventory list, equipment inventory excel template. Templates at /templates/fixed-asset-register.xlsx, /templates/equipment-inventory-list.xlsx, /templates/equipment-inventory-list.csv. A template_download PostHog event is NOT wired yet (same follow-up as exp-057). Measure at query level, plus PostHog signup_click sessions by entry page.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05"
     },
     {
       "id": "exp-059",
@@ -2723,13 +2827,142 @@
       "before": "Five 2023 posts split the asset-tag cluster (GSC 90d, 34,128 impressions, 5 clicks across the cluster): /blog/the-comprehensive-guide-to-asset-tagging-systems (6,173 impr, avg pos 21.4), /blog/how-to-choose-the-best-asset-tags-for-your-equipment (7,092 impr, pos 20.0), /blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide (4,204 impr, pos 15.7), /blog/the-great-asset-tag-debate-bridging-traditional-methods-with-modern-asset-management, /blog/the-fascinating-history-of-asset-tags ('government asset tags' 368 impr, pos 10.7). Query splits: 'property tags equipment' 377 impr at 15.3 on one post and 314 at 19.5 on another; 'asset tag' 273 at 19.4, 76 at 74, 53 at 12, 51 at 41 across four posts; 'asset tagging' 499 at 48.7 on the blog while /glossary/asset-tagging holds 1,446 impr at 17.3. /blog/what-sort-of-asset-tags-can-you-create-with-shelf also live.",
       "after": "One dated hub at /blog/asset-tags-guide (definition first, what a tag must carry, material and code tables, material by environment, PREFIX-SITE-YEAR-SEQUENCE numbering with Luhn check digit, placement table by asset class, government and federal property tags from FAR 52.245-1, DFARS 252.211-7003 and Oregon OAM 10.50.00.PR, buy vs print, mistakes, FAQ, sources). Five old posts 301 to the hub; what-sort-of-asset-tags-can-you-create-with-shelf 301 to /tools/asset-label-designer; old MDX deleted; internal links repointed; /glossary/asset-tagging links the hub in its first paragraph.",
       "hypothesis": "The cluster cannibalises itself: four or five Shelf URLs share each query and none reaches page 1. Folding them into one complete, dated hub (the May 2026 consolidation in PR #146 is the precedent that worked) should put /blog/asset-tags-guide on page 1 for 'asset tag', 'asset tags', 'property tags equipment' and 'asset tag numbering system', and keep 'government asset tags' at or above 10.7.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Target queries: asset tag, asset tags, asset tagging, asset tags for equipment, property tags equipment, fixed asset tags, asset tag numbering system, asset tag format, asset tag system, asset management tags, government asset tags. Evaluate at QUERY level, not page level. Spokes: /blog/qr-code-asset-tags (exp-060) and the laptop post /blog/the-importance-of-pc-asset-tags-for-computer-hardware. Watch that /glossary/asset-tagging does not lose 'asset tagging'.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 15,
+        "clicks": 1,
+        "impressions": 7242,
+        "topQueries": [
+          {
+            "q": "asset tags for equipment",
+            "clicks": 0,
+            "impr": 965,
+            "pos": 19.5,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "asset tagging system",
+            "clicks": 1,
+            "impr": 624,
+            "pos": 23.4,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "property of tags",
+            "clicks": 0,
+            "impr": 581,
+            "pos": 11.4,
+            "page": "/blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide"
+          },
+          {
+            "q": "equipment asset tags",
+            "clicks": 0,
+            "impr": 564,
+            "pos": 15.9,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "asset management tags",
+            "clicks": 0,
+            "impr": 544,
+            "pos": 16.6,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "property tags",
+            "clicks": 0,
+            "impr": 508,
+            "pos": 10.9,
+            "page": "/blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide"
+          },
+          {
+            "q": "asset tagging",
+            "clicks": 0,
+            "impr": 499,
+            "pos": 48.7,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "asset management tag",
+            "clicks": 0,
+            "impr": 406,
+            "pos": 19.9,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "asset tag management",
+            "clicks": 0,
+            "impr": 386,
+            "pos": 22.3,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "property tags equipment",
+            "clicks": 0,
+            "impr": 377,
+            "pos": 15.3,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "tagging system",
+            "clicks": 0,
+            "impr": 366,
+            "pos": 18.8,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "fixed asset tags",
+            "clicks": 0,
+            "impr": 365,
+            "pos": 19.6,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "property tags for equipment",
+            "clicks": 0,
+            "impr": 364,
+            "pos": 15.8,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "fixed asset tag",
+            "clicks": 0,
+            "impr": 362,
+            "pos": 19.1,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "property tagging",
+            "clicks": 0,
+            "impr": 331,
+            "pos": 18.7,
+            "page": "/blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide"
+          }
+        ],
+        "note": "queries of the six posts folded into the hub, before the 301s",
+        "capturedAt": "2026-10-05"
+      }
     },
     {
       "id": "exp-060",
@@ -2738,13 +2971,142 @@
       "before": "Two QR posts split the QR tag queries (GSC 90d): /blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking (4,365 words, 2,955 impr, avg pos 14.1) and /blog/the-importance-of-qr-code-asset-management-in-business (922 words; 'qr code asset tracking' 823 impr, pos 7.9). Cluster queries: 'qr code asset tags' 720 impr, 'qr asset tags' 580, 'asset tags with qr code' 464, 'qr code asset tag' 351. /solutions/asset-tracking already ranks 4th for 'qr code asset tracking'.",
       "after": "One QR spoke at /blog/qr-code-asset-tags (definition first, QR vs 1D vs Data Matrix vs RFID, encode a link not data, DENSO WAVE error correction levels, size/print/material, what a Shelf scan shows, setup steps, FAQ, sources). Both old posts 301 here; old MDX deleted; internal links repointed. Links up to /blog/asset-tags-guide and out to /solutions/asset-tracking and /solutions/qr-code-asset-tracking for software intent.",
       "hypothesis": "One focused QR tag page, linked from the hub, should reach page 1 for 'qr code asset tags', 'qr asset tags' and 'asset tags with qr code' without pulling 'qr code asset tracking' away from /solutions/asset-tracking.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Target queries: qr code asset tags, qr asset tags, asset tags with qr code, qr code asset tag, qr code tagging. Guard query: qr code asset tracking (must stay on /solutions/asset-tracking at or above pos 4; if the spoke starts ranking for it instead, de-optimise the spoke). Also watch /solutions/qr-code-asset-tracking, which lists 'qr code asset tags' and 'asset tags with qr code' in its own keywords.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 15,
+        "clicks": 1,
+        "impressions": 5174,
+        "topQueries": [
+          {
+            "q": "qr code asset tracking",
+            "clicks": 1,
+            "impr": 823,
+            "pos": 7.9,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code asset tags",
+            "clicks": 0,
+            "impr": 720,
+            "pos": 14.7,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr asset tags",
+            "clicks": 0,
+            "impr": 580,
+            "pos": 12.3,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "asset tags with qr code",
+            "clicks": 0,
+            "impr": 464,
+            "pos": 11.7,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr code asset tag",
+            "clicks": 0,
+            "impr": 351,
+            "pos": 13.6,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr code asset tracking",
+            "clicks": 0,
+            "impr": 324,
+            "pos": 57.9,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr code asset tracking software",
+            "clicks": 0,
+            "impr": 302,
+            "pos": 41.4,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code asset tracking system",
+            "clicks": 0,
+            "impr": 243,
+            "pos": 57.8,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "\"what type of data can be shared\" \"regular + direct investments\" \"generate qr code\"",
+            "clicks": 0,
+            "impr": 241,
+            "pos": 8.6,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code asset tracking system",
+            "clicks": 0,
+            "impr": 229,
+            "pos": 29.7,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code equipment tracking",
+            "clicks": 0,
+            "impr": 190,
+            "pos": 38.8,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr codes for asset tracking",
+            "clicks": 0,
+            "impr": 185,
+            "pos": 12.3,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code equipment tracking",
+            "clicks": 0,
+            "impr": 180,
+            "pos": 30.6,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "what is an asset qr code and how do i use it?",
+            "clicks": 0,
+            "impr": 174,
+            "pos": 5.1,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr asset tracking",
+            "clicks": 0,
+            "impr": 168,
+            "pos": 18.0,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          }
+        ],
+        "note": "queries of the two QR posts folded into the spoke, before the 301s",
+        "capturedAt": "2026-10-05"
+      }
     },
     {
       "id": "exp-058",
@@ -2753,13 +3115,24 @@
       "before": "No shelf.nu page targeted AssetTiger pricing queries ('asset tiger pricing' 86 and 'assettiger pricing' 83 GSC impressions in 90 days, positions 6.8 / 6.4); review sites such as Expert Market (updated 2 Oct 2025) still describe AssetTiger as free for 250 assets",
       "after": "Dedicated, dated AssetTiger pricing explainer: plan table sourced from assettiger.com/pricing, the free plan's removal dated with Internet Archive captures (free on 26 Jul 2026, 30-day trial from the 11 Sep 2026 capture), trial-end terms, what AssetTiger does well, and Shelf totals for three team sizes",
       "hypothesis": "Searchers asking 'is assettiger free' and 'assettiger pricing' get stale answers from pages written before AssetTiger dropped its free plan. A dated page that shows the change with archive captures should rank on page 1 for 'assettiger pricing' and 'is assettiger free' and convert like the AssetTiger alternative page (7.8% signup sessions).",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-05",
       "relatedPatterns": [],
       "notes": "Target queries: assettiger pricing, asset tiger pricing, is assettiger free, assettiger free plan, how much is assettiger, assettiger vs asset panda price, asset tiger cost. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%). Link from /alternatives/asset-tiger (pricing row + 'Is AssetTiger free?' FAQ) is a follow-up.",
       "evaluateAfterDays": 28,
-      "baseline": {},
-      "deployedAt": null
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05"
     }
   ]
 }
