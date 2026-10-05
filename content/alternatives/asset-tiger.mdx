@@ -20,7 +20,7 @@ seo:
 
 # AssetTiger Alternative
 
-AssetTiger is a cloud-based asset tracking tool built by MyAssetTag.com (SmartSign, LLC), the largest online retailer for physical asset tags. Until at least July 2026 it offered a free plan for up to 250 assets, which made it a popular first step for small teams moving off spreadsheets. [AssetTiger's pricing page](https://www.assettiger.com/pricing), checked on 5 October 2026, now shows a 30-day free trial for up to 250 assets instead, and paid plans start at $20 per month for 500 assets. AssetTiger covers the basics—barcode scanning, check-in/check-out, depreciation tracking, and maintenance alerts—but teams that need reservation workflows, kit-level tracking, or custody chains typically look for a platform built around those operational needs.
+AssetTiger is a cloud-based asset tracking tool built by MyAssetTag.com (SmartSign, LLC), the largest online retailer for physical asset tags. Until at least July 2026 it offered a free plan for up to 250 assets, which made it a popular first step for small teams moving off spreadsheets. [AssetTiger's pricing page](https://www.assettiger.com/pricing), checked on 5 October 2026, now shows a 30-day free trial for up to 250 assets instead, and paid plans start at $20 per month for 500 assets. AssetTiger covers the basics: barcode scanning, check-in/check-out with a full custody chain, reservations, depreciation tracking, and maintenance alerts. Teams that need kit-level tracking and one flow from booking to check-out to verified return typically look for a platform built around those operational needs.
 
 ---
 
@@ -58,11 +58,11 @@ See: [Location Tracking](/features/location-tracking)
 
 ---
 
-### 3. Built-In Booking and Reservation System
+### 3. Reservations and Booking Depth
 
-AssetTiger does not include a reservation or booking system. Teams that need to schedule shared equipment in advance have to manage that process outside the platform—typically with spreadsheets, shared calendars, or email threads. This is one of the most frequently cited gaps in user reviews, because it introduces double-booking risk and coordination overhead that grows with team size.
+Both products offer reservations. [AssetTiger's pricing page](https://www.assettiger.com/pricing), checked on 5 October 2026, lists "Asset reservations / booking" on its free trial and on every paid plan. We have not used AssetTiger's booking feature, so we do not describe how it works here.
 
-Shelf includes native booking functionality with a real-time availability calendar. Users can reserve items ahead of time, see conflicts before they happen, and check out directly from a confirmed reservation. For shared equipment environments like production houses, universities, and IT departments, this eliminates the most common source of operational friction.
+Here is what Shelf's booking flow includes. A real-time availability calendar shows when each item is free. Shelf checks every booking for conflicts, so a taken time slot cannot be booked twice. Kits book as one unit, with all their accessories. Staff check out directly from a confirmed booking. Bookings are part of the Team plan.
 
 See: [Bookings](/features/bookings)
 
@@ -94,7 +94,7 @@ See: [Workspaces](/features/workspaces)
 
 ### 6. Scalable Custom Fields and Reporting
 
-AssetTiger’s 30-day free trial limits teams to 5 custom fields and 100 email notifications per day. Paid plans remove these caps, but reviewers consistently note that reporting and customization options feel constrained—particularly for teams that need to filter, export, or analyze assets across complex criteria. The interface is functional but dated, and integrations with external platforms (Google Workspace, Slack, SSO providers) are not available.
+AssetTiger’s 30-day free trial limits teams to 5 custom fields and 100 email notifications per day. Paid plans remove these caps. AssetTiger lists 80+ report types, such as depreciation, audit reconciliation, maintenance costs, and check-out history, with CSV and PDF export. In our reading of the product pages, those reports center on the asset register rather than on booking and utilization questions. For sign-in, AssetTiger lists 2FA and Google SSO on the trial and every paid plan, and its sign-in form also offers Microsoft. Paid plans add a REST API. The pricing page lists no SAML, Slack, or Zapier connections ([AssetTiger's pricing page](https://www.assettiger.com/pricing), checked on 5 October 2026).
 
 Shelf provides flexible custom fields across all plans and a built-in [Reports area](/features/reports) with ready-to-run reports designed around the operational questions: Booking Compliance (on-time vs late), Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, and Custody Snapshot. Each report supports timeframe and filter controls; every report exports to CSV and chart-based reports also export to PDF.
 
@@ -125,7 +125,7 @@ The right model depends on your shape: large inventories favor flat-rate pricing
 Teams typically move to Shelf when they hit specific operational limits:
 
 - **Outgrowing asset-count tiers**: Teams whose inventory keeps crossing AssetTiger’s plan limits and who need to scale without per-asset pricing constraints
-- **Shared equipment requires reservations**: Departments lending cameras, laptops, tools, or AV gear need booking workflows that AssetTiger does not offer
+- **Shared equipment needs one booking flow**: Departments lending cameras, laptops, tools, or AV gear need calendar-based conflict checks, kit-aware reservations, and check-out from a booking in one flow
 - **Kits and accessories travel together**: Film programs, event teams, and labs need grouped equipment to check out and return as verified units
 - **Multiple departments need separate inventories**: Organizations where IT, operations, and media each manage their own gear but leadership needs cross-department visibility
 - **Non-technical staff need self-service access**: Teams where students, volunteers, or field workers need to check out equipment without admin intervention
