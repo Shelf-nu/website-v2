@@ -3,7 +3,7 @@ title: "Duplicating Assets in Shelf"
 description: "Shelf's duplicate feature enables rapid creation of multiple copies from an existing asset. This guide explains proper usage and important considerations regarding custom fields and unique identifiers."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-13"
+updated: "2026-10-05"
 layout: "knowledge-base"
 ---
 
@@ -18,14 +18,28 @@ layout: "knowledge-base"
 1. Navigate to the asset page you want to duplicate
 2. Click the "Actions" dropdown menu
 3. Select "Duplicate"
-4. Enter the number of duplicates you want to create
+4. Enter the number of duplicates you want to create (up to 10 at a time)
 5. Click "Duplicate" to confirm
 
 
 ![Actions dropdown](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/duplicate-asset-1.webp)
 
 ![Duplicate option](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/duplicate-asset-2.webp)
-The new assets will be created with "(copy [ID])" appended to their names. For example, duplicating "Shimadzu GCMS-QP2020 NX" produces "Shimadzu GCMS-QP2020 NX (copy 1729610912949)".
+A single copy is named after the original with "(copy)" added, for example "Shimadzu GCMS-QP2020 NX (copy)". Several copies are numbered: "Shimadzu GCMS-QP2020 NX (copy 1)", "Shimadzu GCMS-QP2020 NX (copy 2)" and so on. One copy opens its new asset page; several take you back to the asset list.
+
+## What a Copy Keeps
+
+Every copy keeps the original's description, category, tags, value, custom fields, main image and whether it is available for booking. An individually tracked asset's copy also keeps its [asset model](/glossary/asset-models) and its location.
+
+### Quantity-Tracked Assets
+
+A copy of a [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is quantity-tracked too. It keeps the same quantity, unit of measure, behaviour (one-way or two-way) and low-stock threshold. It starts **unplaced**, because the original's units may be spread over several locations, so the copy's asset page shows how many units are unplaced and offers **Place them**.
+
+A quantity-tracked asset with no units in stock cannot be copied. The duplicate dialog says **No units to copy** and keeps **Duplicate** switched off. Add stock with **Adjust quantity** first, then duplicate it.
+
+### All or Nothing
+
+When you make several copies, Shelf creates all of them or none. If one copy fails, the copies already made are removed again and the dialog shows the error.
 
 ## Important Considerations
 
