@@ -1,9 +1,5 @@
-# Shelf.nu redirects (Cloudflare Pages _redirects). Format: /old /new 301
-# LIMIT (measured 2026-10-05): Pages silently ignored every rule past about the 135th rule / 11 KB of this file.
-# Keep it under 110 rules and 9,500 bytes; scripts/verify-redirects.mjs enforces this in the build. Specific redirects first.
-# The last rule is a canary: /blog/redirect-canary must answer 301 in production or rules at the end are being dropped.
-
-# 2026-10-05 asset-tag pillar consolidation
+# Cloudflare Pages _redirects. Pages ignores rules past ~135 rules / ~11 KB (measured 2026-10-05): keep comments out, specific rules first, canary last.
+# Guard: scripts/verify-redirects.mjs. Long-tail legacy URLs: blog-briefs-2026-10-05/cloudflare-bulk-redirects-legacy-2026-10-05.csv (Cloudflare Bulk Redirects).
 /blog/the-comprehensive-guide-to-asset-tagging-systems /blog/asset-tags-guide 301
 /blog/how-to-choose-the-best-asset-tags-for-your-equipment /blog/asset-tags-guide 301
 /blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide /blog/asset-tags-guide 301
@@ -12,31 +8,23 @@
 /blog/what-sort-of-asset-tags-can-you-create-with-shelf /tools/asset-label-designer 301
 /blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking /blog/qr-code-asset-tags 301
 /blog/the-importance-of-qr-code-asset-management-in-business /blog/qr-code-asset-tags 301
-# 2026-10-05 asset register consolidation
 /blog/the-ultimate-guide-to-implementing-an-asset-registry /blog/asset-register-template 301
 /blog/why-your-business-needs-shelf-as-an-asset-registry-software /blog/asset-register-template 301
-# Blog consolidation 2026-05: asset-vs-inventory (2 posts -> 1)
 /blog/differences-between-asset-tracking-software-and-inventory-management-software /blog/the-difference-between-inventory-management-systems-and-asset-management-systems 301
 /blog/open-source-asset-management-unlocking-efficiency-and-cost-savings /solutions/open-source-asset-management 301
-# KB consolidation 2026-04: Asset Identifiers merge (3 → 1)
 /knowledge-base/understanding-and-using-custom-property-ids-in-shelf /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
 /knowledge-base/sequential-asset-ids-simplifying-asset-identification /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
 /knowledge-base/change-asset-label-information /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
-# KB consolidation 2026-04: Exports merge (filter-export absorbed)
 /knowledge-base/how-to-filter-export-and-report-on-your-asset-inventory /knowledge-base/export-exporting-workspace-data-from-shelf 301
-# KB consolidation 2026-04: Advanced Index merge (enable absorbed)
 /knowledge-base/how-to-enable-advanced-index /knowledge-base/advanced-asset-index-complete-guide 301
-# Legal page renames
 /privacy-policy /privacy 301
 /terms-conditions /terms 301
-# Case study slug renames
 /case-studies/resq-contact-center-asset-management /case-studies/resq-contact-center 301
 /case-studies/from-memory-to-mastery-how-fabel-film-stopped-double-bookings-with-shelf /case-studies/fabel-film-double-bookings 301
 /case-studies/from-outlook-chaos-to-real-time-clarity-how-arellano-associates-transformed-event-equipment-management /case-studies/arellano-associates 301
 /case-studies/how-ces-recovered-70k-of-field-equipment-using-shelf-qr-labels /case-studies/ces-70k-recovery 301
 /case-studies/kansas-city-art-institute-cheqroom-migration /case-studies/kcai 301
 /case-studies/from-memory-to-mastery-how-fabel-film-stopped-double-bookings-and-reclaimed-30-minutes-per-production /case-studies/fabel-film-double-bookings 301
-# Knowledge base slug renames
 /knowledge-base/advanced-asset-index /knowledge-base/advanced-asset-index-complete-guide 301
 /knowledge-base/adding-assets-to-a-booking /knowledge-base/adding-assets-and-kits-to-a-booking 301
 /knowledge-base/bookings-how-to-export-booking-information-and-assets /knowledge-base/bookings-how-to-export-booking-information-and-assets-checked-out 301
@@ -44,7 +32,6 @@
 /knowledge-base/custom-branded-qr-code-labels /knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf 301
 /knowledge-base/how-to-add-assets-to-your-inventory /knowledge-base/adding-new-assets 301
 /knowledge-base/how-to-prepare-a-spreadsheet-for-bulk-importing-assets /knowledge-base/importing-assets-to-shelf-csv-guide 301
-# KB consolidation 2026-04: Relocations out of KB
 /knowledge-base/how-to-get-in-touch-with-support /contact 301
 /knowledge-base/share-your-feedback-or-request-new-features-on-our-github https://github.com/Shelf-nu/shelf.nu/issues 301
 /knowledge-base/sequential-asset-ids-simplified-asset-identification /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
@@ -52,9 +39,7 @@
 /knowledge-base/working-hours-workspace /knowledge-base/working-hours-set-operating-schedules-for-your-workspace 301
 /knowledge-base/customize-your-qr-code-display-choose-between-qr-ids-and-sequential-asset-numbers /knowledge-base/asset-identifiers-qr-id-sam-id-property-id 301
 /knowledge-base-categories /knowledge-base 301
-# Blog category pages (entire section removed)
 /blog-categories/* /blog 301
-# /industries/ sub-page redirects
 /industries/automotive-manufacturing /industries 301
 /industries/chemical-manufacturing /industries 301
 /industries/digital-marketing-agencies /industries 301
@@ -64,7 +49,6 @@
 /industries/print-advertising-companies /industries 301
 /industries/public-relations-agencies /industries 301
 /industries/textile-clothing-manufacturing /industries 301
-# Solution slug renames
 /solutions/it-asset-tracking /solutions/it-asset-management 301
 /solutions/equipment-check-out /solutions/equipment-check-in 301
 /solutions/equipment-checkin /solutions/equipment-check-in 301
@@ -74,13 +58,10 @@
 /solutions/camera-equipment-checkout /solutions/camera-equipment-check-out 301
 /solutions/qr-asset-labels /tools/asset-label-designer 301
 /solutions/custody /features/custody 301
-# Missing features
 /features/signed-custody /features/custody 301
 /features/qr-codes /features/asset-pages 301
 /features/custom-fields /knowledge-base/custom-field-types-in-shelf 301
-# Missing root-level pages
 /bookings /features/bookings 301
-# Calculator pages → dedicated tool pages
 /depreciation-calculator /tools/equipment-depreciation-calculator 301
 /asset-depreciation-calculator /tools/equipment-depreciation-calculator 301
 /equipment-depreciation-calculator /tools/equipment-depreciation-calculator 301
@@ -88,7 +69,6 @@
 /macrs-depreciation-calculator /tools/macrs-depreciation-calculator 301
 /salvage-value-calculator /tools/salvage-value-calculator 301
 /roi-calculator /tools/asset-roi-calculator 301
-# Product/tool pages
 /asset-tags /tools/asset-label-designer 301
 /asset-tag-maker /tools/asset-label-designer 301
 /article-inserts /tools/asset-label-designer 301
@@ -96,14 +76,11 @@
 /tools/qr-code-decoder /tools/barcode-scanner 301
 /csv-helper /knowledge-base/importing-assets-to-shelf-csv-guide 301
 /order-tags /tools/asset-label-designer 301
-# Download pages → docs
 /download https://docs.shelf.nu 301
 /download/mac https://docs.shelf.nu 301
 /download/windows https://docs.shelf.nu 301
-# Marketing-site catches for app-host typos / malformed inbound links
 /login https://app.shelf.nu/login 301
 /features) /features 301
-# Misc pages
 /sales /demo 301
 /search / 301
 /better-asset-management / 301
@@ -114,5 +91,40 @@
 /accessibility-statement /about 301
 /thank-you-ppc / 301
 /vacancies/full-stack-developer-intern-remix-run-typescript /about 301
-# canary (keep last)
+/glossary/rfid-asset-tracking /blog/asset-tags-guide 301
+/glossary/fixed-assets /solutions/fixed-asset-tracking 301
+/glossary/cloud-based-asset-management /solutions/asset-tracking 301
+/glossary/total-cost-of-ownership-tco /blog/the-true-roi-of-asset-management-a-nuanced-perspective 301
+/glossary/it-asset-management-itam /solutions/it-asset-management 301
+/glossary/asset-lifecycle /solutions/asset-tracking 301
+/glossary/digital-twin /blog/what-are-digital-twins-and-how-can-you-use-them-for-your-business 301
+/glossary/barcode-scanning /tools/barcode-scanner 301
+/mastering-asset-control-in-the-hotel-and-hospitality-industry /industries 301
+/glossary/depreciation /tools/equipment-depreciation-calculator 301
+/streamline-your-warehouse-operations-with-shelfs-inventory-management /solutions/multi-location-asset-tracking 301
+/glossary/inventory-management /blog/the-difference-between-inventory-management-systems-and-asset-management-systems 301
+/glossary/predictive-maintenance /glossary/preventive-maintenance 301
+/advanced-asset-management-for-pharmaceutical-companies-with-shelf /industries 301
+/alternatives/hippo-cmms /alternatives/limble 301
+/alternatives/duck-track-pack /blog/duck-pack-and-track-alternative 301
+/alternatives/qr-inventory-software /solutions/qr-code-asset-tracking 301
+/enhance-asset-management-in-fashion-retail-with-shelf /industries 301
+/navigating-equipment-management-for-marine-supply-with-shelf /industries 301
+/blog/pricing-changes-for-shelf /pricing 301
+/blog/shelf-release-update-september-2023 /updates 301
+/optimizing-asset-management-for-fitness-and-gym-facilities-with-shelf /industries 301
+/optimize-utility-asset-management-with-shelf /industries 301
+/asset-management-software-for-it-service-providers /industries/it 301
+/alternatives/finale-inventory /alternatives/sortly 301
+/mastering-asset-management-in-event-planning-with-shelf /solutions/equipment-reservations 301
+/equipment-management-for-educational-institutions /industries/education 301
+/optimize-it-hardware-inventory-with-shelfs-equipment-management /industries/it 301
+/blog/efficient-asset-management-with-shelfs-new-signed-custody-feature /updates 301
+/streamlined-asset-management-solutions-for-legal-firms-with-shelf /industries 301
+/elevate-asset-management-in-design-studios-with-shelf /industries 301
+/elevating-aerospace-equipment-management-with-shelf /industries 301
+/enhance-inventory-management-for-food-beverage-distribution-with-shelf /industries 301
+/master-asset-management-in-security-services-with-shelf /industries 301
+/streamlining-equipment-management-for-travel-agencies-with-shelf /industries 301
+/blog/small-improvements-to-shelf-q4-2023 /updates 301
 /blog/redirect-canary /blog/asset-tags-guide 301
