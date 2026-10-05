@@ -2354,6 +2354,21 @@
       "evaluateAfterDays": 28,
       "baseline": {},
       "deployedAt": null
+    },
+    {
+      "id": "exp-056",
+      "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware",
+      "field": "content-rewrite",
+      "before": "2023 post, 958 words, generic benefits list with no placement, lookup or numbering guidance. Position 8 to 12 on laptop-tag queries (laptop asset tag 10.4, asset tags for laptops 9.4, computer asset tag 9.3, what is an asset tag on a laptop 7.0), 3 clicks a quarter, and Google's AI answer cites the page for its definition.",
+      "after": "About 2,400-word guide that opens with a one-sentence definition, then a tag-type comparison table, placement per device class, firmware asset-tag lookup commands (Windows, Linux, macOS, Chromebook), Dell/Lenovo/HP tools, a numbering format, a school 1:1 section, printing options and a 4-question FAQ, with cited sources.",
+      "hypothesis": "Answering the lookup and placement intents (how to find the asset tag number, dell asset tag, chromebook asset tag) and keeping the quotable definition lifts the page from positions 8-12 into the top 5 for laptop and computer asset tag queries and keeps the AI-answer citation.",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Brief B1. URL, canonicalUrl and date kept; updated set to 2026-10-05. Measure at QUERY level: laptop asset tag, asset tag on laptop, asset tags for laptops, asset tags for computers, computer asset tag, school computer asset tags, what is an asset tag on a laptop, asset tag number on laptop, dell asset tag, chromebook asset tag. Check whether the AI answer still cites the page. Placement photos are a later human task.",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
     }
   ]
 }
