@@ -3,7 +3,7 @@ title: "Batch Scanning Actions"
 description: "Shelf's Batch QR Scanning feature enables users to perform actions on multiple assets simultaneously by scanning their QR codes in succession, significantly improving efficiency when managing groups of assets."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-25"
+updated: "2026-10-05"
 layout: "knowledge-base"
 ---
 
@@ -56,7 +56,7 @@ This option allows you to release multiple assets from custody simultaneously.
 
 **Quantity-tracked assets.** Each quantity-tracked row gets a **Qty** field capped at the units held in custody, so you can take back part of a hold. The release scan does not ask whose units to take back, so it works while **one** person holds units of that asset. If several people do, release it from the asset's own custody list, where each holder has a row. Units held because the asset's **kit** is in custody go back by releasing the kit.
 
-The **Qty** field is in the scanner on the web. The [Shelf Companion app](/knowledge-base/shelf-ios-companion-getting-started) does not ask for a number of units in its batch custody scanner yet.
+**In the Shelf Companion app.** The [Shelf Companion app](/knowledge-base/shelf-ios-companion-getting-started) scanner does the same since the update of 2 October 2026. Each quantity-tracked row in its **Assign custody** and **Release custody** list carries a unit count, for example `3 / 10 pcs`. Tap it to open the **Units to assign** or **Units to release** sheet. Assign starts at 1 unit and stops at the free units. Release starts at every unit the holder has, because giving it all back is the usual return. When you release units of a one-way asset, the confirm tells you that *"One-way units are recorded as used up. That permanently reduces total stock."* The phone shows the same quantity blockers as the web, listed below.
 
 ### Update Location
 
