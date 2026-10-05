@@ -2339,6 +2339,21 @@
       "evaluateAfterDays": 28,
       "baseline": {},
       "deployedAt": null
+    },
+    {
+      "id": "exp-057",
+      "page": "/blog/equipment-sign-out-sheet",
+      "field": "new-page-with-template",
+      "before": "No shelf.nu page targeted sign-out sheet or checkout form queries; GSC showed zero impressions for 'equipment sign out sheet' (390 searches a month, US) and its variants. Page 1 was Pinterest, Etsy, a Reddit thread and PDFs.",
+      "after": "New post with free downloadable templates (Excel sign-out log with overdue highlighting, printable PDF, Shelf-import-ready item list CSV)",
+      "hypothesis": "A post that hands over an ungated Excel and PDF template, then explains where sheets fail, should reach page 1 for 'equipment sign out sheet' and 'equipment checkout form', where page 1 has no software vendor with a usable template. Signup effect is unknown; this is the first Shelf page aimed at searchers who have not yet looked for software.",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: equipment sign out sheet, equipment sign-out sheet template, equipment checkout form, equipment checkout form template, tool sign out sheet, equipment sign out sheet excel, equipment sign out sheet pdf, equipment checkout sheet. Templates at /templates/equipment-sign-out-sheet.xlsx, /templates/equipment-sign-out-sheet.pdf, /templates/equipment-item-list.csv. A template_download PostHog event is NOT wired yet (follow-up PR); until it ships, downloads are not measured. Measure at query level, plus PostHog signup_click sessions by entry page.",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
     }
   ]
 }
