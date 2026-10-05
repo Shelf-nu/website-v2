@@ -2690,7 +2690,7 @@
       "id": "exp-062",
       "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems",
       "field": "content-rewrite",
-      "before": "936-word post (updated May 2026) with a short comparison table and generic definitions. Position 7.6 to 11.3 for 'asset management vs inventory management' and its variants, 23.7 for 'asset and inventory management', 19 to 24 for 'asset and inventory management system'. 0 signups in 90 days.",
+      "before": "936-word post (updated May 2026) with a short comparison table and generic definitions. Position 7.6 to 11.3 for 'asset management vs inventory management' and its variants, 23.7 for 'asset and inventory management', 19 to 24 for 'asset and inventory management system'. no measurable signup clicks in 90 days.",
       "after": "About 2,000-word rewrite that opens with a one-sentence definition pair, then an 11-row decision table (identity, lifespan, what you count vs book vs depreciate, balance sheet, typical tools, owner), a section on supplies that sit between the two, 'can one tool do both' with Shelf's individually tracked plus quantity-tracked model as the worked example, an ITAM vs inventory section, and a 5-question FAQ from People also ask, with cited sources.",
       "hypothesis": "Page 1 for these queries is weak (forum threads, a county schools PDF, community posts). A quotable definition pair plus a decision table and direct answers to the People-also-ask questions should lift the page into the top 5 for 'asset management vs inventory management' and 'it asset management vs inventory management', and onto page 1 for 'asset and inventory management system', by showing equipment and supplies tracked in one workspace.",
       "status": "planned",
