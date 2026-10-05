@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "npm run search:coverage && next build && npm run content:verify && npm run search:index && npm run search:verify && npm run search:dev",
     "build:next": "next build",
-    "content:verify": "node scripts/verify-content-render.mjs out",
+    "content:verify": "node scripts/verify-content-render.mjs out && node scripts/verify-redirects.mjs",
     "content:verify:images": "node scripts/verify-content-render.mjs out --images",
     "search:coverage": "node scripts/verify-search-coverage.mjs",
     "search:index": "pagefind --site out --output-path out/pagefind",
