@@ -2700,6 +2700,21 @@
       "evaluateAfterDays": 28,
       "baseline": {},
       "deployedAt": null
+    },
+    {
+      "id": "exp-061",
+      "page": "/blog/asset-register-template",
+      "field": "new-page-with-template",
+      "before": "No shelf.nu page targeted asset register or equipment inventory template queries; GSC showed zero impressions for 'fixed asset register' (260 searches a month, US), 'asset register' (140), 'fixed asset register template' (70), 'equipment inventory template' (140) and variants. Two 2024 'asset registry' posts (781 and 484 words) never ranked. Page 1 for 'asset register template' had no AI answer and no software vendor with a usable template.",
+      "after": "New post with three free downloads: a fixed asset register in Excel (straight-line depreciation, accumulated depreciation and net book value formulas, 5 example rows), an equipment inventory list in Excel and CSV whose headers are Shelf's exact import headers (8 example rows). The two 2024 registry posts 301 to it.",
+      "hypothesis": "An ungated register template with working depreciation formulas, plus an inventory list that imports into Shelf, should reach page 1 for 'asset register template' and 'equipment inventory template', where page 1 is directories, a Notion template and Pinterest. Consolidating the two thin registry posts gives the new URL their link equity.",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Brief C3. Target queries: asset register template, fixed asset register template, asset register template excel, fixed asset register, asset register, equipment inventory template, equipment inventory list, equipment inventory excel template. Templates at /templates/fixed-asset-register.xlsx, /templates/equipment-inventory-list.xlsx, /templates/equipment-inventory-list.csv. A template_download PostHog event is NOT wired yet (same follow-up as exp-057). Measure at query level, plus PostHog signup_click sessions by entry page.",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
     }
   ]
 }
