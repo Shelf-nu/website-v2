@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Guards public/_redirects against the Cloudflare Pages cutoff measured on 2026-10-05:
-// rules past about the 135th rule / 11 KB were silently ignored in production.
+// rules past about the 135th rule / 11 KB were silently ignored in production (rule 134 at byte 10,895 still worked).
 import { readFileSync } from "fs";
-const MAX_RULES = 110, MAX_BYTES = 9500, CANARY = "/blog/redirect-canary";
+const MAX_RULES = 130, MAX_BYTES = 10800, CANARY = "/blog/redirect-canary";
 const text = readFileSync(new URL("../public/_redirects", import.meta.url), "utf8");
 const rules = text.split("\n").filter((l) => l.trim() && !l.startsWith("#"));
 const problems = [];
