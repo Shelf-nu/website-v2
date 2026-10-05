@@ -2745,6 +2745,21 @@
       "evaluateAfterDays": 28,
       "baseline": {},
       "deployedAt": null
+    },
+    {
+      "id": "exp-058",
+      "page": "/blog/assettiger-pricing",
+      "field": "new-page",
+      "before": "No shelf.nu page targeted AssetTiger pricing queries ('asset tiger pricing' 86 and 'assettiger pricing' 83 GSC impressions in 90 days, positions 6.8 / 6.4); review sites such as Expert Market (updated 2 Oct 2025) still describe AssetTiger as free for 250 assets",
+      "after": "Dedicated, dated AssetTiger pricing explainer: plan table sourced from assettiger.com/pricing, the free plan's removal dated with Internet Archive captures (free on 26 Jul 2026, 30-day trial from the 11 Sep 2026 capture), trial-end terms, what AssetTiger does well, and Shelf totals for three team sizes",
+      "hypothesis": "Searchers asking 'is assettiger free' and 'assettiger pricing' get stale answers from pages written before AssetTiger dropped its free plan. A dated page that shows the change with archive captures should rank on page 1 for 'assettiger pricing' and 'is assettiger free' and convert like the AssetTiger alternative page (7.8% signup sessions).",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: assettiger pricing, asset tiger pricing, is assettiger free, assettiger free plan, how much is assettiger, assettiger vs asset panda price, asset tiger cost. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%). Link from /alternatives/asset-tiger (pricing row + 'Is AssetTiger free?' FAQ) is a follow-up.",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
     }
   ]
 }
