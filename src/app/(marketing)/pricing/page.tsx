@@ -108,7 +108,7 @@ export default function PricingPage() {
     const maxSavings = calculateSavings(pricingPlans);
 
     return (
-        <PagefindWrapper type="Page" title="Pricing - Simple, transparent pricing" keywords="pricing plans price cost pricing page">
+        <PagefindWrapper type="Page" title="Pricing - Simple, transparent pricing" keywords="pricing pricing plans shelf pricing plans and pricing price cost how much does shelf cost subscription free plan team plan pricing page">
         <StructuredData data={pricingSoftwareApplicationJsonLd(pricingPlans)} />
         <div className="flex min-h-screen flex-col relative overflow-hidden">
             {/* Ambient Background Gradient & Grid */}
