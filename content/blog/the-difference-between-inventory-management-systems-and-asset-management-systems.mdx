@@ -1,104 +1,181 @@
 ---
 title: "Asset Management vs Inventory Management: What's the Difference?"
 description: >-
-  Asset management tracks the equipment your business uses to operate; inventory
-  management tracks the stock you sell or consume. How they differ, when you need
-  each, and how to choose the right system.
+  Asset management tracks the individual items you keep and use; inventory
+  management tracks how many of something you hold to sell or use up. A
+  decision table, the grey zone of supplies, IT asset management, and how one
+  tool can handle equipment and consumables side by side.
 layout: blog
 canonicalUrl: /blog/the-difference-between-inventory-management-systems-and-asset-management-systems
 date: '2023-10-13'
-updated: '2026-05-29'
+updated: '2026-10-05'
 author: carlos-virreira
 category: asset-tracking-management
 seo:
-  title: "Asset Management vs Inventory Management: Key Differences (2026)"
+  title: "Asset Management vs Inventory Management: Key Differences"
   description: >-
-    Asset management tracks the equipment your business uses; inventory
-    management tracks the stock you sell. The key differences, when you need
-    each, and how to choose.
+    Asset management tracks which item, who has it and what it is worth;
+    inventory management tracks how many you have and when to reorder. A
+    decision table, ITAM vs inventory, and whether one tool can do both.
   keywords:
     - "asset management vs inventory management"
+    - "inventory management vs asset management"
     - "asset and inventory management"
-    - "difference between asset and inventory management"
-    - "asset management and inventory control"
     - "asset and inventory management system"
+    - "it asset management vs inventory management"
+    - "inventory vs asset"
+    - "asset vs inventory"
+    - "difference between asset management and inventory management"
   noindex: false
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/the-difference-between-inventory-management-systems-and-asset-management-systems.jpeg"
 ---
 
 # Asset Management vs Inventory Management: What's the Difference?
 
-**The short answer:** *asset management* tracks the equipment your organization **uses to operate** — laptops, cameras, tools, vehicles, machinery — across their whole life. *Inventory management* tracks the goods you **buy and then sell or consume** — stock, SKUs, raw materials — as they move in and out. Different items, different metrics, different goals.
+Asset management tracks the individual items an organization keeps and uses, such as laptops, cameras, tools and vehicles, while inventory management tracks how many of something it holds to sell or use up, such as stock, raw materials and supplies.
 
-If you're deciding which system you need, the table below is the fastest way to tell them apart.
+The quickest test is one question. Do you care **which one** it is, or only **how many** you have? If a specific unit has to come back to a specific shelf, it is an asset. If any unit will do and you only need to know when to reorder, it is inventory.
 
 ## Asset management vs inventory management at a glance
 
 | | Asset management | Inventory management |
 |---|---|---|
-| **Tracks** | Things you *use* to run the business | Things you *sell* or *consume* |
-| **Examples** | Laptops, cameras, tools, vehicles, lab & AV gear, machinery | Retail stock, SKUs, raw materials, finished goods |
-| **Core question** | *Where is it, who has it, is it working?* | *How much do we have, when do we reorder?* |
-| **Key metrics** | Utilization, custody, condition, depreciation | Stock levels, turnover, reorder points |
-| **Lifecycle** | Acquire, assign, maintain, retire | Purchase, store, pick/ship, replenish |
-| **Quantity model** | Unique items, tracked individually | Interchangeable units, counted in bulk |
-| **Typical users** | IT, operations, facilities, field, media & education | Retail, e-commerce, manufacturing, warehousing |
+| **What you track** | Things you keep and use to operate | Goods you sell, or materials and supplies you use up |
+| **Examples** | Laptops, cameras, power tools, vehicles, lab instruments | Retail stock, SKUs, raw materials, packaging, spare parts |
+| **Identity** | One record per item, usually with its own tag and serial number | One record per product or SKU, with a count |
+| **Core question** | Which one, where is it, who has it, is it working? | How many do we have, and when do we reorder? |
+| **Lifespan** | Years, across many uses and many people | Days to months, until it is sold or consumed |
+| **What you count** | Each tagged item, during an audit | Quantity on hand per SKU, during a stock take |
+| **What you book** | Specific items for specific dates (a camera for Tuesday's shoot) | Nothing. Stock is allocated to orders, not reserved and returned |
+| **What you depreciate** | Equipment, spread over its useful life | Nothing. Inventory is valued, not depreciated |
+| **Balance sheet** | Fixed (non-current) assets | Current assets |
+| **Typical tools** | Asset tracking software, ITAM, EAM, CMMS for maintenance | Inventory management software, WMS, the inventory module of an ERP, POS |
+| **Who owns it** | IT, operations, facilities, equipment rooms; finance keeps the fixed-asset register | Purchasing, warehouse, supply chain; finance values the stock |
 
 ## What is asset management?
 
-An asset management system tracks the resources an organization **uses** to operate — equipment, tools, vehicles, IT hardware, and other physical items that get assigned to people, moved between locations, maintained, and eventually retired. Each item is usually tracked **individually** (often with a QR code or barcode), because you care about *that specific unit*: where it is, who has it, its condition, and its value over time.
+In its broadest sense, asset management is "a systematic approach to the governance and realization of all value for which a group or entity is responsible" (Wikipedia). That covers investment funds and power grids as well as camera bags.
 
-Typical capabilities:
+For an operations, IT or equipment team, it means something narrower: knowing every physical item you own and use, one by one. Each item gets its own record and usually a QR code or barcode label. The jobs are:
 
-- **Custody and location tracking** — know who has each item and where it is.
-- **Maintenance** — schedule preventive maintenance and log repairs.
-- **Depreciation and valuation** — track each asset's value across its life.
-- **Lifecycle management** — from acquisition through retirement and disposal.
-- **Reporting** — utilization, maintenance cost, and compliance.
+- **Identity.** A tag, a serial number, a photo.
+- **Custody and location.** Who has it right now, and where.
+- **Bookings.** Which item is reserved for which dates.
+- **Condition and maintenance.** Service dates, repairs, calibration.
+- **Value and lifespan.** What it cost, how it depreciates, when to retire it.
+
+Accounting treats most of these items as fixed assets: tangible things held for use rather than for resale, expected to last more than one year, and depreciated over their useful life.
 
 ## What is inventory management?
 
-An inventory management system tracks the **stock of goods** a business buys, sells, or consumes — products, SKUs, raw materials. Items are **interchangeable** and counted in bulk: you rarely care about a *specific* unit, only how many you have and when to reorder. It is the backbone of retail, e-commerce, and manufacturing.
+Inventory, or stock, is "a quantity of the goods and materials that a business holds for the ultimate goal of resale, production or utilisation" (Wikipedia). Inventory management is the work of knowing the range and quantity of that stock and meeting the demands placed on it.
 
-Typical capabilities:
+Units are interchangeable. Nobody asks which tin of paint was sold. The jobs are:
 
-- **Stock-level tracking** — quantity on hand per SKU.
-- **Order fulfillment** — purchase orders, sales orders, shipping.
-- **Replenishment** — reorder points and economic order quantities.
-- **Demand forecasting** — predict future demand from historical data.
-- **Stocktaking** — reconcile physical counts with system records.
+- **Stock levels.** Quantity on hand per SKU, per location.
+- **Replenishment.** Reorder points and order quantities.
+- **Order flow.** Purchase orders in, sales orders and shipments out.
+- **Valuation.** Under IAS 2, inventories are measured at the lower of cost and net realisable value.
+- **Stock takes.** Reconcile physical counts against the system.
 
-## The key difference
+A manufacturer usually splits inventory into raw materials, work in process and finished goods, and many also keep maintenance supplies.
 
-It comes down to **what you're counting and why**. Inventory management answers *"how much stock do we have, and when do we reorder?"* — it is about quantity and flow. Asset management answers *"where is this specific item, who is responsible for it, and is it in good shape?"* — it is about individual items and accountability over a long life.
+## The grey zone: supplies you neither sell nor keep
 
-Put simply: **inventory is what you sell; assets are what you use to run the business.**
+The same physical object can sit on either side. A laptop is inventory to the shop that sells it and an asset to the company that buys it for an employee.
 
-## Which one do you need?
+The harder case is the stuff an organization uses up internally: batteries, cables, gloves, printer toner, lab reagents, gaffer tape. You do not sell it, so a retail inventory system is overkill. You do not keep it for years, so a per-item asset record is wasted effort. What you need is a count, a minimum level, and a record of who took how much.
 
-- **You need asset management** if you track reusable equipment assigned to people or projects — IT hardware, cameras and AV gear, tools, lab equipment, vehicles — and you care about custody, condition, bookings, and maintenance. This is exactly what [Shelf](/solutions/asset-tracking) is built for, including [equipment management](/solutions/equipment-management) and [IT asset tracking](/solutions/it-asset-management).
-- **You need inventory management** if you track sellable stock — products, SKUs, raw materials — and care about stock levels, reorder points, and fulfillment. A dedicated inventory or warehouse platform will serve you better there; that is not what Shelf focuses on.
+Most teams searching for an "asset and inventory management system" are not running a warehouse. They need equipment tracked item by item and supplies tracked by count, in one place.
 
-Many organizations need **both**: a warehouse counts its sellable stock with inventory software while tracking the forklifts, scanners, and laptops that *run* the warehouse with an asset management system.
+A simple rule for each item:
 
-## Can one system do both?
+1. **Will someone have to answer for this specific unit?** Track it individually.
+2. **Are the units interchangeable, and does nobody care which one comes back?** Track it by quantity.
+3. **Is it a fleet of identical, serialized gear (30 identical laptops)?** Still track each unit individually, because each has its own serial number, holder and history. Group them under a model for shared defaults.
 
-There is some overlap, and small teams sometimes stretch one tool across both. But the data models pull in opposite directions — bulk, interchangeable units versus unique, individually-tracked items — so most organizations are better served by a system built for their primary need. Shelf is purpose-built for the **asset** side: QR-based tracking, custody logs, bookings, and maintenance for the equipment your team relies on.
+## Can one tool do both asset and inventory management?
+
+It depends on which kind of inventory you mean.
+
+If you sell stock, run purchase and sales orders, and ship from a warehouse, use inventory or ERP software. Shelf is not built for retail or SKU inventory, and no asset tool replaces order fulfilment.
+
+If "inventory" means the supplies and consumables your team uses alongside its equipment, one tool can handle both. Shelf is a worked example of how that model looks.
+
+**Two tracking methods in one workspace.** When you create an item in Shelf, you choose how it is tracked ([consumables tracking](/features/consumables-tracking)):
+
+- **Individually tracked** (the default): one record is one physical thing, with its own QR label, custody and history. Laptops, cameras, power tools.
+- **Tracked by quantity**: one record is a pool of identical units sharing a single QR label, with a total quantity in a unit of measure you define (pieces, boxes, litres). Batteries, cables, gloves.
+
+The method is chosen at creation and is permanent, so decide up front whether an item is a unique asset or a pool of stock. The [tracking method guide](/knowledge-base/how-to-choose-a-tracking-method) walks through the decision.
+
+**What the quantity side does.** Available quantity is computed live: the total, minus what is in custody, in a kit, or out on an active booking. Each pool is either **Used up** (gone once issued) or **Returnable** (comes back, with a consumption report at check-in). Restocks, losses and corrections are logged with who made them. Set a **minimum quantity** and Shelf sends an email alert when stock drops to or below it.
+
+**What the asset side does.** Every individually tracked item carries its own QR code and a [custody](/features/custody) timeline showing who had it and when. Scan the code from a phone to hand it over, and the change is logged. The Shelf Companion apps for iPhone and Android do the scanning in the field.
+
+**Where the two meet.**
+
+- **Custody.** Several people can each hold a share of the same quantity pool, and each share is tracked separately. Hand 5 of 20 radios to one crew lead and 10 to another, and Shelf knows who holds what.
+- **Bookings.** Reserve a specific camera, or N units from a pool, for a date range. Shelf counts what is free on those dates and refuses a booking that would take units that are not there.
+- **Kits.** A [kit](/features/kits) can mix both: one camera body tracked individually plus four batteries from a quantity pool.
+- **Models.** [Asset Models](/glossary/asset-models) group fleets of identical, individually tracked units. Each unit keeps its own QR label and history. Quantity pools cannot join a model.
+
+Take a hypothetical university media lab. Its 12 cameras are individually tracked, each with a label and a custody history. Its AA batteries are one quantity pool, marked Used up, with a minimum of 48. A student books a camera kit for Friday and staff scan it out at pickup. When the camera comes back, its custody record closes. The batteries do not come back, and the pool count shows it.
+
+Quantity tracking and asset models are on every Shelf plan, including Free, which is a single user with unlimited assets. Bookings, and booking quantity from a pool, need the Team plan.
+
+## IT asset management vs inventory management
+
+In IT the words blur, because "IT inventory" usually means a list of every device and installed application, often pulled in by a management agent. That list is a snapshot of what exists today.
+
+IT asset management (ITAM) adds the business side to that list: who the device is assigned to, what it cost, its warranty and contracts, and when to refresh or retire it. Software licences sit inside ITAM too; the ISO/IEC 19770 family of standards covers ITAM processes and software identification tags.
+
+So for an IT team:
+
+- **IT inventory** answers "what do we have?"
+- **ITAM** answers "who has it, what is it costing us, and what do we do with it next?"
+- **Inventory management** rarely applies, except to the supply closet: cables, adapters, toner. Count those.
+
+Shelf covers the physical side of ITAM: [laptops, monitors and peripherals](/solutions/it-asset-management) tracked by QR code with custody, plus the supply closet tracked by quantity. It does not focus on software licence management. If licence compliance is your main job, pick a tool built for it. To put a value on hardware over time, the [equipment depreciation calculator](/tools/equipment-depreciation-calculator) works out the yearly figures.
 
 ## Frequently asked questions
 
-**Is asset management the same as inventory management?**
-No. Asset management tracks items you use to operate and keep, like equipment and IT hardware; inventory management tracks goods you sell or consume, like retail stock. Different items, metrics, and goals.
+### What are the three main asset management types?
 
-**Can an asset also be inventory?**
-The same physical object can be either, depending on your relationship to it. A laptop is *inventory* to the retailer selling it and an *asset* to the company that buys it to equip an employee.
+There is no single official list. The grouping most guides use is **financial** asset management (investment portfolios), **physical** asset management (equipment, buildings, infrastructure) and **digital or IT** asset management (hardware, software and digital media). Wikipedia lists several more, such as enterprise and engineering asset management.
 
-**Do I need both an asset and an inventory system?**
-If you both sell stock and operate on shared equipment, yes — they solve different problems. If you mainly track reusable equipment, an asset management system like Shelf is enough.
+### What are the four types of inventory management?
 
-**Which one does Shelf provide?**
-Shelf is an asset management platform — it tracks equipment, tools, and devices with QR codes, custody logs, bookings, and maintenance. It is not built for retail or SKU inventory.
+The four methods most often named are **Just-in-Time (JIT)**, which receives goods only as needed; **Material Requirements Planning (MRP)**, which plans materials from a production schedule; **Economic Order Quantity (EOQ)**, the order size that minimises holding and ordering costs; and **Days Sales of Inventory (DSI)**, which measures how many days stock is held before it sells. If the question is about types of inventory rather than methods, the usual four are raw materials, work in process, finished goods, and maintenance, repair and operating (MRO) supplies.
+
+### What is the difference between inventory management and stock management?
+
+Mostly none. The two terms are used interchangeably, and Wikipedia treats stock management as another name for inventory management. Where people do draw a line, stock management means the day-to-day levels of goods on hand, while inventory management is the wider job that also covers ordering, raw materials, work in process and valuation.
+
+### Is inventory an asset?
+
+Yes. Inventory is a **current asset** on the balance sheet, because the business expects to turn it into cash by selling it. It is valued at the lower of cost and net realisable value and is not depreciated. Equipment you keep and use is a **fixed asset** and is depreciated over its useful life.
+
+### Does Shelf do inventory management?
+
+Shelf is an asset management platform. It tracks equipment item by item with QR codes and custody, and it tracks supplies and consumables by quantity alongside that equipment. It is not built for retail or SKU inventory, so it does not replace order and fulfilment software.
 
 ---
 
-If you are tracking the equipment your team *uses* — and you want to know where it is, who has it, and whether it is due for maintenance — [Shelf](/solutions/asset-tracking) is built for exactly that. [Start tracking your assets for free.](https://app.shelf.nu/join)
+If your team tracks equipment people use and supplies they use up, Shelf keeps both in one workspace. [Start free with unlimited assets](https://app.shelf.nu/join), or read how [consumables tracking](/features/consumables-tracking) works first.
+
+## Sources
+
+All checked on 5 October 2026.
+
+- Wikipedia, [Asset management](https://en.wikipedia.org/wiki/Asset_management) (definition; kinds of asset management; ISO 55000)
+- Wikipedia, [Inventory](https://en.wikipedia.org/wiki/Inventory) (definition; current asset; raw materials, work in process, finished goods, maintenance supply)
+- Wikipedia, [Inventory management](https://en.wikipedia.org/wiki/Stock_management) (definition; stock management redirects here)
+- IFRS Foundation, [IAS 2 Inventories](https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/) (lower of cost and net realisable value)
+- Wikipedia, [Fixed asset](https://en.wikipedia.org/wiki/Fixed_asset) (held for use, not resale; depreciated over useful life)
+- Wikipedia, [Depreciation](https://en.wikipedia.org/wiki/Depreciation)
+- Wikipedia, [ISO/IEC 19770](https://en.wikipedia.org/wiki/ISO/IEC_19770) (ITAM processes and software identification tags)
+- Wikipedia, [Lean manufacturing](https://en.wikipedia.org/wiki/Just-in-time_manufacturing) (just-in-time: receiving goods only as needed)
+- Wikipedia, [Material requirements planning](https://en.wikipedia.org/wiki/Material_requirements_planning)
+- Wikipedia, [Economic order quantity](https://en.wikipedia.org/wiki/Economic_order_quantity)
+- Wikipedia, [Days in inventory](https://en.wikipedia.org/wiki/Days_in_inventory)
