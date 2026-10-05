@@ -2715,6 +2715,36 @@
       "evaluateAfterDays": 28,
       "baseline": {},
       "deployedAt": null
+    },
+    {
+      "id": "exp-059",
+      "page": "/blog/asset-tags-guide",
+      "field": "consolidation",
+      "before": "Five 2023 posts split the asset-tag cluster (GSC 90d, 34,128 impressions, 5 clicks across the cluster): /blog/the-comprehensive-guide-to-asset-tagging-systems (6,173 impr, avg pos 21.4), /blog/how-to-choose-the-best-asset-tags-for-your-equipment (7,092 impr, pos 20.0), /blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide (4,204 impr, pos 15.7), /blog/the-great-asset-tag-debate-bridging-traditional-methods-with-modern-asset-management, /blog/the-fascinating-history-of-asset-tags ('government asset tags' 368 impr, pos 10.7). Query splits: 'property tags equipment' 377 impr at 15.3 on one post and 314 at 19.5 on another; 'asset tag' 273 at 19.4, 76 at 74, 53 at 12, 51 at 41 across four posts; 'asset tagging' 499 at 48.7 on the blog while /glossary/asset-tagging holds 1,446 impr at 17.3. /blog/what-sort-of-asset-tags-can-you-create-with-shelf also live.",
+      "after": "One dated hub at /blog/asset-tags-guide (definition first, what a tag must carry, material and code tables, material by environment, PREFIX-SITE-YEAR-SEQUENCE numbering with Luhn check digit, placement table by asset class, government and federal property tags from FAR 52.245-1, DFARS 252.211-7003 and Oregon OAM 10.50.00.PR, buy vs print, mistakes, FAQ, sources). Five old posts 301 to the hub; what-sort-of-asset-tags-can-you-create-with-shelf 301 to /tools/asset-label-designer; old MDX deleted; internal links repointed; /glossary/asset-tagging links the hub in its first paragraph.",
+      "hypothesis": "The cluster cannibalises itself: four or five Shelf URLs share each query and none reaches page 1. Folding them into one complete, dated hub (the May 2026 consolidation in PR #146 is the precedent that worked) should put /blog/asset-tags-guide on page 1 for 'asset tag', 'asset tags', 'property tags equipment' and 'asset tag numbering system', and keep 'government asset tags' at or above 10.7.",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: asset tag, asset tags, asset tagging, asset tags for equipment, property tags equipment, fixed asset tags, asset tag numbering system, asset tag format, asset tag system, asset management tags, government asset tags. Evaluate at QUERY level, not page level. Spokes: /blog/qr-code-asset-tags (exp-060) and the laptop post /blog/the-importance-of-pc-asset-tags-for-computer-hardware. Watch that /glossary/asset-tagging does not lose 'asset tagging'.",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
+    },
+    {
+      "id": "exp-060",
+      "page": "/blog/qr-code-asset-tags",
+      "field": "consolidation",
+      "before": "Two QR posts split the QR tag queries (GSC 90d): /blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking (4,365 words, 2,955 impr, avg pos 14.1) and /blog/the-importance-of-qr-code-asset-management-in-business (922 words; 'qr code asset tracking' 823 impr, pos 7.9). Cluster queries: 'qr code asset tags' 720 impr, 'qr asset tags' 580, 'asset tags with qr code' 464, 'qr code asset tag' 351. /solutions/asset-tracking already ranks 4th for 'qr code asset tracking'.",
+      "after": "One QR spoke at /blog/qr-code-asset-tags (definition first, QR vs 1D vs Data Matrix vs RFID, encode a link not data, DENSO WAVE error correction levels, size/print/material, what a Shelf scan shows, setup steps, FAQ, sources). Both old posts 301 here; old MDX deleted; internal links repointed. Links up to /blog/asset-tags-guide and out to /solutions/asset-tracking and /solutions/qr-code-asset-tracking for software intent.",
+      "hypothesis": "One focused QR tag page, linked from the hub, should reach page 1 for 'qr code asset tags', 'qr asset tags' and 'asset tags with qr code' without pulling 'qr code asset tracking' away from /solutions/asset-tracking.",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: qr code asset tags, qr asset tags, asset tags with qr code, qr code asset tag, qr code tagging. Guard query: qr code asset tracking (must stay on /solutions/asset-tracking at or above pos 4; if the spoke starts ranking for it instead, de-optimise the spoke). Also watch /solutions/qr-code-asset-tracking, which lists 'qr code asset tags' and 'asset tags with qr code' in its own keywords.",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
     }
   ]
 }
