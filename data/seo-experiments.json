@@ -2369,6 +2369,21 @@
       "evaluateAfterDays": 28,
       "baseline": {},
       "deployedAt": null
+    },
+    {
+      "id": "exp-055",
+      "page": "/blog/sortly-pricing",
+      "field": "new-page",
+      "before": "No shelf.nu page targeted Sortly pricing queries ('sortly pricing' 170 US searches a month); /alternatives/sortly ranks 1.9 for 'sortly free alternative' and 8.2 for 'sortly free' with no dated pricing answer",
+      "after": "Dedicated, dated Sortly pricing explainer: plan table sourced from sortly.com/pricing and the Sortly help center, year-two cost calculated from Sortly's own renewal terms, free plan limits, worked totals, and Shelf prices for the same team sizes",
+      "hypothesis": "Third-party pages on page 1 copy the introductory price and disagree with each other. A dated page that shows the year-two price from Sortly's own terms, and the free plan's exact limits, should rank on page 1 for 'sortly pricing' and 'sortly free plan' and convert like the Sortly alternative page.",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: sortly pricing, sortly cost, sortly free plan, sortly free plan limits, is sortly free, sortly price increase, sortly renewal price, sortly alternative free. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%). Link from /alternatives/sortly (pricing row + FAQ) is a follow-up.",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
     }
   ]
 }
