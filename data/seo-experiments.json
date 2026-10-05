@@ -2324,6 +2324,21 @@
       "notes": "Same FAQ pattern as /alternatives/cheqroom (position 6.6). Verify at QUERY level. Link the FAQ pricing answer to /blog/asset-panda-pricing once that post is live. Capture the baseline before deploy with the experiments CLI.",
       "evaluateAfterDays": 28,
       "deployedAt": null
+    },
+    {
+      "id": "exp-054",
+      "page": "/blog/asset-panda-pricing",
+      "field": "new-page",
+      "before": "No shelf.nu page targeted Asset Panda pricing queries; /alternatives/asset-panda caught 376 impressions a quarter for 'asset panda pricing' at position 15.4 with 0 clicks",
+      "after": "Dedicated, dated pricing explainer",
+      "hypothesis": "A dedicated page with a sourced, dated Asset Panda price table and worked totals answers the pricing query better than the alternatives page, so it should rank on page 1 for 'asset panda pricing' and 'asset panda cost' and earn clicks where the alternatives page earned none.",
+      "status": "planned",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: asset panda pricing, asset panda cost, asset panda price, how much does asset panda cost, is asset panda free, asset panda pricing per user, asset panda enterprise pricing, asset panda onboarding fee. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%).",
+      "evaluateAfterDays": 28,
+      "baseline": {},
+      "deployedAt": null
     }
   ]
 }
