@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Camera, Github, GraduationCap, Laptop, ScanLine, Wrench, type LucideIcon } from "lucide-react";
+import { ArrowRight, CalendarCheck, Camera, GraduationCap, Laptop, ScanLine, Wrench, type LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { CUSTOMER_LOGOS } from "@/data/customer-logos";
 import { HOME_SEGMENTS, MORE_SOLUTIONS, type SegmentIcon } from "@/data/home";
 import { LinkRow } from "./link-row";
 import { SectionHead } from "./section-head";
 
-const ICONS: Record<SegmentIcon, LucideIcon> = { camera: Camera, graduation: GraduationCap, scan: ScanLine, wrench: Wrench, laptop: Laptop, github: Github };
+const ICONS: Record<SegmentIcon, LucideIcon> = { camera: Camera, graduation: GraduationCap, scan: ScanLine, wrench: Wrench, laptop: Laptop, calendar: CalendarCheck };
 
 /**
  * "Is it for me?" Six doors into the solutions pages, each with real proof.

@@ -149,39 +149,11 @@ export const ALSO_IN_SHELF: { label: string; href: string }[] = [
  */
 export const HOME_QUESTIONS: { id: string; question: string; answer: string; href: string; linkLabel: string }[] = [
     {
-        id: "open-source",
-        question: "How does the open source part work?",
-        answer: "Shelf is open source, meaning our code is publicly available for audit and contribution. We host the managed version (SaaS) so you don't have to worry about servers, updates, or security, but you never lose control of your data.",
-        href: "/solutions/open-source-asset-management",
-        linkLabel: "Open source asset management",
-    },
-    {
-        id: "self-host",
-        question: "Can we self-host Shelf?",
-        answer: "Yes, if your organization requires it. Self-hosting needs Docker, PostgreSQL and Supabase, and the open-source software is free under the AGPL license. Setup documentation is in the GitHub repository. One thing is licensed separately: connecting the Shelf Companion mobile app to your own server. Most teams choose Shelf Cloud and are running within the hour.",
-        href: "/knowledge-base/connect-shelf-companion-to-your-own-server",
-        linkLabel: "Companion app on your own server",
-    },
-    {
-        id: "hardware",
-        question: "Do I need special hardware?",
-        answer: "No. Shelf works with any smartphone or tablet. Our Shelf Companion app for iPhone and Android lets you scan QR codes using your phone camera, and the web app also works in any modern phone browser. You can also use standard USB scanners if you prefer.",
-        href: "/knowledge-base/using-external-barcode-scanners-with-shelf",
-        linkLabel: "Using external barcode scanners",
-    },
-    {
-        id: "barcodes",
-        question: "Can we keep the barcodes already on our equipment?",
-        answer: "Yes. The Alternative Barcodes add-on works with Code 128, Code 39, EAN-13, DataMatrix and QR codes, so you can move over from another system without re-tagging a single item. It is a paid add-on. Shelf's own QR codes come with every asset, on every plan.",
-        href: "/knowledge-base/alternative-barcodes",
-        linkLabel: "How alternative barcodes work",
-    },
-    {
-        id: "import",
-        question: "Can I import my existing data?",
-        answer: "Yes. We offer a simple CSV importer that lets you bring in thousands of assets, contacts, and locations in minutes. We provide templates to make the process seamless.",
-        href: "/knowledge-base/importing-assets-to-shelf-csv-guide",
-        linkLabel: "CSV import guide",
+        id: "user-limit",
+        question: "Is there a limit to how many users I can add?",
+        answer: "Our Team and Enterprise plans allow for unlimited users. We believe asset management works best when everyone is accountable, so we don't penalize you for growing your team. The Free plan is for one person.",
+        href: "/pricing",
+        linkLabel: "Compare plans",
     },
     {
         id: "self-checkout",
@@ -191,11 +163,32 @@ export const HOME_QUESTIONS: { id: string; question: string; answer: string; hre
         linkLabel: "User roles and permissions",
     },
     {
+        id: "barcodes",
+        question: "Can we keep the barcodes already on our equipment?",
+        answer: "Yes. The Alternative Barcodes add-on works with Code 128, Code 39, EAN-13, DataMatrix and QR codes, so you can move over from another system without re-tagging a single item. It is a paid add-on. Shelf's own QR codes come with every asset, on every plan.",
+        href: "/knowledge-base/alternative-barcodes",
+        linkLabel: "How alternative barcodes work",
+    },
+    {
         id: "late-booking",
         question: "What happens when a booking runs late?",
         answer: "It is marked overdue and turns red on the calendar, and the people on the booking get an overdue notice by email. Overdue items also show on the dashboard and in the Overdue Items report, so a late return is caught before it hits the next reservation. If the gear is simply needed longer, extend the booking's end date.",
         href: "/knowledge-base/extending-booking-end-dates-in-shelf",
         linkLabel: "Extending a booking",
+    },
+    {
+        id: "import",
+        question: "Can I import my existing data?",
+        answer: "Yes. We offer a simple CSV importer that lets you bring in thousands of assets, contacts, and locations in minutes. We provide templates to make the process seamless.",
+        href: "/knowledge-base/importing-assets-to-shelf-csv-guide",
+        linkLabel: "CSV import guide",
+    },
+    {
+        id: "hardware",
+        question: "Do I need special hardware?",
+        answer: "No. Shelf works with any smartphone or tablet. Our Shelf Companion app for iPhone and Android lets you scan QR codes using your phone camera, and the web app also works in any modern phone browser. You can also use standard USB scanners if you prefer.",
+        href: "/knowledge-base/using-external-barcode-scanners-with-shelf",
+        linkLabel: "Using external barcode scanners",
     },
     {
         id: "sso",
@@ -205,11 +198,18 @@ export const HOME_QUESTIONS: { id: string; question: string; answer: string; hre
         linkLabel: "See add-on pricing",
     },
     {
-        id: "user-limit",
-        question: "Is there a limit to how many users I can add?",
-        answer: "Our Team and Enterprise plans allow for unlimited users. We believe asset management works best when everyone is accountable, so we don't penalize you for growing your team. The Free plan is for one person.",
-        href: "/pricing",
-        linkLabel: "Compare plans",
+        id: "self-host",
+        question: "Can we self-host Shelf?",
+        answer: "Yes, if your organization requires it. Self-hosting needs Docker, PostgreSQL and Supabase, and the open-source software is free under the AGPL license. Setup documentation is in the GitHub repository. One thing is licensed separately: connecting the Shelf Companion mobile app to your own server. Most teams choose Shelf Cloud and are running within the hour.",
+        href: "/knowledge-base/connect-shelf-companion-to-your-own-server",
+        linkLabel: "Companion app on your own server",
+    },
+    {
+        id: "open-source",
+        question: "How does the open source part work?",
+        answer: "Shelf is open source, meaning our code is publicly available for audit and contribution. We host the managed version (SaaS) so you don't have to worry about servers, updates, or security, but you never lose control of your data.",
+        href: "/solutions/open-source-asset-management",
+        linkLabel: "Open source asset management",
     },
 ];
 
@@ -217,7 +217,7 @@ export const HOME_QUESTIONS: { id: string; question: string; answer: string; hre
 /*  Segments                                                           */
 /* ------------------------------------------------------------------ */
 
-export type SegmentIcon = "camera" | "graduation" | "scan" | "wrench" | "laptop" | "github";
+export type SegmentIcon = "camera" | "graduation" | "scan" | "wrench" | "laptop" | "calendar";
 
 export const HOME_SEGMENTS: {
     id: string;
@@ -235,16 +235,16 @@ export const HOME_SEGMENTS: {
     { id: "checkout", icon: "scan", title: "Equipment check-in & check-out", text: "Replace sign-out sheets with a QR scan. Custody logs, bookings and real-time availability.", href: "/solutions/equipment-check-in", link: "Equipment checkout", logos: ["arrelano-associates"], note: "Community outreach events" },
     { id: "tools", icon: "wrench", title: "Tools & job sites", text: "Tools across trucks, crews and sites, with custody chains that hold up in the field.", href: "/solutions/tool-tracking", link: "Tool tracking", logos: ["ces-utility"], note: "$70K of equipment recovered" },
     { id: "it", icon: "laptop", title: "IT & laptops", text: "Laptops, tablets and chargers with a custody history, for offices and hybrid teams.", href: "/solutions/it-asset-management", link: "IT asset tracking", note: "Sequential IDs, custom fields, CSV import" },
-    { id: "open-source", icon: "github", title: "Open source & self-hosting", text: "Auditable code, a production-ready cloud, or run it yourself. Everything is on GitHub.", href: "/solutions/open-source-asset-management", link: "Open source asset management", note: "Shelf-nu/shelf.nu, AGPL licensed" },
+    { id: "reservations", icon: "calendar", title: "Equipment reservations", text: "Let people book gear ahead, with an availability view that stops double bookings before they happen. Bookings are on the Team plan.", href: "/solutions/equipment-reservations", link: "Equipment reservations", note: "Calendar, availability view, kits booked as one" },
 ];
 
 /** The solutions pages the previous homepage's picker linked to that have no card above. See the SEO note. */
 export const MORE_SOLUTIONS: { label: string; href: string }[] = [
     { label: "Asset tracking", href: "/solutions/asset-tracking" },
-    { label: "Equipment reservations", href: "/solutions/equipment-reservations" },
     { label: "Equipment management", href: "/solutions/equipment-management" },
     { label: "Fixed asset tracking", href: "/solutions/fixed-asset-tracking" },
     { label: "Maintenance tracking", href: "/solutions/maintenance-tracking" },
+    { label: "Open source & self-hosting", href: "/solutions/open-source-asset-management" },
 ];
 
 /* ------------------------------------------------------------------ */

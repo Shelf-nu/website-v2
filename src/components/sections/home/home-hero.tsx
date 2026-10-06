@@ -47,7 +47,7 @@ export function HomeHero() {
                     </h1>
 
                     <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                        Track equipment, book it, and know who has it, from the web or your phone. Open source, and running in production for 3,000+ teams in 50+ countries.
+                        Track equipment, book it, and know who has it, from the web or your phone. Free to start, and running in production for 3,000+ teams in 50+ countries.
                     </p>
 
                     <div className="flex flex-col items-center gap-4">
