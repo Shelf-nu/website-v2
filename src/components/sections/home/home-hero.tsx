@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { HeroGlow } from "@/components/ui/ambient-glow";
 import { Pill } from "@/components/ui/pill";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { MigrationDropdown } from "@/components/sections/migration-dropdown";
@@ -22,7 +23,7 @@ export function HomeHero() {
     return (
         <section className="relative overflow-x-clip border-b border-border pt-24 sm:pt-32">
             <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background dark:from-orange-950/20" />
+            <HeroGlow />
 
             <Container className="relative">
                 {/* max-w-5xl is for the h1; every other child sets its own narrower width. */}

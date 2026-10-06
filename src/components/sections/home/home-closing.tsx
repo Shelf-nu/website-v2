@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { DarkGlow } from "@/components/ui/ambient-glow";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 import { TrackedLink } from "@/components/analytics/tracked-link";
@@ -17,6 +18,7 @@ const badgeClass = "border-neutral-800 bg-neutral-900/50 text-white hover:bg-neu
 export function HomeClosing() {
     return (
         <section data-pagefind-ignore className="relative overflow-hidden bg-neutral-950 py-20 sm:py-24">
+            <DarkGlow />
             <Container className="relative">
                 <div className="mx-auto max-w-3xl text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">Ready to organize your assets?</h2>

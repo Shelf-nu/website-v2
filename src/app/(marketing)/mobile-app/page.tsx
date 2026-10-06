@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Check, Download, Globe, Smartphone as AndroidIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { DarkGlow, HeroGlow } from "@/components/ui/ambient-glow";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
 import { TrackedLink } from "@/components/analytics/tracked-link";
@@ -99,7 +100,7 @@ export default function MobileAppPage() {
             {/* Hero: the real app, not a stock photo */}
             <section className="relative overflow-x-clip border-b border-border pt-24 sm:pt-32">
                 <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-                <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/30 via-background to-background dark:from-orange-950/20" />
+                <HeroGlow />
 
                 <Container className="relative">
                     <div className="grid grid-cols-1 items-center gap-12 pb-16 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-24">
@@ -294,7 +295,7 @@ export default function MobileAppPage() {
 
             {/* Bottom CTA */}
             <section className="relative overflow-hidden bg-neutral-950 py-20 sm:py-24">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-orange-500/10 to-transparent" />
+                <DarkGlow />
                 <Container className="relative text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">Bring Shelf to the floor.</h2>
                     <p className="mx-auto mt-4 max-w-lg text-lg text-neutral-400">

@@ -7,6 +7,7 @@ import NumberFlow from "@number-flow/react";
 import { Check, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { HeroGlow } from "@/components/ui/ambient-glow";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
@@ -118,7 +119,7 @@ export default function PricingPage() {
         {/* Plans */}
         <section className="relative overflow-x-clip pt-24 sm:pt-32">
             <div className="absolute inset-x-0 top-0 -z-10 h-[600px] bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background dark:from-orange-950/20" />
+            <HeroGlow />
 
             <Container className="relative">
                 <div className="mx-auto max-w-2xl text-center">
