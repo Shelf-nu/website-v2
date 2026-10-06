@@ -4,17 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import NumberFlow from "@number-flow/react";
-import { ArrowRight, Check, Quote, Smartphone } from "lucide-react";
+import { Check, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
-import { TrackedLink } from "@/components/analytics/tracked-link";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 import { AddOnsSection } from "@/components/pricing/addons-section";
 import { FeatureTable } from "@/components/pricing/feature-table";
-import { TrustedBy } from "@/components/sections/trusted-by";
 import { G2Badge } from "@/components/sections/g2-badge";
 import { QuestionsSection } from "@/components/sections/questions-section";
 import { SectionHead } from "@/components/sections/home/section-head";
@@ -294,43 +292,6 @@ export default function PricingPage() {
                             <AppStoreBadge variant="outline" size="sm" location="pricing_callout" />
                             <PlayStoreBadge variant="outline" size="sm" location="pricing_callout" />
                         </div>
-                    </div>
-                </div>
-            </Container>
-        </section>
-
-        {/* Trusted By Section */}
-        <TrustedBy />
-
-        {/* Testimonial + closing action */}
-        <section className="pb-20 sm:pb-24">
-            <Container>
-                <figure className="mx-auto max-w-2xl text-center">
-                    <Quote className="mx-auto mb-4 h-8 w-8 text-orange-500/20" aria-hidden="true" />
-                    <blockquote className="text-lg font-medium leading-relaxed tracking-tight text-pretty text-foreground md:text-xl">
-                        &ldquo;If you are still using Excel for assets management, you are missing out a lot by not choosing Shelf.&rdquo;
-                    </blockquote>
-                    <figcaption className="mt-4 text-sm text-muted-foreground">
-                        <span className="font-semibold text-foreground">Tadas Andriuska</span> · IT Administrator at Ovoko
-                    </figcaption>
-                </figure>
-
-                <div className="mx-auto mt-16 max-w-4xl rounded-3xl bg-surface p-10 text-center ring-1 ring-border sm:p-12">
-                    <h3 className="text-3xl font-bold tracking-tight text-balance text-heading">Join innovative teams around the world</h3>
-                    <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-                        Stop using spreadsheets and start tracking your assets with a modern tool that your team will actually enjoy using.
-                    </p>
-                    <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                        <Button size="lg" className="h-12 bg-orange-600 px-8 text-base text-white shadow-lg shadow-orange-600/20 hover:bg-orange-700" asChild>
-                            <TrackedLink href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup" eventName="signup_click" eventProps={{ location: "pricing_bottom" }}>
-                                Get Started for Free <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                            </TrackedLink>
-                        </Button>
-                        <Button size="lg" variant="outline" className="h-12 px-8 text-base" asChild>
-                            <TrackedLink href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo" eventName="demo_cta" eventProps={{ location: "pricing_bottom" }}>
-                                Book a Demo
-                            </TrackedLink>
-                        </Button>
                     </div>
                 </div>
             </Container>

@@ -273,7 +273,7 @@ export const FEATURED_STORIES = [
         logo: "/logos/purdue-university.webp",
         company: "Purdue University",
         descriptor: "School of Aviation and Transportation Technology",
-        quote: "We use Shelf as a teaching tool as much as a tracking tool: immutable asset records of where it flew, when it flew, who it was flown by, and all maintenance requests and records.",
+        quote: "We use Shelf as a teaching tool as much as a tracking tool. Our students are heading into an industry built on compliance, so my colleagues and I lecture on the importance of asset tracking while using Shelf to give live demonstrations of immutable asset records — where it flew, when it flew, who it was flown by, and all maintenance requests and records.",
         author: "Nathan Rose",
         role: "Clinical Assistant Professor",
         numbers: undefined,
@@ -281,9 +281,9 @@ export const FEATURED_STORIES = [
 ];
 
 export const MINI_STORIES: { id: string; href: string; logo: string; company: string; descriptor: string; result: [string, string, string]; text: string; by?: string }[] = [
-    { id: "ces", href: "/case-studies/ces-70k-recovery", logo: "/logos/ces-utility.webp", company: "CES Utility Solutions", descriptor: "Utility infrastructure", result: ["", "$70K", " of equipment recovered"], text: "A lost drone kit came back thanks to its Shelf QR labels, saving weeks of project delays." },
-    { id: "fabel", href: "/case-studies/fabel-film-double-bookings", logo: "/logos/fabel-film.webp", company: "Fabel Film", descriptor: "Video production", result: ["", "Zero", " double bookings since switching"], text: "“The moment I had to arrange a last-minute extra camera, I knew we needed a system.”", by: "Johannes van Beek, Producer" },
-    { id: "emu", href: "/case-studies/eastern-michigan-university", logo: "/logos/eastern-michigan-university.webp", company: "Eastern Michigan University", descriptor: "Theatre and media departments", result: ["Theatre and media gear on ", "one system", ""], text: "“Shelf's platform checked all the boxes when it came to our needs. I cannot recommend Shelf more for people in my industry.”", by: "Dustin D. Miller, Technical Director & Production Manager" },
+    { id: "ces", href: "/case-studies/ces-70k-recovery", logo: "/logos/ces-utility.webp", company: "CES Utility Solutions", descriptor: "Utility infrastructure", result: ["", "$70K", " of equipment recovered"], text: "A lost $70,000 drone kit was recovered because someone scanned its Shelf QR label, preventing project delays." },
+    { id: "fabel", href: "/case-studies/fabel-film-double-bookings", logo: "/logos/fabel-film.webp", company: "Fabel Film", descriptor: "Video production", result: ["", "Zero", " double bookings after moving to Shelf"], text: "“Double bookings is the reason I wanted to use Shelf. The moment I had to arrange a last-minute extra camera.”", by: "Johannes van Beeck, Technical Director" },
+    { id: "emu", href: "/case-studies/eastern-michigan-university", logo: "/logos/eastern-michigan-university.webp", company: "Eastern Michigan University", descriptor: "Theatre and media departments", result: ["Theatre and media equipment, ", "streamlined", ""], text: "“Shelf's platform checked all the boxes when it came to our needs.”", by: "Dustin D. Miller, Technical Director & Production Manager" },
 ];
 
 /** Keeps the case studies the old homepage linked to. See the SEO note above. */

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { Apple, Check, Download, Globe, Smartphone as AndroidIcon } from "lucide-react";
+import { Check, Download, Globe, Smartphone as AndroidIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
@@ -84,7 +84,8 @@ const moments = [
     { feature: mobileAppFeatures[1], claim: "Walk the room, scan what is there, note what is not.", screens: [COMPANION_SCREENS.audit, COMPANION_SCREENS.inventory] },
     { feature: mobileAppFeatures[3], claim: "Check a booking out and back in where the gear is.", screens: [COMPANION_SCREENS.booking] },
 ];
-const alsoInTheApp = [mobileAppFeatures[2], mobileAppFeatures[4], mobileAppFeatures[5]];
+// The sixth feature card ('Built for the Floor') repeated the scan moment above, so it is not shown.
+const alsoInTheApp = [mobileAppFeatures[2], mobileAppFeatures[4]];
 
 export default function MobileAppPage() {
     return (
@@ -214,7 +215,7 @@ export default function MobileAppPage() {
                         ))}
                     </div>
 
-                    <div className="mt-20 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                    <div className="mx-auto mt-20 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
                         {alsoInTheApp.map((feature) => (
                             <div key={feature.title} className="rounded-2xl bg-card p-5 ring-1 ring-border">
                                 <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600 dark:bg-orange-950/50">
@@ -265,26 +266,9 @@ export default function MobileAppPage() {
                 </Container>
             </section>
 
-            {/* iOS / Android */}
+            {/* New to Shelf: the app needs an account first */}
             <section className="py-20 sm:py-24">
                 <Container>
-                    <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 md:grid-cols-2">
-                        {[
-                            { Icon: Apple, name: "iPhone", text: "Available in the App Store. Free with any Shelf account. Sign in with your existing credentials — no separate account.", badge: <AppStoreBadge location="mobile_app_platforms" /> },
-                            { Icon: AndroidIcon, name: "Android", text: "Available on Google Play. Free with any Shelf account. Sign in with your existing credentials — no separate account.", badge: <PlayStoreBadge location="mobile_app_platforms" /> },
-                        ].map((platform) => (
-                            <div key={platform.name} className="flex h-full flex-col rounded-2xl bg-card p-8 ring-1 ring-border">
-                                <div className="mb-3 flex items-center gap-3">
-                                    <platform.Icon className="h-6 w-6 text-foreground" aria-hidden="true" />
-                                    <h3 className="text-xl font-bold text-heading">{platform.name}</h3>
-                                    <span className="ml-auto inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 dark:bg-green-950/50 dark:text-green-400">Live</span>
-                                </div>
-                                <p className="mb-6 flex-1 text-sm text-muted-foreground">{platform.text}</p>
-                                {platform.badge}
-                            </div>
-                        ))}
-                    </div>
-
                     {/* The evaluator minority: the app needs a Shelf account first. */}
                     <div className="mx-auto mt-5 max-w-4xl rounded-2xl bg-surface px-8 py-8 text-center ring-1 ring-border">
                         <h2 className="text-2xl font-bold tracking-tight text-heading">New to Shelf?</h2>
@@ -320,9 +304,6 @@ export default function MobileAppPage() {
                         <AppStoreBadge location="mobile_app_bottom" className="border-neutral-800 bg-neutral-900/50 text-white hover:bg-neutral-900 hover:text-white" variant="outline" />
                         <PlayStoreBadge location="mobile_app_bottom" className="border-neutral-800 bg-neutral-900/50 text-white hover:bg-neutral-900 hover:text-white" variant="outline" />
                     </div>
-                    <p className="mt-6 text-sm text-neutral-500">
-                        Prefer the App Store page? <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="font-medium text-white underline decoration-white/35 underline-offset-4 hover:decoration-white">Shelf Companion on the App Store</a>
-                    </p>
                 </Container>
             </section>
         </PagefindWrapper>

@@ -3,7 +3,6 @@
 import { Container } from "@/components/ui/container";
 import dynamic from "next/dynamic";
 import NumberFlow from '@number-flow/react';
-import { GlobeEventFeed } from "@/components/sections/scale/globe-event-feed";
 
 import { useRef, useState, useEffect, startTransition } from "react";
 import { useInView } from "framer-motion";
@@ -107,10 +106,8 @@ export function ScaleBlock() {
                             config={GLOBE_CONFIG}
                         />
 
-                        {/* Event Feed Overlay */}
-                        <div className="absolute right-4 bottom-32 lg:right-32 lg:bottom-48 z-10 hidden md:block">
-                            <GlobeEventFeed />
-                        </div>
+                        {/* No activity feed: the one that used to float here was simulated. Until real,
+                            anonymised events exist, the globe and the real numbers carry the section. */}
                     </div>
 
                 </div>
