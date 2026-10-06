@@ -4,6 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ALSO_IN_SHELF, COMPANION, PLATFORM_BOOKINGS, PLATFORM_TILES } from "@/data/home";
 import { LinkRow } from "./link-row";
+import { Shot } from "./shot";
 import { SectionHead } from "./section-head";
 
 const linkClass = "inline-flex items-center gap-1.5 text-sm font-semibold text-orange-600 hover:text-orange-700";
@@ -35,7 +36,7 @@ export function HomePlatform() {
                 {/* Bookings */}
                 <div className="mt-16 grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
                     <div className="overflow-hidden rounded-2xl bg-card shadow-xl shadow-black/5 ring-1 ring-border dark:shadow-black/30">
-                        <Image src={PLATFORM_BOOKINGS.src} alt={PLATFORM_BOOKINGS.alt} width={PLATFORM_BOOKINGS.width} height={PLATFORM_BOOKINGS.height} sizes="(max-width: 1024px) 100vw, 720px" className="h-auto w-full dark:brightness-90" />
+                        <Shot shot={PLATFORM_BOOKINGS} sizes="(max-width: 1023px) calc(100vw - 32px), 720px" className="h-auto w-full dark:brightness-90" />
                     </div>
                     <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">Bookings</p>
@@ -65,7 +66,7 @@ export function HomePlatform() {
                         <p className="mt-4 text-base leading-relaxed text-body">
                             The Companion app is where the field meets the record. Point the camera at a label and the asset opens; check it out to a person, log its location, or run through a room to confirm what&apos;s there.
                         </p>
-                        <Facts items={["Scans Shelf QR labels and Code 128 and DataMatrix barcodes", "Check in, check out and assign custody on the spot", "Free with every account, on iPhone and Android"]} />
+                        <Facts items={["Scans Shelf QR labels, plus Code 128 and DataMatrix with the barcodes add-on", "Check in, check out and assign custody on the spot", "Free with every account, on iPhone and Android"]} />
                         <Link href="/mobile-app" className={`${linkClass} mt-7`}>
                             Get the app <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                         </Link>
@@ -77,7 +78,7 @@ export function HomePlatform() {
                     {PLATFORM_TILES.map((tile) => (
                         <Link key={tile.href} href={tile.href} className="group flex flex-col overflow-hidden rounded-2xl bg-card ring-1 ring-border transition-shadow duration-200 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/30">
                             <div className="aspect-[16/10] overflow-hidden border-b border-border bg-surface">
-                                <Image src={tile.shot.src} alt={tile.shot.alt} width={tile.shot.width} height={tile.shot.height} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px" className="h-full w-full object-cover object-left-top dark:brightness-90" />
+                                <Shot shot={tile.shot} sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, 300px" className="h-full w-full object-cover object-left-top dark:brightness-90" />
                             </div>
                             <div className="flex flex-1 flex-col p-5">
                                 <h4 className="text-base font-semibold text-heading">{tile.title}</h4>

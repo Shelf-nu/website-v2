@@ -40,6 +40,7 @@ const ARTICLES = {
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
   "asset-model-view": "articles/asset-model-view.mjs",
   "homepage-refresh": "articles/homepage-refresh.mjs",
+  "homepage-refresh-picks": "articles/homepage-refresh-picks.mjs",
 };
 
 const slug = process.argv[2];

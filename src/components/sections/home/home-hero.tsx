@@ -3,7 +3,10 @@ import { Container } from "@/components/ui/container";
 import { Pill } from "@/components/ui/pill";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { MigrationDropdown } from "@/components/sections/migration-dropdown";
+import { preload } from "react-dom";
+import { HERO_VIEWS } from "@/data/home";
 import { HeroStage } from "./hero-stage";
+import { HERO_SIZES } from "./hero-sizes";
 
 /**
  * Homepage hero. The h1 text is identical to the previous hero on purpose:
@@ -11,6 +14,11 @@ import { HeroStage } from "./hero-stage";
  * content paints without waiting for hydration.
  */
 export function HomeHero() {
+    // The first product view is the LCP element. It is a plain <img> with a
+    // srcset (see shot.tsx), so it gets the preload next/image would have added.
+    const lcp = HERO_VIEWS[0].shot;
+    preload(lcp.src, { as: "image", fetchPriority: "high", imageSrcSet: lcp.srcSet, imageSizes: lcp.srcSet ? HERO_SIZES : undefined });
+
     return (
         <section className="relative overflow-x-clip border-b border-border pt-24 sm:pt-32">
             <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />

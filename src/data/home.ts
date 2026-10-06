@@ -13,7 +13,10 @@
 const SUPABASE = "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images";
 
 export interface HomeShot {
+    /** Fallback / 1x file */
     src: string;
+    /** Optional `srcset`, e.g. "/images/home/assets-1280.webp 1280w, /images/home/assets-2560.webp 2560w" */
+    srcSet?: string;
     width: number;
     height: number;
     alt: string;
@@ -102,7 +105,7 @@ export const PLATFORM_TILES: { title: string; text: string; link: string; href: 
         text: "Bundle a body, lenses and batteries into one bookable unit.",
         link: "Kits",
         href: "/features/kits",
-        shot: { src: "/images/updates/introducing-kits.jpg", width: 1280, height: 853, alt: "A video production kit with five assets" },
+        shot: { src: "/images/home/kits-1x.webp", srcSet: "/images/home/kits-1x.webp 680w, /images/home/kits-2x.webp 1360w", width: 1360, height: 850, alt: "The kits list: drone, interview, broadcast and video production kits" },
     },
     {
         title: "Labels & barcodes",
@@ -113,7 +116,7 @@ export const PLATFORM_TILES: { title: string; text: string; link: string; href: 
     },
     {
         title: "One page per asset",
-        text: "A searchable asset database with a page for every item: history, custodian, location, files and a QR code.",
+        text: "A searchable asset database with a page for every item: history, custodian, location and a QR code.",
         link: "Asset pages",
         href: "/features/asset-pages",
         shot: { src: "/images/updates/improved-asset-page.jpg", width: 1280, height: 853, alt: "An asset page with history, QR code and location map" },

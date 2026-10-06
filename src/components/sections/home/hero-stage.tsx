@@ -7,6 +7,8 @@ import { VideoLightbox } from "@/components/ui/video-lightbox";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { COMPANION, HERO_VIEWS } from "@/data/home";
+import { HERO_SIZES } from "./hero-sizes";
+import { Shot } from "./shot";
 
 /**
  * The product, operable: three real views of the web app behind a segmented
@@ -60,16 +62,7 @@ export function HeroStage() {
                             aria-hidden={view.id !== active}
                             className={cn("absolute inset-0 transition-opacity duration-300 ease-out", view.id === active ? "opacity-100" : "pointer-events-none opacity-0")}
                         >
-                            <Image
-                                src={view.shot.src}
-                                alt={view.shot.alt}
-                                width={view.shot.width}
-                                height={view.shot.height}
-                                priority={i === 0}
-                                loading={i === 0 ? undefined : "lazy"}
-                                sizes="(max-width: 1024px) 100vw, 940px"
-                                className="h-full w-full object-cover object-left-top dark:brightness-90"
-                            />
+                            <Shot shot={view.shot} eager={i === 0} sizes={HERO_SIZES} className="h-full w-full object-cover object-left-top dark:brightness-90" />
                         </div>
                     ))}
 
