@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { Apple, ArrowRight, Check, Download, Globe, Smartphone as AndroidIcon } from "lucide-react";
+import { Apple, Check, Download, Globe, Smartphone as AndroidIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
@@ -228,36 +228,39 @@ export default function MobileAppPage() {
                 </Container>
             </section>
 
-            {/* App vs web */}
+            {/* App or web: the same workspace, picked by the moment, not a ranking */}
             <section className="border-y border-border bg-surface py-20 sm:py-24">
                 <Container>
                     <SectionHead
-                        title="Designed for the field, not the back office"
-                        lead="The companion is a focused field client. Admin work stays on the web, where it belongs."
+                        eyebrow="App or web?"
+                        title="One workspace, two ways in."
+                        lead="The web app is the whole product. Shelf Companion is the part of it you want in your hand. Same workspace, same data, same login."
                     />
                     <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-5 md:grid-cols-2">
-                        <div className="rounded-2xl bg-card p-6 shadow-xl shadow-black/5 ring-1 ring-border dark:shadow-black/30">
-                            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">Shelf Companion (iOS &amp; Android)</p>
-                            <ul className="mt-5 space-y-3">
-                                {builtForApp.map((item) => (
-                                    <li key={item} className="flex gap-3 text-sm leading-snug text-heading">
-                                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" strokeWidth={2.5} aria-hidden="true" />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="rounded-2xl border border-border bg-background/60 p-6">
-                            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">Shelf web app</p>
-                            <ul className="mt-5 space-y-3">
-                                {bestOnWeb.map((item) => (
-                                    <li key={item} className="flex gap-3 text-sm leading-snug text-muted-foreground">
-                                        <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 opacity-40" aria-hidden="true" />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        {[
+                            { Icon: Globe, when: "At the desk", name: "Shelf web app", items: bestOnWeb },
+                            { Icon: AndroidIcon, when: "On the floor", name: "Shelf Companion", items: builtForApp },
+                        ].map((surface) => (
+                            <div key={surface.name} className="rounded-2xl bg-card p-6 ring-1 ring-border sm:p-7">
+                                <div className="flex items-center gap-3">
+                                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600 dark:bg-orange-950/50 dark:text-orange-300">
+                                        <surface.Icon className="h-5 w-5" aria-hidden="true" />
+                                    </span>
+                                    <div>
+                                        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">{surface.when}</p>
+                                        <h3 className="text-lg font-semibold text-heading">{surface.name}</h3>
+                                    </div>
+                                </div>
+                                <ul className="mt-6 space-y-3">
+                                    {surface.items.map((item) => (
+                                        <li key={item} className="flex gap-3 text-sm leading-snug text-heading">
+                                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" strokeWidth={2.5} aria-hidden="true" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </Container>
             </section>

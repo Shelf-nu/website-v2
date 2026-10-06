@@ -61,33 +61,24 @@ export const mobileAppFeatures: MobileAppFeature[] = [
 /*  Built-for comparison columns                                       */
 /* ------------------------------------------------------------------ */
 
+/** What the Companion app is for: the moments you are standing next to the gear. */
 export const builtForApp = [
-    "Field audits and inventory walks",
-    "Adding notes and photos to an audit scan, and reading them back on the asset",
-    "Scanning QR codes and barcodes on-site",
-    "Quick asset lookups and status checks",
-    "Custody handoffs between team members",
-    "Creating, editing, and checking bookings in and out at the point of use",
-    "Reading a month of bookings as a calendar and creating one on the day you tapped",
-    "Scanning reserved models into a booking to assign and check out",
-    "Claiming a brand new QR label into the workspace (admins and owners)",
-    "Taking a mis-scan back off a live audit, without losing the notes and photos on it",
-    "Signing in against your organization's own Shelf server instead of Shelf Cloud",
-    "Correcting stock counts on the shelf, with a reason attached",
-    "Spreading pooled stock across locations, and seeing every location that holds it",
-    "Selecting a whole kit on a booking with one tap, to check it out, back in, or off the booking",
-    "Scanning a booking's gear out one item at a time as it is handed over",
-    "Searching a long booking by asset, kit, category, or location",
-    "On-the-go dashboard monitoring",
+    "Scan a label with the camera and the asset opens",
+    "Walk an audit: scan what is there, note what is not, add a photo",
+    "Hand custody over, or take it back, on the spot",
+    "Check a booking's gear out and back in where the gear is",
+    "Correct a stock count on the shelf, with a reason attached",
+    "Sign in against your organization's own Shelf server (from 1.5.0)",
 ];
 
+/** The web app is the whole product; this is what you would do at a desk anyway. */
 export const bestOnWeb = [
-    "Creating and configuring audits",
-    "Bulk asset imports and complex edits",
-    "Custom field setup and administration",
-    "User/role management and permissions",
-    "Reporting, analytics, and exports",
-    "Integrations (Slack, webhooks, etc.)",
+    "Everything the app does, in any browser, plus scanning with a laptop camera or a USB scanner",
+    "Setting up the workspace: custom fields, locations, users and roles",
+    "Creating and configuring audits, then reviewing the findings",
+    "Bulk imports, exports and large edits",
+    "Bookings with the availability view and PDF pull lists",
+    "Reports, the dashboard and CSV or PDF exports",
 ];
 
 /* ------------------------------------------------------------------ */
