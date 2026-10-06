@@ -238,6 +238,15 @@ export const HOME_SEGMENTS: {
     { id: "open-source", icon: "github", title: "Open source & self-hosting", text: "Auditable code, a production-ready cloud, or run it yourself. Everything is on GitHub.", href: "/solutions/open-source-asset-management", link: "Open source asset management", note: "Shelf-nu/shelf.nu, AGPL licensed" },
 ];
 
+/** The solutions pages the previous homepage's picker linked to that have no card above. See the SEO note. */
+export const MORE_SOLUTIONS: { label: string; href: string }[] = [
+    { label: "Asset tracking", href: "/solutions/asset-tracking" },
+    { label: "Equipment reservations", href: "/solutions/equipment-reservations" },
+    { label: "Equipment management", href: "/solutions/equipment-management" },
+    { label: "Fixed asset tracking", href: "/solutions/fixed-asset-tracking" },
+    { label: "Maintenance tracking", href: "/solutions/maintenance-tracking" },
+];
+
 /* ------------------------------------------------------------------ */
 /*  Stories                                                            */
 /* ------------------------------------------------------------------ */

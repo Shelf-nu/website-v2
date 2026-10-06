@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowRight, Camera, Github, GraduationCap, Laptop, ScanLine, Wrench, type LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { CUSTOMER_LOGOS } from "@/data/customer-logos";
-import { HOME_SEGMENTS, type SegmentIcon } from "@/data/home";
+import { HOME_SEGMENTS, MORE_SOLUTIONS, type SegmentIcon } from "@/data/home";
+import { LinkRow } from "./link-row";
 import { SectionHead } from "./section-head";
 
 const ICONS: Record<SegmentIcon, LucideIcon> = { camera: Camera, graduation: GraduationCap, scan: ScanLine, wrench: Wrench, laptop: Laptop, github: Github };
@@ -56,6 +57,17 @@ export function HomeSegments() {
                         );
                     })}
                 </div>
+
+                {/* The solutions pages main's picker linked to. Keep them: see src/data/home.ts. */}
+                <LinkRow
+                    label="More ways teams use Shelf:"
+                    items={MORE_SOLUTIONS}
+                    trailing={
+                        <Link href="/solutions" className="inline-flex items-center gap-1.5 text-sm font-semibold text-orange-600 hover:text-orange-700">
+                            All solutions <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                        </Link>
+                    }
+                />
             </Container>
         </section>
     );
