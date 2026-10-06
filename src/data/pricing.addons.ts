@@ -171,6 +171,7 @@ export const addOns: AddOn[] = [
             "SAML 2.0 — works with Entra, Google Workspace, Okta and more",
             "Automatic user provisioning (SCIM) included",
             "Applies to every user in the workspace",
+            "Existing email/password accounts are converted, not recreated: custody, bookings and history stay",
             "Regular username/password users stay unlimited and included",
         ],
         priceMonthly: null,
