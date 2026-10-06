@@ -194,7 +194,7 @@ export default function PricingPage() {
                                 </span>
                             )}
 
-                            <h3 className="text-lg font-semibold text-heading">{plan.name}</h3>
+                            <h2 className="text-lg font-semibold text-heading">{plan.name}</h2>
                             <p className="mt-1 min-h-10 text-sm leading-snug text-caption">{plan.description}</p>
 
                             <div className="mt-5 border-b border-border-subtle pb-5">

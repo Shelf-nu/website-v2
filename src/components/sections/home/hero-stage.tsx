@@ -40,8 +40,9 @@ export function HeroStage() {
                                     trackEvent("home_interact", { element: "hero_tab", value: view.id });
                                 }}
                                 className={cn(
-                                    "h-9 rounded-full px-4 text-sm font-medium transition-[background-color,color,box-shadow] duration-150 active:scale-[0.96]",
+                                    "h-9 rounded-full px-3.5 text-sm font-medium transition-[background-color,color,box-shadow] duration-150 active:scale-[0.96] sm:px-4",
                                     selected ? "bg-background text-foreground shadow-sm ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
+                                    view.phoneOnly && "lg:hidden",
                                 )}
                             >
                                 {view.label}
@@ -60,9 +61,10 @@ export function HeroStage() {
                             id={`hero-view-${view.id}`}
                             role="tabpanel"
                             aria-hidden={view.id !== active}
-                            className={cn("absolute inset-0 transition-opacity duration-300 ease-out", view.id === active ? "opacity-100" : "pointer-events-none opacity-0")}
+                            className={cn("absolute inset-0 transition-opacity duration-300 ease-out", view.id === active ? "opacity-100" : "pointer-events-none opacity-0", view.phoneOnly && "bg-neutral-900")}
                         >
-                            <Shot shot={view.shot} eager={i === 0} sizes={HERO_SIZES} className="h-full w-full object-cover object-left-top dark:brightness-90" />
+                            {/* The phone screen is portrait: show the part with the scanner, not the status bar. */}
+                            <Shot shot={view.shot} eager={i === 0} sizes={view.phoneOnly ? "100vw" : HERO_SIZES} className={view.phoneOnly ? "h-full w-full object-cover object-[50%_30%]" : "h-full w-full object-cover object-left-top dark:brightness-90"} />
                         </div>
                     ))}
 
@@ -71,7 +73,8 @@ export function HeroStage() {
                         Web app
                     </span>
 
-                    <div className="absolute right-4 top-4 z-10">
+                    {/* The video is of the web app; on the phone-only app view the pill would sit on the phone screen. */}
+                    <div className={cn("absolute right-4 top-4 z-10", HERO_VIEWS.find((v) => v.id === active)?.phoneOnly && "hidden")}>
                         <VideoLightbox videoId="RHs9nBpXuuE">
                             <div role="button" tabIndex={0} className="flex cursor-pointer items-center gap-1.5 rounded-full bg-card/95 px-3 py-1.5 shadow-lg shadow-black/10 backdrop-blur-sm transition-transform duration-150 hover:scale-[1.03] active:scale-[0.96]">
                                 <Play className="ml-0.5 h-3.5 w-3.5 fill-orange-600 text-orange-600" />

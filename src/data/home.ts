@@ -26,21 +26,36 @@ export interface HomeShot {
 /*  Hero                                                               */
 /* ------------------------------------------------------------------ */
 
-export const HERO_VIEWS: { id: string; label: string; shot: HomeShot }[] = [
+/**
+ * The hero tabs prove the line above them ("track it, book it, know who has
+ * it") and follow the demand data (90 days to 2026-09-29): check-in/check-out
+ * is searched ~24k times vs nothing for "asset page", homepage visitors open
+ * custody 120 times vs asset pages 46, and "inventory" is the word people use
+ * (48k impressions), not "asset index". The app tab exists on phones only:
+ * there the Companion card beside the stage is hidden, and /mobile-app is the
+ * page homepage visitors open most (677 in 90 days).
+ */
+export const HERO_VIEWS: { id: string; label: string; shot: HomeShot; phoneOnly?: boolean }[] = [
     {
-        id: "assets",
-        label: "Asset index",
-        shot: { src: "/images/hero_dashboard_v3.webp", width: 1600, height: 856, alt: "Shelf Asset Management — asset index with QR codes and labels" },
+        id: "inventory",
+        label: "Inventory",
+        shot: { src: "/images/home/inventory-1x.webp", srcSet: "/images/home/inventory-1x.webp 1200w, /images/home/inventory-2x.webp 2400w", width: 2400, height: 1500, alt: "Shelf Asset Management — asset index with QR codes and labels" },
     },
     {
         id: "bookings",
         label: "Bookings",
-        shot: { src: "/images/updates/availability-view.jpg", width: 1280, height: 853, alt: "Availability view: assets across a week of bookings" },
+        shot: { src: "/images/home/bookings-view.webp", width: 1280, height: 853, alt: "Availability view: assets across a week of bookings" },
     },
     {
-        id: "asset-page",
-        label: "Asset page",
-        shot: { src: "/images/updates/improved-asset-page.jpg", width: 1280, height: 853, alt: "An asset page with history, QR code and location map" },
+        id: "checkout",
+        label: "Check-out",
+        shot: { src: "/images/home/checkout-1x.webp", srcSet: "/images/home/checkout-1x.webp 1200w, /images/home/checkout-2x.webp 2400w", width: 2400, height: 1500, alt: "A booking in Shelf with its check-in progress, assets and kits" },
+    },
+    {
+        id: "app",
+        label: "App",
+        shot: { src: "/images/home/companion-scan.webp", width: 1000, height: 2100, alt: "Shelf Companion: scanning a QR label to open an asset" },
+        phoneOnly: true,
     },
 ];
 
@@ -84,7 +99,7 @@ export const WHY_SWITCH = {
 /*  Platform                                                           */
 /* ------------------------------------------------------------------ */
 
-export const PLATFORM_BOOKINGS: HomeShot = { src: "/images/updates/availability-view.jpg", width: 1280, height: 853, alt: "Availability view: assets across a week of bookings" };
+export const PLATFORM_BOOKINGS: HomeShot = { src: "/images/home/bookings-view.webp", width: 1280, height: 853, alt: "Availability view: assets across a week of bookings" };
 
 export const PLATFORM_TILES: { title: string; text: string; link: string; href: string; shot: HomeShot }[] = [
     {
@@ -92,7 +107,7 @@ export const PLATFORM_TILES: { title: string; text: string; link: string; href: 
         text: "Hand gear over with a scan and know who has it, since when.",
         link: "Custody",
         href: "/features/custody",
-        shot: { src: "/images/updates/partial-check-ins.jpg", width: 1590, height: 1075, alt: "Booking page with quick and explicit check-in" },
+        shot: { src: "/images/home/check-in.webp", width: 1590, height: 1075, alt: "Booking page with quick and explicit check-in" },
     },
     {
         title: "Kits",
@@ -106,7 +121,7 @@ export const PLATFORM_TILES: { title: string; text: string; link: string; href: 
         text: "Order QR sheets, print your own, or keep the labels and scanners you already have.",
         link: "Labels",
         href: "/solutions/qr-code-asset-tracking",
-        shot: { src: "/images/updates/barcode-scanners-desktop.jpg", width: 1440, height: 792, alt: "A handheld scanner reading a QR label on a laptop" },
+        shot: { src: "/images/home/labels.webp", width: 1440, height: 792, alt: "A handheld scanner reading a QR label on a laptop" },
     },
     {
         title: "One page per asset",
