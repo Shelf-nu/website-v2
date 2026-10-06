@@ -69,7 +69,9 @@ export function GlobeEventFeed({ className }: { className?: string }) {
                             animate={{ opacity: 1, x: 0, scale: 1 }}
                             exit={{ opacity: 0, x: 20, scale: 0.95, transition: { duration: 0.2 } }}
                             transition={{ duration: 0.4, type: "spring" }}
-                            className="bg-card/80 backdrop-blur-md border border-border-subtle/50 p-3 rounded-xl shadow-xl flex items-center gap-3"
+                            // No backdrop blur: four blurred cards over a canvas that repaints every
+                            // frame made the compositor re-blur all four on every frame.
+                            className="bg-card/95 border border-border-subtle/50 p-3 rounded-xl shadow-xl flex items-center gap-3"
                         >
                             <div className={cn("p-2 rounded-lg bg-surface", eventType.color)}>
                                 <Icon className="w-4 h-4" />

@@ -17,10 +17,10 @@ const Globe = dynamic(() => import("@/components/ui/globe").then(mod => mod.Glob
     ),
 });
 
+// The pixel ratio is decided by the Globe component (capped at 1.5x), so it is not set here.
 const GLOBE_CONFIG = {
     width: 1200,
     height: 1200,
-    devicePixelRatio: 2,
     phi: 0,
     theta: 0.25,
     diffuse: 1.2,
@@ -98,8 +98,9 @@ export function ScaleBlock() {
 
                     {/* Right Column: Globe - Offset & Large */}
                     <div className="relative h-[600px] lg:h-[800px] w-full lg:w-[140%] lg:-ml-[20%] lg:-mr-[20%] flex items-center justify-center lg:translate-x-32 perspective-1000 -my-24 lg:-my-32">
-                        {/* Globe Glow - Warm Orange/White */}
-                        <div className="absolute inset-0 bg-orange-500/5 blur-[120px] rounded-full transform scale-50" />
+                        {/* Globe glow as a gradient, not a blur filter: a 120px blur on an
+                            800px layer was re-composited on every frame the globe drew. */}
+                        <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,105,0,0.10)_0%,rgba(255,105,0,0.04)_28%,transparent_55%)]" />
 
                         <Globe
                             className="w-full h-full"
