@@ -6,6 +6,7 @@ import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { COMPANION } from "@/data/home";
+import { ScanToInstall } from "@/components/mobile/scan-to-install";
 
 const badgeClass = "border-neutral-800 bg-neutral-900/50 text-white hover:bg-neutral-900 hover:text-white";
 
@@ -49,6 +50,7 @@ export function HomeClosing() {
                             <AppStoreBadge location="home_bottom" variant="outline" className={badgeClass} />
                             <PlayStoreBadge location="home_bottom" variant="outline" className={badgeClass} />
                         </div>
+                        <ScanToInstall onDark className="mt-6 hidden lg:flex" />
                     </div>
                 </div>
             </Container>

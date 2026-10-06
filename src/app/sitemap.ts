@@ -44,6 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/resources", priority: 0.7 },
         { path: "/brand-assets", priority: 0.3 },
         // /design-system is an internal UI reference (noindex) — excluded from sitemap.
+        // /get-app is the QR code's store redirect (noindex) — excluded from sitemap.
         // Index pages for content sections
         { path: "/features", priority: 0.9 },
         { path: "/solutions", priority: 0.9 },

@@ -9,6 +9,7 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 import { QuestionsSection } from "@/components/sections/questions-section";
+import { ScanToInstall } from "@/components/mobile/scan-to-install";
 import { SectionHead } from "@/components/sections/home/section-head";
 import { APP_STORE_URL, COMPANION_SCREENS, type CompanionScreen } from "@/data/companion-screens";
 import { mobileAppFeatures, builtForApp, bestOnWeb, mobileAppFaqs } from "@/data/mobile-app";
@@ -122,6 +123,9 @@ export default function MobileAppPage() {
                                     See all three options →
                                 </a>
                             </div>
+
+                            {/* Reading on a desktop? The store badges would open the store on the wrong device. */}
+                            <ScanToInstall className="mt-8 hidden lg:flex" />
 
                             {/* Most visitors here already use Shelf and want the app or the login. */}
                             <p className="mt-6 text-sm text-muted-foreground">
