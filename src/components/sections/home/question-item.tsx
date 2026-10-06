@@ -9,14 +9,14 @@ import { trackEvent } from "@/lib/analytics";
  * only script here is the tracking: which question a visitor opens tells us
  * what they are worried about.
  */
-export function QuestionItem({ id, defaultOpen, summary, children }: { id: string; defaultOpen?: boolean; summary: ReactNode; children: ReactNode }) {
+export function QuestionItem({ id, page, defaultOpen, summary, children }: { id: string; page: string; defaultOpen?: boolean; summary: ReactNode; children: ReactNode }) {
     return (
         <details
             name="home-questions"
             open={defaultOpen}
             className="group border-b border-border-subtle first:border-t"
             onToggle={(event) => {
-                if (event.currentTarget.open) trackEvent("home_question_open", { question: id });
+                if (event.currentTarget.open) trackEvent("question_open", { page, question: id });
             }}
         >
             {summary}
@@ -25,14 +25,17 @@ export function QuestionItem({ id, defaultOpen, summary, children }: { id: strin
     );
 }
 
-/** Opens the Crisp chat when it is loaded; otherwise falls back to the contact page. */
-export function AskTheTeamButton({ className }: { className?: string }) {
+/**
+ * Opens the Crisp chat when it is loaded; otherwise falls back to the contact
+ * page. No event of its own: the Crisp bridge already records `chat_opened`.
+ */
+export function AskTheTeamButton({ page, className }: { page: string; className?: string }) {
     return (
         <button
             type="button"
             className={className}
+            data-page={page}
             onClick={() => {
-                trackEvent("home_interact", { element: "ask_the_team", value: "questions" });
                 // Declared in src/lib/crisp.ts; undefined until the chat widget has been scheduled.
                 if (Array.isArray(window.$crisp)) {
                     window.$crisp.push(["do", "chat:open"]);

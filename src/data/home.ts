@@ -44,14 +44,8 @@ export const HERO_VIEWS: { id: string; label: string; shot: HomeShot }[] = [
     },
 ];
 
-/** Official App Store screens, cropped to the device screen (1000x2100). */
-export const COMPANION = {
-    scan: { src: "/images/home/companion-scan.webp", width: 1000, height: 2100, alt: "Shelf Companion: scanning a QR label to open an asset" },
-    asset: { src: "/images/home/companion-asset.webp", width: 1000, height: 2100, alt: "Shelf Companion: an asset page with custody and location" },
-    audit: { src: "/images/home/companion-audit.webp", width: 1000, height: 2100, alt: "Shelf Companion: an asset condition audit in progress" },
-    booking: { src: "/images/home/companion-booking.webp", width: 1000, height: 2100, alt: "Shelf Companion: checking a booking's assets back in" },
-    inventory: { src: "/images/home/companion-inventory.webp", width: 1000, height: 2100, alt: "Shelf Companion: the searchable asset list" },
-} satisfies Record<string, HomeShot>;
+/** The Companion app screens live in src/data/companion-screens.ts (shared with /mobile-app and /pricing). */
+export { COMPANION_SCREENS as COMPANION } from "./companion-screens";
 
 /* ------------------------------------------------------------------ */
 /*  Trust band: logos and one quote per segment                        */

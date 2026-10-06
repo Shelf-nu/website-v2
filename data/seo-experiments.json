@@ -3146,6 +3146,32 @@
       "evaluationWindowDays": 28,
       "relatedPatterns": [],
       "notes": "Do not evaluate on the page aggregate alone: brand queries (1,375 clicks) dominate it and will mask a non-brand move. Parity was checked on the built out/index.html against the live page: same title/description/canonical/h1, same JSON-LD types, 27/27 body links kept, 154 of 423 non-brand query words covered vs 90 live. Re-run the same check against production after deploy. Ranking words worked back in on purpose: 'equipment inventory', 'equipment scheduling', 'asset database', 'open-source', 'higher education', 'double-bookings'. Rebased 2026-10-06: main had added a solutions picker (PR #321, six /solutions links); the refresh keeps all of those links in its segments section."
+    },
+    {
+      "id": "exp-064",
+      "page": "/pricing",
+      "field": "body",
+      "before": "Pricing page in the old style: badge eyebrow, logos, Switch toggle defaulting to MONTHLY, Card plan grid ('Everything in Free' under a plan named Personal), add-ons, app callout, trusted-by, testimonial, CTA block, feature table, Accordion FAQ.",
+      "after": "Same content in the refresh's style: segmented billing control defaulting to YEARLY (the audit's sanctioned lever: ~88% never touch the toggle, so the default decides which price nearly everyone sees), 'Everything in Personal', ring-style cards, same add-ons/feature table, FAQ as the shared 'questions' section with FAQPage schema generated from the rendered list, store badges tracked (app_store_click, pricing_callout).",
+      "hypothesis": "GUARDRAIL, not a CTR test: body-only redesign in the homepage refresh's style; title, description, canonical, h1 and JSON-LD types unchanged; every body link on the live page kept. Expect flat position and clicks; judge brand and non-brand separately on full weeks. The one behavioural change is the yearly default: watch pricing_cta by plan and billing (baseline 2026-08-05: ~15% CTA rate, 80% of clicks to Free, team/yearly 13 vs team/monthly 29 per 30d).",
+      "status": "planned",
+      "createdAt": "2026-10-06",
+      "evaluationWindowDays": 28,
+      "relatedPatterns": [],
+      "notes": "Stacked on the homepage refresh (exp-063). Metric = pricing_cta rate and the team yearly/monthly split, not signups."
+    },
+    {
+      "id": "exp-065",
+      "page": "/mobile-app",
+      "field": "body",
+      "before": "App page with a stock photo of a hand holding a phone, invented floating labels, icon feature cards, untracked store badges.",
+      "after": "Real App Store screens (scan, asset, audit, inventory, booking) in the hero and three feature moments; same 'three ways' / app-vs-web / platform content; 'Already using Shelf? Log in' under the hero and a 'New to Shelf?' signup card (signup_click mobile_app_page); store badges tracked (app_store_click with location); FAQ as the shared questions section.",
+      "hypothesis": "GUARDRAIL, not a CTR test: body-only redesign in the homepage refresh's style; title, description, canonical, h1 and JSON-LD types unchanged; every body link on the live page kept. Expect flat position and clicks; judge brand and non-brand separately on full weeks. Conversion here is the store click, which was invisible until app_store_click; the 2026-08 audit found ~80% of visitors are existing users and the page converts ~25% on its real job, so do NOT read the intent-rate column for this page.",
+      "status": "planned",
+      "createdAt": "2026-10-06",
+      "evaluationWindowDays": 28,
+      "relatedPatterns": [],
+      "notes": "Stacked on the homepage refresh (exp-063). The KB article /knowledge-base/shelf-mobile-app owns the 'shelf app' search cluster (123k impr/90d, pos 8); this page's title is untouched and no redirect is involved."
     }
   ]
 }

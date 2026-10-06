@@ -3,13 +3,14 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { HomeHero } from "@/components/sections/home/home-hero";
 import { HomeTrust } from "@/components/sections/home/home-trust";
+import { HOME_QUESTIONS } from "@/data/home";
 
 // Below the fold: split out of the first chunk. They are still server-rendered
 // into the static HTML, so their text and links are there for crawlers.
 const HomeWhySwitch = dynamic(() => import("@/components/sections/home/home-why-switch").then(m => m.HomeWhySwitch));
 const ScaleBlock = dynamic(() => import("@/components/sections/scale-block").then(m => m.ScaleBlock));
 const HomePlatform = dynamic(() => import("@/components/sections/home/home-platform").then(m => m.HomePlatform));
-const HomeQuestions = dynamic(() => import("@/components/sections/home/home-questions").then(m => m.HomeQuestions));
+const QuestionsSection = dynamic(() => import("@/components/sections/questions-section").then(m => m.QuestionsSection));
 const HomeSegments = dynamic(() => import("@/components/sections/home/home-segments").then(m => m.HomeSegments));
 const HomeStories = dynamic(() => import("@/components/sections/home/home-stories").then(m => m.HomeStories));
 const FounderLetter = dynamic(() => import("@/components/sections/founder-letter").then(m => m.FounderLetter));
@@ -38,7 +39,7 @@ export default function HomePage() {
             <ScaleBlock />
             {/* 5. What does it do now?  6. "But does it...?" */}
             <HomePlatform />
-            <HomeQuestions />
+            <QuestionsSection page="home" eyebrow="Frequently asked questions" title="Questions we get every week." lead="Straight answers, fine print included." items={HOME_QUESTIONS} openFirst />
             {/* 7. Is it for me?  8. Who says so?  9. Why trust you? */}
             <HomeSegments />
             <HomeStories />

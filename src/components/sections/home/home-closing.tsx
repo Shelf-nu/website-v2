@@ -46,8 +46,8 @@ export function HomeClosing() {
                         <h3 className="mt-3 text-2xl font-bold tracking-tight text-white">Out in the field? Take Shelf with you.</h3>
                         <p className="mt-3 text-base leading-relaxed text-neutral-400">Scan labels, check gear in and out, and update assets from your phone. Free with every Shelf account, on iPhone and Android.</p>
                         <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:items-start">
-                            <AppStoreBadge variant="outline" className={badgeClass} />
-                            <PlayStoreBadge variant="outline" className={badgeClass} />
+                            <AppStoreBadge location="home_bottom" variant="outline" className={badgeClass} />
+                            <PlayStoreBadge location="home_bottom" variant="outline" className={badgeClass} />
                         </div>
                     </div>
                 </div>

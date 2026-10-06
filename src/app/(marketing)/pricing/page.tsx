@@ -1,31 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { Container } from "@/components/ui/container";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Check, Smartphone } from "lucide-react";
-import { FAQSection } from "@/components/sections/faq";
-import { pricingPlans, PricingPlan } from "@/data/pricing";
-import { pricingFaqs } from "@/data/pricing-faq";
-import { FeatureTable } from "@/components/pricing/feature-table";
-import Link from "next/link";
-import NumberFlow from '@number-flow/react';
-import { TrustedBy } from "@/components/sections/trusted-by";
-import { G2Badge } from "@/components/sections/g2-badge";
-import { ArrowRight, Quote } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import NumberFlow from "@number-flow/react";
+import { ArrowRight, Check, Quote, Smartphone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
-import { trackEvent } from "@/lib/analytics";
 import { StructuredData } from "@/components/seo/structured-data";
-import { pricingSoftwareApplicationJsonLd } from "@/lib/seo";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
 import { AddOnsSection } from "@/components/pricing/addons-section";
+import { FeatureTable } from "@/components/pricing/feature-table";
+import { TrustedBy } from "@/components/sections/trusted-by";
+import { G2Badge } from "@/components/sections/g2-badge";
+import { QuestionsSection } from "@/components/sections/questions-section";
+import { SectionHead } from "@/components/sections/home/section-head";
+import { pricingPlans, type PricingPlan } from "@/data/pricing";
+import { pricingFaqs } from "@/data/pricing-faq";
 import { addOns, formatAddOnPrice } from "@/data/pricing.addons";
+import { trackEvent } from "@/lib/analytics";
+import { pricingSoftwareApplicationJsonLd } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 // Curated social proof logos for pricing page (prestigious brands)
 const pricingSocialProof = [
@@ -53,7 +51,7 @@ function getDisplayFeatures(plan: PricingPlan, isYearly: boolean): string[] {
             ];
         case "plus":
             return [
-                "Everything in Free",
+                "Everything in Personal",
                 "Unlimited custom fields",
                 "Custom field → category mapping",
                 "CSV import & export",
@@ -103,33 +101,42 @@ function calculateSavings(plans: PricingPlan[]): number {
     return maxSavings;
 }
 
+/** Stable ids for the `question_open` event, derived from the question text. */
+const questionId = (q: string) => q.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "").slice(0, 48);
+const pricingQuestions = pricingFaqs.map((faq) => ({ id: questionId(faq.question), question: faq.question, answer: faq.answer }));
+
 export default function PricingPage() {
-    const [isYearly, setIsYearly] = useState(false);
+    // ~88% of visitors never touch the billing toggle, so this default
+    // decides which price nearly everyone sees (Team: $30.83/mo yearly
+    // vs $67/mo monthly).
+    const [isYearly, setIsYearly] = useState(true);
     const maxSavings = calculateSavings(pricingPlans);
+    const billing = isYearly ? "yearly" : "monthly";
 
     return (
-        <PagefindWrapper type="Page" title="Pricing - Simple, transparent pricing" keywords="pricing pricing plans shelf pricing plans and pricing price cost how much does shelf cost subscription free plan team plan pricing page">
+        <PagefindWrapper type="Page" title="Pricing - Simple, transparent pricing" keywords="pricing pricing plans shelf pricing plans and pricing price cost how much does shelf cost subscription free plan team plan enterprise plan monthly yearly annual billing">
         <StructuredData data={pricingSoftwareApplicationJsonLd(pricingPlans)} />
-        <div className="flex min-h-screen flex-col relative overflow-hidden">
-            {/* Ambient Background Gradient & Grid */}
-            <div className="absolute top-0 inset-x-0 h-[600px] -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-            <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 dark:from-orange-950/20 via-background to-background pointer-events-none" />
 
-            <Container className="py-24 md:py-40 relative">
-                <div className="mx-auto max-w-2xl text-center mb-10">
-                    <Badge variant="secondary" className="mb-4 bg-orange-50 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 border-orange-100/50 dark:border-orange-900/50">Pricing</Badge>
-                    <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
+        {/* Plans */}
+        <section className="relative overflow-x-clip pt-24 sm:pt-32">
+            <div className="absolute inset-x-0 top-0 -z-10 h-[600px] bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/20 via-background to-background dark:from-orange-950/20" />
+
+            <Container className="relative">
+                <div className="mx-auto max-w-2xl text-center">
+                    <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">Pricing</p>
+                    <h1 className="mt-3 text-4xl font-bold tracking-tight text-balance text-heading sm:text-6xl">
                         Simple, transparent <span className="text-orange-600">pricing</span>
                     </h1>
-                    <p className="text-xl text-muted-foreground">
+                    <p className="mt-5 text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
                         One flat price per workspace — unlimited assets on every plan, unlimited users on Team. Try Team free for 7 days, no credit card required.
                     </p>
                 </div>
 
-                {/* Social Proof Logos */}
-                <div className="flex flex-col items-center gap-4 mb-12">
-                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Trusted by innovative teams</p>
-                    <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
+                {/* Social proof */}
+                <div className="mt-10 flex flex-col items-center gap-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">Trusted by innovative teams</p>
+                    <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
                         {pricingSocialProof.map((brand) => (
                             <Image
                                 key={brand.name}
@@ -137,115 +144,119 @@ export default function PricingPage() {
                                 alt={brand.name}
                                 width={100}
                                 height={32}
-                                className="h-7 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 dark:invert dark:brightness-200"
+                                className="h-7 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 dark:invert dark:brightness-200"
                             />
                         ))}
                     </div>
-                    <G2Badge className="mt-4" />
+                    <G2Badge className="mt-2" />
                 </div>
 
-                {/* Billing Toggle */}
-                <div className="flex items-center justify-center gap-4 mb-16">
-                    <Label htmlFor="billing-toggle" className={`text-sm font-medium cursor-pointer ${!isYearly ? 'text-foreground' : 'text-muted-foreground'}`} onClick={() => setIsYearly(false)}>
-                        Monthly
-                    </Label>
-                    <Switch
-                        id="billing-toggle"
-                        checked={isYearly}
-                        onCheckedChange={setIsYearly}
-                    />
-                    <Label htmlFor="billing-toggle" className={`text-sm font-medium cursor-pointer ${isYearly ? 'text-foreground' : 'text-muted-foreground'}`} onClick={() => setIsYearly(true)}>
-                        Yearly <span className="ml-1.5 inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-950/50 px-2 py-0.5 text-xs font-semibold text-orange-700 dark:text-orange-400">Save up to {maxSavings}%</span>
-                    </Label>
+                {/* Billing period */}
+                <div className="mt-12 flex justify-center">
+                    <div role="group" aria-label="Billing period" className="inline-flex items-center gap-1 rounded-full bg-muted/70 p-1 ring-1 ring-border/70">
+                        {(["monthly", "yearly"] as const).map((period) => {
+                            const selected = (period === "yearly") === isYearly;
+                            return (
+                                <button
+                                    key={period}
+                                    type="button"
+                                    aria-pressed={selected}
+                                    onClick={() => setIsYearly(period === "yearly")}
+                                    className={cn(
+                                        "inline-flex h-9 items-center rounded-full px-4 text-sm font-medium transition-[background-color,color,box-shadow] duration-150 active:scale-[0.96]",
+                                        selected ? "bg-background text-foreground shadow-sm ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
+                                    )}
+                                >
+                                    {period === "monthly" ? "Monthly" : "Yearly"}
+                                    {period === "yearly" && (
+                                        <span className="ml-2 rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-700 dark:bg-orange-950/50 dark:text-orange-400">
+                                            Save up to {maxSavings}%
+                                        </span>
+                                    )}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 max-w-[1400px] mx-auto pt-8">
+                {/* Plan cards */}
+                <div className="mx-auto mt-10 grid max-w-[1400px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
                     {pricingPlans.map((plan) => (
-                        <Card key={plan.id} className={`flex flex-col relative transition-all duration-300 ${plan.popular ? 'border-orange-500 shadow-2xl shadow-orange-500/10 z-10 bg-card ring-1 ring-orange-500/20' : 'border-border-subtle hover:border-zinc-300 dark:hover:border-zinc-600 hover:shadow-lg bg-card/50 hover:bg-card'} rounded-xl overflow-visible`}>
-
-                            {/* Absolute Badge for perfect alignment of cards */}
+                        <div
+                            key={plan.id}
+                            className={cn(
+                                "relative flex flex-col rounded-2xl bg-card p-6",
+                                plan.popular ? "shadow-xl shadow-orange-500/10 ring-2 ring-orange-500" : "ring-1 ring-border",
+                            )}
+                        >
                             {plan.popular && (
-                                <div className="absolute -top-3 left-0 right-0 flex justify-center z-20">
-                                    <Badge className="bg-orange-600 text-white border-0 shadow-sm px-4 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full">
-                                        Most Popular
-                                    </Badge>
-                                </div>
+                                <span className="absolute -top-3 left-6 rounded-full bg-orange-600 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-sm">
+                                    Most popular
+                                </span>
                             )}
 
-                            <CardHeader className="pb-3 pt-6 px-5 space-y-0">
-                                <CardTitle className="text-xl font-bold tracking-tight text-heading leading-tight">
-                                    {plan.name}
-                                </CardTitle>
-                                <CardDescription className="mt-2 text-sm text-caption leading-normal min-h-[40px] flex items-center">
-                                    {plan.description}
-                                </CardDescription>
-                            </CardHeader>
+                            <h3 className="text-lg font-semibold text-heading">{plan.name}</h3>
+                            <p className="mt-1 min-h-10 text-sm leading-snug text-caption">{plan.description}</p>
 
-                            <CardContent className="flex-1 pt-0 px-5">
-                                <div className="mb-6 pt-2 pb-2 border-b border-border-subtle">
-                                    <div className="flex items-baseline gap-1">
-                                        {plan.price === "Custom" ? (
-                                            <span className="text-4xl font-extrabold tracking-tight text-heading">Custom</span>
-                                        ) : (
-                                            <>
-                                                {/* locales is pinned: without it NumberFlow formats with the
-                                                    visitor's browser locale, so en-GB saw "US$67", de-DE
-                                                    "67 $" and fr-FR "67 $US". formatUSD pins en-US for the
-                                                    same reason. */}
-                                                <NumberFlow
-                                                    value={isYearly ? parseInt(plan.priceYearly.replace('$', '')) / 12 : parseInt(plan.priceMonthly.replace('$', ''))}
-                                                    locales="en-US"
-                                                    format={{ style: 'currency', currency: 'USD', maximumFractionDigits: isYearly ? 2 : 0, trailingZeroDisplay: 'stripIfInteger' }}
-                                                    className="text-4xl font-extrabold tracking-tight text-heading"
-                                                />
-                                                <span className="text-caption text-xs font-semibold uppercase ml-1 tracking-wide">
-                                                    /mo
-                                                </span>
-                                            </>
-                                        )}
-                                    </div>
-                                    {plan.price !== "Custom" && isYearly && plan.priceYearly !== "$0" && (
-                                        <p className="text-caption text-xs mt-1.5">
-                                            billed annually as {plan.priceYearly}/yr
-                                        </p>
+                            <div className="mt-5 border-b border-border-subtle pb-5">
+                                <div className="flex items-baseline gap-1">
+                                    {plan.price === "Custom" ? (
+                                        <span className="text-4xl font-extrabold tracking-tight text-heading">Custom</span>
+                                    ) : (
+                                        <>
+                                            {/* locales is pinned: without it NumberFlow formats with the
+                                                visitor's browser locale, so en-GB saw "US$67", de-DE
+                                                "67 $" and fr-FR "67 $US". formatUSD pins en-US for the
+                                                same reason. */}
+                                            <NumberFlow
+                                                value={isYearly ? parseInt(plan.priceYearly.replace('$', '')) / 12 : parseInt(plan.priceMonthly.replace('$', ''))}
+                                                locales="en-US"
+                                                format={{ style: 'currency', currency: 'USD', maximumFractionDigits: isYearly ? 2 : 0, trailingZeroDisplay: 'stripIfInteger' }}
+                                                className="text-4xl font-extrabold tracking-tight text-heading"
+                                            />
+                                            <span className="ml-1 text-xs font-semibold uppercase tracking-wide text-caption">/mo</span>
+                                        </>
                                     )}
                                 </div>
+                                <p className="mt-1.5 min-h-4 text-xs text-caption">
+                                    {plan.price !== "Custom" && isYearly && plan.priceYearly !== "$0" ? `billed annually as ${plan.priceYearly}/yr` : ""}
+                                </p>
+                            </div>
 
-                                <ul className="space-y-3">
-                                    {getDisplayFeatures(plan, isYearly).map((feature, idx) => (
-                                        feature === "DIVIDER" ? (
-                                            <li key={`divider-${idx}`} className="pt-3 border-t border-border-subtle mt-3">
-                                                <span className="text-[10px] font-bold text-subtle uppercase tracking-widest block mb-2">Add-ons</span>
-                                            </li>
-                                        ) : (
-                                            <li key={feature} className="flex items-start text-[13px] text-body font-medium leading-snug">
-                                                <Check className="mr-2.5 h-3.5 w-3.5 text-orange-600 mt-0.5 flex-shrink-0 stroke-[3px]" />
-                                                <span>{feature}</span>
-                                            </li>
-                                        )
-                                    ))}
-                                </ul>
-                            </CardContent>
+                            <ul className="mt-5 flex-1 space-y-3">
+                                {getDisplayFeatures(plan, isYearly).map((feature, idx) => (
+                                    feature === "DIVIDER" ? (
+                                        <li key={`divider-${idx}`} className="mt-3 border-t border-border-subtle pt-3">
+                                            <span className="block text-[10px] font-bold uppercase tracking-widest text-subtle">Add-ons</span>
+                                        </li>
+                                    ) : (
+                                        <li key={feature} className="flex items-start text-[13px] font-medium leading-snug text-body">
+                                            <Check className="mr-2.5 mt-0.5 h-3.5 w-3.5 shrink-0 stroke-[3px] text-orange-600" aria-hidden="true" />
+                                            <span>{feature}</span>
+                                        </li>
+                                    )
+                                ))}
+                            </ul>
 
-                            <CardFooter className="pt-2 pb-5 px-5 mt-auto flex flex-col gap-3">
-                                <Button className={`w-full h-12 text-base font-semibold shadow-sm ${plan.popular ? 'shadow-orange-500/25' : ''}`} variant={plan.popular ? "default" : "outline"} asChild>
-                                    <Link href={plan.href} onClick={() => trackEvent("pricing_cta", { plan: plan.id, cta: plan.cta, billing: isYearly ? "yearly" : "monthly" })}>
+                            <div className="mt-6 flex flex-col gap-3">
+                                <Button className={cn("h-12 w-full text-base font-semibold", plan.popular && "bg-orange-600 text-white shadow-md shadow-orange-500/25 hover:bg-orange-700")} variant={plan.popular ? "default" : "outline"} asChild>
+                                    <Link href={plan.href} onClick={() => trackEvent("pricing_cta", { plan: plan.id, cta: plan.cta, billing })}>
                                         {plan.cta}
                                     </Link>
                                 </Button>
                                 {plan.secondaryCta && (
-                                    <Button className="w-full h-12 text-base font-semibold shadow-sm" variant="outline" asChild>
-                                        <Link href={plan.secondaryCta.href} onClick={() => trackEvent("pricing_cta", { plan: plan.id, cta: plan.secondaryCta!.text, billing: isYearly ? "yearly" : "monthly" })}>
+                                    <Button className="h-12 w-full text-base font-semibold" variant="outline" asChild>
+                                        <Link href={plan.secondaryCta.href} onClick={() => trackEvent("pricing_cta", { plan: plan.id, cta: plan.secondaryCta!.text, billing })}>
                                             {plan.secondaryCta.text}
                                         </Link>
                                     </Button>
                                 )}
                                 {/* Trial terms microcopy — Team only; other plans have no trial */}
                                 {plan.id === "team" && (
-                                    <p className="text-xs text-muted-foreground text-center">7-day free trial · No credit card</p>
+                                    <p className="text-center text-xs text-muted-foreground">7-day free trial · No credit card</p>
                                 )}
-                            </CardFooter>
-                        </Card>
+                            </div>
+                        </div>
                     ))}
                 </div>
 
@@ -260,95 +271,98 @@ export default function PricingPage() {
                     Two anchors are needed (one to /mobile-app, one to the App Store),
                     so the descriptive text is wrapped in a separate inner Link — no
                     nested <a> tags. */}
-                <div className="mt-12 mx-auto max-w-3xl">
-                    <div className="group flex flex-col sm:flex-row items-center gap-5 rounded-2xl border border-border-subtle bg-card/50 px-6 py-5 transition-colors hover:bg-card hover:border-orange-200">
+                <div className="mx-auto mt-12 max-w-3xl">
+                    <div className="flex flex-col items-center gap-5 rounded-2xl bg-card px-6 py-5 ring-1 ring-border sm:flex-row">
                         <Link
                             href="/mobile-app"
-                            className="flex min-w-0 flex-1 flex-col sm:flex-row items-center gap-5"
+                            className="group flex min-w-0 flex-1 flex-col items-center gap-5 sm:flex-row"
                             aria-label="Learn more about Shelf Companion for iPhone and Android"
                         >
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/50">
-                                <Smartphone className="h-6 w-6" />
-                            </div>
-                            <div className="flex-1 text-center sm:text-left">
-                                <p className="text-sm font-semibold text-foreground">
+                            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/50">
+                                <Smartphone className="h-6 w-6" aria-hidden="true" />
+                            </span>
+                            <span className="flex-1 text-center sm:text-left">
+                                <span className="block text-sm font-semibold text-foreground group-hover:text-orange-600">
                                     Shelf Companion for iPhone &amp; Android — included with every plan
-                                </p>
-                                <p className="text-xs text-muted-foreground">
+                                </span>
+                                <span className="block text-xs text-muted-foreground">
                                     Scan, audit, and manage assets from the field. Free with any Shelf account. On iPhone and Android.
-                                </p>
-                            </div>
+                                </span>
+                            </span>
                         </Link>
-                        <div className="flex flex-col sm:flex-row items-center gap-2">
-                            <AppStoreBadge variant="outline" size="sm" />
-                            <PlayStoreBadge variant="outline" size="sm" />
+                        <div className="flex flex-col items-center gap-2 sm:flex-row">
+                            <AppStoreBadge variant="outline" size="sm" location="pricing_callout" />
+                            <PlayStoreBadge variant="outline" size="sm" location="pricing_callout" />
                         </div>
                     </div>
                 </div>
+            </Container>
+        </section>
 
-                {/* Trusted By Section */}
-                <div className="mt-20 mb-20">
-                    <TrustedBy />
-                </div>
+        {/* Trusted By Section */}
+        <TrustedBy />
 
-                {/* Testimonial */}
-                <div className="mx-auto max-w-2xl text-center mb-20">
-                    <Quote className="h-8 w-8 text-orange-500/20 mx-auto mb-4" />
-                    <blockquote className="text-lg md:text-xl font-medium text-foreground leading-relaxed tracking-tight mb-4">
+        {/* Testimonial + closing action */}
+        <section className="pb-20 sm:pb-24">
+            <Container>
+                <figure className="mx-auto max-w-2xl text-center">
+                    <Quote className="mx-auto mb-4 h-8 w-8 text-orange-500/20" aria-hidden="true" />
+                    <blockquote className="text-lg font-medium leading-relaxed tracking-tight text-pretty text-foreground md:text-xl">
                         &ldquo;If you are still using Excel for assets management, you are missing out a lot by not choosing Shelf.&rdquo;
                     </blockquote>
-                    <div className="text-sm text-muted-foreground">
+                    <figcaption className="mt-4 text-sm text-muted-foreground">
                         <span className="font-semibold text-foreground">Tadas Andriuska</span> · IT Administrator at Ovoko
-                    </div>
-                </div>
+                    </figcaption>
+                </figure>
 
-                {/* Conversion CTA */}
-                <div className="mx-auto max-w-4xl text-center bg-gradient-to-b from-orange-50/50 to-transparent dark:from-orange-950/30 dark:to-transparent p-12 rounded-3xl border border-orange-100 dark:border-orange-900/40 mb-20">
-                    <h3 className="text-3xl font-bold mb-4">Join innovative teams around the world</h3>
-                    <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                <div className="mx-auto mt-16 max-w-4xl rounded-3xl bg-surface p-10 text-center ring-1 ring-border sm:p-12">
+                    <h3 className="text-3xl font-bold tracking-tight text-balance text-heading">Join innovative teams around the world</h3>
+                    <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
                         Stop using spreadsheets and start tracking your assets with a modern tool that your team will actually enjoy using.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white h-12 px-8 text-base shadow-lg shadow-orange-600/20" asChild>
-                            <Link href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup" onClick={() => trackEvent("signup_click", { location: "pricing_bottom" })}>
-                                Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
-                            </Link>
+                    <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+                        <Button size="lg" className="h-12 bg-orange-600 px-8 text-base text-white shadow-lg shadow-orange-600/20 hover:bg-orange-700" asChild>
+                            <TrackedLink href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_signup" eventName="signup_click" eventProps={{ location: "pricing_bottom" }}>
+                                Get Started for Free <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                            </TrackedLink>
                         </Button>
                         <Button size="lg" variant="outline" className="h-12 px-8 text-base" asChild>
-                            <Link href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo" onClick={() => trackEvent("demo_cta", { location: "pricing_bottom" })}>
+                            <TrackedLink href="/demo?utm_source=shelf_website&utm_medium=cta&utm_content=pricing_bottom_cta_demo" eventName="demo_cta" eventProps={{ location: "pricing_bottom" }}>
                                 Book a Demo
-                            </Link>
+                            </TrackedLink>
                         </Button>
                     </div>
                 </div>
+            </Container>
+        </section>
 
-                <div className="max-w-[1400px] mx-auto mt-24">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold tracking-tight">Compare all features</h2>
-                        <p className="mt-4 text-lg text-muted-foreground">Detailed breakdown of what is included in each plan.</p>
-                    </div>
+        {/* Feature comparison */}
+        <section className="border-t border-border py-20 sm:py-24">
+            <Container>
+                <SectionHead eyebrow="Compare" title="Compare all features" lead="Detailed breakdown of what is included in each plan." />
+                <div className="mx-auto mt-12 max-w-[1400px]">
                     <FeatureTable />
                 </div>
-
-                {/* FAQ Section */}
-                {pricingFaqs.length > 0 && (
-                    <div className="mt-32">
-                        <FAQSection
-                            title="Frequently Asked Questions"
-                            description="" // Empty description as per original
-                            items={pricingFaqs}
-                            className="bg-transparent border-none py-0 sm:py-0"
-                        />
-                    </div>
-                )}
-
-                <div className="mt-20 text-center">
-                    <p className="text-muted-foreground">
-                        Have questions? <Link href="/contact" className="underline underline-offset-4 text-primary">Contact our team</Link>
-                    </p>
-                </div>
             </Container>
-        </div>
+        </section>
+
+        {pricingQuestions.length > 0 && (
+            <QuestionsSection
+                page="pricing"
+                eyebrow="Pricing questions"
+                title="Frequently asked questions"
+                lead="Plans, add-ons, invoices, discounts and the fine print."
+                items={pricingQuestions}
+            />
+        )}
+
+        <section className="border-t border-border py-12">
+            <Container>
+                <p className="text-center text-muted-foreground">
+                    Have questions? <Link href="/contact" className="font-medium text-foreground underline decoration-border underline-offset-4 hover:text-orange-600 hover:decoration-current">Contact our team</Link>
+                </p>
+            </Container>
+        </section>
         </PagefindWrapper>
     );
 }
