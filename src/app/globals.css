@@ -233,38 +233,14 @@
     animation: marquee var(--marquee-duration, 30s) linear infinite;
   }
 
-  /* Ambient glow (src/components/ui/ambient-glow.tsx): transform-only drift,
-     so the compositor does the work. No blur filters: they re-rasterize. */
-  .glow-blob {
-    position: absolute;
-    border-radius: 9999px;
-    will-change: transform;
+  /* Ambient light (src/components/ui/ambient-glow.tsx): a slow breathe in
+     opacity, which the compositor handles without repainting. */
+  .glow-breathe {
+    animation: glow-breathe 14s ease-in-out infinite alternate;
   }
-  .glow-drift-a {
-    animation: glow-drift-a 28s ease-in-out infinite alternate;
-  }
-  .glow-drift-b {
-    animation: glow-drift-b 36s ease-in-out infinite alternate;
-  }
-  .glow-drift-c {
-    animation: glow-drift-c 44s ease-in-out infinite alternate;
-  }
-  @keyframes glow-drift-a {
-    from { transform: translate3d(-6%, -4%, 0) scale(1); }
-    to { transform: translate3d(6%, 5%, 0) scale(1.12); }
-  }
-  @keyframes glow-drift-b {
-    from { transform: translate3d(5%, 6%, 0) scale(1.1); }
-    to { transform: translate3d(-5%, -6%, 0) scale(0.95); }
-  }
-  @keyframes glow-drift-c {
-    from { transform: translate3d(0, 4%, 0) scale(0.95); }
-    to { transform: translate3d(3%, -5%, 0) scale(1.08); }
-  }
-  /* Film grain as one static SVG tile; rasterized once, then just composited. */
-  .grain {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 180px 180px;
+  @keyframes glow-breathe {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
   }
 }
 
