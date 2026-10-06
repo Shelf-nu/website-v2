@@ -3,7 +3,7 @@ title: "Transferring Workspace Ownership"
 description: "How to make another team member the owner of your workspace, what changes for the new and previous owner, and how your subscription is handled. The transfer is permanent."
 category: "Team"
 date: "2026-07-27"
-updated: "2026-09-30"
+updated: "2026-10-06"
 layout: "knowledge-base"
 ---
 
@@ -95,4 +95,4 @@ No. Personal workspaces are single-user, so ownership transfer applies to Team w
 That is expected. Only the owner can run the transfer. Workspace settings → General and Workspace settings → Team both name the current owner, so you know who to ask. On the Team page, hover or tap the greyed-out **Transfer ownership** button at the top to read their address.
 
 **Can we remove the owner from the workspace instead?**
-No. The owner's access cannot be revoked while they own the workspace, and the **Revoke access** action tells you so. That would leave nobody able to manage billing or hand ownership on, with no route back through the interface. Transfer ownership to another administrator first. The previous owner becomes an administrator, and the **new** owner can then revoke their access — revoking an administrator is an owner-only action, so it has to be done by whoever holds ownership at that point. The same applies to accounts managed by an identity provider: deprovisioning the owner through SSO fails rather than stranding the workspace.
+No. The owner's access cannot be revoked while they own the workspace, and the **Revoke access** action tells you so. That would leave nobody able to manage billing or hand ownership on, with no route back through the interface. Transfer ownership to another administrator first. The previous owner becomes an administrator, and the **new** owner can then revoke their access — revoking an administrator is an owner-only action, so it has to be done by whoever holds ownership at that point. The same applies to accounts managed by an identity provider: deprovisioning the owner through SSO fails rather than stranding the workspace, and an owner who signs in with SSO keeps the Owner role whatever their identity-provider groups say. Group mappings never change ownership; only this transfer does.
