@@ -117,7 +117,7 @@ export default function PricingPage() {
         <StructuredData data={pricingSoftwareApplicationJsonLd(pricingPlans)} />
 
         {/* Plans */}
-        <section className="relative overflow-x-clip pt-24 sm:pt-32">
+        <section className="relative overflow-x-clip pb-20 pt-24 sm:pb-24 sm:pt-32">
             <div className="absolute inset-x-0 top-0 -z-10 h-[600px] bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
             <HeroGlow />
 
@@ -264,32 +264,21 @@ export default function PricingPage() {
                     add-ons attach to Team and are where expansion revenue lives. */}
                 <AddOnsSection isYearly={isYearly} />
 
-                {/* Mobile App callout — included with every plan.
-                    Outer wrapper is a div (not a Link) because the AppStoreBadge
-                    sibling already renders its own Next.js <Link> to the App Store.
-                    Two anchors are needed (one to /mobile-app, one to the App Store),
-                    so the descriptive text is wrapped in a separate inner Link — no
-                    nested <a> tags. */}
-                <div className="mx-auto mt-12 max-w-3xl">
-                    <div className="flex flex-col items-center gap-5 rounded-2xl bg-card px-6 py-5 ring-1 ring-border sm:flex-row">
-                        <Link
-                            href="/mobile-app"
-                            className="group flex min-w-0 flex-1 flex-col items-center gap-5 sm:flex-row"
-                            aria-label="Learn more about Shelf Companion for iPhone and Android"
-                        >
-                            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/50">
-                                <Smartphone className="h-6 w-6" aria-hidden="true" />
-                            </span>
-                            <span className="flex-1 text-center sm:text-left">
-                                <span className="block text-sm font-semibold text-foreground group-hover:text-orange-600">
-                                    Shelf Companion for iPhone &amp; Android — included with every plan
-                                </span>
-                                <span className="block text-xs text-muted-foreground">
-                                    Scan, audit, and manage assets from the field. Free with any Shelf account. On iPhone and Android.
-                                </span>
-                            </span>
-                        </Link>
-                        <div className="flex flex-col items-center gap-2 sm:flex-row">
+                {/* The app callout earns its place on the store buttons: 47 store clicks
+                    in the 90 days to 2026-10-07, against 10 on its text link. One line on
+                    desktop; the title stays a link to /mobile-app (a live body link). */}
+                <div className="mx-auto mt-12 max-w-5xl">
+                    <div className="flex flex-col items-center gap-4 rounded-2xl bg-card p-5 text-center ring-1 ring-border sm:p-6 lg:flex-row lg:gap-6 lg:text-left">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/50">
+                            <Smartphone className="h-5 w-5" aria-hidden="true" />
+                        </span>
+                        <div className="min-w-0 flex-1">
+                            <Link href="/mobile-app" className="text-sm font-semibold text-heading transition-colors hover:text-orange-600">
+                                Shelf Companion is included with every plan
+                            </Link>
+                            <p className="mt-0.5 text-sm text-muted-foreground">Scan, audit and check gear in and out on iPhone or Android.</p>
+                        </div>
+                        <div className="flex shrink-0 flex-col items-center gap-2 sm:flex-row">
                             <AppStoreBadge variant="outline" size="sm" location="pricing_callout" />
                             <PlayStoreBadge variant="outline" size="sm" location="pricing_callout" />
                         </div>
