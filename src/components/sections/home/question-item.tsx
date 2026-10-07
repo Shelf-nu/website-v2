@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { trackEvent } from "@/lib/analytics";
 
 /**
@@ -30,6 +31,7 @@ export function QuestionItem({ id, page, defaultOpen, summary, children }: { id:
  * page. No event of its own: the Crisp bridge already records `chat_opened`.
  */
 export function AskTheTeamButton({ page, className }: { page: string; className?: string }) {
+    const router = useRouter();
     return (
         <button
             type="button"
@@ -40,7 +42,7 @@ export function AskTheTeamButton({ page, className }: { page: string; className?
                 if (Array.isArray(window.$crisp)) {
                     window.$crisp.push(["do", "chat:open"]);
                 } else {
-                    window.location.href = "/contact";
+                    router.push("/contact");
                 }
             }}
         >
