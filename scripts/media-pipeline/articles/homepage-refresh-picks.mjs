@@ -87,6 +87,19 @@ async function goToTargetMonth(page) {
   throw new Error("could not reach July 2025 in 30 steps");
 }
 
+/**
+ * From the asset index, open the availability view at Month and step back to
+ * the target month. The toggle keeps the URL's other params, so a search made
+ * first survives it. The month itself lives only in the calendar, not the URL,
+ * so nothing that reloads the index may come after this.
+ */
+async function openAvailabilityMonth(page) {
+  await page.click('[aria-label="Switch to availability view"]');
+  await settle(page, 2500);
+  await setGranularity(page, "Month");
+  return goToTargetMonth(page);
+}
+
 async function main() {
   await mkdir(OUT, { recursive: true });
   console.log(`Writing to: ${OUT}`);
@@ -127,10 +140,7 @@ async function main() {
     await step("pick-availability", log, async () => {
       await navigateTo(page, "/assets");
       await settle(page, 1000);
-      await page.click('[aria-label="Switch to availability view"]');
-      await settle(page, 2500);
-      await setGranularity(page, "Month");
-      const where = await goToTargetMonth(page);
+      const where = await openAvailabilityMonth(page);
       console.log(`   availability is at: ${where}`);
       await settle(page, 1500);
       await shot(page, "pick-availability-month", log);
@@ -145,12 +155,14 @@ async function main() {
       }
     });
 
-    // 4. The same month with only the camera gear in the rows
+    // 4. The same month with only the camera gear in the rows. It sets up its own view
+    //    instead of reusing step 3's page, which ends in Week view a month later (or
+    //    anywhere at all, if step 3 failed). Filter first, then open the month.
     await step("pick-availability-camera", log, async () => {
-      const input = page.locator('input[placeholder*="Search"]').first();
-      await input.fill("camera");
-      await input.press("Enter");
-      await settle(page, 2500);
+      await searchAssets(page, "camera");
+      const where = await openAvailabilityMonth(page);
+      console.log(`   availability (camera) is at: ${where}`);
+      await settle(page, 1500);
       await shot(page, "pick-availability-camera", log);
     });
 
