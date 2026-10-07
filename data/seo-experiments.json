@@ -3141,7 +3141,7 @@
       "before": "Homepage body: hero with two unattributed quotes and a logo marquee, logo grid, founder letter, 5-question FAQ, scale block, 8 case-study cards, feature link grid, and (since PR #321) a six-card solutions picker. 641 words in <main>, 27 body links.",
       "after": "Homepage refresh: tabbed product hero with the Companion app, trust band by segment, why-teams-switch, scale block (750k / 20k+), platform section, 9 verified questions, 6 solution doors, featured stories, founder letter (unchanged), single closing CTA. ~2,160 words in <main>, 46 body links. Title, description, canonical, h1 and the Organization/WebSite/SoftwareApplication JSON-LD are byte-identical; the FAQPage JSON-LD is regenerated from the new question list.",
       "hypothesis": "GUARDRAIL experiment, not a CTR test: the goal is NO LOSS. The homepage is the #1 organic page (2,916 clicks / 182k impr in the 90 days to 2026-09-15). Non-brand clicks (364 of the top-1000 queries) are one cluster at pos 4.5-7: 'free asset management software' (50), 'open source asset management software' (19), 'asset management software free' (17), 'open source asset management' (16), 'free asset tracking software' (12). Those rankings rest on the title (exp-002 winner), description, JSON-LD and links, none of which change. The risk a redesign carries is internal links: the mega menu is not in the static HTML, so feature and case-study pages get homepage link equity only from the body. All 27 live body links are kept (two compact link rows) and 19 are added, including 7 solutions pages that had no homepage body link. Expect: non-brand cluster position flat (+/- 1) and clicks flat or up; a lift in impressions for the newly linked solutions pages is the upside to watch. Evaluate brand and non-brand separately, on full weeks.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-06",
       "relatedPatterns": [],
       "notes": "Do not evaluate on the page aggregate alone: brand queries (1,375 clicks) dominate it and will mask a non-brand move. Parity was checked on the built out/index.html against the live page: same title/description/canonical/h1, same JSON-LD types, 27/27 body links kept, 154 of 423 non-brand query words covered vs 90 live. Re-run the same check against production after deploy. Ranking words worked back in on purpose: 'equipment inventory', 'equipment scheduling', 'asset database', 'open-source', 'higher education', 'double-bookings'. Rebased 2026-10-06: main had added a solutions picker (PR #321, six /solutions links); the refresh keeps all of those links in its segments section.",
@@ -3256,7 +3256,8 @@
             "pos": 7.1
           }
         ]
-      }
+      },
+      "deployedAt": "2026-10-07"
     },
     {
       "id": "exp-064",
@@ -3265,7 +3266,7 @@
       "before": "Pricing page in the old style: badge eyebrow, logos, Switch toggle defaulting to MONTHLY, Card plan grid ('Everything in Free' under a plan named Personal), add-ons, app callout, trusted-by, testimonial, CTA block, feature table, Accordion FAQ.",
       "after": "Same content in the refresh's style: segmented billing control defaulting to YEARLY (the audit's sanctioned lever: ~88% never touch the toggle, so the default decides which price nearly everyone sees), 'Everything in Personal', ring-style cards, same add-ons/feature table, FAQ as the shared 'questions' section with FAQPage schema generated from the rendered list, store badges tracked (app_store_click, pricing_callout).",
       "hypothesis": "GUARDRAIL, not a CTR test: body-only redesign in the homepage refresh's style; title, description, canonical, h1 and JSON-LD types unchanged; every body link on the live page kept. Expect flat position and clicks; judge brand and non-brand separately on full weeks. The one behavioural change is the yearly default: watch pricing_cta by plan and billing (baseline 2026-08-05: ~15% CTA rate, 80% of clicks to Free, team/yearly 13 vs team/monthly 29 per 30d).",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-06",
       "relatedPatterns": [],
       "notes": "Stacked on the homepage refresh (exp-063). Metric = pricing_cta rate and the team yearly/monthly split, not signups.",
@@ -3280,7 +3281,8 @@
         "position": 4.9,
         "capturedAt": "2026-10-07T08:04:45.307Z"
       },
-      "evaluateAfterDays": 28
+      "evaluateAfterDays": 28,
+      "deployedAt": "2026-10-07"
     },
     {
       "id": "exp-065",
@@ -3289,7 +3291,7 @@
       "before": "App page with a stock photo of a hand holding a phone, invented floating labels, icon feature cards, untracked store badges.",
       "after": "Real App Store screens (scan, asset, audit, inventory, booking) in the hero and three feature moments; same 'three ways' / app-vs-web / platform content; 'Already using Shelf? Log in' under the hero and a 'New to Shelf?' signup card (signup_click mobile_app_page); store badges tracked (app_store_click with location); FAQ as the shared questions section.",
       "hypothesis": "GUARDRAIL, not a CTR test: body-only redesign in the homepage refresh's style; title, description, canonical, h1 and JSON-LD types unchanged; every body link on the live page kept. Expect flat position and clicks; judge brand and non-brand separately on full weeks. Conversion here is the store click, which was invisible until app_store_click; the 2026-08 audit found ~80% of visitors are existing users and the page converts ~25% on its real job, so do NOT read the intent-rate column for this page.",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-10-06",
       "relatedPatterns": [],
       "notes": "Stacked on the homepage refresh (exp-063). The KB article /knowledge-base/shelf-mobile-app owns the 'shelf app' search cluster (123k impr/90d, pos 8); this page's title is untouched and no redirect is involved.",
@@ -3304,7 +3306,8 @@
         "position": 7.4,
         "capturedAt": "2026-10-07T08:04:47.539Z"
       },
-      "evaluateAfterDays": 28
+      "evaluateAfterDays": 28,
+      "deployedAt": "2026-10-07"
     }
   ]
 }
