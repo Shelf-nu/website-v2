@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Play } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 const PLAY_STORE_URL =
@@ -9,6 +10,8 @@ const PLAY_STORE_URL =
 
 interface PlayStoreBadgeProps {
     className?: string;
+    /** Where this badge renders, e.g. "mobile_app_hero". Sent as the `location` of `app_store_click`, so every placement is attributable. */
+    location: string;
     variant?: ButtonProps["variant"];
     size?: ButtonProps["size"];
 }
@@ -23,6 +26,7 @@ interface PlayStoreBadgeProps {
  */
 export function PlayStoreBadge({
     className,
+    location,
     variant = "default",
     size = "lg",
 }: PlayStoreBadgeProps) {
@@ -32,6 +36,7 @@ export function PlayStoreBadge({
                 href={PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("app_store_click", { platform: "android", location })}
                 aria-label="Get Shelf Companion on Google Play"
             >
                 <Play className="fill-current" aria-hidden="true" />

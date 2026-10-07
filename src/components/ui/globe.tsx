@@ -20,6 +20,7 @@ interface GlobeConfig {
     markerColor?: [number, number, number];
     glowColor?: [number, number, number];
     markers?: { location: [number, number]; size: number }[];
+    context?: WebGLContextAttributes;
     onRender?: (state: Record<string, unknown>) => void;
 }
 
@@ -29,23 +30,42 @@ interface GlobeProps {
 }
 
 /**
- * Interactive rotating globe (cobe + WebGL) with two performance gates so
- * it doesn't block the main thread on pages where it's off-screen:
+ * The globe is a fragment shader that runs over every canvas pixel on
+ * every frame, so its cost is the pixel count. At the full Retina 2x an
+ * ~800px globe was a 1600x1600 canvas: 2.6 million pixels a frame. 1.5x
+ * looks the same for diffuse-shaded dots and is 44% less work.
+ */
+const MAX_PIXEL_RATIO = 1.5;
+
+/** Auto-rotation speed: the old 0.003 radians per frame, at 60 frames a second. */
+const RADIANS_PER_MS = 0.00018;
+
+/**
+ * Interactive rotating globe (cobe + WebGL) with performance gates so it
+ * doesn't block the main thread or stutter:
  *
- *   1. IntersectionObserver — cobe only initializes when the canvas is
+ *   1. IntersectionObserver — cobe only initializes once the canvas is
  *      within 200px of the viewport. On the homepage the globe lives in
  *      ScaleBlock below the fold, so during initial load + hydration it
  *      never starts animating. Previously the cobe render loop fired
  *      on every rAF from mount, contributing ~39s of TBT on slow CI
  *      hardware (measured in docs/perf-audit/baseline-2026-04-10.md).
+ *      Once built, the globe is paused and resumed with cobe's own
+ *      toggle. It used to be destroyed and rebuilt (12,000 map samples,
+ *      a shader compile) every time it scrolled back into view, which
+ *      showed as a hitch at exactly the moment people looked at it.
  *
  *   2. prefers-reduced-motion — when set, auto-rotation is disabled. The
  *      globe still renders (interactable via drag) but doesn't animate
  *      continuously. Honors OS-level accessibility preference.
+ *
+ *   3. The rotation advances by elapsed time, not by frame, so a dropped
+ *      frame no longer shows as a stutter in the spin.
  */
 export function Globe({ className, config }: GlobeProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const globeRef = useRef<ReturnType<typeof createGlobe> | null>(null);
     const pointerInteracting = useRef<number | null>(null);
     const pointerInteractionMovement = useRef(0);
     const r = useMotionValue(0);
@@ -54,6 +74,8 @@ export function Globe({ className, config }: GlobeProps) {
     const isDark = resolvedTheme === "dark";
 
     const [isVisible, setIsVisible] = useState(false);
+    const isVisibleRef = useRef(false);
+    const [hasBeenVisible, setHasBeenVisible] = useState(false);
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
     // Honor OS-level reduced-motion preference. Matches the MotionConfig
@@ -86,13 +108,18 @@ export function Globe({ className, config }: GlobeProps) {
     useEffect(() => {
         const el = containerRef.current;
         if (!el || typeof IntersectionObserver === "undefined") {
-            setIsVisible(true); // Degrade gracefully on very old browsers
+            // Degrade gracefully on very old browsers
+            isVisibleRef.current = true;
+            setIsVisible(true);
+            setHasBeenVisible(true);
             return;
         }
         const observer = new IntersectionObserver(
             (entries) => {
                 for (const entry of entries) {
+                    isVisibleRef.current = entry.isIntersecting;
                     setIsVisible(entry.isIntersecting);
+                    if (entry.isIntersecting) setHasBeenVisible(true);
                 }
             },
             { rootMargin: "200px" },
@@ -102,21 +129,24 @@ export function Globe({ className, config }: GlobeProps) {
     }, []);
 
     useEffect(() => {
-        // Gate 1: don't start the cobe render loop until the globe is
-        // actually about to be visible. This is the big TBT win for pages
-        // where the globe lives below the fold (homepage ScaleBlock).
-        if (!isVisible) return;
-        if (!canvasRef.current) return;
+        // Gate 1: don't build the globe until it is about to be visible.
+        // This is the big TBT win for pages where the globe lives below
+        // the fold (homepage ScaleBlock).
+        if (!hasBeenVisible) return;
+        const canvas = canvasRef.current;
+        if (!canvas) return;
 
         let phi = 0;
         let width = 0;
+        let lastFrame = 0;
+        const pixelRatio = Math.min(config?.devicePixelRatio ?? (window.devicePixelRatio || 1), MAX_PIXEL_RATIO);
 
         const onResize = () => {
-            if (canvasRef.current && (width !== canvasRef.current.offsetWidth)) {
-                width = canvasRef.current.offsetWidth;
+            if (width !== canvas.offsetWidth) {
+                width = canvas.offsetWidth;
             }
-        }
-        window.addEventListener('resize', onResize);
+        };
+        window.addEventListener("resize", onResize);
         onResize();
 
         // Theme-aware defaults
@@ -126,7 +156,6 @@ export function Globe({ className, config }: GlobeProps) {
 
         // Default configuration
         const globeConfig = {
-            devicePixelRatio: 2,
             width: 600 * 2,
             height: 600 * 2,
             phi: 0,
@@ -144,32 +173,50 @@ export function Globe({ className, config }: GlobeProps) {
                 { location: [1.3521, 103.8198] as [number, number], size: 0.05 },
                 { location: [-33.8688, 151.2093] as [number, number], size: 0.05 },
             ],
+            ...config,
+            // After the caller's config, so the caps win over anything passed in.
+            devicePixelRatio: pixelRatio,
+            // The globe is one full-canvas quad drawn by a fragment shader. There
+            // are no geometry edges for multisampling to smooth, so MSAA was pure cost.
+            context: { antialias: false, ...config?.context },
             onRender: (state: Record<string, unknown>) => {
+                const now = performance.now();
+                // Capped, so a tab coming back from the background doesn't jump ahead.
+                const elapsed = lastFrame ? Math.min(now - lastFrame, 50) : 16.7;
+                lastFrame = now;
                 // Gate 2: only auto-rotate when the user hasn't opted out
                 // of motion. Manual drag interaction still works either way.
                 if (!prefersReducedMotion && !pointerInteracting.current) {
-                    phi += 0.003;
+                    phi += RADIANS_PER_MS * elapsed;
                 }
                 state.phi = phi + springR.get();
-                state.width = width * 2;
-                state.height = width * 2;
+                state.width = width * pixelRatio;
+                state.height = width * pixelRatio;
+                config?.onRender?.(state);
             },
-            ...config,
         };
 
-        const globe = createGlobe(canvasRef.current, globeConfig);
+        const globe = createGlobe(canvas, globeConfig);
+        globeRef.current = globe;
+        // cobe starts drawing on creation; if the globe was built while
+        // off screen (a theme change, say), wait until it is back.
+        globe.toggle(isVisibleRef.current);
 
         // Bind opacity transition after mount
-        if (canvasRef.current) {
-            canvasRef.current.style.opacity = "1";
-        }
+        canvas.style.opacity = "1";
 
         return () => {
             globe.destroy();
-            window.removeEventListener('resize', onResize);
+            globeRef.current = null;
+            window.removeEventListener("resize", onResize);
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- springR is a stable MotionValue ref, read imperatively in onRender
-    }, [config, isDark, isVisible, prefersReducedMotion]);
+    }, [config, isDark, hasBeenVisible, prefersReducedMotion]);
+
+    // Pause the render loop while the globe is off screen, resume when it is back.
+    useEffect(() => {
+        globeRef.current?.toggle(isVisible);
+    }, [isVisible]);
 
     return (
         <div
@@ -179,10 +226,13 @@ export function Globe({ className, config }: GlobeProps) {
                 className
             )}
         >
+            {/* Square, centred by the flex parent. cobe draws a width-by-width globe from the
+                canvas's bottom-left corner, so a canvas stretched to a taller box pushed the
+                globe down (phones) and one in a wider box cut its top off (tablets). */}
             <canvas
                 ref={canvasRef}
-                style={{ width: "100%", height: "100%", maxWidth: "100%", aspectRatio: 1 }}
-                className="size-full opacity-0 transition-opacity duration-1000 [contain:layout_paint_size]"
+                style={{ width: "100%", height: "auto", aspectRatio: 1 }}
+                className="w-full shrink-0 opacity-0 transition-opacity duration-1000 [contain:layout_paint_size]"
                 onPointerDown={(e) => {
                     pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
                     if (canvasRef.current) canvasRef.current.style.cursor = 'grabbing';

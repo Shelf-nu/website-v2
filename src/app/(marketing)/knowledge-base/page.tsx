@@ -10,7 +10,7 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "Knowledge Base - Shelf Asset Management",
+    title: "Knowledge Base",
     description:
         "Guides, tutorials, and how-to articles to help you get the most out of Shelf.",
     alternates: { canonical: "https://www.shelf.nu/knowledge-base" },

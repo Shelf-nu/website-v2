@@ -23,6 +23,18 @@ function calculateReadingTime(content: string): string {
     return `${minutes} min`;
 }
 
+/**
+ * 58 bodies open with "# <title>", which every layout already shows as the
+ * page's h1, so those pages said their title twice in a row. Drop that line
+ * when it repeats the title exactly; an opening heading worded differently
+ * (often carrying an extra search term) stays.
+ */
+function stripRepeatedTitle(content: string, title: string): string {
+    const match = content.match(/^\s*#[ \t]+(.+?)[ \t]*\r?\n/);
+    if (!match || match[1].trim().toLowerCase() !== title.trim().toLowerCase()) return content;
+    return content.slice(match[0].length);
+}
+
 export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'concepts' | 'use-cases' | 'solutions' | 'industries' | 'alternatives' | 'glossary' | 'updates' | 'knowledge-base';
 
 export interface MDXContent {
@@ -46,7 +58,8 @@ export function getContentBySlug(type: ContentType, slug: string): MDXContent {
     }
 
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
+    const { data, content: raw } = matter(fileContents);
+    const content = stripRepeatedTitle(raw, data.title || '');
 
     // Defaulting and Validation Logic
     const frontmatter: Frontmatter = {

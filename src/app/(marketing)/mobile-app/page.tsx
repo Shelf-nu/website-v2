@@ -1,21 +1,19 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { Check, Download, Globe, Smartphone as AndroidIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { FAQSection } from "@/components/sections/faq";
+import { DarkGlow, HeroGlow } from "@/components/ui/ambient-glow";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
+import { StructuredData } from "@/components/seo/structured-data";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { AppStoreBadge } from "@/components/ui/app-store-badge";
 import { PlayStoreBadge } from "@/components/ui/play-store-badge";
-import { StructuredData } from "@/components/seo/structured-data";
-import { ArrowRight, Check, Apple, Smartphone as AndroidIcon, Globe, Download } from "lucide-react";
-import {
-    mobileAppFeatures,
-    builtForApp,
-    bestOnWeb,
-    mobileAppFaqs,
-} from "@/data/mobile-app";
-
-const APP_STORE_URL = "https://apps.apple.com/app/id6765639874";
+import { QuestionsSection } from "@/components/sections/questions-section";
+import { ScanToInstall } from "@/components/mobile/scan-to-install";
+import { SectionHead } from "@/components/sections/home/section-head";
+import { APP_STORE_URL, COMPANION_SCREENS, type CompanionScreen } from "@/data/companion-screens";
+import { mobileAppFeatures, builtForApp, bestOnWeb, mobileAppFaqs } from "@/data/mobile-app";
 
 export const metadata: Metadata = {
     title: "Shelf Companion for iPhone & Android — Scan, Audit, Manage Custody on the Floor",
@@ -64,6 +62,32 @@ const mobileAppSchema = {
     },
 };
 
+/** Stable ids for the `question_open` event, derived from the question text. */
+const questionId = (q: string) => q.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "").slice(0, 48);
+const appQuestions = mobileAppFaqs.map((faq) => ({ id: questionId(faq.question), question: faq.question, answer: faq.answer }));
+
+/** Real app screens in the frame the homepage uses for them. */
+function PhonePair({ screens, className }: { screens: CompanionScreen[]; className?: string }) {
+    return (
+        <div className={className}>
+            {/* A single screen is shown at the width one phone takes in a pair, not the width of the pair. */}
+            <div className={screens.length > 1 ? "grid grid-cols-2 gap-4 rounded-[28px] bg-surface p-4 ring-1 ring-border sm:gap-5 sm:p-5" : "mx-auto max-w-[260px] rounded-[28px] bg-surface p-4 ring-1 ring-border sm:p-5"}>
+                {screens.map((screen) => (
+                    <Image key={screen.src} src={screen.src} alt={screen.alt} width={screen.width} height={screen.height} sizes="(max-width: 640px) 45vw, 220px" className="h-auto w-full rounded-[14px] ring-1 ring-black/10" />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+const moments = [
+    { feature: mobileAppFeatures[0], claim: "Point the camera at a label. The asset opens.", screens: [COMPANION_SCREENS.scan, COMPANION_SCREENS.asset] },
+    { feature: mobileAppFeatures[1], claim: "Walk the room, scan what is there, note what is not.", screens: [COMPANION_SCREENS.audit, COMPANION_SCREENS.inventory] },
+    { feature: mobileAppFeatures[3], claim: "Check a booking out and back in where the gear is.", screens: [COMPANION_SCREENS.booking] },
+];
+// The sixth feature card ('Built for the Floor') repeated the scan moment above, so it is not shown.
+const alsoInTheApp = [mobileAppFeatures[2], mobileAppFeatures[4]];
+
 export default function MobileAppPage() {
     return (
         <PagefindWrapper
@@ -73,337 +97,215 @@ export default function MobileAppPage() {
         >
             <StructuredData data={mobileAppSchema} />
 
-            {/* ============================================================ */}
-            {/*  HERO                                                          */}
-            {/* ============================================================ */}
-            <section className="pt-28 pb-0 sm:pt-36 relative overflow-hidden">
+            {/* Hero: the real app, not a stock photo */}
+            <section className="relative overflow-x-clip border-b border-border pt-24 sm:pt-32">
                 <div className="absolute inset-0 -z-10 bg-grid-pattern bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-                <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-50/30 dark:from-orange-950/20 via-background to-background pointer-events-none" />
+                <HeroGlow />
 
-                {/* Hand image — absolute, reaches in from top-right on desktop */}
-                <div className="hidden lg:block absolute top-0 right-0 w-[560px] xl:w-[650px] 2xl:w-[700px] -translate-y-[8%] translate-x-[12%] pointer-events-none">
-                    <div className="relative rotate-[8deg] origin-top-right">
-                        <Image
-                            src="/images/mobile-app/hero-hand.png"
-                            alt="Hand holding an iPhone running Shelf Companion"
-                            width={1200}
-                            height={1800}
-                            className="w-full h-auto"
-                            priority
-                            unoptimized
-                            sizes="(max-width: 1280px) 480px, 550px"
-                        />
-                    </div>
+                <Container className="relative">
+                    <div className="grid grid-cols-1 items-center gap-12 pb-16 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-24">
+                        <div className="mx-auto flex max-w-xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left">
+                            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50/50 px-4 py-1.5 text-sm font-medium text-orange-800 dark:border-orange-800 dark:bg-orange-950/30 dark:text-orange-200">
+                                <Download className="h-3.5 w-3.5" aria-hidden="true" />
+                                Now on the App Store &amp; Google Play
+                            </span>
+                            {/* No text-balance: it evens the two lines into "Scan it. Find / it. Done." */}
+                            <h1 className="mb-6 text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+                                Scan it. Find it. <span className="text-orange-600">Done.</span>
+                            </h1>
+                            <p className="mb-8 text-lg leading-relaxed text-pretty text-muted-foreground">
+                                Shelf Companion is a native app — for iPhone and Android — that pairs with your Shelf workspace. Scan QR codes, run audits, manage custody, and check bookings in or out — from wherever the work happens. Free with any Shelf account. Optional — the Shelf web app still works in any modern phone browser, with PWA install if you want a home-screen icon.
+                            </p>
 
-                    {/* Floating detail elements */}
-                    <div className="absolute bottom-[32%] -left-[10%] flex-col gap-3 rotate-[-8deg] hidden xl:flex">
-                        <div className="flex items-center gap-2.5 rounded-xl bg-card/80 backdrop-blur-sm border border-border-subtle shadow-lg px-4 py-2.5">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-950/50">
-                                <Check className="h-4 w-4 text-green-600" />
+                            <div className="flex w-full flex-col items-center gap-3 sm:w-auto lg:items-start">
+                                <div className="flex flex-col items-center gap-3 sm:flex-row">
+                                    <AppStoreBadge location="mobile_app_hero" />
+                                    <PlayStoreBadge location="mobile_app_hero" />
+                                </div>
+                                <a href="#three-ways" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                                    See all three options →
+                                </a>
                             </div>
-                            <div>
-                                <p className="text-xs font-semibold text-heading">Asset scanned</p>
-                                <p className="text-[10px] text-muted-foreground">MacBook Pro #0847</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-2.5 rounded-xl bg-card/80 backdrop-blur-sm border border-border-subtle shadow-lg px-4 py-2.5 ml-6">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-950/50">
-                                <ArrowRight className="h-4 w-4 text-orange-600" />
-                            </div>
-                            <div>
-                                <p className="text-xs font-semibold text-heading">Custody assigned</p>
-                                <p className="text-[10px] text-muted-foreground">→ Sarah Chen</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <Container className="relative z-10">
-                    <div className="max-w-xl mx-auto lg:mx-0 py-16 lg:py-28 lg:min-h-[75vh] flex flex-col justify-center text-center lg:text-left items-center lg:items-start">
-                        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50/50 px-4 py-1.5 text-sm font-medium text-orange-800 dark:border-orange-800 dark:bg-orange-950/50 dark:text-orange-200">
-                            <Download className="h-3.5 w-3.5" aria-hidden="true" />
-                            Now on the App Store &amp; Google Play
-                        </div>
-                        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl mb-6 leading-[1.08]">
-                            Scan it. Find it. <span className="text-orange-600">Done.</span>
-                        </h1>
-                        <p className="text-lg leading-relaxed text-muted-foreground mb-8">
-                            Shelf Companion is a native app — for iPhone and Android — that pairs with your Shelf workspace. Scan QR codes, run audits, manage custody, and check bookings in or out — from wherever the work happens. Free with any Shelf account. Optional — the Shelf web app still works in any modern phone browser, with PWA install if you want a home-screen icon.
-                        </p>
+                            {/* Reading on a desktop? The store badges would open the store on the wrong device. */}
+                            <ScanToInstall className="mt-8 hidden lg:flex" />
 
-                        <div className="flex flex-col items-center lg:items-start gap-3 w-full sm:w-auto">
-                            <div className="flex flex-col sm:flex-row items-center gap-3">
-                                <AppStoreBadge />
-                                <PlayStoreBadge />
-                            </div>
-                            <a
-                                href="#three-ways"
-                                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                            >
-                                See all three options →
-                            </a>
+                            {/* Most visitors here already use Shelf and want the app or the login. */}
+                            <p className="mt-6 text-sm text-muted-foreground">
+                                Already using Shelf?{" "}
+                                <a href="https://app.shelf.nu/login" className="font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700">
+                                    Log in to your workspace
+                                </a>
+                            </p>
+                            <p className="mt-3 text-xs text-muted-foreground">
+                                On iPhone (iOS 15.1+) and Android. Sign in with the credentials you already use on shelf.nu — including SSO.
+                            </p>
                         </div>
 
-                        <p className="text-xs text-muted-foreground/60 mt-4">
-                            On iPhone (iOS 15.1+) and Android. Sign in with the credentials you already use on shelf.nu — including SSO.
-                        </p>
-
-                        {/* Platform indicator — mobile only */}
-                        <div className="flex items-center gap-6 mt-8 text-sm text-muted-foreground/70 lg:hidden">
-                            <div className="flex items-center gap-2">
-                                <Apple className="h-5 w-5" />
-                                <span>iPhone — Live</span>
-                            </div>
-                            <span className="opacity-30">|</span>
-                            <div className="flex items-center gap-2">
-                                <AndroidIcon className="h-5 w-5" />
-                                <span>Android — Live</span>
-                            </div>
-                        </div>
+                        <PhonePair screens={[COMPANION_SCREENS.scan, COMPANION_SCREENS.asset]} className="mx-auto w-full max-w-md" />
                     </div>
                 </Container>
             </section>
 
-            {/* ============================================================ */}
-            {/*  THREE WAYS — Optional, not required                          */}
-            {/* ============================================================ */}
-            <section
-                id="three-ways"
-                className="py-16 sm:py-20 border-t border-border-subtle scroll-mt-24"
-            >
+            {/* Three ways: optional, not required */}
+            <section id="three-ways" className="scroll-mt-24 border-b border-border bg-surface py-20 sm:py-24">
                 <Container>
-                    <ScrollReveal width="100%">
-                        <div className="text-center mb-12 max-w-2xl mx-auto">
-                            <p className="text-sm font-semibold uppercase tracking-widest text-orange-600 mb-3">
-                                Optional, not required
+                    <SectionHead
+                        eyebrow="Optional, not required"
+                        title="Three ways to use Shelf on your phone"
+                        lead="Shelf Companion is one option, not a requirement. The web app works in any modern phone browser, and you can install it as a Progressive Web App on your home screen. Pick whichever fits how your team works."
+                    />
+
+                    <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-3">
+                        <div className="flex h-full flex-col rounded-2xl bg-card p-6 ring-1 ring-border">
+                            <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300">
+                                <Globe className="h-5 w-5" aria-hidden="true" />
+                            </span>
+                            <h3 className="mb-2 font-semibold text-heading">In any phone browser</h3>
+                            <p className="mb-4 flex-1 text-sm leading-relaxed text-body">
+                                Open <strong>shelf.nu</strong> in your phone browser. Full Shelf — bookings, custody, audits, scanning. Nothing to install.
                             </p>
-                            <h2 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl mb-4">
-                                Three ways to use Shelf on your phone
-                            </h2>
-                            <p className="text-muted-foreground">
-                                Shelf Companion is one option, not a requirement. The web app works in any modern phone browser, and you can install it as a Progressive Web App on your home screen. Pick whichever fits how your team works.
-                            </p>
+                            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Always available</p>
                         </div>
-                    </ScrollReveal>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-                        {/* Option 1: Browser */}
-                        <ScrollReveal width="100%" delay={0.05} className="h-full">
-                            <div className="rounded-xl border border-border-subtle bg-card p-6 h-full flex flex-col">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300 mb-4">
-                                    <Globe className="h-5 w-5" />
-                                </div>
-                                <h3 className="font-semibold text-heading mb-2">In any phone browser</h3>
-                                <p className="text-sm text-body leading-relaxed flex-1 mb-4">
-                                    Open <strong>shelf.nu</strong> in your phone browser. Full Shelf — bookings, custody, audits, scanning. Nothing to install.
-                                </p>
-                                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                                    Always available
-                                </p>
-                            </div>
-                        </ScrollReveal>
-
-                        {/* Option 2: PWA */}
-                        <ScrollReveal width="100%" delay={0.1} className="h-full">
-                            <div className="rounded-xl border border-border-subtle bg-card p-6 h-full flex flex-col">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50 text-purple-700 dark:bg-purple-950/50 dark:text-purple-300 mb-4">
-                                    <Download className="h-5 w-5" />
-                                </div>
-                                <h3 className="font-semibold text-heading mb-2">Install as a PWA</h3>
-                                <p className="text-sm text-body leading-relaxed flex-1 mb-4">
-                                    Add the Shelf web app to your home screen for a native-feeling icon and fullscreen experience. Same web app, app-like feel.
-                                </p>
-                                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                                    iOS and Android
-                                </p>
-                            </div>
-                        </ScrollReveal>
-
-                        {/* Option 3: Companion */}
-                        <ScrollReveal width="100%" delay={0.15} className="h-full">
-                            <div className="rounded-xl border border-orange-200 dark:border-orange-900/40 bg-orange-50/20 dark:bg-orange-950/10 p-6 h-full flex flex-col">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-200 mb-4">
-                                    <AndroidIcon className="h-5 w-5" />
-                                </div>
-                                <h3 className="font-semibold text-heading mb-2">Shelf Companion app</h3>
-                                <p className="text-sm text-body leading-relaxed flex-1 mb-4">
-                                    Native iPhone and Android app focused on field scanning, audits, custody, and bookings. Faster on the floor than the browser.
-                                </p>
-                                <p className="text-xs font-semibold uppercase tracking-widest text-orange-700 dark:text-orange-400">
-                                    iOS and Android
-                                </p>
-                            </div>
-                        </ScrollReveal>
+                        <div className="flex h-full flex-col rounded-2xl bg-card p-6 ring-1 ring-border">
+                            <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50 text-purple-700 dark:bg-purple-950/50 dark:text-purple-300">
+                                <Download className="h-5 w-5" aria-hidden="true" />
+                            </span>
+                            <h3 className="mb-2 font-semibold text-heading">Install as a PWA</h3>
+                            <p className="mb-4 flex-1 text-sm leading-relaxed text-body">
+                                Add the Shelf web app to your home screen for a native-feeling icon and fullscreen experience. Same web app, app-like feel.
+                            </p>
+                            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">iOS and Android</p>
+                        </div>
+                        <div className="flex h-full flex-col rounded-2xl bg-card p-6 shadow-xl shadow-orange-500/10 ring-2 ring-orange-500">
+                            <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-200">
+                                <AndroidIcon className="h-5 w-5" aria-hidden="true" />
+                            </span>
+                            <h3 className="mb-2 font-semibold text-heading">Shelf Companion app</h3>
+                            <p className="mb-4 flex-1 text-sm leading-relaxed text-body">
+                                Native iPhone and Android app focused on field scanning, audits, custody, and bookings. Faster on the floor than the browser.
+                            </p>
+                            <p className="text-xs font-semibold uppercase tracking-widest text-orange-700 dark:text-orange-400">iOS and Android</p>
+                        </div>
                     </div>
 
-                    <p className="text-center text-sm text-muted-foreground mt-8 max-w-xl mx-auto">
+                    <p className="mx-auto mt-8 max-w-xl text-center text-sm text-muted-foreground">
                         Many teams use a mix — admins on web, field crews on Shelf Companion. Same workspace, same data, same login.
                     </p>
                 </Container>
             </section>
 
-            {/* ============================================================ */}
-            {/*  WHAT IT DOES                                                  */}
-            {/* ============================================================ */}
-            <section className="py-20 sm:py-28 border-t border-border-subtle">
+            {/* What it does, shown on the real screens */}
+            <section className="py-20 sm:py-24">
                 <Container>
-                    <ScrollReveal width="100%">
-                        <p className="text-center text-sm font-semibold uppercase tracking-widest text-orange-600 mb-3">
-                            What it does
-                        </p>
-                        <h2 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl text-center mb-4">
-                            Everything your field team needs. Nothing they don&apos;t.
-                        </h2>
-                        <p className="text-center text-muted-foreground max-w-xl mx-auto mb-16">
-                            Shelf Companion is the field tool. The web app stays the source of truth for workspaces, configuration, and reporting.
-                        </p>
-                    </ScrollReveal>
+                    <SectionHead
+                        eyebrow="What it does"
+                        title="Everything your field team needs. Nothing they don't."
+                        lead="Shelf Companion is the field tool. The web app stays the source of truth for workspaces, configuration, and reporting."
+                    />
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {mobileAppFeatures.map((feature, i) => (
-                            <ScrollReveal key={feature.title} width="100%" delay={0.05 * i} className="h-full">
-                                <div className="group relative bg-card border border-border-subtle rounded-xl p-5 h-full hover:border-orange-200 hover:shadow-lg hover:shadow-orange-500/5 transition-all duration-300">
-                                    <div className="flex items-start gap-4">
-                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-50 text-orange-600 dark:bg-orange-950/50 group-hover:bg-orange-100 dark:group-hover:bg-orange-950/80 transition-colors">
-                                            <feature.icon className="h-5 w-5" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-semibold text-heading mb-1">
-                                                {feature.title}
-                                            </h3>
-                                            <p className="text-sm text-body leading-relaxed">
-                                                {feature.description}
-                                            </p>
-                                        </div>
-                                    </div>
+                    <div className="mt-16 space-y-20">
+                        {moments.map((moment, i) => (
+                            <div key={moment.feature.title} className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+                                <PhonePair screens={moment.screens} className={i % 2 === 1 ? "mx-auto w-full max-w-md lg:order-2 lg:justify-self-end" : "mx-auto w-full max-w-md"} />
+                                <div className={i % 2 === 1 ? "lg:order-1" : ""}>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">{moment.feature.title}</p>
+                                    <h3 className="mt-3 text-2xl font-bold tracking-tight text-balance text-heading sm:text-3xl">{moment.claim}</h3>
+                                    <p className="mt-4 text-base leading-relaxed text-body">{moment.feature.description}</p>
                                 </div>
-                            </ScrollReveal>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mx-auto mt-20 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
+                        {alsoInTheApp.map((feature) => (
+                            <div key={feature.title} className="rounded-2xl bg-card p-5 ring-1 ring-border">
+                                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600 dark:bg-orange-950/50">
+                                    <feature.icon className="h-5 w-5" aria-hidden="true" />
+                                </span>
+                                <h3 className="mt-4 font-semibold text-heading">{feature.title}</h3>
+                                <p className="mt-1.5 text-sm leading-relaxed text-body">{feature.description}</p>
+                            </div>
                         ))}
                     </div>
                 </Container>
             </section>
 
-            {/* ============================================================ */}
-            {/*  APP vs WEB                                                    */}
-            {/* ============================================================ */}
-            <section className="py-20 sm:py-28 bg-card border-t border-b border-border-subtle">
+            {/* App or web: the same workspace, picked by the moment, not a ranking */}
+            <section className="border-y border-border bg-surface py-20 sm:py-24">
                 <Container>
-                    <ScrollReveal width="100%">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl mb-4">
-                                Designed for the field, not the back office
-                            </h2>
-                            <p className="text-muted-foreground max-w-xl mx-auto">
-                                The companion is a focused field client. Admin work stays on the web, where it belongs.
-                            </p>
-                        </div>
-                    </ScrollReveal>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
-                        <ScrollReveal width="100%" delay={0.1}>
-                            <div className="rounded-xl border border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/20 p-5">
-                                <p className="text-xs font-semibold uppercase tracking-widest text-green-700 dark:text-green-400 mb-4">
-                                    Shelf Companion (iOS &amp; Android)
-                                </p>
-                                <ul className="space-y-2.5">
-                                    {builtForApp.map((item) => (
-                                        <li key={item} className="flex items-start gap-2.5 text-sm text-body">
-                                            <Check className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
+                    <SectionHead
+                        eyebrow="App or web?"
+                        title="One workspace, two ways in."
+                        lead="The web app is the whole product. Shelf Companion is the part of it you want in your hand. Same workspace, same data, same login."
+                    />
+                    <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-5 md:grid-cols-2">
+                        {[
+                            { Icon: Globe, when: "At the desk", name: "Shelf web app", items: bestOnWeb },
+                            { Icon: AndroidIcon, when: "On the floor", name: "Shelf Companion", items: builtForApp },
+                        ].map((surface) => (
+                            <div key={surface.name} className="rounded-2xl bg-card p-6 ring-1 ring-border sm:p-7">
+                                <div className="flex items-center gap-3">
+                                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600 dark:bg-orange-950/50 dark:text-orange-300">
+                                        <surface.Icon className="h-5 w-5" aria-hidden="true" />
+                                    </span>
+                                    <div>
+                                        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">{surface.when}</p>
+                                        <h3 className="text-lg font-semibold text-heading">{surface.name}</h3>
+                                    </div>
+                                </div>
+                                <ul className="mt-6 space-y-3">
+                                    {surface.items.map((item) => (
+                                        <li key={item} className="flex gap-3 text-sm leading-snug text-heading">
+                                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" strokeWidth={2.5} aria-hidden="true" />
                                             {item}
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-                        </ScrollReveal>
-
-                        <ScrollReveal width="100%" delay={0.2}>
-                            <div className="rounded-xl border border-border-subtle bg-muted/30 p-5">
-                                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                                    Shelf web app
-                                </p>
-                                <ul className="space-y-2.5">
-                                    {bestOnWeb.map((item) => (
-                                        <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                                            <ArrowRight className="h-4 w-4 mt-0.5 shrink-0 opacity-40" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </ScrollReveal>
+                        ))}
                     </div>
                 </Container>
             </section>
 
-            {/* ============================================================ */}
-            {/*  iOS / Android STATUS                                          */}
-            {/* ============================================================ */}
-            <section className="py-16 sm:py-24">
+            {/* New to Shelf: the app needs an account first */}
+            <section className="py-20 sm:py-24">
                 <Container>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        <ScrollReveal delay={0.1}>
-                            <div className="rounded-2xl border border-border bg-card p-8 h-full flex flex-col">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <Apple className="h-6 w-6 text-foreground" aria-hidden="true" />
-                                    <h3 className="text-xl font-bold text-heading">iPhone</h3>
-                                    <span className="ml-auto inline-flex items-center rounded-full bg-green-100 dark:bg-green-950/50 px-2.5 py-0.5 text-xs font-semibold text-green-700 dark:text-green-400">
-                                        Live
-                                    </span>
-                                </div>
-                                <p className="text-sm text-muted-foreground mb-6 flex-1">
-                                    Available in the App Store. Free with any Shelf account. Sign in with your existing credentials — no separate account.
-                                </p>
-                                <AppStoreBadge />
-                            </div>
-                        </ScrollReveal>
-
-                        <ScrollReveal delay={0.2}>
-                            <div className="rounded-2xl border border-border bg-card p-8 h-full flex flex-col">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <AndroidIcon className="h-6 w-6 text-foreground" aria-hidden="true" />
-                                    <h3 className="text-xl font-bold text-heading">Android</h3>
-                                    <span className="ml-auto inline-flex items-center rounded-full bg-green-100 dark:bg-green-950/50 px-2.5 py-0.5 text-xs font-semibold text-green-700 dark:text-green-400">
-                                        Live
-                                    </span>
-                                </div>
-                                <p className="text-sm text-muted-foreground mb-6 flex-1">
-                                    Available on Google Play. Free with any Shelf account. Sign in with your existing credentials — no separate account.
-                                </p>
-                                <PlayStoreBadge />
-                            </div>
-                        </ScrollReveal>
+                    {/* The evaluator minority: the app needs a Shelf account first. */}
+                    <div className="mx-auto mt-5 max-w-4xl rounded-2xl bg-surface px-8 py-8 text-center ring-1 ring-border">
+                        <h2 className="text-2xl font-bold tracking-tight text-heading">New to Shelf?</h2>
+                        <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+                            Shelf Companion pairs with any Shelf workspace. Create an account first, then sign in on the app with the same credentials. Free for individuals, no credit card.
+                        </p>
+                        <Button size="lg" className="mt-6 bg-orange-600 text-white hover:bg-orange-700" asChild>
+                            <TrackedLink href="https://app.shelf.nu/join?utm_source=shelf_website&utm_medium=cta&utm_content=mobile_app_signup" eventName="signup_click" eventProps={{ location: "mobile_app_page" }}>
+                                Create your free account
+                            </TrackedLink>
+                        </Button>
                     </div>
                 </Container>
             </section>
 
-            {/* ============================================================ */}
-            {/*  FAQ                                                          */}
-            {/* ============================================================ */}
-            <FAQSection
+            <QuestionsSection
+                page="mobile-app"
+                eyebrow="Questions about the app"
                 title="Questions about the app?"
-                description="Quick answers about Shelf Companion."
-                items={mobileAppFaqs}
+                lead="Quick answers about Shelf Companion."
+                items={appQuestions}
             />
 
-            {/* ============================================================ */}
-            {/*  BOTTOM CTA                                                    */}
-            {/* ============================================================ */}
-            <section className="py-24 bg-neutral-950 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
-                <div className="absolute inset-0 bg-gradient-to-t from-orange-500/10 to-transparent pointer-events-none" />
+            {/* Bottom CTA */}
+            <section className="relative overflow-hidden bg-neutral-950 py-20 sm:py-24">
+                <DarkGlow />
                 <Container className="relative text-center">
-                    <ScrollReveal width="100%">
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                            Bring Shelf to the floor.
-                        </h2>
-                        <p className="text-neutral-400 text-lg mb-8 max-w-lg mx-auto">
-                            Download Shelf Companion for iPhone or Android — or keep using Shelf in any phone browser. Same workspace, same data, your choice.
-                        </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <AppStoreBadge />
-                            <PlayStoreBadge />
-                        </div>
-                    </ScrollReveal>
+                    <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">Bring Shelf to the floor.</h2>
+                    <p className="mx-auto mt-4 max-w-lg text-lg text-neutral-400">
+                        Download Shelf Companion for iPhone or Android — or keep using Shelf in any phone browser. Same workspace, same data, your choice.
+                    </p>
+                    <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                        <AppStoreBadge location="mobile_app_bottom" className="border-neutral-800 bg-neutral-900/50 text-white hover:bg-neutral-900 hover:text-white" variant="outline" />
+                        <PlayStoreBadge location="mobile_app_bottom" className="border-neutral-800 bg-neutral-900/50 text-white hover:bg-neutral-900 hover:text-white" variant="outline" />
+                    </div>
                 </Container>
             </section>
         </PagefindWrapper>

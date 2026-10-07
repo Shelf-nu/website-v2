@@ -65,8 +65,19 @@ export function getPagesViewed(): string[] {
  * window rather than being dragged onto the critical path by the first
  * `trackEvent` call.
  */
+/**
+ * Automated browsers (uptime monitors, scrapers, smoke tests) advertise
+ * themselves via navigator.webdriver. One such monitor was patrolling five
+ * pages ~150x a month and skewing per-page conversion rates, so synthetic
+ * traffic is kept out of PostHog entirely: no init, no events.
+ */
+function isAutomatedBrowser(): boolean {
+    return typeof navigator !== "undefined" && navigator.webdriver === true;
+}
+
 export function initAnalytics(): void {
     if (typeof window === "undefined") return;
+    if (isAutomatedBrowser()) return;
     void getPostHog();
 }
 
@@ -85,6 +96,7 @@ export function trackEvent(
     options: { load?: boolean } = {},
 ): void {
     if (typeof window === "undefined") return;
+    if (isAutomatedBrowser()) return;
 
     // Capture landing page on first event
     if (!landingPage) {

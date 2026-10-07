@@ -3,7 +3,6 @@
 import { Container } from "@/components/ui/container";
 import dynamic from "next/dynamic";
 import NumberFlow from '@number-flow/react';
-import { GlobeEventFeed } from "@/components/sections/scale/globe-event-feed";
 
 import { useRef, useState, useEffect, startTransition } from "react";
 import { useInView } from "framer-motion";
@@ -17,10 +16,10 @@ const Globe = dynamic(() => import("@/components/ui/globe").then(mod => mod.Glob
     ),
 });
 
+// The pixel ratio is decided by the Globe component (capped at 1.5x), so it is not set here.
 const GLOBE_CONFIG = {
     width: 1200,
     height: 1200,
-    devicePixelRatio: 2,
     phi: 0,
     theta: 0.25,
     diffuse: 1.2,
@@ -42,8 +41,8 @@ export function ScaleBlock() {
     }, [isInView]);
 
     const metrics = [
-        { value: 450000, suffix: "+", label: "assets tracked" },
-        { value: 13000, suffix: "+", label: "active users" },
+        { value: 750, suffix: "k", label: "assets tracked" },
+        { value: 20, suffix: "k+", label: "active users" },
         { value: 50, suffix: "+", label: "countries" },
         { value: 99.999, suffix: "%", label: "historical uptime", decimalPlaces: 3 },
     ];
@@ -96,20 +95,21 @@ export function ScaleBlock() {
                         </div>
                     </div>
 
-                    {/* Right Column: Globe - Offset & Large */}
-                    <div className="relative h-[600px] lg:h-[800px] w-full lg:w-[140%] lg:-ml-[20%] lg:-mr-[20%] flex items-center justify-center lg:translate-x-32 perspective-1000 -my-24 lg:-my-32">
-                        {/* Globe Glow - Warm Orange/White */}
-                        <div className="absolute inset-0 bg-orange-500/5 blur-[120px] rounded-full transform scale-50" />
+                    {/* Right Column: Globe - Offset & Large. Below lg it stacks under the
+                        text, so the box is a square no wider than 600px: a 600px-tall box on
+                        a phone left an empty band above a 358px globe. */}
+                    <div className="relative mx-auto aspect-square w-full max-w-[600px] lg:aspect-auto lg:h-[800px] lg:w-[140%] lg:max-w-none lg:-ml-[20%] lg:-mr-[20%] flex items-center justify-center lg:translate-x-32 perspective-1000 -my-8 lg:-my-32">
+                        {/* Globe glow as a gradient, not a blur filter: a 120px blur on an
+                            800px layer was re-composited on every frame the globe drew. */}
+                        <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,105,0,0.10)_0%,rgba(255,105,0,0.04)_28%,transparent_55%)]" />
 
                         <Globe
                             className="w-full h-full"
                             config={GLOBE_CONFIG}
                         />
 
-                        {/* Event Feed Overlay */}
-                        <div className="absolute right-4 bottom-32 lg:right-32 lg:bottom-48 z-10 hidden md:block">
-                            <GlobeEventFeed />
-                        </div>
+                        {/* No activity feed: the one that used to float here was simulated. Until real,
+                            anonymised events exist, the globe and the real numbers carry the section. */}
                     </div>
 
                 </div>

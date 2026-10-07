@@ -13,7 +13,7 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "Solutions - Shelf Asset Management",
+    title: "Solutions",
     description: "Tailored asset management workflows for your industry.",
     alternates: { canonical: "https://www.shelf.nu/solutions" },
 };

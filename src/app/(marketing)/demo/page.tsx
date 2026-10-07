@@ -9,7 +9,7 @@ import { DemoForm } from "@/components/forms/demo-form";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
-    title: "Book a Demo - Shelf Asset Management",
+    title: "Book a Demo",
     description: "See how Shelf can help your team track assets effortlessly.",
     alternates: { canonical: "https://www.shelf.nu/demo" },
 };

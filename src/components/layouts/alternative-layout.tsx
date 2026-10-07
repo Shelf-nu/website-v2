@@ -200,7 +200,7 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
 
                 <main className="flex-1">
                     <Container className="py-16">
-                        <div className="grid lg:grid-cols-[1fr_300px] gap-12 lg:gap-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-12 lg:gap-16">
                             {/* Main Content */}
                             <div className="prose prose-lg dark:prose-invert max-w-3xl">
                                 {children}

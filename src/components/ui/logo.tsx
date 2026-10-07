@@ -46,6 +46,9 @@ export function Logo({ className = "" }: Omit<LogoProps, "showText" | "variant">
                     <ContextMenuSeparator />
                     <ContextMenuItem
                         onSelect={() => {
+                            // A full page load on purpose: router.push() from a Radix context-menu
+                            // onSelect fetches the page but never navigates (tested 2026-10-07).
+                            // eslint-disable-next-line @next/next/no-location-assign-relative-destination
                             window.location.href = "/brand-assets";
                         }}
                     >
@@ -55,6 +58,7 @@ export function Logo({ className = "" }: Omit<LogoProps, "showText" | "variant">
                     <ContextMenuSeparator />
                     <ContextMenuItem
                         onSelect={() => {
+                            // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- see above
                             window.location.href = "/";
                         }}
                     >

@@ -246,8 +246,10 @@ export function SearchDialog() {
                 aria-expanded={open}
             >
                 <Search className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Search</span>
-                <kbd className="hidden sm:inline-flex h-5 items-center gap-0.5 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+                {/* Icon only from md to lg: next to the four menus the full button pushed
+                    the header past 768px, squashing the logo and wrapping "Log in". */}
+                <span className="hidden sm:inline md:hidden lg:inline">Search</span>
+                <kbd className="hidden sm:inline-flex md:hidden lg:inline-flex h-5 items-center gap-0.5 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
                     ⌘K
                 </kbd>
             </button>

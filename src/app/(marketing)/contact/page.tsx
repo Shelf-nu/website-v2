@@ -5,7 +5,8 @@ import { Mail, MessageSquare, ArrowRight, Github, Linkedin } from "lucide-react"
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata = {
-    title: "Contact Us | Shelf Asset Management",
+    // The root layout's template adds " | Shelf Asset Management"; spelling it here doubled it.
+    title: "Contact Us",
     description: "Get in touch with the Shelf team for support, sales, or general inquiries.",
     alternates: { canonical: "https://www.shelf.nu/contact" },
 };

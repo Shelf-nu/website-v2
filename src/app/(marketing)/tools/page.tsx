@@ -2,10 +2,10 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, QrCode, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3 } from 'lucide-react';
 import { Container } from '@/components/ui/container';
-import { Badge } from '@/components/ui/badge';
 import { Pill } from "@/components/ui/pill";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { CTA } from "@/components/sections/cta";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
     title: 'Free Tools for Asset Management',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     alternates: { canonical: "https://www.shelf.nu/tools" },
 };
 
-const tools = [
+const allTools = [
     {
         title: "Barcode Scanner",
         description: "Scan QR, UPC, EAN, Code 128, Data Matrix and more from any image — instantly in your browser. No upload required.",
@@ -58,6 +58,12 @@ const tools = [
     },
 ];
 
+/** Two kinds of tool, so a seventh card never sits alone on the last row. */
+const toolGroups = [
+    { title: "Scan and label", tools: allTools.slice(0, 3), columns: "md:grid-cols-3" },
+    { title: "Calculators", tools: allTools.slice(3), columns: "md:grid-cols-2 lg:grid-cols-4" },
+];
+
 export default function ToolsIndexPage() {
     return (
         <PagefindWrapper type="Page" title="Free Tools for Asset Management" keywords="tools free tools asset tools tools page">
@@ -85,31 +91,33 @@ export default function ToolsIndexPage() {
 
             <section className="pb-20 md:pb-32 bg-background">
                 <Container>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto -mt-12 relative z-10">
-                        {tools.map((tool) => (
-                            <div key={tool.title} className="group relative bg-card border border-border rounded-2xl p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-orange-200/50 hover:-translate-y-1 flex flex-col">
-                                <div className="flex items-start justify-between mb-6">
-                                    <div className="h-14 w-14 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <tool.icon className="h-7 w-7 text-orange-600" />
-                                    </div>
-                                    <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-100 hover:bg-emerald-50">
-                                        Live
-                                    </Badge>
+                    <div className="max-w-6xl mx-auto -mt-12 relative z-10 space-y-14">
+                        {toolGroups.map((group) => (
+                            <div key={group.title}>
+                                <h2 className="mb-5 text-sm font-semibold uppercase tracking-wider text-muted-foreground">{group.title}</h2>
+                                <div className={cn("grid gap-6", group.columns)}>
+                                    {group.tools.map((tool) => (
+                                        <div key={tool.title} className="group relative bg-card border border-border rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-orange-200/50 hover:-translate-y-1 flex flex-col">
+                                            <div className="mb-5 h-12 w-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                                <tool.icon className="h-6 w-6 text-orange-600" />
+                                            </div>
+
+                                            <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-orange-600 transition-colors">
+                                                {tool.title}
+                                            </h3>
+                                            <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                                                {tool.description}
+                                            </p>
+
+                                            <Link
+                                                href={tool.href}
+                                                className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-700 gap-2 mt-auto before:absolute before:inset-0"
+                                            >
+                                                Open Tool <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                            </Link>
+                                        </div>
+                                    ))}
                                 </div>
-
-                                <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-orange-600 transition-colors">
-                                    {tool.title}
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed mb-8 flex-1">
-                                    {tool.description}
-                                </p>
-
-                                <Link
-                                    href={tool.href}
-                                    className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-700 gap-2 mt-auto before:absolute before:inset-0"
-                                >
-                                    Open Tool <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                </Link>
                             </div>
                         ))}
                     </div>

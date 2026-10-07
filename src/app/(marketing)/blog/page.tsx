@@ -6,7 +6,7 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "Blog - Shelf Asset Management",
+    title: "Blog",
     description: "Insights, guides, and product updates from the Shelf team.",
     alternates: { canonical: "https://www.shelf.nu/blog" },
 };
