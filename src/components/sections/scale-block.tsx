@@ -95,8 +95,10 @@ export function ScaleBlock() {
                         </div>
                     </div>
 
-                    {/* Right Column: Globe - Offset & Large */}
-                    <div className="relative h-[600px] lg:h-[800px] w-full lg:w-[140%] lg:-ml-[20%] lg:-mr-[20%] flex items-center justify-center lg:translate-x-32 perspective-1000 -my-24 lg:-my-32">
+                    {/* Right Column: Globe - Offset & Large. Below lg it stacks under the
+                        text, so the box is a square no wider than 600px: a 600px-tall box on
+                        a phone left an empty band above a 358px globe. */}
+                    <div className="relative mx-auto aspect-square w-full max-w-[600px] lg:aspect-auto lg:h-[800px] lg:w-[140%] lg:max-w-none lg:-ml-[20%] lg:-mr-[20%] flex items-center justify-center lg:translate-x-32 perspective-1000 -my-8 lg:-my-32">
                         {/* Globe glow as a gradient, not a blur filter: a 120px blur on an
                             800px layer was re-composited on every frame the globe drew. */}
                         <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,105,0,0.10)_0%,rgba(255,105,0,0.04)_28%,transparent_55%)]" />

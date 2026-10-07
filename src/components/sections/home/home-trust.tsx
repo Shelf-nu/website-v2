@@ -28,7 +28,7 @@ export function HomeTrust() {
         <section className="border-b border-border bg-background py-10 sm:py-12">
             <Container className="flex flex-col items-center">
                 <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-center text-sm text-muted-foreground">
-                    <span>
+                    <span className="text-balance">
                         Trusted by <b className="font-semibold text-foreground">20k+ active users</b> tracking <b className="font-semibold text-foreground">around 750k assets</b>
                     </span>
                     <a

@@ -109,7 +109,8 @@ export default function MobileAppPage() {
                                 <Download className="h-3.5 w-3.5" aria-hidden="true" />
                                 Now on the App Store &amp; Google Play
                             </span>
-                            <h1 className="mb-6 text-3xl font-bold leading-[1.08] tracking-tight text-balance text-foreground sm:text-5xl md:text-6xl">
+                            {/* No text-balance: it evens the two lines into "Scan it. Find / it. Done." */}
+                            <h1 className="mb-6 text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
                                 Scan it. Find it. <span className="text-orange-600">Done.</span>
                             </h1>
                             <p className="mb-8 text-lg leading-relaxed text-pretty text-muted-foreground">

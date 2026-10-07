@@ -226,10 +226,13 @@ export function Globe({ className, config }: GlobeProps) {
                 className
             )}
         >
+            {/* Square, centred by the flex parent. cobe draws a width-by-width globe from the
+                canvas's bottom-left corner, so a canvas stretched to a taller box pushed the
+                globe down (phones) and one in a wider box cut its top off (tablets). */}
             <canvas
                 ref={canvasRef}
-                style={{ width: "100%", height: "100%", maxWidth: "100%", aspectRatio: 1 }}
-                className="size-full opacity-0 transition-opacity duration-1000 [contain:layout_paint_size]"
+                style={{ width: "100%", height: "auto", aspectRatio: 1 }}
+                className="w-full shrink-0 opacity-0 transition-opacity duration-1000 [contain:layout_paint_size]"
                 onPointerDown={(e) => {
                     pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
                     if (canvasRef.current) canvasRef.current.style.cursor = 'grabbing';

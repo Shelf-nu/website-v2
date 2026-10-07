@@ -22,7 +22,8 @@ export function TrustTabs({ segments }: { segments: TrustSegment[] }) {
 
     return (
         <>
-            <div role="tablist" aria-label="Show customers by segment" className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-1 rounded-3xl bg-muted/70 p-1 ring-1 ring-border/70 sm:rounded-full">
+            {/* Four tabs don't fit one row on a phone; two even rows read as deliberate, a 3 + 1 wrap doesn't. */}
+            <div role="tablist" aria-label="Show customers by segment" className="mt-5 grid max-w-full grid-cols-2 gap-1 rounded-3xl bg-muted/70 p-1 ring-1 ring-border/70 sm:inline-flex sm:flex-wrap sm:items-center sm:justify-center sm:rounded-full">
                 {segments.map((segment) => {
                     const selected = segment.id === active;
                     return (
