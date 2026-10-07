@@ -11,9 +11,10 @@ import { ArrowRight, GitBranch, Layers, Smartphone } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-    title: "Features - Shelf Asset Management",
+    title: "Features",
     description: "The complete operating system for physical asset management. Track, manage, and scale your equipment operations.",
     alternates: { canonical: "https://www.shelf.nu/features" },
 };
@@ -110,13 +111,36 @@ export default function FeaturesPage() {
                     {features.map(({ frontmatter, slug }, index) => {
                         const Icon = featureIcons[slug] || Layers;
                         const featureImage = frontmatter.image;
+                        // A card left alone on the last row reads as unfinished. Where that would
+                        // happen (an odd count at two columns, one over at three), the last card
+                        // takes the whole row and lays out sideways instead.
+                        const isLast = index === features.length - 1;
+                        const wideMd = isLast && features.length % 2 === 1;
+                        const wideLg = isLast && features.length % 3 === 1;
 
                         return (
-                            <ScrollReveal key={slug} width="100%" delay={index * 0.05} className="h-full">
+                            <ScrollReveal
+                                key={slug}
+                                width="100%"
+                                delay={index * 0.05}
+                                className={cn("h-full", wideMd && "md:col-span-2", wideLg ? "lg:col-span-3" : wideMd && "lg:col-span-1")}
+                            >
                                 <Link href={`/features/${slug}`} className="group block h-full">
-                                    <div className="h-full rounded-2xl bg-background border border-border/60 overflow-hidden hover:border-orange-500/30 hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 flex flex-col">
+                                    <div
+                                        className={cn(
+                                            "h-full rounded-2xl bg-background border border-border/60 overflow-hidden hover:border-orange-500/30 hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 flex flex-col",
+                                            wideMd && "md:flex-row",
+                                            wideLg ? "lg:flex-row" : wideMd && "lg:flex-col",
+                                        )}
+                                    >
                                         {/* Image Section */}
-                                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
+                                        <div
+                                            className={cn(
+                                                "relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted",
+                                                wideMd && "md:w-1/2",
+                                                wideLg ? "lg:w-2/5" : wideMd && "lg:w-full",
+                                            )}
+                                        >
                                             {featureImage ? (
                                                 <Image
                                                     src={featureImage}
@@ -139,11 +163,23 @@ export default function FeaturesPage() {
                                         </div>
 
                                         {/* Content Section */}
-                                        <div className="p-6 flex flex-col flex-1">
+                                        <div
+                                            className={cn(
+                                                "p-6 flex flex-col flex-1",
+                                                wideMd && "md:justify-center md:p-10",
+                                                wideLg ? "lg:justify-center lg:p-10" : wideMd && "lg:justify-start lg:p-6",
+                                            )}
+                                        >
                                             <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-orange-600 transition-colors">
                                                 {frontmatter.title}
                                             </h3>
-                                            <p className="text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-3">
+                                            <p
+                                                className={cn(
+                                                    "text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-3",
+                                                    wideMd && "md:flex-none",
+                                                    wideLg ? "lg:flex-none" : wideMd && "lg:flex-1",
+                                                )}
+                                            >
                                                 {frontmatter.description}
                                             </p>
                                             <div className="mt-4 flex items-center text-sm font-medium text-orange-600 transition-all duration-300 group-hover:translate-x-0.5">

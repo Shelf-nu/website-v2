@@ -21,6 +21,13 @@ export interface CustomerLogo {
     /** Path to logo in /public/logos/ (e.g. "/logos/ces-utility.svg") — supports SVG, PNG, JPG, WebP, AVIF */
     logo: string;
 
+    /**
+     * One-colour version for the greyscale strips (the marquee and the home page's
+     * customer tabs). Needed when `logo` is a light mark on a solid tile: greyscaled,
+     * the tile turns into a grey block. Same shape, dark ink, transparent background.
+     */
+    logoMono?: string;
+
     /** If this customer has a published case study, the MDX file slug */
     caseStudySlug?: string;
 
@@ -51,7 +58,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "ces-utility",
         name: "CES Utility Solutions",
-        logo: "/logos/ces-utility.webp",
+        logo: "/logos/ces-utility-trim.webp",
         caseStudySlug: "ces-70k-recovery",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -62,6 +69,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "fabel-film",
         name: "Fabel Film",
         logo: "/logos/fabel-film.webp",
+        logoMono: "/logos/fabel-film-mono.webp",
         caseStudySlug: "fabel-film-double-bookings",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -84,7 +92,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
     {
         id: "resq",
         name: "ResQ",
-        logo: "/logos/resq.webp",
+        logo: "/logos/resq-trim.webp",
         caseStudySlug: "resq-contact-center",
         showOnHomePage: true,
         showInTrustedBy: true,
@@ -193,6 +201,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "florida-state",
         name: "Florida State University",
         logo: "/logos/florida-state.webp",
+        logoMono: "/logos/florida-state-mono.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Education",
@@ -202,6 +211,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "sea-shepherd",
         name: "Sea Shepherd",
         logo: "/logos/sea-shepherd.webp",
+        logoMono: "/logos/sea-shepherd-mono.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Conservation",
@@ -211,6 +221,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "sunrun",
         name: "Sunrun",
         logo: "/logos/sunrun.webp",
+        logoMono: "/logos/sunrun-mono.webp",
         showOnHomePage: true,
         showInTrustedBy: true,
         industry: "Renewable Energy",
@@ -231,6 +242,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "ak-film-it",
         name: "AK Film It!",
         logo: "/logos/ak-film-it.webp",
+        logoMono: "/logos/ak-film-it-mono.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Media Production",
@@ -281,6 +293,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "biltmore-church",
         name: "Biltmore Church",
         logo: "/logos/biltmore-church.webp",
+        logoMono: "/logos/biltmore-church-mono.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Religious Organization",
@@ -289,6 +302,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "bl",
         name: "BL",
         logo: "/logos/bl.webp",
+        logoMono: "/logos/bl-mono.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },
@@ -439,6 +453,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "ocadu",
         name: "OCAD University",
         logo: "/logos/ocadu.webp",
+        logoMono: "/logos/ocadu-mono.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -549,6 +564,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "university-of-melbourne",
         name: "University of Melbourne",
         logo: "/logos/university-of-melbourne.webp",
+        logoMono: "/logos/university-of-melbourne-mono.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
         industry: "Education",
@@ -565,6 +581,7 @@ export const CUSTOMER_LOGOS: CustomerLogo[] = [
         id: "up-to-you",
         name: "UP TO YOU",
         logo: "/logos/up-to-you.webp",
+        logoMono: "/logos/up-to-you-mono.webp",
         showOnHomePage: false,
         showInTrustedBy: true,
     },

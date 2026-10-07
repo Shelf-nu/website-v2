@@ -15,7 +15,8 @@ function buildSegments(): TrustSegment[] {
             label: segment.label,
             logos: segment.logos.flatMap((id) => {
                 const logo = byId.get(id);
-                return logo ? [{ id: logo.id, name: logo.name, logo: logo.logo }] : [];
+                // Shown greyscale, so tile-style logos use their one-colour version.
+                return logo ? [{ id: logo.id, name: logo.name, logo: logo.logoMono ?? logo.logo }] : [];
             }),
             quote: source?.quote ? { text: source.quote, by: [source.quoteAuthor, source.quoteRole].filter(Boolean).join(", ") } : undefined,
         };

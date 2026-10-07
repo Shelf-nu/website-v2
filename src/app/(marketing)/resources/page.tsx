@@ -9,7 +9,7 @@ import { CTA } from "@/components/sections/cta";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
-    title: "Resources - Shelf Asset Management",
+    title: "Resources",
     description: "Get help, contact support, or read our documentation.",
     alternates: { canonical: "https://www.shelf.nu/resources" },
 };

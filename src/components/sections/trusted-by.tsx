@@ -4,15 +4,17 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { getTrustedByLogos } from "@/data/customer-logos";
+import { cn } from "@/lib/utils";
 
-export function TrustedBy({ showTitle = true }: { showTitle?: boolean }) {
+export function TrustedBy({ showTitle = true, className }: { showTitle?: boolean; className?: string }) {
     const logos = getTrustedByLogos().map((l) => ({
         name: l.name,
-        src: l.logo,
+        // The strip greyscales every logo, which turns a tile-style logo into a grey block.
+        src: l.logoMono ?? l.logo,
     }));
 
     return (
-        <section className="py-20 overflow-hidden">
+        <section className={cn("py-20 overflow-hidden", className)}>
             <Container>
                 {showTitle && (
                     <p className="text-center text-sm font-semibold text-muted-foreground/60 uppercase tracking-widest mb-10">

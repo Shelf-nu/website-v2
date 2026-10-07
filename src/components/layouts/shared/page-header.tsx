@@ -27,7 +27,7 @@ export function PageHeader({ title, description, heroTagline, children, image, h
                     <Breadcrumbs />
                 </div>
                 <ScrollReveal width="100%">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                         <div className="max-w-2xl">
                             {heroTagline && (
                                 <p className="text-orange-600 font-semibold mb-4 text-sm uppercase tracking-widest">
