@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-10-05"
+updated: "2026-10-07"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -191,7 +191,7 @@ Reserved units that have no physical unit behind them yet are counted on the boo
 
 The first check-out moves the booking to **Ongoing**. After that, **Check Out All Assets** is gone, but **Scan to Check Out** and **Select to Check Out** stay on the booking until everything has gone out, so you can hand over the rest later. A lifecycle **progress bar** tracks each item through Reserved, Checked out, and Returned, so a half-packed booking reads accurately.
 
-Scanning a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset checks out every unit of it that is still waiting on the booking. To take fewer units, use **Select to Check Out**, which asks how many.
+Scanning a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset checks out every unit of it that is still waiting on the booking. To take fewer units, use **Select to Check Out**, which asks how many. A pool kept at several locations leaves from the location with the most units left; the phone does not ask which, and the web booking row shows the location it recorded. See [Where the units leave from](/knowledge-base/progressive-checkout-of-bookings#where-the-units-leave-from).
 
 **A reserved model you could not find does not hold the booking back.** A check-out needs one item to go out and nothing more. **Check Out All**, **Select to Check Out** and both scanners confirm the units still unassigned instead of refusing — the app names them the same way the web does, for example *"2 × Dell Latitude and 1 × HP LaserJet are not assigned yet. They stay on the booking so you can scan them later or release them."* Confirm and the booking goes Ongoing with what is ready; the reservations stay open, to be settled later with **Scan to assign & check out**, or released by lowering the count on the **Models** tab or from the web. A booking made only of reservations still cannot go out, because nothing would leave. See [Checking out while units are still unassigned](/knowledge-base/adding-assets-and-kits-to-a-booking#checking-out-while-units-are-still-unassigned).
 
@@ -220,7 +220,7 @@ For day-to-day custody handovers outside a formal booking flow:
 
 The full custody chain is logged with timestamps. The web app's audit log shows every step.
 
-**Quantity-tracked assets.** For assets [tracked by quantity](/knowledge-base/quantity-tracked-assets-and-consumables) (cables, gloves, other pooled supplies), custody is by portion rather than all-or-nothing. The asset detail screen shows the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a row for each holder. Tap **Assign** to give a set number of units to a teammate (capped at what's available to assign), or tap a holder's row to **release** units back to the pool. Individually tracked assets keep the same one-tap assign and release.
+**Quantity-tracked assets.** For assets [tracked by quantity](/knowledge-base/quantity-tracked-assets-and-consumables) (cables, gloves, other pooled supplies), custody is by portion rather than all-or-nothing. The asset detail screen shows the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a row for each holder. Tap **Assign** to give a set number of units to a teammate (capped at what's available to assign), or tap a holder's row to **release** units back to the pool. Individually tracked assets keep the same one-tap assign and release. The sheet does not ask which location the units come from: on a pool kept at two or more locations the web dialog does, and units assigned from the phone read *location not recorded* there. See [Which location the units come from](/knowledge-base/quantity-tracked-assets-and-consumables#which-location-the-units-come-from).
 
 **Ending a hold on a consumable.** If the asset is a [one-way consumable](/knowledge-base/quantity-tracked-assets-and-consumables) (gaffer tape, batteries, anything that gets used up rather than returned), releasing a hold asks a second question: **"Of those, how many were used up?"**. It pre-fills the full amount, because using the whole hold is the usual case. Whatever you mark as used up leaves the workspace total; the rest goes back to the pool. Assets that come back intact never see this question.
 

@@ -28,6 +28,7 @@ const ARTICLES = {
   "bulk-asset-model": "articles/bulk-asset-model.mjs",
   "asset-model-cover-image": "articles/asset-model-cover-image.mjs",
   "booking-reserve-blocked": "articles/booking-reserve-blocked.mjs",
+  "booking-reserve-blocked-named": "articles/booking-reserve-blocked-named.mjs",
   "audit-export-receipt": "articles/audit-export-receipt.mjs",
   "audit-findings": "articles/audit-findings.mjs",
   "transfer-ownership-header": "articles/transfer-ownership-header.mjs",
@@ -38,6 +39,7 @@ const ARTICLES = {
   "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
   "checkin-receipt": "articles/checkin-receipt.mjs",
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
+  "custody-source-location": "articles/custody-source-location.mjs",
   "asset-model-view": "articles/asset-model-view.mjs",
 };
 

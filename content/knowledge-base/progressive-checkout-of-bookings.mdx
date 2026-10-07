@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-09-22"
+updated: "2026-10-07"
 layout: "knowledge-base"
 ---
 
@@ -32,6 +32,26 @@ Both options live in that one menu; there is no second scan button elsewhere on 
 Once the booking is **Ongoing** or **Overdue**, the same button reads **Check out remaining** instead of **Check out**. It does what the name says: it takes out everything on the booking that hasn't gone out yet, including anything you added after checkout began.
 
 ![The Check out menu on a Reserved booking, offering Check out and Scan to check out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/progressive-checkout-dropdown.webp)
+
+### Where the Units Leave From
+
+A [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset can be kept at several locations at once. When a booking holds such a pool, placed at **two or more locations**, check-out asks once where its units leave from, so that units used up on the booking can come off the right location at check-in. Bookings with individual assets, kits, or pools kept at one location look and work exactly as before.
+
+- **Check out**, the one-click action, opens a short confirmation titled **Where do the units come from?** with one **From location** select per such pool. Each option reads as the location and what it holds, for example *Store Room · 60 pcs*, with **Unplaced · N pcs** for units not placed anywhere. The location with the most units left is pre-selected.
+- **Check out selected items** and **Scan to check out** put the same select on the pool's row, next to the quantity.
+- **Fulfil reservations & check out** asks in its confirmation, for the pools that actually go out.
+
+![The check-out confirmation titled Where do the units come from?, explaining that the item is kept at more than one location, with one From location select for AA Batteries · 10 pcs pre-selected with Store Room · 60 pcs](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/checkout-source-dialog.webp)
+
+Once the units are out, the pool's row on the booking says where they left from in small grey text, *from Studio*, beside its status, while the **Location** column keeps showing where the pool is kept. The location's own **Assets** tab reads *· 40 pcs at this location · 10 on a booking* for as long as the booking is Ongoing or Overdue.
+
+![A booking asset row for AA Batteries reading Checked out, Consumable, from Studio, with Store Room in the Location column](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/checkout-source-booking-row.webp)
+
+![A location page row for AA Batteries reading 40 pcs at this location · 10 on a booking](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/checkout-source-location-row.webp)
+
+Check-in has no new field. Units you mark as consumed, lost or damaged come off the recorded location; returned units change no placement. A pool that comes in through a kit records the kit's location instead and is never asked about. A booking checked out before this existed recorded nothing, and its used-up units are handled as before: the pool's unplaced units absorb them, and otherwise the asset's **Over-placed** row says so.
+
+The phone does not ask yet. **Scan to Check Out** and **Select to Check Out** in the [Shelf Companion app](/mobile-app) record the default, the location with the most units left, and the web booking row shows it the same way.
 
 ### The Booking Lifecycle Bar
 
@@ -85,7 +105,7 @@ The free [Shelf Companion app](/mobile-app) on iPhone and Android offers both st
 - **Scan to Check Out** opens the phone's scanner for that booking. Scan each asset or kit as you hand it over, then send the list. Like the web scanner, it refuses anything that is not on the booking or can't go out, and says why. A kit's code adds the kit's assets that can go out.
 - **Select to Check Out** lets you tick assets and kits on the booking's list and check them out together. A kit is picked as one thing, with one tick box for the whole kit.
 
-The phone lists the booking in the same order as the web booking page, so the items still to hand over stay at the top and the ones already out sink to the bottom as you go. A kit sinks only once every member of it is out, and a quantity-tracked line only once every booked unit has gone — returning units brings that line back to the top. Both stay on the booking until everything has gone out, so a booking that went **Ongoing** on its first item can keep handing gear over from the phone. Scanning a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset on the phone checks out every unit still waiting; use **Select to Check Out** when you want to take fewer, and the app asks how many. Self-service members see these options on bookings they created or are the custodian of, and Base members, who can't check gear out, don't see them. See [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started#9-bookings-create-build-check-out-and-check-in) for the full walkthrough.
+The phone lists the booking in the same order as the web booking page, so the items still to hand over stay at the top and the ones already out sink to the bottom as you go. A kit sinks only once every member of it is out, and a quantity-tracked line only once every booked unit has gone — returning units brings that line back to the top. Both stay on the booking until everything has gone out, so a booking that went **Ongoing** on its first item can keep handing gear over from the phone. Scanning a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset on the phone checks out every unit still waiting; use **Select to Check Out** when you want to take fewer, and the app asks how many. A pool kept at several locations leaves from the location with the most units left, since the phone does not ask which (see [Where the units leave from](#where-the-units-leave-from)). Self-service members see these options on bookings they created or are the custodian of, and Base members, who can't check gear out, don't see them. See [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started#9-bookings-create-build-check-out-and-check-in) for the full walkthrough.
 
 ### Tracking Who Took What, and When
 
@@ -137,6 +157,7 @@ Shelf handles this honestly so your records and reports stay accurate:
 - **Progressive check-in** won't let you check in an item that was never checked out, since there's nothing to return. It refuses with *"Cannot check in assets that were never checked out: [item names]."*
 - An item you have **already** checked in is refused separately, with *"These assets are already checked in."*, so the reason you see matches the reason you were stopped.
 - **Quick and full check-in** won't log or label never-checked-out items as "returned." They're skipped from the activity log, system notes, and the per-row **Returned** badge.
+- **Quick and full check-in settle only what went out.** A used-up (one-way) [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line that never left consumes nothing when the booking is closed with the one-click button, and a line that was partly handed over consumes only the units still out. Before 6 October 2026 the button could consume a one-way line's whole booked quantity, units that never left the shelf included.
 - A **kit** only counts as returned once all of its assets were actually checked out — so a kit that went out incomplete won't be marked fully returned.
 
 Unlike check-in, progressive checkout **never auto-completes** the booking. Checking out the last item simply finishes the checkout phase; you still check the items back in when they return.

@@ -3,7 +3,7 @@ title: "Custody Feature for Long-Term Equipment Lend-Outs"
 description: "The custody feature functions like an indefinite checkout system, allowing organizations to track which team members have borrowed assets without specifying return dates or locations."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-25"
+updated: "2026-10-07"
 layout: "knowledge-base"
 ---
 
@@ -86,6 +86,8 @@ Quantity-tracked pools work differently and are unaffected. A pool can be held b
 A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is a pool rather than a single item, so both commitments can be true of the same asset at the same time: 20 units with a custodian, 5 out on a booking, the rest on the shelf. Each figure is counted on its own row of the **Quantity Overview** card, and **Available** is what is left after all of them.
 
 For the same reason, a booking that draws on the free units of a pool is a valid booking. The bookings list does not flag it as containing unavailable assets just because some other units of that pool happen to be in someone's custody. If the booked quantity genuinely exceeds what is available, that shows up as its own stock warning on the item's row. See [Troubleshooting booking conflicts](/knowledge-base/troubleshooting-booking-conflicts).
+
+A pool kept at **two or more locations** also records which location each hold came from. The **Assign Quantity Custody** dialog asks **From location**, pre-filled with the location that has the most units left and capped at what it has; the custody list shows the location after each person's quantity; and a hold ended with **Mark as consumed** takes the used-up units off that location. A location's **Assets** tab shows how many of a pool's units are in custody from there. See [Which location the units come from](/knowledge-base/quantity-tracked-assets-and-consumables#which-location-the-units-come-from).
 
 ## Important
 

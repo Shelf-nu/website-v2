@@ -3,7 +3,7 @@ title: "Batch Scanning Actions"
 description: "Shelf's Batch QR Scanning feature enables users to perform actions on multiple assets simultaneously by scanning their QR codes in succession, significantly improving efficiency when managing groups of assets."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-05"
+updated: "2026-10-07"
 layout: "knowledge-base"
 ---
 
@@ -44,6 +44,8 @@ Use this option to transfer custody of multiple assets to a team member in one o
 
 **Quantity-tracked assets.** A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is a pool of units, so its row in the list gets a **Qty** field showing how many units are free to hand over, for example `1 / 46`. It starts at 1; set it to the number the person is taking. Only free units count toward that maximum: units already in someone's custody, allocated to a kit or out on a booking are not offered. A pool with some units out can still be scanned, as long as some are left.
 
+A pool kept at **two or more locations** also gets a compact **From location** choice under its title, pre-filled with the location that has the most units left, and its **Qty** cap follows the location you pick. A row whose chosen location has nothing left is blocked as *no units left at the chosen location*: pick another location for it, or remove it. If a location runs short between the scan and the submit, nothing is assigned and the refusal names the asset with the numbers, for example *"Spanner" (asked for 3, 2 left at Debriefing Room)*. See [Which location the units come from](/knowledge-base/quantity-tracked-assets-and-consumables#which-location-the-units-come-from).
+
 ### Release Custody
 
 This option allows you to release multiple assets from custody simultaneously.
@@ -54,9 +56,9 @@ This option allows you to release multiple assets from custody simultaneously.
 4. After scanning all desired assets, tap **Continue**
 5. Review the list of assets and confirm the release
 
-**Quantity-tracked assets.** Each quantity-tracked row gets a **Qty** field capped at the units held in custody, so you can take back part of a hold. The release scan does not ask whose units to take back, so it works while **one** person holds units of that asset. If several people do, release it from the asset's own custody list, where each holder has a row. Units held because the asset's **kit** is in custody go back by releasing the kit.
+**Quantity-tracked assets.** Each quantity-tracked row gets a **Qty** field capped at the units held in custody, so you can take back part of a hold. The release scan does not ask whose units to take back, so it works while **one** person holds units of that asset. If several people do, release it from the asset's own custody list, where each holder has a row. Units held because the asset's **kit** is in custody go back by releasing the kit. If the holder's units came from more than one location, the scan takes them back from the location holding the most first; to choose the location yourself, release from the asset page, where the dialog asks per location.
 
-**In the Shelf Companion app.** The [Shelf Companion app](/knowledge-base/shelf-ios-companion-getting-started) scanner does the same since the update of 2 October 2026. Each quantity-tracked row in its **Assign custody** and **Release custody** list carries a unit count, for example `3 / 10 pcs`. Tap it to open the **Units to assign** or **Units to release** sheet. Assign starts at 1 unit and stops at the free units. Release starts at every unit the holder has, because giving it all back is the usual return. When you release units of a one-way asset, the confirm tells you that *"One-way units are recorded as used up. That permanently reduces total stock."* The phone shows the same quantity blockers as the web, listed below.
+**In the Shelf Companion app.** The [Shelf Companion app](/knowledge-base/shelf-ios-companion-getting-started) scanner does the same since the update of 2 October 2026. Each quantity-tracked row in its **Assign custody** and **Release custody** list carries a unit count, for example `3 / 10 pcs`. Tap it to open the **Units to assign** or **Units to release** sheet. Assign starts at 1 unit and stops at the free units. Release starts at every unit the holder has, because giving it all back is the usual return. When you release units of a one-way asset, the confirm tells you that *"One-way units are recorded as used up. That permanently reduces total stock."* The phone shows the same quantity blockers as the web, listed below. The phone's sheets do not ask which location the units come from yet, so units assigned from the phone on a pool kept at several locations are recorded without one.
 
 ### Update Location
 
@@ -83,6 +85,7 @@ When using batch actions, the system automatically checks for potential conflict
 - Individually tracked assets currently checked out
 - Individually tracked assets that are part of a kit
 - Quantity-tracked assets with no units available: every unit is already in custody, allocated to a kit, or out on a booking
+- Quantity-tracked assets with no units left at the chosen location (web scanner, pools kept at two or more locations): pick another location or remove the row
 - Kits already in custody
 - Kits with assets in custody
 - Kits that are checked out
