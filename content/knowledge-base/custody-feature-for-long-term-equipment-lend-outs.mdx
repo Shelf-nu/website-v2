@@ -3,7 +3,7 @@ title: "Custody Feature for Long-Term Equipment Lend-Outs"
 description: "The custody feature functions like an indefinite checkout system, allowing organizations to track which team members have borrowed assets without specifying return dates or locations."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-25"
+updated: "2026-10-07"
 layout: "knowledge-base"
 ---
 
@@ -59,6 +59,8 @@ An asset can be spoken for in two independent ways: someone holds it in custody,
 **Releasing custody does not check a booking in.** If an asset is both in someone's custody and checked out on a booking, releasing the custody leaves it **Checked out**. It does not go back into the available pool while it is physically out on a job. Check the booking in to complete the return.
 
 **A kit takes what it can.** Assigning custody of a kit gives its members to the custodian, except any member that is currently checked out on a booking. Those members keep their **Checked out** status, and the kit's custody applies to the rest.
+
+**A kit itself is one unit with one holder.** A kit in someone's custody cannot be checked out on a booking, whatever its members are, and a kit that is checked out, or still out on another live booking, cannot be given a custodian. The **Check out** button on a booking holding such a kit is disabled with *"Some kits in this booking are currently in custody. Release their custody before you can check-out"*, and **Assign custody** on a checked-out kit is refused with *"Cannot assign custody. Some kits are checked out on a booking: Camera Kit A. Check them in first."* Adding a kit in custody to a booking and reserving it stay allowed; the refusal comes at check-out. See [A kit in custody stays home](/knowledge-base/kits#a-kit-in-custody-stays-home).
 
 The rule in one line: **checked out outranks in custody, which outranks available.** Only the booking flow can take an asset out of **Checked out**.
 

@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-10-01"
+updated: "2026-10-07"
 layout: "knowledge-base"
 ---
 
@@ -71,6 +71,16 @@ The kit-level rule closes it for every kit, whatever it is made of.
 ### What is still not checked
 
 **Adding** a kit to a booking that is already **Reserved** does not run the clash check. A double booking made that way is caught later, when someone tries to check out, fulfil, extend or scan — not at the moment the kit went on. Single assets have the same gap when they are added to a reserved booking, so this is one question for all of them rather than a kit-specific hole.
+
+### "Some kits in this booking are currently in custody"
+
+A kit that someone holds in custody cannot be checked out on a booking, whatever it is made of. The **Check out** button is disabled with that message, **Scan to check out** lists the kit under a *currently in custody* blocker, and a request that reaches the server anyway, the [Shelf Companion](/mobile-app) app included, is refused under **Kits in custody**:
+
+> Cannot check out booking. Some kits are in custody: *Camera Kit A*. Release their custody first or remove them from the booking.
+
+Release the kit's custody from the kit page, or take the kit off the booking. Adding the kit and reserving the booking were allowed on purpose: the kit is assumed back before the booking goes out, so the question is asked at the moment it matters. Before 6 October 2026 a kit built only from quantity-tracked stock slipped through this check and went out on a booking while its custodian still held it. See [A kit in custody stays home](/knowledge-base/kits#a-kit-in-custody-stays-home).
+
+The same check answers a kit that another **Ongoing** or **Overdue** booking still has out, with *Cannot check out booking. Some kits are still checked out on another booking: Camera Kit A. Check them in there first or remove them from this booking.* Check the other booking in, or remove the kit.
 
 ---
 
@@ -239,6 +249,8 @@ A kit carries its own status column, and that column could go stale. Checking a 
 **And the kit no longer goes stale in the first place.** Ending a booking now works out which kits to release from two things rather than one: the assets' current membership, and the booking's own record of which kit each item went out under. That record survives a detach, so a kit whose members were pulled out mid-job is found and released when the booking is checked in, cancelled or deleted — one booking at a time or several at once from the index. Two neighbouring cases come with it. A check-in spread over several sessions releases the kit once its last outstanding item is back, instead of staying stuck on what earlier sessions left behind. And an asset that belongs to two kits releases both, where before only one of them was ever cleared.
 
 **Custody is not the cause here.** Handing an asset to someone reads **In custody**, a different badge, and custody actions are barred from touching **Checked out** at all: assigning custody skips an asset that is checked out, and releasing custody leaves it checked out. So if the badge in front of you says **Checked out**, custody did not put it there and releasing custody will not clear it.
+
+**A kit that reads Checked out after its booking was checked in** is a different case with the same look. Until 6 October 2026, a kit whose quantity-tracked member was shared with another kit that was out on its own booking was never released at check-in: the shared member still read **Checked out** through the other kit, and the release treated that as this kit still being out. The release now judges a kit by its own slices, so a shared pooled member never holds a kit back. A kit left stuck this way heals itself on its next trip out and back, since a **Checked Out** kit can still go on a draft or reserved booking, or [support](/contact) can reset it now. Assigning custody to such a kit is refused while it reads Checked out, which is why the badge cannot be worked around from the kit page. See [Kits](/knowledge-base/kits#booking-the-free-units-directly).
 
 An asset left stuck before this shipped still needs a hand. Only the booking flow can take an asset out of **Checked out**, and the booking that stamped it has already finished, so there is nothing left to check in. [Contact support](/contact) with the asset name and the kit it belongs to, and the record can be corrected.
 

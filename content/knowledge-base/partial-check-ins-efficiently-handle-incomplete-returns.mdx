@@ -3,7 +3,7 @@ title: "Partial Check-ins: Efficiently Handle Incomplete Returns"
 description: "Partial check-ins in Shelf allow you to process asset returns flexibly, even when not all items from a booking are returned at once."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-28"
+updated: "2026-10-07"
 layout: "knowledge-base"
 ---
 
@@ -115,6 +115,8 @@ In both modes the underlying check-in is identical — you still check in indivi
 ### When a kit goes back to Available
 
 A kit's own status is a separate question from the progress bar, and it follows one rule: a kit returns to **Available** once something of its own has come back in this session and nothing of its own is still out. Both halves are measured per item, so a kit is neither held open by another kit's outstanding item nor released by another kit's return. A quantity-tracked item still owing units counts as outstanding, so its kit keeps reading **Checked Out** until the last unit is logged.
+
+"Its own" is measured on this kit's slices of the booking. A quantity-tracked member that is also in another kit, and out through that kit on a different booking, does not hold this kit back; until 6 October 2026 it did, and the kit stayed **Checked Out** after its booking completed. An individually tracked member that this check-in leaves out on another live booking still holds its kit. A kit that was in someone's custody when it went out comes back as **In Custody** rather than **Available**. See [Kits](/knowledge-base/kits#booking-the-free-units-directly).
 
 Returning a kit across several sessions works the same way as returning it in one. Earlier sessions used to leave behind records that kept the kit reading **Checked Out** after everything had come back; the last session that settles the kit now releases it. See [Kits](/knowledge-base/kits#removing-a-member).
 

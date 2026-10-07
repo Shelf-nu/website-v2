@@ -1,0 +1,20 @@
+---
+title: "A Kit in Custody Does Not Go Out on a Booking"
+description: "A kit is one unit with one holder: a kit in someone's custody is refused at check-out, a checked-out kit cannot be given a custodian, and a kit sharing pooled stock with another kit that is out is released when its own booking comes back."
+date: "2026-10-07"
+image: "/images/updates/compact-kits-bookings.jpg"
+readMoreUrl: "/knowledge-base/kits#a-kit-in-custody-stays-home"
+layout: "update"
+---
+
+Two corrections to how a [kit](/knowledge-base/kits) is held and released.
+
+## Custody and bookings never overlap on a kit
+
+A kit is one physical unit with one holder. From now on a kit in someone's **custody** cannot be checked out on a booking, and a kit that is **checked out** cannot be given a custodian, whatever the kit is made of. The **Check out** button on a booking holding such a kit is disabled with *"Some kits in this booking are currently in custody. Release their custody before you can check-out"*, the **Scan to check out** drawer lists the kit under a blocker, and the server refuses a request that gets through anyway, from the web or from the [Shelf Companion app](/mobile-app): *"Cannot check out booking. Some kits are in custody: Camera Kit A. Release their custody first or remove them from the booking."* Adding the kit to a booking and reserving it stay allowed, because the kit is assumed back by the time the booking goes out.
+
+Before this, check-out looked at the member assets rather than the kit. A quantity-tracked member reading **In custody** only means some of its units are held, so a kit built only from pooled stock could go out on a booking while its custodian still held it, and then read **Checked out** with its custody row still attached.
+
+## A kit sharing pooled stock is released with its own booking
+
+When a quantity-tracked asset sits in several kits, say one pool of tripods spread across camera kits, and another kit holding units of it was out on its own booking, checking this kit's booking in used to release everything except the kit: the shared tripod still read **Checked out** through the other kit, and the release took that as this kit still being out. The booking completed and the kit stayed **Checked Out** with nothing to clear it. The release now judges a kit by its own slices on the booking, so a shared pooled member never holds a kit back. A kit left stuck this way heals itself the next time it goes out and comes back, since a **Checked Out** kit can still be added to a draft or reserved booking.
