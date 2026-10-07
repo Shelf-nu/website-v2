@@ -85,7 +85,10 @@ export function QuestionsSection({ page, eyebrow, title, lead, items, openFirst 
                                     </summary>
                                 }
                             >
-                                <div className="max-w-[65ch] pb-7">
+                                {/* Answers are in the HTML for Google, but kept out of on-site search: the old
+                                    accordion never rendered them, and indexing them doubled the pricing page's
+                                    text, which pushed /pricing to #4 for "pricing" (search-quality suite). */}
+                                <div className="max-w-[65ch] pb-7" data-pagefind-ignore>
                                     <p className="whitespace-pre-line text-base leading-relaxed text-body">{item.answer}</p>
                                     {item.href && item.linkLabel && (
                                         <Link href={item.href} className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-orange-600 hover:text-orange-700">
