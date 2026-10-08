@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
 import { VideoLightbox } from "@/components/ui/video-lightbox";
@@ -14,12 +14,26 @@ import { Shot } from "./shot";
  * The product, operable: three real views of the web app behind a segmented
  * control, with the Companion app beside it on large screens.
  *
- * All three images are in the static HTML (the first one eager, as the LCP
- * element; the others lazy), so nothing here depends on JavaScript to be
- * seen or indexed. The stage is deliberately cut by the fold.
+ * The first view's image is in the static HTML and preloaded: it is the LCP
+ * element. The other views mount their images once the page has loaded. They
+ * sit in the viewport behind opacity, so `loading="lazy"` never held them back
+ * and the LCP screenshot shared the connection with ~230KB of hidden tabs
+ * (homepage LCP p75 rose 1.2s -> 1.6s after the refresh). A tab clicked before
+ * load still shows at once. The stage is deliberately cut by the fold.
  */
 export function HeroStage() {
     const [active, setActive] = useState(HERO_VIEWS[0].id);
+    const [pageLoaded, setPageLoaded] = useState(false);
+
+    useEffect(() => {
+        const done = () => setPageLoaded(true);
+        if (document.readyState === "complete") {
+            done();
+            return;
+        }
+        window.addEventListener("load", done, { once: true });
+        return () => window.removeEventListener("load", done);
+    }, []);
 
     return (
         <div className="relative mx-auto mt-10 max-w-7xl sm:mt-12">
@@ -64,7 +78,9 @@ export function HeroStage() {
                             className={cn("absolute inset-0 transition-opacity duration-300 ease-out", view.id === active ? "opacity-100" : "pointer-events-none opacity-0", view.phoneOnly && "bg-neutral-900")}
                         >
                             {/* The phone screen is portrait: show the part with the scanner, not the status bar. */}
-                            <Shot shot={view.shot} eager={i === 0} sizes={view.phoneOnly ? "100vw" : HERO_SIZES} className={view.phoneOnly ? "h-full w-full object-cover object-[50%_30%]" : "h-full w-full object-cover object-left-top dark:brightness-90"} />
+                            {(i === 0 || pageLoaded || view.id === active) && (
+                                <Shot shot={view.shot} eager={i === 0} sizes={view.phoneOnly ? "100vw" : HERO_SIZES} className={view.phoneOnly ? "h-full w-full object-cover object-[50%_30%]" : "h-full w-full object-cover object-left-top dark:brightness-90"} />
+                            )}
                         </div>
                     ))}
 
@@ -92,6 +108,8 @@ export function HeroStage() {
                         width={COMPANION.scan.width}
                         height={COMPANION.scan.height}
                         sizes="320px"
+                        // Visible, but not the LCP element: let the main screenshot have the connection first.
+                        fetchPriority="low"
                         className="h-full w-full object-cover object-top"
                     />
                     <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-neutral-900/90 px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-sm">
