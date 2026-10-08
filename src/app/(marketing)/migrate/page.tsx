@@ -6,6 +6,7 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { FAQSection } from "@/components/sections/faq";
+import { AiImportPrompt } from "@/components/mdx/ai-import-prompt";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
@@ -127,6 +128,11 @@ export default function MigratePage() {
                                 </div>
                             </div>
                         </Link>
+                    </ScrollReveal>
+
+                    {/* The import format, handed to the visitor's own AI */}
+                    <ScrollReveal width="100%" delay={0.05}>
+                        <AiImportPrompt location="migrate_page" className="mt-0 mb-12" />
                     </ScrollReveal>
 
                     {/* All competitor cards */}
