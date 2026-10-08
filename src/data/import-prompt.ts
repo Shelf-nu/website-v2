@@ -23,7 +23,7 @@ Before writing anything, reply with:
 2. A table mapping each of my columns to a Shelf column from the list in step 2, or to "leave out".
 3. Your questions. Always cover:
 - Dates. For each date column, say which format you detected and why (e.g. "row 14 has 25/03/2024, so it's day/month"). If every value would make sense either way, because both numbers are 12 or lower, don't guess: show me three examples and ask. Also ask before converting spreadsheet date numbers (like 45123) or two-digit years.
-- Money. Which currency my Shelf workspace uses, and which currency the values in my file are in. Shelf stores every amount in the workspace currency. If the two differ, or the file mixes currencies, ask whether to convert (and at what rate) or leave those cells empty.
+- Money. Which currency the values in my file are in, and which currency my Shelf workspace uses. New workspaces start in US dollars (USD), so if I've only just set up Shelf, it's probably USD. Shelf shows every amount in the workspace currency and never converts. If my file uses one other currency, suggest I switch the workspace currency under Settings → General before importing and keep the numbers as they are. If the file mixes currencies, ask whether to convert (and at what rate) or leave those cells empty.
 - Custom fields. Which columns should become custom fields, and the type you'd give each.
 - Bulk stock. Which items are counted rather than tracked one by one (cables, batteries, consumables).
 - Merges. Different spellings of the same name ("Studio A", "studio a", "Studio A "). List them and merge only the ones I approve.
