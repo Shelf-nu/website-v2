@@ -44,13 +44,15 @@ A kit is one physical case, so **it can only be on one booking at a time for a g
 
 ### The kit is already on another booking
 
-Another booking that overlaps your dates holds the kit if it is **Reserved**, or if it is **Ongoing** or **Overdue** and its share of the kit is still out. Reserving, checking out, extending or scanning onto your booking is refused under the heading **Booking conflict**:
+Another booking that overlaps your dates holds the kit if it is **Reserved**, or if it is **Ongoing** or **Overdue** and its share of the kit is still out. An **Overdue** booking that still has the kit out holds it for every date, even when its own dates ended before yours begin, because nobody knows when the kit is coming back. Reserving, checking out, extending or scanning onto your booking is refused under the heading **Booking conflict**:
 
 > Cannot reserve booking. Some kits are already booked or checked out for an overlapping period: *[first kit]*, *[second kit]*, *[third kit]* and 2 more. Please remove them and try again.
 
 At most three kits are listed by name and the rest are counted, the same shape the asset-level refusal uses. Take the kit off your booking, move your dates, or wait for the other booking to end.
 
 You are also warned before you get that far. A kit that is already spoken for shows an **"Already booked"** badge in the **Manage kits** picker and on the kit's row inside a booking, with the tooltip *"This kit is already added to a booking that is overlapping the selected time period."*
+
+**Scan to check out** warns you while you scan, too. A scanned kit that another booking holds is listed under *"1 kit is already booked or checked out on another booking."*, and an asset scanned on its own whose kit is held that way under *"1 asset is part of a kit that is booked or checked out on another booking."* **Check out assets** stays disabled until you remove them from the list.
 
 An item that was **removed from the kit** after your booking was made no longer holds the kit — it is a standalone asset on that booking and is measured as one.
 
