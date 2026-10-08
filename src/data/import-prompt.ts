@@ -23,11 +23,13 @@ Before writing anything, reply with:
 2. A table mapping each of my columns to a Shelf column from the list in step 2, or to "leave out".
 3. Your questions. Always cover:
 - Dates. For each date column, say which format you detected and why (e.g. "row 14 has 25/03/2024, so it's day/month"). If every value would make sense either way, because both numbers are 12 or lower, don't guess: show me three examples and ask. Also ask before converting spreadsheet date numbers (like 45123) or two-digit years.
-- Money. Which currency the values are in. Shelf uses one currency per workspace, so if they're mixed, ask.
+- Money. Which currency my Shelf workspace uses, and which currency the values in my file are in. Shelf stores every amount in the workspace currency. If the two differ, or the file mixes currencies, ask whether to convert (and at what rate) or leave those cells empty.
 - Custom fields. Which columns should become custom fields, and the type you'd give each.
 - Bulk stock. Which items are counted rather than tracked one by one (cables, batteries, consumables).
 - Merges. Different spellings of the same name ("Studio A", "studio a", "Studio A "). List them and merge only the ones I approve.
 - People. If the person column holds emails instead of names, ask me for names, or leave it empty.
+- Missing names. List any rows with no item name and ask me what to call them, or whether to leave them out. Shelf needs a title on every row.
+- Codes. Whether my items already carry Shelf QR codes from my workspace, and whether my workspace has the Alternative Barcodes add-on switched on.
 Then stop and wait for my answers.
 
 STEP 2: WRITE THE CSV
@@ -54,7 +56,10 @@ Custom fields, for anything that doesn't fit a column above (serial number, purc
 - date: YYYY-MM-DD only. boolean: yes or no only. amount and number: plain numbers with a dot for decimals.
 - Keep the ID from my old tool in "cf:Old ID,type:text", not in an id column.
 
-Leave out qrId and every barcode_ column unless I tell you I already have Shelf QR codes or use Shelf's Alternative Barcodes add-on.
+Codes, only when I confirmed them in step 1:
+- qrId: only if my items already carry Shelf QR codes from my workspace that aren't linked to another item yet. Each code once, never shared between items.
+- barcode_Code128, barcode_Code39, barcode_DataMatrix, barcode_ExternalQR, barcode_EAN13: only if the Alternative Barcodes add-on is on. Several codes of one type go in one cell, separated by commas, with the cell in double quotes. Code128: 4-40 characters. Code39: 4-43 characters, A-Z and 0-9 only. DataMatrix: 4-100 characters. ExternalQR: up to 2048 characters. EAN13: exactly 13 digits with a valid check digit.
+- Otherwise leave these columns out entirely. Shelf creates a new QR code for every item.
 
 Rules:
 - Don't invent or guess data. An empty cell is better than a wrong one.
@@ -63,9 +68,10 @@ Rules:
 STEP 3: CHECK THE FILE BEFORE YOU GIVE IT TO ME
 Open the CSV you wrote with a CSV parser and report the result of each check:
 - The number of items in my file equals the number of rows in the CSV, or you explain every difference.
-- Every header is one of: title, description, category, kit, assetModel, location, tags, custodian, bookable, imageUrl, valuation, type, quantity, consumptionType, minQuantity, unitOfMeasure, or a "cf:Name,type:TYPE" header with a type from the list.
-- No row has an empty title.
+- Every header is one of: title, description, category, kit, assetModel, location, tags, custodian, bookable, imageUrl, valuation, type, quantity, consumptionType, minQuantity, unitOfMeasure, a "cf:Name,type:TYPE" header with a type from the list, or (only if I confirmed them in step 1) qrId and the barcode_ headers listed above.
+- No row has an empty title, and no qrId or barcode value appears twice.
 - Every date is YYYY-MM-DD, every boolean is yes or no, and every valuation, amount and number cell is a plain number.
+- Every barcode value fits the length and character rules for its type.
 - Every QUANTITY_TRACKED row has a quantity above 0 and a consumptionType, and no assetModel.
 - Every item in the same kit has the same custodian.
 - No file has more than 1,000 rows.
