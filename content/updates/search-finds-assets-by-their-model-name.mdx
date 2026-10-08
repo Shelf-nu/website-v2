@@ -1,0 +1,16 @@
+---
+title: "Search finds assets by their model name, and booking by model shows what is free"
+description: "Typing an asset model's name now finds its units everywhere you search. Creating a booking from the asset model view shows how many units are free once the dates are set."
+date: "2026-10-08"
+readMoreUrl: "/knowledge-base/advanced-asset-index-complete-guide#asset-model-view"
+layout: "update"
+---
+
+Typing a model's name into the asset search, for example `Dell Latitude 5550`, used to find nothing unless the name also appeared in each asset's own title, and the asset model view then showed every model with 0 assets. Search now matches the [asset model](/glossary/asset-models) an asset belongs to, in both index modes and in the Shelf Companion app's asset search, which runs on the same server search.
+
+Booking by model from the asset model view got a few improvements too:
+
+- **Create new booking** shows how many units of each model are free once both dates are set, for example *"adding 2 → 2 of 8 available"*, the same hint **Add to existing** already gave.
+- Asking for more units than a model can give in that window is refused under a clear **Not enough units** title instead of a generic error.
+- The **Add to existing** booking pickers open on bookings that have not ended yet, soonest first, and list finished bookings after them, most recent first.
+- The panel that lists a model's assets keeps its column headers in view while you scroll, and when no asset matches your filters it says how many sit outside them.
