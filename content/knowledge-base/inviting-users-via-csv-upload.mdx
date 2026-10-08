@@ -3,7 +3,7 @@ title: "Inviting Users via CSV Upload"
 description: "Shelf allows you to invite multiple users simultaneously by uploading a CSV file containing their information, making it useful for onboarding teams or departments all at once."
 category: "Other"
 date: "2024-06-01"
-updated: "2026-09-30"
+updated: "2026-10-08"
 layout: "knowledge-base"
 ---
 
@@ -15,7 +15,7 @@ Shelf enables bulk user invitations through CSV file uploads, making it particul
 ![Team settings page with Import Users button for CSV upload](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/inviting-csv-1.webp)
 ## Prerequisites
 
-- Administrator permissions required in your workspace
+- Administrator permissions required in your workspace. Rows with the **ADMIN** role need the workspace owner: only the owner can make someone an Administrator
 - CSV file formatted according to the provided template
 - Team subscription (user management is a team feature)
 
@@ -38,7 +38,7 @@ Shelf enables bulk user invitations through CSV file uploads, making it particul
 - First row reserved for column headers
 - Up to **1,000 users** per file. Split a larger list and import the parts one at a time
 
-**There is no OWNER role in this file.** An import can create Administrators, Self-service and Base users, and nothing else. Ownership moves only through [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership), which demotes the outgoing owner, handles the subscription, and emails both people. An invite can do none of that.
+**There is no OWNER role in this file.** An import can create Administrators, Self-service and Base users, and nothing else. Administrators come only from the workspace owner's imports: if an Administrator uploads a file with any **ADMIN** row, the whole file is refused with *"Only the workspace owner can grant the Administrator role."* and nobody is invited. Ownership moves only through [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership), which demotes the outgoing owner, handles the subscription, and emails both people. An invite can do none of that.
 
 ### Columns
 

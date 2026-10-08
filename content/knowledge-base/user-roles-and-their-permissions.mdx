@@ -3,7 +3,7 @@ title: "User Roles and Their Permissions"
 description: "See what each Shelf user role can do — a full permissions matrix for Owner, Administrator, Self-service and Base, plus how to restrict who books equipment."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-09-28"
+updated: "2026-10-08"
 layout: "knowledge-base"
 ---
 
@@ -53,7 +53,7 @@ The Account Owner has complete access to everything in the workspace. They are e
 A handful of actions are the Owner's alone, and an Administrator cannot reach them from anywhere in Shelf:
 
 - **Transferring ownership.** Only the Owner can hand the workspace to someone else. See [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership).
-- **Changing or revoking an Administrator.** One Administrator cannot demote or remove another. The Owner can.
+- **Granting, changing or revoking the Administrator role.** Only the Owner can invite someone as an Administrator, promote a member to Administrator, or demote or remove one. One Administrator cannot do any of these to another.
 - **Being removed.** The Owner's access cannot be revoked while they own the workspace. Ownership has to move first.
 
 There is exactly one way to become the Owner: an existing Owner transfers it. Ownership is not a role you can pick in the **Change role** dialog, and it cannot be granted by an invite or a CSV user import — those accept **Administrator**, **Self-service**, and **Base** only. That single path is what keeps the subscription, the ownership record, and the notification emails to both parties in step.
@@ -65,7 +65,7 @@ There is exactly one way to become the Owner: an existing Owner transfers it. Ow
 Administrators have comprehensive access to the workspace across all locations. Their permissions include:
 
 - **Managing assets:** create, update, archive and delete equipment; manage categories, tags, custom fields and locations; and oversee custody transfers.
-- **Managing users:** invite other users to the workspace and adjust the roles of existing users.
+- **Managing users:** invite people as Self-service or Base users and move members between those two roles. Inviting or promoting someone to **Administrator** is the Owner's alone: the invite and **Change role** dialogs do not offer it to an Administrator, and a CSV import containing an Administrator row is refused.
 - **Team member notes:** add private, workspace-scoped notes to any team member's profile. Notes are only visible to Admins and Owners. See [Admin Notes on Team Members](/knowledge-base/admin-notes-on-team-members).
 - **Managing bookings:** create, update and fulfil (check in/out) bookings, including those started by other users, and delete, archive or cancel any of them in bulk. The workspace owner can require Administrators to scan or select the assets rather than check a booking out or in with one click; the owner is the only role that setting cannot reach. See [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out).
 - **Running audits:** create, manage, archive and delete audits, in addition to performing them.
@@ -78,7 +78,7 @@ Self-service users sit between Base and Administrator. They have more autonomy t
 
 - **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle other people's custody.
 - **Custody:** self-assign and self-remove custody of assets.
-- **Bookings:** book assets for themselves and **check them out and back in on their own**, no admin needed. The workspace owner can require them to do it item by item rather than in one click — see [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out). The **Custodian** field on a booking they create holds their own name and nobody else's, on the web and in the [Shelf Companion](/mobile-app) app alike. Their own bookings are also the limit of what they can act on in bulk: selecting rows and choosing Delete, Archive or Cancel touches only the bookings that belong to them, even when a workspace setting lets them see everyone else's. Taking items back off a booking stops at **Reserved**: a Self-service user can adjust their own reservation up to the point it goes out, but not after.
+- **Bookings:** book assets for themselves and **check them out and back in on their own**, no admin needed. The workspace owner can require them to do it item by item rather than in one click — see [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out). The **Custodian** field on a booking they create holds their own name and nobody else's, on the web and in the [Shelf Companion](/mobile-app) app alike. Their own bookings are also the limit of what they can change, even when a workspace setting lets them see everyone else's. The bookings list has no bulk-actions menu for this role. A Self-service user can **delete** a booking only while it is a **Draft**; after that, they cancel it instead. They can **add** items only while their booking is a **Draft**. Taking items back off goes one step further, to **Reserved**: they can trim their own reservation up to the point it goes out, but not after.
 - **Audits:** can be assigned to audits and perform them — scanning items and adding audit notes — but cannot create, archive, or delete audits.
 - **Reports:** not available. **Reports** is hidden from the sidebar for this role and the pages, CSV and PDF exports behind it are refused, including by direct link.
 - **Settings:** view and edit their own account details only. They cannot invite or manage other team members.
@@ -88,7 +88,7 @@ Self-service users sit between Base and Administrator. They have more autonomy t
 Base is the foundational role — ideal for the widest group of users, such as students or occasional borrowers:
 
 - **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle custody.
-- **Bookings:** create **booking requests** for themselves — the **Custodian** field offers their own name only, on the web and in the [Shelf Companion](/mobile-app) app alike. They **cannot** check out or check in gear themselves — only an Administrator can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it. Bulk Delete, Archive and Cancel apply to their own bookings only. Items can be taken back off the booking while it is still a **Draft**. Once it is reserved, the same rule that stops a Base user adding items also stops them removing any, so the way to change a reserved request is to cancel it and make a new one.
+- **Bookings:** create **booking requests** for themselves — the **Custodian** field offers their own name only, on the web and in the [Shelf Companion](/mobile-app) app alike. They **cannot** check out or check in gear themselves — only an Administrator can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it. A Base user can delete their own booking while it is a **Draft**, and add or remove items only while it is a **Draft**. They cannot cancel or archive a booking, and the bookings list has no bulk-actions menu for this role. Once a request is reserved it is fixed from their side, so the way to change it is to ask an Administrator, who can edit or cancel it.
 - **Audits:** can be assigned to audits and perform them — scanning items and adding audit notes — but cannot create, archive, or delete audits.
 - **Reports:** not available, on the same terms as Self-service.
 - **Settings:** limited to their own account details. They cannot invite or manage other team members.
@@ -114,10 +114,16 @@ Every checkmark is what the role can actually do in Shelf today.
     { label: "Create booking requests", values: [true, true, true, true] },
     { label: "Name someone other than themselves as a booking's custodian", values: [true, true, false, false] },
     { label: "Check out / check in their own bookings", values: [true, true, true, false] },
+    { label: "Delete their own booking while it is a Draft", values: [true, true, true, true] },
+    { label: "Delete a booking once it is Reserved or later", values: [true, true, false, false] },
+    { label: "Cancel or archive their own booking", values: [true, true, true, false] },
+    { label: "Add items to their own booking while it is a Draft", values: [true, true, true, true] },
+    { label: "Add items to their own booking once it is Reserved", values: [true, true, false, false] },
     { label: "Take items off their own booking while it is a Draft", values: [true, true, true, true] },
     { label: "Take items off their own booking once it is Reserved", values: [true, true, true, false] },
     { label: "Take items off a booking that is Ongoing or Overdue", values: [true, true, false, false] },
     { label: "Manage everyone's bookings", values: [true, true, false, false] },
+    { label: "Bulk actions on the bookings list", values: [true, true, false, false] },
     { label: "View and book Kits", values: [true, true, true, true] },
     { label: "Create and edit Kits", values: [true, true, false, false] },
     { label: "Manage categories, tags and locations", values: [true, true, false, false] },
@@ -126,7 +132,8 @@ Every checkmark is what the role can actually do in Shelf today.
     { label: "Perform audits they are assigned to", values: [true, true, true, true] },
     { label: "Create and manage audits", values: [true, true, false, false] },
     { label: "Set asset reminders", values: [true, true, false, false] },
-    { label: "Invite people as Administrator, Self-service or Base", values: [true, true, false, false] },
+    { label: "Invite people as Self-service or Base", values: [true, true, false, false] },
+    { label: "Invite or promote someone to Administrator", values: [true, false, false, false] },
     { label: "Change or revoke another Administrator", values: [true, false, false, false] },
     { label: "Transfer workspace ownership", values: [true, false, false, false] },
     { label: "Access workspace settings and permission toggles", values: [true, true, false, false] },
