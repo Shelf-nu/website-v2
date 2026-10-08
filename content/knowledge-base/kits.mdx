@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-09-23"
+updated: "2026-10-07"
 layout: "knowledge-base"
 ---
 
@@ -47,8 +47,8 @@ Navigate to the Kits page and select **New Kit**. Complete the setup by entering
 Kits can exist in three states:
 
 - **Available**: Ready for assignment to a person or booking
-- **In Custody**: Currently held by a person; unavailable for reassignment until released
-- **Checked Out**: Assigned to a booking and unavailable for reassignment. It clears when the bookings holding it end and nothing of the kit's own is still out
+- **In Custody**: Currently held by a person; unavailable for reassignment until released, and it cannot be checked out on a booking until then (see [A kit in custody stays home](#a-kit-in-custody-stays-home))
+- **Checked Out**: Assigned to a booking and unavailable for reassignment, including custody. It clears when the bookings holding it end and nothing of the kit's own is still out
 
 ## Kit Assets
 
@@ -86,6 +86,8 @@ Being in a kit does not take a pooled asset off the table. **Book** on a quantit
 
 Checking those 2 loose sandbags out leaves both kits alone. A kit reads **Checked Out** only when a booking holds the kit itself, and it is released by that booking's return. The Kits index and the kit page name the custodian of the booking that holds **this** kit, and only while its items are still out, so a person with loose units from a shared pool is never shown as holding every kit that pool belongs to. Before 9 September 2026 a loose booking of shared stock could mark a kit it never touched as **Checked Out** and show that booking's custodian against it. A kit still stuck that way needs [support](/contact) to correct the record.
 
+A second way a kit could stay **Checked Out** closed on 6 October 2026. When a quantity-tracked member is shared between kits, say one pool of tripods spread over several camera kits, and another kit holding units of it was out on its own booking, checking this kit's booking in released everything except the kit itself: the shared member still read **Checked out** through the other kit, and the release treated that as this kit still being out. The booking completed, the kit stayed **Checked Out**, and nothing could clear it. The release now judges a kit by its own slices on the booking, so a shared pooled member never holds a kit back; an individually tracked member still does, when this check-in leaves it out on another live booking. A kit left stuck by this heals itself on its next trip: a **Checked Out** kit can still be added to a draft or reserved booking, and checking that booking in releases it. Until it goes out again it keeps reading **Checked out**, so ask [support](/contact) if you would rather have it reset now.
+
 **Individually tracked** assets are the ones that must go out with their kit. One of those lives entirely inside a single kit, so booking it on its own would double-book the very same physical item. The **Book** button on such an asset stays disabled and links you to the kit instead.
 
 Both rules are the same wherever you start from: the asset's own page, a multi-select on the assets index, or the asset picker inside a booking.
@@ -101,6 +103,7 @@ Before you reach that, the kit shows an **"Already booked"** badge in the **Mana
 Two details decide whether a kit counts as held:
 
 - A booking **holds** the kit while it is **Reserved**, or while it is **Ongoing** or **Overdue** and its share of the kit is still out. A booking that has handed everything back no longer holds it.
+- A kit still out on an **Overdue** booking is held for **every** date, not only the dates that booking was made for. Nobody knows when a late kit is coming back, so no other booking can reserve, check out or scan it until it is checked in, and the kit picker's **Hide unavailable** filter leaves it out. Pooled stock already worked this way; kits do too since 7 October 2026.
 - An asset **removed from the kit** after a booking was made does not hold the kit. It carries on as a standalone item on that booking — see [Changing Kit Contents and Existing Bookings](#changing-kit-contents-and-existing-bookings) below.
 
 ### Why this is worth knowing
@@ -120,6 +123,24 @@ See [Settling a model reservation](/knowledge-base/adding-assets-and-kits-to-a-b
 ### It does not stop you booking the loose units
 
 Exclusivity is about the **kit**, not about the pool a member draws from. Booking 2 loose sandbags while *Grip A* keeps its 3 is unaffected, exactly as described above — the kit is not on your booking, so there is nothing to clash with.
+
+## A Kit in Custody Stays Home
+
+A kit is one physical unit with one holder. Since 6 October 2026 that holds for custody and bookings together, whatever the kit is made of: **a kit in someone's custody cannot be checked out on a booking, and a kit that is checked out cannot be given a custodian.** Location is the one thing that may overlap either: a kit can be somewhere and with someone at the same time, but it cannot be with a custodian and out on a booking at once.
+
+You can still **add** a kit in custody to a booking and **reserve** it; the kit is assumed back by the time the booking goes out. The refusal comes at check-out:
+
+- The **Check out** button is disabled, with *"Some kits in this booking are currently in custody. Release their custody before you can check-out"*.
+- **Scan to check out** lists the kit under a blocker, *"1 kit is currently in custody"*, with the advice *Release the kit's custody before checking it out on a booking.* The button stays off until you remove the kit from the list or release the custody.
+- If a request gets through anyway, including from the [Shelf Companion](/mobile-app) app, which has no blocker of its own for this yet, the server refuses it under the heading **Kits in custody**: *"Cannot check out booking. Some kits are in custody: Camera Kit A. Release their custody first or remove them from the booking."* Up to three kits are named and the rest counted.
+
+The same check refuses a kit that another **Ongoing** or **Overdue** booking still has out, with *"Cannot check out booking. Some kits are still checked out on another booking: Camera Kit A. Check them in there first or remove them from this booking."* Unlike the date-based clash check, this one also catches an overdue booking that has run past its end date.
+
+In the other direction, **Assign custody** on a kit page is refused while the kit is checked out or still out on a live booking: *"Cannot assign custody. Some kits are checked out on a booking: Camera Kit A. Check them in first."* The bulk custody action on the Kits index already refused any kit that was not **Available**, and still does.
+
+Before this, check-out looked at the member assets rather than the kit. A quantity-tracked member reading **In custody** only means some of its units are held, so that check let it pass, and a kit built only from quantity-tracked stock could go out on a booking while its custodian still held it. The kit then read **Checked out** with its custody row still attached. A kit holding an individually tracked member in custody was always refused, through that member.
+
+Loose units of a quantity-tracked pool are unaffected by any of this: they come from the free part of the pool, and a pool with some units in custody and others out on a booking is a normal state (see [Quantity-Tracked Pools Can Be Both at Once](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs#quantity-tracked-pools-can-be-both-at-once)).
 
 ## Kit Location
 
