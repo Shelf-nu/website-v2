@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-10-05"
+updated: "2026-10-07"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -72,6 +72,7 @@ For quantity-tracked assets, custody is by portion rather than all-or-nothing:
 
 - Assign part of the pool to a person — for example, "20 of 100 USB-C cables to Sarah." The available count drops by 20.
 - Several team members can hold different quantities of the same asset at once.
+- If the pool is kept at **two or more locations**, the Assign dialog also asks **From location**, so Shelf knows which location's units the person took. See [Which location the units come from](#which-location-the-units-come-from).
 - To hand out or take back units of several assets in one go, use the scanner's **Assign custody** or **Release custody** action, on the web or in the [Shelf Companion app](/knowledge-base/shelf-ios-companion-getting-started). Each scanned quantity-tracked asset gets its own quantity field. See [Batch Scanning Actions](/knowledge-base/batch-scanning-actions#assign-custody).
 - Ending a hold, fully or partially, settles those units according to the asset's [consumption type](#consumption-types).
 - Custody and a booking are separate commitments on the same pool, so 20 units can sit with a custodian while 5 are checked out on a booking and the rest stay on the shelf. Releasing the custody does not check the booking in. See [Quantity-Tracked Pools Can Be Both at Once](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs#quantity-tracked-pools-can-be-both-at-once).
@@ -88,6 +89,8 @@ On a **used-up (one-way)** asset the same row reads **Mark as consumed**, becaus
 2. **Of those, how many were used up?**, pre-filled to all of them, which is the usual answer for a consumable.
 
 Whatever you record as used up is **permanently removed from the asset's total quantity** and cannot be restored. Anything left over goes back into the available pool, so a crew that took 40 pairs of gloves and used 10 can hand the other 30 back in one action rather than writing off all 40.
+
+If that person's units came from more than one location, the dialog asks the same two questions **per location**, one block each with the maximum that location's hold allows, and the used-up units come off the location they were taken from. See [Which location the units come from](#which-location-the-units-come-from).
 
 The asset's **Activity** tab records the outcome in the same words, for example *"ended Sarah's hold on 40 unit(s): 10 consumed and 30 returned to stock"*, and a consume that takes available stock to or below the min quantity triggers the usual [low-stock alert](#low-stock-alerts).
 
@@ -110,15 +113,39 @@ The two are independent, so a pool can be partly placed by hand and partly held 
 
 How large a slice a kit may take is capped by what is genuinely free for it to hold indefinitely, which includes leaving alone the units future reservations are relying on. See [How many units a kit can take](/knowledge-base/kits#how-many-units-a-kit-can-take).
 
+### Which Location the Units Come From
+
+Placements say where the units are. For a pool kept at **two or more locations**, Shelf also records which location each unit was taken from when it goes into someone's custody or out on a booking, so that a unit used up later comes off the right place. None of this appears on a pool kept at one location, with or without unplaced units: those assets look and behave exactly as before.
+
+![Asset page of a pool placed at two locations: the Placed at locations card lists Studio A with 10 sandbags and Audio Booth with 4, above the Quantity Overview card and the Custody Breakdown](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-source-asset-cards.webp)
+
+**Assigning custody.** The **Assign Quantity Custody** dialog gains a **From location** field, pre-filled with the location that has the most units left. Each option reads as the location and what it still has, for example *Studio A · 10 sandbags*, adding *· 2 in custody* or *· 10 on a booking* when some of its units are already out. Units not placed anywhere are offered as **Unplaced**, but never pre-selected. The quantity is capped at what the chosen location has left, and asking for more is refused with the numbers: *"Debriefing Room has only 2 pcs."* or *"Equipment Storage has 2 pcs and 2 are already in custody."* Custody never changes a location's count: the units are still placed there, they are just with someone.
+
+![Assign Quantity Custody dialog with the new From location field, pre-filled with Studio A · 10 sandbags, above the quantity field reading Max: 8](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-source-assign-dialog.webp)
+
+**Reading it back.** The **Placed at locations** card shows **N in custody** under a location some of whose units are out with people. The **Custody Breakdown** lists one line per person, with the location after the quantity, for example *1 pcs · from Equipment Storage*. A hold whose location was never recorded, because it predates this or was assigned from the phone, reads *location not recorded* in grey. On a location's **Assets** tab the pool's row reads *· 2 pcs at this location · 1 in custody*, and for a pool kept at two or more locations the **Custodian** column and filter there count only the custody taken from that location.
+
+**Ending a hold.** **Release** and **Mark as consumed** work per location when a person's units came from more than one. Returned units go back to the pool and change no placement. Used-up units come off the location they were taken from, so the placements stay true without a correction afterwards.
+
+**Adjusting stock.** The **Adjust** dialog on the Quantity Overview card gains an **At location** field, pre-filled the same way. A restock lands at that location, and can create a placement at a location the pool is not kept at yet. A loss comes off that location, within what it has left after custody and bookings, and a loss from **Unplaced** is capped the same way: *"Unplaced has 25 pcs and 20 are already in custody."* An adjustment that names no location behaves exactly as before.
+
+![Adjust Quantity dialog with the new At location field, pre-filled with Studio A · 10 sandbags](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-source-adjust-dialog.webp)
+
+**Moving units.** Move units out of a location while some of its units are in someone's custody, and the custody follows them to the destination, merged into that holder's line there. The move is written to the asset's activity.
+
+**Bookings.** Check-out asks the same question once, for each pool on the booking that is kept at two or more locations. See [Where the units leave from](/knowledge-base/progressive-checkout-of-bookings#where-the-units-leave-from). While those units are out, the location's row reads *· 10 on a booking*. What a location has left for custody is what is placed there, minus the units in custody from there, minus the units out on bookings that left from there, so an Assign can also be refused with *"Studio has 40 pcs and 40 are out on a booking."*
+
+**On the phone.** The [Shelf Companion](/mobile-app) app's Assign and release sheets do not ask for a location yet. Units assigned from the phone on such a pool are recorded without one, never refused for it, and read *location not recorded* on the web.
+
 ### When Locations Hold More Than You Own
 
-Placements record where units are, so lowering the total can leave them describing units that no longer exist. The usual case is a **used-up consumable**: end a custody hold on 5 of 87 gaffer tape rolls and the total drops to 82, but the placements still say 87 are in the store.
+Placements record where units are, so lowering the total can leave them describing units that no longer exist. The usual case is a **used-up consumable**: end a custody hold on 5 of 87 gaffer tape rolls and the total drops to 82, but the placements still say 87 are in the store. Since 6 October 2026 a hold or a check-out on a pool kept at several locations [records which location the units came from](#which-location-the-units-come-from), and the used-up units come off that location, so this now happens only when nothing recorded the source: a hold or check-out from before that date, a hold assigned from the phone, or a total lowered by hand.
 
 Most of the time nothing needs to happen, because the unplaced pool absorbs it — place 50 of 100 cables, consume 10, and the placements are still true. Drift only starts once every unit is placed and there is no unplaced residual left to take the hit. Shelf handles that in three ways:
 
 - **The asset's Quantity Overview card tells you.** An **Over-placed** row appears with the real figure, not a tidied-up zero: *"Locations claim 5 rolls more than this asset's total. Open 'Manage placements' and lower the location that lost them."*
-- **Where the source is obvious, Shelf fixes it for you.** If the units sat at a single location, that placement is trimmed automatically as part of the same change. Nothing to do.
-- **Where it is not, Shelf asks rather than guesses.** With units spread across several locations, nothing records which room the consumed units left, so writing a number into one of them would be inventing a fact. The Over-placed row stands until you say which location lost them.
+- **Where the source is known, Shelf fixes it for you.** If the units sat at a single location, or the hold or booking recorded which location they came from, that placement is trimmed automatically as part of the same change. Nothing to do.
+- **Where it is not, Shelf asks rather than guesses.** With units spread across several locations and no record of which one they left, writing a number into one of them would be inventing a fact. The Over-placed row stands until you say which location lost them.
 
 Open **Manage placements** on an over-placed asset and the dialog explains the state instead of reporting your own untouched numbers back at you as an error: *"These locations hold 87 rolls between them, but the asset's total is now 82. Stock was used up while every unit was assigned to a location, so 5 rolls are still recorded somewhere they no longer are. Lower the location that lost them, then save."* Save stays disabled until the sum fits.
 
@@ -133,7 +160,7 @@ Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app 
 - The **assets list** shows a quantity pill on each pooled asset's row.
 - The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
 - The same screen lists every location that holds units, one row each with its count, plus kit-held rows marked `via kit` and an **Unplaced** row for the rest. Tap **Placements** to open **Manage Placements**: add or remove locations, set each count with a stepper capped at the total, and watch the **Placed / Via kits / Unplaced** meter before you **Save placements**. It saves through the same rules as the web dialog, so the placements can never add up to more than the asset owns. Kit-held units are shown but can only be moved by moving the kit.
-- Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign.
+- Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign. The sheet does not ask which location the units come from; on a pool kept at several locations the web dialog does, and units assigned from the phone read *location not recorded* there (see [Which location the units come from](#which-location-the-units-come-from)).
 - Tap a holder's custody row to end their hold. The amount is capped at the units that person can release. On a returnable asset the units go back to the pool. On a **used-up** consumable the app asks a second question, **"Of those, how many were used up?"**, pre-filled with the whole hold because that is the usual case. What you mark as used up leaves the total; the rest returns to the pool. This matches the web split exactly.
 - Tap **Adjust** on the quantity card to correct the stock figure itself. Choose add or remove, enter the amount, and give a reason. Adding is recorded as a restock and removing as a loss, so a shelf count you fix in the aisle lands in the asset's history with your note rather than as an unexplained change.
 - The **Available** figure turns amber when it drops to or below the asset's minimum quantity, using the same low-stock rule as the web.
@@ -204,6 +231,8 @@ Stock is also protected when you reduce the total quantity. You can't lower an a
 
 For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes. That reconciliation runs on the web and in the Companion app, so a partial return can be settled on the floor.
 
+Check-in settles only units that actually went out. Closing a booking with the one-click **Check in** button consumes nothing from a used-up line that never left the shelf, and only what is still out from a line that was partly handed over. The same holds for a pool that went out inside a [kit](/knowledge-base/kits#quantity-tracked-stock-in-kits): units marked consumed, lost or damaged leave the kit's slice in the same check-in, so the kit does not keep claiming stock that no longer exists. A scan check-in of a used-up pool with none of its units out is refused: *Cannot check in "Gaffer tape": none of its units are out on this booking.* For a pool kept at several locations, the used-up units come off the location the check-out [recorded them as leaving from](#which-location-the-units-come-from).
+
 ---
 
 ## What total value counts
@@ -250,7 +279,7 @@ The filter clears with the rest of your filters, and it counts toward the filter
 
 ## Every quantity change is logged
 
-Quick adjustments are not the only thing recorded. Changing the quantity on the asset edit form, changing the **min quantity** threshold, the decrements a booking check-in applies, and the units consumed when a custody hold ends each write an entry to the asset's **Activity** tab with the previous and new value and the person responsible, plus a stock adjustment against the pool. Consumed and returned units are logged separately, so a partial settlement shows both halves. Whatever route stock took, the history explains it.
+Quick adjustments are not the only thing recorded. Changing the quantity on the asset edit form, changing the **min quantity** threshold, the decrements a booking check-in applies, and the units consumed when a custody hold ends each write an entry to the asset's **Activity** tab with the previous and new value and the person responsible, plus a stock adjustment against the pool. Consumed and returned units are logged separately, so a partial settlement shows both halves, and on a pool kept at several locations, an entry for units taken from or used up at a recorded location names that location. Whatever route stock took, the history explains it.
 
 ---
 
