@@ -56,14 +56,22 @@ async function step(label, log, fn) {
   }
 }
 
-/** Type into the asset index search and wait for the list to refresh. */
+/**
+ * Opens the asset index with every setting in the URL. Without query params
+ * Shelf restores the last search and view, so one step's search leaked into
+ * the next: the July calendar opened filtered to a single camera, and once the
+ * index remembered the calendar view, asset links stopped opening asset pages.
+ */
+async function openIndex(page, { search = "", view = "list" } = {}) {
+  const params = new URLSearchParams({ s: search });
+  if (view === "availability") params.set("view", "availability");
+  await navigateTo(page, `/assets?${params}`);
+  await settle(page, view === "availability" ? 2500 : 1500);
+}
+
+/** The asset list, filtered to a search term. */
 async function searchAssets(page, term) {
-  await navigateTo(page, "/assets");
-  await settle(page, 1000);
-  const input = page.locator('input[placeholder*="Search"]').first();
-  await input.fill(term);
-  await input.press("Enter");
-  await settle(page, 2500);
+  await openIndex(page, { search: term });
 }
 
 /** The active granularity button is disabled, so only click one that is not already selected. */
@@ -88,14 +96,12 @@ async function goToTargetMonth(page) {
 }
 
 /**
- * From the asset index, open the availability view at Month and step back to
- * the target month. The toggle keeps the URL's other params, so a search made
- * first survives it. The month itself lives only in the calendar, not the URL,
- * so nothing that reloads the index may come after this.
+ * The availability view at Month, stepped back to the target month, for a
+ * search (empty = every asset). The month lives only in the calendar, not the
+ * URL, so it is set last.
  */
-async function openAvailabilityMonth(page) {
-  await page.click('[aria-label="Switch to availability view"]');
-  await settle(page, 2500);
+async function openAvailabilityMonth(page, search = "") {
+  await openIndex(page, { search, view: "availability" });
   await setGranularity(page, "Month");
   return goToTargetMonth(page);
 }
@@ -138,8 +144,6 @@ async function main() {
 
     // 3. Availability in July 2025: month, then three consecutive weeks
     await step("pick-availability", log, async () => {
-      await navigateTo(page, "/assets");
-      await settle(page, 1000);
       const where = await openAvailabilityMonth(page);
       console.log(`   availability is at: ${where}`);
       await settle(page, 1500);
@@ -159,8 +163,7 @@ async function main() {
     //    instead of reusing step 3's page, which ends in Week view a month later (or
     //    anywhere at all, if step 3 failed). Filter first, then open the month.
     await step("pick-availability-camera", log, async () => {
-      await searchAssets(page, "camera");
-      const where = await openAvailabilityMonth(page);
+      const where = await openAvailabilityMonth(page, "camera");
       console.log(`   availability (camera) is at: ${where}`);
       await settle(page, 1500);
       await shot(page, "pick-availability-camera", log);
