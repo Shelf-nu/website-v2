@@ -3,47 +3,72 @@
  * it into ChatGPT, Claude or Gemini with their export, and gets back a CSV the
  * Shelf importer accepts.
  *
- * Every rule here comes from content/knowledge-base/importing-assets-to-shelf-csv-guide.mdx.
- * When the importer changes (a new column, a new custom-field type), update
- * the guide and this prompt together.
+ * Every rule here comes from content/knowledge-base/importing-assets-to-shelf-csv-guide.mdx
+ * and the importer's header allow-list (ASSET_CSV_HEADERS in the app). When the
+ * importer changes, update the guide and this prompt together.
+ *
+ * Why it is built this way, not as one instruction: the silent failures are the
+ * expensive ones (a day/month swap passes Shelf's checks, a chat answer that
+ * types out a long CSV drops rows). So the AI must ask before it guesses, work
+ * in code rather than typing the file, and check its own output before handing
+ * it over.
  */
-export const IMPORT_PROMPT = `I'm moving my equipment list into Shelf (shelf.nu), an asset management app. I've attached my spreadsheet. Turn it into a CSV that Shelf's importer accepts, following these rules exactly.
+export const IMPORT_PROMPT = `I'm moving my equipment list into Shelf (shelf.nu), an asset management app. I've attached my spreadsheet. Help me turn it into a CSV that Shelf's importer accepts.
 
-OUTPUT
-- One CSV file, UTF-8, comma-delimited. First row is the header row. One asset per row.
-- At most 1,000 rows per file. If there are more, split them into numbered files.
+Work in three steps. Use code (for example Python with the csv module) to read my file and to write the CSV. Don't type the CSV out by hand.
+
+STEP 1: CHECK MY FILE, THEN ASK ME
+Before writing anything, reply with:
+1. How many items (rows) you found, and in which sheet. If the file has several sheets, ask which ones to use.
+2. A table mapping each of my columns to a Shelf column from the list in step 2, or to "leave out".
+3. Your questions. Always cover:
+- Dates. For each date column, say which format you detected and why (e.g. "row 14 has 25/03/2024, so it's day/month"). If every value would make sense either way, because both numbers are 12 or lower, don't guess: show me three examples and ask. Also ask before converting spreadsheet date numbers (like 45123) or two-digit years.
+- Money. Which currency the values are in. Shelf uses one currency per workspace, so if they're mixed, ask.
+- Custom fields. Which columns should become custom fields, and the type you'd give each.
+- Bulk stock. Which items are counted rather than tracked one by one (cables, batteries, consumables).
+- Merges. Different spellings of the same name ("Studio A", "studio a", "Studio A "). List them and merge only the ones I approve.
+- People. If the person column holds emails instead of names, ask me for names, or leave it empty.
+Then stop and wait for my answers.
+
+STEP 2: WRITE THE CSV
+Output:
+- UTF-8, comma-delimited. First row is the header row. One item per row.
+- At most 1,000 rows per file. Split larger lists into numbered files.
 - Wrap any cell that contains a comma, a double quote or a line break in double quotes, and double any quote inside it ("").
 
-COLUMNS
-Headers are case-sensitive. Use only these. An unknown header makes Shelf reject the whole file.
-- title (required): the asset's name.
+Columns. Headers are case-sensitive. Use only these, because an unknown header makes Shelf reject the whole file:
+- title (required): the item's name.
 - description: free text.
-- category, location, kit, assetModel: plain names. Shelf creates any that don't exist yet.
+- category, kit, assetModel: plain names. Shelf creates any that don't exist yet.
+- location: one place name per item. If my data splits building and room into separate columns, ask me which to use.
 - tags: several labels in one cell, separated by commas, with the whole cell in double quotes, e.g. "audio,portable".
 - custodian: the person who has the item, by full name. Never an email address.
 - bookable: write no only for items that must never be booked. Otherwise leave it blank.
 - imageUrl: a public http(s) link to a photo, only if my data has one.
 - valuation: a plain number with a dot for decimals. No currency symbol, no thousands separator, e.g. 1200.50.
-- Bulk stock (cables, batteries, consumables): type = QUANTITY_TRACKED, quantity = the count (more than 0), consumptionType = ONE_WAY if it gets used up or TWO_WAY if it comes back. Optional: minQuantity (low-stock alert) and unitOfMeasure. Leave type blank for ordinary one-of-a-kind items, and never give a QUANTITY_TRACKED row an assetModel.
-- If you fill both kit and custodian, every asset in the same kit must have the same custodian.
+- type, quantity, consumptionType, minQuantity, unitOfMeasure: for bulk stock only. Set type to QUANTITY_TRACKED, quantity to the count (more than 0), and consumptionType to ONE_WAY if it gets used up or TWO_WAY if it comes back. minQuantity (low-stock alert) and unitOfMeasure are optional. Leave all five blank for ordinary one-of-a-kind items, and never give a QUANTITY_TRACKED row an assetModel.
+- If you fill both kit and custodian, every item in the same kit must have the same custodian.
 
-CUSTOM FIELDS
-For anything that doesn't fit a column above, such as serial numbers, purchase dates, warranty or supplier:
-- Header: "cf:Field Name,type:TYPE", in double quotes. TYPE is one of: text, multiline text, option, boolean, date, amount, number.
+Custom fields, for anything that doesn't fit a column above (serial number, purchase date, warranty, supplier):
+- Header: "cf:Field Name,type:TYPE", inside double quotes. TYPE is one of: text, multiline text, option, boolean, date, amount, number.
 - date: YYYY-MM-DD only. boolean: yes or no only. amount and number: plain numbers with a dot for decimals.
-- Keep the ID from my old tool in a text custom field, e.g. "cf:Old ID,type:text". Don't use it as the id column.
+- Keep the ID from my old tool in "cf:Old ID,type:text", not in an id column.
 
-LEAVE OUT
-- qrId and barcode columns (barcode_...), unless I tell you I already have Shelf QR codes or use Shelf's Alternative Barcodes add-on.
+Leave out qrId and every barcode_ column unless I tell you I already have Shelf QR codes or use Shelf's Alternative Barcodes add-on.
 
-RULES
-- Don't invent or guess data. Leave a cell empty rather than filling it.
-- Keep every item. Don't drop rows you're unsure about. Flag them instead.
-- Merge different spellings of the same category or location, e.g. "Studio A" and "studio a".
+Rules:
+- Don't invent or guess data. An empty cell is better than a wrong one.
+- Keep every item. If you're unsure about a row, keep it and flag it.
 
-WHEN YOU'RE DONE
-1. Give me the CSV, as a downloadable file if you can.
-2. Show a short table of how my original columns map to Shelf's.
-3. List anything you couldn't map or weren't sure about, with the row number.
+STEP 3: CHECK THE FILE BEFORE YOU GIVE IT TO ME
+Open the CSV you wrote with a CSV parser and report the result of each check:
+- The number of items in my file equals the number of rows in the CSV, or you explain every difference.
+- Every header is one of: title, description, category, kit, assetModel, location, tags, custodian, bookable, imageUrl, valuation, type, quantity, consumptionType, minQuantity, unitOfMeasure, or a "cf:Name,type:TYPE" header with a type from the list.
+- No row has an empty title.
+- Every date is YYYY-MM-DD, every boolean is yes or no, and every valuation, amount and number cell is a plain number.
+- Every QUANTITY_TRACKED row has a quantity above 0 and a consumptionType, and no assetModel.
+- Every item in the same kit has the same custodian.
+- No file has more than 1,000 rows.
+Then give me the file(s), the final column mapping, and a list of anything you weren't sure about, with row numbers.
 
 I'll upload the file in Shelf under Assets → Import. Full guide: https://www.shelf.nu/knowledge-base/importing-assets-to-shelf-csv-guide`;

@@ -6,7 +6,7 @@ import { IMPORT_PROMPT } from "@/data/import-prompt";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const STEPS = ["Copy the prompt", "Paste it into your AI with your spreadsheet attached", "Upload the CSV it returns in Assets → Import"];
+const STEPS = ["Copy the prompt", "Paste it into your AI with your file attached, and answer its questions", "Upload the CSV it returns in Assets → Import"];
 
 /**
  * "Let your AI clean up your spreadsheet": a copyable prompt that carries
@@ -40,7 +40,7 @@ export function AiImportPrompt({ location = "unknown", className }: { location?:
                     <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">Import with your AI assistant</p>
                     <h3 className="mt-1 text-lg font-semibold tracking-tight text-heading">Let your AI clean up your spreadsheet</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                        This prompt knows Shelf&apos;s import format. Paste it into ChatGPT, Claude or Gemini with your export attached, and you get back a file that is ready to upload, plus a list of anything it couldn&apos;t match.
+                        This prompt knows Shelf&apos;s import format. Paste it into ChatGPT, Claude or Gemini with your export attached. It asks before it guesses (date formats, currency, which columns become custom fields), checks its own work, and hands back a file that is ready to upload.
                     </p>
                 </div>
             </div>
@@ -89,7 +89,7 @@ export function AiImportPrompt({ location = "unknown", className }: { location?:
             </div>
 
             <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Check your organization&apos;s policy before sharing inventory data with an AI assistant. The prompt runs in your AI, not in Shelf, and Shelf never sees what you paste.
+                CSV import is included in the Plus and Team plans, and in the free 7-day Team trial. Check your organization&apos;s policy before sharing inventory data with an AI assistant: the prompt runs in your AI, not in Shelf.
             </p>
         </div>
     );
