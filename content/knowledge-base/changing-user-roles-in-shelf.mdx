@@ -3,7 +3,7 @@ title: "Changing User Roles in Shelf"
 description: "Change a team member's role directly from Workspace Settings. Covers the Change role dialog, what happens to their assets and bookings when you lower a role, and who is allowed to make the change."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-08-17"
+updated: "2026-10-08"
 layout: "knowledge-base"
 ---
 
@@ -16,7 +16,7 @@ You can change a team member's role in place from your workspace settings. The c
 1. Go to **Workspace settings → Team → Users**
 2. Find the user and click the **Actions** menu on their row
 3. Choose **Change role**
-4. Pick the new role: **Administrator**, **Self service**, or **Base**
+4. Pick the new role. The dialog lists only the roles you may grant: the workspace owner sees **Administrator**, **Self service** and **Base**; an Administrator sees **Self service** and **Base**
 5. Click **Change role**
 
 That's it. The user's permissions update straight away, and they don't need to accept anything or sign in again.
@@ -30,19 +30,20 @@ Shelf shows you exactly what will move:
 - Assets, kits, categories, tags, locations, custom fields, asset reminders, and images the user created
 - **Bookings created for others**, meaning bookings this user set up with someone else as the custodian
 
-Pick a **Transfer entities to** recipient from the dropdown. The workspace owner is preselected, and any other member of the workspace can be chosen instead. If the user owns nothing, the dialog says there is nothing to transfer and you can go ahead.
+Pick a **Transfer entities to** recipient from the dropdown. The workspace owner is preselected, and any other Administrator can be chosen instead. Self-service and Base members are not offered, because those roles cannot own workspace-wide records, and a request naming one is refused. If the user owns nothing, the dialog says there is nothing to transfer and you can go ahead.
 
 > **The user keeps their own bookings.** Only bookings they created for a different custodian move to the recipient. Their own reservations and their own drafts stay with them and remain visible to them after the change.
 
-Raising a role, for example from Base to Administrator, transfers nothing. Nothing needs to move, so there is no extra step.
+Raising a role, for example from Base to Self service, transfers nothing. Nothing needs to move, so there is no extra step.
 
 ## Who Can Change a Role
 
-- **Administrators and the workspace owner** can change roles.
+- **Administrators and the workspace owner** can change roles between **Self service** and **Base**.
+- **Only the workspace owner can make someone an Administrator**, whether by changing their role or by inviting them.
 - **You cannot change your own role.** Ask another administrator or the owner.
 - **Only the workspace owner can change an Administrator's role.** One administrator cannot demote another.
 - **Making someone the workspace owner is a separate action.** The roles above do not include owner. To hand ownership to another administrator, see [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership).
-- **Users managed through SSO** cannot be changed here. Their role comes from the group mapping in your identity provider, so make the change there instead. See [SSO with Google Workspace](/knowledge-base/sso-with-google-workspace).
+- **Users managed through SSO** cannot be changed here. Their role comes from the group mapping in your identity provider, so make the change there instead. See [SSO with Google Workspace](/knowledge-base/sso-with-google-workspace). When the identity provider lowers an Administrator, the same transfer happens as for a manual demotion: their workspace-wide records and the bookings they made for others go to the workspace owner. SSO never changes the workspace owner's own membership.
 
 ## Revoking Access Instead
 
