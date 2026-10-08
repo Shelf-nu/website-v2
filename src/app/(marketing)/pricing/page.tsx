@@ -291,7 +291,10 @@ export default function PricingPage() {
         <section className="border-t border-border py-20 sm:py-24">
             <Container>
                 <SectionHead eyebrow="Compare" title="Compare all features" lead="Detailed breakdown of what is included in each plan." />
-                <div className="mx-auto mt-12 max-w-[1400px]">
+                {/* Out of on-site search: 60-odd rows of feature names made the page so long that
+                    "pricing" ranked /pricing #3, behind two blog posts about other tools' pricing.
+                    Without the table it is #2 again, and no other suite query moves. */}
+                <div className="mx-auto mt-12 max-w-[1400px]" data-pagefind-ignore="all">
                     <FeatureTable />
                 </div>
             </Container>

@@ -39,7 +39,7 @@ export const HERO_VIEWS: { id: string; label: string; shot: HomeShot; phoneOnly?
     {
         id: "inventory",
         label: "Inventory",
-        shot: { src: "/images/home/inventory-1x.webp", srcSet: "/images/home/inventory-1x.webp 1200w, /images/home/inventory-2x.webp 2400w", width: 2400, height: 1500, alt: "Shelf Asset Management — asset index with QR codes and labels" },
+        shot: { src: "/images/home/inventory-1x.webp", srcSet: "/images/home/inventory-1x.webp 1200w, /images/home/inventory-1880.webp 1880w, /images/home/inventory-2x.webp 2400w", width: 2400, height: 1500, alt: "Shelf Asset Management — asset index with QR codes and labels" },
     },
     {
         id: "bookings",
@@ -49,7 +49,7 @@ export const HERO_VIEWS: { id: string; label: string; shot: HomeShot; phoneOnly?
     {
         id: "checkout",
         label: "Check-out",
-        shot: { src: "/images/home/checkout-1x.webp", srcSet: "/images/home/checkout-1x.webp 1200w, /images/home/checkout-2x.webp 2400w", width: 2400, height: 1500, alt: "A booking in Shelf with its check-in progress, assets and kits" },
+        shot: { src: "/images/home/checkout-1x.webp", srcSet: "/images/home/checkout-1x.webp 1200w, /images/home/checkout-1880.webp 1880w, /images/home/checkout-2x.webp 2400w", width: 2400, height: 1500, alt: "A booking in Shelf with its check-in progress, assets and kits" },
     },
     {
         id: "app",
