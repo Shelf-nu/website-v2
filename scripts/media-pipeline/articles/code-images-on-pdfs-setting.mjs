@@ -40,7 +40,10 @@ async function main() {
       await page.evaluate(() => window.scrollBy(0, -100));
       await page.waitForTimeout(600);
     } else {
-      console.warn("⚠️  'Code images on PDFs' row not found — capturing page as-is");
+      throw new Error("'Code images on PDFs' row not found on /settings/general");
+    }
+    if ((await page.locator("text=Print code images on PDFs").count()) === 0) {
+      throw new Error("'Print code images on PDFs' switch label not found");
     }
 
     await initAnnotations(page);
