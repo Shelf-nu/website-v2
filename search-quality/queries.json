@@ -58,6 +58,7 @@
     { "q": "ezofficeinventory alternative", "expect": "/alternatives/ezofficeinventory" },
     { "q": "asset tiger", "expect": "/alternatives/asset-tiger" },
     { "q": "cheqroom", "expect": "/alternatives/cheqroom" },
+    { "q": "inflow", "expect": "/alternatives/inflow" },
 
     { "q": "sso", "expect": "/knowledge-base/sso-with-google-workspace" }
   ],

@@ -3308,6 +3308,30 @@
       },
       "evaluateAfterDays": 28,
       "deployedAt": "2026-10-07"
+    },
+    {
+      "id": "exp-066",
+      "page": "/alternatives/inflow",
+      "field": "new-page",
+      "before": "No page. The site never mentioned inFlow; GSC showed only 'inflow vs sortly' at position 82 (86 impressions in 16 months) via /alternatives/sortly.",
+      "after": "New /alternatives/inflow page in the alternatives format: inFlow 2026 prices from its pricing page (checked 2026-10-09), honest 'when inFlow is a better fit' section (sales/purchase orders, manufacturing, Showroom B2B portal), inFlow's own locations-as-employees asset-tracking workaround cited, and an 8-question FAQ covering pricing, cost vs Shelf, CSV migration steps (Settings > Export > Product Details into Shelf CSV import), keeping barcodes, consumables, mobile, non-profit discount and open source.",
+      "hypothesis": "Demand is small but high-intent (DataForSEO US: inflow pricing 50/mo, inflow inventory pricing 30, inflow inventory alternative(s) 10, sortly vs inflow 20) and page 1 for 'inflow inventory alternative' is weak (Reddit, directories, a 2011 Spiceworks thread). Alternatives pages convert at 6-16% vs 0.5% for informational posts, so a page-1 position should bring a few qualified signups a month and gives sales a link for inFlow switchers.",
+      "status": "active",
+      "createdAt": "2026-10-09",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: inflow alternative, inflow inventory alternative, inflow alternatives, inflow pricing, inflow inventory pricing, how much does inflow cost, inflow vs sortly, sortly vs inflow. Re-check inFlow prices quarterly with the other alternatives pages.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-10",
+          "2026-10-08"
+        ],
+        "capturedAt": "2026-10-09T00:00:00.000Z"
+      }
     }
   ]
 }

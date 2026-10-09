@@ -1,0 +1,192 @@
+---
+title: "inFlow Inventory Alternative"
+description: "Compare inFlow Inventory and Shelf. inFlow is built for stock you buy, sell and make. Shelf is built for equipment you own and lend out: bookings, custody and kits, with flat pricing and unlimited users."
+layout: "alternative"
+intent: "comparison"
+cluster: "alternatives"
+competitor: "inFlow Inventory"
+personas:
+  - "operations"
+  - "education"
+  - "facilities"
+canonicalUrl: "/alternatives/inflow"
+date: "2026-10-09"
+updated: "2026-10-09"
+hideLayoutTable: true
+seo:
+  title: "inFlow Inventory Alternative for Equipment Tracking"
+  description: "Using inFlow to track equipment, not stock for sale? Compare inFlow's 2026 pricing with Shelf: bookings, custody and kits, unlimited users on Team at $370/year, and a free plan."
+  keywords:
+    - "inflow alternative"
+    - "inflow inventory alternative"
+    - "inflow alternatives"
+    - "inflow inventory alternatives"
+    - "inflow pricing"
+    - "inflow inventory pricing"
+    - "how much does inflow cost"
+    - "inflow vs sortly"
+    - "inflow competitor"
+    - "inflow asset tracking"
+---
+
+inFlow Inventory is a good product for what it was built to do: run the stock side of a business that buys, sells and makes things. It handles sales orders, purchase orders, manufacturing and a B2B ordering portal.
+
+Many teams use it for something else: tracking equipment they own and lend out. Cameras, laptops, tools, AV kits, event gear and collections. That is where the fit gets harder. inFlow treats each item as stock, so lending a laptop to a person is a stock transfer to a "location" named after that person. It has no booking calendar for equipment. And you pay for every team member who needs a login.
+
+Shelf is built for that second job. Every item has its own QR code, custody record and history. People book equipment for future dates, and Shelf blocks double bookings. Kits go out and come back as one unit. The Team plan includes unlimited users.
+
+**Switch to Shelf if you need:**
+- To know who has each item right now, and who had it before
+- Bookings for future dates, with conflict checks, for gear that many people share
+- Many people with their own login, without paying per team member
+- A free plan to try it with your own data, and an open-source codebase you can self-host
+
+**Stay with inFlow if you need:**
+- Sales orders, invoicing and purchase orders for stock you resell
+- Manufacturing: bills of materials, manufacture orders and production steps
+- A B2B ordering portal (inFlow Showroom) for your customers
+- Lot and serial tracking tied to stock you buy and sell
+
+---
+
+## Overview: inFlow vs Shelf
+
+inFlow is inventory and order management software from Archon Systems, a Canadian company. Its plans are priced by team members and locations. On [inFlow's pricing page](https://www.inflowinventory.com/software-pricing-inflow), checked on 9 October 2026, inFlow Inventory costs (in USD, billed annually):
+
+- **Lite:** $99/month ($1,188/year), 2 team members, 1 location
+- **Core:** $299/month ($3,588/year), 5 team members, 5 locations
+- **Pro:** $499/month ($5,988/year), 10 team members, unlimited locations
+- **Max:** $699/month ($8,388/year), 20 team members, unlimited locations
+
+Monthly billing costs more: $129, $379, $629 and $879 a month. Extra team members cost $29/month each for the first five, then less. Serial numbers and lot numbers are $39/month add-ons each. inFlow also lists a one-time $499 onboarding package that it describes as required on most plans. There is a free 14-day trial with no credit card.
+
+inFlow also sells **Stockroom**, a separate plan at $69/month billed annually ($828/year). It gives unlimited users for scanning in the mobile app and two admins for the web app. Each scan records a person's name and a time.
+
+Shelf is priced per workspace, not per person. The free plan has unlimited assets for one user. The Team plan is $67/month or $370/year with unlimited users, and adds bookings. See [pricing](/pricing).
+
+---
+
+## Quick Comparison
+
+| Capability | inFlow Inventory | Shelf |
+|---|---|---|
+| **Built for** | Stock you buy, sell and make: orders, purchasing, manufacturing | Equipment you own and lend: bookings, custody, kits |
+| **Price (annual billing)** | Lite $1,188/year for 2 team members; Core $3,588/year for 5 (checked 9 Oct 2026) | Free plan; Team $370/year with unlimited users |
+| **Pricing model** | Per plan, with a team-member and location limit; extra members from $29/month each | Per workspace; unlimited users on Team |
+| **Setup fee** | $499 onboarding package, listed as required on most plans | None |
+| **Who has an item** | Stock transfer to a location that stands for a person, or a Stockroom scan-out | Custody on each asset, with full history |
+| **Bookings for future dates** | No equipment booking calendar | Yes, with a calendar and conflict checks (Team) |
+| **Kits** | Product bundles and bills of materials, for goods you sell or assemble | Kits of equipment that are booked, checked out and returned as one unit |
+| **Supplies and consumables** | Yes, a core strength: stock levels, reorder points, purchasing | Yes. [Quantity-tracked assets](/features/consumables-tracking) with units of measure and low-stock alerts |
+| **Sales and purchase orders** | Yes | No |
+| **Manufacturing** | Yes, on Manufacturing plans | No |
+| **Barcodes and labels** | Yes, barcode generation and scanning | QR code on every asset; keep existing barcodes with the [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on |
+| **Audits** | Stock counts | Scan-based audits that show found, missing and unexpected items (Audits add-on) |
+| **Mobile** | iOS and Android apps | Free [Shelf Companion](/mobile-app) app for iPhone and Android, plus the web app in any browser |
+| **Open source** | No | Yes (AGPL-3.0), self-hosting possible |
+
+---
+
+## Where Shelf Takes a Different Approach
+
+### 1. Items have owners, not just stock levels
+
+inFlow counts how much of a product sits in each location. To track who has a laptop, inFlow's own [support article on asset tracking](https://www.inflowinventory.com/support/cloud/can-i-use-inflow-for-asset-tracking) suggests creating a location for each employee and moving the laptop there with a stock transfer. To return it, you make a second transfer back. That works, but it turns people into warehouses and every hand-off into a stock movement.
+
+In Shelf, custody is a field on the asset. Assign it to a person, and the asset page shows who has it, since when, and everyone who had it before. Scan the QR code on the item and you see the same thing on a phone.
+
+See: [Custody](/features/custody)
+
+---
+
+### 2. Bookings for shared equipment
+
+When the same projector, camera or van is shared by many people, the question is not only "who has it now" but "who has it next Friday". inFlow's order and stock tools do not include an equipment booking calendar.
+
+Shelf's bookings reserve specific items, or a number of a model, for a date range. Shelf blocks a booking that would clash with another one, and check-out and check-in update custody in the same step.
+
+See: [Bookings](/features/bookings)
+
+---
+
+### 3. Pricing that does not grow with your team
+
+inFlow Lite includes two team members and Core includes five. Each extra member is $29/month. A team of eight on Core pays $3,588 a year, plus $29/month for each of the three extra members, plus the onboarding package.
+
+Shelf Team is $370 a year for the whole workspace, with unlimited users. Volunteers, students, staff and contractors can each have their own login, so the history shows who actually took each item. Registered non-profits get 10% off Team and add-ons on annual billing.
+
+---
+
+### 4. Kits that come back complete
+
+A camera kit is a body, lenses, batteries, cards and a bag. In Shelf, a kit is booked and checked out as one unit, and each item in it keeps its own record. When the kit comes back, you can see what is missing before the next person takes it.
+
+See: [Kits](/features/kits)
+
+---
+
+## When inFlow May Be a Better Fit
+
+inFlow is the better choice when your items are stock that moves through a business:
+
+- **You sell what you track.** Sales orders, invoices, pick lists and shipping are inFlow's home ground. Shelf has none of these.
+- **You buy stock from suppliers.** inFlow handles purchase orders, vendors and reorder points. Shelf tracks stock levels and low-stock alerts, but it does not raise purchase orders.
+- **You make things.** inFlow Manufacturing covers bills of materials, manufacture orders and production steps.
+- **Your customers order from you online.** inFlow Showroom is a B2B ordering portal. Shelf has nothing like it.
+- **You need accounting and e-commerce integrations.** inFlow connects to accounting and e-commerce tools, with extra integrations sold as add-ons.
+
+Some teams use both: inFlow for the stock they sell, Shelf for the equipment their staff use every day.
+
+---
+
+## Frequently Asked Questions
+
+### How much does inFlow Inventory cost?
+
+On [inFlow's pricing page](https://www.inflowinventory.com/software-pricing-inflow), checked on 9 October 2026, inFlow Inventory costs $99/month for Lite (2 team members, 1 location), $299/month for Core (5 team members, 5 locations), $499/month for Pro (10 team members) and $699/month for Max (20 team members). These prices are billed annually. Monthly billing is $129, $379, $629 and $879. A one-time $499 onboarding package is listed as required on most plans. inFlow Stockroom, a simpler scan-in and scan-out plan, is $69/month billed annually.
+
+### Is Shelf cheaper than inFlow?
+
+For tracking equipment, yes. inFlow Lite is $1,188 a year for two team members, plus the onboarding package. Shelf Team is $370 a year with unlimited users, and the free plan costs nothing for one user. If you need sales orders, purchasing or manufacturing, compare against what you would have to replace: Shelf does not do those jobs. See [pricing](/pricing).
+
+### Can I import my data from inFlow into Shelf?
+
+Yes. In inFlow, open the main menu, go to **Settings > Export** and choose **Product Details**. That gives you a CSV of your products with fields such as price, cost and barcode. inFlow's [export guide](https://www.inflowinventory.com/support/cloud/how-do-i-export-data-or-other-transactions-from-inflow) notes that deactivated products and attachments are not included. Rename the columns to Shelf's headers (for example, the product name column becomes `title`) and delete the columns you do not need, because Shelf stops an import that has a column name it does not know. Then use Shelf's [CSV import](/knowledge-base/importing-assets-to-shelf-csv-guide). Categories, locations and tags are created for you if they do not exist yet. To keep an extra field, such as cost or supplier, name the column in the `cf:` format and Shelf creates it as a custom field. CSV import is on the Plus, Team and Enterprise plans.
+
+### Can I keep the barcodes already on my items?
+
+Yes. Turn on the [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on on Team before you import, and add your existing codes in the barcode columns of the CSV. Shelf supports Code128, Code39, EAN-13, DataMatrix and existing QR codes, so you do not have to re-label your items. Every asset also gets its own Shelf QR code.
+
+### Does Shelf track consumables like inFlow does?
+
+Yes, for supplies you use up rather than sell. Quantity-tracked assets hold a count with a unit of measure and a low-stock threshold. When a stock change takes the count below the threshold, Shelf sends a low-stock alert. Shelf does not create purchase orders or sales orders. See [consumables tracking](/features/consumables-tracking).
+
+### Does Shelf have a mobile app?
+
+Yes. The free Shelf Companion app is on the App Store and Google Play. Use it to scan QR codes and barcodes, assign custody, check bookings in and out, and run audits. The full Shelf web app also works in any phone browser. See [mobile app](/mobile-app).
+
+### Do non-profits get a discount?
+
+Yes. Registered non-profits, including charities, schools and universities, get 10% off the Team plan, add-ons and SSO on annual billing. Contact us with your organization details and we will apply it.
+
+### Is Shelf open source?
+
+Yes. Shelf is [AGPL-3.0 licensed](https://github.com/Shelf-nu/shelf.nu), and the full codebase is on GitHub. You can use the hosted service at [app.shelf.nu](https://app.shelf.nu) or run it on your own servers.
+
+---
+
+## Case Studies
+
+- [Industrial Artifacts — Moved 8,860 Items Off Sortly in Under Two Weeks](/case-studies/industrial-artifacts) — switched from another inventory tool and kept the barcodes already on its shelves.
+- [CES Utility Solutions — $70K Equipment Recovery](/case-studies/ces-70k-recovery)
+- [Eastern Michigan University — Theatre Equipment Management](/case-studies/eastern-michigan-university)
+- [Arellano Associates — Event Equipment Management](/case-studies/arellano-associates)
+
+---
+
+## Related Solutions
+
+- [Asset Tracking](/solutions/asset-tracking)
+- [Equipment Reservations](/solutions/equipment-reservations)
+- [Equipment Check-In](/solutions/equipment-check-in)
+- [Multi-Location Asset Tracking](/solutions/multi-location-asset-tracking)
