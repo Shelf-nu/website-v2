@@ -3332,6 +3332,30 @@
         ],
         "capturedAt": "2026-10-09T00:00:00.000Z"
       }
+    },
+    {
+      "id": "exp-067",
+      "page": "/alternatives/maintainx",
+      "field": "new-page",
+      "before": "No page. The site never compared Shelf with MaintainX (CMMS group had UpKeep and Limble only).",
+      "after": "New /alternatives/maintainx page: MaintainX per-user prices from its pricing page (checked 2026-10-09), Autodesk ownership, honest 'when MaintainX is a better fit' (PM programs, technicians, parts + POs, machine data, free requesters), help-center finding that check-out, bookings and custody are not described, and an 8-question FAQ (price, cost vs Shelf, equipment check-out, CSV migration via Reporting > Export Data > Assets, keeping codes, preventive maintenance, mobile, open source).",
+      "hypothesis": "DataForSEO US 2026-10-09: maintainx pricing 320/mo, maintainx alternative 40/mo (CPC about $84, a buying search). Alternatives pages convert at 6-16% vs 0.5% for blog posts. A pricing FAQ plus a clear 'equipment check-out vs maintenance' angle should reach page 1 for 'maintainx alternative' and pick up long-tail pricing queries from teams that want tool and equipment tracking rather than a CMMS.",
+      "status": "active",
+      "createdAt": "2026-10-09",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: maintainx alternative, maintainx alternatives, maintainx competitor, maintainx pricing, maintainx cost, maintainx vs. Re-check MaintainX prices quarterly with the other alternatives pages.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-10",
+          "2026-10-08"
+        ],
+        "capturedAt": "2026-10-09T00:00:00.000Z"
+      }
     }
   ]
 }
