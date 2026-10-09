@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-10-07"
+updated: "2026-10-09"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -123,7 +123,7 @@ Placements say where the units are. For a pool kept at **two or more locations**
 
 ![Assign Quantity Custody dialog with the new From location field, pre-filled with Studio A · 10 sandbags, above the quantity field reading Max: 8](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-source-assign-dialog.webp)
 
-**Reading it back.** The **Placed at locations** card shows **N in custody** under a location some of whose units are out with people. The **Custody Breakdown** lists one line per person, with the location after the quantity, for example *1 pcs · from Equipment Storage*. A hold whose location was never recorded, because it predates this or was assigned from the phone, reads *location not recorded* in grey. On a location's **Assets** tab the pool's row reads *· 2 pcs at this location · 1 in custody*, and for a pool kept at two or more locations the **Custodian** column and filter there count only the custody taken from that location.
+**Reading it back.** The **Placed at locations** card shows **N in custody** under a location some of whose units are out with people. The **Custody Breakdown** lists one line per person, with the location after the quantity, for example *1 pcs · from Equipment Storage*. A hold whose location was never recorded, because it predates this or was assigned from a phone app without the update of 8 October 2026, reads *location not recorded* in grey. On a location's **Assets** tab the pool's row reads *· 2 pcs at this location · 1 in custody*, and for a pool kept at two or more locations the **Custodian** column and filter there count only the custody taken from that location.
 
 **Ending a hold.** **Release** and **Mark as consumed** work per location when a person's units came from more than one. Returned units go back to the pool and change no placement. Used-up units come off the location they were taken from, so the placements stay true without a correction afterwards.
 
@@ -135,7 +135,9 @@ Placements say where the units are. For a pool kept at **two or more locations**
 
 **Bookings.** Check-out asks the same question once, for each pool on the booking that is kept at two or more locations. See [Where the units leave from](/knowledge-base/progressive-checkout-of-bookings#where-the-units-leave-from). While those units are out, the location's row reads *· 10 on a booking*. What a location has left for custody is what is placed there, minus the units in custody from there, minus the units out on bookings that left from there, so an Assign can also be refused with *"Studio has 40 pcs and 40 are out on a booking."*
 
-**On the phone.** The [Shelf Companion](/mobile-app) app's Assign and release sheets do not ask for a location yet. Units assigned from the phone on such a pool are recorded without one, never refused for it, and read *location not recorded* on the web.
+**On the phone.** Since its update of 8 October 2026, the [Shelf Companion](/mobile-app) app asks too. On a pool kept at two or more locations, the **Assign** sheet shows a **From location** list, one row per location with what sits there and what is already committed, for example *4 pcs · 1 in custody*, plus **Unplaced** when the pool has unplaced units. It starts on the location with the most units left, and the quantity is capped at what the picked row has. Each holder's row says where their units came from, for example *1 from Camera Room · 1 from Studio*. The release sheet says where the units go back to, *Goes back to Studio, where the units came from.*, and when one person's units came from two or more places it lets you pick which to release. Booking check-out on the phone asks **Where do the units come from?**, the same question the web asks.
+
+Two phone paths still record no location: assigning custody to a batch from the app's **Scan** tab, and an app that has not taken the update yet. Neither is refused; the hold reads *location not recorded* on the web.
 
 ### When Locations Hold More Than You Own
 
@@ -160,7 +162,7 @@ Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app 
 - The **assets list** shows a quantity pill on each pooled asset's row.
 - The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
 - The same screen lists every location that holds units, one row each with its count, plus kit-held rows marked `via kit` and an **Unplaced** row for the rest. Tap **Placements** to open **Manage Placements**: add or remove locations, set each count with a stepper capped at the total, and watch the **Placed / Via kits / Unplaced** meter before you **Save placements**. It saves through the same rules as the web dialog, so the placements can never add up to more than the asset owns. Kit-held units are shown but can only be moved by moving the kit.
-- Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign. The sheet does not ask which location the units come from; on a pool kept at several locations the web dialog does, and units assigned from the phone read *location not recorded* there (see [Which location the units come from](#which-location-the-units-come-from)).
+- Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign. On a pool kept at two or more locations, the sheet also asks **From location**, the same question the web dialog asks (see [Which location the units come from](#which-location-the-units-come-from)).
 - Tap a holder's custody row to end their hold. The amount is capped at the units that person can release. On a returnable asset the units go back to the pool. On a **used-up** consumable the app asks a second question, **"Of those, how many were used up?"**, pre-filled with the whole hold because that is the usual case. What you mark as used up leaves the total; the rest returns to the pool. This matches the web split exactly.
 - Tap **Adjust** on the quantity card to correct the stock figure itself. Choose add or remove, enter the amount, and give a reason. Adding is recorded as a restock and removing as a loss, so a shelf count you fix in the aisle lands in the asset's history with your note rather than as an unexplained change.
 - The **Available** figure turns amber when it drops to or below the asset's minimum quantity, using the same low-stock rule as the web.
