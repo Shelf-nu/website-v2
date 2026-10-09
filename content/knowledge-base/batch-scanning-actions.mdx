@@ -3,7 +3,7 @@ title: "Batch Scanning Actions"
 description: "Shelf's Batch QR Scanning feature enables users to perform actions on multiple assets simultaneously by scanning their QR codes in succession, significantly improving efficiency when managing groups of assets."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-07"
+updated: "2026-10-09"
 layout: "knowledge-base"
 ---
 
@@ -78,7 +78,7 @@ You can mix **kit** QR codes into the same batch. A scanned kit shows up in the 
 When using batch actions, the system automatically checks for potential conflicts. Different actions have different types of blockers:
 
 
-![Handling Conflicts](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67fd5f1bcd100df0ccc3c758_blocker_list.PNG)
+![The web scanner on Assign custody with one invalid code: a Needs attention card at the top of the list reading 1 QR code is invalid with Remove from list and Resolve all (1), a Scanned this session card below it, and the note Resolve 1 issue above to continue above the disabled Assign custody button](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/scanner-needs-attention.webp?v=2)
 ### For Assign Custody
 
 - Individually tracked assets already in custody of someone else
@@ -109,10 +109,12 @@ Update Location has no other blockers. Assets in custody, checked-out assets, an
 
 ### If conflicts are detected, the system will:
 
-1. Alert you with a yellow warning banner showing "Unresolved blockers" and the number of issues
-2. Explain the specific issues (e.g., "4 assets are already in custody")
-3. Provide options to resolve conflicts, such as "Remove from list" for individual items or "Resolve all" for all conflicts
-4. Only enable the action button once all conflicts are resolved
+1. List every problem in one **Needs attention** card at the top of the scanned list, with the number of affected items
+2. Explain each issue on its own line (e.g., "4 assets are already in custody")
+3. Let you clear each line with **Remove from list**, or every line at once with **Resolve all (N)**. **Resolve all** removes exactly the items the card lists, and nothing else
+4. Keep the action button disabled, with a note above it such as *"Resolve 1 issue above to continue."*, until every issue is resolved
+
+The scanned items themselves sit in their own card, **Scanned this session**. Each card folds open and closed from its header.
 
 ## Best Practices
 
@@ -122,7 +124,7 @@ Update Location has no other blockers. Assets in custody, checked-out assets, an
 - **Use the Clear List Option**: If you need to start over, use the "Clear list" button in the top right
 - **Remove Individual Items**: Use the trash icon next to each asset to remove it from the batch if needed
 - **Review Before Confirming**: Take a moment to review the final list before completing the action
-- **Deal with Conflicts Promptly**: Use the "Resolve all" button to quickly address multiple issues at once
+- **Deal with Conflicts Promptly**: Use the **Resolve all** button in the **Needs attention** card to remove every flagged item at once
 
 
 ![Best Practices](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/67fd5f51c83669bac8967e98_success_batch_actions.PNG)
@@ -141,10 +143,10 @@ When moving equipment between locations (e.g., from storage to a project site), 
 When scanning in batch mode, you'll notice several key interface elements:
 
 1. **Action Dropdown**: Shows your currently selected action (e.g., "Action: assign custody")
-2. **Scan Counter**: Displays the number of items scanned (e.g., "Items scanned (12)")
-3. **Asset List**: Shows all scanned assets with labels indicating their type
+2. **Code field**: Scan with a barcode scanner, or type a code and press Enter
+3. **Scanned this session**: The card that lists every scanned asset and kit, with a count in its header
 4. **Action Button**: The orange button at the bottom to complete the selected action
-5. **Blocker Warnings**: Yellow warning banners that appear when there are issues to resolve
+5. **Needs attention**: The card that collects anything blocking the action, with **Resolve all**
 
 ## Frequently Asked Questions
 
