@@ -43,6 +43,7 @@ const competitors = [
     { name: "GoCodes", logo: "/logos/gocodes.webp", slug: "gocodes", description: "Flat pricing with built-in booking system." },
     { name: "Hardcat", logo: "/logos/hardcat.svg", slug: "hardcat", description: "Faster setup with a modern, intuitive interface." },
     { name: "Hector", logo: "/logos/hector.svg", slug: "hector", description: "Flat pricing with open-source transparency." },
+    { name: "inFlow", logo: "/logos/inflow.svg", slug: "inflow", description: "Bookings, custody and kits, with unlimited users." },
     { name: "Itemit", logo: "/logos/itemit.webp", slug: "itemit", description: "Lower cost, no proprietary hardware required." },
     { name: "ShareMyToolbox", logo: "/logos/share-my-toolbox.webp", slug: "share-my-toolbox", description: "Open source with kit tracking for field teams." },
     { name: "Timly", logo: "/logos/timly.svg", slug: "timly", description: "Lower cost, no specialized hardware needed." },

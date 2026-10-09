@@ -35,6 +35,7 @@ const competitorLogos: Record<string, string> = {
     gocodes: "/logos/gocodes.webp",
     hardcat: "/logos/hardcat.svg",
     hector: "/logos/hector.svg",
+    inflow: "/logos/inflow.svg",
     itemit: "/logos/itemit.webp",
     "share-my-toolbox": "/logos/share-my-toolbox.webp",
     timly: "/logos/timly.svg",
