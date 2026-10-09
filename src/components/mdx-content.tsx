@@ -15,6 +15,7 @@ import { RolePicker } from "@/components/mdx/role-picker";
 import { CodeBlock } from "@/components/mdx/code-block";
 import { TrackingMethodQuiz } from "@/components/mdx/tracking-method-quiz";
 import { TrackingDecisionChart } from "@/components/mdx/tracking-decision-chart";
+import { AiImportPrompt } from "@/components/mdx/ai-import-prompt";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -154,6 +155,7 @@ const components = {
     InlineVideo,
     TrackingMethodQuiz,
     TrackingDecisionChart,
+    AiImportPrompt,
 };
 
 /**

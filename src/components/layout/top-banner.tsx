@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Smartphone, Wrench, X } from "lucide-react";
+import { QrCode, Wrench, X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 import { useSyncExternalStore } from "react";
 import { Container } from "@/components/ui/container";
 
@@ -199,14 +200,17 @@ function NormalBanner() {
                 </div>
 
                 <div className="flex items-center gap-4 sm:gap-6">
-                    <Link
-                        href="/mobile-app"
+                    <a
+                        href="https://store.shelf.nu/?ref=website_topbar"
+                        target="_blank"
+                        rel="noopener"
+                        onClick={() => trackEvent("store_click", { location: "topbar" })}
                         className="flex items-center gap-1.5 hover:text-foreground transition-colors"
                     >
-                        <Smartphone className="h-3 w-3 text-orange-500" aria-hidden="true" />
-                        <span className="hidden sm:inline">Now on Android</span>
-                        <span className="sm:hidden">Android</span>
-                    </Link>
+                        <QrCode className="h-3 w-3 text-orange-500" aria-hidden="true" />
+                        <span className="hidden sm:inline">Buy Asset Labels</span>
+                        <span className="sm:hidden">Buy labels</span>
+                    </a>
 
                     <Link href="/migrate" className="hover:text-foreground transition-colors">
                         Migrate
