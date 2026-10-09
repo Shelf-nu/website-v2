@@ -59,6 +59,7 @@
     { "q": "asset tiger", "expect": "/alternatives/asset-tiger" },
     { "q": "cheqroom", "expect": "/alternatives/cheqroom" },
     { "q": "inflow", "expect": "/alternatives/inflow" },
+    { "q": "maintainx", "expect": "/alternatives/maintainx" },
 
     { "q": "sso", "expect": "/knowledge-base/sso-with-google-workspace" }
   ],

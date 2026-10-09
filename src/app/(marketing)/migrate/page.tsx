@@ -49,6 +49,7 @@ const competitors = [
     { name: "Timly", logo: "/logos/timly.svg", slug: "timly", description: "Lower cost, no specialized hardware needed." },
     { name: "Wasp", logo: "/logos/wasp.webp", slug: "wasp", description: "Modern UX with faster cloud-based setup." },
     { name: "WebCheckout", logo: "/logos/webcheckout.webp", slug: "webcheckout", description: "Modern QR-first approach with open source." },
+    { name: "MaintainX", logo: "/logos/maintainx.svg", slug: "maintainx", description: "Check-out, custody and bookings, with unlimited users." },
     { name: "Limble CMMS", slug: "limble", description: "Dedicated asset tracking without CMMS complexity." },
 ];
 
