@@ -3,7 +3,7 @@ title: "Changing User Roles in Shelf"
 description: "Change a team member's role directly from Workspace Settings. Covers the Change role dialog, what happens to their assets and bookings when you lower a role, and who is allowed to make the change."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-10-08"
+updated: "2026-10-09"
 layout: "knowledge-base"
 ---
 
@@ -50,6 +50,10 @@ Raising a role, for example from Base to Self service, transfers nothing. Nothin
 **Revoke access**, in the same **Actions** menu, is a different action: it removes the person from the workspace rather than adjusting what they can do. They become a Non-Registered Member (NRM), which keeps all their assets, custody records, and history intact, and you can invite them back later from the Non-Registered Members section.
 
 Use **Change role** when someone stays on the team with different permissions, and **Revoke access** when they are leaving.
+
+**Shelf asks before it revokes.** Choosing **Revoke access** opens a confirmation, on the **Team ▸ Users** list and on the person's own page alike. It names the person and their email and says what will happen: *"They can no longer open it and are notified by email. Their team member record and history are kept, and you can invite them again later."* Click **Revoke access** to go ahead, or **Cancel** to leave everything as it was. If Shelf refuses, for example because only the owner may revoke an Administrator, the reason appears inside the dialog.
+
+For someone who signs in with SSO, the dialog adds a warning: if your workspace assigns membership from SSO groups, they get access back on their next sign-in unless you also remove them from the mapped group in your identity provider.
 
 ### Who Can Revoke Access
 
