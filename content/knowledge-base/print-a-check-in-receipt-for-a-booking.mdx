@@ -3,7 +3,7 @@ title: "Print a Check-in Receipt for a Booking"
 description: "Print a one-page record of what came back from a booking: each item's return state, when it was checked in and by whom, a totals ledger, and signature lines for the hand-back."
 category: "Bookings & Custody"
 date: "2026-09-14"
-updated: "2026-09-14"
+updated: "2026-10-09"
 layout: "knowledge-base"
 ---
 
@@ -53,6 +53,7 @@ The outstanding count is in units. An individually tracked item counts as 1, and
 - **Checked out**, with the name of the person who checked it out when Shelf recorded one.
 - **Returned**, the moment the return was recorded, plus how it compares to the planned end: *on time*, *early*, or for example *4 days 22 hours after the planned end*. A booking closed entirely through consumed, lost or damaged units labels this row **Accounted for** instead, because nothing was returned.
 - **Checked in by**, every person who received a return.
+- **Check-in method**, when every returned item came back the same way, for example *Scanned on the phone* or *Selected on the web*. When they differ, the method prints under each row's **Checked in by** instead.
 - The booking's description and tags, when it has them.
 
 ### One row per booked item
@@ -62,7 +63,7 @@ Each row gives the item's name, quantity, kit, and code, then what happened to i
 - An individually tracked item reads **Returned**, **Still out**, or **Never checked out**.
 - A quantity-tracked line lists its units by outcome, for example **5 returned** and **1 damaged**, or **3 returned** and **3 still out** while a return is still in progress.
 
-**Checked in on** and **Checked in by** are filled in from what Shelf recorded at check-in. On older bookings the **Checked in by** column can be empty, because Shelf did not always record who checked each item in. The receipt leaves it blank rather than filling in the custodian or the person printing.
+**Checked in on** and **Checked in by** are filled in from what Shelf recorded at check-in. When the header has no single **Check-in method**, each row says under its **Checked in by** how the item came back, for example *Scanned on the web*. Check-ins from before 8 October 2026 have no method, and a quantity-tracked line returned in parts by two different methods prints none. On older bookings the **Checked in by** column can be empty, because Shelf did not always record who checked each item in. The receipt leaves it blank rather than filling in the custodian or the person printing.
 
 The **Code** column prints the code your workspace chose under **Settings → General ▸ Preferred display code**, as text, the same code the checklist prints. The receipt never prints a QR image, because it is a record rather than a sheet to scan from.
 

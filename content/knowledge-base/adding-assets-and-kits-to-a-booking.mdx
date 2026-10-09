@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-10-01"
+updated: "2026-10-09"
 layout: "knowledge-base"
 ---
 
@@ -101,6 +101,10 @@ Rows that answered a reservation now say so. A booking asset row that discharged
 **Kits already on a booking are not settled retroactively.** Only a kit that arrives from now on answers a reservation. If a booking has been sitting with a kit on it and a reservation still open, take the kit off and add it again.
 
 Only individually tracked units answer a model reservation. [Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) stock carried in a kit is a pool rather than a named unit, and [Asset Models](/glossary/asset-models) group individually tracked assets only.
+
+### Your fulfil scan list survives a reload
+
+Since 8 October 2026, the list you build in the **Fulfil reservations & check out** scanner is kept in your browser for twelve hours, for each booking and each person signed in. Reload the page, close the tab or let the device sleep, open the scanner on the same booking again, and the list comes back. Each row is looked up again as it returns, so it shows the item as it is now rather than as it was when you scanned it. A check-out that goes through clears the list; one that is refused keeps it, so you can fix the problem and submit again. The list stays in that one browser and does not follow you to another device. The other scanners, **Scan to check out** included, still start empty.
 
 ### Scanning kits in Fulfil reservations & check out
 

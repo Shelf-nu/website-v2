@@ -3,7 +3,7 @@ title: "Require Explicit Check-in and Check-out"
 description: "Make Admins or Self-service users scan or select the assets instead of handing a whole booking over with one click. Two workspace settings, one per direction."
 category: "Bookings & Custody"
 date: "2026-09-16"
-updated: "2026-09-23"
+updated: "2026-10-09"
 layout: "knowledge-base"
 ---
 
@@ -11,29 +11,31 @@ By default, anyone who can check a booking out can do it in one click: **Check o
 
 Some workspaces want the count made with the gear in hand instead. Two settings do that, one for each direction, and they can be switched on for Admins, for Self-service users, or for both.
 
-![Settings → Bookings showing the Explicit check-in requirement and Explicit check-out requirement cards, each with a switch for Admins and one for Self Service](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-requirement-cards.webp)
+![Settings → Bookings showing the two cards, Check-in needs each item scanned or selected and Check-out needs each item scanned or selected, each with a switch for Admins and one for Self Service users and the sentence The workspace owner is never restricted under its heading](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-requirement-cards-v2.webp)
 
 ## Where to find them
 
 Go to **Settings ▸ Workspace settings ▸ Bookings**. Two cards sit next to each other:
 
-- **Explicit check-in requirement**
-- **Explicit check-out requirement**
+- **Check-in needs each item scanned or selected**
+- **Check-out needs each item scanned or selected**
 
-Each card holds two switches, **Require … for Admins** and **Require … for Self Service**. All four start off.
+Each card holds two switches, **Admins** and **Self Service users**, and says under each one what it does, for example *"Removes the one-click check-out for Admins. They check items out by scanning them or by selecting them from the list."* All four start off.
+
+Under its heading, each card also says who the switches never reach: *"The workspace owner is never restricted. Base users cannot check out."* (or *check in*). Until 8 October 2026 the cards were called **Explicit check-in requirement** and **Explicit check-out requirement**; the switches and what they do did not change.
 
 **Only the workspace owner can change them.** An Administrator can read the cards but not save them, which is the point: a rule about how Admins hand gear out should not be one an Admin can lift.
 
-![The Explicit check-out requirement card, with the "Require explicit check-out for Admins" switch called out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-checkout-requirement.webp)
+![The Check-out needs each item scanned or selected card, with the Admins switch and its description, Removes the one-click check-out for Admins, called out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-checkout-requirement-v2.webp)
 
 ## What each switch does
 
-### Explicit check-out requirement
+### Check-out needs each item scanned or selected
 
 For a covered role, the one-click hand-out disappears and the server refuses it:
 
 - The check-out control on the booking page offers only **Scan to check out**. The **Check out** button on a Reserved booking, and **Check out remaining** on an Ongoing or Overdue one, are not shown.
-- In the [Shelf Companion](/mobile-app) app, **Check Out All Assets** is hidden on the booking screen. **Select to Check Out** stays.
+- In the [Shelf Companion](/mobile-app) app, **Check Out All Assets** is hidden on the booking screen, and in its place the screen says *"Your workspace requires each item to be scanned or selected to check out."* **Select to Check Out** and **Scan to Check Out** stay.
 - If the request reaches the server anyway, it is refused: *"This workspace requires explicit check-out. Scan or select the assets to check them out."*
 
 What stays open is everything that already makes the person name the items:
@@ -43,11 +45,13 @@ What stays open is everything that already makes the person name the items:
 - **Select to Check Out** on the phone.
 - **Fulfil and check out** — the scanner that settles a [model reservation](/glossary/asset-models) and checks out what it just assigned, on the web and on the phone.
 
-### Explicit check-in requirement
+### Check-in needs each item scanned or selected
 
 The mirror image, on the way back:
 
 - The check-in control becomes a single **Check-in** button that opens the [explicit check-in scanner](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns#using-explicit-check-in-scanner-method) straight away. There is no dropdown and no quick check-in.
+- Selecting still works: tick the rows on the booking's asset list and choose **Actions ▸ Check in selected items**, or use **Select to Check In** on the phone.
+- In the app, **Check In All** is hidden and the booking screen says *"Your workspace requires each item to be scanned or selected to check in."*
 - The server refuses a quick check-in from a covered role on the web and on the phone alike.
 
 ## Which roles are covered
@@ -63,6 +67,15 @@ A person can hold more than one role on a workspace. Shelf judges them by their 
 
 The two settings are independent. Requiring explicit check-out says nothing about check-in, and either one can be on for Admins while it is off for Self-service.
 
+## Every check-out and check-in says how it was made
+
+Since 8 October 2026, Shelf records how each booking check-out and check-in was made and where, whether or not these switches are on. You can read it in two places:
+
+- **The booking's activity.** The line ends with the method, for example *checked-out the booking (selected on the phone)* or *performed a partial check-in: Tripod (scanned on the web)*. A one-click action reads *in one click on the web* or *in one tap on the phone*. A batch that mixed scans and ticks reads *scanned and selected on the web*.
+- **The [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking).** A **Check-in method** line in the header when every returned item came back the same way, otherwise the method under each row's **Checked in by**.
+
+Check-outs and check-ins made before that date carry no method, and neither does one from a phone app that has not taken the update of 8 October 2026.
+
 ## What this is good for
 
 - **Verification at the counter.** Gear is scanned as it leaves the cage, so what the booking says went out is what physically went out.
@@ -72,7 +85,7 @@ The two settings are independent. Requiring explicit check-out says nothing abou
 ## Things worth knowing before you switch it on
 
 - **Existing bookings are not affected retroactively.** The rule applies to the next action someone takes, not to history.
-- **Phones need the current app.** The Companion app hides **Check Out All Assets** from a covered role once it has the update published on 15 September 2026. An older copy still shows the button; tapping it gets the server's refusal and nothing is checked out.
+- **Phones need the current app.** The Companion app hides **Check Out All Assets** from a covered role once it has the update published on 15 September 2026, and explains why since the update of 8 October 2026. An older copy still shows the button; tapping it gets the server's refusal and nothing is checked out.
 - **A Reserved booking with nothing left to scan shows no check-out control** to a covered role, because the only option left was the one the requirement removes. The owner, who is exempt, can still complete it.
 - **Fulfil-and-check-out narrows under the rule.** It assigns the units you scanned and checks out only those, leaving the booking's other assets to be checked out separately. It takes kits: a scanned kit goes on the booking whole, its individually tracked members settle matching [model reservations](/glossary/asset-models), and the whole case goes out with the scan. What it refuses is a loose scan of a unit that belongs to a kit nobody scanned — *"Canon EOS R5 #0042" belongs to a kit, so it can't go out on its own* — because sending that unit out alone would split the case.
 - **A scan is required, not a complete booking.** Reserved model units nobody has assigned yet do not block the check-out: the scanner names them and asks you to confirm, and they stay open on the booking to be scanned later or released. What the rule does insist on is that the item going out is one **you scanned**, which is the point of the setting — a person handles every item that leaves. Scanning an item that is already on the booking is how that item gets checked out here; it used to be turned away as a duplicate, which left a covered role with no way to send those items out from this screen.
