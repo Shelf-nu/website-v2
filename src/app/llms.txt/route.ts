@@ -302,7 +302,8 @@ ${renderPricingSection()}
 - [Salvage Value Calculator](${BASE_URL}/tools/salvage-value-calculator): Estimate end-of-life salvage value for assets.
 - [Asset ROI Calculator](${BASE_URL}/tools/asset-roi-calculator): Calculate return on investment for asset purchases.
 - [QR Code Generator](${BASE_URL}/tools/qr-code-generator): Free QR code generator for asset labels.
-- [Barcode Scanner](${BASE_URL}/tools/barcode-scanner): Free in-browser barcode scanner.
+- [Barcode Scanner](${BASE_URL}/tools/barcode-scanner): Free online barcode scanner: camera or image, CSV export, runs in the browser.
+- [QR Code Scanner](${BASE_URL}/tools/qr-code-scanner): Free online QR code scanner: camera or image, shows links, Wi-Fi and contacts before opening.
 - [Asset Label Designer](${BASE_URL}/tools/asset-label-designer): Design printable asset labels.`;
 
 export function GET() {

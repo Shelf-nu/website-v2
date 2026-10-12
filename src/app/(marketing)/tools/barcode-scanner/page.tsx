@@ -1,58 +1,92 @@
 import { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { BarcodeScanner } from '@/components/tools/barcode-scanner';
 import { Container } from '@/components/ui/container';
 import Link from 'next/link';
-import { ArrowRight, Box, Tag, FileText, CheckCircle2, ScanLine } from 'lucide-react';
+import { ArrowRight, Box, Tag, CheckCircle2, ScanLine, Camera, Download, WifiOff, QrCode } from 'lucide-react';
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { CTA } from "@/components/sections/cta";
 import { TrustedBy } from "@/components/sections/trusted-by";
 import { G2Badge } from "@/components/sections/g2-badge";
 import { buildToolPageJsonLd } from "@/lib/tool-jsonld";
 
+const TITLE = 'Free Online Barcode Scanner — Scan with Your Camera or an Image';
+const DESCRIPTION =
+    'Scan barcodes online with your phone camera, webcam or an image. Reads UPC, EAN, Code 128, QR, Data Matrix and more. Export scans to CSV. Free, no signup, nothing uploaded.';
+
 export const metadata: Metadata = {
-    title: 'Free Online Barcode Scanner — Scan QR, UPC, Code 128, EAN',
-    description: 'Scan and decode any barcode from an image directly in your browser. Supports QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, PDF417 and more. Free, no signup, no upload — runs locally.',
+    title: TITLE,
+    description: DESCRIPTION,
     alternates: {
         canonical: '/tools/barcode-scanner',
     },
     openGraph: {
-        title: 'Free Online Barcode Scanner — Scan QR, UPC, Code 128, EAN | Shelf',
-        description: 'Scan and decode any barcode from an image directly in your browser. Supports QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, PDF417 and more. Free, no signup, no upload — runs locally.',
+        title: `${TITLE} | Shelf`,
+        description: DESCRIPTION,
     },
 };
+
+type Faq = { question: string; answer: string; content?: ReactNode };
+
+/** One list feeds both the visible FAQ and the FAQPage JSON-LD, so they can't drift apart. */
+const FAQS: Faq[] = [
+    {
+        question: "What barcode formats does this scanner support?",
+        answer: "It decodes both 2D barcodes (QR Code, Data Matrix, Aztec, PDF417) and 1D barcodes (UPC-A, UPC-E, EAN-8, EAN-13, Code 39, Code 93, Code 128, ITF, Codabar, RSS-14). One tool for almost every barcode you'll encounter.",
+    },
+    {
+        question: "Can I scan with my phone or webcam?",
+        answer: "Yes. Tap Start camera and allow camera access when your browser asks. On a phone the rear camera is used by default, and you can switch cameras if your device has more than one. It uses the browser's standard camera access, available in current versions of Safari, Chrome, Edge and Firefox. The camera only turns on when you tap the button, and it stops when you switch to images, leave the tab or close the page.",
+    },
+    {
+        question: "Can I scan many barcodes and export them?",
+        answer: "Yes. Point the camera at one code after another: each new code is added to a list with its format and the time it was scanned. Skip duplicates (on by default) ignores codes already in the list. You can also drop several images at once. Download CSV saves the list with code, format and scanned_at columns, ready for Excel, Google Sheets or Numbers.",
+    },
+    {
+        question: "Does this upload my images or camera video?",
+        answer: "No. Decoding happens in your browser. Images, camera video and the scanned values stay on your device, and the list is gone when you close the page unless you download or copy it.",
+    },
+    {
+        question: "Does it work offline?",
+        answer: "Partly. The page and the decoder need a connection to load, and the decoder loads the first time you start the camera or decode an image. After that, scanning keeps working without a connection as long as you keep the page open.",
+    },
+    {
+        question: "Why can't it read my barcode?",
+        answer: "Make sure the code is well lit, in focus and not damaged or covered. With a phone, move back a little if the picture is blurry: phone cameras can't focus very close. Hold the code flat and fill most of the frame. For images, the bars of a 1D barcode need to be clearly resolved, so very small or low-resolution photos may not work. Each image is read for one code.",
+    },
+    {
+        question: "What's the difference between a barcode and a QR code?",
+        answer: "A QR code is a type of barcode. 'Barcode' is the umbrella term covering both 1D barcodes (the parallel-line patterns on grocery items, like UPC and EAN) and 2D barcodes (square patterns that store data in two dimensions, like QR Code and Data Matrix). This tool reads all of them.",
+    },
+    {
+        question: "Can I use this for asset tracking?",
+        answer: "For a quick check, yes. To track equipment over time, Shelf gives every asset its own QR code. Scanning it in the Shelf web app or the free Shelf Companion app for iPhone and Android opens the asset, where you can see and update who has it, where it is and its history. You can start with a free Shelf account.",
+        content: (
+            <>
+                For a quick check, yes. To track equipment over time, Shelf gives every asset its own QR code. Scanning it in the Shelf web app or the free{" "}
+                <Link href="/knowledge-base/shelf-mobile-app" className="text-orange-600 hover:underline">Shelf Companion app</Link> for iPhone and Android
+                opens the asset, where you can see and update who has it, where it is and its history. You can{" "}
+                <Link href="/pricing" className="text-orange-600 hover:underline">start with a free Shelf account</Link>.
+            </>
+        ),
+    },
+];
 
 export default function BarcodeScannerPage() {
     const jsonLd = buildToolPageJsonLd({
         name: "Shelf Barcode Scanner",
         url: "https://www.shelf.nu/tools/barcode-scanner",
         description:
-            "Free in-browser barcode scanner. Decodes QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, Aztec, PDF417 and more — all locally on your device.",
-        faqs: [
-            {
-                question: "What barcode formats does this scanner support?",
-                answer: "It decodes both 2D barcodes (QR Code, Data Matrix, Aztec, PDF417) and 1D barcodes (UPC-A, UPC-E, EAN-8, EAN-13, Code 39, Code 93, Code 128, ITF, Codabar, RSS-14). One tool for almost every barcode you'll encounter.",
-            },
-            {
-                question: "Does this upload my image to a server?",
-                answer: "No. All decoding happens locally in your browser using JavaScript. Your images effectively never leave your device — perfect for sensitive inventory or regulated environments.",
-            },
-            {
-                question: "Why can't it read my barcode?",
-                answer: "Ensure the image is well-lit, in focus, and the barcode is not damaged or obstructed. High contrast between the bars (or QR modules) and the background helps. For 1D barcodes, the bars need to be clearly resolved — very low resolution images may not work.",
-            },
-            {
-                question: "What's the difference between a barcode and a QR code?",
-                answer: "A QR code is a type of barcode. 'Barcode' is the umbrella term covering both 1D barcodes (the parallel-line patterns on grocery items, like UPC and EAN) and 2D barcodes (square patterns that store data in two dimensions, like QR Code and Data Matrix). This tool reads all of them.",
-            },
-            {
-                question: "Can I use this for asset tracking?",
-                answer: "Yes. This is the same scanning engine used inside Shelf, our asset management platform. For full asset tracking — inventory, custody, bookings, audit trails — sign up for a free Shelf account and use our mobile and web apps to scan codes and update records in real time.",
-            },
-        ],
+            "Free online barcode scanner. Scan with your phone camera or webcam, or decode images. Reads QR Code, UPC, EAN, Code 39, Code 128, Data Matrix, Aztec, PDF417 and more, locally on your device, with CSV export.",
+        faqs: FAQS.map(({ question, answer }) => ({ question, answer })),
     });
 
     return (
-        <PagefindWrapper type="Page" title="Free Online Barcode Scanner — QR, UPC, Code 128, EAN" keywords="barcode scanner online barcode reader scan barcode qr code scanner upc scanner ean scanner code 128 reader">
+        <PagefindWrapper
+            type="Page"
+            title="Free Online Barcode Scanner — Camera or Image"
+            keywords="barcode scanner online barcode reader scan barcode qr code scanner upc scanner ean scanner code 128 reader, online barcode scanner, barcode scanner online, scan barcode online, barcode reader online, webcam barcode scanner, scan barcode with camera"
+        >
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -74,7 +108,7 @@ export default function BarcodeScannerPage() {
                                 Free Online <span className="text-orange-600">Barcode Scanner</span>
                             </h1>
                             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                                Decode QR codes, UPC, EAN, Code 128, Data Matrix and more — all from an image, right in your browser. Nothing is uploaded. Completely private and free.
+                                Scan barcodes with your phone or laptop camera, or from images. Reads QR codes, UPC, EAN, Code 128, Data Matrix and more, and collects every scan into a list you can export as CSV. It runs in your browser: nothing is uploaded.
                             </p>
                         </div>
                     </Container>
@@ -114,26 +148,36 @@ export default function BarcodeScannerPage() {
                                     </ul>
                                 </div>
                             </div>
+                            <p className="text-sm text-muted-foreground">
+                                Mostly scanning QR codes? The{" "}
+                                <Link href="/tools/qr-code-scanner" className="text-orange-600 hover:underline">free QR code scanner</Link>{" "}
+                                lays out links, Wi-Fi details and contact cards so you can check them before opening anything.
+                            </p>
                         </div>
 
                         {/* How it works */}
                         <div className="space-y-6">
                             <h2 className="text-3xl font-bold tracking-tight">How this scanner works</h2>
-                            <div className="grid md:grid-cols-3 gap-6">
+                            <div className="grid sm:grid-cols-2 gap-6">
                                 <div className="bg-card p-6 rounded-xl border border-border">
-                                    <FileText className="h-8 w-8 text-orange-600 mb-4" />
-                                    <h3 className="font-semibold mb-2">Client-side decoding</h3>
-                                    <p className="text-sm text-muted-foreground">All processing runs entirely on your device using your browser&apos;s capabilities — no server round-trip.</p>
+                                    <Camera className="h-8 w-8 text-orange-600 mb-4" />
+                                    <h3 className="font-semibold mb-2">Camera or image</h3>
+                                    <p className="text-sm text-muted-foreground">Scan live with your phone&apos;s rear camera or a laptop webcam, or drop in one or more photos and screenshots. The camera only turns on when you tap Start camera.</p>
                                 </div>
                                 <div className="bg-card p-6 rounded-xl border border-border">
                                     <CheckCircle2 className="h-8 w-8 text-orange-600 mb-4" />
-                                    <h3 className="font-semibold mb-2">Privacy first</h3>
-                                    <p className="text-sm text-muted-foreground">Your images are never uploaded to our servers or stored anywhere. Safe for sensitive or regulated inventory.</p>
+                                    <h3 className="font-semibold mb-2">Decoded on your device</h3>
+                                    <p className="text-sm text-muted-foreground">The decoder runs in your browser. Camera video, images and the codes you scan are never uploaded to our servers or stored anywhere.</p>
                                 </div>
                                 <div className="bg-card p-6 rounded-xl border border-border">
-                                    <Box className="h-8 w-8 text-orange-600 mb-4" />
-                                    <h3 className="font-semibold mb-2">Works offline</h3>
-                                    <p className="text-sm text-muted-foreground">Once the page loads, you can decode images even without an internet connection.</p>
+                                    <Download className="h-8 w-8 text-orange-600 mb-4" />
+                                    <h3 className="font-semibold mb-2">A list you can export</h3>
+                                    <p className="text-sm text-muted-foreground">Every new code joins a list with its format and time. Skip duplicates, copy one or all, or download a CSV that opens in Excel or Google Sheets.</p>
+                                </div>
+                                <div className="bg-card p-6 rounded-xl border border-border">
+                                    <WifiOff className="h-8 w-8 text-orange-600 mb-4" />
+                                    <h3 className="font-semibold mb-2">Keeps going offline</h3>
+                                    <p className="text-sm text-muted-foreground">Once the page and the decoder have loaded (after your first scan), scanning keeps working if your connection drops, as long as the page stays open.</p>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +191,7 @@ export default function BarcodeScannerPage() {
                                     "Reading UPC/EAN codes from receipts and packaging",
                                     "Decoding Code 128 labels on warehouse shelving",
                                     "Validating product batch numbers via Data Matrix",
-                                    "Checking custody trails on equipment",
+                                    "Collecting a list of serial-number barcodes into a spreadsheet",
                                     "Reconciling inventory faster than manual lookup",
                                 ].map((item, i) => (
                                     <li key={i} className="flex items-start gap-3 bg-card p-4 rounded-lg border border-border/50">
@@ -162,43 +206,27 @@ export default function BarcodeScannerPage() {
                         <div className="space-y-8">
                             <h2 className="text-3xl font-bold tracking-tight">FAQ</h2>
                             <div className="grid gap-6 md:grid-cols-2">
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-foreground">What barcode formats does this scanner support?</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        It decodes both 2D barcodes (QR Code, Data Matrix, Aztec, PDF417) and 1D barcodes (UPC-A, UPC-E, EAN-8, EAN-13, Code 39, Code 93, Code 128, ITF, Codabar, RSS-14). One tool for almost every barcode you&apos;ll encounter.
-                                    </p>
-                                </div>
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-foreground">Does this upload my image to a server?</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        No. All decoding happens locally in your browser using JavaScript. Your images effectively never leave your device — perfect for sensitive inventory or regulated environments.
-                                    </p>
-                                </div>
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-foreground">Why can&apos;t it read my barcode?</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        Ensure the image is well-lit, in focus, and the barcode is not damaged or obstructed. High contrast between the bars (or QR modules) and the background helps. For 1D barcodes, the bars need to be clearly resolved — very low resolution images may not work.
-                                    </p>
-                                </div>
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-foreground">What&apos;s the difference between a barcode and a QR code?</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        A QR code is a type of barcode. &ldquo;Barcode&rdquo; is the umbrella term covering both 1D barcodes (the parallel-line patterns on grocery items, like UPC and EAN) and 2D barcodes (square patterns that store data in two dimensions, like QR Code and Data Matrix). This tool reads all of them.
-                                    </p>
-                                </div>
-                                <div className="space-y-2 md:col-span-2">
-                                    <h3 className="font-semibold text-foreground">Can I use this for asset tracking?</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        Yes. This is the same scanning engine used inside Shelf, our asset management platform. For full asset tracking — inventory, custody, bookings, audit trails — <Link href="/pricing" className="text-orange-600 hover:underline">sign up for a free Shelf account</Link> and use our <Link href="/knowledge-base/shelf-mobile-app" className="text-orange-600 hover:underline">mobile and web apps</Link> to scan codes and update records in real time.
-                                    </p>
-                                </div>
+                                {FAQS.map((faq, i) => (
+                                    <div key={faq.question} className={i === FAQS.length - 1 && FAQS.length % 2 === 1 ? "space-y-2 md:col-span-2" : "space-y-2"}>
+                                        <h3 className="font-semibold text-foreground">{faq.question}</h3>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">{faq.content ?? faq.answer}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
                         {/* Related Tools */}
                         <div className="space-y-6 pt-8 border-t border-border">
                             <h2 className="text-2xl font-bold tracking-tight">Related free tools</h2>
-                            <div className="grid sm:grid-cols-2 gap-6">
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <Link href="/tools/qr-code-scanner" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
+                                    <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1 flex items-center gap-2">
+                                        <QrCode className="h-4 w-4" /> Free QR Code Scanner
+                                    </div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Read QR codes from your camera or a screenshot, with links and Wi-Fi details laid out.
+                                    </div>
+                                </Link>
                                 <Link href="/tools/asset-label-designer" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
                                     <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">
                                         Free Asset Label Designer

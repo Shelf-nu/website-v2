@@ -5,6 +5,7 @@
   "queries": [
     { "q": "qr code generator", "expect": "/tools/qr-code-generator" },
     { "q": "barcode scanner", "expect": "/tools/barcode-scanner" },
+    { "q": "qr code scanner", "expect": "/tools/qr-code-scanner" },
     { "q": "roi calculator", "expect": "/tools/asset-roi-calculator" },
     { "q": "depreciation calculator", "expect": "/tools/equipment-depreciation-calculator" },
     { "q": "asset label designer", "expect": "/tools/asset-label-designer" },
