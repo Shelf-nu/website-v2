@@ -3346,6 +3346,54 @@
         ],
         "capturedAt": "2026-10-09T00:00:00.000Z"
       }
+    },
+    {
+      "id": "exp-068",
+      "page": "/tools/barcode-scanner",
+      "field": "content+feature",
+      "before": "Image-only scanner: decodes one uploaded image at a time, no camera. Position ~15 for 'online barcode scanner' and 'barcode scanner online' while every page above it also scans live with the webcam or phone camera.",
+      "after": "Live camera scanning (rear camera by default, camera switcher, permission-denied and no-camera fallbacks), continuous multi-scan into a list with skip-duplicates, multi-image upload, copy one/all, CSV export (code, format, scanned_at). Title, description, H1, intro, How it works and FAQ rewritten for camera + image; FAQ adds phone/webcam and export questions; link to the new /tools/qr-code-scanner.",
+      "hypothesis": "Matching the SERP's feature set (camera + image) and saying so in the title should lift the page into the top 5 for online barcode scanner / barcode scanner online / scan barcode online / barcode reader online (about 5,400 searches/month each for the first two).",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: online barcode scanner, barcode scanner online, scan barcode online, barcode reader online, barcode scanner, webcam barcode scanner, scan barcode with camera. Also watch tool_interact events (camera_start, scan, image_decode, csv_download) for engagement.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
+      }
+    },
+    {
+      "id": "exp-069",
+      "page": "/tools/qr-code-scanner",
+      "field": "new-page",
+      "before": "No page. 'qr code scanner online' and 'qr code reader online' had no Shelf page; the barcode scanner was image-only.",
+      "after": "New /tools/qr-code-scanner using the same scanner component in a QR-first variant: camera + image, readable payloads (URL with domain shown first, Wi-Fi with hidden password, vCard/MECARD contact, mailto, tel, SMS, geo), links never opened automatically, how-to for iPhone / Android / laptop, a QR link safety section and an 8-question FAQ.",
+      "hypothesis": "qr code scanner online and qr code reader online get about 14,800 searches/month each, and page 1 is small tool sites offering camera + image upload. A faster, private, no-app page with readable payloads should reach page 1.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: qr code scanner online, qr code reader online, scan qr code online, scan qr code from image, qr scanner webcam, qr code scanner, qr code reader.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
+      }
     }
   ]
 }
