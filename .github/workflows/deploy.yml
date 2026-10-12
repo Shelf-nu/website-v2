@@ -80,6 +80,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The action's default is wrangler 3.90.0 (Nov 2024).
+          wranglerVersion: "4.143.0"
           command: pages deploy out --project-name=shelf-nu
       - name: Wait before retrying the deploy
         if: steps.deploy.outcome == 'failure'
@@ -90,6 +92,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The action's default is wrangler 3.90.0 (Nov 2024).
+          wranglerVersion: "4.143.0"
           command: pages deploy out --project-name=shelf-nu
       - name: Comment preview URL on PR
         if: github.event_name == 'pull_request'
