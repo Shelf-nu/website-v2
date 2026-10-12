@@ -251,6 +251,14 @@ export default function BarcodeScannerPage() {
                                         Generate QR codes in PNG or SVG format for any URL.
                                     </div>
                                 </Link>
+                                <Link href="/tools/blurry-qr-code-reader" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors sm:col-span-2">
+                                    <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">
+                                        Blurry QR Code Reader
+                                    </div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Read a QR code from a blurry, dark or engraved photo, with tips for codes that won&apos;t scan.
+                                    </div>
+                                </Link>
                             </div>
                         </div>
 

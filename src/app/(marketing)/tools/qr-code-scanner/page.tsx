@@ -52,7 +52,14 @@ const FAQS: Faq[] = [
     },
     {
         question: "Why won't my QR code scan?",
-        answer: "Glare, blur and distance cause most failures. Hold the code flat, fill most of the frame and move back a little if the picture is blurry, since phone cameras can't focus very close. A damaged or partly covered code, or a very small code in a large photo, may not read at all; crop the photo around the code and try again.",
+        answer: "Glare, blur and distance cause most failures. Hold the code flat, fill most of the frame and move back a little if the picture is blurry, since phone cameras can't focus very close. A damaged or partly covered code, or a very small code in a large photo, may not read at all; crop the photo around the code and try again. For a blurry, dark or engraved code, the blurry QR code reader explains each cause and how to retake the photo.",
+        content: (
+            <>
+                Glare, blur and distance cause most failures. Hold the code flat, fill most of the frame and move back a little if the picture is blurry, since phone cameras can&apos;t focus very close. A damaged or partly covered code, or a very small code in a large photo, may not read at all; crop the photo around the code and try again. For a blurry, dark or engraved code, the{" "}
+                <Link href="/tools/blurry-qr-code-reader" className="text-orange-600 hover:underline">blurry QR code reader</Link>{" "}
+                explains each cause and how to retake the photo.
+            </>
+        ),
     },
     {
         question: "Can I scan many QR codes and export them?",
@@ -242,7 +249,15 @@ export default function QrCodeScannerPage() {
                         {/* Related Tools */}
                         <div className="space-y-6 pt-8 border-t border-border">
                             <h2 className="text-2xl font-bold tracking-tight">Related free tools</h2>
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="grid sm:grid-cols-2 gap-6">
+                                <Link href="/tools/blurry-qr-code-reader" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
+                                    <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">
+                                        Blurry QR Code Reader
+                                    </div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Read a QR code from a blurry, dark or engraved photo, and learn why codes fail to scan.
+                                    </div>
+                                </Link>
                                 <Link href="/tools/barcode-scanner" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
                                     <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">
                                         Free Online Barcode Scanner

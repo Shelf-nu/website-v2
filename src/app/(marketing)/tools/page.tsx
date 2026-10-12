@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ScanBarcode, ScanQrCode, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3, Barcode } from 'lucide-react';
+import { ArrowRight, ScanBarcode, ScanQrCode, ScanEye, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3, Barcode } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { Pill } from "@/components/ui/pill";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
@@ -25,6 +25,12 @@ const allTools = [
         description: "Scan QR codes from your camera or a screenshot. See links, Wi-Fi details and contacts before opening anything.",
         icon: ScanQrCode,
         href: "/tools/qr-code-scanner",
+    },
+    {
+        title: "Blurry QR Code Reader",
+        description: "Read a QR code from a blurry, dark or engraved photo. Cleans up the image in your browser when a normal scan fails.",
+        icon: ScanEye,
+        href: "/tools/blurry-qr-code-reader",
     },
     {
         title: "Barcode Generator",
@@ -70,10 +76,10 @@ const allTools = [
     },
 ];
 
-/** Two kinds of tool, four of each, so no card sits alone on the last row. */
+/** Six scan-and-label tools in rows of three, four calculators in a row of four, so no card sits alone. */
 const toolGroups = [
-    { title: "Scan and label", tools: allTools.slice(0, 4), columns: "md:grid-cols-2 lg:grid-cols-4" },
-    { title: "Calculators", tools: allTools.slice(4), columns: "md:grid-cols-2 lg:grid-cols-4" },
+    { title: "Scan and label", tools: allTools.slice(0, 6), columns: "md:grid-cols-2 lg:grid-cols-3" },
+    { title: "Calculators", tools: allTools.slice(6), columns: "md:grid-cols-2 lg:grid-cols-4" },
 ];
 
 export default function ToolsIndexPage() {
