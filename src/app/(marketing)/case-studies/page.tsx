@@ -13,8 +13,8 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "Customers - Shelf",
-    description: "See how leading teams use Shelf to track assets and streamline operations.",
+    title: "Customer Case Studies: Equipment Tracking in Practice",
+    description: "Customer stories from universities, film studios, IT and field teams: how they track equipment, bookings and custody with Shelf.",
     alternates: { canonical: "https://www.shelf.nu/case-studies" },
 };
 
