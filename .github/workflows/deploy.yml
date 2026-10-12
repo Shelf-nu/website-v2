@@ -70,17 +70,36 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      # Cloudflare Pages sometimes rejects the publish with "Unknown internal
+      # error occurred" (four times on 2026-10-12). A second attempt has
+      # always gone through, so retry once after a pause instead of leaving
+      # main undeployed until someone re-runs the job.
       - uses: cloudflare/wrangler-action@v3
         id: deploy
+        continue-on-error: true
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The action's default is wrangler 3.90.0 (Nov 2024).
+          wranglerVersion: "4.143.0"
+          command: pages deploy out --project-name=shelf-nu
+      - name: Wait before retrying the deploy
+        if: steps.deploy.outcome == 'failure'
+        run: sleep 30
+      - uses: cloudflare/wrangler-action@v3
+        id: deploy_retry
+        if: steps.deploy.outcome == 'failure'
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The action's default is wrangler 3.90.0 (Nov 2024).
+          wranglerVersion: "4.143.0"
           command: pages deploy out --project-name=shelf-nu
       - name: Comment preview URL on PR
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         env:
-          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url || steps.deploy_retry.outputs.deployment-url }}
         with:
           script: |
             const body = `### Preview deployment\n\n${process.env.DEPLOY_URL}`;
