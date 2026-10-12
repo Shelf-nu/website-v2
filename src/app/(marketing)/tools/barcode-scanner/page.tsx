@@ -218,13 +218,21 @@ export default function BarcodeScannerPage() {
                         {/* Related Tools */}
                         <div className="space-y-6 pt-8 border-t border-border">
                             <h2 className="text-2xl font-bold tracking-tight">Related free tools</h2>
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="grid sm:grid-cols-2 gap-6">
                                 <Link href="/tools/qr-code-scanner" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
                                     <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1 flex items-center gap-2">
                                         <QrCode className="h-4 w-4" /> Free QR Code Scanner
                                     </div>
                                     <div className="text-sm text-muted-foreground">
                                         Read QR codes from your camera or a screenshot, with links and Wi-Fi details laid out.
+                                    </div>
+                                </Link>
+                                <Link href="/tools/barcode-generator" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
+                                    <div className="font-semibold text-foreground group-hover:text-orange-600 transition-colors mb-1">
+                                        Free Barcode Generator
+                                    </div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Make Code 128, EAN, UPC, Data Matrix and QR codes in bulk and print label sheets.
                                     </div>
                                 </Link>
                                 <Link href="/tools/asset-label-designer" className="group block p-4 rounded-xl border border-border hover:border-orange-300 hover:bg-orange-50/30 transition-colors">

@@ -536,7 +536,8 @@ export function Navbar() {
                                                                 title="Free Tools"
                                                                 icon={Wrench}
                                                             >
-                                                                Barcode Scanner,
+                                                                Barcode generator
+                                                                and scanner,
                                                                 calculators and
                                                                 more.
                                                             </ListItem>
