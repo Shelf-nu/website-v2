@@ -14,7 +14,7 @@ import { CustomerLogoWall } from "@/components/sections/customers/customer-logo-
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
-    title: "Customers - Shelf",
+    title: "Customers and Testimonials",
     description:
         "Over 3,000 teams worldwide trust Shelf to track and manage their assets. See testimonials, case studies, and the companies that rely on Shelf.",
     alternates: { canonical: "https://www.shelf.nu/customers" },
