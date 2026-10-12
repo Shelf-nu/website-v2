@@ -3394,6 +3394,30 @@
         ],
         "capturedAt": null
       }
+    },
+    {
+      "id": "exp-070",
+      "page": "/tools/barcode-generator",
+      "field": "new-page",
+      "before": "No barcode generator on the site. Free tools covered QR generation, barcode scanning and asset labels, but nothing that makes Code 128 / EAN / UPC barcodes or prints them on label sheets.",
+      "after": "New /tools/barcode-generator: in-browser generator (bwip-js, lazy-loaded) for Code 128, Code 39, EAN-13, UPC-A, EAN-8, ITF-14, Data Matrix and QR with per-type validation and check digits; single mode with PNG/SVG/PDF; bulk mode from a pasted list, a CSV column or a prefix+number sequence (up to 1,000) with valid/invalid counts; vector PDF label sheets for Avery 5160/8160, 5163, L7160, L7651, one-per-page and a custom grid, plus ZIP of PNG/SVG. Content: type-choice table, how to print labels, barcodes for asset tracking (Shelf QR + Alternative Barcodes add-on), GS1 note, 7-question FAQ (FAQPage JSON-LD). Linked from /tools, the navbar blurb, the scanner page, sitemap and llms.txt.",
+      "hypothesis": "'barcode generator' gets 450,000 US searches a month but its page 1 is out of reach; the realistic targets have low competition and page 1 made of small tool sites: bulk barcode generator 1,600/mo, barcode label generator 590/mo, code 128 generator 390/mo, plus long tail (free barcode generator, barcode generator for inventory, batch barcode generator, code 39 / EAN-13 / UPC generator, barcode sheet, avery barcode labels). Free tools are the 2nd-biggest signup source after the homepage and these searchers are inventory/asset people, so a working bulk + label-sheet tool should rank for the long tail within weeks and feed signups.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: bulk barcode generator, barcode label generator, code 128 generator, code 128 barcode generator, code 39 generator, ean 13 generator, ean 13 barcode generator, upc generator, upc barcode generator, free barcode generator, barcode generator for inventory, batch barcode generator, barcode sheet generator, avery barcode labels, barcode generator. Also watch PostHog tool_interact (tool=barcode_generator) for generate_bulk and download_pdf_sheet counts, and signup_click from this page.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      }
     }
   ]
 }

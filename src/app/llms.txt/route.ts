@@ -304,6 +304,7 @@ ${renderPricingSection()}
 - [QR Code Generator](${BASE_URL}/tools/qr-code-generator): Free QR code generator for asset labels.
 - [Barcode Scanner](${BASE_URL}/tools/barcode-scanner): Free online barcode scanner: camera or image, CSV export, runs in the browser.
 - [QR Code Scanner](${BASE_URL}/tools/qr-code-scanner): Free online QR code scanner: camera or image, shows links, Wi-Fi and contacts before opening.
+- [Barcode Generator](${BASE_URL}/tools/barcode-generator): Free barcode generator (Code 128, Code 39, EAN-13, UPC-A, ITF-14, Data Matrix, QR) with bulk input and printable Avery label sheets.
 - [Asset Label Designer](${BASE_URL}/tools/asset-label-designer): Design printable asset labels.`;
 
 export function GET() {

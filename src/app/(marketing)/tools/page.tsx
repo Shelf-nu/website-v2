@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ScanBarcode, ScanQrCode, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3 } from 'lucide-react';
+import { ArrowRight, ScanBarcode, ScanQrCode, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3, Barcode } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { Pill } from "@/components/ui/pill";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
     title: 'Free Tools for Asset Management',
-    description: 'Free utilities for asset tracking teams. Scan barcodes and QR codes with your camera, generate labels, run depreciation calculations, and manage equipment more efficiently.',
+    description: 'Free utilities for asset tracking teams. Scan barcodes and QR codes with your camera, generate barcodes in bulk and print label sheets, run depreciation calculations, and manage equipment more efficiently.',
     alternates: { canonical: "https://www.shelf.nu/tools" },
 };
 
@@ -25,6 +25,12 @@ const allTools = [
         description: "Scan QR codes from your camera or a screenshot. See links, Wi-Fi details and contacts before opening anything.",
         icon: ScanQrCode,
         href: "/tools/qr-code-scanner",
+    },
+    {
+        title: "Barcode Generator",
+        description: "Code 128, Code 39, EAN, UPC, Data Matrix and QR. Bulk from a list, CSV or sequence; print on Avery label sheets.",
+        icon: Barcode,
+        href: "/tools/barcode-generator",
     },
     {
         title: "Asset Label Designer",
