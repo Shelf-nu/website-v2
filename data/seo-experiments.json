@@ -3360,16 +3360,17 @@
       "notes": "Measure at QUERY level: online barcode scanner, barcode scanner online, scan barcode online, barcode reader online, barcode scanner, webcam barcode scanner, scan barcode with camera. Also watch tool_interact events (camera_start, scan, image_decode, csv_download) for engagement.",
       "evaluateAfterDays": 28,
       "baseline": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 862,
+        "impressions": 52352,
+        "ctr": 1.65,
+        "position": 14.3,
         "dateRange": [
           "2026-07-14",
           "2026-10-11"
         ],
-        "capturedAt": null
-      }
+        "capturedAt": "2026-10-12T12:53:37.060Z"
+      },
+      "deployedAt": "2026-10-12"
     },
     {
       "id": "exp-069",
@@ -3384,16 +3385,17 @@
       "notes": "Measure at QUERY level: qr code scanner online, qr code reader online, scan qr code online, scan qr code from image, qr scanner webcam, qr code scanner, qr code reader.",
       "evaluateAfterDays": 28,
       "baseline": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
         "position": null,
         "dateRange": [
           "2026-07-14",
           "2026-10-11"
         ],
-        "capturedAt": null
-      }
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-12"
     },
     {
       "id": "exp-070",
@@ -3417,7 +3419,8 @@
           "2026-10-11"
         ],
         "capturedAt": "2026-10-12T00:00:00.000Z"
-      }
+      },
+      "deployedAt": "2026-10-12"
     }
   ]
 }
