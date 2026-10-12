@@ -3421,6 +3421,30 @@
         "capturedAt": "2026-10-12T00:00:00.000Z"
       },
       "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-071",
+      "page": "/tools/blurry-qr-code-reader",
+      "field": "new-page",
+      "before": "No page for blurry or unreadable QR codes. The scanner tools gave up after one plain decode pass and showed a generic 'no barcode detected' message.",
+      "after": "New /tools/blurry-qr-code-reader using the shared scanner in a 'blurry' variant (opens on Image). All scanner pages gain a time-boxed clean-up pass when a still image fails (inverted colors, contrast stretch, local threshold for uneven lighting, unsharp mask, resizing; 2D codes), inverted camera frames for light-on-dark codes, a 'Read after ...' note and specific retake advice when nothing reads. Content: what the clean-up does and its limits, 8 causes of scan failure with fixes, QR error correction levels L/M/Q/H, how to retake a photo, making codes that keep scanning, 7-question FAQ (FAQPage JSON-LD). Linked from /tools, /tools/qr-code-scanner, /tools/barcode-scanner, sitemap and llms.txt.",
+      "hypothesis": "'blurry qr code' gets 14,800 US searches/month, plus 'qr code not scanning' 1,900, 'qr code won't scan' 260 and 'why won't my qr code scan' 110. Page 1 for 'blurry qr code' is weak (a Reddit thread, small sharpen-and-decode tools, a YouTube video, an old blog post), so a working in-browser reader with honest, specific fixes should reach page 1 within weeks.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: blurry qr code, read blurry qr code, qr code not scanning, qr code won't scan, why won't my qr code scan, damaged qr code, scan damaged qr code, inverted qr code, engraved qr code. Also watch PostHog tool_interact (tool=blurry_qr_code_reader) image_decode with enhanced=yes vs image_no_code, and the same enhanced split on barcode_scanner and qr_code_scanner.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      }
     }
   ]
 }

@@ -23,6 +23,8 @@ import {
     Eye,
     EyeOff,
     ShieldAlert,
+    Sparkles,
+    Lightbulb,
 } from "lucide-react";
 import type { IScannerControls } from "@zxing/browser";
 import { Button } from "@/components/ui/button";
@@ -36,7 +38,7 @@ import { buildScanCsv } from "@/lib/zxing/scanCsv";
 // zxing never lands in the page's initial JavaScript.
 import type { DecodedCode } from "@/lib/zxing/decodeImage";
 
-type Variant = "barcode" | "qr";
+type Variant = "barcode" | "qr" | "blurry";
 type Mode = "camera" | "image";
 type CameraState = "idle" | "starting" | "running" | "paused" | "denied" | "error";
 type AddResult = "added" | "duplicate" | "ignored";
@@ -54,23 +56,42 @@ type ImageSummary = {
     found: number;
     duplicates: number;
     failures: { name: string; message: string }[];
+    /** Images that only read after clean-up, with what was done. */
+    enhanced: { name: string; message: string }[];
+    /** At least one image opened fine but had no readable code: show retake tips. */
+    showTips: boolean;
 };
 
 /** Same code seen again within this window (camera only) is the same scan. */
 const REPEAT_WINDOW_MS = 2000;
 
-const COPY: Record<Variant, { tool: string; cameraHint: string; emptyResults: string; csvName: string }> = {
+const COPY: Record<
+    Variant,
+    { tool: string; cameraHint: string; emptyResults: string; csvName: string; dropTitle: string; dropHint: string }
+> = {
     barcode: {
         tool: "barcode_scanner",
         cameraHint: "Point your camera at a barcode or QR code. Each new code is added to the list.",
         emptyResults: "Scanned codes appear here. Use your camera, or add one or more images.",
         csvName: "barcode-scans",
+        dropTitle: "Drag & drop images here",
+        dropHint: "One or more PNG, JPG or WebP files",
     },
     qr: {
         tool: "qr_code_scanner",
         cameraHint: "Point your camera at a QR code. Links, Wi-Fi details and contacts are laid out for you.",
         emptyResults: "Scanned QR codes appear here. Links are shown, never opened automatically.",
         csvName: "qr-code-scans",
+        dropTitle: "Drag & drop images here",
+        dropHint: "One or more PNG, JPG or WebP files",
+    },
+    blurry: {
+        tool: "blurry_qr_code_reader",
+        cameraHint: "Hold the code steady and fill the square with it. Light-on-dark and engraved codes work too.",
+        emptyResults: "Add a photo of the code that won't scan. The result appears here, and links are never opened automatically.",
+        csvName: "qr-code-scans",
+        dropTitle: "Drop a photo of the code",
+        dropHint: "Blurry, dark, low-contrast or engraved codes get an extra clean-up pass",
     },
 };
 
@@ -110,7 +131,8 @@ function isImageFile(file: File) {
 export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
     const copy = COPY[variant];
 
-    const [mode, setMode] = useState<Mode>("camera");
+    // The blurry reader is for photos people already took, so it opens on Image.
+    const [mode, setMode] = useState<Mode>(variant === "blurry" ? "image" : "camera");
     const [cameraState, setCameraState] = useState<CameraState>("idle");
     const [cameraMessage, setCameraMessage] = useState<string | null>(null);
     const [noCameraNotice, setNoCameraNotice] = useState<string | null>(null);
@@ -120,6 +142,7 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
     const [items, setItems] = useState<ScanItem[]>([]);
     const [skipDuplicates, setSkipDuplicates] = useState(true);
     const [isDecoding, setIsDecoding] = useState(false);
+    const [decodingLabel, setDecodingLabel] = useState("Decoding...");
     const [imageSummary, setImageSummary] = useState<ImageSummary | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [flash, setFlash] = useState<{ id: number; kind: "added" | "duplicate"; text: string } | null>(null);
@@ -355,28 +378,50 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
                 found: 0,
                 duplicates: 0,
                 failures: files.map((f) => ({ name: f.name, message: "Not an image file." })),
+                enhanced: [],
+                showTips: false,
             });
             return;
         }
 
         setIsDecoding(true);
+        setDecodingLabel("Decoding...");
         setImageSummary(null);
-        const summary: ImageSummary = { total: images.length, found: 0, duplicates: 0, failures: [] };
+        const summary: ImageSummary = {
+            total: images.length,
+            found: 0,
+            duplicates: 0,
+            failures: [],
+            enhanced: [],
+            showTips: false,
+        };
 
         try {
             const { decodeBarcodeFromImage } = await loadDecoder();
             for (const file of images) {
+                setDecodingLabel("Decoding...");
                 try {
-                    const code = await decodeBarcodeFromImage(file);
+                    const code = await decodeBarcodeFromImage(file, {
+                        onTryHarder: () => setDecodingLabel("Trying harder: cleaning up the photo..."),
+                    });
                     const result = addCode(code, "image");
                     summary.found += 1;
                     if (result === "duplicate") summary.duplicates += 1;
-                    trackEvent("tool_interact", { tool: copy.tool, action: "image_decode", format: code.format });
+                    if (code.enhancement) summary.enhanced.push({ name: file.name, message: code.enhancement });
+                    trackEvent("tool_interact", {
+                        tool: copy.tool,
+                        action: "image_decode",
+                        format: code.format,
+                        enhanced: code.enhancement ? "yes" : "no",
+                    });
                 } catch (err) {
+                    const notFound = err instanceof Error && err.name === "NoCodeFoundError";
+                    if (notFound) summary.showTips = true;
                     summary.failures.push({
                         name: file.name,
                         message: err instanceof Error ? err.message : "Could not read this image.",
                     });
+                    if (notFound) trackEvent("tool_interact", { tool: copy.tool, action: "image_no_code" });
                 }
             }
         } catch {
@@ -517,7 +562,7 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
                                         <div
                                             className={cn(
                                                 "border-2 border-white/80 rounded-lg shadow-[0_0_0_9999px_rgba(0,0,0,0.25)]",
-                                                variant === "qr" ? "w-1/2 aspect-square" : "w-3/4 h-1/2",
+                                                variant === "barcode" ? "w-3/4 h-1/2" : "w-1/2 aspect-square",
                                             )}
                                         />
                                     </div>
@@ -635,7 +680,7 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
                             {isDecoding ? (
                                 <div className="flex items-center gap-3 text-sm font-medium">
                                     <Loader2 className="h-5 w-5 animate-spin text-orange-600" />
-                                    Decoding...
+                                    {decodingLabel}
                                 </div>
                             ) : (
                                 <div className="space-y-4 w-full">
@@ -646,8 +691,8 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
                                         <Upload className="h-8 w-8 text-orange-600" />
                                     </div>
                                     <div>
-                                        <p className="text-lg font-semibold text-foreground mb-1">Drag & drop images here</p>
-                                        <p className="text-sm text-muted-foreground">One or more PNG, JPG or WebP files</p>
+                                        <p className="text-lg font-semibold text-foreground mb-1">{copy.dropTitle}</p>
+                                        <p className="text-sm text-muted-foreground">{copy.dropHint}</p>
                                     </div>
                                     <div className="pt-2">
                                         <Button variant="outline" onClick={() => fileInputRef.current?.click()} className="rounded-full">
@@ -661,6 +706,14 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
                                                 {imageSummary.duplicates > 0 &&
                                                     ` (${imageSummary.duplicates} already in the list, skipped)`}
                                             </p>
+                                            {imageSummary.enhanced.map((f, i) => (
+                                                <p key={`e${i}`} className="flex items-start gap-1.5 text-muted-foreground break-words">
+                                                    <Sparkles className="h-4 w-4 shrink-0 mt-0.5 text-orange-600" aria-hidden="true" />
+                                                    <span>
+                                                        <span className="font-medium text-foreground">{f.name}:</span> {f.message}
+                                                    </span>
+                                                </p>
+                                            ))}
                                             {imageSummary.failures.map((f, i) => (
                                                 <p key={i} className="text-muted-foreground break-words">
                                                     <span className="font-medium text-foreground">{f.name}:</span> {f.message}
@@ -668,6 +721,7 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
                                             ))}
                                         </div>
                                     )}
+                                    {imageSummary?.showTips && <RetakeTips />}
                                 </div>
                             )}
                         </div>
@@ -744,6 +798,27 @@ export function BarcodeScanner({ variant = "barcode" }: { variant?: Variant }) {
                 </div>
             </div>
         </Container>
+    );
+}
+
+/** Shown when a photo opened but no code could be read from it, even after clean-up. */
+function RetakeTips() {
+    return (
+        <div className="text-left text-sm rounded-lg bg-orange-50/60 dark:bg-orange-950/30 border border-orange-200/60 dark:border-orange-900/60 p-3 space-y-2">
+            <p className="flex items-center gap-2 font-medium text-foreground">
+                <Lightbulb className="h-4 w-4 shrink-0 text-orange-600" aria-hidden="true" /> How to take a photo that reads
+            </p>
+            <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                <li>Move closer, or switch on your phone&apos;s macro or close-up mode. A sharp small code beats a big blurry one.</li>
+                <li>Fill the frame with the code, or crop out everything else before you upload.</li>
+                <li>Light it from the side to avoid glare. On engraved or metal tags, tilt the tag until the code stands out from the background.</li>
+                <li>Hold steady and tap the code on screen so the camera focuses on it.</li>
+                <li>Wipe the surface clean. Dust, grease or a scuffed cover can hide parts of the code.</li>
+            </ul>
+            <p className="text-muted-foreground">
+                If a photo doesn&apos;t hold enough detail, no tool can recover it. A new photo is the fix.
+            </p>
+        </div>
     );
 }
 
