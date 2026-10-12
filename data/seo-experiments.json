@@ -3448,6 +3448,56 @@
         "capturedAt": "2026-10-12T00:00:00.000Z"
       },
       "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-072",
+      "page": "/blog/best-equipment-management-software",
+      "field": "content-aio-definition",
+      "before": "Opened with 'There are dozens of equipment management tools' and no definition; no FAQ; footer said 'Last updated: May 2026'.",
+      "after": "One-sentence definition of equipment management software + a 7-point 'what to look for' list at the top, a 5-question FAQ (definition, vs CMMS, free options, cost, features), updated 2026-10-12.",
+      "hypothesis": "Google's AI Overview for 'equipment management software' (2026-10-12) opens with a definition + feature list + named tools and does not cite shelf.nu. The cited pattern elsewhere (/solutions/equipment-check-in, quoted first for 'equipment checkout software') is a crisp one-sentence definition. Adding one plus feature and FAQ answers should get the page cited and Shelf named.",
+      "notes": "Measure: AI Overview citation for equipment management software / best equipment management software (scratchpad audit/aio.py), plus GSC query position. Competitor prices in the table are dated April 2026: re-verify in the quarterly check.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "deployedAt": "2026-10-12",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
+      }
+    },
+    {
+      "id": "exp-073",
+      "page": "/solutions/tool-tracking",
+      "field": "content-aio-definition",
+      "before": "Soft opening line, no checklist, no prices, no FAQ; pos ~27-30 for tool tracking software.",
+      "after": "One-sentence definition, an 8-point 'what to look for' list, a 'Shelf at a glance' block (free plan, Team $67/$370, QR + Alternative Barcodes, scan location, no GPS/Bluetooth tags, no work orders) and a 5-question FAQ (FAQPage JSON-LD via the solutions layout).",
+      "hypothesis": "The AI Overview for 'tool tracking software' (2026-10-12) lists definition, named tools and 'core features to look for' and does not cite shelf.nu. Matching that structure with honest facts should earn a citation and lift the page from ~28 toward page 1.",
+      "notes": "Measure: AI Overview citation for tool tracking software / tool tracking system, GSC query position.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "deployedAt": "2026-10-12",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
+      }
     }
   ]
 }
