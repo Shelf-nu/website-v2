@@ -1,0 +1,106 @@
+---
+title: "Archive and Reinstate Assets"
+description: "Archive an asset you no longer use to take it out of your lists, bookings and current reports without deleting it. Its history, ID and QR code stay intact, and you can reinstate it at any time."
+category: "Assets"
+date: "2026-10-12"
+updated: "2026-10-12"
+layout: "knowledge-base"
+---
+
+Some equipment leaves service but should not leave your records: a camera that was retired, a laptop waiting for disposal, a kit you only bring out once a year. Deleting it loses its history for good. **Archiving** hides it instead. An archived asset drops out of your asset lists, the booking picker, the dashboard and your current-inventory reports, but the record stays, with its history, its [SAM ID](/knowledge-base/asset-identifiers-qr-id-sam-id-property-id) and its QR code. When you need it again, you **reinstate** it.
+
+## Archive, reinstate or delete?
+
+An asset can be in one of three places:
+
+| | What it means | Can you undo it? |
+|---|---|---|
+| **Active** | The normal asset. It shows in your lists and can be booked and assigned custody. | n/a |
+| **Archived** | Still yours, but hidden from your lists and read-only. | Yes. **Reinstate** brings it back as it was. |
+| **Deleted** | Gone for good, with its history. Use it for a record that was a mistake. | No. |
+
+Archiving is separate from an asset's status. Status still describes custody and bookings (Available, In custody, Checked out); archiving is a second, independent switch.
+
+## Who can archive
+
+**Owners** and **Administrators** can archive and reinstate assets and see the archived view. **Self-service** and **Base** users cannot: they never see archived assets in their lists, and the archive and reinstate actions are not offered to them. See [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions).
+
+## Archive a single asset
+
+1. Open the asset.
+2. Click **Actions** and choose **Archive**.
+
+Shelf confirms with **Asset archived**. The asset page now carries an **Archived** badge in place of its status, and **Book** is greyed out.
+
+If the asset is reserved by model in a booking and archiving it would leave that booking short of units, Shelf names the booking and asks before going ahead. Choose **Archive anyway** to continue; that booking is then refused at reservation or check-out until its model reservation is reduced.
+
+## Archive several assets at once
+
+1. On the **Assets** page, select the assets (or use **Select all** to take the whole view).
+2. Click **Actions** and choose **Archive**.
+3. Confirm in the **Archive assets** dialog.
+
+Assets that cannot be archived are skipped rather than failing the batch: anything checked out, in custody, in a reserved or checked-out booking, tracked by quantity, or already archived. Shelf tells you how many were archived and how many were skipped. See [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf).
+
+## What cannot be archived (yet)
+
+- **Assets that are out.** An asset that is checked out or in custody must be checked in or released first.
+- **Assets in a reserved or checked-out booking.** Shelf refuses with *"This asset is in a reserved or checked-out booking. Remove it from that booking, then archive it."* An asset that only sits in a **Draft** booking can be archived, but that booking will not reserve or check out with it until you reinstate the asset or take it off.
+- **Quantity-tracked assets.** For now only individually tracked assets can be archived. Quantity-tracked assets show *"Quantity-tracked assets can't be archived yet."*
+
+## Find your archived assets
+
+The list title on the **Assets** page doubles as a view menu. Click **Assets** and choose:
+
+- **Active** (the default): what you work with day to day.
+- **Archived**: only archived assets. The title reads **Archived assets**.
+- **All**: both, with archived assets marked by their badge. The title reads **All assets**.
+
+![The asset index with the list title opened as a menu offering Active, Archived and All](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/archive-view-menu.webp)
+
+The same menu appears on a kit's assets and on a location's assets. It works in both the simple and the advanced asset index, and it sits alongside your other filters, so you can, for example, search the archived assets in one category. When a search finds nothing in the Active view, Shelf points you to the archived assets in case what you are looking for is there.
+
+## Reinstate an asset
+
+- **One asset:** open it, click **Actions** and choose **Reinstate**.
+- **Several:** switch the list to **Archived**, select them, then **Actions** ▸ **Reinstate**.
+
+The asset is active and bookable again, exactly as it was. If it belongs to a kit that is in custody or checked out, release or check in the kit first.
+
+## What an archived asset can still do
+
+An archived asset is read-only. On the web you can still:
+
+- **Reinstate** it or **delete** it permanently. Every other action is greyed out, with the reason shown.
+- **Add a note** on its **Activity** tab, for example to record why it was retired.
+- **Open it from its label.** Scanning its QR code opens the asset page with the **Archived** badge, so a physical label never leads to a dead end.
+- **Stay on past bookings.** A booking that already held the asset keeps showing it, marked **Archived**, and you can still take it off a booking.
+
+It cannot be added to a booking, booked by model, assigned custody, moved or edited until you reinstate it.
+
+## How archived assets affect your numbers
+
+Archived assets are out of service, so anything that describes what you have **now** leaves them out, and anything that describes **history** keeps them.
+
+| Left out | Kept in |
+|---|---|
+| Asset lists, the booking picker and search | Bookings that already held the asset |
+| Dashboard totals, value, status split and top locations | Activity, Asset Utilization and Top Booked reports |
+| Asset Inventory, Asset Distribution and Idle Assets reports | |
+| Units available when booking by model | |
+
+So archiving a retired camera lowers your dashboard asset count and total value straight away, while last quarter's utilization still shows the bookings it was part of.
+
+## Frequently asked questions
+
+### Does archiving free up the asset's SAM ID or QR code?
+
+No. Both stay with the asset, so when you reinstate it, its ID and labels still work. SAM IDs are never reused, even after a permanent delete.
+
+### Can I archive from the Shelf Companion app?
+
+Archive and reinstate from Shelf on the web. The Companion app's asset list leaves archived assets out.
+
+### Should I archive or delete?
+
+Archive anything you might want to look up again: retired, lost, sold or seasonal equipment. Delete only records that should never have existed, such as a duplicate created by mistake.
