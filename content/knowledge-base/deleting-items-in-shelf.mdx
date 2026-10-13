@@ -1,0 +1,62 @@
+---
+title: "Deleting Assets, Kits, Bookings and More"
+description: "Every permanent delete in Shelf tells you what goes with the item and asks you to type its name, or the number of items selected, before it runs. Here is what each delete removes and what it keeps."
+category: "Assets"
+date: "2026-10-13"
+updated: "2026-10-13"
+layout: "knowledge-base"
+---
+
+A delete in Shelf is permanent: there is no trash to restore from. So before anything is removed, Shelf tells you what goes with it, and **Delete** stays greyed out until you type what you are deleting.
+
+If you only want an asset out of the way, [archive it](/knowledge-base/archive-and-reinstate-assets) instead. Archiving hides it from your lists and keeps its history, and you can reinstate it at any time.
+
+## How to confirm a delete
+
+**One item:** type its **name** in the confirmation field. The match ignores upper and lower case and extra spaces, so `demo camera` confirms **Demo  Camera**.
+
+1. Open the item (or its row menu on the list) and choose **Delete**.
+2. Read what the dialog says goes with it.
+3. Type the item's name where it says *To confirm, type …*.
+4. Click **Delete**.
+
+![The Delete asset dialog: it lists what goes with the asset, then asks you to type the asset's name, with Delete greyed out until you do](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/delete-asset-confirm.webp)
+
+**Several items at once:** select them, choose **Delete** from **Actions**, and type the **number of items selected**. If you used **Select all** and the list has changed since you opened the dialog, for example someone added an asset that matches your filters, Shelf deletes nothing and tells you the new number: *"Nothing was deleted. Your selection matches 4 assets, not 3. Type 4 to delete them."* You are never committed to more than you typed.
+
+Shelf checks what you typed on the server as well, so the rule also holds for an old browser tab or a script.
+
+## What each delete takes with it
+
+| Delete | You type | What goes with it |
+|---|---|---|
+| **Asset** | Its name | Its notes, custody, reminders and custom field values. It is removed from every booking, kit and audit it was part of, past and upcoming, and its QR code is unlinked. |
+| **Kit** | Its name | The kit itself. Its assets stay in your workspace and keep their location, but leave the draft and reserved bookings the kit was on. Custody of the kit is released and its QR code is unlinked. |
+| **Location** | Its name | Its notes and image. Assets and kits stored there are left without a location, and child locations move to the top level. |
+| **Booking** | Its name | Its notes, model reservations and check-in and check-out history. If it is ongoing or overdue, its assets become available. |
+| **Asset model** | Its name | Every booking reservation made by that model. The assets are kept but no longer belong to a model. |
+| **Category** in use | Its name | Its assets and kits become uncategorized, and asset models lose it as their default; they are kept. A category nobody uses deletes with one click. |
+| **Tag** in use | Its name | It is taken off every asset and booking carrying it; those are kept. A tag nobody uses deletes with one click. |
+| **Custom field** | Its name | The field disappears from every asset. |
+| **Archived audit** | Its name | Its scans, notes and images. See [Permanently Delete Archived Audits](/knowledge-base/delete-audits). |
+| **Any bulk delete** | The number selected | The same as above, for each item. |
+
+Removing something *from* something else, such as an asset from a booking, kit or audit, and deleting notes, images, reminders, saved filters or working-hours overrides keep their one-click confirmation: none of them removes a record you cannot recreate.
+
+## Select all deletes only what the list shows
+
+**Select all** across a searched or filtered list of locations, categories or asset models now deletes exactly the items that list shows. Before, it could delete every location, category or asset model in the workspace. Tags already worked this way. Check the number in the dialog before you type it: it is the number that will be deleted.
+
+## Deleting from the Shelf Companion app
+
+On the [Shelf Companion](/mobile-app) app, deleting an asset or a booking opens the same confirmation: the sheet says what goes with it, and **Delete** unlocks once you type the name.
+
+## Who can delete
+
+Nothing about who may delete has changed. Owners and Administrators can delete assets, kits, locations, categories, tags, asset models, custom fields and archived audits. Self-service and Base users can delete their own booking while it is a **Draft**. See [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions).
+
+## Related articles
+
+- [Archive and Reinstate Assets](/knowledge-base/archive-and-reinstate-assets): take an asset out of service without deleting it
+- [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf): bulk actions on the asset index
+- [Permanently Delete Archived Audits](/knowledge-base/delete-audits)
