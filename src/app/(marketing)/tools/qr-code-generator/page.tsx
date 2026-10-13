@@ -38,7 +38,7 @@ export default function QrCodeGeneratorPage() {
             },
             {
                 question: "Need a scanner?",
-                answer: "Try our free QR Code Decoder to test your generated codes directly in the browser.",
+                answer: "Try our free QR Code Scanner to test your generated codes with your camera or a screenshot, right in the browser. For 1D formats like UPC and Code 128, use the free Barcode Scanner.",
             },
         ],
     });
@@ -122,7 +122,7 @@ export default function QrCodeGeneratorPage() {
                                 <div>
                                     <h3 className="font-semibold text-foreground mb-2">Need a scanner?</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Try our free <Link href="/tools/barcode-scanner" className="text-orange-600 hover:underline">Barcode Scanner</Link> to test your generated codes directly in the browser. Supports QR codes plus 1D formats like UPC and Code 128.
+                                        Try our free <Link href="/tools/qr-code-scanner" className="text-orange-600 hover:underline">QR Code Scanner</Link> to test your generated codes with your camera or a screenshot, right in the browser. For 1D formats like UPC and Code 128, use the <Link href="/tools/barcode-scanner" className="text-orange-600 hover:underline">Barcode Scanner</Link>.
                                     </p>
                                 </div>
                             </div>

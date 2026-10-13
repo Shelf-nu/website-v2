@@ -3321,7 +3321,8 @@
           "2026-10-08"
         ],
         "capturedAt": "2026-10-09T00:00:00.000Z"
-      }
+      },
+      "deployedAt": "2026-10-09"
     },
     {
       "id": "exp-067",
@@ -3345,6 +3346,157 @@
           "2026-10-08"
         ],
         "capturedAt": "2026-10-09T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-09"
+    },
+    {
+      "id": "exp-068",
+      "page": "/tools/barcode-scanner",
+      "field": "content+feature",
+      "before": "Image-only scanner: decodes one uploaded image at a time, no camera. Position ~15 for 'online barcode scanner' and 'barcode scanner online' while every page above it also scans live with the webcam or phone camera.",
+      "after": "Live camera scanning (rear camera by default, camera switcher, permission-denied and no-camera fallbacks), continuous multi-scan into a list with skip-duplicates, multi-image upload, copy one/all, CSV export (code, format, scanned_at). Title, description, H1, intro, How it works and FAQ rewritten for camera + image; FAQ adds phone/webcam and export questions; link to the new /tools/qr-code-scanner.",
+      "hypothesis": "Matching the SERP's feature set (camera + image) and saying so in the title should lift the page into the top 5 for online barcode scanner / barcode scanner online / scan barcode online / barcode reader online (about 5,400 searches/month each for the first two).",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: online barcode scanner, barcode scanner online, scan barcode online, barcode reader online, barcode scanner, webcam barcode scanner, scan barcode with camera. Also watch tool_interact events (camera_start, scan, image_decode, csv_download) for engagement.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 862,
+        "impressions": 52352,
+        "ctr": 1.65,
+        "position": 14.3,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T12:53:37.060Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-069",
+      "page": "/tools/qr-code-scanner",
+      "field": "new-page",
+      "before": "No page. 'qr code scanner online' and 'qr code reader online' had no Shelf page; the barcode scanner was image-only.",
+      "after": "New /tools/qr-code-scanner using the same scanner component in a QR-first variant: camera + image, readable payloads (URL with domain shown first, Wi-Fi with hidden password, vCard/MECARD contact, mailto, tel, SMS, geo), links never opened automatically, how-to for iPhone / Android / laptop, a QR link safety section and an 8-question FAQ.",
+      "hypothesis": "qr code scanner online and qr code reader online get about 14,800 searches/month each, and page 1 is small tool sites offering camera + image upload. A faster, private, no-app page with readable payloads should reach page 1.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: qr code scanner online, qr code reader online, scan qr code online, scan qr code from image, qr scanner webcam, qr code scanner, qr code reader.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-070",
+      "page": "/tools/barcode-generator",
+      "field": "new-page",
+      "before": "No barcode generator on the site. Free tools covered QR generation, barcode scanning and asset labels, but nothing that makes Code 128 / EAN / UPC barcodes or prints them on label sheets.",
+      "after": "New /tools/barcode-generator: in-browser generator (bwip-js, lazy-loaded) for Code 128, Code 39, EAN-13, UPC-A, EAN-8, ITF-14, Data Matrix and QR with per-type validation and check digits; single mode with PNG/SVG/PDF; bulk mode from a pasted list, a CSV column or a prefix+number sequence (up to 1,000) with valid/invalid counts; vector PDF label sheets for Avery 5160/8160, 5163, L7160, L7651, one-per-page and a custom grid, plus ZIP of PNG/SVG. Content: type-choice table, how to print labels, barcodes for asset tracking (Shelf QR + Alternative Barcodes add-on), GS1 note, 7-question FAQ (FAQPage JSON-LD). Linked from /tools, the navbar blurb, the scanner page, sitemap and llms.txt.",
+      "hypothesis": "'barcode generator' gets 450,000 US searches a month but its page 1 is out of reach; the realistic targets have low competition and page 1 made of small tool sites: bulk barcode generator 1,600/mo, barcode label generator 590/mo, code 128 generator 390/mo, plus long tail (free barcode generator, barcode generator for inventory, batch barcode generator, code 39 / EAN-13 / UPC generator, barcode sheet, avery barcode labels). Free tools are the 2nd-biggest signup source after the homepage and these searchers are inventory/asset people, so a working bulk + label-sheet tool should rank for the long tail within weeks and feed signups.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: bulk barcode generator, barcode label generator, code 128 generator, code 128 barcode generator, code 39 generator, ean 13 generator, ean 13 barcode generator, upc generator, upc barcode generator, free barcode generator, barcode generator for inventory, batch barcode generator, barcode sheet generator, avery barcode labels, barcode generator. Also watch PostHog tool_interact (tool=barcode_generator) for generate_bulk and download_pdf_sheet counts, and signup_click from this page.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-071",
+      "page": "/tools/blurry-qr-code-reader",
+      "field": "new-page",
+      "before": "No page for blurry or unreadable QR codes. The scanner tools gave up after one plain decode pass and showed a generic 'no barcode detected' message.",
+      "after": "New /tools/blurry-qr-code-reader using the shared scanner in a 'blurry' variant (opens on Image). All scanner pages gain a time-boxed clean-up pass when a still image fails (inverted colors, contrast stretch, local threshold for uneven lighting, unsharp mask, resizing; 2D codes), inverted camera frames for light-on-dark codes, a 'Read after ...' note and specific retake advice when nothing reads. Content: what the clean-up does and its limits, 8 causes of scan failure with fixes, QR error correction levels L/M/Q/H, how to retake a photo, making codes that keep scanning, 7-question FAQ (FAQPage JSON-LD). Linked from /tools, /tools/qr-code-scanner, /tools/barcode-scanner, sitemap and llms.txt.",
+      "hypothesis": "'blurry qr code' gets 14,800 US searches/month, plus 'qr code not scanning' 1,900, 'qr code won't scan' 260 and 'why won't my qr code scan' 110. Page 1 for 'blurry qr code' is weak (a Reddit thread, small sharpen-and-decode tools, a YouTube video, an old blog post), so a working in-browser reader with honest, specific fixes should reach page 1 within weeks.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: blurry qr code, read blurry qr code, qr code not scanning, qr code won't scan, why won't my qr code scan, damaged qr code, scan damaged qr code, inverted qr code, engraved qr code. Also watch PostHog tool_interact (tool=blurry_qr_code_reader) image_decode with enhanced=yes vs image_no_code, and the same enhanced split on barcode_scanner and qr_code_scanner.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-072",
+      "page": "/blog/best-equipment-management-software",
+      "field": "content-aio-definition",
+      "before": "Opened with 'There are dozens of equipment management tools' and no definition; no FAQ; footer said 'Last updated: May 2026'.",
+      "after": "One-sentence definition of equipment management software + a 7-point 'what to look for' list at the top, a 5-question FAQ (definition, vs CMMS, free options, cost, features), updated 2026-10-12.",
+      "hypothesis": "Google's AI Overview for 'equipment management software' (2026-10-12) opens with a definition + feature list + named tools and does not cite shelf.nu. The cited pattern elsewhere (/solutions/equipment-check-in, quoted first for 'equipment checkout software') is a crisp one-sentence definition. Adding one plus feature and FAQ answers should get the page cited and Shelf named.",
+      "notes": "Measure: AI Overview citation for equipment management software / best equipment management software (scratchpad audit/aio.py), plus GSC query position. Competitor prices in the table are dated April 2026: re-verify in the quarterly check.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "deployedAt": "2026-10-12",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
+      }
+    },
+    {
+      "id": "exp-073",
+      "page": "/solutions/tool-tracking",
+      "field": "content-aio-definition",
+      "before": "Soft opening line, no checklist, no prices, no FAQ; pos ~27-30 for tool tracking software.",
+      "after": "One-sentence definition, an 8-point 'what to look for' list, a 'Shelf at a glance' block (free plan, Team $67/$370, QR + Alternative Barcodes, scan location, no GPS/Bluetooth tags, no work orders) and a 5-question FAQ (FAQPage JSON-LD via the solutions layout).",
+      "hypothesis": "The AI Overview for 'tool tracking software' (2026-10-12) lists definition, named tools and 'core features to look for' and does not cite shelf.nu. Matching that structure with honest facts should earn a citation and lift the page from ~28 toward page 1.",
+      "notes": "Measure: AI Overview citation for tool tracking software / tool tracking system, GSC query position.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "deployedAt": "2026-10-12",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
       }
     }
   ]
