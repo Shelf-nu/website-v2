@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, archiving, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-12"
+updated: "2026-10-13"
 layout: "knowledge-base"
 ---
 
@@ -60,7 +60,7 @@ Available operations, in the order they appear in the menu:
 - **Mark as unavailable**: Make items unbookable/unreservable in bulk
 - **Archive**: Take the selected assets out of your lists and current reports without deleting them (Owners and Administrators). Assets that are checked out, in custody, in a reserved or checked-out booking, quantity-tracked or already archived are skipped. See [Archive and Reinstate Assets](/knowledge-base/archive-and-reinstate-assets)
 - **Reinstate**: Make archived assets active again. Available when the list is switched to the **Archived** view
-- **Delete**: Remove selected assets from inventory
+- **Delete**: Remove selected assets from inventory. The dialog lists what goes with them, and **Delete** stays greyed out until you type the number of assets selected
 
 Some entries grey out when the selection does not suit them, with a short explanation on hover. **Release custody** needs every selected asset to be in custody, **Assign custody** needs them all to be available and none of them to be an individually tracked asset inside a kit (*"Some of the selected assets are part of a kit. Assign custody to the kit, or remove them from the kit first."*), and **Add to kit** and **Delete** are blocked while anything in the selection is checked out. The audit entries only appear for roles that can create or update audits.
 
