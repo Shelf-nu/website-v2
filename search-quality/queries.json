@@ -34,7 +34,6 @@
 
     { "q": "maintenance tracking", "expect": "/solutions/maintenance-tracking" },
     { "q": "maintenance", "expect": "/solutions/maintenance-tracking" },
-    { "q": "it asset management", "expect": "/solutions/it-asset-management" },
     { "q": "equipment reservations", "expect": "/solutions/equipment-reservations" },
     { "q": "reservations", "expect": "/solutions/equipment-reservations" },
     { "q": "tool tracking", "expect": "/solutions/tool-tracking" },
@@ -70,6 +69,7 @@
   "knownIssues": [
     { "q": "bookings", "expect": "/features/bookings", "note": "Term on 344/348 pages -> IDF~0, all scores ~0.03, order is noise. Not fixable by ranking/keywords." },
     { "q": "kits", "expect": "/features/kits", "note": "Core concept on most pages -> IDF~0, all scores ~0, order is noise (passed before by tie-luck, tipped by corpus churn). Same class as bookings." },
+    { "q": "it asset management", "expect": "/solutions/it-asset-management", "note": "Near-tie: #3 on main as of 2026-10-13 (run on 42b8d7a); fell to #4 behind /blog/the-difference-between-inventory-management-systems-and-asset-management-systems when the archive-assets KB article added asset wording elsewhere (website-v2#384). \"it\" carries no weight, so this is effectively \"asset management\", a word on most pages. The page already has \"IT asset management\" in seo.keywords. Tracked here so unrelated content PRs cannot turn CI red; \"it asset tracking\"-style queries can be asserted instead if wanted." },
     { "q": "locations", "expect": "/features/location-tracking", "note": "Core product word. Passes at #3, only 0.7% above #4 (/knowledge-base/locations-vs-categories-vs-tags) as of 2026-09-11, so any location wording on another page can flip it. Tracked here so CI can't go red on an unrelated PR; \"location tracking\" stays asserted." },
     { "q": "asset tracking", "expect": "/solutions/asset-tracking", "note": "Extremely generic head term; competes with the whole site." },
     { "q": "csv", "expect": "/knowledge-base/importing-assets-to-shelf-csv-guide", "note": "Real on-site query, currently ~#8. Verify/strengthen canonical import destination." },
