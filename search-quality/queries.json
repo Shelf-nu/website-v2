@@ -11,6 +11,7 @@
     { "q": "roi calculator", "expect": "/blog/the-true-roi-of-asset-management-a-nuanced-perspective" },
     { "q": "depreciation calculator", "expect": "/tools/equipment-depreciation-calculator" },
     { "q": "asset label designer", "expect": "/tools/asset-label-designer" },
+    { "q": "custom asset tags", "expect": "/tools/asset-label-designer" },
     { "q": "salvage value calculator", "expect": "/tools/salvage-value-calculator" },
     { "q": "macrs", "expect": "/tools/macrs-depreciation-calculator" },
 
@@ -71,6 +72,7 @@
     { "q": "kits", "expect": "/features/kits", "note": "Core concept on most pages -> IDF~0, all scores ~0, order is noise (passed before by tie-luck, tipped by corpus churn). Same class as bookings." },
     { "q": "it asset management", "expect": "/solutions/it-asset-management", "note": "Near-tie: #3 on main as of 2026-10-13 (run on 42b8d7a); fell to #4 behind /blog/the-difference-between-inventory-management-systems-and-asset-management-systems when the archive-assets KB article added asset wording elsewhere (website-v2#384). \"it\" carries no weight, so this is effectively \"asset management\", a word on most pages. The page already has \"IT asset management\" in seo.keywords. Tracked here so unrelated content PRs cannot turn CI red; \"it asset tracking\"-style queries can be asserted instead if wanted." },
     { "q": "locations", "expect": "/features/location-tracking", "note": "Core product word. Passes at #3, only 0.7% above #4 (/knowledge-base/locations-vs-categories-vs-tags) as of 2026-09-11, so any location wording on another page can flip it. Tracked here so CI can't go red on an unrelated PR; \"location tracking\" stays asserted." },
+    { "q": "asset tags", "expect": "/tools/asset-label-designer", "note": "Passes at #3 as of 2026-10-14 (exp-077 run), behind /blog/asset-tags-guide at #2, which owns the informational intent and is meant to rank too. A #3 near-tie can flip on any tag wording elsewhere, so it is tracked here; \"custom asset tags\" (#1) stays asserted." },
     { "q": "asset tracking", "expect": "/solutions/asset-tracking", "note": "Extremely generic head term; competes with the whole site." },
     { "q": "csv", "expect": "/knowledge-base/importing-assets-to-shelf-csv-guide", "note": "Real on-site query, currently ~#8. Verify/strengthen canonical import destination." },
     { "q": "rfid", "expect": null, "note": "Real on-site query with NO canonical page. Verify product support before creating one." },
