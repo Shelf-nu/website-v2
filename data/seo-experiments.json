@@ -3598,6 +3598,31 @@
         ],
         "capturedAt": "2026-10-14T00:00:00.000Z"
       }
+    },
+    {
+      "id": "exp-078",
+      "page": "/blog/equipment-management-software-for-universities-streamlining-campus-resources",
+      "field": "rewrite+consolidation",
+      "before": "Title 'Equipment Management Software for Universities: Streamlining Campus Resources'; generic guide copy (headings like 'Summarize key takeaways'), no pricing, no roles, no case-study facts, empty seo.keywords; university demand split across this page, /blog/intelligent-asset-management-software-for-universities-creative-labs and /solutions/educational-resource-management.",
+      "after": "Title 'Equipment Checkout and Asset Tracking Software for Universities'; definition-first opening; who on campus uses it; how it works in Shelf (QR labels, Base requests + admin hand-over, Self-service, no double-booking, working hours, kits, overdue, custody, Audits add-on, department workspaces, SSO incl. Shibboleth, Companion app); KCAI / EMU / Purdue facts; Team price + add-ons + non-profit discount + VPAT; Cheqroom/WebCheckout switching; honest 'what Shelf does not do'; 8-question FAQ; seo.keywords for the university query cluster; contextual link from /industries/education.",
+      "hypothesis": "One strong commercial page for the university cluster (asset/inventory tracking software/solution/tool for universities, campus inventory software, college equipment tracking, Cheqroom-for-universities questions) lifts it from p8-16 / 0 clicks to top 5 and clicks. The two overlapping pages will be redirected into it once redirect capacity is freed.",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Overlapping pages to redirect here in a follow-up (redirect file full): /blog/intelligent-asset-management-software-for-universities-creative-labs and /solutions/educational-resource-management. Measure at query level in GSC for the university cluster.",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 1839,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
     }
   ]
 }

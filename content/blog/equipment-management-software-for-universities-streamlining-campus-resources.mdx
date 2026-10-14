@@ -1,164 +1,196 @@
 ---
-title: 'Equipment Management Software for Universities: Streamlining Campus Resources'
+title: 'Equipment Checkout and Asset Tracking Software for Universities'
 description: >-
-  Learn how equipment management software for universities tracks, manages and
-  schedules campus equipment while improving accountability and student access.
+  How universities run equipment checkout and asset tracking with Shelf: QR
+  labels, student booking requests, kits, overdue tracking, custody, audits,
+  department workspaces, SSO, real campus examples and pricing.
 layout: blog
 canonicalUrl: >-
   /blog/equipment-management-software-for-universities-streamlining-campus-resources
 date: '2025-11-17'
-updated: '2025-11-24'
+updated: '2026-10-14'
 author: carlos-virreira
 category: asset-tracking-management
 seo:
-  title: >-
-    Equipment Management Software for Universities: Streamlining Campus
-    Resources
+  title: Equipment Checkout and Asset Tracking Software for Universities
   description: >-
-    Learn how equipment management software for universities tracks, manages and
-    schedules campus equipment while improving accountability and student
-    access.
-  keywords: []
+    QR equipment checkout and asset tracking for university media centers, IT
+    desks, labs and libraries: student requests, kits, overdue tracking,
+    unlimited users.
+  keywords:
+    - asset tracking software for universities
+    - asset tracking solution for universities
+    - asset tracking tool for universities
+    - asset tracking for universities
+    - asset management software for universities
+    - inventory tracking software for universities
+    - inventory tracking solution for universities
+    - inventory tracking tool for universities
+    - equipment checkout software for universities
+    - equipment management software for universities
+    - how to track it equipment across university campus
+    - campus inventory software
+    - college equipment tracking
+    - school equipment management solution
+    - higher education inventory management software
   noindex: false
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/equipment-management-software-for-universities-streamlining-campus-resources.jpg"
 ---
 
-Learn how equipment management software for universities tracks, manages and schedules campus equipment while improving accountability and student access.
+Equipment checkout and asset tracking software for universities is a shared system that records every piece of loanable or departmental equipment on campus, lets students and staff reserve it, logs who has each item and when it is due back, and lets staff verify what is actually on the shelf.
 
-University operations managers and creative lab coordinators balance student demand with compliance, limited budgets, and specialized gear. 
+This page explains who on campus uses that kind of system, how it works in [Shelf](/), what three universities do with it, what it costs, how to move from Cheqroom or WebCheckout, and what Shelf does not do.
 
-The right equipment management software for universities creates a shared source of truth that keeps cameras, microscopes, and CNC tools available without piling on administrative work. 
+## Who uses it on campus
 
-This guide outlines how dedicated platforms streamline inventory management for schools, reduce friction in lending programs, and simplify creative lab equipment management so every checkout supports learning outcomes.
+Most universities do not have one equipment problem. They have six or seven, each owned by a different department:
 
-## What Is Equipment Management Software for Universities?
+- **Media centers, film and art schools.** Cameras, lenses, audio recorders, lighting and grip gear that students book for coursework and productions.
+- **IT loaner desks.** Laptops, chargers, hotspots and tablets lent to students and faculty, often for a day or a week.
+- **Libraries.** Device lending alongside the book collection: laptops, calculators, cameras, VR headsets.
+- **Labs and makerspaces.** Instruments, measurement tools, 3D printers and the supplies that get used up, like filament.
+- **Athletics.** Team kit, training equipment and electronics that travel to away events.
+- **Facilities.** Tools, AV carts, event furniture and anything that moves between buildings.
 
-### Definition and key terms
+Most start on a spreadsheet, a paper sign-out sheet or a library system built for books, and break the same way: nobody knows who had the item last, two classes reserve the same camera, and a kit comes back without its batteries.
 
-Equipment management software for universities centralizes data about **equipment status**, **reservations**, and **user eligibility across departments**. 
+## How it works on a campus with Shelf
 
-Solutions often pair a cloud dashboard with scanning workflows for [asset tracking software](https://www.shelf.nu/solutions/asset-tracking), inventory policies, and departmental rules. 
+![University TV studio with tracked equipment](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/solutions/education-tvstudio.jpg)
 
-In some deployments, IoT sensors may be used by some organizations to enrich location or utilization data, but Shelf focuses on clear, human-driven workflows with reliable audit trails.
+### A QR label on every item
 
-### Traditional vs. modern approaches
+Every asset and every kit in Shelf gets its own QR code. Print the labels, stick them on, and any phone can open the item's page by scanning it. Gear that already carries barcodes can keep them (see [switching](#switching-from-cheqroom-or-webcheckout) below).
 
-![Fillthispaperplease](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/fillthispaperplease.png)
+### Students request, staff hand over
 
-Traditional spreadsheets and handwritten clipboards struggle with dynamic [equipment booking](/features/bookings) and scheduling.
+Shelf has four fixed [user roles](/knowledge-base/user-roles-and-their-permissions), and they map neatly onto a campus:
 
-They lack** automated reminders, consistent naming conventions, and permissions that match departmental policies**.
+- **Base** is for students and occasional borrowers. They browse the gear that is available for booking and click **Request reservation**. They cannot check anything out themselves, so nothing leaves until a staff member hands it over.
+- **Self-service** is for trusted users such as staff, faculty or teaching assistants who should book and check gear out and back in for themselves, without waiting for the desk.
+- **Administrator** is for the people who run the desk. They manage inventory, people and every booking, and they do the hand-over for Base users.
+- **Owner** is the one account that owns the workspace and its subscription.
 
-Modern systems provide structured metadata, enforceable agreements, and service reminders that make proactive maintenance possible without chasing paper logs.
+If you want hand-overs to be explicit, the workspace owner can require staff to scan or select each item at checkout and check-in rather than clicking one button for the whole booking. See [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out).
 
-![Calendar Solution Page](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/66e95d07e9395c75750d77d1_Calendar%20solution%20page-min.jpg)
+### Bookings that cannot double-book
 
-*Upgrade from a paper based workflow to a modern web based solution*
+A [booking](/features/bookings) reserves items for a date range. While an item is reserved or checked out, it is unavailable to any overlapping booking, so two classes cannot hold the same camera for the same afternoon. [Working hours](/knowledge-base/working-hours-set-operating-schedules-for-your-workspace) stop people booking a pickup or return for a time the desk is closed, with holiday overrides for breaks.
 
-### Why universities need specialized solutions
+For fleets of identical gear, such as 30 loaner laptops, you can group the units under an asset model and reserve "4x laptop" without picking serial numbers in advance. Whichever four units the desk scans at pickup fulfil the booking.
 
-Campus teams coordinate an equipment checkout system for higher education that spans **diverse asset classes, from engineering labs to media studios.**
+### Kits go out and come back as one
 
-Specialized platforms map unique approval chains, manage consumables alongside capital items, and surface utilization insights that guide purchasing decisions. 
+A [kit](/features/kits) groups items that always travel together, like a camera body, two lenses, batteries and a charger, under one QR code. The kit is booked and checked out as a single unit, so a student cannot take the body and leave the batteries off the record.
 
-They also support asset tracking software for schools and universities facing accreditation requirements or grant reporting obligations.
+### Overdue items and who has what
 
-## Core Features and Benefits
+When a booking's end time passes without a check-in, Shelf marks it **Overdue** and emails the people on the booking. Reminders go out one hour before pickup and one hour before the return is due. [Custody](/features/custody) shows who holds each item right now, including long-term loans that are not tied to a booking, such as a laptop assigned to a faculty member for the year.
 
-![Reminders](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/6797a6e19ceeaec6826c4048_reminders2-min-p-2000.png)
+Staff and students can also subscribe to a read-only [calendar feed](/knowledge-base/subscribe-your-calendar-to-shelf-bookings) of bookings in Google Calendar, Outlook or Apple Calendar.
 
-### Real-time asset tracking and proactive maintenance
+### Audits at the end of term
 
-Reliable software gives staff live visibility into where assets are, who has them, and when they are due back. 
+With the [Audits](/features/audits) add-on, a staff member or student worker walks the room and scans labels. Shelf compares what was scanned against what should be there and flags found, missing and unexpected items.
 
-QR or barcode scans paired with scheduled notifications promote proactive maintenance, ensuring inspections happen before student projects stall.
+### Supplies and reports
 
-*When administrators spot uneven usage trends, they can rebalance inventory management for schools by relocating gear or adjusting lending limits.*
+Makerspace filament, batteries and lab consumables can be [tracked by quantity](/features/consumables-tracking) with a low-stock threshold instead of one record per unit. Built-in [reports](/features/reports) such as Idle Assets, Asset Utilization, Top Booked Assets and Overdue Items show department heads what sits unused and who is late.
 
-### Efficient check-in/out and reservation systems
+### A separate workspace for each department
 
-A unified calendar prevents double bookings by linking availability to the same system students use for reservations. 
+Departments that want their own inventory, people and rules can each run their own [workspace](/features/workspaces). Workspaces are hard walls: the film school never sees IT's laptops, and nobody in one department sees another department's people or bookings. Each Team workspace is its own subscription, and owning more than two workspaces is arranged with our team.
 
-Integrating self-service kiosks or curbside pick-up processes ensures [check-in/out](https://www.shelf.nu/features/custody) remains fast even during peak weeks. 
+### Campus sign-in with SSO
 
-Transparent rules around holds, fines, and late returns reduce disputes and help staff focus on supporting creative work.
+The SSO add-on supports single sign-on over SAML 2.0 with Microsoft Entra ID, Google Workspace, Okta, Shibboleth and other SAML 2.0 providers. You map identity-provider groups to Shelf roles, so a student group can land as Base and a staff group as Self-service or Administrator. See [SSO with Google Workspace](/knowledge-base/sso-with-google-workspace) for the setup.
 
-### Multi-user roles, accountability and audit trails
+### Web and phone
 
-Granular permissions let lab managers delegate approvals without sacrificing control. Long-term loans and sensitive gear transfers stay visible through timestamped [custody](https://www.shelf.nu/features/custody) histories. When auditors request evidence, teams can surface chronological logs showing when an asset moved, who took responsibility for it, and which conditions applied.
+The full platform runs in any browser. The free Shelf Companion app on [iPhone and Android](/mobile-app) handles the desk work in the field: scanning, booking check-out and check-in, custody and audits, on the same workspace and login.
 
-![Invite Team Members Shelf](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/66aa0b8d0c921086b59bb374_65cf5105e6d25c6db20ae232_invite-team-members-shelf.jpeg)
+## Real examples from universities
 
-*Shelf comes with pre-set permissions for various situations relevant to equipment management at universities*
+![Mobile QR scanning for educational equipment check-out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/solutions/phone-qr-alt-2.png)
 
-## Selecting the Right Solution
+### Kansas City Art Institute: media center checkout, moved from Cheqroom
 
-![Screenshot](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/1726495565233.jpeg)
+KCAI's Media Center lends equipment to students for creative projects and moved from Cheqroom to Shelf. Their labels were printed on a DYMO LabelWriter 550, a workflow they wanted to keep. When their DYMO-generated QR codes were not picked up by Shelf's in-app scanner during booking creation, Shelf updated the scanner to read externally generated codes, so the Media Center kept its printer and label workflow and continued lending through the transition. [Read the KCAI case study](/case-studies/kcai).
 
-### Assessing campus workflows and equipment types
+### Eastern Michigan University: theatre and production inventory
 
-Start by mapping how departments schedule, prepare, and maintain assets today. 
+EMU's Theatre & Entertainment Design & Technology Program had relied on spreadsheets, memory and rough location maps for its props and scenic elements, with student workers turning over every year as they graduated. With Shelf, every item is assigned a location, and students can search and book inventory remotely, so a student living in another state can find and reserve props for a show before arriving on site. The program reports removing hours of "blind digging" from production prep. [Read the EMU case study](/case-studies/eastern-michigan-university).
 
-**EDUCAUSE surveys** highlight the diversity of workflows across higher education; use similar inventories to capture specialized needs like fabrication labs or media cages. 
+### Purdue University: drone fleets across three programs
 
-**Document special compliance scenarios, such as grant-funded research kits or ADA accommodations, before shortlisting vendors.**
+Purdue's School of Aviation and Transportation Technology (SATT) replaced LibraryCat, a library system that only allowed 24-hour holds, so students could book aircraft days or weeks ahead. SATT logged 632 bookings in its first four months, with 289 in September as the fall semester started. Drones go out as kits with their associated gear, and maintenance checkouts plus the activity log keep a paper trail for FAA-regulated aircraft. Three Purdue programs now run independent workspaces with nearly 100 users, and the Institute for Digital Forestry uses self-checkout so faculty and staff do not need a dedicated equipment manager. [Read the Purdue case study](/case-studies/purdue-university).
 
-### Essential features: mobile scanning, integrations and customization
+## Pricing for universities
 
-Mobile scanning keeps staff productive on loading docks and in rehearsal halls, while integrations with identity systems limit manual data entry. Review how platforms adapt to departmental vocabularies, referencing guidance such as [When to Track vs When to Tag](https://www.shelf.nu/blog/when-to-track-vs-when-to-tag-the-art-science-of-modern-asset-management) to prioritize full tracking versus lightweight tagging. Creative lab equipment management often depends on configurable forms that capture project context, risk waivers, and material usage without sacrificing simplicity.
+Shelf's prices are public on the [pricing page](/pricing).
 
-### Budgeting and ROI considerations
+- **Team plan:** $67 a month, or $370 a year billed annually. It includes bookings, kits, custody and **unlimited users**, so student, teaching-assistant and staff accounts cost nothing extra. There is a 7-day free trial without a credit card.
+- **Audits add-on:** $37 a month or $205 a year.
+- **Alternative Barcodes add-on:** $18.50 a month or $170 a year. Use the barcodes already on your equipment.
+- **SSO / SAML add-on:** priced per identity that signs in through SSO, in tiers that get cheaper as you add users. Users who sign in with email and password stay unlimited and included. See the [pricing page](/pricing) for the tiers.
+- **Enterprise:** custom pricing for universities, multi-site organizations and large teams.
 
-Calculate total cost of ownership across licenses, hardware labels, and staff time saved. Independent references like [Gartner Intelligent Asset Management Reviews](https://www.gartner.com/reviews/market/intelligent-asset-management-iam-software) reveal adoption patterns and peer experiences that inform contract negotiations. Pair financial data with qualitative feedback—how quickly did departments onboard, and did the platform reduce lost gear enough to fund future upgrades?
+Registered non-profit organizations, including non-profit schools and universities, get **10% off the Team plan, all add-ons and SSO when billed annually**. The discount applies to annual billing only. Annual plans can be paid by invoice with a purchase order.
 
-## Implementation and Adoption
+Shelf maintains a **VPAT** documenting conformance with Section 508 and WCAG 2.1. You can request it, along with other accessibility documentation, from the [education page](/industries/education).
 
-![Collection Cover Image Optimized](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/collection-cover-image-optimized.png)
+## Switching from Cheqroom or WebCheckout
 
-### Migrating from spreadsheets to software
+Two things make a move straightforward:
 
-Successful migrations start with clean data. Standardize naming, statuses, and categories before importing so existing reports remain useful. Leverage templates or bulk-edit tools to map old columns to new schemas and validate results in sandbox environments before a campus-wide launch.
+- **CSV import.** Export your assets from the old system and bring them in with the [CSV import](/knowledge-base/importing-assets-to-shelf-csv-guide), which is included on Plus, Team and Enterprise. Categories, locations, kits and custodians named in the file are created automatically.
+- **Keep your labels.** The [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on reads Code 128, Code 39, EAN-13, Data Matrix and externally generated QR codes, so you can attach the barcode already on each item instead of relabelling the whole room.
 
-### Training staff, students and faculty
+**Coming from Cheqroom.** Cheqroom is a capable system and does several things Shelf does not: maintenance scheduling and service history, PDF agreements with digital signatures at checkout, GPS tracking on higher tiers, and Zapier integrations with thousands of apps. Like Shelf, it handles kits and bookings with overdue tracking, and its plans include unlimited assets and regular users. The main differences are pricing and structure. Cheqroom charges per administrator, so cost grows with the number of staff who run the desk, while Shelf's Team plan is one flat price per workspace. Shelf is also open source (AGPL), so you can inspect the code or self-host. Full comparison: [Cheqroom alternative](/alternatives/cheqroom).
 
-Plan layered training that pairs quick-start videos with office-hour sessions. Students need straightforward workflows that respect their time, while staff benefit from scenario-based labs covering incident response and proactive maintenance cycles. Reference interface primers like [Why We Built Availability View](https://www.shelf.nu/blog/why-we-built-availability-view-when-customers-show-you-whats-missing) to illustrate how design choices prevent overbooking and surface alternatives.
+**Coming from WebCheckout.** WebCheckout is built around a staffed checkout desk and goes deeper into academic systems than Shelf: recurring reservations tied to course sections, patron rules by enrollment, and campus card and SIS integration. Shelf is lighter. Any authorized person can scan a QR label with a phone, booking is built into the plan, and new student workers can learn it in minutes. Full comparison: [WebCheckout alternative](/alternatives/webcheckout).
 
-### Ensuring data quality and ongoing maintenance
+## What Shelf does not do
 
-Assign owners to review audit logs, overdue lists, and maintenance schedules weekly. Publish policies that align with Shelf’s [Accessibility Statement](https://www.shelf.nu/accessibility-statement) so accommodations remain front of mind when calibrating processes. Establish quarterly retrospectives to capture lessons learned, retire obsolete records, and refresh documentation as hardware fleets evolve.
+- **No payments or fines.** Shelf records overdue and damaged items, but it does not charge late fees, take deposits or collect payments.
+- **No recurring reservations.** There is no automatic weekly series. Duplicate an existing booking and change its dates, which keeps the same equipment list.
+- **No electronic signatures.** For a signed record, print the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking). It lists what came back, when and who received it, and has signature lines for signing on paper.
+- **No LMS or SIS integration.** Shelf does not connect to Canvas, Blackboard, Moodle, Banner or other student information systems, so course enrolment does not change booking rights automatically. Access is set by role and workspace, and SSO group mapping can assign roles from your identity provider.
 
-## Meeting Unique Needs of Universities and Creative Labs
+## Frequently Asked Questions
 
-![Printmaking Studio](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/Printmaking_Studio.original.jpg)
+### Can students book equipment themselves?
 
-### Integrating with academic schedules and creative workflows
+Yes. Give students the Base role and they can browse bookable equipment and request a reservation from the web or the Shelf Companion app. They cannot check gear out themselves; a staff Administrator hands it over. Give trusted students or teaching assistants the Self-service role if they should check their own bookings out and back in.
 
-Tie asset availability to academic calendars so capstone deadlines and production weeks receive priority. Some organizations pair registrar feeds with scheduling tools to automatically adjust reservations during holidays or finals. Creative cohorts gain confidence when they see real-time options for equipment booking and scheduling, complete with preparation buffers for repairs or calibration.
+### How do we stop double-bookings in a media center?
 
-### Design simplicity and inclusive user experience
+Put the equipment on bookings. Once an item is reserved or checked out it is unavailable to any overlapping booking, so the same camera cannot be held twice. Kits book as one unit, and working hours stop pickups and returns from being scheduled when the desk is closed.
 
-Interfaces should foreground the next action—reserve, extend, or return—rather than burying tasks under dense menus. Icons, color choices, and responsive layouts must support students using personal devices in studios or on location. Peer benchmarks from [EDUCAUSE](https://www.educause.edu/) showcase how accessible design drives adoption across diverse learner populations.
+### Can we use our existing barcode labels?
 
-### Shelf’s approach: workspaces, custody and flexible QR code management
+Yes, with the Alternative Barcodes add-on. It supports Code 128, Code 39, EAN-13, Data Matrix and externally generated QR codes, so you can attach the code already on each item instead of relabelling.
 
-Shelf organizes departmental inventories with [workspaces](https://www.shelf.nu/features/workspaces) that let administrators tailor policies for theatre, engineering, or broadcast labs without building separate systems. Deep accountability flows through digital [custody](https://www.shelf.nu/features/custody) receipts that keep long-term loans visible to faculty and administrators alike. When teams need to refresh labels after reallocations or repairs, [QR code swapping & management](/knowledge-base/understanding-qr-code-swapping-and-management-in-shelf) maintains a clean scan history and avoids orphaned IDs.
+### Does Shelf support SSO for campus accounts?
 
-## Conclusion and Next Steps
+Yes, through the SSO add-on: SAML 2.0 with Microsoft Entra ID, Google Workspace, Okta, Shibboleth and other SAML 2.0 providers. Identity-provider groups can map to Shelf roles. SSO is set up together with our team on a paid plan.
 
-![Homepage Fb 1](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/blog/homepage-fb-1.jpeg)
+### How much does it cost for a university?
 
-### Summarize key takeaways
+The Team plan is $67 a month or $370 a year with unlimited users. Audits, Alternative Barcodes and SSO are optional add-ons. Registered non-profit schools and universities get 10% off the Team plan, all add-ons and SSO on annual billing, and annual plans can be paid by invoice with a PO. Large or multi-site institutions can ask about Enterprise.
 
-Purpose-built platforms deliver a shared understanding of campus resources, unify approvals, and keep proactive maintenance on schedule. Universities gain confidence that high-demand gear stays available, while creative labs see smoother project pipelines and fewer surprise shortages.
+### Is there an accessibility VPAT?
 
-### Case studies and examples
+Yes. Shelf maintains a VPAT documenting conformance with Section 508 and WCAG 2.1. Request it from the [education page](/industries/education).
 
-Teams evaluating new systems can learn from peers such as the [Fabel Film Case Study](https://www.shelf.nu/case-studies/from-memory-to-mastery-how-fabel-film-stopped-double-bookings-with-shelf), where structured bookings eliminated double scheduling. Similar strategies help institutions decide when to extend coverage beyond central cages and when to empower departments with independent workflows.
+### Can each department have its own inventory?
 
-### How to get started with Shelf
+Yes. Give each department its own workspace. Workspaces are fully separated: assets, people, roles and bookings in one are invisible to another. Purdue runs three programs as three independent workspaces.
 
-Explore how Shelf scales from single labs to multi-campus deployments with transparent audit trails and streamlined student experiences. 
+### Is Shelf a good Cheqroom alternative for universities?
 
-Review strategy resources alongside [Why We Built Availability View](https://www.shelf.nu/blog/why-we-built-availability-view-when-customers-show-you-whats-missing) to see how interface decisions support busy teams. 
+For many campuses, yes. Shelf costs one flat price per workspace instead of per administrator, lets each department run its own workspace, and is open source. Cheqroom is the better fit if you need maintenance scheduling, digital signatures on checkout, GPS tracking or broad Zapier automation. Kansas City Art Institute moved its media center from Cheqroom to Shelf. See the full [Cheqroom comparison](/alternatives/cheqroom).
 
-Ready to modernize? Book a 15-minute demo and dive into real-world case studies that show how Shelf keeps creative and academic equipment programs running smoothly.
+---
+
+For Shelf across education, including K–12, see [equipment tracking for education](/industries/education).
