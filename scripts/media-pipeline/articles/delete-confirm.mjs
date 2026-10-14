@@ -4,7 +4,8 @@
  * "To confirm, type <name>" field, Delete disabled; (2) the bulk delete
  * dialog for archived audits asking for the number selected.
  * Read-only: dialogs are opened, nothing is typed and nothing is submitted;
- * each dialog is closed with Escape. */
+ * each dialog is closed with Escape. Both shots are cropped to the dialog,
+ * so nothing else on the page is captured. */
 import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
@@ -52,7 +53,7 @@ async function main() {
       if (!/To confirm, type/.test(text)) throw new Error("asset dialog has no type-to-confirm field: " + text);
       const del = dlg.getByRole("button", { name: /^Delete$/ });
       if (!(await del.isDisabled())) throw new Error("Delete is not disabled; refusing to capture");
-      out.asset = await screenshot(page, join(tmpDir, "delete-asset-confirm.png"));
+      out.asset = await screenshot(page, join(tmpDir, "delete-asset-confirm.png"), { selector: '[role="alertdialog"]' });
       await page.keyboard.press("Escape");
       await page.waitForTimeout(500);
     }
@@ -72,7 +73,7 @@ async function main() {
       await page.waitForTimeout(800);
       const text = await page.locator("body").innerText();
       if (!/To confirm, type/.test(text)) throw new Error("audit dialog has no type-to-confirm field: " + text);
-      out.audit = await screenshot(page, join(tmpDir, "delete-audits-2-count.png"));
+      out.audit = await screenshot(page, join(tmpDir, "delete-audits-2-count.png"), { selector: "dialog[open]" });
       await page.keyboard.press("Escape");
     }
     await ctx.close();
