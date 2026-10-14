@@ -35,7 +35,7 @@ function stripRepeatedTitle(content: string, title: string): string {
     return content.slice(match[0].length);
 }
 
-export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'concepts' | 'use-cases' | 'solutions' | 'industries' | 'alternatives' | 'glossary' | 'updates' | 'knowledge-base';
+export type ContentType = 'pages' | 'features' | 'case-studies' | 'blog' | 'solutions' | 'industries' | 'alternatives' | 'glossary' | 'updates' | 'knowledge-base';
 
 export interface MDXContent {
     slug: string;

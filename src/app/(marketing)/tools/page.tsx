@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ScanBarcode, ScanQrCode, ScanEye, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3, Barcode } from 'lucide-react';
+import { ArrowRight, ScanBarcode, ScanQrCode, ScanEye, PenTool, Tag, Calculator, DollarSign, TrendingDown, Barcode } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { Pill } from "@/components/ui/pill";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
@@ -68,18 +68,12 @@ const allTools = [
         icon: TrendingDown,
         href: "/tools/salvage-value-calculator",
     },
-    {
-        title: "Asset ROI Calculator",
-        description: "Quantify the cost of poor asset tracking: ghost assets, productivity loss, shrinkage, and duplicate purchases.",
-        icon: BarChart3,
-        href: "/tools/asset-roi-calculator",
-    },
 ];
 
-/** Six scan-and-label tools in rows of three, four calculators in a row of four, so no card sits alone. */
+/** Six scan-and-label tools in rows of three, three calculators in a row of three, so no card sits alone. */
 const toolGroups = [
     { title: "Scan and label", tools: allTools.slice(0, 6), columns: "md:grid-cols-2 lg:grid-cols-3" },
-    { title: "Calculators", tools: allTools.slice(6), columns: "md:grid-cols-2 lg:grid-cols-4" },
+    { title: "Calculators", tools: allTools.slice(6), columns: "md:grid-cols-3" },
 ];
 
 export default function ToolsIndexPage() {

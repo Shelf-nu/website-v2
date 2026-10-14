@@ -106,8 +106,8 @@ function renderPricing(): string {
 }
 
 // Sections bundled into llms-full.txt. Ordered by LLM-reading priority:
-// product capabilities first, then use cases, competitive comparisons,
-// definitions, and conceptual content. Volatile content (blog, updates,
+// product capabilities first, then competitive comparisons and
+// definitions. Volatile content (blog, updates,
 // case-studies) and high-volume reference content (knowledge-base) are
 // intentionally excluded — they remain linked from llms.txt with stable
 // URLs that agents can fetch individually.
@@ -115,10 +115,8 @@ const SECTIONS: { type: ContentType; heading: string }[] = [
     { type: "features", heading: "Features" },
     { type: "solutions", heading: "Solutions" },
     { type: "industries", heading: "Industries" },
-    { type: "use-cases", heading: "Use Cases" },
     { type: "alternatives", heading: "Comparisons" },
     { type: "glossary", heading: "Glossary" },
-    { type: "concepts", heading: "Concepts" },
 ];
 
 function renderEntry({ frontmatter, content }: MDXContent): string {
@@ -154,8 +152,8 @@ export function GET() {
         "> Consolidated bundle of Shelf's marketing site content for LLM ingestion.",
         "> See https://www.shelf.nu/llms.txt for the structured index with link descriptions.",
         "",
-        "This file concatenates Pricing, Features, Solutions, Industries, Use Cases,",
-        "Comparisons, Glossary, and Concepts. Knowledge base articles, blog posts,",
+        "This file concatenates Pricing, Features, Solutions, Industries,",
+        "Comparisons, and Glossary. Knowledge base articles, blog posts,",
         "product updates, and case studies are linked from llms.txt with stable URLs.",
         "",
     ].join("\n");

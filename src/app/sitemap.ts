@@ -13,7 +13,8 @@ function contentEntries(
     urlPrefix: string,
     opts: { changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number },
 ): MetadataRoute.Sitemap {
-    return getAllContent(type).map((item) => {
+    // A page marked `seo.noindex` asks search engines to skip it, so it stays out of the sitemap too.
+    return getAllContent(type).filter((item) => !item.frontmatter.seo?.noindex).map((item) => {
         // Prefer frontmatter date → updated → fall back to now
         const lastMod = item.frontmatter.date
             ? new Date(item.frontmatter.date)
@@ -54,8 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/glossary", priority: 0.6 },
         { path: "/knowledge-base", priority: 0.7 },
         { path: "/industries", priority: 0.7 },
-        { path: "/use-cases", priority: 0.7 },
-        { path: "/concepts", priority: 0.5 },
         { path: "/alternatives", priority: 0.7 },
         // Legal pages
         { path: "/terms", priority: 0.3 },
@@ -75,7 +74,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/tools/macrs-depreciation-calculator", priority: 0.7 },
         { path: "/tools/equipment-depreciation-calculator", priority: 0.7 },
         { path: "/tools/salvage-value-calculator", priority: 0.7 },
-        { path: "/tools/asset-roi-calculator", priority: 0.6 },
     ].map(({ path, priority }) => ({
         url: `${baseUrl}${path}`,
         lastModified: new Date(),
@@ -90,8 +88,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const caseStudies = contentEntries("case-studies", "/case-studies", { changeFrequency: "monthly", priority: 0.8 });
     const alternatives = contentEntries("alternatives", "/alternatives", { changeFrequency: "monthly", priority: 0.7 });
     const industries = contentEntries("industries", "/industries", { changeFrequency: "monthly", priority: 0.7 });
-    const useCases = contentEntries("use-cases", "/use-cases", { changeFrequency: "monthly", priority: 0.7 });
-    const concepts = contentEntries("concepts", "/concepts", { changeFrequency: "monthly", priority: 0.5 });
     const glossary = contentEntries("glossary", "/glossary", { changeFrequency: "monthly", priority: 0.6 });
     // Note: individual /updates/* pages are noindexed (thin changelog content)
     // so they are excluded from the sitemap. The /updates index page is still
@@ -106,8 +102,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...caseStudies,
         ...alternatives,
         ...industries,
-        ...useCases,
-        ...concepts,
         ...glossary,
         ...knowledgeBase,
     ];

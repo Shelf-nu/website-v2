@@ -1,6 +1,6 @@
 ---
 title: "Maintenance Tracking"
-description: "Schedule preventive maintenance, track service history, and get team notifications when equipment is due — without the complexity of a full CMMS."
+description: "Set reminders for service, inspection, and calibration dates, track service history, and get team notifications when equipment is due — without the complexity of a full CMMS."
 layout: "solution"
 intent: "commercial"
 cluster: "maintenance"
@@ -10,10 +10,10 @@ personas:
   - "it"
 canonicalUrl: "/solutions/maintenance-tracking"
 date: "2026-03-12"
-updated: "2026-08-04"
+updated: "2026-10-14"
 seo:
-  title: "Equipment Maintenance Tracking Software — Preventive Schedules & Alerts"
-  description: "Lightweight maintenance tracking — not a full CMMS. Schedule preventive maintenance, log service history, and get automatic reminders. Open source, free to start."
+  title: "Equipment Maintenance Tracking Software — Reminders & Service Log"
+  description: "Lightweight maintenance tracking — not a full CMMS. Set reminders for service and inspection dates, log service history, and email your team when work is due. Open source, free to start."
   keywords:
     - "maintenance tracking software"
     - "equipment maintenance tracking"
@@ -36,7 +36,7 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 Maintenance tracking is the process of scheduling, documenting, and monitoring equipment servicing — calibration dates, safety inspections, preventive maintenance intervals, and repair history. Without a system, maintenance gets skipped, warranties expire unnoticed, and equipment fails at the worst possible moment.
 
-Shelf provides maintenance tracking through [Asset Reminders](/features/asset-reminders) and [Custom Fields](/knowledge-base/custom-field-types-in-shelf) — configurable schedules, automatic team notifications, and service history attached to every asset. It is not a full CMMS (Computerized Maintenance Management System) with work orders, parts inventory, and technician dispatching. It is the maintenance layer that 80% of equipment teams actually need: know what is due, get notified, document what was done.
+Shelf provides maintenance tracking through [Asset Reminders](/features/asset-reminders) and [Custom Fields](/knowledge-base/custom-field-types-in-shelf) — date-based reminders, automatic team notifications, and service history attached to every asset. It is not a full CMMS (Computerized Maintenance Management System) with work orders, recurring maintenance schedules, parts inventory, and technician dispatching. It is the maintenance layer that 80% of equipment teams actually need: know what is due, get notified, document what was done.
 
 ---
 
@@ -58,17 +58,17 @@ If your maintenance needs center on scheduling reminders, logging completed serv
 
 ## How Shelf Handles Maintenance Tracking
 
-### Asset Reminders — Automated Maintenance Schedules
+### Asset Reminders — A Heads-Up Before Each Due Date
 
 [Asset Reminders](/features/asset-reminders) let you set a reminder for any maintenance event:
 
-- **Preventive maintenance**: Oil changes every 500 hours, filter replacements every quarter, safety inspections annually
+- **Preventive maintenance**: The next oil change, filter replacement, or annual safety inspection
 - **Calibration**: Lab instruments and testing equipment on manufacturer-specified intervals
 - **Certifications and inspections**: Fire extinguisher checks, electrical safety testing, vehicle inspections
 - **Warranty expiration**: Get notified before coverage lapses so you can renew or plan for replacement
 - **Lease renewals**: Equipment lease end dates with advance notice for budget planning
 
-Each reminder is attached to a specific asset, is set for a specific date, and notifies designated team members by email as the date approaches. When the work is done, log it and set the next reminder.
+Each reminder is attached to a specific asset, is set for a specific date, and notifies designated team members by email as the date approaches. Reminders do not repeat on their own: when the work is done, log it and set the next reminder.
 
 ![Reminders tab on an asset showing calibration, cleaning, warranty, and disposal reminders with per-reminder status](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/asset-reminders.webp)
 
@@ -110,6 +110,12 @@ No separate maintenance log to maintain. No paperwork to file. The asset itself 
 
 ---
 
+### Calibration Dates — A Register, Not a Metrology System
+
+Keep each instrument's calibration due date in a date [custom field](/knowledge-base/custom-field-types-in-shelf), with the certificate number and provider in text fields, and set an [Asset Reminder](/features/asset-reminders) ahead of the due date. Shelf is a register and a reminder, not a calibration or metrology system: it does not store certificate files, record pass/fail results or measurement uncertainty, or schedule recurring calibrations. Teams that perform calibrations themselves should use dedicated calibration software.
+
+---
+
 ### Multi-Location Maintenance Visibility
 
 For organizations with equipment across multiple sites, Shelf's [location tracking](/features/location-tracking) lets you see maintenance status across every facility. Filter by location to see which equipment at a specific warehouse is overdue for service. Or view the entire organization to identify maintenance patterns — maybe one site's equipment consistently needs more frequent repairs, signaling an environmental or usage issue.
@@ -145,9 +151,9 @@ See: [Track consumables by quantity](/features/consumables-tracking)
 ## Common Use Cases
 
 - **Construction and trades**: Track safety inspections, tool calibrations, and vehicle maintenance intervals for field equipment. Reminders ensure nothing slips through the cracks between job sites.
-- **Manufacturing and warehousing**: Schedule preventive maintenance for forklifts, conveyor systems, and production equipment. Log service history with custom fields for audit compliance.
+- **Manufacturing and warehousing**: Set reminders for the next preventive maintenance on forklifts, conveyor systems, and production equipment. Log service history with custom fields for audit compliance.
 - **IT departments**: Track warranty expiration dates, lease renewal deadlines, and refresh cycles for laptops, servers, and networking equipment. Know when hardware is approaching end-of-life before it fails.
-- **Research and laboratories**: Maintain calibration schedules for instruments and testing equipment. Document certification numbers and service provider details for regulatory compliance.
+- **Research and laboratories**: Keep calibration due dates for instruments and testing equipment, with a reminder before each one. Document certification numbers and service provider details for regulatory compliance.
 - **Facilities management**: Monitor HVAC servicing, fire extinguisher inspections, elevator certifications, and building equipment maintenance across multiple buildings.
 - **Agriculture and land management**: Track maintenance intervals for vehicles, irrigation equipment, and field tools across large properties.
 
@@ -157,7 +163,8 @@ See: [Track consumables by quantity](/features/consumables-tracking)
 
 | Need | Shelf | Full CMMS |
 |---|---|---|
-| **Scheduled reminders** | Yes — configurable per asset | Yes |
+| **Date-based reminders** | Yes — set per asset, per due date | Yes |
+| **Recurring maintenance schedules** | No — set the next reminder after each service | Yes |
 | **Service history log** | Yes — via custom fields + activity history | Yes — dedicated work orders |
 | **Team notifications** | Yes — email alerts to assigned members | Yes — plus technician dispatch |
 | **Work order management** | No | Yes |
@@ -185,7 +192,7 @@ Many teams start with Shelf for maintenance tracking and only move to a CMMS if 
 - **Free to start**: Unlimited assets and reminders on the [free plan](/pricing). No credit card required.
 - **Flat-rate pricing**: The Team plan covers unlimited users — no per-seat maintenance tax
 - **[Open source](/solutions/open-source-asset-management)**: AGPL licensed. Self-host or use the managed cloud.
-- **Set up in minutes**: Import assets, add reminder schedules, start tracking. No consultant required.
+- **Set up in minutes**: Import assets, add reminders for upcoming due dates, start tracking. No consultant required.
 
 ---
 
@@ -204,9 +211,9 @@ Many teams start with Shelf for maintenance tracking and only move to a CMMS if 
 
 ### Does Shelf replace a CMMS?
 
-For most equipment teams, yes. If your maintenance needs are scheduling reminders, logging service history, and keeping equipment compliant, Shelf covers it. If you need dedicated work order workflows, parts catalog management, and technician dispatching, a full CMMS is a better fit.
+For most equipment teams, yes. If your maintenance needs are date reminders, logging service history, and keeping equipment compliant, Shelf covers it. If you need dedicated work order workflows, recurring maintenance schedules, parts catalog management, and technician dispatching, a full CMMS is a better fit.
 
-### Can I set different maintenance schedules for different equipment?
+### Can I set different maintenance dates for different equipment?
 
 Yes. Each asset gets its own reminders, set individually. Add a reminder for the forklift's next safety check and another for the fire extinguisher's next inspection — each on its own date.
 
@@ -234,4 +241,3 @@ No. Set as many reminders as your equipment requires — there is no cap on the 
 - [Fixed Asset Tracking](/solutions/fixed-asset-tracking)
 - [Multi-Location Asset Tracking](/solutions/multi-location-asset-tracking)
 - [Equipment Check-In/Out](/solutions/equipment-check-in)
-- [Calibration Tracking](/solutions/calibration-tracking)

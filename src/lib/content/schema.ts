@@ -3,7 +3,7 @@ export interface Frontmatter {
     slug: string;
     description: string;
 
-    layout: string; // solution | feature | industry | alternative | blog | case-study | glossary | use-case | concept
+    layout: string; // solution | feature | industry | alternative | blog | case-study | glossary
 
     canonicalUrl: string;
 

@@ -2,6 +2,7 @@
 # Guard: scripts/verify-redirects.mjs. Long-tail legacy URLs: blog-briefs-2026-10-05/cloudflare-bulk-redirects-legacy-2026-10-05.csv (Cloudflare Bulk Redirects).
 /book-a-demo /demo 301
 /docs https://docs.shelf.nu 301
+/glossary/check-in-check-out /solutions/equipment-check-in 301
 /blog/the-comprehensive-guide-to-asset-tagging-systems /blog/asset-tags-guide 301
 /blog/how-to-choose-the-best-asset-tags-for-your-equipment /blog/asset-tags-guide 301
 /blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide /blog/asset-tags-guide 301
@@ -70,7 +71,6 @@
 /fixed-asset-depreciation-calculator /tools/equipment-depreciation-calculator 301
 /macrs-depreciation-calculator /tools/macrs-depreciation-calculator 301
 /salvage-value-calculator /tools/salvage-value-calculator 301
-/roi-calculator /tools/asset-roi-calculator 301
 /asset-tags /tools/asset-label-designer 301
 /asset-tag-maker /tools/asset-label-designer 301
 /article-inserts /tools/asset-label-designer 301
@@ -99,13 +99,13 @@
 /glossary/total-cost-of-ownership-tco /blog/the-true-roi-of-asset-management-a-nuanced-perspective 301
 /glossary/it-asset-management-itam /solutions/it-asset-management 301
 /glossary/asset-lifecycle /solutions/asset-tracking 301
-/glossary/digital-twin /blog/what-are-digital-twins-and-how-can-you-use-them-for-your-business 301
+/glossary/digital-twin /glossary 301
 /glossary/barcode-scanning /tools/barcode-scanner 301
 /mastering-asset-control-in-the-hotel-and-hospitality-industry /industries 301
 /glossary/depreciation /tools/equipment-depreciation-calculator 301
 /streamline-your-warehouse-operations-with-shelfs-inventory-management /solutions/multi-location-asset-tracking 301
 /glossary/inventory-management /blog/the-difference-between-inventory-management-systems-and-asset-management-systems 301
-/glossary/predictive-maintenance /glossary/preventive-maintenance 301
+/glossary/predictive-maintenance /solutions/maintenance-tracking 301
 /advanced-asset-management-for-pharmaceutical-companies-with-shelf /industries 301
 /alternatives/hippo-cmms /alternatives/limble 301
 /alternatives/duck-track-pack /blog/duck-pack-and-track-alternative 301
