@@ -1962,7 +1962,7 @@
         ],
         "capturedAt": null
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-09-08",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1972,7 +1972,7 @@
         "cluster-A-bookings",
         "suffix-dedupe"
       ],
-      "learnings": "",
+      "learnings": "\n[2026-10-14 close-out] GSC 2026-07-14..10-12 (query level): equipment booking system pos 12.4 (1,088 impr, 0 clicks), equipment booking software 13.7 (903, 0), equipment reservation system 10.0 (598, 4 clicks). Four title tests on this page (exp-018, 033, 046, 048) never moved it off page 2: titles do not fix rank here. SERP check 10-14: 'equipment booking software' is mostly RENTAL-business intent (Booqable, EZRentOut, Rentman, Point of Rental); 'equipment booking system' is mixed (Cheqroom, Connect2, Skedda, itemit). Superseded by exp-075 (content retarget to internal booking).",
       "startDate": "2026-09-04"
     },
     {
@@ -3516,6 +3516,31 @@
         "clicks": 0,
         "impressions": 339,
         "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "exp-075",
+      "page": "/solutions/equipment-reservations",
+      "field": "content-retarget-internal",
+      "before": "Generic opening; no rental-vs-internal distinction; FAQ in bold (no FAQPage schema); recurring-booking answer evasive; page 2 for booking queries.",
+      "after": "Definition-first opening; explicit 'for teams that share equipment internally, not rental shops (Booqable, Rentman, EZRentOut); Shelf takes no payments'; 6-point what-to-look-for list; FAQ as ### (FAQPage) with new 'Who can book' (Base requests + admin approval, Self-service books) and 'payments/deposits: no'; recurring answer made honest (duplicate a booking); meta description says teams, not rental shops.",
+      "hypothesis": "Google's AI Overview for 'equipment booking system' asks whether users are external customers or internal staff/students. Owning the internal case explicitly should earn the AI citation and page-1 rank for internal-intent queries (equipment booking system, equipment reservation system, lab/university equipment booking) while sending rental intent elsewhere.",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure: GSC query positions for equipment booking system / equipment reservation system / equipment booking (+ lab / university variants), AI Overview citation (scratchpad audit/aio.py), entry intent + paid signups with utm_campaign lp:/solutions/equipment-reservations.",
+      "baseline": {
+        "clicks": 4,
+        "impressions": 3519,
+        "ctr": 0.11,
         "position": null,
         "dateRange": [
           "2026-07-14",

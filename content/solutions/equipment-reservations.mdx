@@ -1,6 +1,6 @@
 ---
 title: "Equipment Reservations"
-description: "Prevent double-bookings and streamline scheduling for shared cameras, tools, laptops, and AV gear with a modern reservation system."
+description: "An equipment booking system for teams that share gear: staff and students reserve cameras, laptops, tools and lab equipment for set dates, double-bookings are blocked, and every hand-over is recorded."
 layout: "solution"
 intent: "commercial"
 cluster: "equipment-reservations"
@@ -10,10 +10,10 @@ personas:
   - "operations"
 canonicalUrl: "/solutions/equipment-reservations"
 date: "2025-01-01"
-updated: "2026-09-17"
+updated: "2026-10-14"
 seo:
   title: "Equipment Booking & Reservation System — Scheduling Software"
-  description: "Equipment booking and reservation system with scheduling built in. Prevent double-bookings for shared cameras, tools, and AV gear. Open source, no per-asset fees."
+  description: "Equipment booking system for teams that share gear, not rental shops. Staff and students reserve cameras, laptops, tools and lab equipment; double-bookings are blocked. Free to start, open source."
   image: "/images/og/solutions-equipment-reservations.png"
   keywords:
     - "equipment scheduling software"
@@ -26,6 +26,9 @@ seo:
     - "shared equipment scheduling"
     - "tool reservation system"
     - "tool reservation software"
+    - "lab equipment booking system"
+    - "university equipment booking"
+    - "staff equipment booking"
 related:
   - "/solutions/equipment-check-in"
   - "/solutions/camera-equipment-check-out"
@@ -36,7 +39,17 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 # Equipment Reservations
 
-Equipment reservation software helps teams schedule, book, and manage shared gear—preventing conflicts and ensuring availability when it matters most.
+An **equipment booking system** lets the people in your organization reserve shared equipment for set dates, blocks two people from booking the same item at the same time, and records who took each item and when it came back.
+
+**Shelf is built for teams that share equipment internally:** media centers and film schools, IT loaner pools, labs, production companies, event crews and field teams. If you rent equipment to paying customers and need online checkout, deposits and invoices, a rental system such as Booqable, Rentman or EZRentOut is the better fit; Shelf does not take payments.
+
+**What to look for in an equipment booking system:**
+- **Conflict checks** that stop double-bookings before they are made, including for kits and their parts.
+- **Booking by people with different rights:** some book and collect gear themselves, others request it and an admin approves.
+- **Check-out and check-in by scan,** so the booking also records who has each item.
+- **Overdue tracking** and reminders before gear is due back.
+- **Calendar view** and a feed into Outlook, Google or Apple Calendar.
+- **Pricing that does not charge per borrower,** since bookings often involve many occasional users.
 
 ![Shelf booking calendar showing equipment reservations](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/solutions/calendar-hero.jpg)
 
@@ -181,32 +194,49 @@ See how other teams use Shelf for equipment reservations:
 
 ---
 
-## FAQs
+## Frequently Asked Questions
 
-**How does Shelf prevent double-bookings?**  
+### Who can book equipment in Shelf?
+
+Administrators and Self-service users can book equipment and check it out themselves. Base users, typically students or occasional borrowers, submit a booking request that an administrator approves and hands over. See [user roles](/knowledge-base/user-roles-and-their-permissions).
+
+### Can Shelf take payments or deposits for bookings?
+
+No. Shelf is built for equipment shared inside an organization, so it has no online checkout, deposits or invoices. Businesses that rent equipment to customers need dedicated rental software.
+
+### How does Shelf prevent double-bookings?
+
 Shelf's booking system checks availability in real time. When a user selects a time slot, the system only shows open windows—preventing conflicts before they happen.
 
-**Can I book kits with accessories?**  
+### Can I book kits with accessories?
+
 Yes. Kits bundle parent assets with their accessories. Booking a kit reserves everything together, and Shelf flags missing components during check-in.
 
-**Does Shelf support recurring reservations?**  
-You can create bookings for specific time slots. For recurring needs, users can book ahead or administrators can reserve blocks of time.
+### Does Shelf support recurring reservations?
 
-**How do users check equipment in and out?**  
+Not as an automatic repeating series. Book each slot ahead, or duplicate an existing booking and change its dates, which keeps the same equipment list.
+
+### How do users check equipment in and out?
+
 Users scan the asset's QR code with their phone. The system logs the transaction instantly—no paperwork, no delays.
 
-**Can different departments have separate booking systems?**
+### Can different departments have separate booking systems?
+
 Yes. Workspaces let you separate inventories and bookings by department, location, or team while maintaining centralized oversight.
 
-**Can I control who gets booking notification emails?**
+### Can I control who gets booking notification emails?
+
 Yes. Admins configure workspace-level defaults (notify creators, admin broadcasts, always-notify user list) and can add per-booking recipients for individual reservations. A notification preview shows exactly who will be emailed before saving.
 
-**Can reservations show up in Outlook or Google Calendar?**
+### Can reservations show up in Outlook or Google Calendar?
+
 Yes. Each member can subscribe Google Calendar, Outlook, or Apple Calendar to a live, read-only feed of their Shelf bookings. Events include the equipment, a link back to the booking, and the custodian where the member's role can see custody, plus a reminder the day before it is due back. Administrators can share one calendar for the whole team. See [Subscribe Your Calendar to Shelf Bookings](/knowledge-base/subscribe-your-calendar-to-shelf-bookings).
 
-**Is Shelf an equipment scheduling tool?**  
+### Is Shelf an equipment scheduling tool?
+
 Yes. Shelf is an equipment scheduling tool and reservation system in one. Teams check real-time availability, schedule shared gear for specific dates, and rely on automatic conflict prevention so two people never book the same item for the same slot.
 
-**What is the difference between equipment scheduling and reservations in Shelf?**  
+### What is the difference between equipment scheduling and reservations in Shelf?
+
 They are the same workflow. Scheduling is the act of claiming a time slot for a piece of equipment, and a reservation is the record Shelf creates for it. Because every reservation is linked to the asset and its custody log, scheduling doubles as an accountability trail.
 
