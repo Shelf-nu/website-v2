@@ -185,7 +185,7 @@ const LINK_INDEX = `## Key Links
 - [Mobile Asset Auditing](${BASE_URL}/solutions/mobile-asset-auditing): Run physical inventory audits on mobile devices with QR scanning.
 - [Open Source Asset Management](${BASE_URL}/solutions/open-source-asset-management): Self-host Shelf with full code transparency and no vendor lock-in.
 - [Home Inventory Management](${BASE_URL}/solutions/home-inventory-management): Personal asset tracking for households and individuals.
-- [Educational Resource Management](${BASE_URL}/solutions/educational-resource-management): Manage AV, lab, and teaching equipment across schools and universities.
+- [Equipment Software for Universities](${BASE_URL}/blog/equipment-management-software-for-universities-streamlining-campus-resources): Equipment checkout and asset tracking for universities: media centers, IT loaners, labs; pricing and switching from Cheqroom or WebCheckout.
 
 ## Industries
 

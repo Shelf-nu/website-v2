@@ -418,7 +418,7 @@ export function Navbar() {
                                                                 libraries.
                                                             </ListItem>
                                                             <ListItem
-                                                                href="/solutions/educational-resource-management"
+                                                                href="/blog/equipment-management-software-for-universities-streamlining-campus-resources"
                                                                 title="Higher Education & Universities"
                                                                 icon={BookOpen}
                                                             >
@@ -762,7 +762,7 @@ export function Navbar() {
                                     <MobileLink href="/solutions/equipment-reservations">
                                         Equipment Reservations
                                     </MobileLink>
-                                    <MobileLink href="/solutions/educational-resource-management">
+                                    <MobileLink href="/blog/equipment-management-software-for-universities-streamlining-campus-resources">
                                         Higher Education & Universities
                                     </MobileLink>
                                     <MobileLink href="/solutions/camera-equipment-check-out">

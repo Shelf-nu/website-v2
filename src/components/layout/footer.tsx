@@ -42,7 +42,7 @@ export function Footer() {
                             <li><Link href="/solutions/it-asset-management" className="hover:text-orange-600 transition-colors">IT Asset Management</Link></li>
                             <li><Link href="/solutions/equipment-reservations" className="hover:text-orange-600 transition-colors">Equipment Reservations</Link></li>
                             <li><Link href="/solutions/fixed-asset-tracking" className="hover:text-orange-600 transition-colors">Fixed Asset Tracking</Link></li>
-                            <li><Link href="/solutions/educational-resource-management" className="hover:text-orange-600 transition-colors">Education</Link></li>
+                            <li><Link href="/industries/education" className="hover:text-orange-600 transition-colors">Education</Link></li>
                             <li><Link href="/solutions/equipment-check-in" className="hover:text-orange-600 transition-colors">Equipment Check-In/Out</Link></li>
                             <li><Link href="/solutions/multi-location-asset-tracking" className="hover:text-orange-600 transition-colors">Multi-Location Tracking</Link></li>
                             <li><Link href="/solutions/maintenance-tracking" className="hover:text-orange-600 transition-colors">Maintenance Tracking</Link></li>

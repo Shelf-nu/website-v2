@@ -52,7 +52,7 @@ export const solutions = [
         title: "Higher Education & Universities",
         description: "Resources for schools & universities.",
         icon: BookOpen,
-        href: "/solutions/educational-resource-management"
+        href: "/blog/equipment-management-software-for-universities-streamlining-campus-resources"
     },
     {
         title: "Video Production & AV",
