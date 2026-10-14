@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CTA } from "@/components/sections/cta";
-import { ArrowRight, BookOpen, Tag, ScanLine, Ghost, Wrench, Layers, Boxes } from "lucide-react";
+import { ArrowRight, BookOpen, Tag, Layers, Boxes } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
@@ -13,16 +13,13 @@ import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
     title: "Asset Management Glossary",
-    description: "Clear definitions for asset tagging, check-in/check-out, ghost assets, preventive maintenance, and other key equipment management terms.",
+    description: "Clear definitions for asset tagging, asset models, quantity-tracked assets, operational reports, and other key equipment management terms.",
     alternates: { canonical: "https://www.shelf.nu/glossary" },
 };
 
 const termIcons: Record<string, LucideIcon> = {
     "asset-tagging": Tag,
     "asset-models": Layers,
-    "check-in-check-out": ScanLine,
-    "ghost-assets": Ghost,
-    "preventive-maintenance": Wrench,
     "quantity-tracked-assets": Boxes,
 };
 
@@ -41,20 +38,6 @@ const termRelated: Record<string, { label: string; href: string }[]> = {
         { label: "Location Tracking", href: "/features/location-tracking" },
         { label: "Custody", href: "/features/custody" },
     ],
-    "check-in-check-out": [
-        { label: "Custody", href: "/features/custody" },
-        { label: "Bookings", href: "/features/bookings" },
-        { label: "Kits", href: "/features/kits" },
-    ],
-    "ghost-assets": [
-        { label: "Asset Tracking", href: "/solutions/asset-tracking" },
-        { label: "Dashboard", href: "/features/dashboard" },
-        { label: "Asset Reminders", href: "/features/asset-reminders" },
-    ],
-    "preventive-maintenance": [
-        { label: "Asset Reminders", href: "/features/asset-reminders" },
-        { label: "Dashboard", href: "/features/dashboard" },
-    ],
 };
 
 export default function GlossaryIndexPage() {
@@ -67,7 +50,7 @@ export default function GlossaryIndexPage() {
     const collectionSchema = collectionPageJsonLd({
         name: "Asset Management Glossary",
         description:
-            "Clear definitions for asset tagging, check-in/check-out, ghost assets, preventive maintenance, and other key equipment management terms.",
+            "Clear definitions for asset tagging, asset models, quantity-tracked assets, operational reports, and other key equipment management terms.",
         url: "/glossary",
         items: sorted.map((term) => ({
             name: term.frontmatter.title,
@@ -160,13 +143,13 @@ export default function GlossaryIndexPage() {
                             <BookOpen className="h-8 w-8 text-muted-foreground/40 mx-auto mb-4" />
                             <h3 className="text-lg font-semibold text-foreground mb-2">Looking for more?</h3>
                             <p className="text-sm text-muted-foreground mb-5 max-w-md mx-auto">
-                                Explore core concepts like asset lifecycle management and circular economy frameworks.
+                                Step-by-step guides for setting up and running Shelf live in the knowledge base.
                             </p>
                             <Link
-                                href="/concepts"
+                                href="/knowledge-base"
                                 className="inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700 transition-colors"
                             >
-                                Browse concepts <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                                Browse the knowledge base <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                             </Link>
                         </div>
                     </ScrollReveal>

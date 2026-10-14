@@ -2,6 +2,7 @@
 # Guard: scripts/verify-redirects.mjs. Long-tail legacy URLs: blog-briefs-2026-10-05/cloudflare-bulk-redirects-legacy-2026-10-05.csv (Cloudflare Bulk Redirects).
 /book-a-demo /demo 301
 /docs https://docs.shelf.nu 301
+/glossary/check-in-check-out /solutions/equipment-check-in 301
 /blog/the-comprehensive-guide-to-asset-tagging-systems /blog/asset-tags-guide 301
 /blog/how-to-choose-the-best-asset-tags-for-your-equipment /blog/asset-tags-guide 301
 /blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide /blog/asset-tags-guide 301
@@ -70,7 +71,6 @@
 /fixed-asset-depreciation-calculator /tools/equipment-depreciation-calculator 301
 /macrs-depreciation-calculator /tools/macrs-depreciation-calculator 301
 /salvage-value-calculator /tools/salvage-value-calculator 301
-/roi-calculator /tools/asset-roi-calculator 301
 /asset-tags /tools/asset-label-designer 301
 /asset-tag-maker /tools/asset-label-designer 301
 /article-inserts /tools/asset-label-designer 301

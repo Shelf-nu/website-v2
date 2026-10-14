@@ -3511,12 +3511,12 @@
       "deployedAt": "2026-10-14",
       "relatedPatterns": [],
       "evaluateAfterDays": 28,
-      "notes": "Measure at QUERY level (GSC) + AI Overview citation for 'it asset tracking' (scratchpad audit/aio.py) + PostHog entry intent + paid signups with utm_campaign lp:/solutions/it-asset-management (needs website-v2 #397).",
+      "notes": "Measure at QUERY level (GSC) + AI Overview citation for 'it asset tracking' (scratchpad audit/aio.py) + PostHog entry intent + paid signups with utm_campaign lp:/solutions/it-asset-management (needs website-v2 #397). Baseline corrected 2026-10-14 to page-dimension GSC totals (3,000 impressions, 11 clicks, position 44.7); the earlier 339 impressions / 0 clicks summed only the top query rows.",
       "baseline": {
-        "clicks": 0,
-        "impressions": 339,
-        "ctr": 0,
-        "position": null,
+        "clicks": 11,
+        "impressions": 3000,
+        "ctr": 0.37,
+        "position": 44.7,
         "dateRange": [
           "2026-07-14",
           "2026-10-12"
@@ -3547,6 +3547,31 @@
           "2026-10-12"
         ],
         "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "exp-076",
+      "page": "/ (site-wide prune)",
+      "field": "prune+trust",
+      "before": "271 sitemap URLs. 26 thin, off-fit or false-claim URLs (whole /use-cases and /concepts sections, /solutions/calibration-tracking, 3 glossary terms, /tools/asset-roi-calculator, 13 blog posts) had 22 clicks / 6,831 impressions in 90 days (15 of the clicks on /glossary/check-in-check-out); 4 dated posts to noindex had 3 clicks / 1,340 impressions; one post presented invented companies as success stories; film-school post claimed training records, SMS, quizzes and policy pages; maintenance copy implied recurring schedules.",
+      "after": "241 sitemap URLs. 26 URLs deleted with every internal link repointed or removed; /glossary/check-in-check-out 301s to /solutions/equipment-check-in (swapped for the /roi-calculator rule, still 130 rules); 4 posts noindexed and dropped from the sitemap; case-study post rewritten from real case studies; calibration folded into /solutions/maintenance-tracking as a register + reminder, not a metrology system; false claims fixed on 9 kept pages.",
+      "hypothesis": "Removing thin, off-fit and false pages costs ~0 traffic (22 of 10,187 site clicks in 90 days, most of them on a URL that now redirects to its canonical) and removes claims AI assistants could repeat to buyers. /solutions/equipment-check-in should absorb the glossary's check-in/check-out queries ('check in check out software' etc.).",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure: site-wide GSC clicks vs the 90-day baseline; /solutions/equipment-check-in clicks/impressions and positions for check-in/check-out queries (glossary page had 15 clicks / 4,771 impressions; equipment-check-in had 641 / 29,945 in the same window); 404 hits in PostHog for the deleted paths.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": null
       }
     }
   ]
