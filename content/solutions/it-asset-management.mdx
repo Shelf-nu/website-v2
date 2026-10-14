@@ -1,6 +1,6 @@
 ---
 title: "IT Asset Tracking"
-description: "Track laptops, tablets, chargers, and hybrid-workforce equipment with QR-first workflows, custody history, and streamlined IT operations."
+description: "Track laptops, Chromebooks, loaner devices and accessories: who has each one, where it is and when it is due back, with QR check-out, bookings, custody history and scan audits."
 layout: "solution"
 intent: "commercial"
 cluster: "it-asset-tracking"
@@ -10,20 +10,21 @@ personas:
   - "education"
 canonicalUrl: "/solutions/it-asset-management"
 date: "2025-01-01"
-updated: "2026-08-04"
+updated: "2026-10-14"
 seo:
-  title: "IT Asset Management Software — Free, Open Source"
-  description: "Free, open-source IT asset management. QR scanning, custody tracking, and device lifecycle management for laptops, tablets, and peripherals. Self-host or cloud. AGPL licensed."
+  title: "IT Asset Tracking for Laptops, Loaners and Chromebooks"
+  description: "Know who has every laptop, Chromebook and loaner device. QR check-out, loaner bookings, custody history, onboarding and offboarding hand-offs, and scan audits. Free to start, open source."
   image: "/images/og/solutions-it-asset-tracking.png"
   keywords:
-    - "IT asset management"
-    - "IT asset management software"
-    - "IT asset management system"
+    - "IT asset tracking"
     - "IT asset tracking software"
-    - "ITAM software"
+    - "IT asset inventory"
     - "IT equipment tracking"
-    - "device tracking software"
-    - "laptop tracking software"
+    - "IT equipment checkout"
+    - "laptop loaner program"
+    - "chromebook tracking"
+    - "device checkout system"
+    - "IT asset management"
 related:
   - "/solutions/asset-tracking"
   - "/solutions/equipment-check-in"
@@ -34,7 +35,14 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 # IT Asset Tracking
 
-IT asset tracking is the practice of managing the lifecycle, location, and responsibility of devices across your organization—from laptops and tablets to chargers, monitors, and peripherals.
+**IT asset tracking** is keeping a record of every device your organization owns (laptops, Chromebooks, tablets, monitors, phones and their accessories) and of who has each one, where it is, and when it is due back, from the day it is bought to the day it is retired.
+
+**Shelf is built for the physical side of IT:** devices that are handed to people, lent out and returned. Each device gets a QR code; IT staff and users scan it to check it out, return it, or confirm it during an audit.
+
+**Shelf is not:**
+- **Network discovery.** It does not install agents or scan your network to find devices. You add devices by CSV import or by hand.
+- **Software license management.** It tracks physical things, not seats and subscriptions.
+- **Device management (MDM).** It cannot lock, wipe or locate a lost laptop. Pair it with your MDM tool for that.
 
 ![Shelf asset index showing IT equipment inventory](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/solutions/asset-index.webp)
 
@@ -122,6 +130,34 @@ See: [Workspaces](/features/workspaces)
 
 ---
 
+## IT Workflows in Shelf
+
+### Onboarding and offboarding
+
+Select a laptop, charger and headset and assign them to a new hire in one step, as custody. When someone leaves, filter the asset list by that person as custodian to see exactly what needs to come back, and release each item as it is returned.
+
+### Loaner pools
+
+Keep a pool of loaner laptops that staff or students book for set dates. Shelf blocks overlapping bookings, shows what is available now, and lists anything overdue.
+
+### Chromebook and tablet carts
+
+Group a cart's devices into a [kit](/features/kits) so the cart goes out and comes back as one unit, and Shelf shows which device is missing at check-in. A [scan audit](/features/audits) confirms every device is where it should be.
+
+### Serial numbers and warranties
+
+Every asset gets a sequential SAM ID. Add the serial number as a text field and the warranty end as a [date field](/knowledge-base/custom-field-types-in-shelf), then set a [reminder](/knowledge-base/asset-reminders) for the date so expiring warranties come up before they lapse.
+
+### Single sign-on
+
+Staff can sign in with Microsoft Entra, Google Workspace, Okta or another SAML 2.0 provider through the SSO add-on on the Team plan. See [pricing](/pricing).
+
+### Moving from a spreadsheet or Snipe-IT
+
+[Import your device list from a CSV](/knowledge-base/importing-assets-to-shelf-csv-guide); categories, locations and custom fields are created as they are imported. Existing barcode labels can stay on the devices with the [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on. Comparing tools? See [Shelf vs Snipe-IT](/alternatives/snipe-it).
+
+---
+
 ## Key Benefits for IT Teams
 
 - **Full visibility** into device location and status at any moment
@@ -162,20 +198,37 @@ See how other organizations use Shelf for IT asset tracking:
 
 ---
 
-## FAQs
+## Frequently Asked Questions
 
-**How does Shelf handle device assignments?**  
-Shelf uses custody tracking to log who has each device. Assignments update automatically when users scan QR codes during check-out or return.
+### What is IT asset tracking?
 
-**Can I track accessories like chargers and cables?**  
+IT asset tracking is keeping a record of the devices an organization owns and of who has each one, where it is and when it is due back. Most teams label devices with QR codes or barcodes and scan them when they change hands, go out on loan, or are counted in an audit.
+
+### What is the difference between IT asset tracking and IT asset management?
+
+IT asset tracking follows physical devices: who has them, where they are, and whether they came back. IT asset management (ITAM) is broader and also covers purchasing, contracts, software licenses and disposal, often with network discovery agents. Shelf does the tracking side and leaves licenses and discovery to dedicated ITAM tools.
+
+### How does Shelf handle device assignments?
+
+Shelf uses custody to record who has each device. Assign it when you hand the device over, or let users check it out on a booking by scanning its QR code; returning it releases the custody and keeps the history.
+
+### Can I track accessories like chargers and cables?
+
 Yes. Use kits to group accessories with their parent devices, or [track consumables by quantity](/features/consumables-tracking) for the interchangeable ones you keep in bulk — one record per type with a running count and low-stock alerts. Shelf flags missing kit components when items are checked in or out.
 
-**Does Shelf work for hybrid or remote teams?**  
-Absolutely. Devices can be assigned to remote employees, and location updates can reflect home offices, shipping, or any custom location.
+### Does Shelf work for hybrid or remote teams?
 
-**How do I prevent double-bookings for loaner devices?**  
+Yes. Devices can be assigned to remote employees, and location updates can reflect home offices, shipping, or any custom location.
+
+### How do I prevent double-bookings for loaner devices?
+
 Shelf's booking system shows real-time availability and prevents conflicts automatically. Users see open time slots and reserve devices without overlap.
 
-**Is Shelf suitable for multi-site IT operations?**  
+### How much does Shelf cost for an IT team?
+
+Shelf is free for one user with unlimited assets. The Team plan, which adds bookings and unlimited users, is $67 a month or $370 a year; SSO and Audits are add-ons. See [pricing](/pricing).
+
+### Is Shelf suitable for multi-site IT operations?
+
 Yes. Use workspaces to separate inventories by site, department, or team—while maintaining centralized visibility for IT leadership.
 

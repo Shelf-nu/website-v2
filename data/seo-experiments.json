@@ -3498,6 +3498,31 @@
         ],
         "capturedAt": null
       }
+    },
+    {
+      "id": "exp-074",
+      "page": "/solutions/it-asset-management",
+      "field": "retarget+content",
+      "before": "SEO title 'IT Asset Management Software — Free, Open Source'; 339 impressions / 0 clicks in 90 days at positions 55-90; generic copy; FAQ in bold (no FAQPage schema); 4.7% entry-session intent vs 20-40% on other solution pages.",
+      "after": "Retargeted to physical IT asset tracking (title 'IT Asset Tracking for Laptops, Loaners and Chromebooks'): definition-first opening, explicit 'Shelf is not' (network discovery, software licenses, MDM), IT workflows (onboarding/offboarding custody, loaner pools, Chromebook carts as kits, serials + warranty reminders, SSO, moving from spreadsheets/Snipe-IT), 8-question FAQ as ### (FAQPage JSON-LD), pricing answer.",
+      "hypothesis": "IT hardware is a top paying segment (11/258 signups paid, 4.3%, 180d) but the page targets the enterprise ITAM head term it cannot win. Matching the physical-tracking intent (it asset tracking 210/mo CPC $81, it asset inventory 210 CPC $47, laptop loaner program 170, chromebook tracking 110) and giving AI answers a clear definition and boundaries should get the page ranked and cited, and raise entry intent toward the other solution pages.",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure at QUERY level (GSC) + AI Overview citation for 'it asset tracking' (scratchpad audit/aio.py) + PostHog entry intent + paid signups with utm_campaign lp:/solutions/it-asset-management (needs website-v2 #397).",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 339,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
     }
   ]
 }
