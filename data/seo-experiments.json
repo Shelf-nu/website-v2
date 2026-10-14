@@ -3573,6 +3573,31 @@
         ],
         "capturedAt": null
       }
+    },
+    {
+      "id": "exp-077",
+      "page": "/tools/asset-label-designer",
+      "field": "retarget+content",
+      "before": "Title 'Free Asset Label Designer & Tag Maker', H1 'Free Asset Tag Maker'; below the tool only two short blocks (label best practices, 25/40/60mm sizes) and a 4-question FAQ; no link to the Shelf label store; no path for teams that already have tags.",
+      "after": "Title 'Custom Asset Tags & QR Asset Labels — Free Maker, Print or Order', H1 'Custom Asset Tags and QR Labels'; tool unchanged at the top; new sections: three ways to get asset tags (design here / order from store.shelf.nu / keep existing tags via Alternative Barcodes), what to put on a tag (links /blog/asset-tags-guide), choosing a label (paper vs laminated vs metal; store sells laminated PVC QR labels only), printing yourself (thermal vs office printers, 100% scale, test-scan), track what you tag (signup_click tool_label_designer); store CTA (store_click label_designer, ?ref=label_designer); 7-question FAQPage.",
+      "hypothesis": "The asset tag/label cluster is the largest commercial cluster the site touches (tag/label queries: 45,575 impressions / 127 clicks in 90 days; the page itself had 26,896 impressions / 537 clicks, mostly from generator/maker queries). 'custom asset tags' (320 US/mo, ~$32 CPC) sits ~p15 with ~1,520 impressions behind label sellers; 'asset label' ~p7. Retargeting the tool page from 'designer' to the product/do-it intent (custom asset tags, asset labels, QR asset labels, asset tag stickers, printing asset tags), while keeping the tool and the 'maker/generator' wording that earns its clicks, should lift those queries to page 1 and add store and signup clicks, without taking informational queries from /blog/asset-tags-guide (exp-059) or /blog/qr-code-asset-tags (exp-060).",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure: GSC position/impressions for custom asset tags, asset tags, asset labels, asset label, asset tag labels, qr code asset tags, asset tag stickers, asset tag printer; guard 'asset tag generator' (p2.7, the page's top click query) and 'asset tag maker'. Check the guide (exp-059) did not lose its queries. PostHog: store_click location=label_designer, signup_click location=tool_label_designer.",
+      "baseline": {
+        "clicks": 537,
+        "impressions": 26896,
+        "ctr": 2.0,
+        "position": 17.1,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
     }
   ]
 }
