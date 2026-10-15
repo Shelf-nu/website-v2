@@ -3,7 +3,7 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Available as an add-on on the Team plan and included on Enterprise."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-10-06"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
@@ -31,7 +31,7 @@ Once the domain is an SSO domain, no new standard accounts can be created on it.
 
 ### 4. Plan your group-to-role mapping
 
-Shelf decides which role a user gets by matching the groups they belong to in your identity provider. You map those groups to Shelf roles (**Administrator**, **Self service**, **Base**) in the workspace settings. You only need to map the **roles you actually use** — a single group mapping is enough for SSO to work. You do not need to create a group for every role.
+Shelf decides which role a user gets by matching the groups they belong to in your identity provider. You map those groups to Shelf roles (**Administrator**, **Manager**, **Self service**, **Base**) in the workspace settings. You only need to map the **roles you actually use** — a single group mapping is enough for SSO to work. You do not need to create a group for every role.
 
 ---
 
@@ -106,9 +106,10 @@ In the meantime, you can continue with the next steps that will show you how to 
 
 ### Step 8: Create Groups and Assign Users
 
-In order to manage which users get access to which workspace and with what role, Shelf uses groups for the mapping. Shelf has three roles you can map a group to:
+In order to manage which users get access to which workspace and with what role, Shelf uses groups for the mapping. Shelf has four roles you can map a group to:
 
-- Admin group
+- Administrator group
+- Manager group (added 15 October 2026: runs everyone's bookings, custody and audits without administering the workspace)
 - Self service group
 - Base user group
 
@@ -124,7 +125,7 @@ Add a name, email and make sure the group is labeled as security. Optionally fil
 
 #### 8.2: Assign Members to Each Group
 
-Assign members to respective groups through your Google Workspace administration panel. Ideally, members should **belong to one group within the same workspace**. If they are part of both groups, the admin role will take priority.
+Assign members to respective groups through your Google Workspace administration panel. Ideally, members should **belong to one group within the same workspace**. If they are part of several groups, the highest role wins.
 
 #### 8.3: Allow Groups Access to Shelf App
 
@@ -147,9 +148,9 @@ Once you have the groups ready, you need to add their **names** in the workspace
 
 
 ![8.1: Create Your Groups in Google Workspace](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0b5fc61ed43f6566de30_6672da5488296a3d362dcb7a_Create%2520Your%2520Groups%2520in%2520Google%2520Workspace.jpeg)
-Go to the workspace settings and place the **name** of each group next to its matching role (Administrator, Self service, Base). You only need to fill in the roles you use — leave the others blank, but **at least one group must be mapped**.
+Go to the workspace settings and place the **name** of each group next to its matching role: **Administrator role group**, **Manager role group**, **Self service role group** and **Base role group**. You only need to fill in the roles you use — leave the others blank, but **at least one group must be mapped**. A workspace that maps only a Manager group is valid.
 
-Each role field accepts **one or more group names, separated by commas**, so several identity-provider groups can map to the same Shelf role — useful when different departments or affiliations should all land on, for example, Self service. If a user belongs to groups that map to more than one role, the higher role wins (**Administrator > Self service > Base**).
+Each role field accepts **one or more group names, separated by commas**, so several identity-provider groups can map to the same Shelf role — useful when different departments or affiliations should all land on, for example, Self service. If a user belongs to groups that map to more than one role, the higher role wins (**Administrator > Manager > Self service > Base**).
 
 > **Important:** Matching is **case-insensitive** and ignores surrounding spaces, so you don't have to match capitalization exactly. Still, paste each group name as it appears in your identity provider to avoid typos. Values containing an `=` (such as an LDAP distinguished name like `ou=staff,dc=example,dc=edu`) are treated as a single group value and are never split on commas.
 
@@ -173,7 +174,7 @@ If people on your domain already have standard (email/password) Shelf accounts, 
 - **Converting an account signs the person out everywhere** and removes their password. From then on they sign in only through SSO.
 - **The first SSO sign-in lands in the existing account**, with all its data and workspaces. Nothing needs to change in your identity provider.
 - **If someone tried SSO before their account was converted**, that attempt was refused and asked them to contact support. Their first SSO sign-in after conversion then shows **Your account is now on single sign-on** with a **Sign in with SSO** button; in the Shelf Companion app it asks them to close the window and sign in with SSO again in the app. They sign in with SSO once more and land in their existing account. After that they sign in once, as usual. Convert accounts before announcing SSO to your team and this extra step never appears.
-- **Group mappings decide the role.** If the workspace's SSO settings map groups to roles ([Step 9](#step-9-map-google-workspace-groups-inside-shelf)), every SSO sign-in sets the person's role from their groups. A converted user whose groups map to no role loses access to that workspace at their first SSO sign-in. The workspace owner is the exception: their role stays **Owner** and they keep access whatever their groups say, because ownership only changes through a [transfer](/knowledge-base/transfer-workspace-ownership). If no group mappings are configured, existing memberships and roles are kept as they are. Set up your groups, or leave the mappings empty, before the accounts are converted.
+- **Group mappings decide the role.** If the workspace's SSO settings map groups to roles ([Step 9](#step-9-map-google-workspace-groups-inside-shelf)), every SSO sign-in sets the person's role from their groups. An Administrator whose groups now map to Manager keeps the records they created and hands nothing over; one lowered to Self service or Base hands over as described in [Changing User Roles](/knowledge-base/changing-user-roles-in-shelf#lowering-a-role). A converted user whose groups map to no role loses access to that workspace at their first SSO sign-in. The workspace owner is the exception: their role stays **Owner** and they keep access whatever their groups say, because ownership only changes through a [transfer](/knowledge-base/transfer-workspace-ownership). If no group mappings are configured, existing memberships and roles are kept as they are. Set up your groups, or leave the mappings empty, before the accounts are converted.
 - **The owner of your SSO workspace can keep standard login.** An owner who is not converted keeps signing in with their password, which is your administrative fallback if your identity provider is unavailable. Converting the owner is optional and done individually, on request; converting all accounts on a domain always skips them. Owning some other workspace, such as one an employee created for themselves, does not exempt an account.
 
 ### Once SSO Is Live, Password Login Is Refused on Your Domain

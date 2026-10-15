@@ -1,17 +1,17 @@
 ---
 title: "User Roles and Their Permissions"
-description: "See what each Shelf user role can do — a full permissions matrix for Owner, Administrator, Self-service and Base, plus how to restrict who books equipment."
+description: "See what each Shelf user role can do — a full permissions matrix for Owner, Administrator, Manager, Self-service and Base, plus how to restrict who books equipment."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-10-13"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
-Shelf uses **fixed roles** (sometimes called user types): you assign each person one of four roles instead of building permissions from scratch. Here's the whole model in three lines — then a picker that tells you exactly which role to use.
+Shelf uses **fixed roles** (sometimes called user types): you assign each person one of five roles instead of building permissions from scratch. Here's the whole model in three lines — then a picker that tells you exactly which role to use.
 
 <SummaryBox title="How access works in Shelf">
 
-- **A role sets what a person can *do*.** **Base** users request gear; **Self-service** users check it out themselves; **Administrators** manage everything. (Full breakdown in the [matrix below](#full-permissions-reference).)
+- **A role sets what a person can *do*.** **Base** users request gear; **Self-service** users check it out themselves; **Managers** run everyone's bookings, custody and audits without touching the catalogue; **Administrators** manage everything. (Full breakdown in the [matrix below](#full-permissions-reference).)
 - **Two toggles set what they can *see*.** By default, Base and Self-service users only see custody and bookings for gear they're personally involved with. An admin can switch on **custody visibility** and **booking visibility** in **Settings ▸ Workspace ▸ Permissions** to let them see everyone's. Seeing is not doing: neither toggle widens what a person can assign, book, or edit. [What the toggles do and don't reach](/knowledge-base/configure-what-self-service-and-base-users-can-see#what-the-toggles-never-reach).
 - **Separate workspaces are hard walls.** Give each department its own workspace and one never sees another's inventory, people, or bookings.
 
@@ -22,7 +22,8 @@ Shelf uses **fixed roles** (sometimes called user types): you assign each person
 <SummaryBox title="Which role should I pick?">
 
 - **Owner** — the single account owner. Full control, and the only role that can create or delete workspaces. One per workspace.
-- **Administrator** — your managers and coordinators. Full operational control: manage inventory, people, bookings, and settings.
+- **Administrator** — the people who run the workspace. Full operational control: manage inventory, people, bookings, and settings.
+- **Manager** — equipment-room staff and coordinators who hand gear out and take it back for everyone. They see, create, check out, check in, cancel and delete any booking, assign and release custody to anyone, and create, run, archive and delete any audit. They cannot change assets, kits, locations, categories, custom fields, settings, billing or the team, and they do not see the dashboard or Reports. Added 15 October 2026.
 - **Self-service** — trusted staff and power users who check gear out and back in themselves without waiting on an admin.
 - **Base** — the broadest group (students, occasional users). They can browse gear and submit booking requests; an admin approves and hands it over.
 - **NRM** — a name on record for custody/tracking, with no login.
@@ -36,9 +37,9 @@ The most common question — especially for universities and multi-department te
 1. **Gate gear behind approval** — give the group the **Base** role. They can only *request* equipment; an admin reviews and releases it. Nothing leaves without a yes.
 2. **Hide other people's gear** — leave **custody visibility** and **booking visibility** off (the default) and Base/Self-service users see only what they're involved with. Flip them on when you'd rather everyone see who has what. Both live in **Settings ▸ Workspace ▸ Permissions** — no need to leave this for another page, though there's a [full walkthrough with screenshots](/knowledge-base/configure-what-self-service-and-base-users-can-see) if you want it.
 3. **Separate departments entirely** — give each department its own **workspace**. Assets, members, and roles are fully isolated between workspaces.
-4. **Make the hand-over explicit** — leave the roles as they are, but require Administrators or Self-service users to scan or select the assets instead of checking a whole booking out or in with one click. Two owner-only switches in **Settings ▸ Workspace settings ▸ Bookings**. See [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out).
+4. **Make the hand-over explicit** — leave the roles as they are, but require Administrators and Managers, or Self-service users, to scan or select the assets instead of checking a whole booking out or in with one click. Two owner-only switches in **Settings ▸ Workspace settings ▸ Bookings**. See [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out).
 
-Asset notes stay with Admins and Owners regardless of those toggles. Base and Self-service users can open an asset and see its details, including every **custom field** that has a value, read-only. Being unable to *manage* custom fields is about creating and editing definitions in Settings, not about reading what an asset records. What is not shown to them is the **Activity** tab, which holds the notes and the last-scan record. Audit activity is different: every role can read audit notes, so the Activity tab on an audit stays visible.
+Asset notes stay with Owners, Administrators and Managers regardless of those toggles. Base and Self-service users can open an asset and see its details, including every **custom field** that has a value, read-only. Being unable to *manage* custom fields is about creating and editing definitions in Settings, not about reading what an asset records. What is not shown to them is the **Activity** tab, which holds the notes and the last-scan record. Audit activity is different: every role can read audit notes, so the Activity tab on an audit stays visible.
 
 <Callout type="takeaway" title="Honest note for evaluators">
 Shelf's roles are **fixed rather than fully custom** — there's no per-person role editor, and access is granted by role and workspace, not asset-by-asset. The three levers above cover the vast majority of "restrict who can touch what" setups. If you have a specific structure in mind, [book a demo](/demo) and we'll map it to the right mix of roles, toggles, and workspaces.
@@ -56,7 +57,7 @@ A handful of actions are the Owner's alone, and an Administrator cannot reach th
 - **Granting, changing or revoking the Administrator role.** Only the Owner can invite someone as an Administrator, promote a member to Administrator, or demote or remove one. One Administrator cannot do any of these to another.
 - **Being removed.** The Owner's access cannot be revoked while they own the workspace. Ownership has to move first.
 
-There is exactly one way to become the Owner: an existing Owner transfers it. Ownership is not a role you can pick in the **Change role** dialog, and it cannot be granted by an invite or a CSV user import — those accept **Administrator**, **Self-service**, and **Base** only. That single path is what keeps the subscription, the ownership record, and the notification emails to both parties in step.
+There is exactly one way to become the Owner: an existing Owner transfers it. Ownership is not a role you can pick in the **Change role** dialog, and it cannot be granted by an invite or a CSV user import — those accept **Administrator**, **Manager**, **Self-service**, and **Base** only. That single path is what keeps the subscription, the ownership record, and the notification emails to both parties in step.
 
 ![User roles and permissions overview in Shelf team settings](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/user-roles-1.webp)
 
@@ -65,12 +66,29 @@ There is exactly one way to become the Owner: an existing Owner transfers it. Ow
 Administrators have comprehensive access to the workspace across all locations. Their permissions include:
 
 - **Managing assets:** create, update, [archive, reinstate](/knowledge-base/archive-and-reinstate-assets) and delete equipment; manage categories, tags, custom fields and locations; and oversee custody transfers.
-- **Managing users:** invite people as Self-service or Base users and move members between those two roles. Inviting or promoting someone to **Administrator** is the Owner's alone: the invite and **Change role** dialogs do not offer it to an Administrator, and a CSV import containing an Administrator row is refused.
-- **Team member notes:** add private, workspace-scoped notes to any team member's profile. Notes are only visible to Admins and Owners. See [Admin Notes on Team Members](/knowledge-base/admin-notes-on-team-members).
-- **Managing bookings:** create, update and fulfil (check in/out) bookings, including those started by other users, and delete, archive or cancel any of them in bulk. The workspace owner can require Administrators to scan or select the assets rather than check a booking out or in with one click; the owner is the only role that setting cannot reach. See [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out).
+- **Managing users:** invite people as Manager, Self-service or Base users and move members between those three roles. Inviting or promoting someone to **Administrator** is the Owner's alone: the invite and **Change role** dialogs do not offer it to an Administrator, and a CSV import containing an Administrator row is refused.
+- **Team member notes:** add private, workspace-scoped notes to any team member's profile. Notes are only visible to Administrators and Owners; a Manager can read the team but not these notes. See [Admin Notes on Team Members](/knowledge-base/admin-notes-on-team-members).
+- **Managing bookings:** create, update and fulfil (check in/out) bookings, including those started by other users, and delete, archive or cancel any of them in bulk. The workspace owner can require Administrators and Managers to scan or select the assets rather than check a booking out or in with one click; the owner is the only role that setting cannot reach. See [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out).
 - **Running audits:** create, manage, archive and delete audits, in addition to performing them.
 - **Managing settings:** full access to the workspace's settings and configuration, including the permission toggles that control what Self-service and Base users can see. A few settings stay with the workspace owner: SSO settings, transferring ownership, and the explicit check-in and check-out requirements.
 - **Reports:** open the **Reports** area, run any of its reports, and export them to CSV or PDF. Reports aggregate bookings, custody and asset value across the whole workspace, so they are open to Administrators and Owners only.
+
+### Manager
+
+A Manager runs the day-to-day hand-over of equipment for the whole workspace without administering it. Think of the person at the equipment counter, the lab coordinator or the warehouse lead: they decide who gets what and when, but they do not change what is in the catalogue or who is on the team. The role sits between Administrator and Self-service, and it was added on 15 October 2026.
+
+- **Bookings:** see every booking in the workspace; create, edit, check out, check in, extend, cancel and delete any of them, including bookings other people made; name anyone as the custodian; take items off a Draft, Reserved, Ongoing or Overdue booking; use the bookings list's bulk actions; print the checklist PDF and the check-in receipt for any booking; and manage a booking's notification recipients. Time limits that apply to Self-service bookings do not apply to a Manager.
+- **Custody:** see who holds what across the workspace, whatever the visibility toggles say, and assign or release custody of assets and kits to anyone, including non-registered members.
+- **Audits:** see every audit; create, edit, run, complete, cancel, archive and delete any audit; and add audit notes. Buying or starting the Audits add-on stays with the Owner.
+- **Catalogue, read-only:** see every asset, kit, location, category and asset model, including assets marked unavailable for bookings and archived assets. A Manager cannot create, edit, import, export, archive or delete assets, kits, locations, categories, tags, custom fields or asset models. They can add and delete notes on an asset's **Activity** tab and set asset reminders.
+- **Team:** read the team, and add or edit non-registered members (the name-only records used for custody). Inviting, removing or changing the role of a user is not theirs, and neither are the private notes on a team member's profile.
+- **Not for a Manager:** the workspace settings, billing, the dashboard and the **Reports** area. Signing in lands a Manager on **Bookings** rather than on the asset list.
+- **Notifications:** a Manager receives the broadcast when a booking is reserved, can be picked as a notification recipient, and sees the full recipient preview on a booking. Low-stock alerts for [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) still go to Owners and Administrators only.
+- **Who grants it:** Owners and Administrators, by invite, by **Change role**, by [CSV user import](/knowledge-base/inviting-users-via-csv-upload) or through an [SSO group mapping](/knowledge-base/sso-with-google-workspace#step-9-map-google-workspace-groups-inside-shelf). Changing an Administrator to Manager moves nothing: the records they created stay in their name, and that reference grants no extra access.
+
+![The Invite team members dialog on Settings → Team with the role list open, offering Administrator, Manager, Self service and Base](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/invite-role-list-manager.webp)
+
+> **On the phone, not yet.** The [Shelf Companion](/mobile-app) app learns the Manager role in its next update. Until that update reaches the phone, a Manager who signs in to the app is shown what a **Base** user sees there. The web app is complete from day one.
 
 ### Self-service
 
@@ -88,7 +106,7 @@ Self-service users sit between Base and Administrator. They have more autonomy t
 Base is the foundational role — ideal for the widest group of users, such as students or occasional borrowers:
 
 - **Assets:** view equipment listings, but cannot create, update, or delete equipment, manage flags, change locations, or handle custody. Like Self-service users, they see the assets that are **available for bookings** plus anything they hold.
-- **Bookings:** create **booking requests** for themselves — the **Custodian** field offers their own name only, on the web and in the [Shelf Companion](/mobile-app) app alike. They **cannot** check out or check in gear themselves — only an Administrator can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it. A Base user can delete their own booking while it is a **Draft**, and add or remove items only while it is a **Draft**. They cannot cancel or archive a booking, and the bookings list has no bulk-actions menu for this role. Once a request is reserved it is fixed from their side, so the way to change it is to ask an Administrator, who can edit or cancel it.
+- **Bookings:** create **booking requests** for themselves — the **Custodian** field offers their own name only, on the web and in the [Shelf Companion](/mobile-app) app alike. They **cannot** check out or check in gear themselves — only an Administrator or a Manager can complete the hand-off on their behalf. This makes Base the right role when you want a person to reserve equipment but an admin to approve and release it. A Base user can delete their own booking while it is a **Draft**, and add or remove items only while it is a **Draft**. They cannot cancel or archive a booking, and the bookings list has no bulk-actions menu for this role. Once a request is reserved it is fixed from their side, so the way to change it is to ask an Administrator or a Manager, who can edit or cancel it.
 - **Audits:** can be assigned to audits and perform them — scanning items and adding audit notes — but cannot create, archive, or delete audits.
 - **Reports:** not available, on the same terms as Self-service.
 - **Settings:** limited to their own account details. They cannot invite or manage other team members.
@@ -100,7 +118,7 @@ The asset list is where people pick gear to book, so for Self-service and Base u
 - assets in their custody, including custody that comes with a kit;
 - assets checked out to them on an **Ongoing** or **Overdue** booking, even if an admin marked the asset unavailable while it was out.
 
-An asset that is unavailable for bookings is still reachable as an item: its own page (by scanning its QR code or following a link), a kit page that contains it, and an audit they are assigned to all show it as before. Owners and Administrators always see every active asset.
+An asset that is unavailable for bookings is still reachable as an item: its own page (by scanning its QR code or following a link), a kit page that contains it, and an audit they are assigned to all show it as before. Owners, Administrators and Managers always see every active asset.
 
 ### NRM (Non Registered Member)
 
@@ -111,44 +129,47 @@ An NRM is a person recorded in Shelf **without login credentials**. They act as 
 Every checkmark is what the role can actually do in Shelf today.
 
 <ComparisonTable
-  headers={["Owner", "Administrator", "Self-service", "Base"]}
+  headers={["Owner", "Administrator", "Manager", "Self-service", "Base"]}
   rows={[
-    { label: "View and search assets", values: [true, true, true, true] },
-    { label: "See assets marked unavailable for bookings in the asset list (other than ones they hold)", values: [true, true, false, false] },
-    { label: "Read the custom field values recorded on an asset", values: [true, true, true, true] },
-    { label: "View an asset's Activity tab (notes and scan history)", values: [true, true, false, false] },
-    { label: "Add, edit and delete assets", values: [true, true, false, false] },
-    { label: "Archive and reinstate assets, and see archived assets", values: [true, true, false, false] },
-    { label: "Import and export asset data", values: [true, true, false, false] },
-    { label: "Open the Reports area and export a report to CSV or PDF", values: [true, true, false, false] },
-    { label: "Check out assets to themselves", values: [true, true, true, false] },
-    { label: "Create booking requests", values: [true, true, true, true] },
-    { label: "Name someone other than themselves as a booking's custodian", values: [true, true, false, false] },
-    { label: "Check out / check in their own bookings", values: [true, true, true, false] },
-    { label: "Delete their own booking while it is a Draft", values: [true, true, true, true] },
-    { label: "Delete a booking once it is Reserved or later", values: [true, true, false, false] },
-    { label: "Cancel or archive their own booking", values: [true, true, true, false] },
-    { label: "Add items to their own booking while it is a Draft", values: [true, true, true, true] },
-    { label: "Add items to their own booking once it is Reserved", values: [true, true, false, false] },
-    { label: "Take items off their own booking while it is a Draft", values: [true, true, true, true] },
-    { label: "Take items off their own booking once it is Reserved", values: [true, true, true, false] },
-    { label: "Take items off a booking that is Ongoing or Overdue", values: [true, true, false, false] },
-    { label: "Manage everyone's bookings", values: [true, true, false, false] },
-    { label: "Bulk actions on the bookings list", values: [true, true, false, false] },
-    { label: "View and book Kits", values: [true, true, true, true] },
-    { label: "Create and edit Kits", values: [true, true, false, false] },
-    { label: "Manage categories, tags and locations", values: [true, true, false, false] },
-    { label: "Manage custom fields", values: [true, true, false, false] },
-    { label: "Perform any audit in the workspace (scan items, add notes, complete)", values: [true, true, false, false] },
-    { label: "Perform audits they are assigned to", values: [true, true, true, true] },
-    { label: "Create and manage audits", values: [true, true, false, false] },
-    { label: "Set asset reminders", values: [true, true, false, false] },
-    { label: "Invite people as Self-service or Base", values: [true, true, false, false] },
-    { label: "Invite or promote someone to Administrator", values: [true, false, false, false] },
-    { label: "Change or revoke another Administrator", values: [true, false, false, false] },
-    { label: "Transfer workspace ownership", values: [true, false, false, false] },
-    { label: "Access workspace settings and permission toggles", values: [true, true, false, false] },
-    { label: "Create and delete workspaces", values: [true, false, false, false] },
+    { label: "View and search assets", values: [true, true, true, true, true] },
+    { label: "See assets marked unavailable for bookings in the asset list (other than ones they hold)", values: [true, true, true, false, false] },
+    { label: "Read the custom field values recorded on an asset", values: [true, true, true, true, true] },
+    { label: "View an asset's Activity tab (notes and scan history)", values: [true, true, true, false, false] },
+    { label: "Add, edit and delete assets", values: [true, true, false, false, false] },
+    { label: "Archive and reinstate assets", values: [true, true, false, false, false] },
+    { label: "See archived assets", values: [true, true, true, false, false] },
+    { label: "Import and export asset data", values: [true, true, false, false, false] },
+    { label: "Open the Reports area and export a report to CSV or PDF", values: [true, true, false, false, false] },
+    { label: "Check out assets to themselves", values: [true, true, true, true, false] },
+    { label: "Create booking requests", values: [true, true, true, true, true] },
+    { label: "Name someone other than themselves as a booking's custodian", values: [true, true, true, false, false] },
+    { label: "Check out / check in their own bookings", values: [true, true, true, true, false] },
+    { label: "Delete their own booking while it is a Draft", values: [true, true, true, true, true] },
+    { label: "Delete a booking once it is Reserved or later", values: [true, true, true, false, false] },
+    { label: "Cancel or archive their own booking", values: [true, true, true, true, false] },
+    { label: "Add items to their own booking while it is a Draft", values: [true, true, true, true, true] },
+    { label: "Add items to their own booking once it is Reserved", values: [true, true, true, false, false] },
+    { label: "Take items off their own booking while it is a Draft", values: [true, true, true, true, true] },
+    { label: "Take items off their own booking once it is Reserved", values: [true, true, true, true, false] },
+    { label: "Take items off a booking that is Ongoing or Overdue", values: [true, true, true, false, false] },
+    { label: "Manage everyone's bookings", values: [true, true, true, false, false] },
+    { label: "Bulk actions on the bookings list", values: [true, true, true, false, false] },
+    { label: "View and book Kits", values: [true, true, true, true, true] },
+    { label: "Create and edit Kits", values: [true, true, false, false, false] },
+    { label: "Manage categories, tags and locations", values: [true, true, false, false, false] },
+    { label: "Manage custom fields", values: [true, true, false, false, false] },
+    { label: "Perform any audit in the workspace (scan items, add notes, complete)", values: [true, true, true, false, false] },
+    { label: "Perform audits they are assigned to", values: [true, true, true, true, true] },
+    { label: "Create and manage audits", values: [true, true, true, false, false] },
+    { label: "Set asset reminders", values: [true, true, true, false, false] },
+    { label: "Assign custody to anyone, and release it", values: [true, true, true, false, false] },
+    { label: "Add and edit non-registered members", values: [true, true, true, false, false] },
+    { label: "Invite people as Manager, Self-service or Base", values: [true, true, false, false, false] },
+    { label: "Invite or promote someone to Administrator", values: [true, false, false, false, false] },
+    { label: "Change or revoke another Administrator", values: [true, false, false, false, false] },
+    { label: "Transfer workspace ownership", values: [true, false, false, false, false] },
+    { label: "Access workspace settings and permission toggles", values: [true, true, false, false, false] },
+    { label: "Create and delete workspaces", values: [true, false, false, false, false] },
   ]}
 />
 
@@ -160,3 +181,5 @@ Every checkmark is what the role can actually do in Shelf today.
 - [Require Explicit Check-in and Check-out](/knowledge-base/require-explicit-check-in-and-check-out)
 
 **Note:** Inviting team members is a Team plan feature.
+
+**Which role does someone with several roles get?** A member can hold more than one role on a workspace, and Shelf judges them by the highest: Owner > Administrator > Manager > Self-service > Base.

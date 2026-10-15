@@ -1,17 +1,17 @@
 ---
 title: "Require Explicit Check-in and Check-out"
-description: "Make Admins or Self-service users scan or select the assets instead of handing a whole booking over with one click. Two workspace settings, one per direction."
+description: "Make Admins and Managers, or Self-service users, scan or select the assets instead of handing a whole booking over with one click. Two workspace settings, one per direction."
 category: "Bookings & Custody"
 date: "2026-09-16"
-updated: "2026-10-09"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
 By default, anyone who can check a booking out can do it in one click: **Check out** sends everything on the booking at once, and **Quick check-in** takes it all back the same way. That is the right default for a small team that trusts its own count.
 
-Some workspaces want the count made with the gear in hand instead. Two settings do that, one for each direction, and they can be switched on for Admins, for Self-service users, or for both.
+Some workspaces want the count made with the gear in hand instead. Two settings do that, one for each direction, and they can be switched on for Admins and Managers, for Self-service users, or for both.
 
-![Settings → Bookings showing the two cards, Check-in needs each item scanned or selected and Check-out needs each item scanned or selected, each with a switch for Admins and one for Self Service users and the sentence The workspace owner is never restricted under its heading](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-requirement-cards-v2.webp)
+![Settings → Bookings showing the two cards, Check-in needs each item scanned or selected and Check-out needs each item scanned or selected, each with a switch for Admins and Managers and one for Self Service users and the sentence The workspace owner is never restricted under its heading](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-requirement-cards-v3.webp)
 
 ## Where to find them
 
@@ -20,13 +20,13 @@ Go to **Settings ▸ Workspace settings ▸ Bookings**. Two cards sit next to ea
 - **Check-in needs each item scanned or selected**
 - **Check-out needs each item scanned or selected**
 
-Each card holds two switches, **Admins** and **Self Service users**, and says under each one what it does, for example *"Removes the one-click check-out for Admins. They check items out by scanning them or by selecting them from the list."* All four start off.
+Each card holds two switches, **Admins and Managers** and **Self Service users**, and says under each one what it does, for example *"Removes the one-click check-out for Admins and Managers. They check items out by scanning them or by selecting them from the list."* All four start off. Until 15 October 2026 the first switch was called **Admins**; it now covers the [Manager role](/knowledge-base/user-roles-and-their-permissions#manager) as well, so a workspace that already had it on now applies it to its Managers too.
 
 Under its heading, each card also says who the switches never reach: *"The workspace owner is never restricted. Base users cannot check out."* (or *check in*). Until 8 October 2026 the cards were called **Explicit check-in requirement** and **Explicit check-out requirement**; the switches and what they do did not change.
 
 **Only the workspace owner can change them.** An Administrator can read the cards but not save them, which is the point: a rule about how Admins hand gear out should not be one an Admin can lift.
 
-![The Check-out needs each item scanned or selected card, with the Admins switch and its description, Removes the one-click check-out for Admins, called out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-checkout-requirement-v2.webp)
+![The Check-out needs each item scanned or selected card, with the Admins and Managers switch and its description, Removes the one-click check-out for Admins and Managers, called out](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/explicit-checkout-requirement-v3.webp)
 
 ## What each switch does
 
@@ -59,13 +59,14 @@ The mirror image, on the way back:
 | Role | Can the switch reach them? |
 |---|---|
 | **Owner** | Never. The owner is always exempt, on both settings. |
-| **Administrator** | Yes, with the "for Admins" switch. |
+| **Administrator** | Yes, with the **Admins and Managers** switch. |
+| **Manager** | Yes, with the same **Admins and Managers** switch. |
 | **Self-service** | Yes, with the "for Self Service" switch. |
 | **Base** | Not covered, and it does not need to be — a Base user cannot check gear out or in at all. See [User Roles and Their Permissions](/knowledge-base/user-roles-and-their-permissions). |
 
-A person can hold more than one role on a workspace. Shelf judges them by their **most privileged** role, so someone who is both Self-service and Administrator is treated as an Administrator by both settings — the Admin switch governs them, the Self-service one does not.
+A person can hold more than one role on a workspace. Shelf judges them by their **most privileged** role, so someone who is both Self-service and Administrator is treated as an Administrator by both settings — the Admins and Managers switch governs them, the Self-service one does not.
 
-The two settings are independent. Requiring explicit check-out says nothing about check-in, and either one can be on for Admins while it is off for Self-service.
+The two settings are independent. Requiring explicit check-out says nothing about check-in, and either one can be on for Admins and Managers while it is off for Self-service.
 
 ## Every check-out and check-in says how it was made
 

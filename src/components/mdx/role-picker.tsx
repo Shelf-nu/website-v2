@@ -138,7 +138,8 @@ export function RolePicker() {
                             role — {rec.roleWhy}. Turn custody &amp; booking visibility{" "}
                             <strong>{rec.toggle}</strong> so {rec.toggleWhy}.
                             <span className="mt-1 block text-xs text-muted-foreground">
-                                Set the toggles in <strong>Settings ▸ Workspace ▸ Permissions</strong>. Need someone to manage inventory, people, or settings? That&apos;s an{" "}
+                                Set the toggles in <strong>Settings ▸ Workspace ▸ Permissions</strong>. Need someone to run everyone&apos;s bookings, custody and audits without changing the catalogue? That&apos;s a{" "}
+                                <strong>Manager</strong>. Need someone to manage inventory, people, or settings? That&apos;s an{" "}
                                 <strong>Administrator</strong>.
                             </span>
                         </div>
