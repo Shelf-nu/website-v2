@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-25"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
@@ -49,7 +49,7 @@ To begin importing assets:
 |--------|----------|---------|---------|
 | `id` | No | Present in Import-ready exports. **Ignored when creating assets**, and used by the update flow to match rows | "cm3x1a2b0000abcd" |
 | `title` | Yes | Asset name | "MacBook Pro 13-inch" |
-| `description` | No | Detailed information | "Company laptop with 256GB storage" |
+| `description` | No | Detailed information, up to 5,000 characters (a line break counts as one). A longer one refuses its row with *the description is N characters, but the maximum is 5,000* | "Company laptop with 256GB storage" |
 | `category` | No | Asset category | "Laptops" |
 | `kit` | No | Kit grouping | "Developer Kit" |
 | `tags` | No | Comma-separated labels (inside one cell) | "electronics,portable" |

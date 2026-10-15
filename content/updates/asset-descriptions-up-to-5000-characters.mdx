@@ -1,0 +1,17 @@
+---
+title: "Asset Descriptions Can Now Run to 5,000 Characters"
+description: "The asset description limit goes from 1,000 to 5,000 characters, the same as notes and multi-line custom fields. A live counter shows where you stand, and a description that is too long is refused with a message instead of silently losing keystrokes."
+date: "2026-10-14"
+image: "/images/updates/text-editor-v2.jpg"
+layout: "update"
+---
+
+An asset's **Description** now holds up to **5,000 characters**, up from 1,000. The limit is the same wherever a description is written: the new-asset and edit forms, the inline editor on the asset page, a CSV import or bulk update, and the Companion app's API. A line break counts as one character, so what the counter shows is what the server checks.
+
+Two things used to go wrong, and both are fixed. A description that was already longer than 1,000 characters, which happens after a CSV import, could not be edited at all: every keystroke was silently dropped. And a description that ran past the limit was simply cut off by the field. Now the editor shows a counter, **1,510 / 5,000** for example, that turns red over the limit, and saving over it is refused with *Description must be 5,000 characters or fewer*. Your text stays in the field so you can shorten it.
+
+The same rule reaches the CSV paths. An import file whose description is over 5,000 characters fails that row with the row number and the count, and nothing is cut. A bulk update only measures a description the file changes, so a stored description over the limit that you leave alone never blocks its row.
+
+Two places now shorten a long description on purpose. The description tooltip on the asset index shows the first 600 characters and ends with *Open the asset to read the full description*. The booking checklist PDF prints at most 300 characters per asset, so a long description does not take over the sheet.
+
+The [Shelf Companion](/mobile-app) app's new-asset and edit-asset screens get the same 5,000-character limit and counter in a later update; today they still cap the field on the keyboard.
