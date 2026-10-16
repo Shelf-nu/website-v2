@@ -1,6 +1,6 @@
 ---
 title: "Reports"
-description: "Self-serve reports for booking compliance, asset utilization, custody, idle inventory, and more — with charts, CSV export, and PDF download."
+description: "Self-serve reports for booking compliance, asset utilization, custody, idle inventory, audit completion and more — with charts, CSV export, and PDF download."
 layout: "feature"
 intent: "commercial"
 cluster: "product-feature"
@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/features/reports"
 date: "2026-04-30"
-updated: "2026-09-02"
+updated: "2026-10-16"
 seo:
   title: "Equipment Reports & Analytics"
   description: "Run booking compliance, utilization, custody, and inventory reports in Shelf. Filter by category, location, and timeframe. Export to CSV or PDF."
@@ -21,6 +21,7 @@ seo:
     - "booking compliance report"
     - "asset management analytics"
     - "equipment tracking reports"
+    - "audit completion report"
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp"
 ---
 
@@ -28,13 +29,13 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 Reports turn the day-to-day data Shelf already collects — bookings, custody changes, asset activity — into answers. Pick a report, set a timeframe, optionally filter by category or location, and read the result. No SQL, no spreadsheet exports to wrangle, no separate BI tool.
 
-![Reports index in Shelf showing the grid of ready-to-run reports grouped by category — Bookings, Assets, and Custody](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp)
+![Reports index in Shelf showing the grid of ready-to-run reports grouped by category — Bookings, Assets, Custody and Audits](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp)
 
 ---
 
 ## What You Can Report On
 
-Reports cover the parts of the workflow operations managers are usually asked about: who is overdue, what gets booked, what sits idle, and how things are distributed across the inventory.
+Reports cover the parts of the workflow operations managers are usually asked about: who is overdue, what gets booked, what sits idle, how things are distributed across the inventory, and whether audits are getting done.
 
 ### Booking Reports
 
@@ -56,17 +57,23 @@ Reports cover the parts of the workflow operations managers are usually asked ab
 
 - **Custody Snapshot** — A live view of every asset currently in custody and the team member it is assigned to.
 
+### Audit Reports
+
+- **Audit Completion** — Every audit created in the timeframe, with the completion rate as the headline and the number of overdue audits and assets found missing beside it. Each row carries the audit's expected, found, missing and unexpected counts, an accuracy bar, who created it, and when it started, was due and was completed; click a row to open the audit. The report reads from audit sessions, so it fills up for workspaces using the [Audits](/features/audits) add-on.
+
+![The Audit Completion report, with the completion rate hero, the overdue and assets-missing figures, and one row per audit session](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-audit-completion.webp)
+
 ---
 
 ## How Reports Work
 
 ### Pick a Report
 
-The reports index lists every report grouped by category — bookings, assets, custody. Each card describes what the report shows; click in to run it.
+The reports index lists every report grouped by category — bookings, assets, custody, audits. Each card describes what the report shows; click in to run it.
 
 ### Set the Timeframe
 
-Time-based reports include a timeframe picker with presets for the last 7 / 30 / 90 days, this or last month, this quarter, this year, all time, or a custom range. Snapshot reports (Asset Inventory, Custody Snapshot, Overdue Items) reflect the current state of the workspace and do not need a timeframe.
+Time-based reports include a timeframe picker with presets for the last 7 / 30 / 90 days, this or last month, this quarter, this year, all time, or a custom range. Snapshot reports (Asset Inventory, Custody Snapshot, Overdue Items) reflect the current state of the workspace and do not need a timeframe. Audit Completion counts an audit in the period it was created in, whatever happened to it since.
 
 ### Filter to the Slice You Care About
 
@@ -92,7 +99,7 @@ For teams tracking cabling, batteries, sandbags or any pooled supply, that is th
 
 ### Export the Result
 
-Every report can be exported to **CSV** for further analysis in a spreadsheet or BI tool. Chart-based reports can additionally be downloaded as a **PDF** that captures the rendered visualization alongside the data — handy for board packs and customer reviews. Reports without a chart (Asset Inventory, Custody Snapshot, Overdue Items, Idle Assets, Top Booked Kits) export to CSV.
+Every report can be exported to **CSV** for further analysis in a spreadsheet or BI tool. Chart-based reports can additionally be downloaded as a **PDF** that captures the rendered visualization alongside the data — handy for board packs and customer reviews. Reports without a chart (Asset Inventory, Custody Snapshot, Overdue Items, Idle Assets, Top Booked Kits, Audit Completion) export to CSV.
 
 The Asset Inventory and Custody Snapshot exports carry the arithmetic rather than only the result: quantity, unit value and total value as separate columns, in the CSV and totalled the same way in the PDF.
 
@@ -116,6 +123,10 @@ The Idle Assets and Asset Utilization reports show what is actually being used a
 
 The Custody Snapshot report makes it impossible to argue about who has what — every asset currently in custody is listed with the assigned team member.
 
+### Show That the Counting Got Done
+
+The Audit Completion report turns a season of audits into one rate: how many were completed, which are overdue, and how many assets the completed ones found missing, with the accuracy of each count beside it. A quarterly audit program can be checked in one screen instead of audit by audit.
+
 ---
 
 ## Benefits
@@ -133,6 +144,6 @@ The Custody Snapshot report makes it impossible to argue about who has what — 
 - [Dashboard](/features/dashboard) — for the always-on operational view
 - [Bookings](/features/bookings) — booking compliance reports build on the booking data captured here
 - [Custody](/features/custody) — custody snapshot reports build on the custody data captured here
-- [Audits](/features/audits) — audits provide a separate path to verify inventory against reality
+- [Audits](/features/audits) — audit sessions feed the Audit Completion report
 
 [Get started with Shelf](https://app.shelf.nu/join) and turn your equipment data into answers.

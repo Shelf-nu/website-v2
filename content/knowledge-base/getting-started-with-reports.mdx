@@ -16,6 +16,7 @@ In the sidebar, click **Reports**. The index lists every available report groupe
 - **Bookings** — Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items
 - **Assets** — Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution
 - **Custody** — Custody Snapshot
+- **Audits** — Audit Completion
 
 Each card describes what the report shows. Click any enabled card to run it.
 
@@ -23,7 +24,7 @@ Each card describes what the report shows. Click any enabled card to run it.
 
 ## Pick a Timeframe
 
-Time-based reports — Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Idle Assets — include a **timeframe picker** at the top of the page.
+Time-based reports — Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Idle Assets, Audit Completion — include a **timeframe picker** at the top of the page.
 
 1. Click the timeframe picker.
 2. Choose a preset — **Today**, **Last 7 days**, **Last 30 days** (the default), **Last 90 days**, **This month**, **Last month**, **This quarter**, **This year**, **All time**, or define a custom range.
@@ -50,6 +51,7 @@ The narrower filters are **URL parameters**. Add them to the address bar, or sha
 | Idle Assets | `category`, `location`, plus `days` for the idle threshold |
 | Asset Distribution | None |
 | Custody Snapshot | `teamMember`, `location` |
+| Audit Completion | None. The timeframe is the only control |
 
 > **Monthly Booking Trends ignores `category` and `location`.** The page accepts both parameters and then runs the report over every booking anyway. Nothing warns you, so a trends link that looks filtered is not. Its CSV export deliberately does not forward them either, rather than claim a filtering it does not perform. Wiring them up is tracked separately.
 
@@ -137,6 +139,23 @@ A headline figure and the breakdown underneath it now agree. A pool split across
 
 Locations carry one deliberate exception. **No Location** is the bucket for assets with no placement recorded anywhere, and it holds their full value, but the unplaced remainder of a *partly* placed pool is not added to it — six units at a location and four not yet put anywhere contribute six. That keeps the bucket describing exactly the assets you reach by clicking it. On a workspace that keeps partly-placed stock, then, the location buckets can total less than the headline. Category and status always account for every unit.
 
+## How Audit Completion Counts
+
+**Audit Completion** answers "are audits getting done, and what did they find?" for workspaces using the [Audits](/features/audits) add-on. Its hero is the completion rate, written out as *"3 of 4 audits completed · Last 30 days"*, with **Overdue** and **Assets Missing** beside it. The **Audit Sessions** table underneath lists every audit in the window, newest first, 50 to a page, with its status, **Expected**, **Found**, **Missing** and **Unexpected** counts, an **Accuracy** bar, who created it, and its started, due and completed dates. Click a row to open the audit. **Export CSV** writes the same rows to a file.
+
+![The Audit Completion report, with the completion rate hero, the overdue and assets-missing figures, and one row per audit session](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-audit-completion.webp)
+
+The numbers follow a few rules worth knowing:
+
+- **An audit belongs to the period it was created in**, whatever happened to it afterwards. A count started in September and finished in October is a September audit.
+- **Completed means the audit has a completion date.** Archiving a completed audit does not take it out of the count, so the rate does not drop as old audits move to the archive.
+- **Cancelled audits are left out** of the total and the rate, and an archived cancelled audit stays left out.
+- **Overdue** means past its due date and neither completed nor cancelled.
+- **Assets Missing** adds up the missing counts of completed audits only, because a running audit's missing counter is still moving as people scan. In the table, an audit still running shows **Not scanned** in its Missing cell and a cancelled one shows **Cancelled**.
+- **Accuracy** is found divided by expected, for completed audits with at least one expected asset. An audit with nothing expected has no accuracy figure.
+
+A workspace without the Audits add-on has no audit sessions, so the report shows its empty state.
+
 ## Export the Result
 
 Every report supports **CSV export**. Click **Export** at the top right of any report to download the data shown.
@@ -154,7 +173,7 @@ The PDF versions total the same way, so a printed report and the CSV behind it n
 
 Report CSVs are written as UTF-8 with a byte order mark, so category, location and custodian names in any alphabet open correctly in Excel without an import wizard. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
 
-Reports with charts also support **PDF download** — Shelf renders the charts and tables into a print-ready document. PDF download is available for chart-based reports (Booking Compliance, Top Booked Assets, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Asset Distribution); reports without a chart — Asset Inventory, Idle Assets, Overdue Items, Custody Snapshot, and Top Booked Kits — export to CSV. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
+Reports with charts also support **PDF download** — Shelf renders the charts and tables into a print-ready document. PDF download is available for chart-based reports (Booking Compliance, Top Booked Assets, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Asset Distribution); reports without a chart — Asset Inventory, Idle Assets, Overdue Items, Custody Snapshot, Top Booked Kits, and Audit Completion — export to CSV. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
 
 ## Who Can Run Reports
 
@@ -174,6 +193,7 @@ What each report shows is still scoped to the workspace it was run in.
 - **"Who has what right now?"** → Custody Snapshot
 - **"What's the inventory state for an audit?"** → Asset Inventory
 - **"How are bookings trending month over month?"** → Monthly Booking Trends
+- **"Are audits getting done, and what did they find?"** → Audit Completion
 
 ## Related
 
