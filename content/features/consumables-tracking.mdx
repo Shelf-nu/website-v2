@@ -12,7 +12,7 @@ personas:
   - "field"
 canonicalUrl: "/features/consumables-tracking"
 date: "2026-06-30"
-updated: "2026-10-09"
+updated: "2026-10-16"
 seo:
   title: "Consumables Tracking Software — Track Supplies by Quantity"
   description: "Track consumables and supplies by quantity alongside your assets. Units of measure, min-quantity low-stock alerts, Used-up or Returnable consumption, and quantity-aware custody, bookings, and kits — open source, free to start."
@@ -86,11 +86,13 @@ Set a **minimum quantity** threshold on any quantity-tracked item and Shelf watc
 
 The alert fires **once per crossing**, not on every decrement. Shelf remembers that an item is already flagged and stays quiet until it recovers, so drawing a pool down over a week does not produce a week of email.
 
+The email itself says what you need without opening the app: the subject carries the numbers (*Low stock: AA batteries (2 Units left, minimum 5)*), a **What happened** row names the movement that took the stock down and who made it, **Where it is** sums the units at each location, **Out with people** shows units in custody, **Also low** counts the other items at or below their minimum with a link to the filtered list, and a yellow box says to restock and adjust the quantity. See [what the alert tells you](/knowledge-base/quantity-tracked-assets-and-consumables#what-the-alert-tells-you).
+
 ![Low-stock alert flow: when available stock drops to or below the minimum, Shelf emails the workspace owner and every admin and posts an in-app notification to whoever made the change. The alert fires once per crossing, and a Back in stock notice follows when the pool recovers.](/images/features/consumables/low-stock-alert.svg)
 
 Alerts only fire when a minimum is set, so no threshold means no noise.
 
-To see everything running low at once, open the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide), click **Filter**, and tick **Low stock only**. Add **Min quantity** as a column and each item's threshold sits next to its live count.
+To see everything running low at once, open the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide), click **Filter**, and tick **Low stock only**, or click the **Low stock only** button beside the search box in the simple index. Add **Min quantity** as a column in the advanced index and each item's threshold sits next to its live count.
 
 ![The advanced asset index Filter popover, with the Low stock only checkbox described as "at or below reorder threshold".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/low-stock-filter.webp)
 

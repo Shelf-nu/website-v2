@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-10-09"
+updated: "2026-10-16"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -265,17 +265,33 @@ A min quantity of **0** is a valid threshold: the alert then fires when the last
 
 The email is sent **once per crossing**, not once per decrement. An item that is already flagged stays quiet until it recovers, so drawing a pool down over several days does not fill anyone's inbox. When stock rises back above the threshold through a restock or returns, the same people get a **Back in stock** email and the **Low stock** badge on the asset page clears itself.
 
+### What the alert tells you
+
+Since 15 October 2026 the alert answers the questions you would otherwise open the app for:
+
+- **How low is it?** The subject carries the numbers, as in *Low stock: AA batteries (2 Units left, minimum 5)*, or *Out of stock: AA batteries* when nothing is available. The recovery mail reads *Back in stock: AA batteries (14 Units, minimum 5)*.
+- **What took it down?** A **What happened** row names the newest stock movement, for example *2 Units used up by Dana Reyes on 24 Sep 2026 at 20:53*, with a link to the booking when one was involved. A change made on the asset edit page says so. When there is no recent movement, the row names who changed the quantity or the minimum.
+- **Where is the rest?** A **Where it is** row sums the units at each location, for example *Ogden warehouse: 2, Van 3: 1*, with kit-held units listed separately.
+- **What is out with people?** An **Out with people** row shows the units in custody when there are any, so the available figure never contradicts the asset page.
+- **What else is low?** An **Also low** row counts the other items at or below their minimum and links to the asset list filtered to them.
+- **What to do.** The yellow box says to restock and adjust the quantity, and that a back-in-stock email follows once the count is above the minimum again.
+- **Why you got it.** The footer names your address, the owner-or-admin reason, and the setting that controls the mail, followed by the workspace's own email footer if it has one.
+
+Each owner and admin gets their own copy, greeted by name, with dates in their own [date and time format](/knowledge-base/date-time-and-timezone-preferences). Who receives the alert and when it fires have not changed.
+
+![A low-stock alert email: the subject's numbers, a What happened row naming who used the units, a Where it is row with the location, an Also low count, and the yellow box saying what to do](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/updates/low-stock-alert-email.webp)
+
 ### Finding everything that is running low
 
 The alert tells you about one item at a time. To see the whole picture:
 
-1. Open **Assets** with the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide) enabled.
-2. Click **Filter**, then tick **Low stock only** (labelled *at or below reorder threshold*). The list narrows to quantity-tracked assets at or below their minimum.
-3. Optionally add the **Min quantity** column from the column picker so each item's threshold sits next to its live count.
+1. Open **Assets**.
+2. In the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide), click **Filter**, then tick **Low stock only** (labelled *at or below reorder threshold*). In the simple index, click the **Low stock only** button beside the search box; on a narrower screen it shows only the warning triangle, with the name in its tooltip. Either way the list narrows to quantity-tracked assets at or below their minimum.
+3. In the advanced index, optionally add the **Min quantity** column from the column picker so each item's threshold sits next to its live count.
 
 ![The advanced asset index Filter popover, with the Low stock only checkbox described as "at or below reorder threshold".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/low-stock-filter.webp)
 
-The filter clears with the rest of your filters, and it counts toward the filter badge on the **Filter** button.
+The filter clears with the rest of your filters (**Clear all filters** in the simple index resets it too), and in the advanced index it counts toward the filter badge on the **Filter** button. The **See all low-stock items** link in the alert email opens the same filtered list in whichever index mode you use.
 
 ---
 
