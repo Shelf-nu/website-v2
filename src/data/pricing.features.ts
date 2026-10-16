@@ -614,7 +614,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Data Import/Export",
         name: "Alternative Barcodes",
         description:
-            "Keep the barcode or QR labels already on your assets (from Cheqroom or any other system) and scan them directly in Shelf — no re-labeling needed. Supports Code128, Code39, EAN-13, DataMatrix and QR, and works with 2D handheld scanners.",
+            "Keep the barcode or QR labels already on your assets (from Cheqroom or any other system) and scan them directly in Shelf — no re-labeling needed. Supports Code128, Code39, EAN-13, DataMatrix and QR codes from another system, and works with 2D handheld scanners. Shelf's own QR codes are included on every plan; the add-on is only for other codes.",
         availability: {
             free: "not-included",
             plus: "not-included",

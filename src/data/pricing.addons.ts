@@ -141,12 +141,12 @@ export const addOns: AddOn[] = [
         stripeProductName: "Universal Barcode Support",
         tagline: "Keep the labels already on your assets",
         description:
-            "Generate new barcodes or use your existing ones. Supports Code128, Code39, EAN-13, DataMatrix & QR codes — ideal for migrations, so you can bring assets across from another system without re-tagging a single item.",
+            "Use barcodes other than Shelf QR codes: Code128, Code39, EAN-13, DataMatrix, or QR codes from another system already on your gear. Shelf QR codes are included in every plan. Ideal for migrations, so you can bring assets across from another system without re-tagging a single item.",
         features: [
-            "Supports Code128, Code39, EAN-13, DataMatrix & QR codes",
-            "Generate new barcode labels or use your existing ones",
-            "Print barcode labels for your assets",
-            "Built-in barcode scanner for quick asset lookups",
+            "Add Code128, Code39, EAN-13 and DataMatrix barcodes to assets and kits",
+            "Keep the barcodes already on your gear, including QR codes from another system",
+            "Print labels for these barcodes",
+            "Scan these barcodes to look up assets",
         ],
         priceMonthly: 18.5,
         priceYearly: 170,
