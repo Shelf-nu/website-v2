@@ -726,7 +726,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Add-ons",
         name: "Audits",
         description:
-            "Physical inventory verification with structured scan workflows, found/missing/unexpected detection, and PDF/CSV reports",
+            "Physical inventory verification with structured scan workflows, found/missing/unexpected detection, PDF/CSV reports, and an Audit Completion report in the Reports area",
         availability: {
             free: "not-included",
             plus: "not-included",
