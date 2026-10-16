@@ -1,13 +1,13 @@
 ---
 title: "Exporting Data from Shelf"
-description: "Export asset data from Shelf as CSV: selected assets, filtered results, or a full workspace backup. Covers the Standard and Import-ready formats, what each includes, and common reporting scenarios."
+description: "Export asset data from Shelf as CSV: selected assets or a filtered view, in the Standard or Import-ready format. Covers what each includes, moving assets to another workspace, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-30"
+updated: "2026-10-16"
 layout: "knowledge-base"
 ---
 
-Shelf provides multiple ways to export asset data as CSV — whether you need a selection of items, a filtered view, or a full workspace backup. This guide covers all three methods, what each includes, and the reporting scenarios they're best for.
+Shelf exports asset data as CSV from the Assets index — a selection of items or a filtered view, in either of two formats. This guide covers both methods, what each includes, and the reporting scenarios they're best for.
 
 <InlineVideo
   mp4="https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-flow.mp4"
@@ -17,7 +17,7 @@ Shelf provides multiple ways to export asset data as CSV — whether you need a 
 
 ---
 
-## Three Export Methods
+## Two Export Methods
 
 ### 1. Export Selected Assets
 
@@ -41,16 +41,11 @@ Filter-then-export is the most common reporting path — see [Common reporting s
 
 If you run the same report every month, save the filter once and pick it from **Saved Filters** each time. See [Saved Filters](/knowledge-base/advanced-asset-index-complete-guide#saved-filters).
 
-### 3. Workspace Backup (full export)
+### Looking for the Asset backup card?
 
-- Go to **Workspace Settings → General**
-- Click **Download CSV** to get a complete backup of every asset in the workspace
+The **Asset backup** card with its **Download CSV** button under **Workspace Settings → General** was retired on 15 October 2026, together with the restore tool Shelf support used to run on those files. The Assets index export replaced it: select all assets, click **Export selection**, pick **Import-ready** and **All columns**, and the file carries every asset with its category, tags, location, custodian, asset model, barcodes and custom field values written as names the importer reads back. Keep that file as your copy, or upload it into another workspace through **Assets → Import**. See [Choosing an export format](#choosing-an-export-format) and [Moving assets to another workspace](#moving-assets-to-another-workspace).
 
-![Workspace settings showing the Download CSV button for asset backup](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/export-workspace-csv.webp)
-
-> **Important**: QR codes are not included in the backup. Shelf's QR codes are tied to unique system IDs — if you restore a backup, the system issues new QR codes for the restored assets. Contact support if you need a full restoration.
-
-**What a restore brings back.** The backup carries each asset's category, tags, notes, custom field values, asset model, custody and location. For a quantity-tracked asset spread over several locations, it records how many units sit at each one, and a restore puts them back the same way, creating any location that does not exist yet. Kits are not part of the backup, so a restored asset comes back outside its kit, and units that sat in a kit come back without a location. Asset photos are not included either.
+Asset photos are not part of any export, so images need to be re-added after an import. An **Import-ready** file leaves QR IDs out too. A **Standard** file lists each QR ID for reference, but a QR code stays with the workspace that issued it.
 
 ---
 
@@ -102,13 +97,12 @@ Typical fields included:
 - **Value**, **Purchase date**, any other **custom fields** you've defined
 - **Activity history** (on selected exports; not on filtered views)
 
-The workspace backup is broader and includes internal fields not intended for re-import.
 
 ### How the file is encoded
 
 Every CSV Shelf hands you is written as UTF-8 and carries a byte order mark, and the download says `charset=utf-8` on the wire. That mark is what tells a spreadsheet application which alphabet it is reading. Without it, Excel falls back to whatever codepage the machine happens to use, and Arabic, Cyrillic, Greek, Hebrew, CJK and even plain accented Latin come out as unreadable symbols.
 
-So a file exported from Shelf opens correctly on the first try, in Excel, Numbers, LibreOffice and Google Sheets, with no import wizard and no encoding to pick. It holds for all of them: the asset index export, the workspace backup, bookings, report exports, non-registered members, and the activity note exports on assets, bookings, audits and locations.
+So a file exported from Shelf opens correctly on the first try, in Excel, Numbers, LibreOffice and Google Sheets, with no import wizard and no encoding to pick. It holds for all of them: the asset index export, bookings, report exports, non-registered members, and the activity note exports on assets, bookings, audits and locations.
 
 The mark does not travel into your data. Shelf's own importer strips it, so a file you export, edit and upload again round-trips cleanly, and so does a file Excel saved with a mark of its own.
 
@@ -156,7 +150,7 @@ See [Asset Reminders](/knowledge-base/asset-reminders) for setting up maintenanc
 
 A common workflow: export a filtered selection, edit the CSV in Excel or Google Sheets, re-import to apply changes at scale. The **Update Existing Assets** feature handles this with a preview step that shows every field change before anything is saved.
 
-> **Important**: Only use **Asset Index exports** for re-import updates, not the Workspace Backup CSV. Backup exports store category, tags, and asset model as raw data rather than plain names. Shelf recognizes a backup file and stops with an explanation rather than proposing changes from it.
+> **Important**: Only use **Asset Index exports** for re-import updates. A file from the old workspace backup download (retired in October 2026) stores category, tags, and asset model as raw data rather than plain names. Shelf still recognizes such a file and stops with an explanation rather than proposing changes from it.
 
 **Pick Import-ready.** It carries the `id` column the update flow matches rows on, and it writes quantity-tracked fields in the shape that flow expects: `quantity` as a plain number, plus `minQuantity`, `unitOfMeasure`, and `consumptionType` as their own columns.
 

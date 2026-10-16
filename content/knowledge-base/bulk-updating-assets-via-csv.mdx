@@ -36,7 +36,7 @@ Start with a CSV export from your Asset Index — this ensures every row has the
 
 **Standard exports work too.** If you already have one, or you prefer its readable labels, you can upload it as long as it carries an **Asset ID** or **ID** column. Standard only includes `ID` when that column is visible in your index or you pick the **All columns** scope, so check before you edit. Both header styles are accepted in the same file, and header matching ignores capitalization, so `Asset model`, `asset model`, and `assetModel` all land on the same field. See [Choosing an export format](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format).
 
-> **Never use the Workspace Backup CSV.** Its category, tags, and asset model cells hold raw stored data rather than plain names. Shelf now recognizes a backup file and stops with an explanation instead of proposing nonsense changes, but the fix is the same either way: export again from the Asset Index.
+> **A legacy Workspace Backup CSV does not work here.** The backup download under **Workspace settings → General** was retired in October 2026, but files from it are still around. Their category, tags, and asset model cells hold raw stored data rather than plain names, and Shelf recognizes such a file and stops with an explanation instead of proposing nonsense changes. Export again from the Asset Index.
 
 ---
 
@@ -142,7 +142,7 @@ Shelf analyzes your file and shows a **spreadsheet-style preview** of every chan
 - The change count matches what will actually be written. Rows whose only changes are warned are not counted toward it.
 - You can click **Re-analyze** to re-process the file after adjusting it.
 
-If the file has no identifier column, contains no data rows, carries nothing this workflow can update, or turns out to be a workspace backup export, Shelf shows an error before reaching the preview stage.
+If the file has no identifier column, contains no data rows, carries nothing this workflow can update, or turns out to be a legacy workspace backup export, Shelf shows an error before reaching the preview stage.
 
 ---
 
