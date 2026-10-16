@@ -84,11 +84,11 @@ A Manager runs the day-to-day hand-over of equipment for the whole workspace wit
 - **Team:** read the team, and add or edit non-registered members (the name-only records used for custody). Inviting, removing or changing the role of a user is not theirs, and neither are the private notes on a team member's profile.
 - **Not for a Manager:** the workspace settings, billing, the dashboard and the **Reports** area. Signing in lands a Manager on **Bookings** rather than on the asset list.
 - **Notifications:** a Manager receives the broadcast when a booking is reserved, can be picked as a notification recipient, and sees the full recipient preview on a booking. Low-stock alerts for [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) still go to Owners and Administrators only.
-- **Who grants it:** Owners and Administrators, by invite, by **Change role**, by [CSV user import](/knowledge-base/inviting-users-via-csv-upload) or through an [SSO group mapping](/knowledge-base/sso-with-google-workspace#step-9-map-google-workspace-groups-inside-shelf). Changing an Administrator to Manager moves nothing: the records they created stay in their name, and that reference grants no extra access.
+- **Who grants it:** Owners and Administrators, by invite, by **Change role** or by [CSV user import](/knowledge-base/inviting-users-via-csv-upload). Mapping an identity-provider group to the role, in the **Manager role group** field of the [SSO settings](/knowledge-base/sso-with-google-workspace#step-9-map-google-workspace-groups-inside-shelf), is the workspace Owner's to set, since only the Owner edits those settings. Changing an Administrator to Manager moves nothing: the records they created stay in their name, and that reference grants no extra access.
 
 ![The Invite team members dialog on Settings → Team with the role list open, offering Administrator, Manager, Self service and Base](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/invite-role-list-manager.webp)
 
-> **On the phone, not yet.** The [Shelf Companion](/mobile-app) app learns the Manager role in its next update. Until that update reaches the phone, a Manager who signs in to the app is shown what a **Base** user sees there. The web app is complete from day one.
+> **On the phone too.** The [Shelf Companion](/mobile-app) app has known the Manager role since its over-the-air update of 15 October 2026: a Manager who signs in on the phone gets the same reach as on the web. An app that has not picked up that update yet shows a Manager what a **Base** user sees; opening the app twice fetches it.
 
 ### Self-service
 
