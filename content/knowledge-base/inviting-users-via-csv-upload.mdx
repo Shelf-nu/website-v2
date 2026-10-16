@@ -3,7 +3,7 @@ title: "Inviting Users via CSV Upload"
 description: "Shelf allows you to invite multiple users simultaneously by uploading a CSV file containing their information, making it useful for onboarding teams or departments all at once."
 category: "Other"
 date: "2024-06-01"
-updated: "2026-10-08"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
@@ -32,17 +32,17 @@ Shelf enables bulk user invitations through CSV file uploads, making it particul
 ### Base Rules
 
 - Use comma (,) as the delimiter
-- Valid roles: ADMIN, BASE, SELF_SERVICE. Capitals do not matter, so `admin` works the same as `ADMIN`
+- Valid roles: ADMIN, MANAGER, SELF_SERVICE, BASE. Capitals and surrounding spaces do not matter, so `admin` works the same as `ADMIN`. Since 15 October 2026 the label the app shows works too: `Administrator`, `Manager`, `Self service` and `Base` are read as the matching role
 - Each row represents one new user
 - Each email address must be valid and appear only once in the file
 - First row reserved for column headers
 - Up to **1,000 users** per file. Split a larger list and import the parts one at a time
 
-**There is no OWNER role in this file.** An import can create Administrators, Self-service and Base users, and nothing else. Administrators come only from the workspace owner's imports: if an Administrator uploads a file with any **ADMIN** row, the whole file is refused with *"Only the workspace owner can grant the Administrator role."* and nobody is invited. Ownership moves only through [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership), which demotes the outgoing owner, handles the subscription, and emails both people. An invite can do none of that.
+**There is no OWNER role in this file.** An import can create Administrators, Managers, Self-service and Base users, and nothing else. Administrators come only from the workspace owner's imports: if an Administrator uploads a file with any **ADMIN** row, the whole file is refused with *"Only the workspace owner can grant the Administrator role."* and nobody is invited. Ownership moves only through [Transferring Workspace Ownership](/knowledge-base/transfer-workspace-ownership), which demotes the outgoing owner, handles the subscription, and emails both people. An invite can do none of that.
 
 ### Columns
 
-- **role** *(required)*: the user's workspace role (ADMIN, BASE, or SELF_SERVICE)
+- **role** *(required)*: the user's workspace role (ADMIN, MANAGER, SELF_SERVICE or BASE, or the label shown in the app)
 - **email** *(required)*: the user's email address
 - **teamMemberId** *(optional)*: the ID of a [non-registered member](/knowledge-base/converting-non-registered-members-nrms-to-users) in this workspace. When the person accepts, they take over that member, along with the custody and history recorded against it. Leave it blank to invite someone new. To find the IDs, open **Settings → Team → Non-registered members**, select the members, and click **Export Selection**: the file's **Id** column holds them.
 
@@ -51,6 +51,7 @@ Shelf enables bulk user invitations through CSV file uploads, making it particul
 ```
 role,email,teamMemberId
 ADMIN,john.doe@company.com,
+MANAGER,sam.lee@company.com,
 SELF_SERVICE,jane.smith@company.com,cm7ep29mu0001slft9zw9e6sp
 ```
 
@@ -70,7 +71,7 @@ Shelf reads every row before it invites anyone. If any row has a problem, **nobo
 
 A row is refused when:
 
-- **The role is missing, or is not one of ADMIN, BASE or SELF_SERVICE.** That includes `OWNER`, since ownership moves only through ownership transfer.
+- **The role is missing, or is not one of ADMIN, MANAGER, SELF_SERVICE or BASE** (or their labels). That includes `OWNER`, since ownership moves only through ownership transfer.
 - **The email is missing or is not a valid address.** A name typed into the email column is caught here, instead of becoming an invite that can never be delivered.
 - **The same address is on an earlier row**, in any capitals. The later row is listed and names the row it repeats. Delete one of them.
 - **The same teamMemberId is on an earlier row.** One non-registered member can be claimed by one person.

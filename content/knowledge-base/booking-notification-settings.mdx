@@ -3,7 +3,7 @@ title: "Booking Notification Settings"
 description: "Control who receives booking email notifications at the workspace level and per booking. Configure creator notifications, admin broadcasts, always-notify users, and per-booking recipients."
 category: "Bookings & Custody"
 date: "2026-03-30"
-updated: "2026-09-07"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
@@ -33,15 +33,17 @@ When enabled, the user who created a booking receives all email notifications fo
 
 To disable this for your workspace, toggle **Notify booking creator** off in **Settings > Bookings**.
 
-### Notify All Admins on New Booking Requests
+### Notify All Owners, Administrators and Managers on New Booking Requests
 
 **Default: On**
 
-When enabled, all users with **Admin** or **Owner** role receive a notification when a booking is reserved. This is a one-time broadcast for the reservation event only — admins do **not** receive subsequent lifecycle emails (checkout reminders, check-in reminders, overdue notices, completed, or cancelled) unless they are explicitly added as a notification recipient on the booking or are in the Always Notify list.
+When enabled, every **Owner**, **Administrator** and **Manager** receives a notification when a booking is reserved. The switch is labelled **Notify all owners, administrators and managers on new booking requests**; until 15 October 2026 it read *Notify all admins*, and it gained Managers when the [Manager role](/knowledge-base/user-roles-and-their-permissions#manager) was added. This is a one-time broadcast for the reservation event only — these people do **not** receive subsequent lifecycle emails (checkout reminders, check-in reminders, overdue notices, completed, or cancelled) unless they are explicitly added as a notification recipient on the booking or are in the Always Notify list.
 
-The purpose of this setting is to alert the admin team that a new booking needs attention. Once someone takes ownership or processes the booking, only people explicitly attached to it continue to receive emails.
+The purpose of this setting is to alert the people who run bookings that a new one needs attention. Once someone takes ownership or processes the booking, only people explicitly attached to it continue to receive emails.
 
-**When to turn this off:** If your workspace has many admins and you want to reduce notification noise, disable this toggle and use the **Always Notify** list below to target the specific people who should receive new booking alerts.
+![Settings → Bookings with the Notify all owners, administrators and managers on new booking requests switch called out, and the Always notify list noting that only owners, administrators and managers can be added](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/notify-reservation-audience-managers.webp)
+
+**When to turn this off:** If your workspace has many owners, administrators and managers and you want to reduce notification noise, disable this toggle and use the **Always Notify** list below to target the specific people who should receive new booking alerts.
 
 ### Always Notify These Users
 
@@ -49,7 +51,7 @@ The purpose of this setting is to alert the admin team that a new booking needs 
 
 Add specific users who should receive all booking email notifications for every booking in the workspace — not just the reservation, but every update (checkout, check-in, overdue, completed, cancelled, extended, deleted).
 
-Use this for people who need complete visibility across all bookings, such as an equipment manager, office manager, or operations lead. This setting is additive — it works alongside (not instead of) the other notification settings above.
+Use this for people who need complete visibility across all bookings, such as an equipment manager, office manager, or operations lead. The list offers Owners, Administrators and Managers. This setting is additive — it works alongside (not instead of) the other notification settings above.
 
 To add a user:
 1. Go to **Settings > Bookings**
@@ -74,19 +76,19 @@ Use this for bookings that need extra attention from people not already covered 
 
 ### Notification Preview
 
-If you have Admin or Owner role, the booking form shows a **notification preview** — a real-time summary of everyone who will receive emails for the booking, grouped by reason:
+If you are an Owner, Administrator or Manager, the booking form shows a **notification preview** — a real-time summary of everyone who will receive emails for the booking, grouped by reason:
 
 - Custodian
 - Creator (if workspace setting is on)
 - Always-notify users (if configured)
 - Added recipients (if any)
-- Admin broadcast note for the reservation event
+- A footnote for the reservation broadcast, for example *+ 3 more (owners, administrators and managers) will be notified on reservation*
 
 Base-role and Self-Service users do not see the full recipient list.
 
 ## Complete Notification Matrix
 
-| Booking Event | Custodian | Creator (if on) | All Admins (if on) | Always-Notify Users | Per-Booking Recipients |
+| Booking Event | Custodian | Creator (if on) | Owners, Admins and Managers (if on) | Always-Notify Users | Per-Booking Recipients |
 |---|---|---|---|---|---|
 | Reserved | Always | Yes | **Yes** | Yes | Yes |
 | Reverted to draft | Always | Yes | No | Yes | Yes |
@@ -99,13 +101,13 @@ Base-role and Self-Service users do not see the full recipient list.
 | Updated | Always | Yes | No | Yes | Yes |
 | Deleted | Always | Yes | No | Yes | Yes |
 
-**Note:** The All Admins column applies to the reservation event only. This is intentional — it is a broadcast signal that a new booking needs attention. Subsequent lifecycle events are targeted to specific people attached to the booking.
+**Note:** The Owners, Admins and Managers column applies to the reservation event only. This is intentional — it is a broadcast signal that a new booking needs attention. Subsequent lifecycle events are targeted to specific people attached to the booking.
 
-**Note:** The person performing an action is normally left out of the email it triggers — they already know what they did. Two recipients are exempt, because the whole point of their place on the list is a complete record of the booking: the **custodian** always receives the email, even when they are the one who acted, and so does the **creator** while **Notify booking creator** is on. Someone who is on the list for any other reason — an admin on the always-notify list, say — is left out of the email for their own action as before. The exclusion does not apply at all to scheduled reminders (checkout reminder, check-in reminder, overdue), which are sent to every recipient regardless of who did what.
+**Note:** The person performing an action is normally left out of the email it triggers — they already know what they did. Two recipients are exempt, because the whole point of their place on the list is a complete record of the booking: the **custodian** always receives the email, even when they are the one who acted, and so does the **creator** while **Notify booking creator** is on. Someone who is on the list for any other reason — an admin on the always-notify list, say — is left out of the email for their own action as before. The footer of a broadcast email now says *you manage bookings in the workspace* rather than *you are an admin*, since Managers receive it too. The exclusion does not apply at all to scheduled reminders (checkout reminder, check-in reminder, overdue), which are sent to every recipient regardless of who did what.
 
 ## When a Reservation Is Sent Back to Draft
 
-A reserved booking can be sent back to **Draft** from the booking's **Actions** menu, using **Revert to Draft**. It is the reply to a reservation request: the booking is not cancelled and nothing is lost, it simply becomes editable again so dates, items or the custodian can be changed and the booking reserved a second time. Administrators and Owners can do this on any reserved booking; a Base or Self-service user reaches the **Actions** menu only on a booking they are the custodian of, so they can send their own reservation back but nobody else's.
+A reserved booking can be sent back to **Draft** from the booking's **Actions** menu, using **Revert to Draft**. It is the reply to a reservation request: the booking is not cancelled and nothing is lost, it simply becomes editable again so dates, items or the custodian can be changed and the booking reserved a second time. Owners, Administrators and Managers can do this on any reserved booking; a Base or Self-service user reaches the **Actions** menu only on a booking they are the custodian of, so they can send their own reservation back but nobody else's.
 
 Shelf now emails the same people this event would reach if it were any other lifecycle transition. The subject reads *"↩️ Booking reverted to draft (booking name)"*, and the body tells the recipient they can review the booking, make changes and submit it again.
 
