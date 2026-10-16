@@ -1,0 +1,76 @@
+# Files new changelog entries as DRAFT posts in the Shelf app's Updates panel.
+#
+# Fires when a push to main adds a content/updates/*.mdx entry. Only entries
+# with `inApp: true` in their frontmatter are filed (scripts/in-app-draft.mjs
+# skips the rest), and the app endpoint can only create drafts: a Shelf admin
+# edits and publishes every post in Admin > Updates.
+#
+# Manual run: pick "Run workflow" and list the entry paths to file, for an
+# entry that merged before this workflow existed or whose run failed.
+#
+# Needs the repository secret UPDATE_DRAFTS_API_KEY (same value as the app's
+# Fly secret) and the repository variable UPDATE_DRAFTS_AUTHOR (email of the
+# Shelf admin the drafts are filed under).
+name: In-app update draft
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/updates/**"]
+  workflow_dispatch:
+    inputs:
+      entries:
+        description: "Entry paths to file, separated by spaces (content/updates/x.mdx ...)"
+        required: true
+        type: string
+
+concurrency:
+  group: in-app-draft
+  cancel-in-progress: false
+
+jobs:
+  file-drafts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The push event's `before` sha is needed to list the added entries.
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - run: npm ci
+
+      - name: Pick the entries to file
+        id: pick
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          MANUAL_ENTRIES: ${{ inputs.entries }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            entries="$MANUAL_ENTRIES"
+          else
+            # A first push or a force push has no usable `before`; fall back to
+            # the last commit so the run still files what that commit added.
+            case "$BEFORE_SHA" in
+              0000000000000000000000000000000000000000|"") base="$AFTER_SHA~1" ;;
+              *) base="$BEFORE_SHA" ;;
+            esac
+            entries=$(git diff --name-only --diff-filter=A "$base" "$AFTER_SHA" -- 'content/updates/*.mdx' | tr '\n' ' ')
+          fi
+          echo "entries=$entries" >> "$GITHUB_OUTPUT"
+          echo "Entries: ${entries:-none}"
+
+      - name: File drafts in the app
+        if: steps.pick.outputs.entries != ''
+        env:
+          ENTRIES: ${{ steps.pick.outputs.entries }}
+          UPDATE_DRAFTS_API_KEY: ${{ secrets.UPDATE_DRAFTS_API_KEY }}
+          UPDATE_DRAFTS_AUTHOR: ${{ vars.UPDATE_DRAFTS_AUTHOR }}
+        # shellcheck disable=SC2086: the list is space separated on purpose
+        run: node scripts/in-app-draft.mjs $ENTRIES

@@ -80,6 +80,15 @@ export interface Frontmatter {
 
     // Updates (product changelog)
     readMoreUrl?: string;
+    /**
+     * Files the entry as a DRAFT post in the app's own Updates panel when it
+     * lands on main (see `scripts/in-app-draft.mjs`). Off by default: most
+     * changelog entries are not worth an in-app post, and a Shelf admin still
+     * reviews and publishes every draft in Admin > Updates.
+     */
+    inApp?: boolean;
+    /** Workspace roles that see the in-app post. Omitted means every role. */
+    appRoles?: ("OWNER" | "ADMIN" | "BASE" | "SELF_SERVICE")[];
 
     // Case studies
     customer?: string | {
