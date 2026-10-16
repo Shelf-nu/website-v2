@@ -26,6 +26,14 @@ Clicking Add assets will open an asset manager modal that allows you to browse a
 3. Use the filters or search bar to quickly find assets
 4. Click Confirm to add your selection of assets to the booking
 
+### Assets kept in sub-locations
+
+The **Locations** filter matches the locations you tick, exactly. Since 15 October 2026, when a ticked location has [child locations](/knowledge-base/sublocations-organize-locations-into-hierarchies), a checkbox **Include assets from child locations** appears under the filter. It is off by default and hidden for a location without children. Tick it and the list adds every asset kept anywhere below the ticked locations, and **Select all** then picks the same set, so a parent that holds nothing itself no longer shows an empty list with no hint why. **Without location** keeps working with the checkbox on. The choice is not remembered between visits.
+
+![The Add assets dialog on a booking with a parent location ticked in the Locations filter and the Include assets from child locations checkbox under it](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-picker-child-locations.webp)
+
+The **Kits** tab, the kit page's asset picker and the location page's asset picker keep exact matching.
+
 ## Removing assets from a booking
 
 1. Find the asset(s) you would like to remove in the index
