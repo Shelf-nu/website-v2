@@ -113,6 +113,26 @@ Recipients follow the **Reverted to draft** row in the matrix above: the custodi
 
 This matters most for the request-and-approve pattern. A Base or Self-service user submits a reservation with **Request reservation**, an administrator sends it back for changes, and until now the requester was told nothing: their booking quietly became a draft again and they found out the next time they opened it. Every other transition on a booking — reserved, cancelled, checked in, extended, deleted — already sent an email; this one was the gap.
 
+## What the Email Says About Who Acted
+
+Since 15 October 2026, every booking email that a person triggers carries one line under its heading saying who did it and when, for example **Completed by:** *Jo Display on 30/09/2026, 16:15*. The name is the person's display name (their email address if they have none), and the moment is written in each recipient's own [date format, time format and time zone](/knowledge-base/date-time-and-timezone-preferences), the same way the From and To dates already are. The plain-text version of the email has the same line right after the event sentence. Subjects are unchanged.
+
+| What happened | The line reads |
+|---|---|
+| Reserved | **Reserved by** |
+| Checked in and completed | **Completed by** |
+| Extended | **Extended by** |
+| Reverted to draft | **Reverted by** |
+| Cancelled, singly or in bulk | **Cancelled by** |
+| Deleted, singly or in bulk | **Deleted by** |
+| Dates, custodian, assets or kits edited | **Updated by** |
+
+The completion email says **Completed by**, not "Checked in by", because the person who completes a booking is not always the one who scanned every item back. **Updated by** covers every way a booking is edited: the edit form, the manage assets and manage kits pages, and removing items from the overview, including the separate email the previous custodian gets after a custodian change. Actions taken in the [Shelf Companion](/mobile-app) app carry the line too, naming the person signed in on the phone.
+
+Two kinds of email have no such line, on purpose. The scheduled check-out reminder, check-in reminder and overdue emails are sent by Shelf's scheduler, not by a person. And checking a booking out, or a scan check-in that leaves items still out, sends no email at all today.
+
+![A booking completed email before and after: the new Completed by line sits under the heading, naming the person and the moment in the reader's own format](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/updates/booking-email-completed-by.webp)
+
 ## Related Articles
 
 - [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
