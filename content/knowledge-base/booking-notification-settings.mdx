@@ -129,7 +129,7 @@ Since 15 October 2026, every booking email that a person triggers carries one li
 
 The completion email says **Completed by**, not "Checked in by", because the person who completes a booking is not always the one who scanned every item back. **Updated by** covers every way a booking is edited: the edit form, the manage assets and manage kits pages, and removing items from the overview, including the separate email the previous custodian gets after a custodian change. Actions taken in the [Shelf Companion](/mobile-app) app carry the line too, naming the person signed in on the phone.
 
-Two kinds of email have no such line, on purpose. The scheduled check-out reminder, check-in reminder and overdue emails are sent by Shelf's scheduler, not by a person. And checking a booking out, or a scan check-in that leaves items still out, sends no email at all today.
+Two kinds of email have no such line, on purpose. The scheduled check-out reminder, check-in reminder and overdue emails are sent by Shelf's scheduler, not by a person. And checking a booking out, or a scan check-in that leaves items still out, sends no "checked out" or "checked in" email. The one exception is a check-out with less than an hour left before the booking ends: the check-in reminder goes out straight away, without the line.
 
 ![A booking completed email before and after: the new Completed by line sits under the heading, naming the person and the moment in the reader's own format](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/updates/booking-email-completed-by.webp)
 
