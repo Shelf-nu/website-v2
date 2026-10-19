@@ -3,7 +3,7 @@ title: "Introduction to Bookings"
 description: "This guide explains the fundamental concepts of Shelf's Bookings feature, which enables users to reserve equipment for specific time periods while preventing double-bookings."
 category: "Bookings & Custody"
 date: "2026-03-30"
-updated: "2026-09-07"
+updated: "2026-10-19"
 layout: "knowledge-base"
 ---
 
@@ -80,22 +80,11 @@ Equipment managers can cancel non-completed bookings when they're no longer need
 ![7. Cancelled](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df60c_65d35f74d1c82111d989ab3a_Cancelled.png)
 ## Notification Emails
 
-The system sends automated emails to relevant team members at key stages:
-
+Shelf emails the people on a booking at each step: when it is reserved, one hour before the start, one hour before the end, once at the end time if it is still out, and when it is checked in, extended, updated, cancelled or deleted.
 
 ![Notification mails](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df613_65d385967cb728f10d4946fe_booking-email.jpeg)
-- **Confirmation**: Sent when a booking reaches Reserved status
-- **Reverted to draft**: Sent when a reserved booking is sent back to Draft with **Revert to Draft**, so the custodian knows their reservation needs another look
-- **Check-out Reminder**: Sent 1 hour before the Start date/time
-- **Check-in Reminder**: Sent 1 hour before the End date/time
-- **Overdue**: Sent when the End date/time passes without check-in
-- **Completed**: Sent when the booking is checked in
-- **Cancelled**: Sent when an administrator cancels the booking
-- **Deleted**: Sent when an administrator deletes the booking
 
-By default, the booking **custodian**, booking **creator**, and **all admins** (reservation event only) receive notifications. Admins can configure workspace-level notification defaults and add per-booking recipients in the notification settings.
-
-See: [Booking Notification Settings](/knowledge-base/booking-notification-settings)
+The exact timing of every email, and what Shelf does not send, is in [Which Emails Shelf Sends, and When](/knowledge-base/which-emails-shelf-sends-and-when). Who receives them is set in **Settings > Bookings**; see [Booking Notification Settings](/knowledge-base/booking-notification-settings).
 
 ## Related Resources
 

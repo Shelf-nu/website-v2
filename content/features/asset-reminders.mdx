@@ -1,6 +1,6 @@
 ---
 title: "Asset Reminders"
-description: "Automated reminders for returns, inspections, rentals, and maintenance events—keeping teams proactive and compliant."
+description: "Set a dated reminder on any asset and Shelf emails the people you name when the date arrives. For inspections, calibrations, warranty dates and anything else with a deadline."
 layout: "feature"
 intent: "commercial"
 cluster: "product-feature"
@@ -9,17 +9,17 @@ personas:
   - "it"
 canonicalUrl: "/features/asset-reminders"
 date: "2025-01-01"
-updated: "2025-01-01"
+updated: "2026-10-19"
 seo:
   title: "Equipment Reminder & Maintenance Notifications"
-  description: "Stay ahead of inspections, returns, and maintenance with automated reminders for your equipment."
+  description: "Put a date on an asset and get an email when it arrives. Reminders for inspections, calibrations, warranties and service, sent to the people you choose."
   image: "/images/og/features-reminders.png"
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reminders2-min.png"
 ---
 
 # Asset Reminders
 
-Asset reminders keep teams proactive with automated notifications for returns, inspections, maintenance, and any time-sensitive equipment events.
+A reminder is a date on an asset with a message and a list of people. When the date arrives, Shelf emails those people and writes a note on the asset. That is the whole feature, and it covers a lot: inspections, calibrations, warranty ends, licence renewals, "decide whether to retire this".
 
 ![Asset reminders overview showing scheduled notifications](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reminders2-min.png)
 
@@ -27,55 +27,42 @@ Asset reminders keep teams proactive with automated notifications for returns, i
 
 ## What Reminders Solve
 
-Without automated reminders, teams struggle with:
+Dates that live in a spreadsheet, a calendar or someone's head slip. A reminder lives on the asset it is about, so:
 
-- **Overdue equipment**: Items stay checked out longer than expected with no follow-up.
-- **Forgotten inspections**: Safety checks and certifications slip past their due dates.
-- **Missing return dates**: Staff forget when items need to come back.
-- **Manual follow-up**: Managers spend time chasing people instead of managing operations.
-- **Compliance issues**: Missed maintenance windows create safety and regulatory risks.
-
-Reminders solve these problems by surfacing what needs attention—before it becomes a problem.
+- **Nothing is forgotten**: the inspection date is attached to the thing being inspected.
+- **The right people hear**: each reminder names its own recipients, so the lab manager gets the calibration reminders and the IT lead gets the warranty ones.
+- **There is a record**: every reminder that fires leaves a note on the asset's timeline.
 
 ---
 
 ## How Reminders Work in Shelf
 
-### Automated Notifications
+### Set on the asset
 
-Set time-based reminders for any asset event. Shelf sends notifications when dates approach, keeping teams informed without manual tracking.
+Open an asset, choose **Actions > Set Reminder**, give it a name, a message, a date and time, and pick the team members who should receive it. Any team member with a Shelf login can be chosen, and one asset can carry as many reminders as you need.
 
----
+### Emailed when the date arrives
 
-### Linked to Bookings
-
-Reminders integrate with bookings to notify users when returns are due. If equipment is overdue, the system flags it automatically.
-
-See: [Bookings](/features/bookings)
-
----
-
-### Maintenance Scheduling
-
-Set reminders for inspections, calibrations, cleaning, and service. Each reminder is set for its due date, and Shelf surfaces what's upcoming and overdue so nothing slips through the cracks.
+At the chosen date and time Shelf sends one email to each person on the reminder, with the asset, your message and a link to it. If a recipient has since left the workspace, their email goes to the workspace owner instead, so no reminder is lost. Reminders on an archived asset are skipped.
 
 ![Asset reminder notification example](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/asset-reminder-notice.jpg)
 
----
+### Seen before they fire
 
-### Accountability Visibility
+Upcoming reminders show in three places: the **Upcoming reminders** card on the Home page, the asset's own overview, and the **Reminders** page in the sidebar, which lists every reminder in the workspace with its status, **Pending** or **Sent**. Pending reminders can be edited; sent ones can only be deleted.
 
-Administrators see a clear view of pending and overdue reminders across the organization. Filter by type, due date, or responsible party to prioritize follow-up.
+### What a reminder is not, yet
+
+Each reminder is one date, set by hand. Reminders do not repeat on a schedule and they are not driven by a date custom field such as *Warranty expiry* or *Next calibration*: if you store those dates on your assets, you set the reminder yourself, 30 or 90 days ahead, as you prefer. Repeating and field-driven reminders are on our list, but not built. Return dates for borrowed equipment are handled by [Bookings](/features/bookings), which send their own reminders.
 
 ---
 
 ## Benefits
 
-- **Proactive maintenance** with scheduled service reminders
-- **Fewer delays** from overdue equipment
-- **Reduced loss** through consistent return tracking
-- **Smoother operations** with automated notifications
-- **Compliance support** by surfacing inspection and certification deadlines
+- **Deadlines attached to the asset**, not to a person's memory
+- **Named recipients per reminder**, so each team hears only about its own gear
+- **An audit trail**, since every fired reminder becomes a note on the asset
+- **Workspace-wide overview** on the Reminders page and the Home card
 
 ---
 
@@ -83,5 +70,3 @@ Administrators see a clear view of pending and overdue reminders across the orga
 
 - [Bookings](/features/bookings)
 - [Custody](/features/custody)
-
-
