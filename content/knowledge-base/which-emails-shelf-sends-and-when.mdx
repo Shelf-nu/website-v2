@@ -1,0 +1,113 @@
+---
+title: "Which Emails Shelf Sends, and When"
+description: "Every automatic email Shelf sends from a workspace in one table: booking reminders and their fixed timing, overdue notices, asset reminders, audit reminders, low-stock alerts and team emails, with who receives each one."
+category: "Getting Started"
+date: "2026-10-19"
+updated: "2026-10-19"
+layout: "knowledge-base"
+keywords:
+  - "email notifications"
+  - "booking reminder"
+  - "overdue email"
+  - "when are emails sent"
+  - "notification schedule"
+---
+
+Shelf sends emails on its own at fixed moments: before a booking starts, when it runs late, when a reminder date arrives, when stock runs low. This page lists every one of them, with the exact timing and who receives it, so you can tell your team what to expect and set up the right people as recipients.
+
+Two rules apply to everything below:
+
+- **Workspace notifications only reach people with a Shelf login.** Invitations and sign-in codes go to the address typed in, but booking, reminder, audit and stock emails need a user account. A [non-registered member](/knowledge-base/converting-non-registered-members-nrms-to-users) has no mailbox attached, so a booking or custody held by one sends nothing on their behalf. There is also no way to add an outside address such as a shared team inbox as a recipient; invite the mailbox as a user if it needs the mail.
+- **Times are the booking's or reminder's own times.** The emails show dates in each recipient's own [date, time and timezone preferences](/knowledge-base/date-time-and-timezone-preferences).
+
+## Bookings
+
+Who receives booking emails is configured in **Settings > Bookings**: the custodian always, the booking creator while that switch is on, everyone on the always-notify list, anyone added as a recipient on the booking, and, for the reservation only, all owners, administrators and managers. The full recipient matrix is in [Booking Notification Settings](/knowledge-base/booking-notification-settings). The timing is fixed and the same for every workspace:
+
+| Email | When it is sent |
+|---|---|
+| **Booking reserved** | The moment a booking is reserved |
+| **Checkout reminder** | **1 hour before the start time**, only if the booking was reserved more than an hour ahead |
+| **Check-in reminder** | **1 hour before the end time**. If the booking is checked out with less than an hour left, it is sent at checkout instead |
+| **Overdue** | **Once, at the end time**, if the booking is still checked out. The booking's status changes to Overdue at the same moment |
+| **Booking complete** | When the booking is checked in |
+| **Booking extended** | When the end date is extended. The check-in reminder and overdue notice are rescheduled against the new end time |
+| **Booking updated** | When dates, custodian or other details of a reserved booking are edited |
+| **Reverted to draft** | When a reserved booking is sent back to Draft |
+| **Booking cancelled** | When the booking is cancelled |
+| **Booking deleted** | When the booking is deleted |
+
+Three things people often expect that Shelf does **not** do today:
+
+- There is **no earlier reminder** than one hour: no "one week before" or "one day before" email. If you subscribe your calendar to Shelf, the [calendar feed](/knowledge-base/subscribe-your-calendar-to-shelf-bookings) adds a one-day-ahead reminder in your calendar app, which is the closest thing.
+- The overdue email is sent **once**. It does not repeat daily while the equipment stays out. The **Overdue bookings** card on the Home page and the **Overdue Items** report are the live view of what is still out.
+- Reminders go to the people on the booking, as configured above. They are not sent to a department mailbox.
+
+The person who performs an action (cancels, extends, checks in) is left out of the email that action triggers, unless they are the custodian or the creator. Scheduled emails (the two reminders and the overdue notice) go to everyone on the list regardless.
+
+## Asset reminders
+
+An [asset reminder](/knowledge-base/asset-reminders) is a date you set on an asset by hand, with a message and a list of team members.
+
+| Email | When it is sent | Who receives it |
+|---|---|---|
+| **Asset Reminder Notice** | At the date and time set on the reminder | The team members chosen on that reminder. If one has since left the workspace, their copy goes to the workspace owner |
+
+Each reminder fires once. Reminders do not repeat, and they are not driven by date custom fields; to be reminded 30, 60 and 90 days before a warranty ends, set three reminders. Reminders on archived assets are skipped.
+
+## Audits
+
+Audit emails go to the people assigned to the audit, and the overdue notice also to whoever created it. See [Run Your First Audit](/knowledge-base/run-your-first-audit).
+
+| Email | When it is sent | Who receives it |
+|---|---|---|
+| **You've been assigned to audit** | When the audit is started with assignees | Each assignee |
+| **Audit due in 24 hours** | 24 hours before the due date | Assignees |
+| **Audit due in 4 hours** | 4 hours before the due date | Assignees |
+| **Audit due in 1 hour** | 1 hour before the due date | Assignees |
+| **Audit overdue** | At the due date, if the audit is not completed or cancelled | Creator and assignees |
+| **Audit completed** | When the audit is completed | Assignees and the creator |
+| **Audit cancelled** | When the audit is cancelled | Assignees and the creator |
+
+Reminders only apply to audits with a due date, and only the steps still in the future are scheduled: an audit started six hours before its due date gets the 4-hour and 1-hour reminders, not the 24-hour one.
+
+## Stock
+
+For quantity-tracked assets with a **min quantity**, see [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables).
+
+| Email | When it is sent | Who receives it |
+|---|---|---|
+| **Low stock** | When a stock adjustment, custody assignment or booking check-in takes the available count to or below the minimum. Once per crossing, not once per change | The workspace owner and every administrator |
+| **Back in stock** | When the available count rises back above the minimum | The same people |
+
+## Team and account
+
+| Email | When it is sent | Who receives it |
+|---|---|---|
+| **You have been invited to [workspace]** | When someone invites a new member to the workspace | The invited address |
+| **Your role in [workspace] has been changed** | When someone changes a member's role | That member |
+| **Access to [workspace] has been revoked** | When a member is removed from a workspace | That member |
+| **Ownership transferred** | When workspace ownership is transferred | Both the previous and the new owner |
+| **Shelf verification code** | On every sign-in with a one-time code | The person signing in |
+| **Trial and subscription emails** | Trial start, three days and one day before a trial ends, payment problems | The person who holds the subscription |
+
+If a sign-in code or invitation does not arrive, see [Troubleshooting: Invite Not Received](/knowledge-base/troubleshooting-invite-not-received).
+
+## What is not sent
+
+To save you looking for a setting that does not exist:
+
+- No daily or weekly digest.
+- No repeat of the overdue booking email.
+- No email on custody assignment or release outside a booking. The handover shows on the asset's timeline and in the custodian's own asset list.
+- No email to addresses that are not Shelf users.
+- No reminders driven by date custom fields.
+
+Automation rules that would cover these are something we are working towards. Until then the Home page cards, the **Overdue Items** and **Custody Snapshot** reports and the Reminders page are the places to look.
+
+## Related Articles
+
+- [Booking Notification Settings](/knowledge-base/booking-notification-settings)
+- [Introduction to Bookings](/knowledge-base/introduction-to-bookings)
+- [Asset Reminders](/knowledge-base/asset-reminders)
+- [Subscribe Your Calendar to Shelf Bookings](/knowledge-base/subscribe-your-calendar-to-shelf-bookings)
