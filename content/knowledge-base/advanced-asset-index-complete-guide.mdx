@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-19"
+updated: "2026-10-20"
 layout: "knowledge-base"
 ---
 
@@ -63,6 +63,7 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 | **Custody** | Yes | Who is holding it |
 | **Upcoming Reminder** | Yes | The next [asset reminder](/knowledge-base/asset-reminders) due |
 | **Upcoming Bookings** | Yes | Bookings this asset is committed to |
+| **Last audit date** | Yes | When the asset was last counted in a completed audit, or *Never audited*. Owners, Administrators and Managers only, and it needs the Audits add-on. See [Last audit date](#last-audit-date) |
 | **Actions** | Yes | The per-row menu |
 | **ID** | No | Shelf's internal record ID, the one the [bulk update](/knowledge-base/bulk-updating-assets-via-csv) flow matches rows on |
 | **Quantity** | No | Units held, for [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) assets |
@@ -88,6 +89,26 @@ A table cell sets the height of its row, so a cell that stacked everything it he
 Hover or tab to a `+N` and it lists what is hidden. On a barcode column it does more than that: clicking `+N` opens the code preview on the first hidden barcode, and the dialog's own selector reaches the rest, so a code past the cap is still one click from being displayed large enough to scan off the screen.
 
 This is why a row stays the same height whether an asset carries one barcode or six.
+
+### Last audit date
+
+Since 20 October 2026 the index has a **Last audit date** column, switched on by default. It answers "when was this asset last counted?" without opening the audits area: the cell holds the completion date of the most recent **Completed** or **Archived** [audit](/knowledge-base/run-your-first-audit) the asset was part of, and *Never audited* when there is none. An asset the audit reported as **Missing** still counts as audited, because it was on the list that was checked.
+
+![The advanced asset index with the Last audit date column, and the hover card on one date listing the asset's two recent audits with their result and a View all audits button](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/last-audit-date-column.webp)
+
+Hover a date and a card lists up to three **Recent** audits (name, completion date, and whether this asset was found or missing in it) and up to three **Upcoming** ones (pending audits with their due date, or *In progress* for an active one), each a link to the audit. **View all audits** opens the audits list filtered to that asset, with an **Asset:** chip you can remove; the list includes archived audits unless you also pick a status. A never-audited asset shows the same card with *No audits for this asset*. The card is loaded when you hover, so a large index is not slowed down by it. The asset's own page carries the same history on a **Last audit** card; see [Where to see an asset's audit history](/knowledge-base/run-your-first-audit#where-to-see-an-assets-audit-history).
+
+**Filter** on the column with the usual date operators (**is**, **is not**, **before**, **after**, **between**, **in dates**) plus one of its own, **Never audited**, which takes no date. **Sort** on it and the never-audited assets go last, whichever direction you choose. A **Standard** export carries the column when it is visible or you pick **All columns**; an **Import-ready** export never does, because an audit date is not something you can import. Both formats respect a Last audit date filter, so a **Select all** export matches the rows you saw.
+
+Who sees what:
+
+| You are | Workspace has the Audits add-on | The column shows |
+|---|---|---|
+| Owner, Administrator or Manager | Yes | The date, with the hover card, filter and sort |
+| Owner, Administrator or Manager | No, or the trial ended | An **Unlock audits** link to the Audits page, and no filter or sort on the column |
+| Self-service or Base | Either | Nothing: the column is not offered at all |
+
+A saved filter or a shared link that filters or sorts on the column is quietly ignored for anyone who cannot use it, and a bulk action on a **Select all** selection that relies on such a filter is refused rather than widened.
 
 ## Advanced Filtering System
 
@@ -118,6 +139,7 @@ This is why a row stays the same height whether an asset carries one barcode or 
 - **after**: After date
 - **between**: Date range
 - **in dates**: Multiple specific dates
+- **Never audited**: [Last audit date](#last-audit-date) only, for assets that have not been counted in a completed audit
 
 ### Boolean Fields (Available to Book, Is Portable)
 
@@ -297,7 +319,7 @@ Networking
 Select the assets you want (or **Select all X entries** to take the whole filtered set), click **Export selection**, and choose how the file is built:
 
 - **Format**: **Standard** for a readable spreadsheet, or **Import-ready** for a file that uploads straight back into another workspace via **Assets → Import**
-- **Columns**: only the columns currently visible in your index, or all of them
+- **Columns**: only the columns currently visible in your index, or all of them. **Last audit date** is a Standard-only column; the Import-ready file never carries it
 
 A Standard export is perfect for:
 
