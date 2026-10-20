@@ -234,6 +234,7 @@ const LINK_INDEX = `## Key Links
 - [Adding New Assets](${BASE_URL}/knowledge-base/adding-new-assets): Add assets individually with photos, custom fields, and QR tags.
 - [Introduction to Workspaces](${BASE_URL}/knowledge-base/introduction-to-workspaces): Understand workspaces and how they separate teams or departments.
 - [Introduction to Bookings](${BASE_URL}/knowledge-base/introduction-to-bookings): Learn how to set up and manage equipment bookings.
+- [How to Test Shelf for Your Use Case](${BASE_URL}/knowledge-base/how-to-test-shelf-for-your-use-case): A 7-day trial plan with one checklist each for production crews, equipment rooms, field teams and IT: workspace, import, QR labels, kits, custody, bookings, Shelf Companion and inviting colleagues.
 - [Switching From Another Asset Tool](${BASE_URL}/knowledge-base/switching-from-another-asset-tool): Export from your current tool, map columns to the import file, keep existing barcode and QR stickers, and what a 1,000-asset import looks like.
 - [Importing Assets via CSV](${BASE_URL}/knowledge-base/importing-assets-to-shelf-csv-guide): Bulk-import assets from a spreadsheet using the CSV template.
 - [Bulk Updating Assets via CSV](${BASE_URL}/knowledge-base/bulk-updating-assets-via-csv): Update many assets at once with a CSV upload.
