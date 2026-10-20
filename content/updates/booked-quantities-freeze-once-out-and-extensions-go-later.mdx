@@ -1,0 +1,13 @@
+---
+title: "A Booked Quantity Is Fixed Once Its Units Go Out, and an Extension Must Go Later"
+description: "Adjust quantity on a pooled booking row refuses to change a quantity once any of its units have been checked out. Extend booking refuses a new end at or before the current end."
+date: "2026-10-20"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/extending-booking-1.webp"
+layout: "update"
+---
+
+Two booking rules got stricter, both for the same reason: the record should never say something the shelf cannot back up.
+
+**Adjust quantity** on a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) row used to accept a lower number at any point. Once any of that row's units have been checked out, lowering it would strand units that can no longer be checked in, so the dialog now refuses with **Already checked out**. Up or down, a row whose units have gone out keeps its amount; while everything is still on the shelf, lowering always works and raising is measured against what is free for the booking's dates, as before. Saving a number a row already has no longer writes anything. See [Adjusting the quantity on a pooled asset](/knowledge-base/adding-assets-and-kits-to-a-booking#adjusting-the-quantity-on-a-pooled-asset).
+
+**Extend booking** only required the new end to be in the future, so an "extension" to a time before the current end was accepted. It is now refused: *The new end date must be after the current end date.* See [Extending Booking End Dates](/knowledge-base/extending-booking-end-dates-in-shelf).

@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-10-09"
+updated: "2026-10-20"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -197,7 +197,7 @@ The one thing that ignores dates is an **overdue** booking. Nobody knows when a 
 
 Open the asset's row on the booking and choose **Adjust quantity**. The dialog tells you what you've got to work with for these dates, written plainly as *"4 of 12 sandbags available"* with the date range underneath, plus how many units other bookings are holding. If your role can see other people's bookings, a **View bookings** link takes you to them.
 
-Ask for more than the dates allow and the dialog stops you before it submits: *Only 3 sandbags available. Please reduce the quantity.* If the pool shrank while the dialog sat open, the refusal comes back from the server instead, and it names the asset and both numbers: *Only 3 sandbags available for "Sandbag (Counterweight)" in this window — you requested 12. Reduce the quantity to continue.* Going the other way, **lowering a quantity always works**, no matter what state the booking is in.
+Ask for more than the dates allow and the dialog stops you before it submits: *Only 3 sandbags available. Please reduce the quantity.* If the pool shrank while the dialog sat open, the refusal comes back from the server instead, and it names the asset and both numbers: *Only 3 sandbags available for "Sandbag (Counterweight)" in this window — you requested 12. Reduce the quantity to continue.* Going the other way, **lowering a quantity always works while the units are still on the shelf**, whatever the booking's status. Once any of a row's units have been checked out, its booked quantity is fixed in both directions: the dialog answers **Already checked out**, *Units of "Sandbag" have already been checked out on this booking, so its booked quantity can no longer change.*, because lowering it would strand units that can no longer be checked in. Saving the number a row already has changes nothing and writes nothing to the booking's activity.
 
 ### A pool with units out is not a closed door
 
