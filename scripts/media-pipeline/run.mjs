@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const ARTICLES = {
+  "checkin-confirm-dialog": "articles/checkin-confirm-dialog.mjs",
   "manager-role": "articles/manager-role.mjs",
   "export-workspace-data": "articles/export-workspace-data.mjs",
   "adding-additional-fields": "articles/adding-additional-fields.mjs",
