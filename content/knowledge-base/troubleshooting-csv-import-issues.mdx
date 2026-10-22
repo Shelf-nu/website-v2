@@ -26,7 +26,7 @@ The problems it most often reports:
 
 ## Partial import or unexpected records
 
-- **The import stopped part way**: the rows imported before it stopped stay, and no row is imported twice. Open the import from the email (**Your asset import stopped**) or from the notice on the assets list and click **Resume import**. It continues from the first row that was not imported. Do not upload the same file again, which would create a second copy of every row already in. See [If the import stops](/knowledge-base/importing-assets-to-shelf-csv-guide#if-the-import-stops).
+- **The import stopped part way**: the rows imported before it stopped stay, and no row is imported twice. Open the import with **Open import** in the email (**Your asset import stopped**), or **View progress** on the progress card, and click **Resume import**. It continues from the first row that was not imported. Do not upload the same file again, which would create a second copy of every row already in. See [If the import stops](/knowledge-base/importing-assets-to-shelf-csv-guide#if-the-import-stops).
 - **The import finished with warnings**: a few rows met something that changed after the preview, such as a QR code linked to another asset in the meantime or an image that could not be downloaded. Those rows were imported with the problem value left out, and the import page lists each one. See [Row warnings](/knowledge-base/importing-assets-to-shelf-csv-guide#row-warnings).
 - **Missing title**: every row needs a `title` value. The importer does not reject blank titles — those rows still create asset records, just with no name, which you'd then have to clean up by hand. Validate that every row's `title` column is populated before uploading.
 - **Encoding**: save your CSV as **UTF-8**. Excel sometimes saves as ANSI or Windows-1252, which corrupts special characters (accents, non-Latin scripts). In Excel: File → Save As → choose "CSV UTF-8". A file you exported from Shelf already carries a UTF-8 byte order mark, so it opens with the right alphabet and re-saving it keeps the encoding. Shelf's importer strips the mark on the way back in, so it never lands in your data. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
@@ -36,8 +36,8 @@ The problems it most often reports:
 
 ## Columns not mapping correctly
 
-- **Column headers must match Shelf's expected names exactly** (case-sensitive). Unknown headers abort the entire import with "Invalid header provided." Check the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the full column reference.
-- **Custom fields**: headers must use the form `cf:FieldName,type:TypeName` — for example `cf:Purchase Date,type:date`. A bare `Purchase Date` header is **not** valid and will be rejected as an unknown header. In a comma-delimited file, the whole header must be wrapped in double quotes because it contains a comma: `"cf:Purchase Date,type:date"`. In a semicolon-delimited file no quoting is needed.
+- **A column was left out.** After you click **Continue**, Shelf matches each header to a Shelf field, ignoring capitals. A column it cannot match is set to **Skip** and not imported. Pick a Shelf field for it in the mapping step, or **Custom field...** to keep it as a custom field. Check the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the full column reference.
+- **Custom fields**: a header in the form `cf:FieldName,type:TypeName`, for example `cf:Purchase Date,type:date`, is mapped to that custom field straight away. A bare `Purchase Date` header is skipped unless your workspace already has a field with that name or you map it yourself. In a comma-delimited file, the whole header must be wrapped in double quotes because it contains a comma: `"cf:Purchase Date,type:date"`. In a semicolon-delimited file no quoting is needed.
 
 ---
 
@@ -107,7 +107,7 @@ The per-file limits are counted the same way, so a file with multi-line descript
 
 ## You can't upload another file yet
 
-One import runs in a workspace at a time. While one is running, the import page shows its progress instead of the upload form, and the form comes back when it finishes. If the running import has stopped, resume it first.
+One import runs in a workspace at a time. While one is running, the upload form is disabled under "An import is running (X of Y). You can upload another file when it finishes." Click **View progress** next to it to follow the running import.
 
 A preview you did not confirm expires after 24 hours. Confirming it after that shows "This preview has expired. Upload the file again." Upload the file again to get a fresh preview.
 

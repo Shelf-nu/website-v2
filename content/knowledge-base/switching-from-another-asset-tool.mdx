@@ -43,7 +43,7 @@ Open the export and check that it has one row per physical item. Some tools expo
 
 ## Step 2. Map your columns to Shelf's import file
 
-Shelf reads a fixed set of column headers. The names are case-sensitive and anything it does not recognise stops the import before it starts, so the mapping step is where most of the work is. Download the import template from **Assets → Import** in your workspace (there is a version with barcode columns once the add-on is on) and rename your columns to match.
+Shelf reads a fixed set of column headers. When you upload, it matches your headers to them and ignores capitals; a column it cannot match is skipped unless you pick a field for it, so check the mapping before you import. Download the import template from **Assets → Import** in your workspace (there is a version with barcode columns once the add-on is on) and rename your columns to match.
 
 The usual mapping looks like this:
 
@@ -107,22 +107,23 @@ For Code 128, Code 39, DataMatrix and EAN-13 values this matching problem does n
 Make a copy of your file with five to ten rows that cover your variety: an item in a kit, one with a custodian, one with an extra field of each type, one with a barcode of each type you use.
 
 1. In Shelf, go to **Assets → Import**.
-2. Choose the file and click **Preview import**. Shelf checks the whole file first. If anything is wrong you get a list of every problem with its row number, and nothing is created. Fix the rows and upload again.
-3. Read the preview: it lists the categories, locations, custodians and extra fields the file will create. A misspelt location shows up here as a new one.
-4. Click **Import N assets**, type `I AGREE` and click **Import**.
-5. When it finishes, open the assets and check the category, location, custodian, extra fields and barcodes landed where you expected. Scan a sticker.
+2. Choose the file and click **Continue**. Shelf shows where each of your columns will go. Change any that look wrong, or set them to **Skip**.
+3. Click **Preview import**. Shelf checks the whole file first. If anything is wrong you get a list of every problem with its row number, and nothing is created. Fix the rows and upload again.
+4. Read the preview: it lists the categories, locations, custodians and extra fields the file will create. A misspelt location shows up here as a new one.
+5. Click **Import N assets**, type `I AGREE` and click **Import**.
+6. When it finishes, open the assets and check the category, location, custodian, extra fields and barcodes landed where you expected. Scan a sticker.
 
 Delete the test assets if you want a clean start, or keep them and remove those rows from the main file.
 
 ## Step 5. Import the rest: what to expect for about 1,000 assets
 
-Once you confirm, the import runs in the background on Shelf's side. Your browser does not have to wait for it, so a big file no longer runs into a timeout.
+Once you confirm, the import runs in the background on Shelf's side. Your browser does not have to wait for it.
 
 **One file is fine.** A file of 1,000 assets goes in as it is; the limit is 10,000 rows per file. You do not need to split it for speed.
 
 **You can leave the page.** The import page shows a progress bar, a small progress card follows you around Shelf, and you get an email when the import is complete. Imports with many image links take longest, because every image is downloaded.
 
-**If it stops, resume it, do not upload again.** The rows already imported stay, and nothing is imported twice. Open the import from the email or the assets list and click **Resume import**. Uploading the same file a second time would create every asset again.
+**If it stops, resume it, do not upload again.** The rows already imported stay, and nothing is imported twice. Open the import with **Open import** in the email, or **View progress** on the progress card, and click **Resume import**. Uploading the same file a second time would create every asset again.
 
 **Read the warnings.** If something changed in Shelf after the preview, for example a barcode was given to another asset in the meantime, that row is still imported with the value left out, and the import page lists it.
 

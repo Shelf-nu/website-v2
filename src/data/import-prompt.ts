@@ -38,7 +38,7 @@ Output:
 - At most 10,000 rows per file. Split larger lists into numbered files.
 - Wrap any cell that contains a comma, a double quote or a line break in double quotes, and double any quote inside it ("").
 
-Columns. Headers are case-sensitive. Use only these, because an unknown header makes Shelf reject the whole file:
+Columns. Use exactly these headers. Shelf ignores capitals, but a column it cannot match is skipped and not imported:
 - title (required): the item's name.
 - description: free text.
 - category, kit, assetModel: plain names. Shelf creates any that don't exist yet.

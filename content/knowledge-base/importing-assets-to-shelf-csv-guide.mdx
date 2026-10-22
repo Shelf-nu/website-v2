@@ -26,8 +26,9 @@ To begin importing assets:
 2. Add your asset information following the provided format
 3. Save the file with UTF-8 encoding
 4. Navigate to Assets then Import in your workspace
-5. Choose the file and click **Preview import**. Shelf checks the whole file and shows a preview, without creating anything yet
-6. Click **Import N assets**, type "I AGREE" and click **Import**. The import runs in the background: you can leave the page, and Shelf emails you when it finishes
+5. Choose the file and click **Continue**. Under **Check how your columns map**, each of your columns goes to the Shelf field on its right. Change any that look wrong, or set them to **Skip**
+6. Click **Preview import**. Shelf checks the whole file and shows a preview, without creating anything yet
+7. Click **Import N assets**, type "I AGREE" and click **Import**. The import runs in the background: you can leave the page, and Shelf emails you when it finishes
 
 > **Important:** Upload the template or an **Import-ready** export, nothing else. Any other file produces corrupted data. That includes files from the old workspace backup download under **Workspace settings → General**, which was retired in October 2026.
 
@@ -40,7 +41,7 @@ To begin importing assets:
 - **Delimiter:** Comma (`,`) or semicolon (`;`). Shelf auto-detects whichever character appears more often **between cells**. Commas and semicolons inside a double-quoted cell, such as a long description, are not counted, so they cannot tip the choice. Pick one delimiter and stick to it.
 - **Quoting:** Wrap any value containing the delimiter, a double quote, or a newline in double quotes (`"…"`). Escape an internal `"` by doubling it (`""`). This matters for `tags` and multi-value `barcode_*` cells in a comma-delimited file, and for `cf:…,type:…` custom-field headers in a comma-delimited file (see [Custom Fields](#custom-fields) below).
 - **Encoding:** UTF-8 recommended. Other encodings are auto-detected and converted, and a UTF-8 BOM is accepted.
-- **Header row:** First row must contain column headers. Headers are **case-sensitive** and **strictly validated** against Shelf's allow-list — an unknown header aborts the entire import with "Invalid header provided."
+- **Header row:** First row must contain column headers. After you click **Continue**, Shelf matches each header to a Shelf field and ignores capitals, so `Title` and `title` both go to `title`. A column it cannot match is set to **Skip** and left out of the import, unless you pick a field for it in the mapping step.
 - **File format:** Only `.csv` files accepted.
 - **Size:** Up to **10,000 assets per file**, and at most 10 MB. A file with more rows is refused before anything is imported, with a message giving its row count. Split it and import the parts one at a time.
 
@@ -197,11 +198,7 @@ If the preview is not what you expected, click **Choose a different file**. Noth
 
 ### Running the Import
 
-Click **Import N assets**, type "I AGREE" and click **Import**. Shelf imports the file you previewed; it is not uploaded again. You are taken to the import's own page, which shows a progress bar while Shelf:
-
-1. Finds or creates every category, location, tag, kit, custodian, custom field and asset model the file names, once
-2. Writes the assets in batches of 100 rows, with their images, QR codes, barcodes and custom field values
-3. Assigns kit custody and marks the import complete
+Click **Import N assets**, type "I AGREE" and click **Import**. Shelf imports the file you previewed; it is not uploaded again. You are taken to the import's own page, which shows a progress bar and what Shelf is doing: **Waiting to start...**, then **Preparing categories, locations and tags**, **Importing assets** and **Finishing up**.
 
 You do not have to stay on the page. While the import runs, a small progress card follows you around Shelf, and the assets list shows everyone in the workspace that an import is running. When it finishes, the person who started it gets an email: **Your asset import is complete**, or **Your asset import stopped**.
 
@@ -209,7 +206,7 @@ One import runs in a workspace at a time. The import page holds the upload form 
 
 ### If the Import Stops
 
-Each batch is retried on its own a few times before the import gives up. If it does stop, the rows already imported stay, and **nothing is imported twice**. Open the import from the email or the assets list and click **Resume import** to continue from the first row that was not imported. Do not upload the same file again: that creates a second copy of every row already in.
+If the import stops, the rows already imported stay, and **nothing is imported twice**. Open the import with **Open import** in the email, or **View progress** on the progress card, and click **Resume import** to continue from the first row that was not imported. Do not upload the same file again: that creates a second copy of every row already in.
 
 ### Row Warnings
 

@@ -9,15 +9,14 @@ inApp: true
 appRoles: ["ADMIN", "OWNER"]
 ---
 
-Importing assets from a CSV no longer keeps your browser waiting. Under **Assets → Import**, choose your file and click **Preview import**. Shelf checks every row and shows what the file will do before anything is created: how many assets it holds, the new categories, locations, tags, kits, custodians and custom fields it will add, and a grid of the rows.
+Importing assets from a CSV no longer keeps your browser waiting. Under **Assets → Import**, choose your file and click **Continue**, check where each of your columns goes, then click **Preview import**. Shelf checks every row and shows what the file will do before anything is created: how many assets it holds, the new categories, locations, tags, kits, custodians and custom fields it will add, and a grid of the rows.
 
 Click **Import N assets** and confirm, and the import runs in the background. You can leave the page: a progress card follows you around Shelf, the assets list shows your team that an import is running, and you get an email when it is complete.
 
 What changes for you:
 
 - **Bigger files.** One file can hold up to **10,000 assets** (up from 1,000), so most inventories go in as a single file.
-- **No more timeouts.** A large file used to run out of time in the browser while the server kept going, and uploading it again created duplicates. That can no longer happen.
-- **Resume instead of re-upload.** If an import stops part way, the rows already in stay, nothing is imported twice, and **Resume import** carries on from the first row that was not imported.
+- **Resume instead of re-upload.** If an import stops, **Resume import** continues it without duplicates.
 - **Warnings, not failures.** If something changes between the preview and the import, for example a QR code from the file gets linked to another asset, that row is still imported with the value left out, and the import page lists it.
 
 Updating existing assets by CSV works as before, up to 1,000 assets per file.
