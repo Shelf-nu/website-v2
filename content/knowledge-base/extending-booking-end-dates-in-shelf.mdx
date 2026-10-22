@@ -3,7 +3,7 @@ title: "Extending Booking End Dates in Shelf"
 description: "This guide explains how to prolong existing bookings in Shelf's asset management system without creating new ones, useful for situations where assets are needed longer than initially planned."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-28"
+updated: "2026-10-20"
 layout: "knowledge-base"
 ---
 
@@ -28,8 +28,14 @@ The "Extend Booking" option remains unavailable for **RESERVED** status bookings
 2. Find the "Actions" dropdown menu on the booking details page
 3. Select "Extend Booking" from available options
 4. A modal appears allowing new end date selection
-5. Choose the desired future end date and confirm
+5. Choose a new end date **later than the current end** and confirm
 6. The system updates the booking with the new end date
+
+The new end has to be after the current one. A time at or before the current end is refused, inline and as a toast, with *The new end date must be after the current end date.* Something on the booking also has to be out still: a booking whose items have all come back is completed, not extended.
+
+### On the phone
+
+Since the update of 20 October 2026 the [Shelf Companion](/mobile-app) app extends bookings too. Open an **Ongoing** or **Overdue** booking, tap **More actions** and choose **Extend booking**, the first entry. The sheet opens on the current end: change it with the date and time picker, or tap **+1 hour**, **+4 hours** or **+1 day**, then confirm. The same rules apply as on the web, through the same check on the server: the new end must be later than the current one, and a clash with another booking is refused with that booking's name. The action shows for the same roles as on the web, on bookings they may change.
 
 ## What Happens When You Extend a Booking
 
@@ -75,7 +81,7 @@ Booking extension supports various scenarios including:
 
 ## Permissions
 
-Owners, Administrators and Self-service users can extend a booking. Base users cannot: the **Extend Booking** action does not appear for them. Consult the [user roles and permissions](/knowledge-base/user-roles-and-their-permissions) documentation for additional permission details.
+Owners, Administrators, [Managers](/knowledge-base/user-roles-and-their-permissions#manager) and Self-service users can extend a booking; a Self-service user only their own. Base users cannot: the **Extend Booking** action does not appear for them. Consult the [user roles and permissions](/knowledge-base/user-roles-and-their-permissions) documentation for additional permission details.
 
 ## Related Resources
 

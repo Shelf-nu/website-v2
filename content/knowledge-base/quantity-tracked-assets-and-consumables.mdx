@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-10-09"
+updated: "2026-10-22"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -157,15 +157,15 @@ Only placements you set by hand are counted here. A kit's slice is measured on i
 
 ## On the mobile app
 
-Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app for iPhone and Android, so you can read stock and hand out units from the floor:
+Quantity-tracked assets are available in the [Shelf Companion](/mobile-app) app for iPhone, iPad and Android, so you can read stock and hand out units from the floor:
 
 - The **assets list** shows a quantity pill on each pooled asset's row.
-- The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — available, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
+- The **asset detail** screen shows a quantity card with the total plus a per-status breakdown — free now, in custody, reserved, and checked out — and a custody row for each person, listing how many units they currently hold.
 - The same screen lists every location that holds units, one row each with its count, plus kit-held rows marked `via kit` and an **Unplaced** row for the rest. Tap **Placements** to open **Manage Placements**: add or remove locations, set each count with a stepper capped at the total, and watch the **Placed / Via kits / Unplaced** meter before you **Save placements**. It saves through the same rules as the web dialog, so the placements can never add up to more than the asset owns. Kit-held units are shown but can only be moved by moving the kit.
 - Tap **Assign** to give a set number of units to a team member. The amount is capped at the units actually available to assign. On a pool kept at two or more locations, the sheet also asks **From location**, the same question the web dialog asks (see [Which location the units come from](#which-location-the-units-come-from)).
 - Tap a holder's custody row to end their hold. The amount is capped at the units that person can release. On a returnable asset the units go back to the pool. On a **used-up** consumable the app asks a second question, **"Of those, how many were used up?"**, pre-filled with the whole hold because that is the usual case. What you mark as used up leaves the total; the rest returns to the pool. This matches the web split exactly.
 - Tap **Adjust** on the quantity card to correct the stock figure itself. Choose add or remove, enter the amount, and give a reason. Adding is recorded as a restock and removing as a loss, so a shelf count you fix in the aisle lands in the asset's history with your note rather than as an unexplained change.
-- The **Available** figure turns amber when it drops to or below the asset's minimum quantity, using the same low-stock rule as the web.
+- The **Free now** figure turns amber when it drops to or below the asset's minimum quantity, using the same low-stock rule as the web.
 - On a booking, check out part of a pooled line and leave the rest booked, then record the return with the same **Returned / Lost / Damaged** split (or **Consumed / Lost / Damaged** for consumables) the web check-in drawer uses.
 - A **kit** screen shows how many units of a pooled asset that kit holds, as an `×20 rolls` label on the member's row, so you can see the kit's slice without opening the asset.
 - On a **booking**, a pooled asset that is on the booking more than once lists each commitment separately, each with its own count and where it came from: `20 rolls booked · Kit: Camera A` above `5 rolls booked · Standalone`. One row per commitment, so a kit's units and a loose reservation of the same stock never collapse into a single figure you cannot take apart.
@@ -197,7 +197,7 @@ The one thing that ignores dates is an **overdue** booking. Nobody knows when a 
 
 Open the asset's row on the booking and choose **Adjust quantity**. The dialog tells you what you've got to work with for these dates, written plainly as *"4 of 12 sandbags available"* with the date range underneath, plus how many units other bookings are holding. If your role can see other people's bookings, a **View bookings** link takes you to them.
 
-Ask for more than the dates allow and the dialog stops you before it submits: *Only 3 sandbags available. Please reduce the quantity.* If the pool shrank while the dialog sat open, the refusal comes back from the server instead, and it names the asset and both numbers: *Only 3 sandbags available for "Sandbag (Counterweight)" in this window — you requested 12. Reduce the quantity to continue.* Going the other way, **lowering a quantity always works**, no matter what state the booking is in.
+Ask for more than the dates allow and the dialog stops you before it submits: *Only 3 sandbags available. Please reduce the quantity.* If the pool shrank while the dialog sat open, the refusal comes back from the server instead, and it names the asset and both numbers: *Only 3 sandbags available for "Sandbag (Counterweight)" in this window — you requested 12. Reduce the quantity to continue.* Going the other way, **lowering a quantity always works while the units are still on the shelf**, whatever the booking's status. Once any of a row's units have been checked out, its booked quantity is fixed in both directions, because lowering it would strand units that can no longer be checked in. The dialog answers *Units of "Sandbag" have already been checked out on this booking, so its booked quantity can no longer change.*
 
 ### A pool with units out is not a closed door
 
@@ -209,13 +209,13 @@ What can still stop a pooled line is its own capacity for your dates, which is t
 
 ### Reading the asset page
 
-The **Available** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, held by a kit, or checked out on its own. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across.
+The **Free now** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, held by a kit, or checked out on its own. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across.
 
 Units a kit holds are counted once, under **In kits**, whether the kit is sitting on the shelf or out on a booking. **Checked out (bookings)** is the fuller picture: every unit physically out, loose ones and kit-held ones together. The two rows overlap on purpose, so don't add them up.
 
 Locations are listed separately, on **In locations**, and don't reduce anything. A sandbag can be in Studio A and still be free to book.
 
-![A quantity-tracked asset's overview page, with the Quantity Overview card in the right sidebar listing total quantity, available, in locations, in custody, unit of measure, min quantity and consumption behavior](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/quantity-overview-card.webp)
+![A quantity-tracked asset's overview page, with the Quantity Overview card in the right sidebar: Total quantity 14 sandbags, Free now 8, In locations 14, In custody 6](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/quantity-overview-free-now.webp)
 
 ### If a booking is flagged
 
@@ -234,6 +234,22 @@ Stock is also protected when you reduce the total quantity. You can't lower an a
 For returnable assets, check-in reconciles what came back versus what was consumed before the booking closes. That reconciliation runs on the web and in the Companion app, so a partial return can be settled on the floor.
 
 Check-in settles only units that actually went out. Closing a booking with the one-click **Check in** button consumes nothing from a used-up line that never left the shelf, and only what is still out from a line that was partly handed over. The same holds for a pool that went out inside a [kit](/knowledge-base/kits#quantity-tracked-stock-in-kits): units marked consumed, lost or damaged leave the kit's slice in the same check-in, so the kit does not keep claiming stock that no longer exists. A scan check-in of a used-up pool with none of its units out is refused: *Cannot check in "Gaffer tape": none of its units are out on this booking.* For a pool kept at several locations, the used-up units come off the location the check-out [recorded them as leaving from](#which-location-the-units-come-from).
+
+---
+
+## Stock columns on the asset list
+
+The [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide) shows the same figures for every pool at once, right after **Status**:
+
+- **Free now** reads like *14 of 20 pcs*: the units you could hand over today, out of the total. It is the same figure as the **Free now** row on the asset page. Units promised to a future booking are not subtracted, because they are still on the shelf.
+- **Stock status** is one verdict per pool. **Short by N** means bookings, custody and kits need more units than you own at the busiest point ahead, even if the pool looks fine today. **None free** means nothing can be handed over now. **Running low** means Free now is at or below the min quantity. **Enough** means it is above it. Without a min quantity it can still read **Short by N** or **None free**; otherwise it shows a dash. Hover the badge for the figures, and on a shortfall, a link to the biggest booking involved.
+- **Reserved** (switched off by default) counts the units promised to upcoming bookings. An over-committed pool reads like *12 · 2 short*.
+
+**Total quantity**, **Unit of measure** and **Min quantity** are in the column picker too. Each of these columns can be filtered and sorted; sort Stock status ascending to see the worst first. Individually tracked assets show a dash under Free now and Stock status, where their **Status** column answers the same question; their **Reserved** cell counts the upcoming bookings that claim them.
+
+![The advanced asset list with Status, Free now and Stock status side by side: a sandbag pool reads Partial custody, 8 of 14 sandbags, Enough.](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/stock-columns.webp)
+
+The **Status** badge on the list reads from the same figures, so a pool with units in custody says **Partial custody** rather than **Available**.
 
 ---
 
@@ -270,10 +286,10 @@ The email is sent **once per crossing**, not once per decrement. An item that is
 The alert tells you about one item at a time. To see the whole picture:
 
 1. Open **Assets** with the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide) enabled.
-2. Click **Filter**, then tick **Low stock only** (labelled *at or below reorder threshold*). The list narrows to quantity-tracked assets at or below their minimum.
-3. Optionally add the **Min quantity** column from the column picker so each item's threshold sits next to its live count.
+2. Click **Filter**, then tick **Needs reordering** (*at or below the min quantity you set*). The list narrows to quantity-tracked assets whose **Free now** figure is at or below their minimum, including pools that have run out.
+3. Optionally add the **Min quantity** column from the column picker so each item's threshold sits next to its **Free now** count.
 
-![The advanced asset index Filter popover, with the Low stock only checkbox described as "at or below reorder threshold".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/low-stock-filter.webp)
+![The advanced asset index Filter popover, with the Needs reordering checkbox described as "at or below the min quantity you set".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/needs-reordering-filter.webp)
 
 The filter clears with the rest of your filters, and it counts toward the filter badge on the **Filter** button.
 
@@ -287,9 +303,11 @@ Quick adjustments are not the only thing recorded. Changing the quantity on the 
 
 ## Editing stock in bulk
 
-Resetting thresholds across a shelf of supplies, or correcting counts after a stocktake, is faster from a spreadsheet than one asset at a time. Export the assets, edit the file, and upload it to **Assets → Import → Update existing**, which previews every change before anything is saved. `Quantity`, `Min quantity`, `Unit of measure`, and `Consumption type` are all updatable this way.
+Resetting thresholds across a shelf of supplies, or correcting counts after a stocktake, is faster from a spreadsheet than one asset at a time. Export the assets, edit the file, and upload it to **Assets → Import → Update existing**, which previews every change before anything is saved. `Total quantity` (or `quantity`), `Min quantity`, `Unit of measure`, and `Consumption type` are all updatable this way.
 
-Pick the **Import-ready** export format for this. It already includes all four columns and writes the quantity as a plain number. A Standard export writes the quantity with its unit attached, as `10 boxes`, and does not include the other three at all, so it needs a manual pass first.
+Pick the **Import-ready** export format for this. It already includes all four columns. A Standard export writes `Total quantity` as a plain number with `Unit of measure` next to it, and `Min quantity` when that column is shown or you export all columns, but it has no `Consumption type` column; add one yourself if you want to change it. A Standard file exported before 20 October 2026 still writes the quantity with its unit attached, as `10 boxes`, so leave only the number in those cells.
+
+To set a min quantity on many pools without a spreadsheet, select them on the asset index and choose **Set min quantity** from the bulk actions. Leave the number empty to clear the threshold.
 
 An asset whose units sit in more than one location is the one exception: the `Location` column is flagged and skipped on those rows, because a single cell cannot say which placement you meant. Everything else on the row still applies. Full walkthrough: [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv).
 
