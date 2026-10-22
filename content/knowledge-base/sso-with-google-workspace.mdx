@@ -3,7 +3,7 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Available as an add-on on the Team plan and included on Enterprise."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-10-15"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -237,6 +237,18 @@ Both halves are now closed. The two records are written together, so the state c
 If someone is affected, ask them to sign out and sign back in. If they still do not appear as an available custodian afterwards, that is a group mapping problem rather than this one — check [Step 9](#step-9-map-google-workspace-groups-inside-shelf).
 
 ---
+
+## Billing and Purchases for SSO Accounts
+
+People who sign in with SSO cannot buy anything in Shelf unless they own the workspace being billed. That covers every purchase: a plan, a trial and an add-on.
+
+- **Members and Administrators who sign in with SSO** see *"Billing for single sign-on accounts is managed by your workspace owner."* on the **Subscription** page in their account settings, in place of the plans and prices. Only the workspace owner buys.
+- **Their personal workspace never counts.** It is hidden from SSO users, so Plus and the add-on trials offered to a new personal workspace are not available to them, and the onboarding plan screens send them back into Shelf.
+- **An SSO user who owns a Team workspace** can still buy for it.
+- **Existing subscriptions keep working.** A subscriber can still open the billing portal to manage or cancel, and still sees their invoices.
+
+This matters for schools and universities that need to say no student or staff member can make a purchase inside the tool. Accounts that sign in with a password are not affected.
+
 
 ## Setting a Custom Display Name (SSO Users)
 
