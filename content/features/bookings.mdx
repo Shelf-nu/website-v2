@@ -10,7 +10,7 @@ personas:
   - "operations"
 canonicalUrl: "/features/bookings"
 date: "2025-01-01"
-updated: "2026-09-23"
+updated: "2026-10-15"
 seo:
   title: "Equipment Booking Software — Conflict-Free Reservations"
   description: "Reserve equipment without double-bookings. Visual booking calendar, availability checking, and pull-list PDFs for cameras, tools, laptops, and shared gear."
@@ -98,6 +98,8 @@ See: [Kits](/features/kits)
 
 Fleets of identical gear can be reserved without picking exact units up front. Group units under an [Asset Model](/glossary/asset-models) and reserve by model: a booking for "4x HDMI cable" is fulfilled at pickup by whichever 4 physical units you hand out. Any unit of the model fulfils the request, every unit keeps its own record and QR label, and the booking records exactly which units went out. Available on Team plans.
 
+You can start a model booking from the asset index too. The **Asset model view** lists each model with how many units match your filters and where they are; tick the models you need, choose **Book selection**, and either create a new booking that reserves them or add them to an open one, with the free count for that booking's dates shown beside each model. See [Asset Model View](/knowledge-base/advanced-asset-index-complete-guide#asset-model-view).
+
 Reservations are settled by putting a matching asset on the booking, whichever way you do it: scanning at pickup, picking it in **Manage assets**, adding it in bulk from the asset index, adding a kit that carries a unit of the reserved model, or scanning in the Companion app. The reservation ticks down the moment a matching unit lands on the booking, so a team without a scanner to hand is never stuck with a reservation it cannot discharge. Outstanding reservations sit in their own **Unassigned model reservations** section above the assets table, and each row says exactly what is left, for example "1 of 2 units still to assign".
 
 A unit inside a kit answers a reservation exactly as a loose one does, and each physical unit answers at most one reserved unit per booking. Rows that answered one carry a blue **Fulfils _model name_** chip, so the unit on the row explains the count that moved above it. The **Fulfil reservations & check out** scanner takes kit scans as well, and each kit row states how many reserved units it settles.
@@ -146,7 +148,7 @@ See: [Subscribe Your Calendar to Shelf Bookings](/knowledge-base/subscribe-your-
 
 Admins control exactly who receives booking email notifications — without flooding everyone's inbox.
 
-At the workspace level, admins configure default notification rules in **Settings > Bookings**: choose whether booking creators are automatically notified, whether all admins receive new booking broadcasts, and add an "always notify" list for people who need full visibility across every booking. On individual bookings, anyone can add per-booking notification recipients for extra stakeholders on a specific checkout.
+At the workspace level, admins configure default notification rules in **Settings > Bookings**: choose whether booking creators are automatically notified, whether every owner, administrator and manager receives new booking broadcasts, and add an "always notify" list for people who need full visibility across every booking. On individual bookings, anyone can add per-booking notification recipients for extra stakeholders on a specific checkout.
 
 The custodian always receives all notifications. Everyone else is configurable.
 

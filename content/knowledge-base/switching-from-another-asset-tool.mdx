@@ -1,0 +1,145 @@
+---
+title: "Switching From Another Asset Tool to Shelf"
+description: "Moving from another asset or equipment tool? Export your data, map the columns to Shelf's import file, keep the stickers already on your gear, and know what to expect when you bring in about 1,000 assets."
+category: "Getting Started"
+date: "2026-10-15"
+updated: "2026-10-15"
+layout: "knowledge-base"
+seo:
+  title: "Switching From Another Asset Tool to Shelf: Export, Import, Keep Your Labels"
+  description: "A step-by-step guide for teams leaving another asset management tool: export to CSV, map columns to Shelf's import file, keep existing barcode and QR stickers with Alternative Barcodes, and import about 1,000 assets without surprises."
+  keywords:
+    - "switch asset management tool"
+    - "migrate to shelf"
+    - "import assets from another tool"
+    - "keep existing asset labels"
+---
+
+This guide is for teams that already run a dedicated asset or equipment tool and want to move to Shelf without starting over. It covers the four things every switch comes down to: getting your data out of the old tool, shaping it into Shelf's import file, keeping the labels that are already stuck to your gear, and what a migration of about 1,000 assets looks like in practice.
+
+If you are coming from a spreadsheet rather than a tool, the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) is the shorter path. Everything below still applies, but you can skip the export step.
+
+## Before you start
+
+**What comes across.** Shelf's import creates assets with their category, location, kit, tags, custodian, value, image link, and any number of extra fields. Categories, locations, kits, tags, asset models and custodians are matched by name and created on the fly, so you do not have to set anything up first.
+
+**What stays behind.** Your old tool's activity history, past bookings and check-out logs do not import. Shelf starts a clean history from the day you switch. If some of that history matters, carry the important bits as extra fields on each asset: previous ID, last service date, notes. Photos only come across if your old tool can export a public image link per asset.
+
+**Plans.** CSV import is available on the paid plans and during the free Team trial. Keeping your existing barcode or QR stickers needs the [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on, which attaches to the Team plan and comes with a one-time 7-day free trial per workspace. If you only want to re-label everything with Shelf's own QR codes, you do not need the add-on.
+
+**Who should do it.** Importing needs an Owner or Admin in the workspace. Plan on one person owning the migration end to end; it keeps the column mapping consistent.
+
+## Step 1. Export everything from your old tool
+
+Export your full asset list as CSV, or as a spreadsheet you can save as CSV. Include every column, even the ones you think you will drop. It is easier to delete columns later than to go back for one you missed.
+
+Three columns deserve extra attention:
+
+- **The label value.** Most tools have a column called asset tag, barcode, label, code or ID that holds what is printed on each sticker. This is the column that lets you keep your stickers. Make sure it is in the export.
+- **The current holder.** Whoever has the item right now. Shelf imports this as the custodian, so people walk away with the same equipment they had before the switch.
+- **Serial numbers and purchase details.** These become extra fields in Shelf. Keep them.
+
+Open the export and check that it has one row per physical item. Some tools export one row per model with a quantity column. Shelf tracks each piece of equipment as its own record, so you want one row per item, each with its own label value.
+
+## Step 2. Map your columns to Shelf's import file
+
+Shelf reads a fixed set of column headers. The names are case-sensitive and anything it does not recognise stops the import before it starts, so the mapping step is where most of the work is. Download the import template from **Assets → Import** in your workspace (there is a version with barcode columns once the add-on is on) and rename your columns to match.
+
+The usual mapping looks like this:
+
+| Column in your old tool | Shelf header | Notes |
+|---|---|---|
+| Name, Asset name, Item | `title` | The only required column |
+| Description, Notes, Details | `description` | Free text |
+| Category, Type, Group | `category` | Created if it does not exist |
+| Location, Site, Room, Storage | `location` | Created if it does not exist |
+| Assigned to, Checked out to, Holder | `custodian` | Matched by name, not email; a non-registered team member is created when the name is new |
+| Tags, Labels, Keywords | `tags` | Several per cell, separated by commas |
+| Kit, Bundle, Case, Parent | `kit` | Assets with the same kit name are grouped into one kit |
+| Purchase price, Cost, Value | `valuation` | Plain number, `.` as the decimal mark, no currency symbol |
+| Photo, Image URL | `imageUrl` | Must be a public `http(s)` link that returns an image |
+| Model, Product | `assetModel` | Groups identical units under one model; created if missing |
+| Barcode, Asset tag, Label, QR text | `barcode_Code128`, `barcode_Code39`, `barcode_DataMatrix`, `barcode_ExternalQR` or `barcode_EAN13` | See Step 3 |
+| Serial number | `cf:Serial number,type:text` | Any column Shelf has no header for becomes an extra field like this |
+| Purchase date, Warranty until | `cf:Purchase date,type:date` | Dates must be `YYYY-MM-DD` |
+| Old ID, Legacy number | `cf:Previous ID,type:text` | Worth keeping so people can still find items by the number they know |
+| Status, Available / Checked out | drop it | Shelf sets status itself; a row with a `custodian` imports as "In custody", everything else as "Available" |
+| Created, Last modified, History | drop it | Not imported |
+
+A few rules that catch people out:
+
+- **Every row needs a `title`.** The file is checked before anything is created, and a row without one is reported back to you.
+- **Extra fields** use the header pattern `cf:Field name,type:text`. Supported types are `text`, `multiline text`, `option`, `boolean`, `date`, `amount` and `number`. Shelf creates the field with that type if it does not exist yet. In a comma-separated file the whole header must be in double quotes because it contains a comma.
+- **Dates** must be `YYYY-MM-DD`. Any other format stops the import with a clear error naming the row.
+- **Numbers** carry no currency symbols or thousands separators. `1250.50` works, `$1,250.50` does not.
+- **Save as UTF-8.** In Excel choose "CSV UTF-8" when saving, or accented names come through garbled.
+- **No more than 1,000 rows per file.** A bigger file is refused with a message asking you to split it, before anything is created. See Step 5 for why you want smaller files anyway.
+
+The full column reference, with every rule and example, is in the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
+
+## Step 3. Keep the stickers that are already on your gear
+
+Re-labelling a thousand items is the part of a migration nobody wants. You usually do not have to. With the [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on, Shelf stores the value printed on each existing sticker next to the asset, and scanning that sticker with Shelf's scanner opens the asset, exactly like a Shelf QR code would.
+
+**Pick the right column for your label type.** Look at one sticker:
+
+- A one-dimensional barcode (parallel lines) is almost always **Code 128** or **Code 39**. Put the printed value in `barcode_Code128` or `barcode_Code39`. If you are not sure which, scan it with any barcode app on your phone; the app names the format.
+- A small square code made of dots is a **DataMatrix**. Use `barcode_DataMatrix`.
+- A retail-style 13-digit barcode is an **EAN-13**. Use `barcode_EAN13`.
+- A QR code printed by your old tool is an **External QR**. Use `barcode_ExternalQR`.
+
+**External QR codes need extra care.** A QR sticker from another tool usually encodes a web link, something like `https://example.com/a/ABC123`, while the tool's export often lists only the short part, `ABC123` or `example.com/a/ABC123`. Shelf matches a scanned External QR code against the stored value exactly, character for character. If the stored value is the short form and the sticker encodes the full link, the scan will not find the asset.
+
+So before you import:
+
+1. Scan one of your old QR stickers with any phone QR app (the built-in camera app works on most phones) and copy the exact text it shows.
+2. Make the `barcode_ExternalQR` column hold that same text for every asset, with the same `https://`, the same `www.`, the same trailing slash, and the same capital letters. Case is kept exactly as you import it for External QR values.
+3. Import five assets first and scan their stickers in Shelf. If they open, import the rest. If they do not, compare the stored value with what your phone showed and fix the column.
+
+For Code 128, Code 39, DataMatrix and EAN-13 values this matching problem does not exist. Shelf stores them in upper case and finds them regardless of how they were typed.
+
+**Uniqueness.** Every barcode value must be unique in your workspace. If two rows in your file share a value, or a value already exists in the workspace, the import tells you which rows before creating anything.
+
+**Items without a usable sticker** get a Shelf QR code automatically. Leave their barcode cells empty and print Shelf labels for them after the import.
+
+## Step 4. Run a small test import first
+
+Make a copy of your file with five to ten rows that cover your variety: an item in a kit, one with a custodian, one with an extra field of each type, one with a barcode of each type you use.
+
+1. In Shelf, go to **Assets → Import**.
+2. Choose the file, click **Confirm asset import**, type `I AGREE` and confirm.
+3. Shelf checks the whole file first. If anything is wrong you get a list of every problem with its row number, and nothing is created. Fix the rows and upload again.
+4. When it succeeds, open the assets and check the category, location, custodian, extra fields and barcodes landed where you expected. Scan a sticker.
+
+Delete the test assets if you want a clean start, or keep them and remove those rows from the main file.
+
+## Step 5. Import the rest: what to expect for about 1,000 assets
+
+Shelf creates assets one row at a time, a few rows a second, and the import runs while your browser waits for the result. Two practical consequences follow from that.
+
+**Split the file into parts of about 250 rows each.** A file that size usually finishes within a couple of minutes. A single 1,000-row file is accepted by the checks but keeps the browser waiting for several minutes, which is longer than the connection in front of Shelf allows, so you may see a timeout or an error page while the server is still working through the rows. Four files of 250 rows are more predictable than one of 1,000.
+
+**If a timeout or error page appears, do not upload again straight away.** The import keeps running on the server after the page gives up. Wait a few minutes, open your asset list and refresh it. In almost every case the assets are all there. Uploading the same file a second time would create every asset again. If your file carries barcodes the second upload is refused as duplicates, but a file without barcodes is not, so check the asset list first.
+
+**Order the parts sensibly.** Import kits together, so a kit's assets are created in one file and inherit the same custodian. Keep rows that share an extra field in the same file the first time that field appears, so it is created once with the right type.
+
+**Check the counts between files.** The asset index shows the total. If a file reported success and the count went up by the right amount, move on. If it did not, look for the missing rows before importing the next part.
+
+A whole migration of 1,000 assets, including the mapping work, usually fits in an afternoon. The import itself is the quick part; cleaning the export is where the time goes.
+
+## After the import
+
+- **Scan a handful of stickers** from different parts of the inventory. If they open the right asset, your label mapping is correct everywhere.
+- **Print Shelf labels** for items that had no sticker or an unreadable one. Shelf generated a QR code for each of them during import.
+- **Invite your team.** Custodians who were created from your file as non-registered team members can be [converted to real users](/knowledge-base/converting-non-registered-members-nrms-to-users) when you invite them with the same name.
+- **Keep the old tool read-only for a few weeks.** You will want to look something up in its history. Cancel it once nobody has opened it in a month.
+- **Switch on what you moved for.** [Bookings](/knowledge-base/introduction-to-bookings), [custody](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs) and [audits](/knowledge-base/run-your-first-audit) work on imported assets straight away.
+
+## Related articles
+
+- [Importing Assets to Shelf: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide) — every column, type and rule
+- [Alternative Barcodes](/knowledge-base/alternative-barcodes) — the add-on that lets you keep existing labels
+- [Troubleshooting: CSV Import Issues](/knowledge-base/troubleshooting-csv-import-issues) — what each error message means
+- [Compare Shelf with your current tool](/alternatives) — side-by-side pages for the tools teams switch from most
+
+If your export is unusual, [contact support](/contact) with a sample of the file and we will help you map it.

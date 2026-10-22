@@ -120,16 +120,11 @@ export function AddOnsSection({ isYearly }: { isYearly: boolean }) {
     return (
         <div className="max-w-[1400px] mx-auto mt-24">
             <div className="text-center mb-12">
-                <Badge
-                    variant="secondary"
-                    className="mb-4 bg-orange-50 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 border-orange-100/50 dark:border-orange-900/50"
-                >
-                    Add-ons
-                </Badge>
-                <h2 className="text-3xl font-bold tracking-tight">
+                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-orange-600">Add-ons</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance text-heading sm:text-4xl">
                     Extend your workspace
                 </h2>
-                <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-pretty text-caption">
                     Add-ons attach to any Team workspace and can be turned on or off
                     anytime from your workspace settings — you are never locked in. Add
                     one mid-cycle on annual billing and you are charged only for the time

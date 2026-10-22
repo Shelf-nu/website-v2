@@ -28,6 +28,7 @@ const marketingDir = join(root, "src/app/(marketing)");
 // in search results — e.g. internal references, redirects, or noindex pages.
 const EXCLUDED_ROUTES = new Set([
     "/design-system", // Internal UI reference, noindex
+    "/get-app", // The scan-to-install QR code's store redirect, noindex
     "/product",       // Redirect to /features, not a real page
 ]);
 

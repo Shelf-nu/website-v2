@@ -68,3 +68,6 @@ next-env.d.ts
 # Playwright MCP scratch (browser snapshots/logs)
 .playwright-mcp/
 test-results/
+
+# Raw 2x product captures (scripts/media-pipeline); chosen frames are committed under public/images/home/
+.captures/

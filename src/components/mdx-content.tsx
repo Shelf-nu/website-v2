@@ -15,6 +15,7 @@ import { RolePicker } from "@/components/mdx/role-picker";
 import { CodeBlock } from "@/components/mdx/code-block";
 import { TrackingMethodQuiz } from "@/components/mdx/tracking-method-quiz";
 import { TrackingDecisionChart } from "@/components/mdx/tracking-decision-chart";
+import { AiImportPrompt } from "@/components/mdx/ai-import-prompt";
 import type { ComponentPropsWithoutRef, JSX } from "react";
 
 type HtmlProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T>;
@@ -103,7 +104,7 @@ const components = {
         />
     ),
     a: (props: HtmlProps<"a">) => (
-        <Link className="font-medium text-foreground underline decoration-orange-500/30 decoration-2 underline-offset-4 hover:decoration-orange-500 transition-all" {...(props as ComponentPropsWithoutRef<typeof Link>)} />
+        <Link className="break-words font-medium text-foreground underline decoration-orange-500/30 decoration-2 underline-offset-4 hover:decoration-orange-500 transition-all" {...(props as ComponentPropsWithoutRef<typeof Link>)} />
     ),
     img: (props: HtmlProps<"img">) => (
         <ImageZoom
@@ -138,7 +139,7 @@ const components = {
     pre: (props: HtmlProps<"pre">) => <CodeBlock>{props.children}</CodeBlock>,
     code: (props: HtmlProps<"code">) => (
         <code
-            className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-[0.9em] font-semibold text-orange-800 dark:text-orange-300"
+            className="relative break-words rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-[0.9em] font-semibold text-orange-800 dark:text-orange-300"
             {...props}
         />
     ),
@@ -154,6 +155,7 @@ const components = {
     InlineVideo,
     TrackingMethodQuiz,
     TrackingDecisionChart,
+    AiImportPrompt,
 };
 
 /**

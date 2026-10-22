@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-28"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
@@ -26,6 +26,14 @@ Clicking Add assets will open an asset manager modal that allows you to browse a
 3. Use the filters or search bar to quickly find assets
 4. Click Confirm to add your selection of assets to the booking
 
+### Assets kept in sub-locations
+
+The **Locations** filter matches the locations you tick, exactly. Since 15 October 2026, when a ticked location has [child locations](/knowledge-base/sublocations-organize-locations-into-hierarchies), a checkbox **Include assets from child locations** appears under the filter. It is off by default and hidden for a location without children. Tick it and the list adds every asset kept anywhere below the ticked locations, and **Select all** then picks the same set, so a parent that holds nothing itself no longer shows an empty list with no hint why. **Without location** keeps working with the checkbox on. The choice is not remembered between visits.
+
+![The Add assets dialog on a booking with a parent location ticked in the Locations filter and the Include assets from child locations checkbox under it](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-picker-child-locations.webp)
+
+The kit page's asset picker and the location page's asset picker keep exact matching. The **Kits** tab has no location filter.
+
 ## Removing assets from a booking
 
 1. Find the asset(s) you would like to remove in the index
@@ -42,7 +50,7 @@ Removing an item is not only a question of the booking's status. It is also a qu
 
 | Role | Can remove items while the booking is |
 |---|---|
-| Owner, Administrator | Draft, Reserved, Ongoing or Overdue |
+| Owner, Administrator, Manager | Draft, Reserved, Ongoing or Overdue |
 | Self-service | Draft or Reserved, on their own booking |
 | Base | Draft only, on their own booking |
 
@@ -75,7 +83,18 @@ A reservation is settled by putting a matching asset on the booking. Every route
 
 Whichever door the asset comes through, Shelf matches it against an outstanding reservation for its model and ticks the reservation down. Only genuinely new rows count, so re-saving the **Manage assets** dialog with the same selection never discharges a reservation twice.
 
-**A unit that was already on the booking can still count, if you scan it.** Sometimes the right unit is on the booking, as a loose item, before the reservation it should answer: it was added before anyone reserved its model, or its model was changed after it was added. Scan it in **Fulfil reservations & check out** and it now answers the reservation. The row gets a green badge, *"Already here, now counts toward Dell Latitude 5550"*, and the progress count moves. This only works if the unit is not already counting toward a reservation and its model still has reserved units outstanding. A unit that is on the booking only inside a kit is not affected. A scan that matches no open reservation behaves as before. Re-saving **Manage assets** never does this: opening and saving a dialog is not a sign that someone meant to count a unit.
+**A unit that was already on the booking can still count, if you scan it.** Sometimes the right unit is on the booking, as a loose item, before the reservation it should answer: it was added before anyone reserved its model, or its model was changed after it was added. Scan it in **Scan to assign** or in **Fulfil reservations & check out** and it answers the reservation. The row gets a green badge, *"Already here, now counts toward Dell Latitude 5550"*, and the progress count moves. This only works if the unit is not already counting toward a reservation and its model still has reserved units outstanding. A unit that is on the booking only inside a kit is not affected. A scan that matches no open reservation behaves as before. Re-saving **Manage assets** never does this: opening and saving a dialog is not a sign that someone meant to count a unit.
+
+### Scan to assign shows what is left to pull
+
+**Scan to assign**, in the header of the **Unassigned model reservations** section, opens the booking's scanner (the same one **Scan to add** opens). On a booking with open reservations, the scanner shows how far along you are before you scan anything:
+
+- A summary line such as **2 models reserved** with **3 / 6** and a progress bar. Click it to fold out one bar per model, each with its own count.
+- Below it, one **Pending** row per unit still to pull, named after its model.
+
+Each scan that answers a reservation moves the count and takes a **Pending** row away, so the list in front of you is what is still missing. You do not have to finish it: submitting a scan that covers part of the reservation still saves what you scanned, and the rest stays open for later. The counts include units assigned in earlier sessions, so coming back to a half-done booking starts from where you left off.
+
+This is the same display the **Fulfil reservations & check out** scanner has. Use **Scan to assign** to pull and assign units ahead of time without starting a check-out, and the fulfil scanner when the gear is leaving.
 
 ### A unit inside a kit counts too
 
@@ -91,6 +110,10 @@ Rows that answered a reservation now say so. A booking asset row that discharged
 
 Only individually tracked units answer a model reservation. [Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) stock carried in a kit is a pool rather than a named unit, and [Asset Models](/glossary/asset-models) group individually tracked assets only.
 
+### Your fulfil scan list survives a reload
+
+Since 8 October 2026, the list you build in the **Fulfil reservations & check out** scanner is kept in your browser for twelve hours, for each booking and each person signed in. Reload the page, close the tab or let the device sleep, open the scanner on the same booking again, and the list comes back. Each row is looked up again as it returns, so it shows the item as it is now rather than as it was when you scanned it. A check-out that goes through clears the list; one that is refused keeps it, so you can fix the problem and submit again. The list stays in that one browser and does not follow you to another device. The other scanners, **Scan to check out** included, still start empty.
+
 ### Scanning kits in Fulfil reservations & check out
 
 A **Reserved** booking with units still to assign routes its **Check out** through the **Fulfil reservations & check out** scanner. That scanner takes kits now. Scan one and it goes on the booking whole, its matching members assign outstanding reserved units on the way, and the kit's row in the list says how much it settles — for example **Assigns 2 reserved units**. A kit whose members assign nothing still goes out; it is simply listed as something the check-out adds on top. The scanner used to turn every kit away with *"Kits can't be checked out from the reservation scanner. Use Scan to check out for kits."*
@@ -104,6 +127,8 @@ Scan the kit instead and the whole case goes out. The refusal only covers a unit
 When you scan onto a booking with **Scan to add** or **Scan to assign**, the same rule reads as the **Part of kit** badge on the unit, whose tooltip now names both ways out — *"Scan the kit's QR to take the whole kit, or remove the asset from the kit to use it on its own."*
 
 Reserving by model is counted the same way a pool is. Shelf works out how many units of that model are free for your dates at the moment you reserve, and holds the model still while it does, so two people reserving the last units of the same model at the same second cannot both be told yes.
+
+A **Draft** booking is a plan, so its model reservations hold nothing yet, and two drafts can each plan the same units. Shelf counts again when a draft is **reserved**, or checked out straight from Draft. If the reservations no longer fit those dates, the booking stays a draft and the refusal names every short model with the arithmetic, for example *"Dell Latitude 5550": 4 units still to assign, but only 2 can be booked.* Reduce the reservation or change the dates, then reserve again. See [A draft's model reservations no longer fit](/knowledge-base/troubleshooting-booking-conflicts#a-drafts-model-reservations-no-longer-fit).
 
 Reservations that are still outstanding show as an amber **N units unassigned** pill on the bookings index, next to the asset count. A booking made entirely of reservations therefore reads "0 assets" with the pill beside it, rather than looking empty. Those units are genuinely held and unavailable to anyone else, so the pill is the list telling you there is still gear to find.
 

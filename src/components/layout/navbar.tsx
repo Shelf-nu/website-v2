@@ -216,11 +216,12 @@ export function Navbar() {
             >
                 <Container className="flex h-16 items-center justify-between">
                     <div className="flex items-center gap-8">
-                        <Link href="/" className="flex items-center space-x-2">
+                        <Link href="/" className="flex shrink-0 items-center space-x-2">
                             <Logo />
                         </Link>
 
-                        {/* Desktop Mega Menu */}
+                        {/* Desktop Mega Menu. From md to lg the triggers are a little tighter
+                            (px-2) so the bar fits a 768px tablet without squashing the logo. */}
                         <div className="hidden md:flex">
                             <NavigationMenu
                                 value={navState}
@@ -229,7 +230,7 @@ export function Navbar() {
                                 <NavigationMenuList>
                                     {/* -------- Product -------- */}
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="px-2 lg:px-3">
                                             Product
                                         </NavigationMenuTrigger>
                                         <NavigationMenuContent>
@@ -356,7 +357,7 @@ export function Navbar() {
 
                                     {/* -------- Solutions -------- */}
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="px-2 lg:px-3">
                                             Solutions
                                         </NavigationMenuTrigger>
                                         <NavigationMenuContent>
@@ -417,7 +418,7 @@ export function Navbar() {
                                                                 libraries.
                                                             </ListItem>
                                                             <ListItem
-                                                                href="/solutions/educational-resource-management"
+                                                                href="/blog/equipment-management-software-for-universities-streamlining-campus-resources"
                                                                 title="Higher Education & Universities"
                                                                 icon={BookOpen}
                                                             >
@@ -472,7 +473,7 @@ export function Navbar() {
 
                                     {/* -------- Resources -------- */}
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="px-2 lg:px-3">
                                             Resources
                                         </NavigationMenuTrigger>
                                         <NavigationMenuContent>
@@ -535,7 +536,8 @@ export function Navbar() {
                                                                 title="Free Tools"
                                                                 icon={Wrench}
                                                             >
-                                                                Barcode Scanner,
+                                                                Barcode generator
+                                                                and scanner,
                                                                 calculators and
                                                                 more.
                                                             </ListItem>
@@ -569,7 +571,7 @@ export function Navbar() {
                                         <NavigationMenuLink asChild>
                                             <Link
                                                 href="/pricing"
-                                                className={navigationMenuTriggerStyle()}
+                                                className={cn(navigationMenuTriggerStyle(), "px-2 lg:px-3")}
                                             >
                                                 Pricing
                                             </Link>
@@ -602,7 +604,7 @@ export function Navbar() {
                                 <>
                                     <Link
                                         href="https://app.shelf.nu/login"
-                                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                        className="whitespace-nowrap text-sm text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         Log in
                                     </Link>
@@ -760,7 +762,7 @@ export function Navbar() {
                                     <MobileLink href="/solutions/equipment-reservations">
                                         Equipment Reservations
                                     </MobileLink>
-                                    <MobileLink href="/solutions/educational-resource-management">
+                                    <MobileLink href="/blog/equipment-management-software-for-universities-streamlining-campus-resources">
                                         Higher Education & Universities
                                     </MobileLink>
                                     <MobileLink href="/solutions/camera-equipment-check-out">

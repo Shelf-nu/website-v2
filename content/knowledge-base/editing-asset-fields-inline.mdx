@@ -3,7 +3,7 @@ title: "Editing Asset Fields Inline"
 description: "Edit asset fields directly from the asset detail page in a single click — no need to open the full edit form. Covers what's editable inline, who can do it, and how it interacts with custom fields and validation."
 category: "Assets"
 date: "2026-05-08"
-updated: "2026-08-10"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
@@ -27,7 +27,7 @@ To dismiss your changes, click **Cancel** or press **Escape**.
 
 | Field | Editor |
 |---|---|
-| **Description** | Multi-line text area (up to 1,000 characters) |
+| **Description** | Multi-line text area, up to 5,000 characters. A line break counts as one character |
 | **Category** | Searchable select |
 | **Location** | Searchable select with kit-blocked location warnings |
 | **Value** | Decimal input |
@@ -49,7 +49,7 @@ See: [Adding Additional Fields to Assets](/knowledge-base/adding-additional-fiel
 Inline editing follows the same permissions model as the full edit form:
 
 - **Owners and Admins** see and can edit every field
-- **Self-service users and Base users** see every custom field that has a value, read-only. Fields still sitting at **Not set** are hidden from them, since there is nothing to read and nothing they can fill in.
+- **Managers, Self-service users and Base users** see every custom field that has a value, read-only. Fields still sitting at **Not set** are hidden from them, since there is nothing to read and nothing they can fill in.
 
 Editors who don't have permission to update a particular field will not see the pencil icon for that field.
 
@@ -60,6 +60,7 @@ Inline edits use the same server-side validation as the full edit form:
 - **Value** must be a finite decimal number (the input is plain text with `inputMode="decimal"` so the validation message is shown directly under the field if you submit a non-numeric value)
 - **Location** rejects locations that are blocked by an active kit assignment, surfacing the conflict so you can resolve it before saving
 - **Custom fields** apply the same per-type rules as the full form (date format, option whitelist, required-field guard, etc.)
+- **Description** is refused over 5,000 characters with *"Description must be 5,000 characters or fewer"*. The editor keeps your text so you can shorten it; nothing is cut for you. Until 14 October 2026 the limit was 1,000, and a description that had grown past it through a CSV import could not be edited at all because every keystroke was dropped. The same text is editable now.
 
 If a save fails, the editor stays open with the error message visible and your input preserved — so you can fix the value without retyping.
 

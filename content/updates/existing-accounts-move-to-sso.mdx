@@ -1,0 +1,19 @@
+---
+title: "Existing Accounts Move to SSO Without Losing Anything"
+description: "A team that adopts single sign-on no longer has to delete and recreate the Shelf accounts it already has. Each account is converted and keeps its custody, bookings and history. Once SSO is live on a domain, password and one-time code login are refused there."
+date: "2026-10-06"
+image: "/images/updates/improved-team-management.jpg"
+readMoreUrl: "/knowledge-base/sso-with-google-workspace#moving-existing-accounts-to-sso"
+layout: "update"
+---
+
+Until now, a team that already used Shelf with email and password accounts had an unpleasant step on the way to single sign-on: those accounts had to be removed, and an existing account that tried SSO was refused and sent to support. Deleting an account meant losing what it held, including its custody records, bookings, notes and report history.
+
+That step is gone. Shelf staff now **convert** existing standard accounts to SSO, one at a time or every eligible account on the domain at once. A converted account keeps its identity and its workspace memberships; only the login method changes. The person is signed out everywhere, and their first SSO sign-in lands in the account they already had. Nothing changes in your identity provider.
+
+Two rules come with it:
+
+- **Once SSO is live for your domain, password, one-time code and password reset login are refused there**, in the web app and in the Shelf Companion app. The login screens point to **Login with SSO**, and someone still signed in with a password is signed out on their next page load. Those hints depend only on the domain, so they never reveal whether a particular account exists.
+- **The owner of the workspace that uses SSO can keep password login** as the administrative fallback for a day your identity provider is unavailable. Converting the owner is optional and done on request. An owner who signs in with SSO keeps the Owner role whatever their groups say.
+
+If you want to pilot SSO with a few users before everyone is converted, Shelf can relax SSO-only login for the domain during setup. Keeping password and SSO users side by side for good, apart from the owner, is still not supported.

@@ -6,6 +6,7 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { FAQSection } from "@/components/sections/faq";
+import { AiImportPrompt } from "@/components/mdx/ai-import-prompt";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
@@ -43,11 +44,13 @@ const competitors = [
     { name: "GoCodes", logo: "/logos/gocodes.webp", slug: "gocodes", description: "Flat pricing with built-in booking system." },
     { name: "Hardcat", logo: "/logos/hardcat.svg", slug: "hardcat", description: "Faster setup with a modern, intuitive interface." },
     { name: "Hector", logo: "/logos/hector.svg", slug: "hector", description: "Flat pricing with open-source transparency." },
+    { name: "inFlow", logo: "/logos/inflow.svg", slug: "inflow", description: "Bookings, custody and kits, with unlimited users." },
     { name: "Itemit", logo: "/logos/itemit.webp", slug: "itemit", description: "Lower cost, no proprietary hardware required." },
     { name: "ShareMyToolbox", logo: "/logos/share-my-toolbox.webp", slug: "share-my-toolbox", description: "Open source with kit tracking for field teams." },
     { name: "Timly", logo: "/logos/timly.svg", slug: "timly", description: "Lower cost, no specialized hardware needed." },
     { name: "Wasp", logo: "/logos/wasp.webp", slug: "wasp", description: "Modern UX with faster cloud-based setup." },
     { name: "WebCheckout", logo: "/logos/webcheckout.webp", slug: "webcheckout", description: "Modern QR-first approach with open source." },
+    { name: "MaintainX", logo: "/logos/maintainx.svg", slug: "maintainx", description: "Check-out, custody and bookings, with unlimited users." },
     { name: "Limble CMMS", slug: "limble", description: "Dedicated asset tracking without CMMS complexity." },
 ];
 
@@ -129,6 +132,11 @@ export default function MigratePage() {
                         </Link>
                     </ScrollReveal>
 
+                    {/* The import format, handed to the visitor's own AI */}
+                    <ScrollReveal width="100%" delay={0.05}>
+                        <AiImportPrompt location="migrate_page" className="mt-0 mb-12" />
+                    </ScrollReveal>
+
                     {/* All competitor cards */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                         {competitors.map((comp, index) => (
@@ -171,13 +179,16 @@ export default function MigratePage() {
                     <div className="mt-12 text-center rounded-2xl border border-dashed border-border/60 bg-muted/10 p-8 md:p-10">
                         <h3 className="text-xl font-bold mb-2">Using a different tool?</h3>
                         <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-                            Shelf supports CSV imports from any system. Export your data, map columns, and you&apos;ll be running in minutes.
+                            Shelf supports CSV imports from any system. Export your data, map columns, keep the labels already on your gear, and you&apos;ll be running in an afternoon.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-                            <Link href="/knowledge-base/importing-assets-to-shelf-csv-guide">
+                            <Link href="/knowledge-base/switching-from-another-asset-tool">
                                 <Button variant="secondary" size="sm">
-                                    CSV import guide <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                                    Switching guide <ArrowRight className="ml-2 h-3.5 w-3.5" />
                                 </Button>
+                            </Link>
+                            <Link href="/knowledge-base/importing-assets-to-shelf-csv-guide" className="text-sm font-medium text-orange-600 hover:text-orange-700">
+                                CSV column reference <ArrowRight className="ml-1 h-3.5 w-3.5 inline" />
                             </Link>
                             <Link href="/alternatives" className="text-sm font-medium text-orange-600 hover:text-orange-700">
                                 View all comparisons <ArrowRight className="ml-1 h-3.5 w-3.5 inline" />
@@ -197,7 +208,11 @@ export default function MigratePage() {
                         items={[
                             {
                                 question: "How long does a migration to Shelf take?",
-                                answer: "Most migrations take a few hours of focused work. Even larger inventories or multi-workspace setups are typically completed within a day."
+                                answer: (
+                                    <>
+                                        Most migrations take a few hours of focused work. Even larger inventories or multi-workspace setups are typically completed within a day. The <Link href="/knowledge-base/switching-from-another-asset-tool" className="text-orange-600 hover:underline">switching guide</Link> walks through the export, the column mapping, and what to expect when importing about 1,000 assets.
+                                    </>
+                                )
                             },
                             {
                                 question: "What data can I migrate into Shelf?",
@@ -248,7 +263,7 @@ export default function MigratePage() {
                                 question: "Will checkouts, bookings, and labels work right away?",
                                 answer: (
                                     <>
-                                        Yes. Once your assets are in Shelf, you can immediately use <Link href="/features/bookings" className="text-orange-600 hover:underline">bookings</Link>, <Link href="/features/custody" className="text-orange-600 hover:underline">check-in/out flows</Link>, and <Link href="/solutions/asset-tracking" className="text-orange-600 hover:underline">QR or barcode labels</Link>.
+                                        Yes. Once your assets are in Shelf, you can immediately use <Link href="/features/bookings" className="text-orange-600 hover:underline">bookings</Link>, <Link href="/features/custody" className="text-orange-600 hover:underline">check-in/out flows</Link>, and <Link href="/solutions/asset-tracking" className="text-orange-600 hover:underline">QR or barcode labels</Link>. The barcode and QR stickers already on your equipment can keep working too; see <Link href="/knowledge-base/switching-from-another-asset-tool#step-3-keep-the-stickers-that-are-already-on-your-gear" className="text-orange-600 hover:underline">keeping your existing labels</Link>.
                                     </>
                                 )
                             }

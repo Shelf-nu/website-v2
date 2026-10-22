@@ -6,7 +6,7 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { collectionPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-    title: "Product Updates - Shelf Asset Management",
+    title: "Product Updates",
     description:
         "See what's new in Shelf. A timeline of every product improvement, new feature, and platform update since day one.",
     alternates: {

@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-09-25"
+updated: "2026-10-16"
 layout: "knowledge-base"
 ---
 
@@ -83,7 +83,7 @@ Several checks run before Shelf builds a preview, each with its own message:
 - **An unbalanced quote.** A double quote that is opened and never closed runs every row after it together, so the file Shelf receives is not the file you meant to send. The usual source is an inches mark typed into a cell, as in `24" Monitor`. This one is caught as soon as the file is picked, and **Analyze file** stays disabled until it is fixed. Wrap the cell in quotes and double the inner one, `"24"" Monitor"`, or save the file from a spreadsheet application, which escapes it for you.
 - **No identifier column.** The file needs `id`, `ID`, or `Asset ID`. An **Import-ready** export always has one, in either column scope. A Standard export only carries `ID` when that column is visible in your index or you pick the **All columns** scope.
 - **Nothing updatable in the file.** The identifier matched, but every other column is either unrecognized or one this flow never writes (Status, Kit, Custody). This usually means the wrong file. Export **Import-ready** and use that.
-- **It's a workspace backup export.** The backup from **Workspace settings → General** stores category, tags, and asset model as raw data rather than names, so it can't be matched to real entities. Export from the Asset Index instead.
+- **It's a legacy workspace backup export.** The backup download that used to sit under **Workspace settings → General** (retired in October 2026) stored category, tags, and asset model as raw data rather than names, so it can't be matched to real entities. Export from the Asset Index instead.
 - **Too many rows.** The limit is 1,000 assets per file. Split larger files into batches.
 
 ---

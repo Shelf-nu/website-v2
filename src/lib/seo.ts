@@ -68,8 +68,6 @@ export const CONTENT_SEO: Record<string, ContentSeoConfig> = {
     "case-studies":   { type: "case-studies",    urlPrefix: "/case-studies",   ogType: "article", titleSuffix: "Shelf Case Studies" },
     alternatives:     { type: "alternatives",   urlPrefix: "/alternatives",   ogType: "website" },
     industries:       { type: "industries",     urlPrefix: "/industries",     ogType: "website" },
-    "use-cases":      { type: "use-cases",      urlPrefix: "/use-cases",      ogType: "website" },
-    concepts:         { type: "concepts",       urlPrefix: "/concepts",       ogType: "article" },
     glossary:         { type: "glossary",       urlPrefix: "/glossary",       ogType: "website" },
 };
 

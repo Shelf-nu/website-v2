@@ -1,0 +1,22 @@
+---
+title: "Pooled Stock Records Which Location Its Units Left From"
+description: "For a quantity-tracked asset kept at two or more locations, assigning custody, checking out on a booking and adjusting stock now ask which location the units come from, so used-up units come off the right place and placements stop drifting."
+date: "2026-10-07"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-source-assign-dialog.webp"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#which-location-the-units-come-from"
+layout: "update"
+---
+
+A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) can be kept at several locations at once: 60 cables in the stockroom, 40 in the van. Until now, nothing recorded which of those locations a unit came from when it went into someone's custody or out on a booking. When units were used up, Shelf could not tell which location had lost them, so the placements drifted above the total, and a later loss was refused with *"Lower the placements first."*
+
+Now, for a pool kept at **two or more locations**, Shelf asks once where the units come from and remembers the answer:
+
+- **Assign custody** gains a **From location** field, pre-filled with the location that has the most units left. The quantity is capped at what that location has, and asking for more is refused with the numbers: *"Debriefing Room has only 2 pcs."* The web scanner's **Assign custody** action asks on each such row too.
+- **Check out** on a booking asks the same question, in a short confirmation on the one-click button or on the pool's row in **Check out selected items** and **Scan to check out**. The booking row then reads *from Studio* beside its status.
+- **Adjust** gains an **At location** field: a restock lands there, a loss comes off there.
+- The custody list shows the location after each person's quantity, the placements card shows **N in custody** under a location, and a location's **Assets** tab reads *· 40 pcs at this location · 10 on a booking*.
+- **Release**, **Mark as consumed** and check-in take used-up units off the location they came from, so the counts stay true without a correction afterwards. Returned units change no placement.
+
+A pool kept at one location, with or without unplaced units, and every individually tracked asset look and behave exactly as before. Holds recorded before this read *location not recorded* on the custody list.
+
+The [Shelf Companion app](/mobile-app) does not ask yet. A check-out from the phone records the location with the most units left, and a custody assignment from the phone is recorded without a location.

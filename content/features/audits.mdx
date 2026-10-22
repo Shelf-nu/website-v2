@@ -1,6 +1,7 @@
 ---
 title: "Audits"
 description: "Run physical inventory audits with structured scan workflows, automatic found/missing/unexpected detection, and exportable reports."
+image: "/images/features/cards/audits.webp"
 layout: "feature"
 intent: "commercial"
 cluster: "product-feature"
@@ -11,7 +12,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-09-17"
+updated: "2026-10-15"
 seo:
   title: "Asset Audits — Physical Inventory Verification"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Download a PDF audit receipt with the full asset list. Paid add-on with 7-day free trial."
@@ -65,7 +66,7 @@ There are three ways to start an audit, all from the **New Audit** dialog: from 
 
 ### 2. Assign and Scan
 
-Assign the audit to a team member, or just start scanning yourself — owners and administrators can perform any audit in the workspace, assigned or not. Whoever runs it opens a dedicated scan page on any phone or tablet — in any browser, or in the free [Shelf Companion app](/mobile-app) on iPhone and Android — and starts scanning QR labels. Each scan registers the asset as **Found**.
+Assign the audit to a team member, or just start scanning yourself — owners, administrators and managers can perform any audit in the workspace, assigned or not. Whoever runs it opens a dedicated scan page on any phone or tablet — in any browser, or in the free [Shelf Companion app](/mobile-app) on iPhone and Android — and starts scanning QR labels. Each scan registers the asset as **Found**.
 
 The scan page is purpose-built for audits — separate from regular check-in/check-out — so there is no confusion about what workflow is active.
 
@@ -128,9 +129,9 @@ The audit's **Activity** tab has a separate **Export activity CSV** button once 
 
 ### 5. Edit, Duplicate, Archive, and Delete for Record-Keeping
 
-While an audit is still **Pending** or **Active**, admins and owners can open it and choose **Actions → Edit details** to change its name, description, due date and assignee. A count that slips by a week or passes to a different person is a quick edit rather than a rebuild. Once the audit reaches a terminal state the record is fixed, which is what makes its receipt worth keeping.
+While an audit is still **Pending** or **Active**, owners, admins and managers can open it and choose **Actions → Edit details** to change its name, description, due date and assignee. A count that slips by a week or passes to a different person is a quick edit rather than a rebuild. Once the audit reaches a terminal state the record is fixed, which is what makes its receipt worth keeping.
 
-Once a completed or cancelled audit is no longer actively referenced, admins and owners can **archive** it. Archived audits are removed from the default audit list but remain accessible by filtering for the **Archived** status.
+Once a completed or cancelled audit is no longer actively referenced, owners, admins and managers can **archive** it. Archived audits are removed from the default audit list but remain accessible by filtering for the **Archived** status.
 
 To archive a single audit, open it and select **Archive** from the actions menu (⋯). To archive several at once, return to the audit list, use the checkboxes to select audits, then choose **Archive** from the **Actions** dropdown. See [Bulk Archive Audits](/knowledge-base/bulk-archive-audits) for step-by-step instructions.
 
@@ -167,6 +168,7 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Post-event equipment verification**: After a conference, production shoot, or field deployment, scan everything that comes back to confirm nothing was left behind.
 - **Onboarding new locations**: When taking over a new facility or inheriting equipment from another department, audit to establish a verified baseline in Shelf.
 - **Shrinkage detection**: Run periodic audits to identify patterns of loss before they become expensive.
+- **Tracking whether audits get done**: The [Audit Completion report](/features/reports) lists every audit with the workspace's completion rate, the overdue audits and the assets the completed ones found missing, so a quarterly counting program can be checked in one screen.
 
 ---
 
@@ -204,7 +206,7 @@ Missing assets are flagged in the report but are not automatically changed in yo
 
 ### Who is allowed to run an audit?
 
-Owners and administrators can scan, add condition notes and photos, and complete **any** audit in their workspace — assigning one to a colleague does not lock a manager out of it. Self-service and base users work only on the audits they have been assigned, which is how you hand a count to a technician or a student without opening the rest of the inventory to them. The same rule applies in the browser and in the Companion app.
+Owners, administrators and [managers](/knowledge-base/user-roles-and-their-permissions#manager) can scan, add condition notes and photos, and complete **any** audit in their workspace — assigning one to a colleague does not lock them out of it. The Manager role, added in October 2026, can also create, edit, cancel, archive and delete audits without being able to change the catalogue, which suits an equipment-room lead who counts stock but does not administer the workspace. Self-service and base users work only on the audits they have been assigned, which is how you hand a count to a technician or a student without opening the rest of the inventory to them. The same rule applies in the browser and in the Companion app.
 
 ### Can multiple people scan during the same audit?
 
@@ -220,31 +222,31 @@ There is no CSV of the asset results. The one CSV an audit produces is **Export 
 
 Yes, while it is still running. Open the audit, click the actions menu (⋯), and choose **Edit details**. The dialog updates the audit's name, description, due date and assignee in one go, so a count that slips a week or moves to a different person does not have to be rebuilt from scratch.
 
-This is an **Admin or Owner** action, and it is available on **Pending** and **Active** audits only. Once an audit is Completed, Cancelled or Archived its record is fixed, which is what makes the PDF receipt worth keeping. To re-run a finished audit on the same scope, duplicate it instead.
+This is an **Owner, Admin or Manager** action, and it is available on **Pending** and **Active** audits only. Once an audit is Completed, Cancelled or Archived its record is fixed, which is what makes the PDF receipt worth keeping. To re-run a finished audit on the same scope, duplicate it instead.
 
 The audit's **scope** is not editable here. The asset list is set when the audit is created, so use Duplicate if you need a different set of assets.
 
 ### Can I cancel an audit?
 
-Yes. The creator of an audit can cancel their own audit at any time before it reaches a terminal state. Workspace **owners and admins** can also cancel any audit in the workspace — including audits created by other team members. Open the audit, click the actions menu (⋯), and select **Cancel**. Once an audit is **Completed**, **Cancelled**, or **Archived** it can no longer be cancelled.
+Yes. The creator of an audit can cancel their own audit at any time before it reaches a terminal state. Workspace **owners, admins and managers** can also cancel any audit in the workspace — including audits created by other team members. Open the audit, click the actions menu (⋯), and select **Cancel**. Once an audit is **Completed**, **Cancelled**, or **Archived** it can no longer be cancelled.
 
 Cancelling sends a notification email to the audit creator and any assigned scanner.
 
 ### Can I archive an audit?
 
-Yes. Admins and owners can archive any audit that is **Completed** or **Cancelled**. Open the audit, click the actions menu (⋯), and select **Archive**. You will be asked to confirm before the action is applied. Archiving removes the audit from the default list but it remains accessible by filtering for the Archived status. Archiving is permanent — it cannot be undone.
+Yes. Owners, admins and managers can archive any audit that is **Completed** or **Cancelled**. Open the audit, click the actions menu (⋯), and select **Archive**. You will be asked to confirm before the action is applied. Archiving removes the audit from the default list but it remains accessible by filtering for the Archived status. Archiving is permanent — it cannot be undone.
 
 To archive multiple audits at once, go to the audit list, use the checkboxes to select the audits you want to archive, and choose **Archive** from the **Actions** dropdown. See [Bulk Archive Audits](/knowledge-base/bulk-archive-audits) for full instructions.
 
 ### Can I permanently delete an audit?
 
-Yes. Admins and owners can permanently delete any **Archived** audit. Archiving must happen first — it acts as a safety step before deletion. Open an archived audit, click the actions menu (⋯), select **Delete**, and type the audit name to confirm. Deletion permanently removes all scan data, notes, and images and cannot be reversed.
+Yes. Owners, admins and managers can permanently delete any **Archived** audit. Archiving must happen first — it acts as a safety step before deletion. Open an archived audit, click the actions menu (⋯), select **Delete**, and type the audit name to confirm. Deletion permanently removes all scan data, notes, and images and cannot be reversed.
 
-To delete multiple archived audits at once, filter the audit list to the **Archived** status, select the audits using checkboxes, and choose **Delete** from the **Actions** dropdown. See [Permanently Delete Archived Audits](/knowledge-base/delete-audits) for full instructions.
+To delete multiple archived audits at once, filter the audit list to the **Archived** status, select the audits using checkboxes, choose **Delete** from the **Actions** dropdown, and type the number of audits selected to confirm. See [Permanently Delete Archived Audits](/knowledge-base/delete-audits) for full instructions.
 
 ### Can I duplicate an audit to re-run it?
 
-Yes. Admins and owners can duplicate any **Completed**, **Cancelled**, or **Archived** audit from the actions menu (⋯). The new audit inherits the source's name (with a "(Copy)" suffix), description, and asset list, and starts in a clean **Pending** state — no notes, scans, assignee, or due date carry over. If some of the source audit's assets have since been deleted, Shelf shows a yellow warning with the dropped count before you proceed; if every asset is gone, the duplicate is blocked and you'll need to create a new audit instead. Pending and Active audits don't show the Duplicate option — they have their own **Edit** and **Cancel** actions. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
+Yes. Owners, admins and managers can duplicate any **Completed**, **Cancelled**, or **Archived** audit from the actions menu (⋯). The new audit inherits the source's name (with a "(Copy)" suffix), description, and asset list, and starts in a clean **Pending** state — no notes, scans, assignee, or due date carry over. If some of the source audit's assets have since been deleted, Shelf shows a yellow warning with the dropped count before you proceed; if every asset is gone, the duplicate is blocked and you'll need to create a new audit instead. Pending and Active audits don't show the Duplicate option — they have their own **Edit** and **Cancel** actions. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
 
 ---
 
@@ -256,6 +258,7 @@ The free [Shelf Companion app](/mobile-app) on the App Store and Google Play let
 
 ## Related Features
 
+- [Reports](/features/reports) — the Audit Completion report
 - [Custody](/features/custody)
 - [Location Tracking](/features/location-tracking)
 - [Dashboard](/features/dashboard)

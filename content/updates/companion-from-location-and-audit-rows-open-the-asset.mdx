@@ -1,0 +1,29 @@
+---
+title: "Shelf Companion: Pick Where Pooled Units Come From, Open Assets From an Audit"
+description: "Three phone updates on 8 October 2026: the app asks which location a pool's units leave from, an audit row opens its asset with Back returning to the audit, a kit member takes custody through its kit, and a hidden one-tap check-out says why."
+date: "2026-10-08"
+image: "/images/updates/shelf-mobile-app.jpg"
+readMoreUrl: "/knowledge-base/shelf-ios-companion-getting-started"
+layout: "update"
+---
+
+Three over-the-air updates went out to **Shelf Companion** on iPhone and Android on 8 October 2026. The version number stays **1.5.0**. The app picks up an update like this in the background when you open it and uses it the next time you open it, so there is nothing to fetch from the store.
+
+## Where pooled units come from
+
+The web started recording which location a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) pool's units leave from on 7 October. The phone now asks the same question. On a pool kept at two or more locations:
+
+- The **Assign** sheet shows a **From location** list, one row per location with what sits there and what is already committed, plus **Unplaced** when the pool has unplaced units. It starts on the location with the most units left, and the quantity is capped at what the picked row has.
+- Each holder's row says where their units came from, for example *1 from Camera Room · 1 from Studio*, and the release sheet says where they go back to.
+- **Check Out All Assets**, **Select to Check Out** and the booking scanner ask **Where do the units come from?** before the units go out, and the booking row then reads *From Studio*.
+
+A pool kept at one location asks nothing, and individually tracked assets work as before. Assigning custody to a batch from the **Scan** tab still records no location; that hold reads *location not recorded* on the web.
+
+## Open the asset from an audit row
+
+Tapping a row on an audit's asset list now opens that asset, so a missing or unexpected item can be fixed on the spot. Back, the iOS edge swipe and the Android back button return to the same audit with its filter and scroll kept, and the audit reloads to show the change. The note and photo chip on a row still opens its evidence.
+
+## Also in these updates
+
+- **Assign Custody** is greyed out on an individually tracked asset that sits in a kit, with the reason under it. Custody of a kit member comes from its kit. See [A kit member's custody comes from its kit](/updates/a-kit-members-custody-comes-from-its-kit).
+- Where your workspace has [removed the one-tap check-out or check-in](/knowledge-base/require-explicit-check-in-and-check-out) for your role, the booking screen now says so: *"Your workspace requires each item to be scanned or selected to check out."* Each check-out and check-in from the phone is also recorded with how it was made, scanned or selected.

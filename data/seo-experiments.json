@@ -1602,17 +1602,17 @@
         "capturedAt": "2026-07-23T09:41:40.314Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 165,
+        "impressions": 9209,
+        "ctr": 1.79,
+        "position": 6.7,
         "dateRange": [
-          null,
-          null
+          "2026-07-24",
+          "2026-08-19"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:52.565Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1621,7 +1621,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 170c/10,238i/1.66%/pos5.5 -> 155c/8,869i/1.75%/pos6.8. CTR +5% against a control that drifted +19%, so the rewrite did NOT beat the market; clicks (-9%) and impressions (-13%) both beat the control.\nCore check-in/check-out cluster (S1): 0.37% -> 0.28% CTR, pos 5.3 -> 6.2. Like-for-like (128 queries in both windows): -22% CTR, +0.9 pos.\nNOT JUDGEABLE EITHER WAY, and the reason is the finding: S7 query-row coverage is 12% pre / 8% post — the named queries account for 13 of 155 clicks, so neither view carries the page.\nTHE PREMISE IS REFUTED, which is worth more than the verdict (S8, now confirmed on the full window across two different titles): \"equipment checkout software\" holds pos 1.3->1.4 on 477->500 impressions at EXACTLY ZERO clicks in both windows; \"free check in check out software\" pos 2.2 both windows, zero clicks. These are AI-overview/SERP-feature placements. No title moves them, and the +374 clicks/mo forecast built on them was fiction.\nANSWER TO THE BATCH QUESTION \"did restored action verbs (P3) beat exp-029's version?\": unanswerable on this page and it always would have been. The page's impression base is dominated by zero-click SERP-feature queries, so it cannot serve as a test bed for any title pattern. Retire this page from CTR experimentation; route it to AEO instead.\n[R1 re-check 2026-09-23] Live <title> curled = 'Free Equipment Check-In and Check-Out Software — Scan, Return | Shelf Asset Management' — identical to the `after` string; the experiment copy has been live continuously since 2026-07-23. Verdict stands (S12: unfalsifiable on this page, query coverage 6%)."
     },
     {
       "id": "exp-040",
@@ -1642,17 +1642,17 @@
         "capturedAt": "2026-07-23T09:41:41.306Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 110,
+        "impressions": 14117,
+        "ctr": 0.78,
+        "position": 9.2,
         "dateRange": [
-          null,
-          null
+          "2026-07-24",
+          "2026-08-19"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.034Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1661,7 +1661,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 98c/10,453i/0.94%/pos8.9 -> 96c/13,654i/0.70%/pos9.3 — the headline -20% CTR is a TEXTBOOK S1 ARTEFACT. Impressions rose +31% on tangential queries (\"macrs\" 38->124i, \"depreciation calculator\" 11->71i, \"bonus depreciation calculator\" 99->117i), all near-zero-click, diluting the rate.\nCore calculator cluster (coverage 44% pre / 50% post, so the query view IS the truth here): 2.25% -> 2.17% CTR, pos 9.8 -> 9.5. Like-for-like (90 matched queries): 2.27% -> 2.26%, pos 9.0 -> 8.9. Flat on every axis.\nMoney query \"macrs depreciation calculator\": 3.41%@pos3.4 -> 3.47%@pos3.9 — unmoved.\nSmall positives: \"tax depreciation calculator\" 0.68%@4.1 -> 3.40%@3.5 (1->5 clicks); \"macrs depreciation calculation\" 0 -> 2 clicks.\nVERDICT VALUE IS THE NULL RESULT: deduping the doubled \"| Shelf\" brand suffix and swapping \"IRS Tables\"->\"IRS Pub 946\" is ranking-neutral AND CTR-neutral. That independently re-confirms exp-040's companion finding that suffix dedupe is safe, so the remaining doubled-suffix housekeeping can proceed without risk — but it buys nothing on its own. Do not spend an experiment slot on suffix dedupe again; fold it into other changes."
     },
     {
       "id": "exp-041",
@@ -1682,17 +1682,17 @@
         "capturedAt": "2026-07-23T09:41:42.248Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 8,
+        "impressions": 6250,
+        "ctr": 0.13,
+        "position": 10.1,
         "dateRange": [
-          null,
-          null
+          "2026-07-24",
+          "2026-08-19"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.368Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1701,7 +1701,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 7c/6,455i/0.11%/pos8.8 -> 7c/5,940i/0.12%/pos10.1. Identical click count on ~6k impressions.\nCore laptop/computer asset-tag cluster: 1 click -> 0 clicks, 0.03% -> 0.00%, pos 9.5 -> 9.9. Like-for-like (35 matched queries): same, -100% CTR, +0.4 pos.\nThe rewrite was A1-compliant (kept \"Asset Tags\" + \"Computers\", added \"Laptops\") and it changed nothing. Every core query still returns zero: \"laptop asset tag\" 304i@pos10 = 0c, \"asset tags for computers\" 170i@pos13.1 = 0c, \"computer asset tag\" 164i@pos9.4 = 0c.\nCONFIRMS THE INFORMATIONAL-INTENT TRAP: these searchers want to know what the sticker on their laptop IS, not to buy tagging software. The page sits at pos 9-13 on ~6,000 impressions and converts essentially none of it, under two very different titles. This is not a snippet problem and no title will fix it (S3-adjacent: right topic, wrong intent).\nDo not run further metadata experiments on this page. Confirmed at full window — the day-20 read holds."
     },
     {
       "id": "exp-042",
@@ -1722,17 +1722,17 @@
         "capturedAt": "2026-07-23T09:41:43.207Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 32,
+        "impressions": 6180,
+        "ctr": 0.52,
+        "position": 6.9,
         "dateRange": [
-          null,
-          null
+          "2026-07-24",
+          "2026-08-19"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.711Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1741,7 +1741,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nTHE ONLY CLEAN WIN IN BATCH 4, and it is clean because position was held exactly.\nTight core cluster (exact \"snipe(-)it alternative/alternatives/competitors\" + spelling variants): 3c/386i/0.78%/pos3.1 -> 8c/380i/2.11%/pos3.1. Impressions flat (386->380), position IDENTICAL (3.1->3.1), clicks 2.7x. With impressions and rank both held, the snippet is the only variable that moved.\nLike-for-like (13 matched queries): 1.93% -> 2.49% CTR (+29%) at pos 3.0 -> 3.1.\nStandouts: \"snipe-it alternatives\" 0% -> 5.26% at an unchanged pos 3.2->3.1; \"snipe it alternative\" 0% -> 3.33% at pos 3.5->3.0; \"snipeit alternatives\" 0% -> 4.35%.\nPage aggregate (0.54% -> 0.50%) is diluted by the brand-navigation cluster (\"snipeit\"/\"snipe-it\"/\"snipe it\", ~800 impressions at pos 7-11 that will never click through to a competitor's alternative page) — S1 again.\nSUPPORTS P7 (candidate, not yet proven): on an \"X alternative\" SERP every competing title says the same category words, so naming the two features the incumbent verifiably lacks (bookings, native mobile app) is the only non-duplicated text available. Requires the gap to be real — Snipe-IT genuinely has neither. Pair with P2 (\"Open Source\" lead). Treat it as a promising format to replicate on other /alternatives/* pages, not a proven one: held position and impressions support a CTR signal, but 3 -> 8 clicks is a small sample, the like-for-like gain (+29%) is close to the +19% site-wide drift, and the snippet is not proven to be the only cause."
     },
     {
       "id": "exp-043",
@@ -1762,17 +1762,17 @@
         "capturedAt": "2026-07-23T09:41:45.709Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 3,
+        "impressions": 3029,
+        "ctr": 0.1,
+        "position": 14.2,
         "dateRange": [
-          null,
-          null
+          "2026-07-24",
+          "2026-08-19"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:53.980Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1781,7 +1781,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\n*** RANKING DAMAGE — REVERT RECOMMENDED. This is the exp-009 failure signature. ***\nCore qr+asset cluster: 1c/637i/0.16%/pos12.1 -> 0c/1,233i/0.00%/pos20.3 — a 8.2-spot collapse. It SURVIVES the like-for-like test (34 queries present in both windows: pos 12.2 -> 21.1, +8.9), so it is real demotion, not a composition artefact.\nCasualties are concentrated on the term the title ADDED (\"Tracking\"), while the term it KEPT (\"Asset Management\") barely moved:\n  ADDED-term queries: \"qr code asset tracking system\" pos 19.5 -> 52.3 (-32.8); \"asset tracking qr code\" 15.0 -> 29.2; \"qr code asset tracking software for enterprises\" 5.3 -> 15.4; \"asset tracking with qr codes\" 20.8 -> 30.0; \"qr asset tracking\" 19.7 -> 24.8.\n  KEPT-term queries: \"qr code asset management\" 10.5 -> 12.7; \"qr asset management\" 7.7 -> 9.3; \"qr code asset tracking\" 10.4 -> 11.1.\nMECHANISM CONFIRMED BY PAGE-LEVEL PROBE, and it corrects the earlier day-20 write-up: the cannibalising page is /solutions/asset-tracking, NOT /solutions/qr-code-asset-tracking (which the first pass named and which turns out to carry only 47 impressions — it cannibalises nothing). Per-query, the swap is explicit:\n  \"qr code asset tracking system\": /solutions/asset-tracking pos 17.0 -> 8.3 WHILE this blog went 19.5 -> 52.3.\n  \"qr asset tracking\": /solutions/asset-tracking holds pos 1.3 -> 1.4 throughout; the blog sinks 19.7 -> 24.8.\nA third URL, /blog/qr-code-asset-tagging-revolutionizing-..., is in the same pileup at pos 49-67 and also lost ground: this is a THREE-WAY internal collision on \"qr * asset tracking\", and /solutions/asset-tracking is the rightful owner.\nACTION: revert the title to \"The Importance of QR Code Asset Management in Business\" (or retitle to management-only wording with no \"Tracking\"), and treat the qr-tracking cluster as owned by /solutions/asset-tracking. The lever here is consolidation (S2), not metadata.\n[2026-09-23] The revert shipped as exp-049 in PR #276 (live 2026-09-08)."
     },
     {
       "id": "exp-044",
@@ -1802,17 +1802,17 @@
         "capturedAt": "2026-07-23T09:41:46.696Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 5,
+        "impressions": 1543,
+        "ctr": 0.32,
+        "position": 10.4,
         "dateRange": [
-          null,
-          null
+          "2026-07-24",
+          "2026-08-19"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:54.520Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1821,7 +1821,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 2c/1,486i/0.13%/pos10.2 -> 5c/1,500i/0.33%/pos10.4. CTR +154% against a +19% control looks like a win and is NOT reportable as one: it is 2 clicks becoming 5.\nS7 coverage is 0% in BOTH windows — not a single one of those clicks appears in any query row, so there is literally nothing to verify at query level. All 51-58 named queries return zero clicks in both windows.\nCore check-in/check-out cluster: 0 clicks -> 0 clicks. Position did improve, like-for-like (21 matched queries) pos 11.9 -> 10.6 (-1.4), with real movers: \"check in check out fixed asset software\" pos 10.5 -> 3.8, \"check in and check out fixed asset software\" 15.5 -> 4.0, \"check in check out software for fixed assets\" 11.9 -> 7.1.\nSo the A1-compliant \"Asset\" extension plausibly helped RANKING on the fixed-asset sub-cluster, and the page still earns ~0 clicks because a glossary/definition page loses the click to the dictionary-style SERP and the AI overview.\nBelow the measurement floor for a CTR verdict (S4-adjacent: 1,500 impr/27d is at the demand gate, but 5 clicks is not enough signal). Re-measure at 90 days if the fixed-asset ranking gains hold; do not re-run a metadata experiment here in the meantime."
     },
     {
       "id": "exp-045",
@@ -1842,17 +1842,17 @@
         "capturedAt": "2026-07-23T09:41:47.703Z"
       },
       "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
+        "clicks": 1,
+        "impressions": 1031,
+        "ctr": 0.1,
+        "position": 10.7,
         "dateRange": [
-          null,
-          null
+          "2026-07-24",
+          "2026-08-19"
         ],
-        "capturedAt": null
+        "capturedAt": "2026-08-20T07:01:54.828Z"
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1861,7 +1861,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nPage aggregate: 3c/1,035i/0.29%/pos10.0 -> 1c/972i/0.10%/pos10.6. S7 coverage 0% in both windows — the handful of clicks never appear in query rows.\nCore asset-panda cluster: 0 clicks -> 0 clicks in both windows. No CTR verdict is possible; the page has no clicks to move.\nRANKING DID IMPROVE, and this is the salvageable signal: like-for-like (22 matched queries) pos 10.9 -> 9.8, driven by the head alt-queries — \"asset panda alternative\" pos 6.7 -> 4.7 (162 impr), \"asset panda alternatives\" 7.5 -> 4.4 (85 impr). The title here leads with \"Asset Panda Alternative\" (not \"Open Source\"), so this does not test or corroborate a lead-title format; it is a ranking improvement without a proven cause.\nCONFIRMS S9: the description-led bet failed exactly as S9 predicts. The pricing cluster it was written for (\"asset panda pricing\" 119i, \"asset panda cost\", \"asset panda price\", \"how much does asset panda cost\") sits at pos 13.9-23.4 and returned ZERO clicks in both windows. At pos ~15 the snippet is never scrolled to; copy cannot rescue a query ranked below ~10.\nNEXT LEVER for this page is position on the alt-queries (now pos 4.4-4.7 and climbing), not more copy. Re-measure in 60-90 days — if it reaches pos 3, check whether clicks follow."
     },
     {
       "id": "exp-046",
@@ -1881,18 +1881,8 @@
         "position": 15.7,
         "capturedAt": "2026-07-23T09:41:48.554Z"
       },
-      "result": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null,
-        "dateRange": [
-          null,
-          null
-        ],
-        "capturedAt": null
-      },
-      "status": "active",
+      "result": null,
+      "status": "completed",
       "deployedAt": "2026-07-23",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1901,7 +1891,7 @@
         "adversarially-verified",
         "wf_fbc2d7dc"
       ],
-      "learnings": ""
+      "learnings": "[close-out 2026-08-20, full 28d window] Matched 27-day windows (pre 2026-06-26..07-22 vs post 2026-07-24..08-19; GSC data ends 08-19). Control = 284 other www.shelf.nu pages: clicks -15%, impr -29%, CTR +19% — every CTR delta below is judged against that +19% drift.\nVOID — NOT A LOSS. The experiment never ran long enough to be tested.\nDeployed 2026-07-23 (PR #198, commit 2e01287). Overwritten 2026-07-27 by PR #204 / commit 52c29e1 (\"content: retarget equipment-reservations for the equipment-scheduling query cluster\"), which replaced the title with \"Equipment Scheduling Software & Reservations | Shelf\". The exp-046 title was live for FOUR DAYS of a 27-day window.\nVerified per rule R1 by curling the live page on 2026-08-20: <title> is \"Equipment Scheduling Software & Reservations | Shelf | Shelf Asset Management\" — the exp-046 wording is absent.\nThe recorded numbers (aggregate 6c -> 2c, CTR 0.19% -> 0.06%; cluster pos 14.2 -> 12.7) measure PR #204's retarget, not this experiment. Do not attribute them to the \"Try Free\" change and do not feed them into A3.\n*** THE A3 REMEDY REMAINS UNTESTED. *** A3 says a \"Free\" magnet removed for truthfulness must be replaced rather than deleted; \"Try Free\" as the sanctioned replacement has still never had a fair window. Re-run it as a batch-5 experiment on a page that is not simultaneously being retargeted.\nSEPARATE BUG FOUND: the live title now carries a DOUBLED brand suffix — \"... | Shelf | Shelf Asset Management\" — because PR #204 wrote a manual \"| Shelf\" into the MDX frontmatter while the layout appends its own. Worth fixing in the doubled-suffix housekeeping pass (exp-040 confirms suffix dedupe is ranking-neutral, so the fix is safe).\nPROCESS RULE R1 EARNED ITS KEEP: this was caught only by curling the live title. Extend it to R2 — before deploying a metadata experiment, check no other in-flight content PR targets the same page.\n[2026-09-23] Same page now carries exp-048 (booking title, deployed 2026-09-08); live <title> is the exp-048 string. The A3 'Try Free' remedy remains untested — do not read exp-048 as its answer.\n[2026-10-09] Result left unset because the experiment is void. Observed in the window (measures PR #204's retarget, NOT this experiment): 2 clicks, 3437 impressions, CTR 0.06%, position 15.6, 2026-07-24..2026-08-19."
     },
     {
       "id": "exp-047",
@@ -1972,7 +1962,7 @@
         ],
         "capturedAt": null
       },
-      "status": "active",
+      "status": "completed",
       "deployedAt": "2026-09-08",
       "evaluateAfterDays": 28,
       "tags": [
@@ -1982,7 +1972,7 @@
         "cluster-A-bookings",
         "suffix-dedupe"
       ],
-      "learnings": "",
+      "learnings": "\n[2026-10-14 close-out] GSC 2026-07-14..10-12 (query level): equipment booking system pos 12.4 (1,088 impr, 0 clicks), equipment booking software 13.7 (903, 0), equipment reservation system 10.0 (598, 4 clicks). Four title tests on this page (exp-018, 033, 046, 048) never moved it off page 2: titles do not fix rank here. SERP check 10-14: 'equipment booking software' is mostly RENTAL-business intent (Booqable, EZRentOut, Rentman, Point of Rental); 'equipment booking system' is mixed (Cheqroom, Connect2, Skedda, itemit). Superseded by exp-075 (content retarget to internal booking).",
       "startDate": "2026-09-04"
     },
     {
@@ -2310,6 +2300,1329 @@
         ]
       },
       "deployedAt": "2026-09-21"
+    },
+    {
+      "id": "exp-053",
+      "page": "/alternatives/asset-panda",
+      "field": "faq-and-pricing-note",
+      "before": "No FAQ section, so the page emitted no FAQ structured data. The pricing paragraph quoted third-party Asset Panda figures without saying they were third-party or when they were checked.",
+      "after": "A 'Frequently Asked Questions' section before Case Studies with five questions (import from Asset Panda, is Shelf cheaper, configurable templates, mobile app, open source), emitted as FAQ JSON-LD. The pricing paragraph now says Asset Panda does not publish prices and that the figures are third-party reports checked on 5 October 2026. The 'Is Shelf cheaper' answer cites Capterra with the date.",
+      "hypothesis": "FAQ structured data plus a dated pricing answer lifts position for 'asset panda alternative(s)' (now 9.3 / 7.5) and CTR for 'asset panda pricing' (now position 15.4, 0 clicks)",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Same FAQ pattern as /alternatives/cheqroom (position 6.6). Verify at QUERY level. Link the FAQ pricing answer to /blog/asset-panda-pricing once that post is live. Capture the baseline before deploy with the experiments CLI.",
+      "evaluateAfterDays": 28,
+      "deployedAt": "2026-10-05",
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 5,
+        "impressions": 3118,
+        "ctr": 0.16,
+        "position": 10,
+        "capturedAt": "2026-10-05T10:00:32.899Z"
+      },
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 4,
+        "clicks": 0,
+        "impressions": 1181,
+        "topQueries": [
+          {
+            "q": "asset panda alternative",
+            "clicks": 0,
+            "impr": 458,
+            "pos": 4.8,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda alternatives",
+            "clicks": 0,
+            "impr": 287,
+            "pos": 5,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda pricing",
+            "clicks": 0,
+            "impr": 374,
+            "pos": 15.4,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda cost",
+            "clicks": 0,
+            "impr": 62,
+            "pos": 13,
+            "page": "/alternatives/asset-panda"
+          }
+        ],
+        "note": "exact-query positions; the 9.3/7.5 in the hypothesis were variant averages",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-054",
+      "page": "/blog/asset-panda-pricing",
+      "field": "new-page",
+      "before": "No shelf.nu page targeted Asset Panda pricing queries; /alternatives/asset-panda caught 376 impressions a quarter for 'asset panda pricing' at position 15.4 with 0 clicks",
+      "after": "Dedicated, dated pricing explainer",
+      "hypothesis": "A dedicated page with a sourced, dated Asset Panda price table and worked totals answers the pricing query better than the alternatives page, so it should rank on page 1 for 'asset panda pricing' and 'asset panda cost' and earn clicks where the alternatives page earned none.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: asset panda pricing, asset panda cost, asset panda price, how much does asset panda cost, is asset panda free, asset panda pricing per user, asset panda enterprise pricing, asset panda onboarding fee. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%).",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T10:00:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 3,
+        "clicks": 0,
+        "impressions": 436,
+        "topQueries": [
+          {
+            "q": "asset panda pricing",
+            "clicks": 0,
+            "impr": 374,
+            "pos": 15.4,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "asset panda cost",
+            "clicks": 0,
+            "impr": 62,
+            "pos": 13,
+            "page": "/alternatives/asset-panda"
+          },
+          {
+            "q": "is asset panda free",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          }
+        ],
+        "note": "before launch these landed on /alternatives/asset-panda",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-057",
+      "page": "/blog/equipment-sign-out-sheet",
+      "field": "new-page-with-template",
+      "before": "No shelf.nu page targeted sign-out sheet or checkout form queries; GSC showed zero impressions for 'equipment sign out sheet' (390 searches a month, US) and its variants. Page 1 was Pinterest, Etsy, a Reddit thread and PDFs.",
+      "after": "New post with free downloadable templates (Excel sign-out log with overdue highlighting, printable PDF, Shelf-import-ready item list CSV)",
+      "hypothesis": "A post that hands over an ungated Excel and PDF template, then explains where sheets fail, should reach page 1 for 'equipment sign out sheet' and 'equipment checkout form', where page 1 has no software vendor with a usable template. Signup effect is unknown; this is the first Shelf page aimed at searchers who have not yet looked for software.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: equipment sign out sheet, equipment sign-out sheet template, equipment checkout form, equipment checkout form template, tool sign out sheet, equipment sign out sheet excel, equipment sign out sheet pdf, equipment checkout sheet. Templates at /templates/equipment-sign-out-sheet.xlsx, /templates/equipment-sign-out-sheet.pdf, /templates/equipment-item-list.csv. A template_download PostHog event is NOT wired yet (follow-up PR); until it ships, downloads are not measured. Measure at query level, plus PostHog signup_click sessions by entry page.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T10:00:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 3,
+        "clicks": 0,
+        "impressions": 0,
+        "topQueries": [
+          {
+            "q": "equipment sign out sheet",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          },
+          {
+            "q": "equipment checkout form",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          },
+          {
+            "q": "tool sign out sheet",
+            "clicks": 0,
+            "impr": 0,
+            "pos": null,
+            "page": null
+          }
+        ],
+        "note": "zero impressions sitewide before launch",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-056",
+      "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware",
+      "field": "content-rewrite",
+      "before": "2023 post, 958 words, generic benefits list with no placement, lookup or numbering guidance. Position 8 to 12 on laptop-tag queries (laptop asset tag 10.4, asset tags for laptops 9.4, computer asset tag 9.3, what is an asset tag on a laptop 7.0), 3 clicks a quarter, and Google's AI answer cites the page for its definition.",
+      "after": "About 2,400-word guide that opens with a one-sentence definition, then a tag-type comparison table, placement per device class, firmware asset-tag lookup commands (Windows, Linux, macOS, Chromebook), Dell/Lenovo/HP tools, a numbering format, a school 1:1 section, printing options and a 4-question FAQ, with cited sources.",
+      "hypothesis": "Answering the lookup and placement intents (how to find the asset tag number, dell asset tag, chromebook asset tag) and keeping the quotable definition lifts the page from positions 8-12 into the top 5 for laptop and computer asset tag queries and keeps the AI-answer citation.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Brief B1. URL, canonicalUrl and date kept; updated set to 2026-10-05. Measure at QUERY level: laptop asset tag, asset tag on laptop, asset tags for laptops, asset tags for computers, computer asset tag, school computer asset tags, what is an asset tag on a laptop, asset tag number on laptop, dell asset tag, chromebook asset tag. Check whether the AI answer still cites the page. Placement photos are a later human task.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 32,
+        "impressions": 21240,
+        "ctr": 0.15,
+        "position": 9.5,
+        "capturedAt": "2026-10-05T10:00:38.471Z"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 12,
+        "clicks": 1,
+        "impressions": 7298,
+        "topQueries": [
+          {
+            "q": "laptop asset tag",
+            "clicks": 0,
+            "impr": 1099,
+            "pos": 10.4,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag on laptop",
+            "clicks": 1,
+            "impr": 876,
+            "pos": 11.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tags for laptops",
+            "clicks": 0,
+            "impr": 844,
+            "pos": 9.4,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tags for computers",
+            "clicks": 0,
+            "impr": 716,
+            "pos": 12.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "computer asset tag",
+            "clicks": 0,
+            "impr": 544,
+            "pos": 9.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "computer asset tags",
+            "clicks": 0,
+            "impr": 541,
+            "pos": 10.6,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "what is an asset tag on a laptop",
+            "clicks": 0,
+            "impr": 484,
+            "pos": 7,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag number on laptop",
+            "clicks": 0,
+            "impr": 461,
+            "pos": 10.5,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag on computer",
+            "clicks": 0,
+            "impr": 443,
+            "pos": 8.3,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag computer",
+            "clicks": 0,
+            "impr": 442,
+            "pos": 7.8,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "school computer asset tags",
+            "clicks": 0,
+            "impr": 440,
+            "pos": 9.8,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          },
+          {
+            "q": "asset tag laptop",
+            "clicks": 0,
+            "impr": 408,
+            "pos": 13.6,
+            "page": "/blog/the-importance-of-pc-asset-tags-for-computer-hardware"
+          }
+        ],
+        "note": "query level on the rewritten post; AI answer cited this page for \"asset tags for laptops\" on 2026-10-05",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-055",
+      "page": "/blog/sortly-pricing",
+      "field": "new-page",
+      "before": "No shelf.nu page targeted Sortly pricing queries ('sortly pricing' 170 US searches a month); /alternatives/sortly ranks 1.9 for 'sortly free alternative' and 8.2 for 'sortly free' with no dated pricing answer",
+      "after": "Dedicated, dated Sortly pricing explainer: plan table sourced from sortly.com/pricing and the Sortly help center, year-two cost calculated from Sortly's own renewal terms, free plan limits, worked totals, and Shelf prices for the same team sizes",
+      "hypothesis": "Third-party pages on page 1 copy the introductory price and disagree with each other. A dated page that shows the year-two price from Sortly's own terms, and the free plan's exact limits, should rank on page 1 for 'sortly pricing' and 'sortly free plan' and convert like the Sortly alternative page.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: sortly pricing, sortly cost, sortly free plan, sortly free plan limits, is sortly free, sortly price increase, sortly renewal price, sortly alternative free. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%). Link from /alternatives/sortly (pricing row + FAQ) is a follow-up.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T10:00:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 4,
+        "clicks": 9,
+        "impressions": 269,
+        "topQueries": [
+          {
+            "q": "sortly pricing",
+            "clicks": 0,
+            "impr": 2,
+            "pos": 3,
+            "page": "/alternatives/sortly"
+          },
+          {
+            "q": "sortly free plan",
+            "clicks": 0,
+            "impr": 20,
+            "pos": 9.2,
+            "page": "/alternatives/sortly"
+          },
+          {
+            "q": "sortly free alternative",
+            "clicks": 4,
+            "impr": 71,
+            "pos": 2,
+            "page": "/alternatives/sortly"
+          },
+          {
+            "q": "sortly alternative",
+            "clicks": 5,
+            "impr": 176,
+            "pos": 3.5,
+            "page": "/alternatives/sortly"
+          }
+        ],
+        "note": "before launch these landed on /alternatives/sortly",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-062",
+      "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems",
+      "field": "content-rewrite",
+      "before": "936-word post (updated May 2026) with a short comparison table and generic definitions. Position 7.6 to 11.3 for 'asset management vs inventory management' and its variants, 23.7 for 'asset and inventory management', 19 to 24 for 'asset and inventory management system'. no measurable signup clicks in 90 days.",
+      "after": "About 2,000-word rewrite that opens with a one-sentence definition pair, then an 11-row decision table (identity, lifespan, what you count vs book vs depreciate, balance sheet, typical tools, owner), a section on supplies that sit between the two, 'can one tool do both' with Shelf's individually tracked plus quantity-tracked model as the worked example, an ITAM vs inventory section, and a 5-question FAQ from People also ask, with cited sources.",
+      "hypothesis": "Page 1 for these queries is weak (forum threads, a county schools PDF, community posts). A quotable definition pair plus a decision table and direct answers to the People-also-ask questions should lift the page into the top 5 for 'asset management vs inventory management' and 'it asset management vs inventory management', and onto page 1 for 'asset and inventory management system', by showing equipment and supplies tracked in one workspace.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Brief B3. URL, canonicalUrl and date kept; updated set to 2026-10-05. Measure at QUERY level: asset management vs inventory management, inventory management vs asset management, asset and inventory management, asset and inventory management system, it asset management vs inventory management, inventory vs asset, asset vs inventory, difference between asset management and inventory management. Check whether the AI answer cites the page.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 6,
+        "impressions": 6309,
+        "ctr": 0.1,
+        "position": 14.2,
+        "capturedAt": "2026-10-05T11:27:21.305Z"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 10,
+        "clicks": 0,
+        "impressions": 2599,
+        "topQueries": [
+          {
+            "q": "asset management vs inventory management",
+            "clicks": 0,
+            "impr": 860,
+            "pos": 11.3,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset and inventory management",
+            "clicks": 0,
+            "impr": 486,
+            "pos": 23.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "manajemen aset vs manajemen inventaris",
+            "clicks": 0,
+            "impr": 196,
+            "pos": 8.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset tracking and inventory management",
+            "clicks": 0,
+            "impr": 190,
+            "pos": 25.9,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "what's the difference between a basic stock tracker and real inventory management software?",
+            "clicks": 0,
+            "impr": 183,
+            "pos": 8.9,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "is it worth switching from separate asset and inventory tools to one platform?",
+            "clicks": 0,
+            "impr": 170,
+            "pos": 6.4,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "inventory and asset management",
+            "clicks": 0,
+            "impr": 158,
+            "pos": 17.2,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset and inventory management system",
+            "clicks": 0,
+            "impr": 138,
+            "pos": 21.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "difference between asset and inventory",
+            "clicks": 0,
+            "impr": 110,
+            "pos": 9,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          },
+          {
+            "q": "asset vs inventory",
+            "clicks": 0,
+            "impr": 108,
+            "pos": 13.7,
+            "page": "/blog/the-difference-between-inventory-management-systems-and-asset-management-systems"
+          }
+        ],
+        "note": "query level on the rewritten post",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-061",
+      "page": "/blog/asset-register-template",
+      "field": "new-page-with-template",
+      "before": "No shelf.nu page targeted asset register or equipment inventory template queries; GSC showed zero impressions for 'fixed asset register' (260 searches a month, US), 'asset register' (140), 'fixed asset register template' (70), 'equipment inventory template' (140) and variants. Two 2024 'asset registry' posts (781 and 484 words) never ranked. Page 1 for 'asset register template' had no AI answer and no software vendor with a usable template.",
+      "after": "New post with three free downloads: a fixed asset register in Excel (straight-line depreciation, accumulated depreciation and net book value formulas, 5 example rows), an equipment inventory list in Excel and CSV whose headers are Shelf's exact import headers (8 example rows). The two 2024 registry posts 301 to it.",
+      "hypothesis": "An ungated register template with working depreciation formulas, plus an inventory list that imports into Shelf, should reach page 1 for 'asset register template' and 'equipment inventory template', where page 1 is directories, a Notion template and Pinterest. Consolidating the two thin registry posts gives the new URL their link equity.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Brief C3. Target queries: asset register template, fixed asset register template, asset register template excel, fixed asset register, asset register, equipment inventory template, equipment inventory list, equipment inventory excel template. Templates at /templates/fixed-asset-register.xlsx, /templates/equipment-inventory-list.xlsx, /templates/equipment-inventory-list.csv. A template_download PostHog event is NOT wired yet (same follow-up as exp-057). Measure at query level, plus PostHog signup_click sessions by entry page.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05"
+    },
+    {
+      "id": "exp-059",
+      "page": "/blog/asset-tags-guide",
+      "field": "consolidation",
+      "before": "Five 2023 posts split the asset-tag cluster (GSC 90d, 34,128 impressions, 5 clicks across the cluster): /blog/the-comprehensive-guide-to-asset-tagging-systems (6,173 impr, avg pos 21.4), /blog/how-to-choose-the-best-asset-tags-for-your-equipment (7,092 impr, pos 20.0), /blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide (4,204 impr, pos 15.7), /blog/the-great-asset-tag-debate-bridging-traditional-methods-with-modern-asset-management, /blog/the-fascinating-history-of-asset-tags ('government asset tags' 368 impr, pos 10.7). Query splits: 'property tags equipment' 377 impr at 15.3 on one post and 314 at 19.5 on another; 'asset tag' 273 at 19.4, 76 at 74, 53 at 12, 51 at 41 across four posts; 'asset tagging' 499 at 48.7 on the blog while /glossary/asset-tagging holds 1,446 impr at 17.3. /blog/what-sort-of-asset-tags-can-you-create-with-shelf also live.",
+      "after": "One dated hub at /blog/asset-tags-guide (definition first, what a tag must carry, material and code tables, material by environment, PREFIX-SITE-YEAR-SEQUENCE numbering with Luhn check digit, placement table by asset class, government and federal property tags from FAR 52.245-1, DFARS 252.211-7003 and Oregon OAM 10.50.00.PR, buy vs print, mistakes, FAQ, sources). Five old posts 301 to the hub; what-sort-of-asset-tags-can-you-create-with-shelf 301 to /tools/asset-label-designer; old MDX deleted; internal links repointed; /glossary/asset-tagging links the hub in its first paragraph.",
+      "hypothesis": "The cluster cannibalises itself: four or five Shelf URLs share each query and none reaches page 1. Folding them into one complete, dated hub (the May 2026 consolidation in PR #146 is the precedent that worked) should put /blog/asset-tags-guide on page 1 for 'asset tag', 'asset tags', 'property tags equipment' and 'asset tag numbering system', and keep 'government asset tags' at or above 10.7.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: asset tag, asset tags, asset tagging, asset tags for equipment, property tags equipment, fixed asset tags, asset tag numbering system, asset tag format, asset tag system, asset management tags, government asset tags. Evaluate at QUERY level, not page level. Spokes: /blog/qr-code-asset-tags (exp-060) and the laptop post /blog/the-importance-of-pc-asset-tags-for-computer-hardware. Watch that /glossary/asset-tagging does not lose 'asset tagging'.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 15,
+        "clicks": 1,
+        "impressions": 7242,
+        "topQueries": [
+          {
+            "q": "asset tags for equipment",
+            "clicks": 0,
+            "impr": 965,
+            "pos": 19.5,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "asset tagging system",
+            "clicks": 1,
+            "impr": 624,
+            "pos": 23.4,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "property of tags",
+            "clicks": 0,
+            "impr": 581,
+            "pos": 11.4,
+            "page": "/blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide"
+          },
+          {
+            "q": "equipment asset tags",
+            "clicks": 0,
+            "impr": 564,
+            "pos": 15.9,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "asset management tags",
+            "clicks": 0,
+            "impr": 544,
+            "pos": 16.6,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "property tags",
+            "clicks": 0,
+            "impr": 508,
+            "pos": 10.9,
+            "page": "/blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide"
+          },
+          {
+            "q": "asset tagging",
+            "clicks": 0,
+            "impr": 499,
+            "pos": 48.7,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "asset management tag",
+            "clicks": 0,
+            "impr": 406,
+            "pos": 19.9,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "asset tag management",
+            "clicks": 0,
+            "impr": 386,
+            "pos": 22.3,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "property tags equipment",
+            "clicks": 0,
+            "impr": 377,
+            "pos": 15.3,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "tagging system",
+            "clicks": 0,
+            "impr": 366,
+            "pos": 18.8,
+            "page": "/blog/the-comprehensive-guide-to-asset-tagging-systems"
+          },
+          {
+            "q": "fixed asset tags",
+            "clicks": 0,
+            "impr": 365,
+            "pos": 19.6,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "property tags for equipment",
+            "clicks": 0,
+            "impr": 364,
+            "pos": 15.8,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "fixed asset tag",
+            "clicks": 0,
+            "impr": 362,
+            "pos": 19.1,
+            "page": "/blog/how-to-choose-the-best-asset-tags-for-your-equipment"
+          },
+          {
+            "q": "property tagging",
+            "clicks": 0,
+            "impr": 331,
+            "pos": 18.7,
+            "page": "/blog/what-to-look-for-when-buying-an-asset-tag-or-asset-label-guide"
+          }
+        ],
+        "note": "queries of the six posts folded into the hub, before the 301s",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-060",
+      "page": "/blog/qr-code-asset-tags",
+      "field": "consolidation",
+      "before": "Two QR posts split the QR tag queries (GSC 90d): /blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking (4,365 words, 2,955 impr, avg pos 14.1) and /blog/the-importance-of-qr-code-asset-management-in-business (922 words; 'qr code asset tracking' 823 impr, pos 7.9). Cluster queries: 'qr code asset tags' 720 impr, 'qr asset tags' 580, 'asset tags with qr code' 464, 'qr code asset tag' 351. /solutions/asset-tracking already ranks 4th for 'qr code asset tracking'.",
+      "after": "One QR spoke at /blog/qr-code-asset-tags (definition first, QR vs 1D vs Data Matrix vs RFID, encode a link not data, DENSO WAVE error correction levels, size/print/material, what a Shelf scan shows, setup steps, FAQ, sources). Both old posts 301 here; old MDX deleted; internal links repointed. Links up to /blog/asset-tags-guide and out to /solutions/asset-tracking and /solutions/qr-code-asset-tracking for software intent.",
+      "hypothesis": "One focused QR tag page, linked from the hub, should reach page 1 for 'qr code asset tags', 'qr asset tags' and 'asset tags with qr code' without pulling 'qr code asset tracking' away from /solutions/asset-tracking.",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: qr code asset tags, qr asset tags, asset tags with qr code, qr code asset tag, qr code tagging. Guard query: qr code asset tracking (must stay on /solutions/asset-tracking at or above pos 4; if the spoke starts ranking for it instead, de-optimise the spoke). Also watch /solutions/qr-code-asset-tracking, which lists 'qr code asset tags' and 'asset tags with qr code' in its own keywords.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05",
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "queries": 15,
+        "clicks": 1,
+        "impressions": 5174,
+        "topQueries": [
+          {
+            "q": "qr code asset tracking",
+            "clicks": 1,
+            "impr": 823,
+            "pos": 7.9,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code asset tags",
+            "clicks": 0,
+            "impr": 720,
+            "pos": 14.7,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr asset tags",
+            "clicks": 0,
+            "impr": 580,
+            "pos": 12.3,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "asset tags with qr code",
+            "clicks": 0,
+            "impr": 464,
+            "pos": 11.7,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr code asset tag",
+            "clicks": 0,
+            "impr": 351,
+            "pos": 13.6,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr code asset tracking",
+            "clicks": 0,
+            "impr": 324,
+            "pos": 57.9,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr code asset tracking software",
+            "clicks": 0,
+            "impr": 302,
+            "pos": 41.4,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code asset tracking system",
+            "clicks": 0,
+            "impr": 243,
+            "pos": 57.8,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "\"what type of data can be shared\" \"regular + direct investments\" \"generate qr code\"",
+            "clicks": 0,
+            "impr": 241,
+            "pos": 8.6,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code asset tracking system",
+            "clicks": 0,
+            "impr": 229,
+            "pos": 29.7,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code equipment tracking",
+            "clicks": 0,
+            "impr": 190,
+            "pos": 38.8,
+            "page": "/blog/qr-code-asset-tagging-revolutionizing-asset-management-and-tracking"
+          },
+          {
+            "q": "qr codes for asset tracking",
+            "clicks": 0,
+            "impr": 185,
+            "pos": 12.3,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr code equipment tracking",
+            "clicks": 0,
+            "impr": 180,
+            "pos": 30.6,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "what is an asset qr code and how do i use it?",
+            "clicks": 0,
+            "impr": 174,
+            "pos": 5.1,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          },
+          {
+            "q": "qr asset tracking",
+            "clicks": 0,
+            "impr": 168,
+            "pos": 18,
+            "page": "/blog/the-importance-of-qr-code-asset-management-in-business"
+          }
+        ],
+        "note": "queries of the two QR posts folded into the spoke, before the 301s",
+        "capturedAt": "2026-10-05"
+      }
+    },
+    {
+      "id": "exp-058",
+      "page": "/blog/assettiger-pricing",
+      "field": "new-page",
+      "before": "No shelf.nu page targeted AssetTiger pricing queries ('asset tiger pricing' 86 and 'assettiger pricing' 83 GSC impressions in 90 days, positions 6.8 / 6.4); review sites such as Expert Market (updated 2 Oct 2025) still describe AssetTiger as free for 250 assets",
+      "after": "Dedicated, dated AssetTiger pricing explainer: plan table sourced from assettiger.com/pricing, the free plan's removal dated with Internet Archive captures (free on 26 Jul 2026, 30-day trial from the 11 Sep 2026 capture), trial-end terms, what AssetTiger does well, and Shelf totals for three team sizes",
+      "hypothesis": "Searchers asking 'is assettiger free' and 'assettiger pricing' get stale answers from pages written before AssetTiger dropped its free plan. A dated page that shows the change with archive captures should rank on page 1 for 'assettiger pricing' and 'is assettiger free' and convert like the AssetTiger alternative page (7.8% signup sessions).",
+      "status": "active",
+      "createdAt": "2026-10-05",
+      "relatedPatterns": [],
+      "notes": "Target queries: assettiger pricing, asset tiger pricing, is assettiger free, assettiger free plan, how much is assettiger, assettiger vs asset panda price, asset tiger cost. Measure at query level, plus PostHog signup_click sessions by entry page (goal >= 5%). Link from /alternatives/asset-tiger (pricing row + 'Is AssetTiger free?' FAQ) is a follow-up.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "dateRange": [
+          "2026-07-04",
+          "2026-10-02"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "capturedAt": "2026-10-05T11:15:00.000Z",
+        "note": "new page, no GSC data before launch"
+      },
+      "deployedAt": "2026-10-05"
+    },
+    {
+      "id": "exp-063",
+      "page": "/",
+      "field": "body",
+      "before": "Homepage body: hero with two unattributed quotes and a logo marquee, logo grid, founder letter, 5-question FAQ, scale block, 8 case-study cards, feature link grid, and (since PR #321) a six-card solutions picker. 641 words in <main>, 27 body links.",
+      "after": "Homepage refresh: tabbed product hero with the Companion app, trust band by segment, why-teams-switch, scale block (750k / 20k+), platform section, 9 verified questions, 6 solution doors, featured stories, founder letter (unchanged), single closing CTA. ~2,160 words in <main>, 46 body links. Title, description, canonical, h1 and the Organization/WebSite/SoftwareApplication JSON-LD are byte-identical; the FAQPage JSON-LD is regenerated from the new question list.",
+      "hypothesis": "GUARDRAIL experiment, not a CTR test: the goal is NO LOSS. The homepage is the #1 organic page (2,916 clicks / 182k impr in the 90 days to 2026-09-15). Non-brand clicks (364 of the top-1000 queries) are one cluster at pos 4.5-7: 'free asset management software' (50), 'open source asset management software' (19), 'asset management software free' (17), 'open source asset management' (16), 'free asset tracking software' (12). Those rankings rest on the title (exp-002 winner), description, JSON-LD and links, none of which change. The risk a redesign carries is internal links: the mega menu is not in the static HTML, so feature and case-study pages get homepage link equity only from the body. All 27 live body links are kept (two compact link rows) and 19 are added, including 7 solutions pages that had no homepage body link. Expect: non-brand cluster position flat (+/- 1) and clicks flat or up; a lift in impressions for the newly linked solutions pages is the upside to watch. Evaluate brand and non-brand separately, on full weeks.",
+      "status": "active",
+      "createdAt": "2026-10-06",
+      "relatedPatterns": [],
+      "notes": "Do not evaluate on the page aggregate alone: brand queries (1,375 clicks) dominate it and will mask a non-brand move. Parity was checked on the built out/index.html against the live page: same title/description/canonical/h1, same JSON-LD types, 27/27 body links kept, 154 of 423 non-brand query words covered vs 90 live. Re-run the same check against production after deploy. Ranking words worked back in on purpose: 'equipment inventory', 'equipment scheduling', 'asset database', 'open-source', 'higher education', 'double-bookings'. Rebased 2026-10-06: main had added a solutions picker (PR #321, six /solutions links); the refresh keeps all of those links in its segments section.",
+      "baseline": {
+        "dateRange": [
+          "2026-07-06",
+          "2026-10-04"
+        ],
+        "clicks": 3078,
+        "impressions": 206638,
+        "ctr": 1.49,
+        "position": 13.5,
+        "capturedAt": "2026-10-07T08:04:43.015Z"
+      },
+      "evaluateAfterDays": 28,
+      "baselineCluster": {
+        "dateRange": [
+          "2026-07-06",
+          "2026-10-04"
+        ],
+        "definition": "non-brand homepage queries containing 'asset' and 'free' or 'open source'",
+        "queries": 293,
+        "clicks": 300,
+        "impressions": 28092,
+        "ctr": 1.07,
+        "position": 9.2,
+        "brandClicks": 1455,
+        "nonBrandClicks": 374,
+        "topQueries": [
+          {
+            "q": "free asset management software",
+            "clicks": 54,
+            "impr": 1826,
+            "ctr": 2.96,
+            "pos": 6.4
+          },
+          {
+            "q": "asset management software free",
+            "clicks": 22,
+            "impr": 1247,
+            "ctr": 1.76,
+            "pos": 6.6
+          },
+          {
+            "q": "open source asset management software",
+            "clicks": 21,
+            "impr": 772,
+            "ctr": 2.72,
+            "pos": 4.8
+          },
+          {
+            "q": "open source asset management",
+            "clicks": 16,
+            "impr": 1484,
+            "ctr": 1.08,
+            "pos": 7.4
+          },
+          {
+            "q": "free asset tracking software",
+            "clicks": 14,
+            "impr": 979,
+            "ctr": 1.43,
+            "pos": 6.1
+          },
+          {
+            "q": "asset tracking software free",
+            "clicks": 10,
+            "impr": 337,
+            "ctr": 2.97,
+            "pos": 5
+          },
+          {
+            "q": "it asset management software free open source",
+            "clicks": 10,
+            "impr": 380,
+            "ctr": 2.63,
+            "pos": 6.6
+          },
+          {
+            "q": "asset management open source",
+            "clicks": 9,
+            "impr": 461,
+            "ctr": 1.95,
+            "pos": 7.3
+          },
+          {
+            "q": "asset management system free",
+            "clicks": 8,
+            "impr": 123,
+            "ctr": 6.5,
+            "pos": 4.9
+          },
+          {
+            "q": "asset management system open source",
+            "clicks": 8,
+            "impr": 332,
+            "ctr": 2.41,
+            "pos": 7.5
+          },
+          {
+            "q": "open source it asset management software",
+            "clicks": 7,
+            "impr": 295,
+            "ctr": 2.37,
+            "pos": 6.7
+          },
+          {
+            "q": "asset management tools open source",
+            "clicks": 5,
+            "impr": 186,
+            "ctr": 2.69,
+            "pos": 7.1
+          }
+        ]
+      },
+      "deployedAt": "2026-10-07"
+    },
+    {
+      "id": "exp-064",
+      "page": "/pricing",
+      "field": "body",
+      "before": "Pricing page in the old style: badge eyebrow, logos, Switch toggle defaulting to MONTHLY, Card plan grid ('Everything in Free' under a plan named Personal), add-ons, app callout, trusted-by, testimonial, CTA block, feature table, Accordion FAQ.",
+      "after": "Same content in the refresh's style: segmented billing control defaulting to YEARLY (the audit's sanctioned lever: ~88% never touch the toggle, so the default decides which price nearly everyone sees), 'Everything in Personal', ring-style cards, same add-ons/feature table, FAQ as the shared 'questions' section with FAQPage schema generated from the rendered list, store badges tracked (app_store_click, pricing_callout).",
+      "hypothesis": "GUARDRAIL, not a CTR test: body-only redesign in the homepage refresh's style; title, description, canonical, h1 and JSON-LD types unchanged; every body link on the live page kept. Expect flat position and clicks; judge brand and non-brand separately on full weeks. The one behavioural change is the yearly default: watch pricing_cta by plan and billing (baseline 2026-08-05: ~15% CTA rate, 80% of clicks to Free, team/yearly 13 vs team/monthly 29 per 30d).",
+      "status": "active",
+      "createdAt": "2026-10-06",
+      "relatedPatterns": [],
+      "notes": "Stacked on the homepage refresh (exp-063). Metric = pricing_cta rate and the team yearly/monthly split, not signups.",
+      "baseline": {
+        "dateRange": [
+          "2026-07-06",
+          "2026-10-04"
+        ],
+        "clicks": 100,
+        "impressions": 4781,
+        "ctr": 2.09,
+        "position": 4.9,
+        "capturedAt": "2026-10-07T08:04:45.307Z"
+      },
+      "evaluateAfterDays": 28,
+      "deployedAt": "2026-10-07"
+    },
+    {
+      "id": "exp-065",
+      "page": "/mobile-app",
+      "field": "body",
+      "before": "App page with a stock photo of a hand holding a phone, invented floating labels, icon feature cards, untracked store badges.",
+      "after": "Real App Store screens (scan, asset, audit, inventory, booking) in the hero and three feature moments; same 'three ways' / app-vs-web / platform content; 'Already using Shelf? Log in' under the hero and a 'New to Shelf?' signup card (signup_click mobile_app_page); store badges tracked (app_store_click with location); FAQ as the shared questions section.",
+      "hypothesis": "GUARDRAIL, not a CTR test: body-only redesign in the homepage refresh's style; title, description, canonical, h1 and JSON-LD types unchanged; every body link on the live page kept. Expect flat position and clicks; judge brand and non-brand separately on full weeks. Conversion here is the store click, which was invisible until app_store_click; the 2026-08 audit found ~80% of visitors are existing users and the page converts ~25% on its real job, so do NOT read the intent-rate column for this page.",
+      "status": "active",
+      "createdAt": "2026-10-06",
+      "relatedPatterns": [],
+      "notes": "Stacked on the homepage refresh (exp-063). The KB article /knowledge-base/shelf-mobile-app owns the 'shelf app' search cluster (123k impr/90d, pos 8); this page's title is untouched and no redirect is involved.",
+      "baseline": {
+        "dateRange": [
+          "2026-07-06",
+          "2026-10-04"
+        ],
+        "clicks": 70,
+        "impressions": 2250,
+        "ctr": 3.11,
+        "position": 7.4,
+        "capturedAt": "2026-10-07T08:04:47.539Z"
+      },
+      "evaluateAfterDays": 28,
+      "deployedAt": "2026-10-07"
+    },
+    {
+      "id": "exp-066",
+      "page": "/alternatives/inflow",
+      "field": "new-page",
+      "before": "No page. The site never mentioned inFlow; GSC showed only 'inflow vs sortly' at position 82 (86 impressions in 16 months) via /alternatives/sortly.",
+      "after": "New /alternatives/inflow page in the alternatives format: inFlow 2026 prices from its pricing page (checked 2026-10-09), honest 'when inFlow is a better fit' section (sales/purchase orders, manufacturing, Showroom B2B portal), inFlow's own locations-as-employees asset-tracking workaround cited, and an 8-question FAQ covering pricing, cost vs Shelf, CSV migration steps (Settings > Export > Product Details into Shelf CSV import), keeping barcodes, consumables, mobile, non-profit discount and open source.",
+      "hypothesis": "Demand is small but high-intent (DataForSEO US: inflow pricing 50/mo, inflow inventory pricing 30, inflow inventory alternative(s) 10, sortly vs inflow 20) and page 1 for 'inflow inventory alternative' is weak (Reddit, directories, a 2011 Spiceworks thread). Alternatives pages convert at 6-16% vs 0.5% for informational posts, so a page-1 position should bring a few qualified signups a month and gives sales a link for inFlow switchers.",
+      "status": "active",
+      "createdAt": "2026-10-09",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: inflow alternative, inflow inventory alternative, inflow alternatives, inflow pricing, inflow inventory pricing, how much does inflow cost, inflow vs sortly, sortly vs inflow. Re-check inFlow prices quarterly with the other alternatives pages.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-10",
+          "2026-10-08"
+        ],
+        "capturedAt": "2026-10-09T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-09"
+    },
+    {
+      "id": "exp-067",
+      "page": "/alternatives/maintainx",
+      "field": "new-page",
+      "before": "No page. The site never compared Shelf with MaintainX (CMMS group had UpKeep and Limble only).",
+      "after": "New /alternatives/maintainx page: MaintainX per-user prices from its pricing page (checked 2026-10-09), Autodesk ownership, honest 'when MaintainX is a better fit' (PM programs, technicians, parts + POs, machine data, free requesters), help-center finding that check-out, bookings and custody are not described, and an 8-question FAQ (price, cost vs Shelf, equipment check-out, CSV migration via Reporting > Export Data > Assets, keeping codes, preventive maintenance, mobile, open source).",
+      "hypothesis": "DataForSEO US 2026-10-09: maintainx pricing 320/mo, maintainx alternative 40/mo (CPC about $84, a buying search). Alternatives pages convert at 6-16% vs 0.5% for blog posts. A pricing FAQ plus a clear 'equipment check-out vs maintenance' angle should reach page 1 for 'maintainx alternative' and pick up long-tail pricing queries from teams that want tool and equipment tracking rather than a CMMS.",
+      "status": "active",
+      "createdAt": "2026-10-09",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: maintainx alternative, maintainx alternatives, maintainx competitor, maintainx pricing, maintainx cost, maintainx vs. Re-check MaintainX prices quarterly with the other alternatives pages.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-10",
+          "2026-10-08"
+        ],
+        "capturedAt": "2026-10-09T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-09"
+    },
+    {
+      "id": "exp-068",
+      "page": "/tools/barcode-scanner",
+      "field": "content+feature",
+      "before": "Image-only scanner: decodes one uploaded image at a time, no camera. Position ~15 for 'online barcode scanner' and 'barcode scanner online' while every page above it also scans live with the webcam or phone camera.",
+      "after": "Live camera scanning (rear camera by default, camera switcher, permission-denied and no-camera fallbacks), continuous multi-scan into a list with skip-duplicates, multi-image upload, copy one/all, CSV export (code, format, scanned_at). Title, description, H1, intro, How it works and FAQ rewritten for camera + image; FAQ adds phone/webcam and export questions; link to the new /tools/qr-code-scanner.",
+      "hypothesis": "Matching the SERP's feature set (camera + image) and saying so in the title should lift the page into the top 5 for online barcode scanner / barcode scanner online / scan barcode online / barcode reader online (about 5,400 searches/month each for the first two).",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: online barcode scanner, barcode scanner online, scan barcode online, barcode reader online, barcode scanner, webcam barcode scanner, scan barcode with camera. Also watch tool_interact events (camera_start, scan, image_decode, csv_download) for engagement.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 862,
+        "impressions": 52352,
+        "ctr": 1.65,
+        "position": 14.3,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T12:53:37.060Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-069",
+      "page": "/tools/qr-code-scanner",
+      "field": "new-page",
+      "before": "No page. 'qr code scanner online' and 'qr code reader online' had no Shelf page; the barcode scanner was image-only.",
+      "after": "New /tools/qr-code-scanner using the same scanner component in a QR-first variant: camera + image, readable payloads (URL with domain shown first, Wi-Fi with hidden password, vCard/MECARD contact, mailto, tel, SMS, geo), links never opened automatically, how-to for iPhone / Android / laptop, a QR link safety section and an 8-question FAQ.",
+      "hypothesis": "qr code scanner online and qr code reader online get about 14,800 searches/month each, and page 1 is small tool sites offering camera + image upload. A faster, private, no-app page with readable payloads should reach page 1.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: qr code scanner online, qr code reader online, scan qr code online, scan qr code from image, qr scanner webcam, qr code scanner, qr code reader.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-070",
+      "page": "/tools/barcode-generator",
+      "field": "new-page",
+      "before": "No barcode generator on the site. Free tools covered QR generation, barcode scanning and asset labels, but nothing that makes Code 128 / EAN / UPC barcodes or prints them on label sheets.",
+      "after": "New /tools/barcode-generator: in-browser generator (bwip-js, lazy-loaded) for Code 128, Code 39, EAN-13, UPC-A, EAN-8, ITF-14, Data Matrix and QR with per-type validation and check digits; single mode with PNG/SVG/PDF; bulk mode from a pasted list, a CSV column or a prefix+number sequence (up to 1,000) with valid/invalid counts; vector PDF label sheets for Avery 5160/8160, 5163, L7160, L7651, one-per-page and a custom grid, plus ZIP of PNG/SVG. Content: type-choice table, how to print labels, barcodes for asset tracking (Shelf QR + Alternative Barcodes add-on), GS1 note, 7-question FAQ (FAQPage JSON-LD). Linked from /tools, the navbar blurb, the scanner page, sitemap and llms.txt.",
+      "hypothesis": "'barcode generator' gets 450,000 US searches a month but its page 1 is out of reach; the realistic targets have low competition and page 1 made of small tool sites: bulk barcode generator 1,600/mo, barcode label generator 590/mo, code 128 generator 390/mo, plus long tail (free barcode generator, barcode generator for inventory, batch barcode generator, code 39 / EAN-13 / UPC generator, barcode sheet, avery barcode labels). Free tools are the 2nd-biggest signup source after the homepage and these searchers are inventory/asset people, so a working bulk + label-sheet tool should rank for the long tail within weeks and feed signups.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: bulk barcode generator, barcode label generator, code 128 generator, code 128 barcode generator, code 39 generator, ean 13 generator, ean 13 barcode generator, upc generator, upc barcode generator, free barcode generator, barcode generator for inventory, batch barcode generator, barcode sheet generator, avery barcode labels, barcode generator. Also watch PostHog tool_interact (tool=barcode_generator) for generate_bulk and download_pdf_sheet counts, and signup_click from this page.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-071",
+      "page": "/tools/blurry-qr-code-reader",
+      "field": "new-page",
+      "before": "No page for blurry or unreadable QR codes. The scanner tools gave up after one plain decode pass and showed a generic 'no barcode detected' message.",
+      "after": "New /tools/blurry-qr-code-reader using the shared scanner in a 'blurry' variant (opens on Image). All scanner pages gain a time-boxed clean-up pass when a still image fails (inverted colors, contrast stretch, local threshold for uneven lighting, unsharp mask, resizing; 2D codes), inverted camera frames for light-on-dark codes, a 'Read after ...' note and specific retake advice when nothing reads. Content: what the clean-up does and its limits, 8 causes of scan failure with fixes, QR error correction levels L/M/Q/H, how to retake a photo, making codes that keep scanning, 7-question FAQ (FAQPage JSON-LD). Linked from /tools, /tools/qr-code-scanner, /tools/barcode-scanner, sitemap and llms.txt.",
+      "hypothesis": "'blurry qr code' gets 14,800 US searches/month, plus 'qr code not scanning' 1,900, 'qr code won't scan' 260 and 'why won't my qr code scan' 110. Page 1 for 'blurry qr code' is weak (a Reddit thread, small sharpen-and-decode tools, a YouTube video, an old blog post), so a working in-browser reader with honest, specific fixes should reach page 1 within weeks.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "relatedPatterns": [],
+      "notes": "Measure at QUERY level: blurry qr code, read blurry qr code, qr code not scanning, qr code won't scan, why won't my qr code scan, damaged qr code, scan damaged qr code, inverted qr code, engraved qr code. Also watch PostHog tool_interact (tool=blurry_qr_code_reader) image_decode with enhanced=yes vs image_no_code, and the same enhanced split on barcode_scanner and qr_code_scanner.",
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": "2026-10-12T00:00:00.000Z"
+      },
+      "deployedAt": "2026-10-12"
+    },
+    {
+      "id": "exp-072",
+      "page": "/blog/best-equipment-management-software",
+      "field": "content-aio-definition",
+      "before": "Opened with 'There are dozens of equipment management tools' and no definition; no FAQ; footer said 'Last updated: May 2026'.",
+      "after": "One-sentence definition of equipment management software + a 7-point 'what to look for' list at the top, a 5-question FAQ (definition, vs CMMS, free options, cost, features), updated 2026-10-12.",
+      "hypothesis": "Google's AI Overview for 'equipment management software' (2026-10-12) opens with a definition + feature list + named tools and does not cite shelf.nu. The cited pattern elsewhere (/solutions/equipment-check-in, quoted first for 'equipment checkout software') is a crisp one-sentence definition. Adding one plus feature and FAQ answers should get the page cited and Shelf named.",
+      "notes": "Measure: AI Overview citation for equipment management software / best equipment management software (scratchpad audit/aio.py), plus GSC query position. Competitor prices in the table are dated April 2026: re-verify in the quarterly check.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "deployedAt": "2026-10-12",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
+      }
+    },
+    {
+      "id": "exp-073",
+      "page": "/solutions/tool-tracking",
+      "field": "content-aio-definition",
+      "before": "Soft opening line, no checklist, no prices, no FAQ; pos ~27-30 for tool tracking software.",
+      "after": "One-sentence definition, an 8-point 'what to look for' list, a 'Shelf at a glance' block (free plan, Team $67/$370, QR + Alternative Barcodes, scan location, no GPS/Bluetooth tags, no work orders) and a 5-question FAQ (FAQPage JSON-LD via the solutions layout).",
+      "hypothesis": "The AI Overview for 'tool tracking software' (2026-10-12) lists definition, named tools and 'core features to look for' and does not cite shelf.nu. Matching that structure with honest facts should earn a citation and lift the page from ~28 toward page 1.",
+      "notes": "Measure: AI Overview citation for tool tracking software / tool tracking system, GSC query position.",
+      "status": "active",
+      "createdAt": "2026-10-12",
+      "deployedAt": "2026-10-12",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-11"
+        ],
+        "capturedAt": null
+      }
+    },
+    {
+      "id": "exp-074",
+      "page": "/solutions/it-asset-management",
+      "field": "retarget+content",
+      "before": "SEO title 'IT Asset Management Software — Free, Open Source'; 339 impressions / 0 clicks in 90 days at positions 55-90; generic copy; FAQ in bold (no FAQPage schema); 4.7% entry-session intent vs 20-40% on other solution pages.",
+      "after": "Retargeted to physical IT asset tracking (title 'IT Asset Tracking for Laptops, Loaners and Chromebooks'): definition-first opening, explicit 'Shelf is not' (network discovery, software licenses, MDM), IT workflows (onboarding/offboarding custody, loaner pools, Chromebook carts as kits, serials + warranty reminders, SSO, moving from spreadsheets/Snipe-IT), 8-question FAQ as ### (FAQPage JSON-LD), pricing answer.",
+      "hypothesis": "IT hardware is a top paying segment (11/258 signups paid, 4.3%, 180d) but the page targets the enterprise ITAM head term it cannot win. Matching the physical-tracking intent (it asset tracking 210/mo CPC $81, it asset inventory 210 CPC $47, laptop loaner program 170, chromebook tracking 110) and giving AI answers a clear definition and boundaries should get the page ranked and cited, and raise entry intent toward the other solution pages.",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure at QUERY level (GSC) + AI Overview citation for 'it asset tracking' (scratchpad audit/aio.py) + PostHog entry intent + paid signups with utm_campaign lp:/solutions/it-asset-management (needs website-v2 #397). Baseline corrected 2026-10-14 to page-dimension GSC totals (3,000 impressions, 11 clicks, position 44.7); the earlier 339 impressions / 0 clicks summed only the top query rows.",
+      "baseline": {
+        "clicks": 11,
+        "impressions": 3000,
+        "ctr": 0.37,
+        "position": 44.7,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "exp-075",
+      "page": "/solutions/equipment-reservations",
+      "field": "content-retarget-internal",
+      "before": "Generic opening; no rental-vs-internal distinction; FAQ in bold (no FAQPage schema); recurring-booking answer evasive; page 2 for booking queries.",
+      "after": "Definition-first opening; explicit 'for teams that share equipment internally, not rental shops (Booqable, Rentman, EZRentOut); Shelf takes no payments'; 6-point what-to-look-for list; FAQ as ### (FAQPage) with new 'Who can book' (Base requests + admin approval, Self-service books) and 'payments/deposits: no'; recurring answer made honest (duplicate a booking); meta description says teams, not rental shops.",
+      "hypothesis": "Google's AI Overview for 'equipment booking system' asks whether users are external customers or internal staff/students. Owning the internal case explicitly should earn the AI citation and page-1 rank for internal-intent queries (equipment booking system, equipment reservation system, lab/university equipment booking) while sending rental intent elsewhere.",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure: GSC query positions for equipment booking system / equipment reservation system / equipment booking (+ lab / university variants), AI Overview citation (scratchpad audit/aio.py), entry intent + paid signups with utm_campaign lp:/solutions/equipment-reservations.",
+      "baseline": {
+        "clicks": 4,
+        "impressions": 3519,
+        "ctr": 0.11,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "exp-076",
+      "page": "/ (site-wide prune)",
+      "field": "prune+trust",
+      "before": "271 sitemap URLs. 26 thin, off-fit or false-claim URLs (whole /use-cases and /concepts sections, /solutions/calibration-tracking, 3 glossary terms, /tools/asset-roi-calculator, 13 blog posts) had 22 clicks / 6,831 impressions in 90 days (15 of the clicks on /glossary/check-in-check-out); 4 dated posts to noindex had 3 clicks / 1,340 impressions; one post presented invented companies as success stories; film-school post claimed training records, SMS, quizzes and policy pages; maintenance copy implied recurring schedules.",
+      "after": "241 sitemap URLs. 26 URLs deleted with every internal link repointed or removed; /glossary/check-in-check-out 301s to /solutions/equipment-check-in (swapped for the /roi-calculator rule, still 130 rules); 4 posts noindexed and dropped from the sitemap; case-study post rewritten from real case studies; calibration folded into /solutions/maintenance-tracking as a register + reminder, not a metrology system; false claims fixed on 9 kept pages.",
+      "hypothesis": "Removing thin, off-fit and false pages costs ~0 traffic (22 of 10,187 site clicks in 90 days, most of them on a URL that now redirects to its canonical) and removes claims AI assistants could repeat to buyers. /solutions/equipment-check-in should absorb the glossary's check-in/check-out queries ('check in check out software' etc.).",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure: site-wide GSC clicks vs the 90-day baseline; /solutions/equipment-check-in clicks/impressions and positions for check-in/check-out queries (glossary page had 15 clicks / 4,771 impressions; equipment-check-in had 641 / 29,945 in the same window); 404 hits in PostHog for the deleted paths.",
+      "baseline": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": null
+      }
+    },
+    {
+      "id": "exp-077",
+      "page": "/tools/asset-label-designer",
+      "field": "retarget+content",
+      "before": "Title 'Free Asset Label Designer & Tag Maker', H1 'Free Asset Tag Maker'; below the tool only two short blocks (label best practices, 25/40/60mm sizes) and a 4-question FAQ; no link to the Shelf label store; no path for teams that already have tags.",
+      "after": "Title 'Custom Asset Tags & QR Asset Labels — Free Maker, Print or Order', H1 'Custom Asset Tags and QR Labels'; tool unchanged at the top; new sections: three ways to get asset tags (design here / order from store.shelf.nu / keep existing tags via Alternative Barcodes), what to put on a tag (links /blog/asset-tags-guide), choosing a label (paper vs laminated vs metal; store sells laminated PVC QR labels only), printing yourself (thermal vs office printers, 100% scale, test-scan), track what you tag (signup_click tool_label_designer); store CTA (store_click label_designer, ?ref=label_designer); 7-question FAQPage.",
+      "hypothesis": "The asset tag/label cluster is the largest commercial cluster the site touches (tag/label queries: 45,575 impressions / 127 clicks in 90 days; the page itself had 26,896 impressions / 537 clicks, mostly from generator/maker queries). 'custom asset tags' (320 US/mo, ~$32 CPC) sits ~p15 with ~1,520 impressions behind label sellers; 'asset label' ~p7. Retargeting the tool page from 'designer' to the product/do-it intent (custom asset tags, asset labels, QR asset labels, asset tag stickers, printing asset tags), while keeping the tool and the 'maker/generator' wording that earns its clicks, should lift those queries to page 1 and add store and signup clicks, without taking informational queries from /blog/asset-tags-guide (exp-059) or /blog/qr-code-asset-tags (exp-060).",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Measure: GSC position/impressions for custom asset tags, asset tags, asset labels, asset label, asset tag labels, qr code asset tags, asset tag stickers, asset tag printer; guard 'asset tag generator' (p2.7, the page's top click query) and 'asset tag maker'. Check the guide (exp-059) did not lose its queries. PostHog: store_click location=label_designer, signup_click location=tool_label_designer.",
+      "baseline": {
+        "clicks": 537,
+        "impressions": 26896,
+        "ctr": 2.0,
+        "position": 17.1,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "exp-078",
+      "page": "/blog/equipment-management-software-for-universities-streamlining-campus-resources",
+      "field": "rewrite+consolidation",
+      "before": "Title 'Equipment Management Software for Universities: Streamlining Campus Resources'; generic guide copy (headings like 'Summarize key takeaways'), no pricing, no roles, no case-study facts, empty seo.keywords; university demand split across this page, /blog/intelligent-asset-management-software-for-universities-creative-labs and /solutions/educational-resource-management.",
+      "after": "Title 'Equipment Checkout and Asset Tracking Software for Universities'; definition-first opening; who on campus uses it; how it works in Shelf (QR labels, Base requests + admin hand-over, Self-service, no double-booking, working hours, kits, overdue, custody, Audits add-on, department workspaces, SSO incl. Shibboleth, Companion app); KCAI / EMU / Purdue facts; Team price + add-ons + non-profit discount + VPAT; Cheqroom/WebCheckout switching; honest 'what Shelf does not do'; 8-question FAQ; seo.keywords for the university query cluster; contextual link from /industries/education.",
+      "hypothesis": "One strong commercial page for the university cluster (asset/inventory tracking software/solution/tool for universities, campus inventory software, college equipment tracking, Cheqroom-for-universities questions) lifts it from p8-16 / 0 clicks to top 5 and clicks. The two overlapping pages will be redirected into it once redirect capacity is freed.",
+      "status": "active",
+      "createdAt": "2026-10-14",
+      "deployedAt": "2026-10-14",
+      "relatedPatterns": [],
+      "evaluateAfterDays": 28,
+      "notes": "Overlapping pages to redirect here in a follow-up (redirect file full): /blog/intelligent-asset-management-software-for-universities-creative-labs and /solutions/educational-resource-management. Measure at query level in GSC for the university cluster.",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 1839,
+        "ctr": 0,
+        "position": null,
+        "dateRange": [
+          "2026-07-14",
+          "2026-10-12"
+        ],
+        "capturedAt": "2026-10-14T00:00:00.000Z"
+      }
     }
   ]
 }

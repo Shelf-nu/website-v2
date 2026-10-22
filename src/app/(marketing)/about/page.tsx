@@ -10,7 +10,7 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 
 export const metadata: Metadata = {
-    title: "About Us - Shelf Asset Management",
+    title: "About Us",
     description: "Shelf is an open-source platform for tracking and managing physical assets.",
     alternates: { canonical: "https://www.shelf.nu/about" },
 };

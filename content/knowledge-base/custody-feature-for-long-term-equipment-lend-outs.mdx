@@ -3,7 +3,7 @@ title: "Custody Feature for Long-Term Equipment Lend-Outs"
 description: "The custody feature functions like an indefinite checkout system, allowing organizations to track which team members have borrowed assets without specifying return dates or locations."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-09-25"
+updated: "2026-10-19"
 layout: "knowledge-base"
 ---
 
@@ -46,9 +46,17 @@ Custody is not only visible on the asset itself. Every list that answers "where 
 
 ![A location's Assets tab, with a Custodian column naming who holds each item and a dash on the ones that are free](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-on-location-page.webp)
 
+### Who holds how much: the per-person views
+
+The lists above start from the asset. When the question is the other way round, "how many assets does each person hold, and which ones", Shelf has three places built for it:
+
+- **Home, the "Top custodians" card.** The Home page lists the team members holding the most assets, each with their count. Click a name to open that person's asset list, or **View all** to go to the team page.
+- **Settings > Team > a team member > Assets tab.** Open any team member and the **Assets** tab lists every asset in their custody, with the same filters and Simple/Advanced column modes as the main asset list. Their **Bookings** tab sits next to it.
+- **Reports > Custody > Custody Snapshot.** The report for the whole workspace: every asset currently in custody, who holds it, how many days they have had it, the date it was assigned, plus category, location and value, with the total count and total value at the top. **Export PDF** and **Export CSV** sit top right, so the list can go into a spreadsheet or to a manager without a Shelf login. See [Getting Started with Reports](/knowledge-base/getting-started-with-reports).
+
 An asset that several people hold units of shows its **primary custodian** wherever a list has room for one name, alongside a **Partial custody** badge. Open the asset for the full picture: the **Quantity Overview** card breaks the pool down by what is in custody, in kits, checked out and available.
 
-What Self-service and Base users see here follows the workspace's custody-visibility setting. With it off, a grey **private** badge stands in place of the name and the custodian filter is refused, so a list cannot be used to work out who holds what. Administrators and Owners are unaffected. See [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see).
+What Self-service and Base users see here follows the workspace's custody-visibility setting. With it off, a grey **private** badge stands in place of the name and the custodian filter is refused, so a list cannot be used to work out who holds what. Owners, Administrators and Managers are unaffected: a [Manager](/knowledge-base/user-roles-and-their-permissions#manager) sees every custodian and can assign or release custody to anyone, without being able to change the asset itself. See [Configure What Self-service and Base Users Can See](/knowledge-base/configure-what-self-service-and-base-users-can-see).
 
 ## Custody and Bookings Are Separate Commitments
 
@@ -60,6 +68,8 @@ An asset can be spoken for in two independent ways: someone holds it in custody,
 
 **A kit takes what it can.** Assigning custody of a kit gives its members to the custodian, except any member that is currently checked out on a booking. Those members keep their **Checked out** status, and the kit's custody applies to the rest.
 
+**A kit itself is one unit with one holder.** A kit in someone's custody cannot be checked out on a booking, whatever its members are, and a kit that is checked out, or still out on another live booking, cannot be given a custodian. The **Check out** button on a booking holding such a kit is disabled with *"Some kits in this booking are currently in custody. Release their custody before you can check-out"*, and **Assign custody** on a checked-out kit is refused with *"Cannot assign custody. Some kits are checked out on a booking: Camera Kit A. Check them in first."* Adding a kit in custody to a booking and reserving it stay allowed; the refusal comes at check-out. See [A kit in custody stays home](/knowledge-base/kits#a-kit-in-custody-stays-home).
+
 The rule in one line: **checked out outranks in custody, which outranks available.** Only the booking flow can take an asset out of **Checked out**.
 
 ## Custody a Kit Put There Belongs to the Kit
@@ -68,7 +78,9 @@ Giving a kit to someone puts every member asset into that person's custody too, 
 
 **A member cannot be released on its own.** Open a kit member and choose **Release custody** and Shelf refuses, under the heading *"Custody is managed by the kit"*, with *"This asset is in custody because its kit is. Release the kit's custody instead."* The same refusal answers the bulk **Release custody** action on the assets index and the [Shelf Companion](/mobile-app) app, which had been offering a live Release custody button on any kit member. Before this, releasing a member that way left the asset reading **Available** while the kit page still said it was in Alice's custody and still listed it as a member.
 
-**A member the kit is already holding cannot be handed to someone else either.** Assigning custody of that asset to a different person is refused with the same message, for the same reason: the kit has it. A kit member whose kit is *not* in custody has no kit-derived hold on it, so assigning custody to it directly works as usual.
+**A member the kit is already holding cannot be handed to someone else either.** Assigning custody of that asset to a different person is refused with the same message, for the same reason: the kit has it.
+
+**A member cannot be given custody on its own at all.** Since 8 October 2026 this holds whether the kit is in custody or not. On the asset page, **Assign custody** is greyed out with *"This asset is part of kit "Interview Kit". Assign custody to the kit, or remove the asset from the kit first."* The bulk **Assign custody** action on the assets index is greyed out the same way when the selection holds a kit member, and the [Shelf Companion](/mobile-app) app greys its **Assign Custody** button with the same reason. A request that gets through anyway is refused by the server with *"Tripod" is part of kit "Interview Kit". Assign custody to the kit, or remove the asset from the kit first.* Before this, a member could be handed out alone, and the kit then read **Available** while one of its parts was with someone. Custody given to a member that way before 8 October 2026 stays where it is.
 
 There are two ways to end a kit-derived hold, and both go through the kit:
 
@@ -77,7 +89,7 @@ There are two ways to end a kit-derived hold, and both go through the kit:
 
 Custody you assigned to an asset directly is untouched by any of this. It releases exactly as it always did, including on an asset that is also a kit member and carries both kinds of hold at once. In a bulk **Release custody** across a mixed selection, nothing is released at all if any asset in the selection is held by its kit: the whole action is refused rather than half applied, so you never end up with part of a batch released and no record of which part.
 
-The batch scanner already reached part of this. Its blocker list names **individually tracked assets that are part of a kit** for both **Assign Custody** and **Release Custody**, and it always has. That check reads kit membership rather than where the hold came from, so it was never the same rule, and it was the only place the rule existed. The refusal above is what the asset page, the bulk index action and the app were missing.
+The batch scanner already reached part of this. Its blocker list names **individually tracked assets that are part of a kit** for both **Assign Custody** and **Release Custody**, and it always has. For assigning, the asset page, the bulk index action and the app now follow the same rule. For releasing they look at where the hold came from instead, so only a hold the kit put there is refused.
 
 Quantity-tracked pools work differently and are unaffected. A pool can be held by several custodians at once and by a kit at the same time, so **Assign** and **Release Quantity Custody** act on one custodian's slice by name. Releasing your own slice never touches the units the kit is holding, and the kit's slice still clears only through the kit. The batch scanner follows the same split: a pool whose only held units came with its kit is listed as **held through a kit**, with the advice to scan the kit's QR instead.
 
@@ -86,6 +98,8 @@ Quantity-tracked pools work differently and are unaffected. A pool can be held b
 A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is a pool rather than a single item, so both commitments can be true of the same asset at the same time: 20 units with a custodian, 5 out on a booking, the rest on the shelf. Each figure is counted on its own row of the **Quantity Overview** card, and **Available** is what is left after all of them.
 
 For the same reason, a booking that draws on the free units of a pool is a valid booking. The bookings list does not flag it as containing unavailable assets just because some other units of that pool happen to be in someone's custody. If the booked quantity genuinely exceeds what is available, that shows up as its own stock warning on the item's row. See [Troubleshooting booking conflicts](/knowledge-base/troubleshooting-booking-conflicts).
+
+A pool kept at **two or more locations** also records which location each hold came from, on the web and in the [Shelf Companion](/mobile-app) app since its update of 8 October 2026. Only the app's **Scan** tab, when it assigns custody to a batch, still records *location not recorded*. The **Assign Quantity Custody** dialog asks **From location**, pre-filled with the location that has the most units left and capped at what it has; the custody list shows the location after each person's quantity; and a hold ended with **Mark as consumed** takes the used-up units off that location. A location's **Assets** tab shows how many of a pool's units are in custody from there. See [Which location the units come from](/knowledge-base/quantity-tracked-assets-and-consumables#which-location-the-units-come-from).
 
 ## Important
 

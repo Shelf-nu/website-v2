@@ -3,7 +3,7 @@ title: "Sublocations: Organize Locations into Hierarchies"
 description: "Learn how to use sublocations to organize your equipment across multiple sites, buildings, and rooms by establishing parent-child location relationships."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-04-13"
+updated: "2026-10-16"
 layout: "knowledge-base"
 ---
 
@@ -91,6 +91,17 @@ In the **Locations** index you'll also see:
 - A **Parent location** column (who this location lives under)
 - A **Child locations** column (how many locations sit below this one)
 
+## Sublocations in Pickers and Audits
+
+Filtering by a location matches that location exactly. A parent that holds nothing itself, with all the gear in its rooms, comes back empty. Two places let you widen a filter to everything below it:
+
+- **Adding assets to a booking.** In the **Add assets** dialog, tick a location in the **Locations** filter. When it has child locations, a checkbox **Include assets from child locations** appears under the filter. Tick it and the list, and **Select all**, include every asset kept below the ticked locations. It is off by default and hidden for a location without children. See [Assets kept in sub-locations](/knowledge-base/adding-assets-and-kits-to-a-booking#assets-kept-in-sub-locations).
+- **Starting an audit from a location.** The **Start audit** dialog opened from a location's **Actions** menu offers the same **Include assets from child locations** checkbox when the location has children, so one audit can cover a building and all its rooms. See [Audits](/features/audits#can-i-start-an-audit-straight-from-the-locations-or-kits-page).
+
+![The Add assets dialog on a booking with a parent location ticked and the Include assets from child locations checkbox under the Locations filter](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-picker-child-locations.webp)
+
+The asset index's Locations filter, the kit page's asset picker and the location page's asset list match exactly, without the checkbox.
+
 ## Limits and Safeguards
 
 To keep hierarchies healthy:
@@ -124,6 +135,9 @@ Assets and kits **stay attached** to that location. You're only changing where t
 
 **Can I see one big tree across all workspaces?**
 No. Location hierarchies are scoped to a single **organization/workspace**.
+
+**Does filtering by a parent location include its sub-locations?**
+Not by itself: a location filter matches the ticked location exactly. When adding assets to a booking, or starting an audit from a location, tick **Include assets from child locations** to widen it to everything below. See [Sublocations in pickers and audits](#sublocations-in-pickers-and-audits).
 
 **Can I change the hierarchy later?**
 Yes. You can add, rename, and re-parent locations as your spaces change, as long as you respect the depth and loop rules above.

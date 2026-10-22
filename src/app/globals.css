@@ -156,6 +156,14 @@
     @apply tracking-tight font-medium;
   }
 
+  /* Video embeds in articles arrive as fixed 560x315 iframes. Fill the column at 16:9
+     instead, so they never run past a phone screen. */
+  .prose iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
   /* Custom Scrollbar for Webkit */
   ::-webkit-scrollbar {
     width: 6px;
@@ -231,6 +239,16 @@
 
   .animate-marquee {
     animation: marquee var(--marquee-duration, 30s) linear infinite;
+  }
+
+  /* Ambient light (src/components/ui/ambient-glow.tsx): a slow breathe in
+     opacity, which the compositor handles without repainting. */
+  .glow-breathe {
+    animation: glow-breathe 14s ease-in-out infinite alternate;
+  }
+  @keyframes glow-breathe {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
   }
 }
 

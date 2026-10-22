@@ -25,6 +25,7 @@ const COMPETITOR_GROUPS: Record<string, { group: CompetitorGroup; label: string 
     "blue-tally":        { group: "simple",      label: "BlueTally" },
     itemit:              { group: "simple",      label: "Itemit" },
     gocodes:             { group: "simple",      label: "GoCodes" },
+    inflow:              { group: "simple",      label: "inFlow" },
     "asset-panda":       { group: "enterprise",  label: "Asset Panda" },
     ezofficeinventory:   { group: "enterprise",  label: "EZOfficeInventory" },
     "asset-infinity":    { group: "enterprise",  label: "Asset Infinity" },
@@ -33,6 +34,7 @@ const COMPETITOR_GROUPS: Record<string, { group: CompetitorGroup; label: string 
     timly:               { group: "enterprise",  label: "Timly" },
     upkeep:              { group: "cmms",        label: "UpKeep" },
     limble:              { group: "cmms",        label: "Limble" },
+    maintainx:           { group: "cmms",        label: "MaintainX" },
     "brite-check":       { group: "cmms",        label: "BriteCheck" },
     cheqroom:            { group: "niche",       label: "Cheqroom" },
     webcheckout:         { group: "niche",       label: "WebCheckout" },
@@ -82,7 +84,9 @@ const COMPETITOR_LOGOS: Record<string, string> = {
     gocodes: "/logos/gocodes.webp",
     hardcat: "/logos/hardcat.svg",
     hector: "/logos/hector.svg",
+    inflow: "/logos/inflow.svg",
     itemit: "/logos/itemit.webp",
+    maintainx: "/logos/maintainx.svg",
     "share-my-toolbox": "/logos/share-my-toolbox.webp",
     timly: "/logos/timly.svg",
     upkeep: "/logos/upkeep.svg",
@@ -200,7 +204,7 @@ export function AlternativeLayout({ frontmatter, children }: LayoutProps) {
 
                 <main className="flex-1">
                     <Container className="py-16">
-                        <div className="grid lg:grid-cols-[1fr_300px] gap-12 lg:gap-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-12 lg:gap-16">
                             {/* Main Content */}
                             <div className="prose prose-lg dark:prose-invert max-w-3xl">
                                 {children}

@@ -1,8 +1,9 @@
 ---
 title: "How to Log in to the Shelf Application"
-description: "Instructions on how to log in to your Shelf account using your username and password or a One Time Password (OTP)."
+description: "Instructions on how to log in to your Shelf account using your username and password, a One Time Password (OTP), or single sign-on (SSO)."
 category: "Getting Started"
 date: "2024-06-01"
+updated: "2026-10-06"
 layout: "knowledge-base"
 ---
 
@@ -34,8 +35,22 @@ Sometimes mail clients open links in your inbox folder, effectively breaking som
 4. Check your mail inbox and copy the code
 5. Paste or type the code and click **Log in**
 
+## Log in via SSO (Single Sign-On)
+
+If your organization uses single sign-on, click **Login with SSO** at the bottom of the login page, enter your company domain and sign in with your identity provider. Setting it up is described in the [SSO guide](/knowledge-base/sso-with-google-workspace).
+
+Once SSO is live for your organization's domain, the password and one-time code methods above stop working for accounts on that domain, in the web app and in the Shelf Companion app. The only exception is the owner of the workspace that uses SSO, as long as that account has not been converted. What you see:
+
+- A wrong password for an address on an SSO domain adds a reminder under the form: *If your organization uses single sign-on, use Login with SSO.*
+- The one-time code page shows a similar reminder, and no code is sent.
+- If you were still signed in with a password, Shelf signs you out on your next page load and the login page says *This email address signs in with single sign-on. Please use Login with SSO.*
+
+These reminders depend only on the domain, never on whether a particular account exists. Your existing account, with its custody, bookings and history, is the one you land in after signing in with SSO. See [Moving existing accounts to SSO](/knowledge-base/sso-with-google-workspace#moving-existing-accounts-to-sso).
+
 ## Related Articles
 
+- [SSO with Google Workspace (and other SAML providers)](/knowledge-base/sso-with-google-workspace)
+- [How to reset your password](/knowledge-base/how-to-reset-your-password-in-shelf)
 - [Onboarding your team members](/knowledge-base/onboarding-your-team-members)
 - [Adding New Assets](/knowledge-base/adding-new-assets)
 - [How to upgrade to Team](/knowledge-base/how-to-upgrade-to-team)

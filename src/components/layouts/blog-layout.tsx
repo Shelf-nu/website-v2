@@ -48,7 +48,7 @@ export function BlogLayout({ frontmatter, children, relatedPosts }: BlogLayoutPr
                     Back to Blog
                 </Link>
 
-                <div className="grid lg:grid-cols-12 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     {/* Main Content Column */}
                     <div className="lg:col-span-8 lg:col-start-1">
                         {/* Header */}

@@ -1,24 +1,42 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, QrCode, PenTool, Tag, Calculator, DollarSign, TrendingDown, BarChart3 } from 'lucide-react';
+import { ArrowRight, ScanBarcode, ScanQrCode, ScanEye, PenTool, Tag, Calculator, DollarSign, TrendingDown, Barcode } from 'lucide-react';
 import { Container } from '@/components/ui/container';
-import { Badge } from '@/components/ui/badge';
 import { Pill } from "@/components/ui/pill";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { CTA } from "@/components/sections/cta";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
     title: 'Free Tools for Asset Management',
-    description: 'Free utilities for asset tracking teams. Scan barcodes (QR, UPC, Code 128, EAN), generate labels, run depreciation calculations, and manage equipment more efficiently.',
+    description: 'Free utilities for asset tracking teams. Scan barcodes and QR codes with your camera, generate barcodes in bulk and print label sheets, run depreciation calculations, and manage equipment more efficiently.',
     alternates: { canonical: "https://www.shelf.nu/tools" },
 };
 
-const tools = [
+const allTools = [
     {
         title: "Barcode Scanner",
-        description: "Scan QR, UPC, EAN, Code 128, Data Matrix and more from any image — instantly in your browser. No upload required.",
-        icon: QrCode,
+        description: "Scan UPC, EAN, Code 128, QR, Data Matrix and more with your camera or from images. Export scans to CSV. No upload required.",
+        icon: ScanBarcode,
         href: "/tools/barcode-scanner",
+    },
+    {
+        title: "QR Code Scanner",
+        description: "Scan QR codes from your camera or a screenshot. See links, Wi-Fi details and contacts before opening anything.",
+        icon: ScanQrCode,
+        href: "/tools/qr-code-scanner",
+    },
+    {
+        title: "Blurry QR Code Reader",
+        description: "Read a QR code from a blurry, dark or engraved photo. Cleans up the image in your browser when a normal scan fails.",
+        icon: ScanEye,
+        href: "/tools/blurry-qr-code-reader",
+    },
+    {
+        title: "Barcode Generator",
+        description: "Code 128, Code 39, EAN, UPC, Data Matrix and QR. Bulk from a list, CSV or sequence; print on Avery label sheets.",
+        icon: Barcode,
+        href: "/tools/barcode-generator",
     },
     {
         title: "Asset Label Designer",
@@ -50,12 +68,12 @@ const tools = [
         icon: TrendingDown,
         href: "/tools/salvage-value-calculator",
     },
-    {
-        title: "Asset ROI Calculator",
-        description: "Quantify the cost of poor asset tracking: ghost assets, productivity loss, shrinkage, and duplicate purchases.",
-        icon: BarChart3,
-        href: "/tools/asset-roi-calculator",
-    },
+];
+
+/** Six scan-and-label tools in rows of three, three calculators in a row of three, so no card sits alone. */
+const toolGroups = [
+    { title: "Scan and label", tools: allTools.slice(0, 6), columns: "md:grid-cols-2 lg:grid-cols-3" },
+    { title: "Calculators", tools: allTools.slice(6), columns: "md:grid-cols-3" },
 ];
 
 export default function ToolsIndexPage() {
@@ -85,31 +103,33 @@ export default function ToolsIndexPage() {
 
             <section className="pb-20 md:pb-32 bg-background">
                 <Container>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto -mt-12 relative z-10">
-                        {tools.map((tool) => (
-                            <div key={tool.title} className="group relative bg-card border border-border rounded-2xl p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-orange-200/50 hover:-translate-y-1 flex flex-col">
-                                <div className="flex items-start justify-between mb-6">
-                                    <div className="h-14 w-14 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <tool.icon className="h-7 w-7 text-orange-600" />
-                                    </div>
-                                    <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-100 hover:bg-emerald-50">
-                                        Live
-                                    </Badge>
+                    <div className="max-w-6xl mx-auto -mt-12 relative z-10 space-y-14">
+                        {toolGroups.map((group) => (
+                            <div key={group.title}>
+                                <h2 className="mb-5 text-sm font-semibold uppercase tracking-wider text-muted-foreground">{group.title}</h2>
+                                <div className={cn("grid gap-6", group.columns)}>
+                                    {group.tools.map((tool) => (
+                                        <div key={tool.title} className="group relative bg-card border border-border rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-orange-200/50 hover:-translate-y-1 flex flex-col">
+                                            <div className="mb-5 h-12 w-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                                <tool.icon className="h-6 w-6 text-orange-600" />
+                                            </div>
+
+                                            <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-orange-600 transition-colors">
+                                                {tool.title}
+                                            </h3>
+                                            <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                                                {tool.description}
+                                            </p>
+
+                                            <Link
+                                                href={tool.href}
+                                                className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-700 gap-2 mt-auto before:absolute before:inset-0"
+                                            >
+                                                Open Tool <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                            </Link>
+                                        </div>
+                                    ))}
                                 </div>
-
-                                <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-orange-600 transition-colors">
-                                    {tool.title}
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed mb-8 flex-1">
-                                    {tool.description}
-                                </p>
-
-                                <Link
-                                    href={tool.href}
-                                    className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-700 gap-2 mt-auto before:absolute before:inset-0"
-                                >
-                                    Open Tool <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                </Link>
                             </div>
                         ))}
                     </div>

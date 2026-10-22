@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-09-17"
+updated: "2026-10-15"
 layout: "knowledge-base"
 ---
 
@@ -38,7 +38,7 @@ You need three things in place:
    - **Description** *(optional)* — instructions for the person doing the scan (e.g. "Scan each asset and provide a condition photo")
    - **Due date** *(optional)* — when the audit should be completed by
 4. **Select which assets to include** — you can scope by location, category, tag, or any combination. Shelf builds the "expected" asset list from your current records.
-5. **Assign the audit** *(optional)* — pick a team member who'll do the scanning. Admins and owners can perform any audit in the workspace whether or not it is assigned, so assigning is how you hand the job to a **self-service** or **base** user. It also tells everyone else whose job it is.
+5. **Assign the audit** *(optional)* — pick a team member who'll do the scanning. Owners, administrators and managers can perform any audit in the workspace whether or not it is assigned, so assigning is how you hand the job to a **self-service** or **base** user. It also tells everyone else whose job it is.
 6. Click **Save** to create the session
 
 > **Shortcut: start an audit from your Locations or Kits.** Instead of building the scope inside the dialog, you can kick off an audit straight from a list page. On the **Locations** page (or the **Kits** page), tick one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates a single audit covering the union of every asset across the selected locations or kits — ideal for a room-by-room sweep or for confirming kit contents are complete. If you select all with a search or filter active, only the matching rows are included. You'll still name the audit and (optionally) assign it before it's created.
@@ -78,6 +78,8 @@ Each scan registers the asset as **Found**. The progress bar updates live: "Audi
 You can also **Add comment** or **Add image** per asset during the scan — useful for documenting condition, damage, or wrong labels.
 
 Those two buttons sit on assets you have **not** scanned yet as well as on the ones you have. That is deliberate: the empty shelf where the camera should have been is worth photographing, and the note belongs on the audit whether or not the item ever turned up.
+
+A scan that cannot count toward the audit is set aside in a **Needs attention** card at the top of the list: a kit's code (*"1 kit was scanned. Audits track assets. Scan the kit's assets instead."*) or a code that matches nothing in the workspace (*"1 QR code is invalid."*). Remove each with **Remove from list**, or all of them with **Resolve all**. Opening **Add comment** or **Add image** keeps the list on screen as it was; before 8 October 2026 it emptied it.
 
 ![Audit scan page with the progress bar and each scanned row marked Expected or Unexpected](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-scan.webp)
 
@@ -163,15 +165,19 @@ When scanning is done:
 
 The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review. It carries a **Findings** section as well as the counts: your completion note and its photos first, then one block per asset holding what was written about that item next to the pictures taken of it.
 
+To see how audits are going across the workspace rather than one at a time, open **Reports → Audit Completion**. It lists every audit created in the timeframe with its expected, found, missing and unexpected counts and an accuracy figure, and puts the completion rate, the overdue audits and the assets found missing at the top. See [How Audit Completion counts](/knowledge-base/getting-started-with-reports#how-audit-completion-counts).
+
 ### What the Receipt Prints for Each Asset
 
-The receipt's last column is headed **Code**, and it prints the asset's code as text. Which code that is follows **Settings → General ▸ Preferred display code**, the same workspace choice the on-screen chips follow: a SAM ID workspace gets `SAM-0042`, a QR Code ID workspace gets the QR id, and a workspace with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) gets the barcode's value. Where an asset has no code of the preferred type, the receipt prints its QR Code ID with the type name underneath in small text.
+The receipt's last column is headed **Code**, and it prints the asset's code as text, with a picture of that same code above it. Which code that is follows **Settings → General ▸ Preferred display code**, the same workspace choice the on-screen chips follow: a SAM ID workspace gets `SAM-0042`, a QR Code ID workspace gets the QR id, and a workspace with the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes) gets the barcode's value. Where an asset has no code of the preferred type, the receipt prints its QR Code ID with the type name underneath in small text.
 
-![The audit receipt preview's Assets table, whose last column is headed Code and prints each asset's code as text under the QR image](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/audit-receipt-code-column.webp)
+![The audit receipt preview's Assets table in a QR Code ID workspace, whose last column is headed Code and prints each asset's code as text under its QR](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/audit-receipt-code-column.webp)
 
 That matters for a receipt more than for most sheets. An audit is a claim about what was physically present, and a reviewer holding the paper has to be able to match a row to a shelf without a scanner.
 
-The QR image beside the code is optional. An Owner or Administrator can turn it off for the whole workspace under **Settings → General ▸ QR codes on PDFs**, by switching **Print QR codes on PDFs** off. The reason is the same one that applies to the [booking checklist](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings#turning-the-qr-image-off): the square on the receipt is the same code as the sticker on the item, so it can be scanned from a desk. The switch is on by default, the code prints either way, and it covers both sheets at once.
+The picture is always the code printed under it: a Code 128 row prints a Code 128 barcode that scans to that value, and QR Code ID and SAM ID rows print the asset's Shelf QR. A barcode value too long to print at a scannable size prints as text only. The [booking checklist](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings#the-code-column) follows the same rules.
+
+The picture is optional. An Owner or Administrator can turn it off for the whole workspace under **Settings → General ▸ Code images on PDFs**, by switching **Print code images on PDFs** off. The reason is the same one that applies to the [booking checklist](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings#turning-the-code-pictures-off): the picture on the receipt is the same code as the sticker on the item, so it can be scanned from a desk. The switch is on by default, the code prints either way, and it covers both sheets at once.
 
 ### Completing an Audit Where Nothing Was Found
 
@@ -211,7 +217,7 @@ If you found value during the trial, the add-on is available on every Shelf plan
 
 ### Who can perform an audit?
 
-- **Owners and administrators** can scan, add notes and photos, and complete **any** audit in their workspace, assigned or not. Assigning an audit to someone else does not lock an admin out of it.
+- **Owners, administrators and managers** can scan, add notes and photos, and complete **any** audit in their workspace, assigned or not. Assigning an audit to someone else does not lock them out of it. A [Manager](/knowledge-base/user-roles-and-their-permissions#manager) can also create, edit, cancel, archive and delete audits, the same as an administrator.
 - **Self-service and base users** can only work on audits they have been assigned to. Everything else in the audit list is out of reach for them.
 
 The rule is the same on the web and in the [Shelf Companion](/mobile-app) app, so an action that works in the browser works on the phone too.
@@ -274,19 +280,19 @@ Nothing is automatically changed in your Shelf database. Missing means "expected
 
 No. Completed audits are final — their results, statuses, and PDF receipt are preserved exactly as they were when the audit closed.
 
-If you want to re-run the same scope, **duplicate the audit instead** of starting from scratch. Admins and owners can open any Completed, Cancelled, or Archived audit, click **Actions → Duplicate audit**, and Shelf creates a fresh Pending session with the same asset list, name (with a "(Copy)" suffix), and description. No notes, scans, or assignee carry over — the duplicate is ready to scan. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
+If you want to re-run the same scope, **duplicate the audit instead** of starting from scratch. Owners, administrators and managers can open any Completed, Cancelled, or Archived audit, click **Actions → Duplicate audit**, and Shelf creates a fresh Pending session with the same asset list, name (with a "(Copy)" suffix), and description. No notes, scans, or assignee carry over — the duplicate is ready to scan. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
 
 ### Can I cancel an audit?
 
-Yes. The audit's creator can cancel their own audit at any time before it reaches **Completed**, **Cancelled**, or **Archived**. Owners and admins can also cancel any audit in the workspace — including audits created by other team members — using the same **Actions → Cancel** menu. Self-service and base users can only cancel audits they created themselves.
+Yes. The audit's creator can cancel their own audit at any time before it reaches **Completed**, **Cancelled**, or **Archived**. Owners, administrators and managers can also cancel any audit in the workspace — including audits created by other team members — using the same **Actions → Cancel** menu. Self-service and base users can only cancel audits they created themselves.
 
 ### Can I archive old audits?
 
-Yes. Admins and owners can archive any Completed or Cancelled audit via **Actions → Archive**. Archived audits are removed from the default list but stay accessible via the status filter.
+Yes. Owners, administrators and managers can archive any Completed or Cancelled audit via **Actions → Archive**. Archived audits are removed from the default list but stay accessible via the status filter.
 
 ### Can I permanently delete an audit?
 
-Yes. Admins and owners can permanently delete any **Archived** audit — archiving must happen first as a safety step. Open the archived audit, click **Actions → Delete**, and type the audit name to confirm. To delete multiple audits at once, filter the list by **Archived**, select them, and choose **Delete** from the Actions dropdown (type DELETE to confirm). See [Permanently Delete Archived Audits](/knowledge-base/delete-audits) for full instructions.
+Yes. Owners, administrators and managers can permanently delete any **Archived** audit — archiving must happen first as a safety step. Open the archived audit, click **Actions → Delete**, and type the audit name to confirm. To delete multiple audits at once, filter the list by **Archived**, select them, and choose **Delete** from the Actions dropdown (type DELETE to confirm). See [Permanently Delete Archived Audits](/knowledge-base/delete-audits) for full instructions.
 
 ---
 

@@ -82,6 +82,17 @@ export function AssetLabelDesigner() {
     const [isQrReady, setIsQrReady] = useState(false); // Gate exports until paint is confirmed
     const labelRef = useRef<HTMLDivElement>(null);
     const [isExporting, setIsExporting] = useState(false);
+    const previewBoxRef = useRef<HTMLDivElement>(null);
+    const [previewBoxWidth, setPreviewBoxWidth] = useState(400);
+
+    // The preview scales to the space it has (see previewScale below).
+    useEffect(() => {
+        const box = previewBoxRef.current;
+        if (!box || typeof ResizeObserver === "undefined") return;
+        const observer = new ResizeObserver(([entry]) => setPreviewBoxWidth(entry.contentRect.width));
+        observer.observe(box);
+        return () => observer.disconnect();
+    }, []);
 
     // Watch for QrValue logic
     useEffect(() => {
@@ -176,10 +187,12 @@ export function AssetLabelDesigner() {
 
     // Calculate dimensions for preview scaling (CSS transform)
     const exportPx = CONSTANTS.sizes[config.size].px;
-    const previewScale = Math.min(1, 400 / exportPx); // Max 400px wide on screen
+    // Max 400px wide on screen, and never wider than the preview box: on a phone the box
+    // is under 300px, and a 400px label was cut off at both edges.
+    const previewScale = Math.min(1, Math.min(400, previewBoxWidth) / exportPx);
 
     return (
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
             {/* Controls */}
             <div className="lg:col-span-5 space-y-8">
@@ -298,7 +311,7 @@ export function AssetLabelDesigner() {
 
             {/* Preview & Export */}
             <div className="lg:col-span-7 flex flex-col items-center">
-                <div className="w-full bg-muted/30 border border-dashed rounded-xl p-8 flex flex-col items-center justify-center min-h-[500px] relative overflow-hidden">
+                <div ref={previewBoxRef} className="w-full bg-muted/30 border border-dashed rounded-xl p-8 flex flex-col items-center justify-center min-h-[500px] relative overflow-hidden">
 
                     <p className="absolute top-4 right-4 text-xs font-mono text-muted-foreground uppercase tracking-widest">
                         Preview ({CONSTANTS.sizes[config.size].mm}mm)

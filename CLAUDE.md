@@ -105,6 +105,10 @@ Three-layer analytics, all free:
 - `demo_cta` — "Book a demo" clicks (distinct from `demo_form_submit`, which is the successful submission)
 - `tool_calculate` / `tool_share` / `tool_interact` — calculator usage, not conversion intent
 - `role_picker_completed` — role selection
+- `home_interact` — homepage controls that are segment signals, not conversions: `element` = `hero_tab` | `trust_segment`, plus `value` (the tab or segment id)
+- `question_open` — a question opened in a "Questions we get" section (`page` = `home` | `pricing` | `mobile-app`, `question` = its id, e.g. `self-host`, `sso`, `barcodes`). Tells us what a visitor is worried about
+- `import_prompt_copy` — "Copy prompt" on the AI import box (`location` = `kb_csv_guide` | `migrate_page`). A visitor about to import is handing Shelf's CSV rules to their own AI: a strong onboarding-intent signal
+- `app_store_click` — App Store / Google Play badge clicks (`platform` = `ios` | `android`, `location` = where the badge sits: `global_bottom_cta`, `home_bottom`, `pricing_callout`, `mobile_app_hero`, …). The download is the app page's real conversion; before this event it was invisible
 
 **Every signup CTA fires `signup_click` with a `location` prop** (`navbar`, `kb_sidebar`, `tool_salvage`, `pricing_feature_table`, …). Keep it that way — until 2026-07-29 the calculator CTAs fired `tool_cta_click` instead, and that single naming split made every by-page conversion query undercount the tools cluster by ~10×. Group by `location`, never invent a second event name for the same user action.
 
@@ -125,6 +129,7 @@ node scripts/analytics.mjs content-changes [--days 30] # SEO experiment log
 node scripts/analytics.mjs gsc-summary    [--days 30] # GSC overview + quick wins
 node scripts/analytics.mjs gsc-queries    [--days 30] # Top search queries (clicks, impr, CTR, pos)
 node scripts/analytics.mjs gsc-pages      [--days 30] # Top pages by search performance
+node scripts/analytics.mjs head-terms     [--months 6] # Which shelf.nu URL ranks per head term, per month (data/head-terms.json)
 node scripts/analytics.mjs experiments                        # Show all SEO experiments + auto-pull results
 node scripts/analytics.mjs experiments capture-baseline <id>  # Capture baseline GSC metrics for an experiment
 node scripts/analytics.mjs experiments deploy <id>            # Mark experiment as deployed (starts evaluation timer)

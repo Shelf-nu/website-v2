@@ -1,66 +1,111 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Archive, CalendarClock, CheckCircle2, RotateCcw } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
+import { Archive, CalendarClock, ClipboardCheck, LogIn, LogOut, UserCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface Event {
-    id: string;
-    type: "asset_created" | "check_out" | "booking" | "overdue";
-    location: string;
-    flag: string; // Emoji flag
-    timestamp: string;
+/**
+ * Illustrative activity beside the globe: hard-coded event types and cities,
+ * not live data. Times are staggered, the same city or action never repeats
+ * back to back, and it only ticks while the globe is on screen.
+ */
+
+interface FeedEvent {
+    id: number;
+    type: (typeof EVENT_TYPES)[number]["type"];
+    city: string;
+    flag: string;
+    minutesAgo: number;
 }
 
 const EVENT_TYPES = [
-    { type: "asset_created", label: "Asset Created", icon: Archive, color: "text-blue-400" },
-    { type: "check_out", label: "Asset Checked Out", icon: RotateCcw, color: "text-orange-400" },
-    { type: "booking", label: "Booking Reserved", icon: CalendarClock, color: "text-purple-400" },
-    { type: "overdue", label: "Booking Overdue", icon: CheckCircle2, color: "text-red-400" },
+    { type: "check_out", label: "Asset checked out", icon: LogOut, color: "text-orange-500" },
+    { type: "check_in", label: "Asset checked in", icon: LogIn, color: "text-emerald-500" },
+    { type: "booking", label: "Booking reserved", icon: CalendarClock, color: "text-violet-500" },
+    { type: "custody", label: "Custody assigned", icon: UserCheck, color: "text-sky-500" },
+    { type: "audit", label: "Audit completed", icon: ClipboardCheck, color: "text-teal-500" },
+    { type: "asset_created", label: "Asset added", icon: Archive, color: "text-blue-500" },
 ] as const;
 
 const LOCATIONS = [
-    { city: "San Francisco", country: "US", flag: "🇺🇸" },
-    { city: "London", country: "UK", flag: "🇬🇧" },
-    { city: "Berlin", country: "DE", flag: "🇩🇪" },
-    { city: "Tokyo", country: "JP", flag: "🇯🇵" },
-    { city: "Sydney", country: "AU", flag: "🇦🇺" },
-    { city: "Singapore", country: "SG", flag: "🇸🇬" },
-    { city: "New York", country: "US", flag: "🇺🇸" },
-    { city: "Toronto", country: "CA", flag: "🇨🇦" },
-    { city: "Paris", country: "FR", flag: "🇫🇷" },
-    { city: "Amsterdam", country: "NL", flag: "🇳🇱" },
-];
+    { city: "Chicago, US", flag: "🇺🇸" },
+    { city: "Los Angeles, US", flag: "🇺🇸" },
+    { city: "New York, US", flag: "🇺🇸" },
+    { city: "Austin, US", flag: "🇺🇸" },
+    { city: "Kansas City, US", flag: "🇺🇸" },
+    { city: "Toronto, CA", flag: "🇨🇦" },
+    { city: "Montréal, CA", flag: "🇨🇦" },
+    { city: "London, UK", flag: "🇬🇧" },
+    { city: "Bristol, UK", flag: "🇬🇧" },
+    { city: "Amsterdam, NL", flag: "🇳🇱" },
+    { city: "Berlin, DE", flag: "🇩🇪" },
+    { city: "Zürich, CH", flag: "🇨🇭" },
+    { city: "Copenhagen, DK", flag: "🇩🇰" },
+    { city: "Oslo, NO", flag: "🇳🇴" },
+    { city: "Paris, FR", flag: "🇫🇷" },
+    { city: "Dubai, AE", flag: "🇦🇪" },
+    { city: "Singapore, SG", flag: "🇸🇬" },
+    { city: "Melbourne, AU", flag: "🇦🇺" },
+    { city: "Sydney, AU", flag: "🇦🇺" },
+] as const;
+
+const MAX_ITEMS = 4;
+
+function pick<T>(list: readonly T[], avoid?: T): T {
+    let item = list[Math.floor(Math.random() * list.length)];
+    while (list.length > 1 && item === avoid) item = list[Math.floor(Math.random() * list.length)];
+    return item;
+}
+
+function nextEvent(id: number, previous?: FeedEvent, minutesAgo = 0): FeedEvent {
+    const prevType = previous && EVENT_TYPES.find((t) => t.type === previous.type);
+    const prevLocation = previous && LOCATIONS.find((l) => l.city === previous.city);
+    const type = pick(EVENT_TYPES, prevType);
+    const location = pick(LOCATIONS, prevLocation);
+    return { id, type: type.type, city: location.city, flag: location.flag, minutesAgo };
+}
+
+function timeLabel(minutes: number) {
+    return minutes === 0 ? "just now" : `${minutes} min ago`;
+}
 
 export function GlobeEventFeed({ className }: { className?: string }) {
-    const [events, setEvents] = useState<Event[]>([]);
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref, { margin: "100px" });
+    const reduceMotion = useReducedMotion();
+    const [events, setEvents] = useState<FeedEvent[]>([]);
 
+    // Filled after mount: random events in the static HTML would not match the browser's (hydration error).
     useEffect(() => {
-        // Initial population
-        const initialEvents = Array.from({ length: 3 }).map((_, i) => generateEvent(i.toString()));
-        startTransition(() => {
-            setEvents(initialEvents);
-        });
-
-        const interval = setInterval(() => {
-            setEvents((prev) => {
-                const newEvent = generateEvent(Date.now().toString());
-                const newEvents = [newEvent, ...prev.slice(0, 3)]; // Keep max 4 items
-                return newEvents;
-            });
-        }, 2500); // Add new event every 2.5s
-
-        return () => clearInterval(interval);
+        const first = nextEvent(3, undefined, 2);
+        const second = nextEvent(2, first, 6);
+        const third = nextEvent(1, second, 11);
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time client-only seed
+        setEvents([first, second, third]);
     }, []);
 
-    return (
-        <div className={cn("flex flex-col gap-3 w-full max-w-xs pointer-events-none select-none", className)}>
-            <AnimatePresence mode="popLayout">
-                {events.map((event) => {
-                    const eventType = EVENT_TYPES.find(t => t.type === event.type)!;
-                    const Icon = eventType.icon;
+    useEffect(() => {
+        if (!inView || reduceMotion) return;
+        let timer: ReturnType<typeof setTimeout>;
+        const tick = () => {
+            setEvents((prev) => {
+                // Everything already listed gets a little older, so the times keep moving.
+                const aged = prev.map((e) => ({ ...e, minutesAgo: e.minutesAgo + 1 + Math.floor(Math.random() * 3) }));
+                return [nextEvent(Date.now(), prev[0]), ...aged].slice(0, MAX_ITEMS);
+            });
+            timer = setTimeout(tick, 3500 + Math.random() * 3000);
+        };
+        timer = setTimeout(tick, 2500);
+        return () => clearTimeout(timer);
+    }, [inView, reduceMotion]);
 
+    return (
+        <div ref={ref} aria-hidden="true" className={cn("pointer-events-none flex w-full max-w-xs select-none flex-col gap-3", className)}>
+            <AnimatePresence mode="popLayout" initial={false}>
+                {events.map((event) => {
+                    const eventType = EVENT_TYPES.find((t) => t.type === event.type)!;
+                    const Icon = eventType.icon;
                     return (
                         <motion.div
                             key={event.id}
@@ -69,22 +114,19 @@ export function GlobeEventFeed({ className }: { className?: string }) {
                             animate={{ opacity: 1, x: 0, scale: 1 }}
                             exit={{ opacity: 0, x: 20, scale: 0.95, transition: { duration: 0.2 } }}
                             transition={{ duration: 0.4, type: "spring" }}
-                            className="bg-card/80 backdrop-blur-md border border-border-subtle/50 p-3 rounded-xl shadow-xl flex items-center gap-3"
+                            // Solid, not backdrop-blur: a blur over the animating canvas is re-composited every frame.
+                            className="flex items-center gap-3 rounded-xl border border-border-subtle/60 bg-card/95 p-3 shadow-xl"
                         >
-                            <div className={cn("p-2 rounded-lg bg-surface", eventType.color)}>
-                                <Icon className="w-4 h-4" />
+                            <div className={cn("rounded-lg bg-surface p-2", eventType.color)}>
+                                <Icon className="h-4 w-4" />
                             </div>
-                            <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-2 mb-0.5">
-                                    <span className="text-sm font-medium text-heading truncate">
-                                        {eventType.label}
-                                    </span>
-                                </div>
+                            <div className="min-w-0 flex-1">
+                                <div className="mb-0.5 truncate text-sm font-medium text-heading">{eventType.label}</div>
                                 <div className="flex items-center gap-1.5 text-xs text-caption">
                                     <span>{event.flag}</span>
-                                    <span className="truncate">{event.location}</span>
+                                    <span className="truncate">{event.city}</span>
                                     <span className="text-subtle">•</span>
-                                    <span>just now</span>
+                                    <span className="shrink-0">{timeLabel(event.minutesAgo)}</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -93,17 +135,4 @@ export function GlobeEventFeed({ className }: { className?: string }) {
             </AnimatePresence>
         </div>
     );
-}
-
-function generateEvent(id: string): Event {
-    const type = EVENT_TYPES[Math.floor(Math.random() * EVENT_TYPES.length)];
-    const location = LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)];
-
-    return {
-        id,
-        type: type.type,
-        location: `${location.city}, ${location.country}`,
-        flag: location.flag,
-        timestamp: "just now"
-    };
 }

@@ -1,9 +1,9 @@
 ---
 title: "Using Batch Actions in Shelf"
-description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, and deletion."
+description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, archiving, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-25"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -43,7 +43,7 @@ Click the "Actions" dropdown menu located in the top right corner after making y
 
 Available operations, in the order they appear in the menu:
 
-- **Download QR Codes**: Get the QR labels for every selected asset in one file
+- **Download QR Codes**: Get the QR labels for every selected asset in one `.zip` file. The zip also holds a `labels.csv` with each asset's name, SAM ID, QR ID, QR URL, category and location, for label printer software. See [Printing labels for assets you already have](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf#printing-labels-for-assets-you-already-have)
 - **Create audit**: Start a new audit covering the selected assets
 - **Add to existing audit**: Fold the selected assets into an audit that is already running
 - **Release custody**: Remove the current custodian from selected assets
@@ -52,15 +52,18 @@ Available operations, in the order they appear in the menu:
 - **Remove tags**: Remove tags from assets in bulk
 - **Update location**: Change the location of selected assets
 - **Update category**: Modify the category of selected assets
+- **Set min quantity**: Give the selected quantity-tracked assets the same low-stock threshold, or leave it empty to clear it. See [Stock columns on the asset list](/knowledge-base/quantity-tracked-assets-and-consumables#stock-columns-on-the-asset-list)
 - **Update asset model**: Group the selected assets into one [Asset Model](/glossary/asset-models)
 - **Remove from asset model**: Take the selected assets out of whatever model they belong to
 - **Add to kit**: Put the selected assets into a kit
 - **Remove from kit**: Take the selected assets out of their kit
 - **Mark as available**: Make items bookable/reservable in bulk
 - **Mark as unavailable**: Make items unbookable/unreservable in bulk
-- **Delete**: Remove selected assets from inventory
+- **Archive**: Take the selected assets out of your lists and current reports without deleting them (Owners and Administrators). Assets that are checked out, in custody, in a reserved or checked-out booking, quantity-tracked or already archived are skipped. See [Archive and Reinstate Assets](/knowledge-base/archive-and-reinstate-assets)
+- **Reinstate**: Make archived assets active again. Available when the list is switched to the **Archived** view
+- **Delete**: Remove selected assets from inventory. The dialog lists what goes with them, and **Delete** stays greyed out until you type the number of assets selected
 
-Some entries grey out when the selection does not suit them, with a short explanation on hover. **Release custody** needs every selected asset to be in custody, **Assign custody** needs them all to be available, and **Add to kit** and **Delete** are blocked while anything in the selection is checked out. The audit entries only appear for roles that can create or update audits.
+Some entries grey out when the selection does not suit them, with a short explanation on hover. **Release custody** needs every selected asset to be in custody, **Assign custody** needs them all to be available and none of them to be an individually tracked asset inside a kit (*"Some of the selected assets are part of a kit. Assign custody to the kit, or remove them from the kit first."*), and **Add to kit** and **Delete** are blocked while anything in the selection is checked out. The audit entries only appear for roles that can create or update audits.
 
 One refusal arrives after you confirm rather than as a greyed-out entry. **Release custody** is turned down if any asset in the selection is in custody *because its kit is*, with *"This asset is in custody because its kit is. Release the kit's custody instead."* Nothing in the batch is released when that happens, so a mixed selection is refused whole rather than half applied. Release the kit's custody, or take the asset out of the kit, and run the batch again. See [Custody a kit put there belongs to the kit](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs#custody-a-kit-put-there-belongs-to-the-kit).
 

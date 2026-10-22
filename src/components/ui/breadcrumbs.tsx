@@ -18,6 +18,17 @@ const LABEL_MAP: Record<string, string> = {
     "migrate": "Migrate",
     "resources": "Resources",
     // Add specific sub-path overrides if needed, though dynamic capitalization usually handles it
+    // Brand names that slug capitalization gets wrong (alternatives pages)
+    "maintainx": "MaintainX",
+    "inflow": "inFlow",
+    "ezofficeinventory": "EZOfficeInventory",
+    "snipe-it": "Snipe-IT",
+    "gocodes": "GoCodes",
+    "upkeep": "UpKeep",
+    "webcheckout": "WebCheckout",
+    "blue-tally": "BlueTally",
+    "brite-check": "BriteCheck",
+    "share-my-toolbox": "ShareMyToolbox",
 };
 
 // Function to prettify slugs (e.g., "asset-tracking" -> "Asset Tracking")

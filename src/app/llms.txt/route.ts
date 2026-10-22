@@ -167,7 +167,7 @@ const LINK_INDEX = `## Key Links
 - [Calendar](${BASE_URL}/features/calendar): Visual booking calendar with month, week, and day views for complete asset availability at a glance.
 - [Dashboard](${BASE_URL}/features/dashboard): A real-time view of bookings, custody, overdue items, and asset usage — giving teams clarity at a glance.
 - [Asset Search](${BASE_URL}/features/asset-search): Full-database search across all asset fields — find any item by name, custodian, category, status, or custom field.
-- [Asset Reminders](${BASE_URL}/features/asset-reminders): Automated reminders for returns, inspections, rentals, and maintenance events — keeping teams proactive and compliant.
+- [Asset Reminders](${BASE_URL}/features/asset-reminders): Email reminders for a specific date on any asset (an inspection, calibration, warranty end, or service date), sent to the team members you choose.
 - [Reports](${BASE_URL}/features/reports): Operational reports across assets, bookings, custody, and usage — exportable for finance and ops review.
 - [Workspaces](${BASE_URL}/features/workspaces): Organize assets and permissions across departments or teams, giving each group control while keeping administrators in sync.
 - [Consumables Tracking](${BASE_URL}/features/consumables-tracking): Track quantity-based stock — cables, batteries, consumables — with low-stock alerts.
@@ -185,7 +185,7 @@ const LINK_INDEX = `## Key Links
 - [Mobile Asset Auditing](${BASE_URL}/solutions/mobile-asset-auditing): Run physical inventory audits on mobile devices with QR scanning.
 - [Open Source Asset Management](${BASE_URL}/solutions/open-source-asset-management): Self-host Shelf with full code transparency and no vendor lock-in.
 - [Home Inventory Management](${BASE_URL}/solutions/home-inventory-management): Personal asset tracking for households and individuals.
-- [Educational Resource Management](${BASE_URL}/solutions/educational-resource-management): Manage AV, lab, and teaching equipment across schools and universities.
+- [Equipment Software for Universities](${BASE_URL}/blog/equipment-management-software-for-universities-streamlining-campus-resources): Equipment checkout and asset tracking for universities: media centers, IT loaners, labs; pricing and switching from Cheqroom or WebCheckout.
 
 ## Industries
 
@@ -194,13 +194,6 @@ const LINK_INDEX = `## Key Links
 - [Engineering](${BASE_URL}/industries/engineering): Track engineering equipment, instruments, and prototypes across labs, field sites, and shared workshops.
 - [IT & Technology](${BASE_URL}/industries/it): Track laptops, loaner devices, peripherals, and shared equipment with QR-first workflows and custody tracking.
 - [Media & Production](${BASE_URL}/industries/media-production): Manage cameras, lighting gear, audio kits, and accessories with workflows designed for real-world shoots.
-
-## Use Cases
-
-- [Use Cases Overview](${BASE_URL}/use-cases): Real-world examples of Shelf in action across teams and workflows.
-- [AV Equipment Management](${BASE_URL}/use-cases/av-equipment-management): Manage cameras, lighting, and audio gear across productions and shoots.
-- [IT Asset Management](${BASE_URL}/use-cases/it-asset-management): Track laptops, chargers, carts, peripherals, and user-assigned equipment with modern asset tracking and custody workflows.
-- [Tool Tracking](${BASE_URL}/use-cases/tool-tracking): Track hand tools and power tools across crews and job sites with mobile-first workflows.
 
 ## Comparisons
 
@@ -241,6 +234,7 @@ const LINK_INDEX = `## Key Links
 - [Adding New Assets](${BASE_URL}/knowledge-base/adding-new-assets): Add assets individually with photos, custom fields, and QR tags.
 - [Introduction to Workspaces](${BASE_URL}/knowledge-base/introduction-to-workspaces): Understand workspaces and how they separate teams or departments.
 - [Introduction to Bookings](${BASE_URL}/knowledge-base/introduction-to-bookings): Learn how to set up and manage equipment bookings.
+- [Switching From Another Asset Tool](${BASE_URL}/knowledge-base/switching-from-another-asset-tool): Export from your current tool, map columns to the import file, keep existing barcode and QR stickers, and what a 1,000-asset import looks like.
 - [Importing Assets via CSV](${BASE_URL}/knowledge-base/importing-assets-to-shelf-csv-guide): Bulk-import assets from a spreadsheet using the CSV template.
 - [Bulk Updating Assets via CSV](${BASE_URL}/knowledge-base/bulk-updating-assets-via-csv): Update many assets at once with a CSV upload.
 - [Inviting Users via CSV Upload](${BASE_URL}/knowledge-base/inviting-users-via-csv-upload): Bulk-invite team members from a spreadsheet.
@@ -254,15 +248,7 @@ const LINK_INDEX = `## Key Links
 
 - [Glossary Hub](${BASE_URL}/glossary): Clear definitions of asset management terminology.
 - [Asset Tagging](${BASE_URL}/glossary/asset-tagging): Definition and best practices for tagging physical assets with QR codes, barcodes, or RFID.
-- [Check-in / Check-out](${BASE_URL}/glossary/check-in-check-out): Definition of the check-in/check-out workflow used in shared equipment management.
-- [Ghost Assets](${BASE_URL}/glossary/ghost-assets): Definition of ghost assets — items recorded but no longer in use — and how to eliminate them.
 - [Operational Reports](${BASE_URL}/glossary/operational-reports): Definition of operational reporting in asset management contexts.
-- [Preventive Maintenance](${BASE_URL}/glossary/preventive-maintenance): Definition and methodology of preventive maintenance for physical assets.
-
-## Concepts
-
-- [Asset Lifecycle](${BASE_URL}/concepts/asset-lifecycle): The full journey of an asset — from acquisition and active use to maintenance, retirement, and replacement.
-- [Circular Economy](${BASE_URL}/concepts/circular-economy): A sustainability model focused on extending asset lifespan, reducing waste, and maximizing reuse through smart maintenance and resource efficiency.
 
 ## Case Studies
 
@@ -300,9 +286,11 @@ ${renderPricingSection()}
 - [MACRS Depreciation Calculator](${BASE_URL}/tools/macrs-depreciation-calculator): Free MACRS depreciation calculator for tax planning.
 - [Equipment Depreciation Calculator](${BASE_URL}/tools/equipment-depreciation-calculator): Calculate equipment depreciation over its useful life.
 - [Salvage Value Calculator](${BASE_URL}/tools/salvage-value-calculator): Estimate end-of-life salvage value for assets.
-- [Asset ROI Calculator](${BASE_URL}/tools/asset-roi-calculator): Calculate return on investment for asset purchases.
 - [QR Code Generator](${BASE_URL}/tools/qr-code-generator): Free QR code generator for asset labels.
-- [Barcode Scanner](${BASE_URL}/tools/barcode-scanner): Free in-browser barcode scanner.
+- [Barcode Scanner](${BASE_URL}/tools/barcode-scanner): Free online barcode scanner: camera or image, CSV export, runs in the browser.
+- [QR Code Scanner](${BASE_URL}/tools/qr-code-scanner): Free online QR code scanner: camera or image, shows links, Wi-Fi and contacts before opening.
+- [Blurry QR Code Reader](${BASE_URL}/tools/blurry-qr-code-reader): Reads blurry, dark, low-contrast and light-on-dark (engraved) QR codes from a photo, in the browser; explains why QR codes fail to scan and how error correction works.
+- [Barcode Generator](${BASE_URL}/tools/barcode-generator): Free barcode generator (Code 128, Code 39, EAN-13, UPC-A, ITF-14, Data Matrix, QR) with bulk input and printable Avery label sheets.
 - [Asset Label Designer](${BASE_URL}/tools/asset-label-designer): Design printable asset labels.`;
 
 export function GET() {

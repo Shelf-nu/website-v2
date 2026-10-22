@@ -49,8 +49,6 @@ const TYPE_LABELS: Record<string, { label: string; color: string }> = {
     Alternative: { label: "Alternative", color: "bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-300 dark:border-yellow-800" },
     Industry: { label: "Industry", color: "bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-950 dark:text-cyan-300 dark:border-cyan-800" },
     Glossary: { label: "Glossary", color: "bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-950 dark:text-gray-300 dark:border-gray-800" },
-    "Use Case": { label: "Use Case", color: "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950 dark:text-indigo-300 dark:border-indigo-800" },
-    Concept: { label: "Concept", color: "bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950 dark:text-teal-300 dark:border-teal-800" },
     Update: { label: "Update", color: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800" },
     Page: { label: "Page", color: "bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-950 dark:text-slate-300 dark:border-slate-800" },
 };
@@ -246,8 +244,10 @@ export function SearchDialog() {
                 aria-expanded={open}
             >
                 <Search className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Search</span>
-                <kbd className="hidden sm:inline-flex h-5 items-center gap-0.5 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+                {/* Icon only from md to lg: next to the four menus the full button pushed
+                    the header past 768px, squashing the logo and wrapping "Log in". */}
+                <span className="hidden sm:inline md:hidden lg:inline">Search</span>
+                <kbd className="hidden sm:inline-flex md:hidden lg:inline-flex h-5 items-center gap-0.5 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
                     ⌘K
                 </kbd>
             </button>

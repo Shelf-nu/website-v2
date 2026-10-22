@@ -3,6 +3,7 @@ title: "Data Flow Chart"
 description: "An overview of Shelf's data management architecture, illustrating how user data moves from initial platform interaction through secure database storage."
 category: "Getting Started"
 date: "2024-06-01"
+updated: "2026-10-01"
 layout: "knowledge-base"
 ---
 
@@ -47,7 +48,7 @@ At Shelf, we prioritize the security and efficiency of our data management syste
 | Cloudflare | Edge network, page-view analytics | All traffic passes through | Global edge |
 | Resend (Amazon SES) | Email delivery | Recipient address, message content | United States |
 | Stripe | Billing | Billing contact, subscription details | Provider-hosted |
-| Sentry | Error monitoring | Error details, user and workspace identifiers | United States |
+| Sentry | Error monitoring | Error details, user and workspace identifiers. In reports from the web app and its servers, email addresses are masked to their domain | United States |
 | Microsoft Clarity | Usage analytics | Page-usage recordings and heatmaps | Provider-hosted |
 | Crisp | Support chat | Name, email and messages of users who open chat | Provider-hosted |
 | PostHog | Product analytics | Sign-up, upgrade and cancellation events, internal user ID | Provider-hosted |
@@ -55,6 +56,8 @@ At Shelf, we prioritize the security and efficiency of our data management syste
 | OpenStreetMap Nominatim | Address lookup | Location address text | Provider-hosted |
 
 Card details are entered on Stripe's own pages and never reach Shelf.
+
+Before an error report, performance trace or log line leaves the web app (in the browser or on Shelf's servers) for Sentry, the email addresses in it are masked: `jane.doe@acme.com` is sent as `[email]@acme.com`. The domain is kept so a failing sign-in or mail setup can be traced to the right workspace.
 
 ## Security Measures
 

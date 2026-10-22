@@ -1,0 +1,40 @@
+name: Commit trailers check
+
+# CLAUDE.md forbids Co-Authored-By lines in commit messages. Squash merges
+# here keep the commit messages as the merge body, so a trailer on any PR
+# commit lands on main. This fails the PR until the commits are reworded.
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: commit-trailers-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-trailers:
+    name: No Co-Authored-By
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so the PR's commits can be listed
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Check commit messages
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          bad=""
+          for c in $(git rev-list "$base"..HEAD); do
+            if git log -1 --format=%B "$c" | grep -qi '^co-authored-by:'; then
+              bad="$bad$(git log -1 --format='%h %s' "$c")"$'\n'
+            fi
+          done
+          if [ -n "$bad" ]; then
+            echo "::error::These commits carry a Co-Authored-By line, which CLAUDE.md forbids. Reword them and force-push:"
+            echo "$bad"
+            exit 1
+          fi
+          echo "No Co-Authored-By lines in this PR's commits."

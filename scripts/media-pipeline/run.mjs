@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const ARTICLES = {
+  "manager-role": "articles/manager-role.mjs",
   "report-filter-bar": "articles/report-filter-bar.mjs",
   "export-workspace-data": "articles/export-workspace-data.mjs",
   "adding-additional-fields": "articles/adding-additional-fields.mjs",
@@ -29,6 +30,7 @@ const ARTICLES = {
   "bulk-asset-model": "articles/bulk-asset-model.mjs",
   "asset-model-cover-image": "articles/asset-model-cover-image.mjs",
   "booking-reserve-blocked": "articles/booking-reserve-blocked.mjs",
+  "booking-reserve-blocked-named": "articles/booking-reserve-blocked-named.mjs",
   "audit-export-receipt": "articles/audit-export-receipt.mjs",
   "audit-findings": "articles/audit-findings.mjs",
   "transfer-ownership-header": "articles/transfer-ownership-header.mjs",
@@ -39,6 +41,10 @@ const ARTICLES = {
   "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
   "checkin-receipt": "articles/checkin-receipt.mjs",
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
+  "custody-source-location": "articles/custody-source-location.mjs",
+  "asset-model-view": "articles/asset-model-view.mjs",
+  "homepage-refresh": "articles/homepage-refresh.mjs",
+  "homepage-refresh-picks": "articles/homepage-refresh-picks.mjs",
 };
 
 const slug = process.argv[2];

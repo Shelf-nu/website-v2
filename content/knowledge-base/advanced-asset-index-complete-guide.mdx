@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-09-21"
+updated: "2026-10-19"
 layout: "knowledge-base"
 ---
 
@@ -51,7 +51,7 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 | **Asset ID** | Yes | The workspace's own sequential ID, `SAM-0017` style |
 | **QR ID** | Yes | The ID printed on the Shelf QR label |
 | **Status** | Yes | Available, In custody, Checked out |
-| **Description** | Yes | Truncated to fit the row |
+| **Description** | Yes | Truncated to fit the row. Hover for the first 600 characters; a longer description ends with *Open the asset to read the full description* |
 | **Value** | Yes | Per-unit value. On a pooled asset this is the value of one unit, not the stock |
 | **Available to book** | Yes | Whether the asset can go on a booking at all |
 | **Created at** | Yes | When the asset record was made |
@@ -170,7 +170,48 @@ To give a colleague the same view, apply the filter, copy the page address from 
 
 **Shelf remembers your last filter**
 
-Shelf remembers the last filter you applied in each workspace. It keeps that in the browser you were using, so the list opens on the same filter the next time you come back. Open Shelf in a different browser or on a different computer and the list starts with no filter.
+Shelf remembers the last filter you applied in each workspace: the status, sort, custodian, tag, location and column filters, and your page size. It keeps that in the browser you were using, so the list opens on the same filter the next time you come back. Open Shelf in a different browser or on a different computer and the list starts with no filter.
+
+Two things are not kept. The text you typed into the search box is forgotten as soon as you leave the list, so a list never reopens on an old search with nothing to show; a [saved filter](#saved-filters) keeps its search text on purpose. And signing out, or signing in, clears the remembered filters and page size for the whole browser, so the next person at a shared computer starts from a clean list rather than yours. The same rules apply to the bookings and kits lists.
+
+## Asset Model View
+
+If your workspace groups identical units under [Asset Models](/glossary/asset-models), the index can list the models instead of the assets. Click the cube icon beside the list and calendar icons in the toolbar (its tooltip reads **Asset model view**). The button appears in advanced mode only.
+
+![Asset model view: a row for the LED Light 300W class model with 4 assets, 3 in and 1 in custody, and a No model row last with 36 assets and an orange "7 not bookable" chip. Above the table: "40 assets match your filters"](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/asset-model-view.webp)
+
+Each row is one model:
+
+- **Name**, with the model's picture
+- **Default category**: the category the model gives a new unit. Units can have been moved to other categories since, so this is the model's default, not a count of where its units sit
+- **Assets**: how many of the assets matching your filters carry the model
+- **Status**: where those assets are right now, as **in**, **out** and **in custody**. The three add up to the row's asset count. An orange **N not bookable** chip counts the ones with **Available for bookings** switched off. It overlaps the other three rather than adding to them
+- **Total value** of those assets
+
+**The counts follow your filters.** Every [filter](#advanced-filtering-system), saved filter and search term applies to this view exactly as it does to the list. The one exception is the **Low stock only** quick filter: it only concerns quantity-tracked assets, which this view does not count, so switching to the model view clears it. Filter to one location and the view answers "which models do I have here, and how many". A search term matches model names as well as everything else the [search](/features/asset-search) covers, so typing `Dell Latitude` lists that model with its real counts. The line above the table states it, for example *"40 assets match your filters"*.
+
+**Quantity-tracked assets are not counted.** Asset models group individually tracked units only, so for the same filters the model view can show fewer assets than the list view. The info icon beside the count says so.
+
+**Assets without a model** are gathered in a **No model** row, always last. They count toward the asset total but not toward the number of models in the header. That row is a good place to start grouping a fleet: open it, click **View all in list**, select the units, then use **Actions → Update asset model** (see [Grouping a Fleet into an Asset Model](/knowledge-base/using-batch-actions-in-shelf#grouping-a-fleet-into-an-asset-model)). A workspace with no models yet gets a line saying so, with a link to create one for the roles that can.
+
+Click **Name**, **Assets**, **Status** (which sorts by the "in" count) or **Total value** to sort. Switching between the list, availability and model views starts you on page 1, because the pages list different things.
+
+### Seeing the assets behind a count
+
+Click a row's count, such as **4 assets**, and a side panel lists those assets with the columns you have set up for the list. It shows the same assets the count was made from, filters included. The panel loads one page; when more assets matched, it says *"Showing first N of M assets matching your filters"*. The panel's column headers stay in place while you scroll a long list in either direction. When none of the model's assets match your filters, the panel says how many sit outside them, for example *"None match your filters. This model has 52 assets outside them."* **View all in list →** opens the regular list filtered to that model (or to assets with no model), with your other filters kept.
+
+![The side panel for LED Light 300W class: "4 assets match your filters", four lights with their custody, location, status, category and tags, and a "View all in list" button at the bottom](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/asset-model-view-sheet.webp)
+
+### Booking by model from the index
+
+Tick one or more model rows and click **Book selection**:
+
+- **Create new booking** opens the booking form (name, dates, custodian, description and tags) with a row for each selected model and an **Add** box for how many units to reserve. Once both dates are set, each row shows how many units of that model are free in that window, for example *"adding 2 → 2 of 8 available"*; before both dates are set there is no window to measure, so no figure is shown. **Confirm** creates a **Draft** booking that holds those model reservations without naming any units yet, and opens its overview. Reserve it as you would any other booking, then [settle the reservations](/knowledge-base/adding-assets-and-kits-to-a-booking#settling-a-model-reservation) with real units at pickup.
+- **Add to existing** lets you pick an open booking (Draft, Reserved, Ongoing or Overdue) and reserve units of each selected model on it. The booking list opens on the bookings that have not ended yet, soonest first, with finished bookings after them, most recently finished first. Once you pick the booking, every row shows what you are adding against what is free for that booking's dates, for example *"2 already reserved · adding 1 → 3 of 8 available"*. Click **Reserve**.
+
+If a model's pool cannot cover the number you ask for in that window, nothing is reserved and Shelf says so under the title **Not enough units**, for example *"Cannot reserve 4 × Dell Latitude 5550. Only 2 can be reserved in this window."*
+
+The **No model** row cannot be selected, since there is no model to reserve units of, and there is no "select all" across pages: a reservation needs a number per model, so you pick the models in front of you. **Book selection** is shown to roles that can create bookings, and not in a personal workspace, which has no bookings.
 
 ## Natural and Advanced Sorting
 
@@ -244,6 +285,12 @@ Networking
 
 - Mark multiple assets as available/unavailable
 - Helpful for maintenance periods
+
+### Archiving
+
+- Archive retired equipment in bulk, or reinstate it from the **Archived** view
+- Click the list title (**Assets**) to switch between **Active**, **Archived** and **All**; the view combines with your filters and sorting
+- See [Archive and Reinstate Assets](/knowledge-base/archive-and-reinstate-assets)
 
 ## Export Capabilities
 

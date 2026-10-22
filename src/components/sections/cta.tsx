@@ -48,11 +48,11 @@ export function CTA() {
                             Out in the field? Shelf Companion is free on iPhone &amp; Android.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <AppStoreBadge
+                            <AppStoreBadge location="global_bottom_cta"
                                 variant="outline"
                                 className="text-white border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:text-white"
                             />
-                            <PlayStoreBadge
+                            <PlayStoreBadge location="global_bottom_cta"
                                 variant="outline"
                                 className="text-white border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:text-white"
                             />

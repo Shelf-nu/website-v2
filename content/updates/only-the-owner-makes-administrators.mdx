@@ -1,0 +1,17 @@
+---
+title: "Only the workspace owner makes Administrators, and Self-service and Base change only their own drafts"
+description: "Inviting or promoting an Administrator is now the owner's alone on every path. Self-service and Base users add items to, and delete, their own bookings only while they are drafts."
+date: "2026-10-08"
+image: "/images/updates/enhanced-user-permissions.jpg"
+readMoreUrl: "/knowledge-base/user-roles-and-their-permissions#full-permissions-reference"
+layout: "update"
+---
+
+Shelf now decides every role question in one place, and a few rules got stricter along the way. The ones you will notice:
+
+- **Administrators come from the owner.** Only the workspace owner can invite someone as an Administrator or promote a member to Administrator, on every path: the invite dialog, a resent invite, the **Change role** dialog and a CSV user import. Administrators still invite and manage Self-service and Base users. A CSV file from an Administrator that contains an `ADMIN` row is refused as a whole.
+- **Demotions hand records to an Administrator.** When you lower someone's role, the records they owned can go to the owner or another Administrator, not to a Self-service or Base member. An Administrator lowered by your identity provider's group mapping hands over the same way as one lowered by hand.
+- **Self-service and Base change only their own drafts.** They can add items to their own booking, and delete it, only while it is a **Draft**. Self-service users can still take items off a **Reserved** booking and cancel it. Base users cannot cancel or archive a booking on any path.
+- **Audit details belong to Administrators.** Editing an audit's details or changing who it is assigned to needs the Owner or an Administrator, and the assignee must be a member of the workspace.
+
+The [roles and permissions guide](/knowledge-base/user-roles-and-their-permissions) has the full table.
