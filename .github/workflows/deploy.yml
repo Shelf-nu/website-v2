@@ -24,6 +24,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
+      - run: npm run test:scripts
       # React Doctor reports a codebase-health score. The CLI is version-pinned,
       # but the score is computed server-side by react.doctor and can move with
       # no code change on our side — it fell from 98 to 84 between two deploys
@@ -57,8 +58,11 @@ jobs:
       # leaking into rendered pages). This step adds the network half: every
       # <img> the site ships, including frontmatter `image:` fields that feed
       # OG/social previews. Kept separate from the build so a supabase blip
-      # can't fail a deploy — the script warns on network errors and fails only
-      # on a definitive 4xx/5xx after retries.
+      # can't fail a deploy — the script warns on network errors, retries 429
+      # and 5xx with backoff, and fails only on a definitive 4xx (or a 429/5xx
+      # that never clears). Capped at 6 concurrent fetches: on 2026-10-19 the
+      # old 12-wide burst tripped storage rate limits twice (runs 39241743448
+      # and 39256690071), red deploys that passed on a plain rerun.
       - name: Verify images resolve
         timeout-minutes: 10
         run: npm run content:verify:images
