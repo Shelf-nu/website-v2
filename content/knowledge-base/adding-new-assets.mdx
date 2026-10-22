@@ -3,7 +3,7 @@ title: "Adding New Assets"
 description: "Populate your inventory with assets manually or import your full catalogue via CSV. Step-by-step for both workflows."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-09"
+updated: "2026-10-20"
 layout: "knowledge-base"
 ---
 
@@ -41,6 +41,16 @@ Two ways to get assets into Shelf:
 Custom fields are especially useful for capturing information specific to your business — serial numbers, purchase dates, warranty dates, internal references. See [adding additional fields to assets](/knowledge-base/adding-additional-fields-to-assets) for setup.
 
 If you choose **Tracked by quantity**, the form adds fields for the quantity, a unit of measure, an optional low-stock threshold, and how the stock is consumed. This is the right model for supplies and consumables like cables, gloves, and fasteners — see [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables) for the full walkthrough. Torn between the two? [How to Choose a Tracking Method](/knowledge-base/how-to-choose-a-tracking-method) walks through the decision.
+
+### Unsaved changes
+
+The moment a field differs from what is saved, an **Unsaved changes** bar appears, at the top of the page on a wide screen and along the bottom on a smaller one, with **Discard** and **Save**. **Discard** puts every field back to its saved value, including a category, tag or location you picked. **Save** does what the form's own Save button does, and a save that is refused, for example for an empty name, keeps the bar so you can fix it and try again.
+
+![An asset edit form with the Unsaved changes bar at the top of the page, holding Discard and Save](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/unsaved-changes-bar.webp)
+
+Leave the page with unsaved work, through the sidebar, the breadcrumb or the browser's back button, and Shelf asks *"You have changes that are not saved. Leave this page and lose them?"*, with **Leave page** and **Stay**. Closing or reloading the tab asks too. The same bar and the same question are on the new and edit forms for [kits](/knowledge-base/kits) and locations, and on the form that edits an existing booking.
+
+![The Unsaved changes dialog over an asset form, asking whether to leave the page and lose the changes, with Leave page and Stay buttons](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/unsaved-changes-leave-dialog.webp)
 
 ---
 
