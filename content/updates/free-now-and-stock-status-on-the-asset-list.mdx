@@ -1,0 +1,21 @@
+---
+title: "Free Now and Stock Status on the Asset List"
+description: "The advanced asset list now shows each quantity-tracked pool's stock: Free now (14 of 20 pcs) and a Stock status of Short, None free, Running low or Enough, right after Status. Reserved, Total quantity, Unit of measure and Min quantity are one switch away under Columns. Select several pools and use Set min quantity to give them a threshold at once."
+date: "2026-10-22"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/stock-columns.webp"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#stock-columns-on-the-asset-list"
+layout: "update"
+inApp: true
+appRoles: ["ADMIN", "OWNER"]
+---
+
+Until now the asset list said nothing about stock: a pool with units out or reserved still read **Available**, and you had to open each asset to see what was left. The advanced asset list now carries the figures.
+
+- **Free now** reads like *14 of 20 pcs*: the units you could hand over today, after custody, kits and units out on bookings. Units promised to a future booking are still on the shelf, so they are not subtracted.
+- **Stock status** gives one verdict per pool. **Short by N** means bookings, custody and kits need more than you own at the busiest point ahead. **None free**, **Running low** (at or below your min quantity) and **Enough** cover the rest; with no min quantity set it shows a dash. Hover for the figures, and for a shortfall, a link to the booking that causes it.
+- **Reserved** (in the column picker) counts the units promised to upcoming bookings, and an over-committed pool reads like *12 · 2 short*.
+- **Unit of measure** has its own column. **Total quantity** is now the bare number, and the Standard CSV export writes it that way too, so the column adds up in a spreadsheet.
+
+Status on the list now uses the same figures, so a pool with units out says so instead of reading Available. All three new columns can be filtered and sorted, and **Set min quantity** in the bulk actions gives many pools a threshold in one step. The **Needs reordering** filter (formerly *Low stock only*) compares Free now with each pool's min quantity.
+
+On the asset page and in the Shelf Companion app the same figure is now called **Free now** as well.
