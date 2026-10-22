@@ -45,6 +45,7 @@ const ARTICLES = {
   "nrm-actions-and-delete": "articles/nrm-actions-and-delete.mjs",
   "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
   "checkin-receipt": "articles/checkin-receipt.mjs",
+  "checkin-confirm-dialog": "articles/checkin-confirm-dialog.mjs",
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
   "custody-source-location": "articles/custody-source-location.mjs",
   "asset-model-view": "articles/asset-model-view.mjs",
