@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/features/reports"
 date: "2026-04-30"
-updated: "2026-09-02"
+updated: "2026-10-22"
 seo:
   title: "Equipment Reports & Analytics"
   description: "Run booking compliance, utilization, custody, and inventory reports in Shelf. Filter by category, location, and timeframe. Export to CSV or PDF."
@@ -38,7 +38,7 @@ Reports cover the parts of the workflow operations managers are usually asked ab
 
 ### Booking Reports
 
-- **Booking Compliance** — On-time returns, late returns, and overdue items across the timeframe you pick. Lateness is measured against the deadline the booking was agreed to, so extending a booking does not clear a late return from the record. Filter by status, custodian, or location.
+- **Booking Compliance** — On-time returns, late returns, and overdue items across the timeframe you pick. Lateness is measured against the deadline the booking was agreed to, so extending a booking does not clear a late return from the record. Filter by status, custodian, location, category, asset model, or a custom field.
 - **Top Booked Assets** — The most frequently booked assets and their utilization patterns. Useful for capacity planning and replacement decisions.
 - **Top Booked Kits** — The most frequently booked kits, ranked by how often each kit goes out. A kit is counted once per booking it appears in, so multiple assets from the same kit in one booking collapse to a single kit-booking. Useful when you bundle and lend equipment as kits and want to plan kit-level capacity.
 - **Monthly Booking Trends** — Booking volume over time with month-over-month comparisons.
@@ -50,7 +50,7 @@ Reports cover the parts of the workflow operations managers are usually asked ab
 - **Asset Activity Summary** — Activity history across all assets — changes, custody handovers, and bookings.
 - **Asset Utilization** — How effectively each asset is being used, based on booking and custody time.
 - **Idle Assets** — Assets that have not been booked or checked out recently. Surfaces equipment that may be candidates for redistribution or retirement.
-- **Asset Distribution** — Breakdown by category, location, and status for inventory planning.
+- **Asset Distribution** — Breakdown by category, location, status, and asset model for inventory planning.
 
 ### Custody Reports
 
@@ -70,7 +70,9 @@ Time-based reports include a timeframe picker with presets for the last 7 / 30 /
 
 ### Filter to the Slice You Care About
 
-Each report exposes filters that match how the underlying data is organized. Booking Compliance filters by status, custodian, and location. Top Booked Assets and Top Booked Kits filter by category and location. The filters are saved in the URL, so you can bookmark or share a specific report view.
+Every report has a filter bar with the filters that fit its data: category, location, status and custodian where they apply, plus **asset model** and **custom field** filters on every asset-based report, so you can ask for "Booking compliance for assets whose Condition is Good" or "Idle cameras of one model". Applied filters show as chips, the CSV and PDF exports carry exactly the same filters, and the filters are saved in the URL, so you can bookmark or share a specific report view.
+
+![The Asset Distribution report with its filter bar (Category, Location, Asset model, Custom field) above four donut breakdowns, including the new By Asset Model](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-filter-bar.webp)
 
 ### Read the Numbers
 

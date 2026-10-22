@@ -3,7 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
-updated: "2026-09-30"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -33,27 +33,32 @@ Snapshot reports — **Asset Inventory**, **Custody Snapshot**, **Overdue Items*
 
 ## Apply Filters
 
-Two controls sit on the report page itself: the **timeframe picker** described above, and, on **Idle Assets**, an idle-threshold selector for how many days count as idle.
+Every report has a **filter bar** above it, next to the timeframe picker (and, on **Idle Assets**, the idle-threshold selector). It offers the filters that report supports as dropdowns:
 
-The narrower filters are **URL parameters**. Add them to the address bar, or share a link that already carries them, and the report runs filtered. That is what makes "Idle Assets in the Amsterdam warehouse, last 90 days" a link you can bookmark and send to a colleague.
-
-| Report | Parameters it honours |
+| Report | Filters in the bar |
 |---|---|
-| Booking Compliance | None. Sorting only (`sortBy`, `sortOrder`) |
-| Top Booked Assets | `category`, `location` |
-| Top Booked Kits | None |
-| Monthly Booking Trends | None *(see the note below)* |
-| Overdue Items | `custodian` |
-| Asset Inventory | `categories`, `locations`, `statuses` (each accepts several values, comma-separated) |
-| Asset Activity Summary | `asset`, `category` |
-| Asset Utilization | `category`, `location` |
-| Idle Assets | `category`, `location`, plus `days` for the idle threshold |
-| Asset Distribution | None |
-| Custody Snapshot | `teamMember`, `location` |
+| Booking Compliance | Status, Custodian, Location, Category, Asset model, Custom field |
+| Top Booked Assets | Category, Location, Asset model, Custom field |
+| Monthly Booking Trends | Category, Location, Asset model, Custom field |
+| Overdue Items | Custodian, Location, Category, Asset model, Custom field |
+| Asset Inventory | Category, Location, Status, Asset model, Custom field |
+| Asset Activity Summary | Category, Location, Asset model, Custom field |
+| Asset Utilization | Category, Location, Asset model, Custom field |
+| Idle Assets | Category, Location, Asset model, Custom field |
+| Asset Distribution | Category, Location, Asset model, Custom field |
+| Custody Snapshot | Team Member, Location, Category, Asset model, Custom field |
 
-> **Monthly Booking Trends ignores `category` and `location`.** The page accepts both parameters and then runs the report over every booking anyway. Nothing warns you, so a trends link that looks filtered is not. Its CSV export deliberately does not forward them either, rather than claim a filtering it does not perform. Wiring them up is tracked separately.
+![The Asset Distribution report with its filter bar (Category, Location, Asset model, Custom field) above four donut breakdowns, including the new By Asset Model](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-filter-bar.webp)
 
-Values are ids, not names. The easiest way to get one is to open the category, location, team member or asset in Shelf and copy the id out of its own URL.
+Applied filters show as chips above the report; remove one, or use **Clear all filters**. The headline numbers, charts and tables all follow the filters, and so do the CSV and PDF exports.
+
+**Custom field filters.** Pick the field, then one of the values that field holds in your workspace. Text, option (dropdown) and yes/no fields can be filtered this way; a text field with more than 200 different values also takes an exact value you type. Add several custom field filters and a row has to match all of them. Date, number, amount and multi-line text fields are not offered.
+
+**Asset model** filters any asset-based report to the units of one or more [asset models](/glossary/asset-models), and **Asset Distribution** has a fourth breakdown, **By Asset Model**, next to category, location and status.
+
+**Filters live in the URL.** A filtered report is a link you can bookmark and send to a colleague, which is what makes "Idle Assets in the Amsterdam warehouse, last 90 days" one click away. Links made before October 2026 with the old parameter spellings (`categories=`, `custodian=`) still open filtered. Two filters have no dropdown and work from the URL only: the single `asset` on **Asset Activity Summary**, and the category and location filters of **Top Booked Kits**.
+
+Until 21 October 2026 these filters existed only as URL parameters, and **Monthly Booking Trends** accepted category and location without applying them. It now applies every filter in its bar.
 
 ## Read the Result
 
@@ -141,7 +146,7 @@ Locations carry one deliberate exception. **No Location** is the bucket for asse
 
 Every report supports **CSV export**. Click **Export** at the top right of any report to download the data shown.
 
-**An export carries the same filters the page is showing.** If you opened a report with a `custodian` or `location` parameter on the URL, the CSV and the PDF run with it too, and the Booking Compliance CSV keeps the sort order you were reading. Before this, both exports quietly dropped the parameters and returned the whole workspace, so a filtered view on screen and the file it produced were two different reports. Monthly Booking Trends is the one exception, and it is deliberate: its query ignores category and location, so the export does not forward parameters that would not have done anything.
+**An export carries the same filters the page is showing.** Whatever the filter bar and the chips say, the CSV and the PDF run with exactly that, and the Booking Compliance CSV keeps the sort order you were reading. The page, the CSV and the PDF go through one filter resolver, so a filtered view on screen and the file it produces are always the same report.
 
 Two of those files spell the value arithmetic out rather than leaving you to redo it in a spreadsheet:
 
