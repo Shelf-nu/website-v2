@@ -134,7 +134,7 @@ The [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on must be 
 
 Enable the add-on first if any of these columns contain data you need.
 
-**Supported barcode types** (exact header names, case-sensitive):
+**Supported barcode types** (header names as in the template; the mapping step matches them regardless of capitals):
 
 - **barcode_Code128** — 4-40 characters, ASCII printable (letters, numbers, symbols)
 - **barcode_Code39** — 4-43 characters, `A-Z` and `0-9` only
@@ -226,7 +226,7 @@ For round-trip edits to existing assets, use [Bulk Updating Assets via CSV](/kno
 
 **"Invalid headers in csv file"**
 
-- Verify column headers match exactly
+- In the mapping step, check that each column points at the right Shelf field, or set it to **Skip**
 - Check custom field format: `cf:FieldName,type:TypeName`
 - Remove extra spaces or special characters
 
