@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-15"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -26,7 +26,8 @@ To begin importing assets:
 2. Add your asset information following the provided format
 3. Save the file with UTF-8 encoding
 4. Navigate to Assets then Import in your workspace
-5. Upload the file and confirm with "I AGREE"
+5. Choose the file and click **Preview import**. Shelf checks the whole file and shows a preview, without creating anything yet
+6. Click **Import N assets**, type "I AGREE" and click **Import**. The import runs in the background: you can leave the page, and Shelf emails you when it finishes
 
 > **Important:** Upload the template or an **Import-ready** export, nothing else. Any other file produces corrupted data. That includes files from the old workspace backup download under **Workspace settings → General**, which was retired in October 2026.
 
@@ -41,7 +42,7 @@ To begin importing assets:
 - **Encoding:** UTF-8 recommended. Other encodings are auto-detected and converted, and a UTF-8 BOM is accepted.
 - **Header row:** First row must contain column headers. Headers are **case-sensitive** and **strictly validated** against Shelf's allow-list — an unknown header aborts the entire import with "Invalid header provided."
 - **File format:** Only `.csv` files accepted.
-- **Size:** Up to **1,000 assets per file**. A larger file is refused before anything is imported, with a message giving its row count. Split it and import the parts one at a time.
+- **Size:** Up to **10,000 assets per file**, and at most 10 MB. A file with more rows is refused before anything is imported, with a message giving its row count. Split it and import the parts one at a time.
 
 ### Standard Columns
 
@@ -171,7 +172,7 @@ Shelf checks the whole file before it writes anything. The checks cover:
 
 1. File format and encoding validity
 2. Header accuracy against supported columns
-3. The 1,000-asset limit
+3. The 10,000-asset limit
 4. Quantity-tracked columns on every row (`type`, `quantity`, `consumptionType` and the rest)
 5. Asset models on quantity-tracked rows, which are not allowed
 6. Custom field headers: an unknown type, a type that contradicts a field already in your workspace, or two columns giving the same field different types
@@ -180,23 +181,47 @@ Shelf checks the whole file before it writes anything. The checks cover:
 9. Barcode feature permissions
 10. Kit-custody conflict prevention
 
-If any check fails, **nothing is created**: no assets, and none of the categories, tags, locations, kits, custom fields or asset models the file names. For checks 3 to 7 the import page shows a **Row / Problem** table listing every problem those checks found, so one upload shows all of them at once. The QR code, barcode and kit-custody checks still stop at the first problem with a message of their own. Row numbers match your spreadsheet (the header is row 1, so the first asset is row 2). A problem with the file as a whole, such as a faulty column header, is listed once under **File**. When a file has more than 100 problems, the table shows the first 100 and says how many there are in total.
+If any check fails, **nothing is created**: no assets, and none of the categories, tags, locations, kits, custom fields or asset models the file names. For checks 3 to 7 the import page shows a **Row / Problem** table listing every problem those checks found, so one upload shows all of them at once. QR code and barcode problems (a code that does not exist, is already linked, or appears twice) are listed in the same table. The barcode add-on check and the kit-custody check still stop with a message of their own. Row numbers match your spreadsheet (the header is row 1, so the first asset is row 2). A problem with the file as a whole, such as a faulty column header, is listed once under **File**. When a file has more than 100 problems, the table shows the first 100 and says how many there are in total.
 
-### Import Execution Order
+### The Preview
 
-1. Related entities creation (categories, locations, kits, members)
-2. Image processing and validation
-3. Asset creation with properties
-4. QR code linking or generation
-5. Barcode generation (if enabled)
-6. Kit custody assignment
-7. Custom field value processing
+When the checks pass, Shelf shows a preview of the file before anything is created:
 
-### Partial Imports on Failure
+- **Counts** of the assets in the file, and how many have an image, a custodian or a kit
+- **What will be created**: the new categories, locations, tags, kits, custodians, custom fields and asset models the file names, listed by name
+- **A grid of the rows**, with values that will create something new marked **New: will be created on import**. Click **Load more** to see further rows
 
-A problem in your data can no longer leave half a file behind: the checks above run over every row first, and a file that fails them creates nothing, so you can fix it and upload the same file again.
+{/* TODO: Screenshot needed: import preview with counts, new-entities notice and row grid (PR #3200) */}
 
-Once those checks pass, rows are still written one by one rather than in a single transaction. A failure at that stage, such as a lost connection or a server timeout on a very large file, can leave the rows before it in place, and re-importing the same file would then create duplicates of them. If that happens, check your Asset Index for what was created and re-import only the remaining rows. For round-trip edits to existing assets, use [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) instead.
+If the preview is not what you expected, click **Choose a different file**. Nothing has been written. A preview you do not confirm expires after 24 hours; upload the file again to start over.
+
+### Running the Import
+
+Click **Import N assets**, type "I AGREE" and click **Import**. Shelf imports the file you previewed; it is not uploaded again. You are taken to the import's own page, which shows a progress bar while Shelf:
+
+1. Finds or creates every category, location, tag, kit, custodian, custom field and asset model the file names, once
+2. Writes the assets in batches of 100 rows, with their images, QR codes, barcodes and custom field values
+3. Assigns kit custody and marks the import complete
+
+You do not have to stay on the page. While the import runs, a small progress card follows you around Shelf, and the assets list shows everyone in the workspace that an import is running. When it finishes, the person who started it gets an email: **Your asset import is complete**, or **Your asset import stopped**.
+
+One import runs in a workspace at a time. The import page holds the upload form until the running import finishes.
+
+### If the Import Stops
+
+Each batch is retried on its own a few times before the import gives up. If it does stop, the rows already imported stay, and **nothing is imported twice**. Open the import from the email or the assets list and click **Resume import** to continue from the first row that was not imported. Do not upload the same file again: that creates a second copy of every row already in.
+
+### Row Warnings
+
+Something can change in Shelf between the preview and the moment a row is written. Instead of stopping the import, those rows get a warning, listed on the import page and counted in the email:
+
+- A QR code from the file was linked to another asset in the meantime: the asset is created with a new Shelf QR code
+- A barcode is now in use by another asset: that barcode is skipped
+- A custom field value no longer fits the field: that value is skipped
+- An image could not be downloaded: the asset is created without it
+- Kit custody could not be assigned: the asset is created without that custody
+
+For round-trip edits to existing assets, use [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) instead.
 
 ## Troubleshooting
 
@@ -260,12 +285,11 @@ Once those checks pass, rows are still written one by one rather than in a singl
 - Test QR code scanning
 - Update team member permissions
 
-### Large Imports (1000+ assets)
+### Large Imports (1,000+ assets)
 
-- Break into files of at most 1,000 assets; a larger file is refused
-- Ensure stable internet connection
-- Allow extra time for processing
-- Account for image download time
+- Up to 10,000 assets fit in one file; split a bigger inventory into files of that size or smaller
+- Start the next file once the previous import has finished, since one import runs at a time
+- Image downloads take the most time; a row whose image cannot be fetched in time is imported without it, with a warning
 
 ## Related Resources
 
