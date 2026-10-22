@@ -15,7 +15,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const ARTICLES = {
   "manager-role": "articles/manager-role.mjs",
-  "report-filter-bar": "articles/report-filter-bar.mjs",
   "export-workspace-data": "articles/export-workspace-data.mjs",
   "adding-additional-fields": "articles/adding-additional-fields.mjs",
   "admin-notes-team-members": "articles/admin-notes-team-members.mjs",
@@ -39,6 +38,7 @@ const ARTICLES = {
   "custody-on-location-page": "articles/custody-on-location-page.mjs",
   "nrm-actions-and-delete": "articles/nrm-actions-and-delete.mjs",
   "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
+  "report-filter-bar": "articles/report-filter-bar.mjs",
   "checkin-receipt": "articles/checkin-receipt.mjs",
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
   "custody-source-location": "articles/custody-source-location.mjs",
