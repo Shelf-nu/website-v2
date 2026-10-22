@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-20"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -50,7 +50,9 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 |---|---|---|
 | **Asset ID** | Yes | The workspace's own sequential ID, `SAM-0017` style |
 | **QR ID** | Yes | The ID printed on the Shelf QR label |
-| **Status** | Yes | Available, In custody, Checked out |
+| **Status** | Yes | Available, In custody, Checked out. A quantity-tracked pool can also read Partial custody, Partially checked out, Reserved or Partially reserved, worked out from the same figures as Free now |
+| **Free now** | Yes, when the workspace has quantity-tracked assets | Units you could hand over today, as *14 of 20 pcs*: the total less custody, kits and units out on bookings. Units promised to a future booking are not subtracted. A dash on individually tracked assets |
+| **Stock status** | Yes, when the workspace has quantity-tracked assets | **Short by N**, **None free**, **Running low** (at or below Min quantity) or **Enough**; a dash when no Min quantity is set. Hover for the figures. See [Stock columns on the asset list](/knowledge-base/quantity-tracked-assets-and-consumables#stock-columns-on-the-asset-list) |
 | **Description** | Yes | Truncated to fit the row. Hover for the first 600 characters; a longer description ends with *Open the asset to read the full description* |
 | **Value** | Yes | Per-unit value. On a pooled asset this is the value of one unit, not the stock |
 | **Available to book** | Yes | Whether the asset can go on a booking at all |
@@ -66,7 +68,9 @@ The Advanced Asset Index is a beta feature you enable per-workspace.
 | **Last audit date** | Yes | When the asset was last counted in a completed audit, or *Never audited*. Owners, Administrators and Managers only, and it needs the Audits add-on. See [Last audit date](#last-audit-date) |
 | **Actions** | Yes | The per-row menu |
 | **ID** | No | Shelf's internal record ID, the one the [bulk update](/knowledge-base/bulk-updating-assets-via-csv) flow matches rows on |
-| **Quantity** | No | Units held, for [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) assets |
+| **Total quantity** | No | Units owned, as a bare number, for [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) assets |
+| **Unit of measure** | No | The pool's unit (`pcs`, `rolls`). Switched on automatically for anyone who already showed the quantity column |
+| **Reserved** | No | Units promised to upcoming bookings; an over-committed pool reads like *12 · 2 short*. On an individually tracked asset, how many upcoming bookings claim it |
 | **Min quantity** | No | The low-stock threshold |
 | **Tracking method** | No | Individually tracked or quantity-tracked |
 | **Asset model** | No | The [asset model](/glossary/asset-models) the unit belongs to |
@@ -116,7 +120,7 @@ A saved filter or a shared link that filters or sorts on the column is quietly i
 
 - **is**: Exact match (e.g., `Location is "Server Room"`)
 - **Is in (incl. sub-locations)**: Location only. Matches the location you pick and every location under it. Plain **is** matches the one location and nothing below it. See [Sublocations](/knowledge-base/sublocations-organize-locations-into-hierarchies)
-- **is not**: Excludes exact match (e.g., `Category is not "Computers"`)
+- **is not**: Excludes exact match (e.g., `Category is not "Computers"`). Assets where the field is empty are kept, so `Unit of measure is not "kg"` also lists assets without a unit
 - **contains**: Partial match (e.g., `Description contains "wireless"`)
 - **matches any**: Multiple exact matches
 - **contains any**: Multiple partial matches
@@ -151,11 +155,13 @@ A saved filter or a shared link that filters or sorts on the column is quietly i
 - **contains all**: Has all specified tags
 - **contains any**: Has any of specified tags
 
-### Low stock only
+### Needs reordering
 
-The **Filter** panel carries a single checkbox, **Low stock only** (*at or below reorder threshold*), just above the **Add filter** row. It narrows the list to [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) whose available count has reached or fallen below their **Min quantity**, and it applies immediately rather than waiting for **Apply filters**.
+The **Filter** panel carries a single checkbox, **Needs reordering** (*at or below the min quantity you set*), just above the **Add filter** row. It was called **Low stock only** until October 2026. It narrows the list to [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) whose **Free now** figure has reached or fallen below their **Min quantity**, including pools with nothing free, and it applies immediately rather than waiting for **Apply filters**.
 
-It stacks with everything else, so you can combine it with a location or category filter to see what a single stockroom needs. It also counts toward the filter badge on the **Filter** button and clears with **Clear all**. Add **Min quantity** from the column picker to see each item's threshold next to its live count.
+![The advanced asset index Filter popover, with the Needs reordering checkbox described as "at or below the min quantity you set".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/needs-reordering-filter.webp)
+
+It stacks with everything else, so you can combine it with a location or category filter to see what a single stockroom needs. It also counts toward the filter badge on the **Filter** button and clears with **Clear all**. Add **Min quantity** from the column picker to see each item's threshold next to its **Free now** count. For a narrower question, filter the **Stock status** column instead: **Running low** leaves out pools that have run out entirely, which show **None free**.
 
 ### Saved Filters
 
@@ -210,7 +216,7 @@ Each row is one model:
 - **Status**: where those assets are right now, as **in**, **out** and **in custody**. The three add up to the row's asset count. An orange **N not bookable** chip counts the ones with **Available for bookings** switched off. It overlaps the other three rather than adding to them
 - **Total value** of those assets
 
-**The counts follow your filters.** Every [filter](#advanced-filtering-system), saved filter and search term applies to this view exactly as it does to the list. The one exception is the **Low stock only** quick filter: it only concerns quantity-tracked assets, which this view does not count, so switching to the model view clears it. Filter to one location and the view answers "which models do I have here, and how many". A search term matches model names as well as everything else the [search](/features/asset-search) covers, so typing `Dell Latitude` lists that model with its real counts. The line above the table states it, for example *"40 assets match your filters"*.
+**The counts follow your filters.** Every [filter](#advanced-filtering-system), saved filter and search term applies to this view exactly as it does to the list. The one exception is the **Needs reordering** quick filter: it only concerns quantity-tracked assets, which this view does not count, so switching to the model view clears it. Filter to one location and the view answers "which models do I have here, and how many". A search term matches model names as well as everything else the [search](/features/asset-search) covers, so typing `Dell Latitude` lists that model with its real counts. The line above the table states it, for example *"40 assets match your filters"*.
 
 **Quantity-tracked assets are not counted.** Asset models group individually tracked units only, so for the same filters the model view can show fewer assets than the list view. The info icon beside the count says so.
 
@@ -303,6 +309,11 @@ Networking
 - Update category for selected assets
 - Useful for department reorganization
 
+### Min quantity
+
+- Select quantity-tracked assets and choose **Set min quantity** to give them all the same low-stock threshold
+- Leave the number empty to clear the threshold
+
 ### Availability Control
 
 - Mark multiple assets as available/unavailable
@@ -320,6 +331,8 @@ Select the assets you want (or **Select all X entries** to take the whole filter
 
 - **Format**: **Standard** for a readable spreadsheet, or **Import-ready** for a file that uploads straight back into another workspace via **Assets → Import**
 - **Columns**: only the columns currently visible in your index, or all of them. **Last audit date** is a Standard-only column; the Import-ready file never carries it
+- **QR URL**: a Standard file puts the link each QR code encodes right after **QR ID**, for label printer software. See [Printing labels for assets you already have](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf#printing-labels-for-assets-you-already-have)
+- **Quantities**: a Standard file writes **Total quantity**, **Free now** and **Reserved** as bare numbers and adds **Unit of measure** next to the quantity, even when that column is hidden on screen
 
 A Standard export is perfect for:
 

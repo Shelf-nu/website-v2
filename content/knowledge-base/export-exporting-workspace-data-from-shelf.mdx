@@ -3,7 +3,7 @@ title: "Exporting Data from Shelf"
 description: "Export asset data from Shelf as CSV: selected assets or a filtered view, in the Standard or Import-ready format. Covers what each includes, moving assets to another workspace, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-20"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -93,7 +93,8 @@ Typical fields included:
 - **Name**, **Description**, **Category**, **Tags**, **Location**
 - **Status** (Available, In custody, etc.)
 - **Custody** (the current custodian)
-- **QR ID** and **Asset ID / SAM ID**
+- **QR ID**, **QR URL** and **Asset ID / SAM ID**. **QR URL** is the link the asset's QR code encodes (`https://eam.sh/…`), right after **QR ID**, so label software such as Brady Workstation, P-touch Editor or Dymo Connect can print the code from it. It is empty for an asset without a code. If you have a custom field named `QR URL`, your field keeps that header instead
+- **Total quantity** as a plain number, with **Unit of measure** right after it whenever the quantity is exported, and **Free now**, **Reserved**, **Stock status** and **Min quantity** when those columns are chosen
 - **Value**, **Purchase date**, any other **custom fields** you've defined
 - **Activity history** (on selected exports; not on filtered views)
 
@@ -157,7 +158,7 @@ A common workflow: export a filtered selection, edit the CSV in Excel or Google 
 A Standard export can be used as well, with two caveats:
 
 - It only carries an `ID` column when that column is visible in your index or you pick the **All columns** scope.
-- Its quantity cell includes the unit, as `10 boxes`, and the update flow needs the number alone. `Min quantity`, `Unit of measure`, and `Consumption type` are not in a Standard export, so add those columns yourself, spelled exactly that way, when you want to change them in bulk.
+- It has no `Consumption type` column, so add one yourself, spelled exactly that way, when you want to change it in bulk. `Total quantity` is a plain number and `Unit of measure` comes with it; `Min quantity` is there when the column is shown or you pick **All columns**. A Standard file exported before 20 October 2026 still writes the quantity with its unit, as `10 boxes`, and the update flow needs the number alone.
 
 The other way round, **Last audit date** is a Standard-only column: a Standard export carries it when the column is visible or you pick **All columns**, and an Import-ready file never does, since an audit date cannot be imported. Both formats respect a Last audit date filter, so a **Select all** export matches the rows the index showed. See [Last audit date](/knowledge-base/advanced-asset-index-complete-guide#last-audit-date).
 
