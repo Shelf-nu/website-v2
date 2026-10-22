@@ -1,0 +1,16 @@
+---
+title: "QR Code URLs for Your Own Label Printer"
+description: "The bulk QR download now includes a labels.csv with each asset's QR URL, and the Standard asset export and Asset Inventory report carry the URL too, so label software like Brady Workstation, P-touch Editor or Dymo Connect can print Shelf codes on your own labels."
+date: "2026-10-22"
+image: "/images/updates/order-qr-labels.jpg"
+readMoreUrl: "/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf#printing-labels-for-assets-you-already-have"
+layout: "update"
+---
+
+Label printer software builds a QR code from a column of URLs. Shelf gave you the QR images and the QR ID, but not the URL each code encodes, so printing Shelf codes on your own label stock meant asking support for a file. Now the URL comes with your data:
+
+- **Bulk QR download.** Select assets, then **Actions → Download QR Codes**. The zip now holds a `labels.csv` next to the images, one row per asset: asset name, SAM ID, QR ID, QR URL, category and location.
+- **Asset export.** A **Standard** export from the advanced asset index has a **QR URL** column right after **QR ID**.
+- **Asset Inventory report.** Its CSV carries a **QR Code URL** column.
+
+Each URL reads `https://eam.sh/<QR ID>`, the same link the Shelf QR code encodes, so your printed label scans exactly like the original.
