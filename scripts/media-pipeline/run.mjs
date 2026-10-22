@@ -25,6 +25,7 @@ const ARTICLES = {
   "import-ready-export": "articles/import-ready-export.mjs",
   "date-time-preferences": "articles/date-time-preferences.mjs",
   "low-stock-visibility": "articles/low-stock-visibility.mjs",
+  "dropdown-options": "articles/dropdown-options.mjs",
   "qt-availability": "articles/qt-availability.mjs",
   "bulk-asset-model": "articles/bulk-asset-model.mjs",
   "asset-model-cover-image": "articles/asset-model-cover-image.mjs",
