@@ -3,6 +3,7 @@ title: "How to Print Custom Branded QR Code Labels with Shelf"
 description: "Learn how to design and batch-produce branded QR code labels using Shelf's Unclaimed Codes feature, maintaining complete control over label design while staying synchronized with Shelf's asset database."
 category: "Assets"
 date: "2024-06-01"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -117,6 +118,25 @@ Standard operating procedure becomes:
 
 **Traceability:** All code assignments, swaps, and claims are logged in the asset history for audit traceability. This ensures compliance with inventory audits, equipment handovers, and change management policies.
 
+## Printing Labels for Assets You Already Have
+
+Unclaimed codes are for labels you print before the assets exist. For assets already in Shelf, each one already has a QR code, and you can get its data straight from Shelf for your label software, without asking support.
+
+Label software such as Brady Workstation, P-touch Editor, Dymo Connect, Bartender or NiceLabel builds the QR code itself from a column of URLs. Shelf gives you that column in three places:
+
+1. **The bulk QR download.** Available on every plan. On the asset list, select the assets, then **Actions → Download QR Codes**. Besides the QR images (in a `qr-codes/` folder), the `.zip` holds a **`labels.csv`** at its root with one row per asset, in the same order as the images: `Asset name`, `SAM ID`, `QR ID`, `QR URL`, `Category`, `Location`. Point your label template at that file and map its QR code element to the `QR URL` column.
+2. **The asset export.** On the advanced asset index, **Export selection** in the **Standard** format writes a **QR URL** column right after **QR ID** (whenever QR ID is in the export), next to every other column you export, custom fields included. Use this when your label needs more than the six `labels.csv` columns. Exporting assets is part of the Plus and Team plans.
+3. **The Asset Inventory report.** Its CSV export carries a **QR Code URL** column after **QR Code ID**. Reports are part of the Plus and Team plans.
+
+Every URL has the form `https://eam.sh/<QR ID>`, the same link the Shelf QR code encodes, so a label printed from it scans exactly like the Shelf label. An asset without a QR code has an empty cell.
+
+A few details that matter when the file lands in label software:
+
+- `labels.csv` is UTF-8 with a byte order mark, so accented and non-Latin names come through intact.
+- A value that would run as a spreadsheet formula, such as a name starting with `=`, gets a leading `'` so it is printed, not executed. A plain measurement such as `-20C Freezer` or `+5V PSU` is left exactly as typed.
+- **Location** is the asset's first location. A quantity-tracked pool kept at several locations shows one of them.
+
+
 ## Benefits of This Approach
 
 - **Universal Compatibility** -- Works with any label printer that accepts CSV or image files, no vendor lock-in.
@@ -172,7 +192,7 @@ Once a code is claimed and associated with an asset, it's permanently linked to 
 ### Data Fields
 
 **What if I want to print the asset name instead of just the ID?**
-You can include any asset field in your CSV export: asset name, category, location, serial number, purchase date, custom fields. Configure the label template to display the fields most relevant to your operations.
+`labels.csv` already carries the asset name, SAM ID, category and location. For anything else, such as a serial number or another custom field, use a Standard asset export, which includes every column you choose plus the QR URL. Configure the label template to display the fields most relevant to your operations.
 
 **How do I handle labels for kits with multiple components?**
 You have two options: (1) Generate individual codes for each kit component, or (2) Use Shelf's kit management feature to associate a parent code with child asset codes. Both approaches are supported.
@@ -180,7 +200,10 @@ You have two options: (1) Generate individual codes for each kit component, or (
 ### Existing Assets
 
 **Can I export QR codes for existing assets?**
-Yes. From the advanced asset index, you can batch download QR codes for existing assets in a zip file. You can choose whether to render the Asset ID or SAM ID on the exported codes.
+Yes. Select the assets on the asset list and use **Actions → Download QR Codes** to get a zip file of their codes. You can choose whether to render the Asset ID or SAM ID on the exported codes. The zip also holds a `labels.csv` with each asset's QR URL, for label software. See [Printing labels for assets you already have](#printing-labels-for-assets-you-already-have).
+
+**Can I get the URL each QR code encodes?**
+Yes, without contacting support. It is the `QR URL` column of `labels.csv` in the QR download, the **QR URL** column of a Standard asset export, and the **QR Code URL** column of the Asset Inventory report. Each one reads `https://eam.sh/<QR ID>`.
 
 ## Getting Started
 
