@@ -121,7 +121,7 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     },
     {
         question: "Does it work on an iPad or a tablet?",
-        answer: "Yes, from version 1.6.0. Shelf Companion runs as a real iPad app and fills an Android tablet's screen. Hold the tablet upright or sideways: sideways, the tab bar moves to a sidebar on the left and each screen sits in a centred column. Phones look the same as before.",
+        answer: "Yes, from version 1.6.0. Shelf Companion runs as a real iPad app and fills an Android tablet's screen. On a larger tablet held sideways (and a 13-inch iPad either way), the tab bar becomes a sidebar on the left. Phones look the same as before.",
     },
     {
         question: "Can I capture audit evidence (photos, notes) from the app?",

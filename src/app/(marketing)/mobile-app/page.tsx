@@ -16,7 +16,7 @@ import { APP_STORE_URL, COMPANION_SCREENS, type CompanionScreen } from "@/data/c
 import { mobileAppFeatures, builtForApp, bestOnWeb, mobileAppFaqs } from "@/data/mobile-app";
 
 export const metadata: Metadata = {
-    title: "Shelf Companion for iPhone & Android — Scan, Audit, Manage Custody on the Floor",
+    title: "Shelf Companion for iPhone, iPad & Android — Scan, Audit, Manage Custody on the Floor",
     description:
         "The official iPhone, iPad and Android companion for your Shelf workspace. Optional — the Shelf web app still works in any phone browser, and can be installed as a PWA. Scan QR codes, run live audits, manage custody, and handle booking check-in/check-out. Free with any Shelf account.",
     keywords: [
