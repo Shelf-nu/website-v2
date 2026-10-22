@@ -46,7 +46,7 @@ async function main() {
     console.log("Dialog:", dText.replace(/\n/g, " | "));
     if (!/Check in booking/.test(dText)) throw new Error("Not the check-in dialog: " + dText);
     await initAnnotations(page);
-    await caption(page, "Every check-in asks first: the dialog names the booking and what it will do.");
+    await caption(page, "Quick check-in asks first: the dialog names the booking and what it will do.");
     const shot = await screenshot(page, join(tmpDir, "checkin-confirm-dialog.png"));
     await clearAll(page);
     await page.getByRole("button", { name: "Cancel" }).click();
