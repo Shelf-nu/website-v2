@@ -39,6 +39,7 @@ const ARTICLES = {
   "kit-code-chips": "articles/kit-code-chips.mjs",
   "bulk-update-row-count": "articles/bulk-update-row-count.mjs",
   "custody-on-location-page": "articles/custody-on-location-page.mjs",
+  "dropdown-options": "articles/dropdown-options.mjs",
   "nrm-actions-and-delete": "articles/nrm-actions-and-delete.mjs",
   "booking-compliance-calculation": "articles/booking-compliance-calculation.mjs",
   "checkin-receipt": "articles/checkin-receipt.mjs",

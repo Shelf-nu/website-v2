@@ -3,7 +3,7 @@ title: "Mastering Custom Fields in Shelf: Complete Guide to Asset Information Cu
 description: "An overview of field types that can be used as custom fields in Shelf, enabling organizations to customize their asset management systems to match specific workflow requirements."
 category: "Custom Fields"
 date: "2024-06-01"
-updated: "2026-09-29"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -71,6 +71,22 @@ Dropdown menu with predefined choices ensuring data consistency.
 **Example:** Condition dropdown with options: New, Good, Fair, Needs Repair, Retired
 
 An Option field needs at least one option before you can save it. Type each choice into the builder and press enter. Spaces at the start and end of an option are trimmed, and a blank or repeated option is not added.
+
+#### Managing an Option field's choices
+
+Open the field under **Settings → Custom fields** and click it to edit. Each option that is in use shows **Used on N assets**, so you can see what a change will touch before you make it. Nothing changes on any asset until you save the field.
+
+![Editing the Brand option field: drag handles on each option, a Sort A-Z button, a notice that 11 options are duplicates with a Merge duplicates button, and Used on N assets under each option](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/dropdown-options-editor.webp)
+
+- **Reorder.** Drag an option by its handle, or focus it and press **Alt+Up** / **Alt+Down**. The order you save is the order everyone sees in the asset form, the filters and the Shelf Companion app.
+- **Sort A-Z.** One click puts the options in alphabetical order. **Undo sort** puts them back until you make another change.
+- **Rename.** Click an option to change its spelling. When you save, every asset that holds the old spelling moves to the new one. 
+- **Merge duplicates.** Options that differ only in capital letters or spaces, such as `Sony` and `sony `, are flagged with **Merge duplicates**. Merging keeps the first spelling, and the assets holding the others move to it when you save.
+- **Remove.** Removing an option that is in use asks first and names how many assets hold it. Those assets keep their current value, but it is no longer one of the choices; rename the option instead if you want them updated.
+
+A rename or merge does not write a note on each asset's activity. A saved filter or a link that names the old spelling stops matching after the rename, so update it to the new one.
+
+When a dropdown has more than eight options, the value picker in the advanced index filters and the picker in the Shelf Companion app get a search box, so a long list stays quick to use.
 
 ### Boolean
 
