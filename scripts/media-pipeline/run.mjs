@@ -14,7 +14,6 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const ARTICLES = {
-  "last-audit-date": "articles/last-audit-date.mjs",
   "manager-role": "articles/manager-role.mjs",
   "export-workspace-data": "articles/export-workspace-data.mjs",
   "adding-additional-fields": "articles/adding-additional-fields.mjs",
@@ -22,6 +21,7 @@ const ARTICLES = {
   "understanding-sorting": "articles/understanding-sorting.mjs",
   "configure-permissions": "articles/configure-permissions.mjs",
   "kit-location": "articles/kit-location.mjs",
+  "last-audit-date": "articles/last-audit-date.mjs",
   "import-update-columns": "articles/import-update-columns.mjs",
   "import-ready-export": "articles/import-ready-export.mjs",
   "date-time-preferences": "articles/date-time-preferences.mjs",
