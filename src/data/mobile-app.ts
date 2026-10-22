@@ -28,7 +28,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Field Audits",
         description:
-            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan and read them back later, take a mis-scan back off, and complete the audit when done. Scanned rows say where each asset lives, and anything the audit did not expect is counted separately.",
+            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan and read them back later, take a mis-scan back off, and complete the audit with a closing note when done. Scanned rows say where each asset lives, and anything the audit did not expect is counted separately.",
         icon: ClipboardCheck,
     },
     {
@@ -40,7 +40,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Bookings, End to End",
         description:
-            "Create, edit, and reserve bookings from the phone with availability-aware asset, kit, and model pickers, then scan gear out one item at a time or scan reserved units to assign and check out, and record what comes back on return. Read the month as a calendar or the week as a list.",
+            "Create, edit, and reserve bookings from the phone with availability-aware asset, kit, and model pickers, book a number of units of stock, then scan gear out one item at a time or scan reserved units to assign and check out, extend a running booking, and record what comes back on return. Each asset screen lists what it is booked for. Read the month as a calendar or the week as a list.",
         icon: CalendarCheck,
     },
     {
@@ -97,7 +97,7 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     },
     {
         question: "Where can I get the app?",
-        answer: "Shelf Companion is live on the App Store (iPhone) and Google Play (Android). Search for \"Shelf Companion\", or download directly — iOS: https://apps.apple.com/app/id6765639874 · Android: https://play.google.com/store/apps/details?id=com.shelf.companion. Sign in with your existing Shelf account.",
+        answer: "Shelf Companion is live on the App Store (iPhone and iPad) and Google Play (Android phones and tablets). Search for \"Shelf Companion\", or download directly — iOS: https://apps.apple.com/app/id6765639874 · Android: https://play.google.com/store/apps/details?id=com.shelf.companion. Sign in with your existing Shelf account.",
     },
     {
         question: "Can I use the app with a self-hosted Shelf server?",
@@ -118,6 +118,10 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     {
         question: "Is it available on Android?",
         answer: "Yes — Shelf Companion is now live on Google Play, free with any Shelf account. You can also use Shelf in any Android phone browser, or install it as a PWA on your home screen.",
+    },
+    {
+        question: "Does it work on an iPad or a tablet?",
+        answer: "Yes, from version 1.6.0. Shelf Companion runs as a real iPad app and fills an Android tablet's screen. Hold the tablet upright or sideways: sideways, the tab bar moves to a sidebar on the left and each screen sits in a centred column. Phones look the same as before.",
     },
     {
         question: "Can I capture audit evidence (photos, notes) from the app?",

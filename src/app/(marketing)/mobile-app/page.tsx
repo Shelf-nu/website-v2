@@ -18,7 +18,7 @@ import { mobileAppFeatures, builtForApp, bestOnWeb, mobileAppFaqs } from "@/data
 export const metadata: Metadata = {
     title: "Shelf Companion for iPhone & Android — Scan, Audit, Manage Custody on the Floor",
     description:
-        "The official iPhone and Android companion for your Shelf workspace. Optional — the Shelf web app still works in any phone browser, and can be installed as a PWA. Scan QR codes, run live audits, manage custody, and handle booking check-in/check-out. Free with any Shelf account.",
+        "The official iPhone, iPad and Android companion for your Shelf workspace. Optional — the Shelf web app still works in any phone browser, and can be installed as a PWA. Scan QR codes, run live audits, manage custody, and handle booking check-in/check-out. Free with any Shelf account.",
     keywords: [
         "shelf companion",
         "shelf ios app",
@@ -44,7 +44,7 @@ const mobileAppSchema = {
     "@id": "https://www.shelf.nu/mobile-app#shelf-companion-ios",
     name: "Shelf Companion",
     description:
-        "Optional native companion app (iPhone and Android) for the Shelf asset management platform. Scan QR codes, run live audits, view assets, manage custody, and check bookings in/out from your phone. Requires an existing Shelf account. The Shelf web app remains fully usable in any phone browser.",
+        "Optional native companion app (iPhone, iPad and Android) for the Shelf asset management platform. Scan QR codes, run live audits, view assets, manage custody, and check bookings in/out from your phone. Requires an existing Shelf account. The Shelf web app remains fully usable in any phone browser.",
     applicationCategory: "BusinessApplication",
     applicationSubCategory: "Asset Tracking",
     operatingSystem: "iOS 15.1+, Android",
@@ -114,7 +114,7 @@ export default function MobileAppPage() {
                                 Scan it. Find it. <span className="text-orange-600">Done.</span>
                             </h1>
                             <p className="mb-8 text-lg leading-relaxed text-pretty text-muted-foreground">
-                                Shelf Companion is a native app — for iPhone and Android — that pairs with your Shelf workspace. Scan QR codes, run audits, manage custody, and check bookings in or out — from wherever the work happens. Free with any Shelf account. Optional — the Shelf web app still works in any modern phone browser, with PWA install if you want a home-screen icon.
+                                Shelf Companion is a native app — for iPhone, iPad and Android — that pairs with your Shelf workspace. Scan QR codes, run audits, manage custody, and check bookings in or out — from wherever the work happens. Free with any Shelf account. Optional — the Shelf web app still works in any modern phone browser, with PWA install if you want a home-screen icon.
                             </p>
 
                             <div className="flex w-full flex-col items-center gap-3 sm:w-auto lg:items-start">
@@ -138,7 +138,7 @@ export default function MobileAppPage() {
                                 </a>
                             </p>
                             <p className="mt-3 text-xs text-muted-foreground">
-                                On iPhone (iOS 15.1+) and Android. Sign in with the credentials you already use on shelf.nu — including SSO.
+                                On iPhone and iPad (iOS 15.1+) and Android phones and tablets. Sign in with the credentials you already use on shelf.nu — including SSO.
                             </p>
                         </div>
 
@@ -183,7 +183,7 @@ export default function MobileAppPage() {
                             </span>
                             <h3 className="mb-2 font-semibold text-heading">Shelf Companion app</h3>
                             <p className="mb-4 flex-1 text-sm leading-relaxed text-body">
-                                Native iPhone and Android app focused on field scanning, audits, custody, and bookings. Faster on the floor than the browser.
+                                Native iPhone, iPad and Android app focused on field scanning, audits, custody, and bookings. Faster on the floor than the browser.
                             </p>
                             <p className="text-xs font-semibold uppercase tracking-widest text-orange-700 dark:text-orange-400">iOS and Android</p>
                         </div>
@@ -300,7 +300,7 @@ export default function MobileAppPage() {
                 <Container className="relative text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">Bring Shelf to the floor.</h2>
                     <p className="mx-auto mt-4 max-w-lg text-lg text-neutral-400">
-                        Download Shelf Companion for iPhone or Android — or keep using Shelf in any phone browser. Same workspace, same data, your choice.
+                        Download Shelf Companion for iPhone, iPad or Android — or keep using Shelf in any phone browser. Same workspace, same data, your choice.
                     </p>
                     <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                         <AppStoreBadge location="mobile_app_bottom" className="border-neutral-800 bg-neutral-900/50 text-white hover:bg-neutral-900 hover:text-white" variant="outline" />
