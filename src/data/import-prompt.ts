@@ -35,7 +35,7 @@ Then stop and wait for my answers.
 STEP 2: WRITE THE CSV
 Output:
 - UTF-8, comma-delimited. First row is the header row. One item per row.
-- At most 10,000 rows per file. Split larger lists into numbered files.
+- At most 10,000 rows and 10 MB per file. Split larger lists into numbered files.
 - Wrap any cell that contains a comma, a double quote or a line break in double quotes, and double any quote inside it ("").
 
 Columns. Use exactly these headers. Shelf ignores capitals, but a column it cannot match is skipped and not imported:
@@ -74,7 +74,7 @@ Open the CSV you wrote with a CSV parser and report the result of each check:
 - Every barcode value fits the length and character rules for its type.
 - Every QUANTITY_TRACKED row has a quantity above 0 and a consumptionType, and no assetModel.
 - Every item in the same kit has the same custodian.
-- No file has more than 10,000 rows.
+- No file has more than 10,000 rows or is larger than 10 MB.
 Then give me the file(s), the final column mapping, and a list of anything you weren't sure about, with row numbers.
 
 I'll upload the file in Shelf under Assets → Import. Full guide: https://www.shelf.nu/knowledge-base/importing-assets-to-shelf-csv-guide`;
