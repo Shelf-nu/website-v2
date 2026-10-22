@@ -34,6 +34,7 @@ const ARTICLES = {
   "booking-reserve-blocked-named": "articles/booking-reserve-blocked-named.mjs",
   "audit-export-receipt": "articles/audit-export-receipt.mjs",
   "audit-findings": "articles/audit-findings.mjs",
+  "stock-columns": "articles/stock-columns.mjs",
   "transfer-ownership-header": "articles/transfer-ownership-header.mjs",
   "kit-code-chips": "articles/kit-code-chips.mjs",
   "bulk-update-row-count": "articles/bulk-update-row-count.mjs",

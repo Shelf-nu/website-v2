@@ -12,7 +12,7 @@ personas:
   - "field"
 canonicalUrl: "/features/consumables-tracking"
 date: "2026-06-30"
-updated: "2026-10-09"
+updated: "2026-10-22"
 seo:
   title: "Consumables Tracking Software — Track Supplies by Quantity"
   description: "Track consumables and supplies by quantity alongside your assets. Units of measure, min-quantity low-stock alerts, Used-up or Returnable consumption, and quantity-aware custody, bookings, and kits — open source, free to start."
@@ -90,9 +90,23 @@ The alert fires **once per crossing**, not on every decrement. Shelf remembers t
 
 Alerts only fire when a minimum is set, so no threshold means no noise.
 
-To see everything running low at once, open the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide), click **Filter**, and tick **Low stock only**. Add **Min quantity** as a column and each item's threshold sits next to its live count.
+To see everything that needs reordering at once, open the [advanced asset index](/knowledge-base/advanced-asset-index-complete-guide), click **Filter**, and tick **Needs reordering** (*at or below the min quantity you set*). To give a whole shelf of supplies a threshold in one go, select them on the asset list and use **Set min quantity** from the bulk actions.
 
-![The advanced asset index Filter popover, with the Low stock only checkbox described as "at or below reorder threshold".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/low-stock-filter.webp)
+![The advanced asset index Filter popover, with the Needs reordering checkbox described as "at or below the min quantity you set".](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/needs-reordering-filter.webp)
+
+---
+
+## Stock at a glance on the asset list
+
+The advanced asset list shows each pool's stock next to its status, so nobody has to open assets one by one to see what is left:
+
+- **Free now** reads like *14 of 20 pcs*: the units you could hand over today, after custody, kits and units out on bookings. Units promised to a future booking are still on the shelf, so they are not taken off.
+- **Stock status** is one verdict per pool: **Short by N** when bookings, custody and kits need more than you own at the busiest point ahead, **None free**, **Running low** at or below your minimum, or **Enough**. Hover it for the figures behind it.
+- **Reserved** shows the units promised to upcoming bookings, and an over-committed pool says how many it is short.
+
+![The advanced asset list with Status, Free now and Stock status side by side: a sandbag pool reads Partial custody, 8 of 14 sandbags, Enough.](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/stock-columns.webp)
+
+You can filter and sort by all three, and **Total quantity**, **Unit of measure** and **Min quantity** are one switch away in the column picker. The same **Free now** figure appears on the asset page and in the [Shelf Companion](/mobile-app) app, so every screen gives one number the same name. See [Stock columns on the asset list](/knowledge-base/quantity-tracked-assets-and-consumables#stock-columns-on-the-asset-list).
 
 ---
 
