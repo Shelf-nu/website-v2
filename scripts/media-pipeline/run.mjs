@@ -14,7 +14,6 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const ARTICLES = {
-  "unsaved-changes-bar": "articles/unsaved-changes-bar.mjs",
   "manager-role": "articles/manager-role.mjs",
   "export-workspace-data": "articles/export-workspace-data.mjs",
   "adding-additional-fields": "articles/adding-additional-fields.mjs",
@@ -43,6 +42,7 @@ const ARTICLES = {
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
   "custody-source-location": "articles/custody-source-location.mjs",
   "asset-model-view": "articles/asset-model-view.mjs",
+  "unsaved-changes-bar": "articles/unsaved-changes-bar.mjs",
   "homepage-refresh": "articles/homepage-refresh.mjs",
   "homepage-refresh-picks": "articles/homepage-refresh-picks.mjs",
 };
