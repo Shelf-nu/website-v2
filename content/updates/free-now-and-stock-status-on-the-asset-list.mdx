@@ -7,10 +7,10 @@ readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#stock-colu
 layout: "update"
 ---
 
-Until now the asset list said nothing about stock: a pool with units out or reserved still read **Available**, and you had to open each asset to see what was left. The advanced asset list now carries the figures.
+The advanced asset list now shows each pool's stock right after Status.
 
 - **Free now** reads like *14 of 20 pcs*: the units you could hand over today, after custody, kits and units out on bookings. Units promised to a future booking are still on the shelf, so they are not subtracted.
-- **Stock status** gives one verdict per pool. **Short by N** means bookings, custody and kits need more than you own at the busiest point ahead. **None free**, **Running low** (at or below your min quantity) and **Enough** cover the rest; with no min quantity set it shows a dash. Hover for the figures, and for a shortfall, a link to the booking that causes it.
+- **Stock status** gives one verdict per pool. **Short by N** means bookings, custody and kits need more than you own at the busiest point ahead. **None free**, **Running low** (at or below your min quantity) and **Enough** cover the rest. Without a min quantity it can still read **Short by N** or **None free**; otherwise it shows a dash. Hover for the figures, and for a shortfall, a link to the booking that causes it.
 - **Reserved** (in the column picker) counts the units promised to upcoming bookings, and an over-committed pool reads like *12 · 2 short*.
 - **Unit of measure** has its own column. **Total quantity** is now the bare number, and the Standard CSV export writes it that way too, so the column adds up in a spreadsheet.
 
