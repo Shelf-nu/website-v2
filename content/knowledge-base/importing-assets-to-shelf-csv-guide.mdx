@@ -38,13 +38,13 @@ To begin importing assets:
 
 ## Checking How Your Columns Map
 
-After you choose a file and click **Continue**, Shelf reads its headings and a few sample values and shows **Check how your columns map**: one row per column of your file, with up to three sample values, the Shelf field it will become, and a dot for how sure the match is. A green dot is a **Sure match**; an amber dot means **Guess, please check**, and a skipped column also shows amber. Nothing has been imported at this point.
+After you choose a file and click **Continue**, Shelf reads its headings and a few sample values and shows **Check how your columns map**: one row per column of your file, with up to three sample values, the Shelf field it will become, and a dot for how sure the match is. A green dot means a sure match and an amber dot a guess to check. A column Shelf could not place is set to **Skip** with an amber dot, and any row you change yourself turns green. Nothing has been imported at this point.
 
 ![The Check how your columns map table for a Sortly-style export: Entry Name goes to Title, Notes to Description, Unit to Unit of measure, Min Level to Low-stock alert at, Price to Value, Quantity to Quantity, Tags to Tags and Primary Folder to Location, all with green dots, while Sortly ID is set to Skip with an amber dot. Below it: Up to 3 assets will be imported, and the question How should these rows be tracked?](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/import-column-mapping.webp)
 
 **How Shelf proposes a field**, in this order:
 
-1. **Shelf's own headings**, such as `title` or `cf:Serial number,type:text`. A file made from the template, or an Import-ready export, shows every row green with the message **Your file already matches Shelf's format.** The `id` column of an Import-ready export is always skipped, since the new workspace issues its own ids.
+1. **Shelf's own headings**, such as `title` or `cf:Serial number,type:text`. A file made from the template, or an Import-ready export, shows the message **Your file already matches Shelf's format.** Every row of the template is green. The `id` column of an Import-ready export is always set to **Skip**, with an amber dot, since the new workspace issues its own ids.
 2. **The same name, ignoring capitals and punctuation**, such as `Title` or `Unit of measure`.
 3. **A custom field your workspace already has** with the same name. It keeps the type it already has.
 4. **Common headings from other tools and hand-made sheets**: more than 150 of them, from Sortly, Asset Panda, Snipe-IT and spreadsheets, including common German, Spanish and French ones. For example *Item Name* becomes the name, *Qty* the quantity, *Primary Folder* the location, *Min Level* the low-stock alert, *Serial No.* a new **Serial number** custom field and *Purchased* a new **Purchase date** date field. Barcode headings are only matched when the [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on is on.
@@ -55,10 +55,10 @@ After you choose a file and click **Continue**, Shelf reads its headings and a f
 **What the review checks before you continue:**
 
 - **Two columns aimed at the same field.** Both rows turn red with *"Another column already goes to this field. Pick a different one or Skip."*, and **Preview import** stays disabled until you fix it.
-- **Values the import will refuse.** Short notes under the table point out, for example, a date column written as DD/MM/YYYY (dates must be `YYYY-MM-DD`) or yes/no values the field will not accept. Fix those in the file before you import.
+- **Values the import will refuse or leave out.** Short notes under the table point out a date column written as, for example, DD/MM/YYYY: dates must be `YYYY-MM-DD`, and the import stops on any other date. They also point out values such as `true` or `1` in a yes/no field: the import does not stop for those, but the asset is created with that field empty. Fix both in the file before you import.
 - **How many rows come in.** A line under the table says how many assets will be imported, for example *"Up to 3 assets will be imported. Rows with values only in skipped columns are left out."* It names any custom fields the file will create. The new categories, locations, tags, kits and custodians are listed in the preview that follows.
 
-**How should these rows be tracked?** When a column goes to **Quantity** and no column goes to the type (every Sortly export is like this), Shelf asks how the rows come in:
+**How should these rows be tracked?** When a column goes to **Quantity** and no column goes to the type (a Sortly export, for example), Shelf asks how the rows come in:
 
 - **Individual assets**: one asset per row. Every quantity must be 1.
 - **Stock, returned after use**: each row is tracked by quantity and checked back in after use.

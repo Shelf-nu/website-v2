@@ -111,7 +111,7 @@ The mark does not travel into your data. Shelf's own importer strips it, so a fi
 
 A spreadsheet treats a cell that starts with `=`, `+`, `-` or `@` as a formula and runs it when the file is opened. So when an asset name, tag, custom field value or name, booking, note or team member name starts with one of those characters, Shelf puts a single quote (`'`) in front of it in the CSV. Excel and Google Sheets then show it as plain text, for example `'=HYPERLINK(...)` rather than a link. Negative numbers such as `-5` or `-$5.00` are left alone, so values and amounts still add up.
 
-This applies to the **Standard** asset export, bookings, report exports, non-registered members and the activity note exports. Upload a Standard export to [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) and Shelf removes the added quote again, so the values come back exactly as they were. The **Import-ready** format does not add the quote yet.
+This applies to both asset export formats, **Standard** and **Import-ready**, and to bookings, report exports, non-registered members and the activity note exports. Upload an asset export to [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv), or an Import-ready export to the [CSV import](/knowledge-base/importing-assets-to-shelf-csv-guide), and Shelf removes the added quote again, so the values come back exactly as they were.
 
 ### Dates in exported files
 

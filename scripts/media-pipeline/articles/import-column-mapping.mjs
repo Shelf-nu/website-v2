@@ -101,7 +101,8 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+// Awaited, so run.mjs's `await import()` waits for the capture to finish.
+await main().catch((err) => {
   console.error("❌ Failed:", err);
   process.exit(1);
 });

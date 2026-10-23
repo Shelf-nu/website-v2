@@ -49,7 +49,7 @@ You do not have to rename anything. Upload the export as it is: when you click *
 
 A few things the review does for you:
 
-- **It asks how stock is tracked.** When a column goes to **Quantity** and none says whether a row is an individual asset or stock (every Sortly export is like this), it asks: **Individual assets**, **Stock, returned after use**, or **Stock, used up**.
+- **It asks how stock is tracked.** When a column goes to **Quantity** and none says whether a row is an individual asset or stock (a Sortly export, for example), it asks: **Individual assets**, **Stock, returned after use**, or **Stock, used up**.
 - **It skips the old tool's own ids.** A column such as *Sortly ID* is set to **Skip**. If people look items up by that number, set it to **Custom field...** with a name like *Previous ID* instead.
 - **It reuses your custom fields.** A column with the same name as a custom field you already have goes to that field, with its type.
 - **It warns about values the import will refuse**, such as dates written DD/MM/YYYY.
@@ -74,13 +74,13 @@ Where your columns usually end up:
 | Serial number | `cf:Serial number,type:text` | Common names such as *Serial No.* are proposed as this field; any other column can become an extra field through **Custom field...** |
 | Purchase date, Warranty until | `cf:Purchase date,type:date` | Dates must be `YYYY-MM-DD` |
 | Old ID, Legacy number | `cf:Previous ID,type:text` | Skipped unless you pick **Custom field...**. Worth keeping so people can still find items by the number they know |
-| Status, Available / Checked out | **Skip** | Shelf sets status itself; a row with a `custodian` imports as "In custody", everything else as "Available" |
+| Status, Available / Checked out | **Skip** | A column named *Status* or *Condition* is proposed as a new *Previous status* option field; set it to **Skip** unless you want to keep the old value. Shelf sets status itself; a row with a `custodian` imports as "In custody", everything else as "Available" |
 | Created, Last modified, History | **Skip** | Not imported |
 
 The mapping only renames columns; it never changes a value. A few rules about the values themselves still catch people out:
 
 - **Every row needs a `title`.** The file is checked before anything is created, and a row without one is reported back to you.
-- **Extra fields** are created with the type you pick in the review: `text`, `multiline text`, `option`, `boolean`, `date`, `amount` or `number`. If you prepare the file yourself, the header pattern is `cf:Field name,type:text`, in double quotes in a comma-separated file because it contains a comma.
+- **Extra fields** are created with the **Field type** you pick in the review: **Single-line text**, **Multi-line text**, **Option**, **Boolean**, **Date**, **Amount** or **Number**. If you prepare the file yourself, the header pattern is `cf:Field name,type:text`, with the type written as `text`, `multiline text`, `option`, `boolean`, `date`, `amount` or `number`, and the header in double quotes in a comma-separated file because it contains a comma.
 - **Dates** must be `YYYY-MM-DD`. Any other format stops the import with a clear error naming the row.
 - **Numbers** carry no currency symbols or thousands separators. `1250.50` works, `$1,250.50` does not.
 - **Save as UTF-8.** In Excel choose "CSV UTF-8" when saving, or accented names come through garbled.
