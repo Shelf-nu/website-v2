@@ -81,6 +81,7 @@ export const metadata: Metadata = {
   },
 };
 
+/** Root HTML shell for every page: fonts, theme, analytics and feed autodiscovery. */
 export default function RootLayout({
   children,
 }: Readonly<{
