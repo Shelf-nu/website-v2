@@ -77,7 +77,7 @@ Time-based reports include a timeframe picker with presets for the last 7 / 30 /
 
 ### Filter to the Slice You Care About
 
-Every booking, asset and custody report has a filter bar with the filters that fit its data: category, location, status and custodian where they apply, plus **asset model** and **custom field** filters on every asset-based report, so you can ask for "Booking compliance for assets whose Condition is Good" or "Idle cameras of one model". Applied filters show as chips, the CSV and PDF exports carry exactly the same filters, and the filters are saved in the URL, so you can bookmark or share a specific report view.
+Every booking, asset and custody report except Top Booked Kits can be filtered from a filter bar with the filters that fit its data: category, location, status and custodian where they apply, plus **asset model** and **custom field** filters on every asset-based report, so you can ask for "Booking compliance for assets whose Condition is Good" or "Idle cameras of one model". Applied filters show as chips, the CSV and PDF exports carry exactly the same filters, and the filters are saved in the URL, so you can bookmark or share a specific report view.
 
 ![The Asset Distribution report with its filter bar (Category, Location, Asset model, Custom field) above four donut breakdowns, including the new By Asset Model](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-filter-bar.webp)
 
@@ -91,9 +91,9 @@ Reports combine **KPI cards** for headline numbers, **charts** for trends and di
 
 ### Values That Add Up
 
-Shelf holds one value per unit, and every money figure in a report multiplies it by the quantity that figure is about: the units booked for value at risk, the units placed at a location for a location bucket, the units a custodian holds for a custody total. An asset split across two sites is counted at each one for the units it actually has there, not twice at full value, so **Asset Distribution** breaks the same total down three ways — by category, by location and by status — and each breakdown adds back up to the headline.
+Shelf holds one value per unit, and every money figure in a report multiplies it by the quantity that figure is about: the units booked for value at risk, the units placed at a location for a location bucket, the units a custodian holds for a custody total. An asset split across two sites is counted at each one for the units it actually has there, not twice at full value, so **Asset Distribution** breaks the same total down four ways — by category, by location, by status and by asset model — and each breakdown adds back up to the headline.
 
-**No Location** is the bucket for assets with no placement recorded anywhere, and it carries their full value. Stock that is *partly* placed is the one deliberate exception: an asset with six units at a location and four not yet put anywhere contributes only the six, and the remaining four are not folded into **No Location**. That bucket has to describe exactly the assets you get when you click it, which is the assets with no placement at all. So on a workspace that keeps partly-placed stock, the location breakdown can total less than the headline — by design, and only there. Category and status always account for every unit.
+**No Location** is the bucket for assets with no placement recorded anywhere, and it carries their full value. Stock that is *partly* placed is the one deliberate exception: an asset with six units at a location and four not yet put anywhere contributes only the six, and the remaining four are not folded into **No Location**. That bucket has to describe exactly the assets you get when you click it, which is the assets with no placement at all. So on a workspace that keeps partly-placed stock, the location breakdown can total less than the headline — by design, and only there. Category, status and asset model (assets without one sit in **No model**) always account for every unit.
 
 For teams tracking cabling, batteries, sandbags or any pooled supply, that is the difference between a report you can hand to finance and one you have to rebuild in a spreadsheet first.
 
@@ -134,7 +134,7 @@ The Audit Completion report turns a season of audits into one rate: how many wer
 ## Benefits
 
 - **Self-serve** — Operations managers run reports themselves, without waiting on engineering or exporting to BI tools. Reports are an Administrator and Owner surface, included on the Plus and Team plans
-- **Filterable** — Every booking, asset and custody report has a filter bar that matches how teams already organize their inventory
+- **Filterable** — Every booking, asset and custody report except Top Booked Kits can be filtered from a filter bar that matches how teams already organize their inventory
 - **Shareable** — URLs encode the filters, so a saved view can be sent to a colleague or bookmarked
 - **Exportable** — CSV for analysis, PDF for distribution
 - **Live where it matters** — Snapshot reports (Custody, Overdue, Inventory) always reflect current state

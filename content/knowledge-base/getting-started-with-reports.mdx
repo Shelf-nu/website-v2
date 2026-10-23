@@ -38,16 +38,17 @@ Every report except **Audit Completion** has a **filter bar** above it, next to 
 
 | Report | Filters in the bar |
 |---|---|
-| Booking Compliance | Status, Custodian, Location, Category, Asset model, Custom field |
+| Booking Compliance | Category, Location, Custodian, Status, Asset model, Custom field |
 | Top Booked Assets | Category, Location, Asset model, Custom field |
+| Top Booked Kits | Category and Location show in the bar but do not change the result yet: the report always ranks every kit |
 | Monthly Booking Trends | Category, Location, Asset model, Custom field |
-| Overdue Items | Custodian, Location, Category, Asset model, Custom field |
+| Overdue Items | Category, Location, Custodian, Asset model, Custom field |
 | Asset Inventory | Category, Location, Status, Asset model, Custom field |
 | Asset Activity Summary | Category, Location, Asset model, Custom field |
 | Asset Utilization | Category, Location, Asset model, Custom field |
 | Idle Assets | Category, Location, Asset model, Custom field |
 | Asset Distribution | Category, Location, Asset model, Custom field |
-| Custody Snapshot | Team Member, Location, Category, Asset model, Custom field |
+| Custody Snapshot | Category, Location, Custodian, Asset model, Custom field |
 | Audit Completion | None. The timeframe is the only control |
 
 ![The Asset Distribution report with its filter bar (Category, Location, Asset model, Custom field) above four donut breakdowns, including the new By Asset Model](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-filter-bar.webp)
@@ -58,7 +59,7 @@ Applied filters show as chips above the report; remove one, or use **Clear all f
 
 **Asset model** filters any asset-based report to the units of one or more [asset models](/glossary/asset-models), and **Asset Distribution** has a fourth breakdown, **By Asset Model**, next to category, location and status.
 
-**Filters live in the URL.** A filtered report is a link you can bookmark and send to a colleague, which is what makes "Idle Assets in the Amsterdam warehouse, last 90 days" one click away. Links made before October 2026 with the old parameter spellings (`categories=`, `custodian=`) still open filtered. Two filters have no dropdown and work from the URL only: the single `asset` on **Asset Activity Summary**, and the category and location filters of **Top Booked Kits**.
+**Filters live in the URL.** A filtered report is a link you can bookmark and send to a colleague, which is what makes "Idle Assets in the Amsterdam warehouse, last 90 days" one click away. Links made before October 2026 with the old parameter spellings (`categories=`, `custodian=`) still open filtered. One filter has no dropdown and works from the URL only: the single `asset` on **Asset Activity Summary**.
 
 Until 21 October 2026 these filters existed only as URL parameters, and **Monthly Booking Trends** accepted category and location without applying them. It now applies every filter in its bar.
 
