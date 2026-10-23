@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-10-15"
+updated: "2026-10-23"
 layout: "knowledge-base"
 ---
 
@@ -206,17 +206,19 @@ See [Partial Check-ins](/knowledge-base/partial-check-ins-efficiently-handle-inc
 
 ## Reserve is greyed out
 
-A booking only moves from **Draft** to **Reserved** when it can hold what it promises. Three things block that, and the button's tooltip names which one:
+A booking only moves from **Draft** to **Reserved** when it can hold what it promises and its start is still ahead. Five things block that, and the button's tooltip names which one:
 
 - **"Add assets or reserve at least one model on this booking before you reserve it."** The booking is empty. Add an asset, or reserve a count against an [Asset Model](/glossary/asset-models). Either one is enough on its own.
 - **"This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving."** Something on it has its **Available for bookings** toggle off. The tooltip lists the assets underneath the sentence, up to five, with the kit each one sits in.
 - **"This booking holds assets already booked for that period. Remove them, or change the dates, before reserving."** Something on it is committed to another booking inside your dates.
+- **"The start time has passed. Move it later to reserve."** The draft's start is in the past, which is common with a draft that was created and never reserved. Move the start later in the form; the button comes back before you save. Self-service and Base users in a workspace with a **Minimum advance notice** also see *"Start date must be at least N hours from now. Move it later to reserve."* while the start is too close. See [How to Create a Booking](/knowledge-base/how-to-create-a-booking).
+- **An archived asset.** The tooltip names it and says what to do: *"... is archived. Remove it from the booking or reinstate it."* Members who cannot reinstate assets read *ask an admin to reinstate it* instead. See [Archive and Reinstate Assets](/knowledge-base/archive-and-reinstate-assets).
 
 ![Draft booking with no assets: the Reserve button is greyed out and its tooltip reads "Add assets or reserve at least one model on this booking before you reserve it."](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-empty.webp)
 
 ![Draft booking holding unavailable assets: the Reserve button's tooltip reads "This booking holds assets marked as unavailable. Remove them, or make them available again, before reserving." and lists Tascam DR-40X (ID123) and Sony Alpha 1 underneath](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-reserve-blocked-unavailable-named.webp)
 
-The server re-checks all three at the moment you reserve, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The first two come back word for word. These checks now cover the [Shelf Companion app](/mobile-app) too, so the phone refuses exactly what the website refuses.
+The server re-checks the first three at the moment you reserve, along with the start time, so an edit someone else makes while you have the booking open cannot let an unreservable booking through. The first two come back word for word. These checks now cover the [Shelf Companion app](/mobile-app) too, so the phone refuses exactly what the website refuses.
 
 The already-booked one is different, and worth recognising, because it is the only one whose wording changes between the tooltip and the refusal. The tooltip warns you in general terms; the refusal names the culprits. It arrives under the heading **Booking conflict** and reads:
 
