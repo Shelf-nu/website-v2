@@ -80,6 +80,10 @@ export interface Frontmatter {
 
     // Updates (product changelog)
     readMoreUrl?: string;
+    /** Show this entry in the app's Updates panel (read from /updates/feed.json). */
+    inApp?: boolean;
+    /** Workspace roles that see it in the app; omitted = every role. */
+    appRoles?: string[];
 
     // Case studies
     customer?: string | {
