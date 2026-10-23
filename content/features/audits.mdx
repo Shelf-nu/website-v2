@@ -12,7 +12,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-10-19"
+updated: "2026-10-23"
 seo:
   title: "Asset Audits — Physical Inventory Verification"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Download a PDF audit receipt with the full asset list. Paid add-on with 7-day free trial."
@@ -148,7 +148,8 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Found / Not scanned / Unexpected detection**: Three-way reconciliation that catches both losses and untracked items. Not scanned becomes Missing once the audit is completed.
 - **Dedicated scan page**: Purpose-built audit scanning interface, separate from check-in/check-out workflows.
 - **Every audit scan lands on the asset**: each asset scanned in an audit gets a fresh entry on its [Last scan card](/knowledge-base/where-an-asset-was-last-scanned) (the same person scanning the same code on the same asset again within 30 seconds counts as one scan), naming who scanned it, when and with which code, whether that was its QR code, a barcode or its SAM ID, and the asset's scan history lists it under the label *Audit*. The audit keeps its own scan record as well.
-- **Notes and photos per scan**: Document conditions, discrepancies, or issues as you go, from the web app or from the Shelf Companion app on iPhone and Android. Photos can be taken with the camera on the spot or picked from the photo library. **Add comment** and **Add image** work on assets nobody has scanned yet as well, so the empty shelf gets photographed too.
+- **Last audit date on every asset**: the asset page has a **Last audit** card with the most recent completed audit, the asset's result in it (Found or Missing) and the audits coming up, and the [asset index](/knowledge-base/advanced-asset-index-complete-guide#last-audit-date) has a **Last audit date** column you can sort, export and filter, including **Never audited** to find what nobody has counted yet. **View all audits** opens the audit list filtered to that asset. Shown to Owners, Administrators and Managers in workspaces with the Audits add-on.
+- **Notes and photos per scan**: Document conditions, discrepancies, or issues as you go, from the web app or from the Shelf Companion app on iPhone, iPad and Android. Photos can be taken with the camera on the spot or picked from the photo library. **Add comment** and **Add image** work on assets nobody has scanned yet as well, so the empty shelf gets photographed too.
 - **Findings, grouped by asset**: One column on the audit collects every note and photo people recorded, with the words and the pictures for the same item together. Each row in the asset table carries a chip counting what is on it, so a large count shows at a glance which items were worth writing about.
 - **Correct a mis-scan while the audit is live**: Remove a scan from the scan page and the asset goes back to Not scanned, or leaves the audit if nothing but the scan put it there. Counts are recomputed from the rows, and the change is attributed in the audit's activity. Scans are fixed once the audit is Completed or Cancelled. From Shelf Companion 1.5.0 the same correction is available on the phone, where the mis-scan usually happens: open the scanned row and tap **Remove scan**. Notes and photos survive it, because evidence is attached to the audit's row for the asset rather than to the scan.
 - **Real-time progress**: Live counts of expected, found, not scanned, and unexpected assets update as scanning happens, on the audit itself and in the audit list.
@@ -157,7 +158,7 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Completion notifications**: Email summaries sent automatically when an audit is completed.
 - **Full audit lifecycle management**: Archive completed or cancelled audits to remove them from the default list while keeping the data accessible. When the data is no longer needed, permanently delete archived audits — individually or in bulk — removing all scan records, notes, and images. Archive individually or in bulk from the **Actions** dropdown; delete follows the same pattern with a type-to-confirm safety step.
 - **One-click recurring audits**: Duplicate any Completed, Cancelled, or Archived audit to re-run it on the same asset list. The copy starts clean (no notes, no scans, no assignee, no due date) and inherits the source's name, description, and scope. If the source's assets have shifted, Shelf reports the dropped count up front and blocks the duplicate if every asset is gone — no silent failures.
-- **Runs on any device**: Browser-based scanning on phone, tablet, or laptop — you can [run audits from your phone](/knowledge-base/shelf-mobile-app) in any browser — plus a native iPhone and Android experience via the [Shelf Companion app](/mobile-app).
+- **Runs on any device**: Browser-based scanning on phone, tablet, or laptop — you can [run audits from your phone](/knowledge-base/shelf-mobile-app) in any browser — plus a native iPhone, iPad and Android experience via the [Shelf Companion app](/mobile-app).
 
 ---
 
