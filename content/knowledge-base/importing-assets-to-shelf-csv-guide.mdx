@@ -1,9 +1,9 @@
 ---
 title: "Importing Assets to Shelf: CSV Guide"
-description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering file requirements, standard columns, custom fields, barcodes, and troubleshooting."
+description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering the column mapping review, file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-22"
+updated: "2026-10-23"
 layout: "knowledge-base"
 ---
 
@@ -14,7 +14,7 @@ Shelf supports two CSV workflows for assets:
 
 Both read the header keys this guide describes (`title`, `valuation`, `assetModel`, `quantity`), so one **Import-ready** export serves either flow: upload it to create assets in another workspace, or upload it to the update flow to edit the assets it came from. The update flow additionally accepts the display labels a Standard export writes (`Name`, `Value`, `Asset model`, `Quantity`), and it matches rows on the `id`, `ID`, or `Asset ID` column.
 
-Shelf enables users to import assets through CSV (Comma-Separated Values) files. The platform provides a template-based approach with validation to ensure data integrity during the import process.
+Shelf imports assets from CSV (Comma-Separated Values) files. You can start from Shelf's template, or upload the CSV export of another tool or spreadsheet as it is: before anything is imported, Shelf proposes which Shelf field each of your columns goes to, and you check that in one table. The whole file is then validated before a single asset is created.
 
 ## Quick Start
 
@@ -22,17 +22,51 @@ To begin importing assets:
 
 
 ![Asset import page in Shelf with CSV upload option](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/importing-csv-1.webp)
-1. Download the CSV template or barcode-enabled version from Shelf (or, if you're moving assets in from another Shelf workspace, use an **Import-ready** export instead: [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format)). An Import-ready file carries an `id` column, which this flow ignores, so the destination workspace issues its own ids. The same file can be re-uploaded to [update the assets it came from](/knowledge-base/bulk-updating-assets-via-csv) instead of creating new ones
-2. Add your asset information following the provided format
+1. Download the CSV template or barcode-enabled version from Shelf, or use the CSV export of the tool or spreadsheet you are moving from, unchanged (or, if you're moving assets in from another Shelf workspace, use an **Import-ready** export instead: [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf#choosing-an-export-format)). An Import-ready file carries an `id` column, which this flow ignores, so the destination workspace issues its own ids. The same file can be re-uploaded to [update the assets it came from](/knowledge-base/bulk-updating-assets-via-csv) instead of creating new ones
+2. Add your asset information following the provided format. A file from another tool can keep its own column names
 3. Save the file with UTF-8 encoding
 4. Navigate to Assets then Import in your workspace
-5. Choose the file and click **Continue**. Under **Check how your columns map**, each of your columns goes to the Shelf field on its right. Change any that look wrong, or set them to **Skip**
+5. Choose the file and click **Continue**. Under **Check how your columns map**, each of your columns goes to the Shelf field on its right. Change any that look wrong, or set them to **Skip**. See [Checking How Your Columns Map](#checking-how-your-columns-map)
 6. Click **Preview import**. Shelf checks the whole file and shows a preview, without creating anything yet
 7. Click **Import N assets**, type "I AGREE" and click **Import**. The import runs in the background: you can leave the page, and Shelf emails you when it finishes
 
-> **Important:** Upload the template or an **Import-ready** export, nothing else. Any other file produces corrupted data. That includes files from the old workspace backup download under **Workspace settings → General**, which was retired in October 2026.
+> **Important:** Do not upload a file from the old workspace backup download under **Workspace settings → General**, which was retired in October 2026. It produces corrupted data. To move assets from another Shelf workspace, use an **Import-ready** export.
+
+**Where to find the import.** **Assets → Import** is always there for members whose role and plan allow importing. While a workspace has no assets yet, the empty **Assets** page also shows **Import a spreadsheet** next to **Create your first asset**, and the onboarding checklist on **Home** has an **Import your assets** item. Both are shown only to members whose role and plan allow importing, and the checklist item goes away once the workspace has its first asset, however it was added.
 
 <AiImportPrompt location="kb_csv_guide" />
+
+## Checking How Your Columns Map
+
+After you choose a file and click **Continue**, Shelf reads its headings and a few sample values and shows **Check how your columns map**: one row per column of your file, with up to three sample values, the Shelf field it will become, and a dot for how sure the match is. A green dot means a sure match and an amber dot a guess to check. A column Shelf could not place is set to **Skip** with an amber dot, and any row you change yourself turns green. Nothing has been imported at this point.
+
+![The Check how your columns map table for a Sortly-style export: Entry Name goes to Title, Notes to Description, Unit to Unit of measure, Min Level to Low-stock alert at, Price to Value, Quantity to Quantity, Tags to Tags and Primary Folder to Location, all with green dots, while Sortly ID is set to Skip with an amber dot. Below it: Up to 3 assets will be imported, and the question How should these rows be tracked?](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/import-column-mapping.webp)
+
+**How Shelf proposes a field**, in this order:
+
+1. **Shelf's own headings**, such as `title` or `cf:Serial number,type:text`. A file made from the template, or an Import-ready export, shows the message **Your file already matches Shelf's format.** Every row of the template is green. The `id` column of an Import-ready export is always set to **Skip**, with an amber dot, since the new workspace issues its own ids.
+2. **The same name, ignoring capitals and punctuation**, such as `Title` or `Unit of measure`.
+3. **A custom field your workspace already has** with the same name. It keeps the type it already has.
+4. **Common headings from other tools and hand-made sheets**: more than 150 of them, from Sortly, Asset Panda, Snipe-IT and spreadsheets, including common German, Spanish and French ones. For example *Item Name* becomes the name, *Qty* the quantity, *Primary Folder* the location, *Min Level* the low-stock alert, *Serial No.* a new **Serial number** custom field and *Purchased* a new **Purchase date** date field. Barcode headings are only matched when the [Alternative Barcodes](/knowledge-base/alternative-barcodes) add-on is on.
+5. **Skip**, for everything else. Columns that hold another system's ids, such as *Sortly ID*, are skipped unless you choose otherwise.
+
+**Changing a row.** Every row has a dropdown with all Shelf fields, **Custom field...** and **Skip**. **Custom field...** opens two inputs under the dropdown for the field's name and type, so a column such as a legacy ID can come across as a text custom field.
+
+**What the review checks before you continue:**
+
+- **Two columns aimed at the same field.** Both rows turn red with *"Another column already goes to this field. Pick a different one or Skip."*, and **Preview import** stays disabled until you fix it.
+- **Values the import will refuse or leave out.** Short notes under the table point out a date column written as, for example, DD/MM/YYYY: dates must be `YYYY-MM-DD`, and the import stops on any other date. They also point out values such as `true` or `1` in a yes/no field: the import does not stop for those, but the asset is created with that field empty. Fix both in the file before you import.
+- **How many rows come in.** A line under the table says how many assets will be imported, for example *"Up to 3 assets will be imported. Rows with values only in skipped columns are left out."* It names any custom fields the file will create. The new categories, locations, tags, kits and custodians are listed in the preview that follows.
+
+**How should these rows be tracked?** When a column goes to **Quantity** and no column goes to the type (a Sortly export, for example), Shelf asks how the rows come in:
+
+- **Individual assets**: one asset per row. Every quantity must be 1.
+- **Stock, returned after use**: each row is tracked by quantity and checked back in after use.
+- **Stock, used up**: each row is tracked by quantity and consumed when checked out.
+
+A stock answer makes every row [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) with that consumption type, unless a column of your file already gives each row its own. When every sampled quantity is 1, **Individual assets** is picked for you; otherwise **Preview import** waits for an answer.
+
+**The mapping only renames columns.** It never changes a value. Every rule in the rest of this guide still applies to your data, such as dates as `YYYY-MM-DD`, yes/no values, barcodes and QR codes, and the whole file is still checked before anything is created. Click **Back** to return to the upload step with your file kept, or **Preview import** to go on to the [preview](#the-preview). While another import is running in the workspace, **Preview import** waits.
 
 ## File Requirements
 
@@ -41,7 +75,8 @@ To begin importing assets:
 - **Delimiter:** Comma (`,`) or semicolon (`;`). Shelf auto-detects whichever character appears more often **between cells**. Commas and semicolons inside a double-quoted cell, such as a long description, are not counted, so they cannot tip the choice. Pick one delimiter and stick to it.
 - **Quoting:** Wrap any value containing the delimiter, a double quote, or a newline in double quotes (`"…"`). Escape an internal `"` by doubling it (`""`). This matters for `tags` and multi-value `barcode_*` cells in a comma-delimited file, and for `cf:…,type:…` custom-field headers in a comma-delimited file (see [Custom Fields](#custom-fields) below).
 - **Encoding:** UTF-8 recommended. Other encodings are auto-detected and converted, and a UTF-8 BOM is accepted.
-- **Header row:** First row must contain column headers. After you click **Continue**, Shelf matches each header to a Shelf field and ignores capitals, so `Title` and `title` both go to `title`. A column it cannot match is set to **Skip** and left out of the import, unless you pick a field for it in the mapping step.
+- **Header row:** First row must contain column headers. They do not have to be Shelf's: after you click **Continue**, Shelf proposes a Shelf field for each one (see [Checking How Your Columns Map](#checking-how-your-columns-map)). A column it cannot place is set to **Skip** and left out of the import, unless you pick a field for it.
+- **Columns:** At most 200 columns, each heading at most 1,000 characters. A file over either limit is refused before the mapping step, with a message saying which.
 - **File format:** Only `.csv` files accepted.
 - **Size:** Up to **10,000 assets per file**, and at most 10 MB. A file with more rows is refused before anything is imported, with a message giving its row count. Split it and import the parts one at a time.
 
@@ -226,9 +261,13 @@ For round-trip edits to existing assets, use [Bulk Updating Assets via CSV](/kno
 
 **"Invalid headers in csv file"**
 
-- In the mapping step, check that each column points at the right Shelf field, or set it to **Skip**
+- In the mapping step, check that each column points at the right Shelf field, or set it to **Skip**. Two columns pointing at the same field turn red and must be fixed first
 - Check custom field format: `cf:FieldName,type:TypeName`
 - Remove extra spaces or special characters
+
+**"Too many columns" or "Column heading too long"**
+
+- A file can have at most 200 columns, and each heading at most 1,000 characters. Delete the columns you do not need, or shorten the heading the message names, and upload again
 
 **"CSV file is empty"**
 
@@ -294,5 +333,6 @@ For round-trip edits to existing assets, use [Bulk Updating Assets via CSV](/kno
 - [Export / Exporting Workspace Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf) — how to export your assets for bulk update
 - [Adding additional fields to Assets](/knowledge-base/adding-additional-fields-to-assets)
 - [Alternative Barcodes](/knowledge-base/alternative-barcodes)
+- [Switching From Another Asset Tool to Shelf](/knowledge-base/switching-from-another-asset-tool) — moving a whole inventory from another tool, labels included
 
 Contact support if you need personalized assistance with a specific CSV file.
