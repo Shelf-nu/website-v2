@@ -26,6 +26,7 @@ const ARTICLES = {
   "last-audit-date": "articles/last-audit-date.mjs",
   "import-update-columns": "articles/import-update-columns.mjs",
   "import-ready-export": "articles/import-ready-export.mjs",
+  "booking-draft-and-checkout-confirm": "articles/booking-draft-and-checkout-confirm.mjs",
   "date-time-preferences": "articles/date-time-preferences.mjs",
   "low-stock-visibility": "articles/low-stock-visibility.mjs",
   "quantity-overview-free-now": "articles/quantity-overview-free-now.mjs",
