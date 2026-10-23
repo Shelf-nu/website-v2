@@ -4,8 +4,9 @@
  *
  *   - /updates/feed.json → JSON Feed 1.1 (https://jsonfeed.org/version/1.1).
  *     The Shelf app reads this for its in-app Updates panel. Each item carries
- *     a `_shelf` extension object: `inApp` (show it in the app) and `appRoles`
- *     (workspace roles that see it; empty = everyone).
+ *     a `_shelf` extension object: `inApp` (show it in the app), `appRoles`
+ *     (workspace roles that see it; empty = everyone) and `markdown` (the body
+ *     as written, which the app renders).
  *   - /updates/rss.xml → RSS 2.0 for feed readers.
  *
  * Both carry the newest FEED_LIMIT entries; the full history stays on /updates.
@@ -57,7 +58,9 @@ function absolute(url: string | undefined): string | undefined {
  * feed reader or the app would resolve against the wrong host.
  */
 function absoluteLinks(markdown: string): string {
-    return markdown.replace(/\]\(\//g, `](${BASE_URL}/`);
+    return markdown
+        .replace(/\]\(\//g, `](${BASE_URL}/`) // [text](/path)
+        .replace(/^(\s*\[[^\]]+\]:\s*)\//gm, `$1${BASE_URL}/`); // [ref]: /path
 }
 
 const markdownToHtml = unified()
@@ -69,8 +72,13 @@ const markdownToHtml = unified()
 export function getFeedItems(): FeedItem[] {
     return getAllContent("updates").slice(0, FEED_LIMIT).map(({ slug, frontmatter, content }) => {
         // A bad date would publish "Invalid Date" into every subscriber's reader.
+        // Date also rolls impossible days over ("2025-02-29" → March 1), so the
+        // parsed date must round-trip to the same string.
         const published = new Date(`${frontmatter.date}T00:00:00Z`);
-        if (Number.isNaN(published.getTime())) {
+        if (
+            Number.isNaN(published.getTime()) ||
+            published.toISOString().slice(0, 10) !== frontmatter.date
+        ) {
             throw new Error(
                 `updates feed: content/updates/${slug}.mdx has no valid "date" (got "${frontmatter.date}").`
             );

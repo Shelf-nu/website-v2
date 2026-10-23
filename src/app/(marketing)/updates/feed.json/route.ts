@@ -29,13 +29,15 @@ export function GET() {
             ...(item.readMoreUrl && { external_url: item.readMoreUrl }),
             title: item.title,
             summary: item.summary,
-            content_text: item.markdown,
             content_html: item.html,
             ...(item.image && { image: item.image }),
             date_published: item.datePublished,
+            // JSON Feed's content_text means plain text, so the Markdown the
+            // app renders travels in the extension object instead.
             _shelf: {
                 inApp: item.inApp,
                 appRoles: item.appRoles,
+                markdown: item.markdown,
             },
         })),
     };
