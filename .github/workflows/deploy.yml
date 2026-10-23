@@ -114,6 +114,22 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.143.0"
           command: pages deploy out --project-name=shelf-nu
+      # Tell Bing (and so Copilot) which pages this push changed, instead of
+      # waiting days for its crawler. The checkout is one commit deep, so fetch
+      # the previous main commit to diff against. Never fails the job: the
+      # site is already live by now.
+      - name: Send changed pages to IndexNow
+        if: >-
+          github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+          (steps.deploy.outcome == 'success' || steps.deploy_retry.outcome == 'success' || steps.deploy_last.outcome == 'success')
+        continue-on-error: true
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          # Same origin the build wrote into the sitemap, or no URL would match.
+          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL || 'https://www.shelf.nu' }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$BEFORE_SHA" || true
+          node scripts/indexnow.mjs --changed "$BEFORE_SHA" "$GITHUB_SHA"
       - name: Comment preview URL on PR
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7

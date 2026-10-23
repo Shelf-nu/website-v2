@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { getAllContent, ContentType } from "@/lib/mdx";
+import { contentModifiedDate } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -15,14 +16,14 @@ function contentEntries(
 ): MetadataRoute.Sitemap {
     // A page marked `seo.noindex` asks search engines to skip it, so it stays out of the sitemap too.
     return getAllContent(type).filter((item) => !item.frontmatter.seo?.noindex).map((item) => {
-        // Prefer frontmatter date → updated → fall back to now
-        const lastMod = item.frontmatter.date
-            ? new Date(item.frontmatter.date)
-            : new Date();
+        // The last real edit: `updated` when it is a valid date, else the
+        // publish date, the same rule as the page's dateModified. With neither,
+        // leave lastmod out rather than claim the page changed at build time.
+        const lastMod = contentModifiedDate(item.frontmatter) ?? item.frontmatter.date;
 
         return {
             url: `${baseUrl}${urlPrefix}/${item.slug}`,
-            lastModified: lastMod,
+            ...(lastMod ? { lastModified: new Date(lastMod) } : {}),
             changeFrequency: opts.changeFrequency,
             priority: opts.priority,
         };
@@ -33,7 +34,10 @@ function contentEntries(
 /*  Sitemap                                                            */
 /* ------------------------------------------------------------------ */
 export default function sitemap(): MetadataRoute.Sitemap {
-    // 1. Static marketing pages
+    // 1. Static marketing pages.
+    // No lastModified: these pages have no edit date to read, and stamping the
+    // build time on every deploy told search engines they all changed daily,
+    // which teaches them to ignore lastmod for the whole site.
     const staticRoutes: MetadataRoute.Sitemap = [
         { path: "", priority: 1.0 },
         { path: "/pricing", priority: 0.9 },
@@ -76,7 +80,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/tools/salvage-value-calculator", priority: 0.7 },
     ].map(({ path, priority }) => ({
         url: `${baseUrl}${path}`,
-        lastModified: new Date(),
         changeFrequency: "monthly" as const,
         priority,
     }));
