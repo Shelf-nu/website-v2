@@ -30,6 +30,7 @@ function isExternalUrl(url: string) {
     return url.startsWith("http://") || url.startsWith("https://");
 }
 
+/** The /updates hero (count + RSS link) and the year-grouped timeline. */
 export function UpdatesFeed({ updates }: UpdatesFeedProps) {
     const yearGroups = groupByYear(updates);
     const years = Object.keys(yearGroups).sort((a, b) => Number(b) - Number(a));

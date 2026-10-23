@@ -13,6 +13,7 @@ import { BASE_URL } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 
+/** Writes out/updates/feed.json at build time (force-static). */
 export function GET() {
     const feed = {
         version: "https://jsonfeed.org/version/1.1",

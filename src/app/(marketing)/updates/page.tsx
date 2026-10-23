@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     },
 };
 
+/** /updates: the timeline of every entry, advertising the JSON and RSS feeds. */
 export default function UpdatesPage() {
     const allUpdates = getAllContentMeta("updates");
 

@@ -12,6 +12,7 @@ import {
 
 export const dynamic = "force-static";
 
+/** Escapes text for use in XML element content and attribute values. */
 function escapeXml(text: string): string {
     return text
         .replace(/&/g, "&amp;")
@@ -26,6 +27,7 @@ function cdata(text: string): string {
     return `<![CDATA[${text.replace(/]]>/g, "]]]]><![CDATA[>")}]]>`;
 }
 
+/** Writes out/updates/rss.xml at build time (force-static). */
 export function GET() {
     const items = getFeedItems();
 

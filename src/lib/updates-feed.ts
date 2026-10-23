@@ -69,6 +69,10 @@ const markdownToHtml = unified()
     .use(remarkRehype)
     .use(rehypeStringify);
 
+/**
+ * The newest FEED_LIMIT update entries as feed items, with every URL absolute
+ * and the body rendered to HTML. Throws on an entry without a real date.
+ */
 export function getFeedItems(): FeedItem[] {
     return getAllContent("updates").slice(0, FEED_LIMIT).map(({ slug, frontmatter, content }) => {
         // A bad date would publish "Invalid Date" into every subscriber's reader.
