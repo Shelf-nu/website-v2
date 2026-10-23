@@ -34,8 +34,11 @@
  *
  * With --images, additionally HTTP-checks every <img src> the site ships,
  * including frontmatter `image:` fields that feed OG/social previews. Three
- * such images were dead and nobody noticed. Network errors warn; only a
- * definitive 4xx/5xx after retries fails the build.
+ * such images were dead and nobody noticed. Network errors warn. 429 and 5xx
+ * are retried with backoff and fail only if they never clear; 404 and other
+ * 4xx fail at once. Remote fetches are capped at a small concurrency so a
+ * burst of parallel builds cannot trip the storage rate limit (it did, twice,
+ * on 2026-10-19). Policy lives in scripts/lib/image-probe.mjs.
  *
  * Exit code 1 on failure → breaks `npm run build` in CI.
  *
@@ -46,6 +49,7 @@
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { resolve, join, relative } from "node:path";
+import { probeImage, mapWithConcurrency, MAX_CONCURRENCY } from "./lib/image-probe.mjs";
 
 const args = process.argv.slice(2);
 const CHECK_IMAGES = args.includes("--images");
@@ -214,28 +218,10 @@ if (CHECK_IMAGES) {
         return !existsSync(p) || !statSync(p).isFile();
     });
 
-    async function probe(url, attempt = 0) {
-        try {
-            const res = await fetch(encodeURI(decodeURI(url)), {
-                method: "GET",
-                headers: { Range: "bytes=0-0" },
-                signal: AbortSignal.timeout(15000),
-            });
-            if (res.status >= 400 && attempt < 2) return probe(url, attempt + 1);
-            return { url, status: res.status };
-        } catch (err) {
-            if (attempt < 2) return probe(url, attempt + 1);
-            return { url, status: "NETWORK", detail: err.message };
-        }
-    }
-
-    const queue = [...remote];
-    const results = [];
-    await Promise.all(
-        Array.from({ length: 12 }, async () => {
-            while (queue.length) results.push(await probe(queue.shift()));
-        }),
-    );
+    // 429 and 5xx retry with backoff (2s/5s/10s); 404 and other 4xx fail at
+    // once. At most MAX_CONCURRENCY fetches in flight so a burst of builds
+    // does not trip the storage rate limit. See scripts/lib/image-probe.mjs.
+    const results = await mapWithConcurrency(remote, MAX_CONCURRENCY, (url) => probeImage(url));
 
     const dead = results.filter((r) => typeof r.status === "number" && r.status >= 400);
     const unreachable = results.filter((r) => r.status === "NETWORK");
@@ -253,7 +239,7 @@ if (CHECK_IMAGES) {
         console.error(`\n❌  Content render verification FAILED`);
         if (dead.length) {
             console.error(`   ${dead.length} remote image(s) returning an error status:`);
-            for (const d of dead) console.error(`     [${d.status}] ${d.url}`);
+            for (const d of dead) console.error(`     [${d.status}] ${d.url}${d.attempts > 1 ? ` (after ${d.attempts} attempts)` : ""}`);
         }
         if (missingLocal.length) {
             console.error(`   ${missingLocal.length} local image(s) missing from the build output:`);

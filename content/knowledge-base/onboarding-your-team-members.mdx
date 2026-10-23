@@ -3,7 +3,7 @@ title: "Onboarding Your Team Members"
 description: "How to create non-registered team members, invite users and get them going with Shelf."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-10-15"
+updated: "2026-10-22"
 layout: "knowledge-base"
 ---
 
@@ -27,7 +27,7 @@ Non-registered team members are individuals designated for use in bookings or as
 ![Team settings showing the NRM tab with non-registered members list](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/onboarding-team-1.webp)
 ## Users
 
-Users receive workspace access with permission levels tailored to team requirements. When invited, they receive an email to create login credentials (or gain access if they already have a Shelf account). Account owners can revoke access at any time. Existing NRMs can be converted to users by sending invitations.
+Users receive workspace access with permission levels tailored to team requirements. When invited, they receive an email to create login credentials (or gain access if they already have a Shelf account). The owner and Administrators send invites, as Administrator, Manager, Self-service or Base; changing or revoking an Administrator afterwards is the owner's alone. Existing NRMs can be converted to users by sending invitations.
 
 
 ![Team settings showing the Users tab with invited team members](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/onboarding-team-2.webp)
@@ -35,7 +35,14 @@ Users receive workspace access with permission levels tailored to team requireme
 
 Currently available roles are Account Owner, Administrator, Manager, Self-service and Base, each with preset permissions. Manager, added on 15 October 2026, runs everyone's bookings, custody and audits without administering the workspace.
 
-For detailed permission information, see the dedicated article on [user roles and their permissions](/knowledge-base/user-roles-and-their-permissions).
+When you invite someone, the role picker in **Invite team members** explains each role in one sentence under its name, the same sentences the **Change role** dialog uses:
+
+- **Administrator**: manages everything in the workspace: assets, bookings, custody, audits, settings and the team.
+- **Manager**: runs bookings, custody and audits for everyone, but cannot create, edit or delete assets, or change workspace settings or registered team members.
+- **Self service**: books assets and checks them out and in for themselves, and by default sees only their own bookings and custody.
+- **Base**: requests assets through bookings that an Administrator or Manager checks out, and by default sees only their own bookings.
+
+**Learn more about roles** under the picker opens the full comparison. For detailed permission information, see the dedicated article on [user roles and their permissions](/knowledge-base/user-roles-and-their-permissions).
 
 ## Related Resources
 

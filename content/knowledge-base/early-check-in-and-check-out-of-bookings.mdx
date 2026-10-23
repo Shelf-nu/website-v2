@@ -3,7 +3,7 @@ title: "Early Check-in and Check-out of Bookings"
 description: "Shelf lets you check assets in or out earlier than scheduled, and keeps the period that was originally agreed alongside the one the booking really ran, so reporting still measures against the plan."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-08-28"
+updated: "2026-10-20"
 layout: "knowledge-base"
 ---
 
@@ -21,15 +21,21 @@ When checking out assets before the scheduled start date:
   - Adjust the date (updating the booking start date to now)
   - Proceed without adjusting dates
 
+### Quick Check-in Asks First
+
+Since 19 October 2026 **Quick check-in**, the whole-booking return in the **Check-in** menu, opens a **Check in booking** dialog before anything is returned. It names the booking and says what will happen: *"This checks in every asset of Studio Shoot and completes the booking."* **Check in** completes the booking; **Cancel** leaves it as it is. A [partial check-in](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns), from **Check in selected items** or the scanner, already confirms the items you picked, and only adds this dialog, naming *N assets*, when it checks in the last items more than 15 minutes before the end date.
+
 ### Early Check-in
 
-When checking in assets before the scheduled end date:
+When checking in assets more than 15 minutes before the scheduled end date, the same dialog adds the early-return question:
 
-- You receive a warning that the booking end date will be adjusted to the current time
+- It says the end date can be moved to now, and that **Don't Adjust Date** keeps the original end date
 - Options include:
-  - Cancel
-  - Adjust the date (updating the booking end date to now)
-  - Proceed without changing dates
+  - **Cancel**
+  - **Adjust Date** (updating the booking end date to now)
+  - **Don't Adjust Date** (keep the original end date)
+
+If the current time is still before the booking's **start** date, the end date cannot be moved to a time before the start, so the dialog says so and checks the booking in without changing its dates.
 
 ## The Planned Period and the Actual Period
 

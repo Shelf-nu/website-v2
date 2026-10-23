@@ -3,7 +3,7 @@ title: "Switching From Another Asset Tool to Shelf"
 description: "Moving from another asset or equipment tool? Export your data, map the columns to Shelf's import file, keep the stickers already on your gear, and know what to expect when you bring in about 1,000 assets."
 category: "Getting Started"
 date: "2026-10-15"
-updated: "2026-10-15"
+updated: "2026-10-22"
 layout: "knowledge-base"
 seo:
   title: "Switching From Another Asset Tool to Shelf: Export, Import, Keep Your Labels"
@@ -43,7 +43,7 @@ Open the export and check that it has one row per physical item. Some tools expo
 
 ## Step 2. Map your columns to Shelf's import file
 
-Shelf reads a fixed set of column headers. The names are case-sensitive and anything it does not recognise stops the import before it starts, so the mapping step is where most of the work is. Download the import template from **Assets → Import** in your workspace (there is a version with barcode columns once the add-on is on) and rename your columns to match.
+Shelf reads a fixed set of column headers. When you upload, it matches your headers to them and ignores capitals; a column it cannot match is skipped unless you pick a field for it, so check the mapping before you import. Download the import template from **Assets → Import** in your workspace (there is a version with barcode columns once the add-on is on) and rename your columns to match.
 
 The usual mapping looks like this:
 
@@ -73,7 +73,7 @@ A few rules that catch people out:
 - **Dates** must be `YYYY-MM-DD`. Any other format stops the import with a clear error naming the row.
 - **Numbers** carry no currency symbols or thousands separators. `1250.50` works, `$1,250.50` does not.
 - **Save as UTF-8.** In Excel choose "CSV UTF-8" when saving, or accented names come through garbled.
-- **No more than 1,000 rows per file.** A bigger file is refused with a message asking you to split it, before anything is created. See Step 5 for why you want smaller files anyway.
+- **No more than 10,000 rows per file.** A bigger file is refused with a message asking you to split it, before anything is created.
 
 The full column reference, with every rule and example, is in the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
 
@@ -107,23 +107,27 @@ For Code 128, Code 39, DataMatrix and EAN-13 values this matching problem does n
 Make a copy of your file with five to ten rows that cover your variety: an item in a kit, one with a custodian, one with an extra field of each type, one with a barcode of each type you use.
 
 1. In Shelf, go to **Assets → Import**.
-2. Choose the file, click **Confirm asset import**, type `I AGREE` and confirm.
-3. Shelf checks the whole file first. If anything is wrong you get a list of every problem with its row number, and nothing is created. Fix the rows and upload again.
-4. When it succeeds, open the assets and check the category, location, custodian, extra fields and barcodes landed where you expected. Scan a sticker.
+2. Choose the file and click **Continue**. Shelf shows where each of your columns will go. Change any that look wrong, or set them to **Skip**.
+3. Click **Preview import**. Shelf checks the whole file first. If anything is wrong you get a list of every problem with its row number, and nothing is created. Fix the rows and upload again.
+4. Read the preview: it lists the categories, locations, custodians and extra fields the file will create. A misspelt location shows up here as a new one.
+5. Click **Import N assets**, type `I AGREE` and click **Import**.
+6. When it finishes, open the assets and check the category, location, custodian, extra fields and barcodes landed where you expected. Scan a sticker.
 
 Delete the test assets if you want a clean start, or keep them and remove those rows from the main file.
 
 ## Step 5. Import the rest: what to expect for about 1,000 assets
 
-Shelf creates assets one row at a time, a few rows a second, and the import runs while your browser waits for the result. Two practical consequences follow from that.
+Once you confirm, the import runs in the background on Shelf's side. Your browser does not have to wait for it.
 
-**Split the file into parts of about 250 rows each.** A file that size usually finishes within a couple of minutes. A single 1,000-row file is accepted by the checks but keeps the browser waiting for several minutes, which is longer than the connection in front of Shelf allows, so you may see a timeout or an error page while the server is still working through the rows. Four files of 250 rows are more predictable than one of 1,000.
+**One file is fine.** A file of 1,000 assets goes in as it is; the limit is 10,000 rows per file. You do not need to split it for speed.
 
-**If a timeout or error page appears, do not upload again straight away.** The import keeps running on the server after the page gives up. Wait a few minutes, open your asset list and refresh it. In almost every case the assets are all there. Uploading the same file a second time would create every asset again. If your file carries barcodes the second upload is refused as duplicates, but a file without barcodes is not, so check the asset list first.
+**You can leave the page.** The import page shows a progress bar, a small progress card follows you around Shelf, and you get an email when the import is complete. Imports with many image links take longest, because every image is downloaded.
 
-**Order the parts sensibly.** Import kits together, so a kit's assets are created in one file and inherit the same custodian. Keep rows that share an extra field in the same file the first time that field appears, so it is created once with the right type.
+**If it stops, resume it, do not upload again.** The rows already imported stay, and nothing is imported twice. Open the import with **Open import** in the email, or **View progress** on the progress card, and click **Resume import**. Uploading the same file a second time would create every asset again.
 
-**Check the counts between files.** The asset index shows the total. If a file reported success and the count went up by the right amount, move on. If it did not, look for the missing rows before importing the next part.
+**Read the warnings.** If something changed in Shelf after the preview, for example a barcode was given to another asset in the meantime, that row is still imported with the value left out, and the import page lists it.
+
+**If you split the file anyway**, import kits together, so a kit's assets are created in one file and inherit the same custodian, and keep rows that share an extra field in the same file the first time that field appears, so it is created once with the right type. One import runs at a time, so start the next part when the previous one finishes.
 
 A whole migration of 1,000 assets, including the mapping work, usually fits in an afternoon. The import itself is the quick part; cleaning the export is where the time goes.
 
