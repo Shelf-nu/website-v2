@@ -36,6 +36,9 @@ export const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 // https://<host>/<key>.txt, which must contain the key (public/<key>.txt).
 export const INDEXNOW_KEY = "32134b8bb8bf124426786bce8f403a4b";
 export const MAX_URLS_PER_REQUEST = 10000;
+// A stalled endpoint must not hold the deploy job open; the catch below
+// records the timeout like any other failure.
+export const REQUEST_TIMEOUT_MS = 30000;
 
 const CONTENT_SECTIONS = new Set([
     "alternatives",
@@ -162,6 +165,7 @@ export async function submitToIndexNow(urls, { origin, fetch: doFetch = fetch, l
                     keyLocation: `${origin}/${INDEXNOW_KEY}.txt`,
                     urlList: batch,
                 }),
+                signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
             });
             // 200 = accepted, 202 = accepted while the key is still being checked.
             if (res.status === 200 || res.status === 202) {

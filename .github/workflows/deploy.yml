@@ -125,6 +125,8 @@ jobs:
         continue-on-error: true
         env:
           BEFORE_SHA: ${{ github.event.before }}
+          # Same origin the build wrote into the sitemap, or no URL would match.
+          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL || 'https://www.shelf.nu' }}
         run: |
           git fetch --no-tags --depth=1 origin "$BEFORE_SHA" || true
           node scripts/indexnow.mjs --changed "$BEFORE_SHA" "$GITHUB_SHA"
