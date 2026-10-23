@@ -1,9 +1,9 @@
 ---
 title: "Switching From Another Asset Tool to Shelf"
-description: "Moving from another asset or equipment tool? Export your data, map the columns to Shelf's import file, keep the stickers already on your gear, and know what to expect when you bring in about 1,000 assets."
+description: "Moving from another asset or equipment tool? Export your data, upload it as it is and check how Shelf maps its columns, keep the stickers already on your gear, and know what to expect when you bring in about 1,000 assets."
 category: "Getting Started"
 date: "2026-10-15"
-updated: "2026-10-22"
+updated: "2026-10-23"
 layout: "knowledge-base"
 seo:
   title: "Switching From Another Asset Tool to Shelf: Export, Import, Keep Your Labels"
@@ -15,7 +15,7 @@ seo:
     - "keep existing asset labels"
 ---
 
-This guide is for teams that already run a dedicated asset or equipment tool and want to move to Shelf without starting over. It covers the four things every switch comes down to: getting your data out of the old tool, shaping it into Shelf's import file, keeping the labels that are already stuck to your gear, and what a migration of about 1,000 assets looks like in practice.
+This guide is for teams that already run a dedicated asset or equipment tool and want to move to Shelf without starting over. It covers the four things every switch comes down to: getting your data out of the old tool, checking how its columns map to Shelf's fields, keeping the labels that are already stuck to your gear, and what a migration of about 1,000 assets looks like in practice.
 
 If you are coming from a spreadsheet rather than a tool, the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) is the shorter path. Everything below still applies, but you can skip the export step.
 
@@ -39,13 +39,24 @@ Three columns deserve extra attention:
 - **The current holder.** Whoever has the item right now. Shelf imports this as the custodian, so people walk away with the same equipment they had before the switch.
 - **Serial numbers and purchase details.** These become extra fields in Shelf. Keep them.
 
-Open the export and check that it has one row per physical item. Some tools export one row per model with a quantity column. Shelf tracks each piece of equipment as its own record, so you want one row per item, each with its own label value.
+Open the export and check that it has one row per physical item. Some tools export one row per model with a quantity column. For equipment you lend out and track one by one, you want one row per item, each with its own label value. Stock you count rather than track piece by piece, such as cables, batteries or tape, can stay as one row with a quantity: the import asks how those rows should be tracked (see Step 2).
 
-## Step 2. Map your columns to Shelf's import file
+## Step 2. Check how your columns map
 
-Shelf reads a fixed set of column headers. When you upload, it matches your headers to them and ignores capitals; a column it cannot match is skipped unless you pick a field for it, so check the mapping before you import. Download the import template from **Assets → Import** in your workspace (there is a version with barcode columns once the add-on is on) and rename your columns to match.
+You do not have to rename anything. Upload the export as it is: when you click **Continue**, Shelf shows **Check how your columns map**, one row per column of your file with a few sample values and the Shelf field it proposes. It recognises more than 150 headings that other tools and spreadsheets use, Sortly's, Asset Panda's and Snipe-IT's among them, so most columns arrive already placed. A green dot is a sure match, an amber dot a guess to check. Change any row with its dropdown, send it to **Custom field...**, or set it to **Skip**. Nothing is imported until you have checked the table and the preview after it.
 
-The usual mapping looks like this:
+![Check how your columns map for a Sortly-style export: Entry Name to Title, Unit to Unit of measure, Min Level to Low-stock alert at, Primary Folder to Location, and Sortly ID skipped with an amber dot](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/import-column-mapping.webp)
+
+A few things the review does for you:
+
+- **It asks how stock is tracked.** When a column goes to **Quantity** and none says whether a row is an individual asset or stock (every Sortly export is like this), it asks: **Individual assets**, **Stock, returned after use**, or **Stock, used up**.
+- **It skips the old tool's own ids.** A column such as *Sortly ID* is set to **Skip**. If people look items up by that number, set it to **Custom field...** with a name like *Previous ID* instead.
+- **It reuses your custom fields.** A column with the same name as a custom field you already have goes to that field, with its type.
+- **It warns about values the import will refuse**, such as dates written DD/MM/YYYY.
+
+The [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide#checking-how-your-columns-map) describes the review in full. Prefer to prepare the file yourself? Download the template from **Assets → Import** (there is a version with barcode columns once the add-on is on): a file with Shelf's own headings goes straight through the review with every row green.
+
+Where your columns usually end up:
 
 | Column in your old tool | Shelf header | Notes |
 |---|---|---|
@@ -60,20 +71,20 @@ The usual mapping looks like this:
 | Photo, Image URL | `imageUrl` | Must be a public `http(s)` link that returns an image |
 | Model, Product | `assetModel` | Groups identical units under one model; created if missing |
 | Barcode, Asset tag, Label, QR text | `barcode_Code128`, `barcode_Code39`, `barcode_DataMatrix`, `barcode_ExternalQR` or `barcode_EAN13` | See Step 3 |
-| Serial number | `cf:Serial number,type:text` | Any column Shelf has no header for becomes an extra field like this |
+| Serial number | `cf:Serial number,type:text` | Common names such as *Serial No.* are proposed as this field; any other column can become an extra field through **Custom field...** |
 | Purchase date, Warranty until | `cf:Purchase date,type:date` | Dates must be `YYYY-MM-DD` |
-| Old ID, Legacy number | `cf:Previous ID,type:text` | Worth keeping so people can still find items by the number they know |
-| Status, Available / Checked out | drop it | Shelf sets status itself; a row with a `custodian` imports as "In custody", everything else as "Available" |
-| Created, Last modified, History | drop it | Not imported |
+| Old ID, Legacy number | `cf:Previous ID,type:text` | Skipped unless you pick **Custom field...**. Worth keeping so people can still find items by the number they know |
+| Status, Available / Checked out | **Skip** | Shelf sets status itself; a row with a `custodian` imports as "In custody", everything else as "Available" |
+| Created, Last modified, History | **Skip** | Not imported |
 
-A few rules that catch people out:
+The mapping only renames columns; it never changes a value. A few rules about the values themselves still catch people out:
 
 - **Every row needs a `title`.** The file is checked before anything is created, and a row without one is reported back to you.
-- **Extra fields** use the header pattern `cf:Field name,type:text`. Supported types are `text`, `multiline text`, `option`, `boolean`, `date`, `amount` and `number`. Shelf creates the field with that type if it does not exist yet. In a comma-separated file the whole header must be in double quotes because it contains a comma.
+- **Extra fields** are created with the type you pick in the review: `text`, `multiline text`, `option`, `boolean`, `date`, `amount` or `number`. If you prepare the file yourself, the header pattern is `cf:Field name,type:text`, in double quotes in a comma-separated file because it contains a comma.
 - **Dates** must be `YYYY-MM-DD`. Any other format stops the import with a clear error naming the row.
 - **Numbers** carry no currency symbols or thousands separators. `1250.50` works, `$1,250.50` does not.
 - **Save as UTF-8.** In Excel choose "CSV UTF-8" when saving, or accented names come through garbled.
-- **No more than 10,000 rows per file.** A bigger file is refused with a message asking you to split it, before anything is created.
+- **No more than 10,000 rows and 200 columns per file.** A bigger file is refused with a message saying which limit it hit, before anything is created.
 
 The full column reference, with every rule and example, is in the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide).
 
@@ -107,7 +118,7 @@ For Code 128, Code 39, DataMatrix and EAN-13 values this matching problem does n
 Make a copy of your file with five to ten rows that cover your variety: an item in a kit, one with a custodian, one with an extra field of each type, one with a barcode of each type you use.
 
 1. In Shelf, go to **Assets → Import**.
-2. Choose the file and click **Continue**. Shelf shows where each of your columns will go. Change any that look wrong, or set them to **Skip**.
+2. Choose the file and click **Continue**. Shelf shows where each of your columns will go. Check the amber rows, change any that look wrong, or set them to **Skip**, and answer the tracking question if it appears.
 3. Click **Preview import**. Shelf checks the whole file first. If anything is wrong you get a list of every problem with its row number, and nothing is created. Fix the rows and upload again.
 4. Read the preview: it lists the categories, locations, custodians and extra fields the file will create. A misspelt location shows up here as a new one.
 5. Click **Import N assets**, type `I AGREE` and click **Import**.
@@ -129,7 +140,7 @@ Once you confirm, the import runs in the background on Shelf's side. Your browse
 
 **If you split the file anyway**, import kits together, so a kit's assets are created in one file and inherit the same custodian, and keep rows that share an extra field in the same file the first time that field appears, so it is created once with the right type. One import runs at a time, so start the next part when the previous one finishes.
 
-A whole migration of 1,000 assets, including the mapping work, usually fits in an afternoon. The import itself is the quick part; cleaning the export is where the time goes.
+A whole migration of 1,000 assets, including checking the mapping, usually fits in an afternoon. The import itself is the quick part; cleaning the export is where the time goes.
 
 ## After the import
 

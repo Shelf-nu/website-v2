@@ -3,7 +3,7 @@ title: "Troubleshooting: CSV Import Issues"
 description: "CSV import failing or producing unexpected results? Common causes and fixes for Shelf's asset import and bulk-update workflows."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-10-22"
+updated: "2026-10-23"
 layout: "knowledge-base"
 ---
 
@@ -36,7 +36,9 @@ The problems it most often reports:
 
 ## Columns not mapping correctly
 
-- **A column was left out.** After you click **Continue**, Shelf matches each header to a Shelf field, ignoring capitals. A column it cannot match is set to **Skip** and not imported. Pick a Shelf field for it in the mapping step, or **Custom field...** to keep it as a custom field. Check the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the full column reference.
+- **A column was left out.** After you click **Continue**, Shelf proposes a Shelf field for each header: its own headings, the same name ignoring capitals, a custom field you already have, or one of more than 150 headings other tools use. A column it cannot place is set to **Skip** and not imported. Pick a Shelf field for it in the mapping step, or **Custom field...** to keep it as a custom field. Check the [CSV import guide](/knowledge-base/importing-assets-to-shelf-csv-guide) for the full column reference.
+- **Two rows turned red and Preview import is disabled.** Two columns are set to the same Shelf field: *"Another column already goes to this field. Pick a different one or Skip."* Change one of them.
+- **Preview import waits on a question.** A file with a quantity column and no type column asks **How should these rows be tracked?** Pick **Individual assets**, **Stock, returned after use** or **Stock, used up**. **Preview import** also waits while another import is running in the workspace.
 - **Custom fields**: a header in the form `cf:FieldName,type:TypeName`, for example `cf:Purchase Date,type:date`, is mapped to that custom field straight away. A bare `Purchase Date` header is skipped unless your workspace already has a field with that name or you map it yourself. In a comma-delimited file, the whole header must be wrapped in double quotes because it contains a comma: `"cf:Purchase Date,type:date"`. In a semicolon-delimited file no quoting is needed.
 
 ---

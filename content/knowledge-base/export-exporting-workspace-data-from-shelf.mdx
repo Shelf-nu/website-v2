@@ -3,7 +3,7 @@ title: "Exporting Data from Shelf"
 description: "Export asset data from Shelf as CSV: selected assets or a filtered view, in the Standard or Import-ready format. Covers what each includes, moving assets to another workspace, and common reporting scenarios."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-22"
+updated: "2026-10-23"
 layout: "knowledge-base"
 ---
 
@@ -106,6 +106,12 @@ Every CSV Shelf hands you is written as UTF-8 and carries a byte order mark, and
 So a file exported from Shelf opens correctly on the first try, in Excel, Numbers, LibreOffice and Google Sheets, with no import wizard and no encoding to pick. It holds for all of them: the asset index export, bookings, report exports, non-registered members, and the activity note exports on assets, bookings, audits and locations.
 
 The mark does not travel into your data. Shelf's own importer strips it, so a file you export, edit and upload again round-trips cleanly, and so does a file Excel saved with a mark of its own.
+
+### Values that look like formulas
+
+A spreadsheet treats a cell that starts with `=`, `+`, `-` or `@` as a formula and runs it when the file is opened. So when an asset name, tag, custom field value or name, booking, note or team member name starts with one of those characters, Shelf puts a single quote (`'`) in front of it in the CSV. Excel and Google Sheets then show it as plain text, for example `'=HYPERLINK(...)` rather than a link. Negative numbers such as `-5` or `-$5.00` are left alone, so values and amounts still add up.
+
+This applies to the **Standard** asset export, bookings, report exports, non-registered members and the activity note exports. Upload a Standard export to [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) and Shelf removes the added quote again, so the values come back exactly as they were. The **Import-ready** format does not add the quote yet.
 
 ### Dates in exported files
 

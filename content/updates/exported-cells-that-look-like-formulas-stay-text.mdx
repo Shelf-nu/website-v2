@@ -1,0 +1,11 @@
+---
+title: "Exported Values That Look Like Formulas Stay Text"
+description: "When a name, tag or field value starts with =, +, - or @, Shelf's CSV exports now put a single quote in front of it, so Excel and Google Sheets show it as text instead of running it as a formula. Negative numbers are left alone."
+date: "2026-10-23"
+image: "/images/updates/better-csv-imports.jpg"
+layout: "update"
+---
+
+A spreadsheet runs a cell that starts with `=`, `+`, `-` or `@` as a formula when you open the file, so a value someone typed into Shelf could act as a formula on your computer. Shelf's CSV exports now put a single quote (`'`) in front of such a value, and Excel and Google Sheets show it as plain text. Negative numbers such as `-5` or `-$5.00` keep working as numbers, so totals still add up.
+
+This covers the Standard asset export, bookings, report exports, non-registered members and activity notes. Upload a Standard export to update your assets and Shelf removes the added quote again, so nothing changes in your data. See [Exporting Data from Shelf](/knowledge-base/export-exporting-workspace-data-from-shelf#values-that-look-like-formulas) for the details.
