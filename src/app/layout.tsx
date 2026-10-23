@@ -10,6 +10,7 @@ import { PostHogProvider } from "@/components/analytics/posthog-provider";
 import { ReducedMotionConfig } from "@/components/ui/reduced-motion-config";
 import { StructuredData } from "@/components/seo/structured-data";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { FEED_TITLE, JSON_FEED_URL, RSS_FEED_URL } from "@/lib/updates-feed";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -98,6 +99,12 @@ export default function RootLayout({
       <head>
         {/* Preconnect hints removed — Crisp and PostHog are now deferred
             until idle, so early preconnects would be wasted connections. */}
+        {/* Feed autodiscovery on every page, so pasting any Shelf URL (most
+            often the homepage) into a feed reader finds the updates feeds.
+            Plain tags, not metadata.alternates: a page that sets its own
+            alternates.canonical would replace these. */}
+        <link rel="alternate" type="application/rss+xml" title={FEED_TITLE} href={RSS_FEED_URL} />
+        <link rel="alternate" type="application/feed+json" title={FEED_TITLE} href={JSON_FEED_URL} />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         {/* Site-wide identity schema — Organization + WebSite. Emitted

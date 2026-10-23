@@ -270,6 +270,8 @@ const LINK_INDEX = `## Key Links
 ## Product Updates
 
 - [Product Updates](${BASE_URL}/updates): Timeline of every product improvement, new feature, and platform update.
+- [Product updates feed (JSON Feed)](${BASE_URL}/updates/feed.json): The 50 newest updates as JSON Feed 1.1: title, date, summary and full text of each. The quickest way for an agent to learn what changed in Shelf recently.
+- [Product updates feed (RSS)](${BASE_URL}/updates/rss.xml): The same 50 updates as RSS 2.0, for feed readers.
 - [Shelf Companion for iPhone — Launch (2026-05-25)](${BASE_URL}/updates/shelf-companion-ios-launch): The free iOS companion to your Shelf workspace is live on the App Store.
 
 ${renderPricingSection()}

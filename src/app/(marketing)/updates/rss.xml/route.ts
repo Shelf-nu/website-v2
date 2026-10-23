@@ -9,6 +9,7 @@ import {
     UPDATES_URL,
     getFeedItems,
 } from "@/lib/updates-feed";
+import { BASE_URL } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 
@@ -58,6 +59,11 @@ export function GET() {
     <description>${escapeXml(FEED_DESCRIPTION)}</description>
     <language>en</language>
     <atom:link href="${RSS_FEED_URL}" rel="self" type="application/rss+xml" />
+    <image>
+      <url>${BASE_URL}/apple-icon.png</url>
+      <title>${escapeXml(FEED_TITLE)}</title>
+      <link>${UPDATES_URL}</link>
+    </image>
 ${items[0] ? `    <lastBuildDate>${new Date(items[0].datePublished).toUTCString()}</lastBuildDate>\n` : ""}${body}
   </channel>
 </rss>
