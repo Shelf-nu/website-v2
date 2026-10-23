@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowRight, ExternalLink, Rss, Sparkles } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ContentMeta } from "@/lib/mdx";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,7 @@ function isExternalUrl(url: string) {
     return url.startsWith("http://") || url.startsWith("https://");
 }
 
+/** The /updates hero (count + RSS link) and the year-grouped timeline. */
 export function UpdatesFeed({ updates }: UpdatesFeedProps) {
     const yearGroups = groupByYear(updates);
     const years = Object.keys(yearGroups).sort((a, b) => Number(b) - Number(a));
@@ -62,6 +63,16 @@ export function UpdatesFeed({ updates }: UpdatesFeedProps) {
                 <div className="inline-flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 border border-border/50 rounded-full px-4 py-2">
                     <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
                     {updates.length} updates shipped
+                </div>
+
+                <div className="mt-4">
+                    <a
+                        href="/updates/rss.xml"
+                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        <Rss className="h-3.5 w-3.5" />
+                        Subscribe via RSS
+                    </a>
                 </div>
             </Container>
 
