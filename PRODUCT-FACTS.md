@@ -38,6 +38,12 @@
 - Calendar apps refresh subscribed calendars on their own schedule; the feed itself is cached for 5 minutes.
 - ❌ **Never say:** "two-way calendar sync", "edit bookings from Outlook/Google", "real-time / instant sync", or that two-way sync is on the roadmap. None is built or committed.
 
+## Asset reminders (verified 2026-10-27 against product origin/main + a live test on app.shelf.nu)
+- One-time reminders on **every plan**. **Repeating reminders** (daily, weekly, every 2 weeks, monthly, every 3 months, every 6 months, yearly, optional end date) on **Plus, Team and Enterprise only** (shelf.nu PR #2685, live 2026-10-27). Free = Repeat locked to "Never".
+- Each repeat email names the next date; each occurrence writes a note on the asset. Archived asset = series shows **Paused** and sends nothing until reinstated.
+- Reminders are **not** driven by date custom fields (still set by hand). No work orders.
+- ❌ **Never say:** "reminders do not repeat", "set the next reminder after each service" as the only option, or that repeating reminders are free.
+
 ## Hosting, data location and sub-processors (verified 2026-09-18 against product origin/main + live production)
 - **Data:** Supabase (database, sign-in accounts, file storage) in AWS **eu-central-1, Frankfurt, Germany**.
 - **Application servers:** Fly.io in **Amsterdam, the Netherlands**. Fly.io is compute only; it holds no customer data at rest. Cloudflare sits in front of app.shelf.nu.
