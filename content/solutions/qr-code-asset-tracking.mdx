@@ -10,7 +10,7 @@ personas:
   - "field"
 canonicalUrl: "/solutions/qr-code-asset-tracking"
 date: "2026-06-23"
-updated: "2026-06-23"
+updated: "2026-10-27"
 seo:
   title: "QR Code Asset Tracking Software & QR Asset Tags"
   description: "QR code asset tracking software — generate and print QR asset tags, then scan from any phone to check items in/out, update location, and view full history. Open source, free to start."
@@ -76,7 +76,7 @@ See: [Custody](/features/custody)
 
 ### Know Where Everything Is
 
-Each scan records the asset's current location, so a quick check-in updates its place across rooms, buildings, and sites. Shelf captures the point-in-time location at the moment of a scan — a fast, accurate way to keep records current without continuous GPS hardware on every item.
+Every scan is recorded on the asset's **Last scan** card with the time, the person, the device and, when the phone or browser shares it, the coordinates where it happened, so you can see where an item was last in someone's hands without GPS hardware on every piece. The asset's recorded location, the room, building or site it belongs to, changes when you tell Shelf it moved: **Update location** on the asset, or the scanner's **Update location** batch action, which moves every scanned item in one go. Checking an item in does not move it by itself.
 
 See: [Location Tracking](/features/location-tracking)
 
@@ -102,7 +102,7 @@ See: [Mobile Asset Auditing](/solutions/mobile-asset-auditing)
 - **Batch label printing** with the built-in label designer
 - **Scan from any phone** — web app or the free Companion app (iPhone & Android)
 - **Check-in / check-out** and custody assignment in one scan
-- **Location updates** captured at scan time
+- **Scan location** recorded on every scan, and bulk **Update location** from the scanner
 - **Barcode support** — Code128, Code39, DataMatrix, EAN-13, external QR
 - **Automatic activity log** for a complete audit trail
 - **Unlimited assets** on every plan, including the free tier
@@ -141,7 +141,7 @@ Yes. Every asset gets a QR code automatically, and you can print them in batches
 
 ### Does Shelf track an asset's location in real time?
 
-Shelf records an asset's location each time its QR code is scanned — an accurate, point-in-time update. It is not continuous GPS tracking; location reflects the most recent scan.
+No. Shelf records where each scan happened, when the device shares its position, and shows the most recent one on the asset's **Last scan** card. That is a point-in-time record, not continuous GPS tracking. The asset's assigned location (its room, building or site) is a separate field that you change with **Update location**, on the asset or from the scanner.
 
 ### Can I use existing barcodes instead of QR codes?
 
