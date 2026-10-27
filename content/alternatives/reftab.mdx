@@ -11,10 +11,44 @@ personas:
   - "education"
 canonicalUrl: "/alternatives/reftab"
 date: "2026-03-12"
-updated: "2026-10-16"
+updated: "2026-10-27"
+comparisonTable:
+  - feature: "Free plan with unlimited assets"
+    shelf: true
+    competitor: false
+  - feature: "Open source & self-hostable"
+    shelf: true
+    competitor: false
+  - feature: "Flat price that does not rise with asset count"
+    shelf: true
+    competitor: false
+  - feature: "Separate workspaces per department"
+    shelf: true
+    competitor: false
+  - feature: "Equipment bookings & reservations"
+    shelf: true
+    competitor: true
+  - feature: "Loan / custody history per asset"
+    shelf: true
+    competitor: true
+  - feature: "Kits with check-out as one unit"
+    shelf: true
+    competitor: true
+  - feature: "QR codes with custom labels"
+    shelf: true
+    competitor: true
+  - feature: "Native iOS & Android app"
+    shelf: true
+    competitor: true
+  - feature: "CSV import / export"
+    shelf: true
+    competitor: true
+  - feature: "No credit card to start"
+    shelf: true
+    competitor: true
 seo:
-  title: "Reftab Alternative — Equipment Workflows Beyond Asset Registers"
-  description: "Considering Reftab? Explore how Shelf differs in booking, custody tracking, kit management, open-source transparency, and unlimited assets on every plan."
+  title: "Reftab Alternative — Open Source, No Asset Caps, Department Workspaces"
+  description: "Considering Reftab? See where Shelf differs: open source and self-hostable, flat pricing with no asset quota, separate workspaces per department, and kit return checks."
   keywords:
     - "reftab alternative"
     - "reftab vs shelf"
@@ -30,15 +64,17 @@ related:
 
 # Reftab Alternative
 
-Reftab is a cloud-based IT asset management platform founded in 2013. It has built a solid reputation for quick setup, responsive customer support, and a clean interface that small IT teams can adopt without deep technical skills. Reftab tracks hardware, software, and equipment with barcode and QR scanning, approval workflows, and integrations with tools like Zendesk, Microsoft 365, and Okta. Teams exploring alternatives typically need equipment booking, custody workflows, kit management, or open-source flexibility that Reftab does not provide.
+Reftab is a cloud-based IT asset management platform. It covers hardware and software asset management: check-in and checkout, loan history, reservations, kits, asset audits, maintenance and work orders, request approvals, and integrations with tools such as Intune, Jamf, Jira, Microsoft 365 and Okta. Teams that compare it with Shelf are usually weighing four things Shelf does differently: open-source code you can self-host, flat pricing with no asset quota, separate workspaces per department, and kit checks on return.
+
+Everything on this page about Reftab comes from Reftab's own website, checked on 27 October 2026. Where we are not sure, we say so.
 
 ---
 
 ## Overview: Reftab vs Shelf
 
-Reftab offers four tiers: Free (50 assets, limited features), Starter ($31.25/month billed annually, 250 assets), Pro ($62.50/month, more assets with changelogs and access control), and Business ($125/month, full integrations). Each tier caps the number of assets you can track, and organizations managing more than 3,000 assets need custom pricing. Reftab is proprietary SaaS — there is no self-hosted option and the source code is not available.
+Reftab's free plan tracks up to 50 assets with no time limit. The paid Hardware Asset Management plan is listed at $125 per month with unlimited users, and the Complete ITAM bundle is custom-priced "based on assets + software users". Reftab's pricing FAQ refers to a "billable asset quota", so the price moves with the number of assets you track. Reftab is proprietary SaaS: there is no self-hosted option and the source code is not public.
 
-Shelf focuses on what happens when equipment moves between people. Instead of optimizing for static asset registries, Shelf tracks custody chains, reservations, and kit completeness. Every interaction — check-out, return, location update — happens through a QR scan on any smartphone. Shelf is open source with unlimited assets and unlimited users on every plan.
+Shelf focuses on what happens when equipment moves between people. It tracks custody chains, reservations, and kit completeness, and every interaction (check-out, return, location update) can happen through a QR scan on any smartphone. Shelf is open source with unlimited assets and unlimited users on every plan.
 
 ---
 
@@ -46,85 +82,49 @@ Shelf focuses on what happens when equipment moves between people. Instead of op
 
 | Capability | Reftab | Shelf |
 |---|---|---|
-| **Primary focus** | IT asset registry + approval workflows | Equipment check-out, booking, custody |
-| **Pricing** | Free (50 assets); paid from $31.25/month | Free (self-hosted) or managed cloud |
-| **Asset limits** | 50–3,000+ depending on tier | No asset caps on any plan |
-| **User limits** | Unlimited on paid plans | Unlimited on every plan |
-| **Equipment booking** | No native booking system | Built-in with conflict prevention |
-| **Custody tracking** | Assignment-based checkout | Full custody chain with history |
-| **Kit management** | Individual asset tracking; limited kit printing | Kit-aware booking and return verification |
-| **Open source** | No — proprietary SaaS | Yes — full codebase available |
+| **Primary focus** | IT asset management (hardware + software), approvals, integrations | Equipment check-out, booking, custody |
+| **Pricing** | Free (50 assets); Hardware Asset Management $125/month; Complete ITAM custom (checked 27 Oct 2026) | Free (self-hosted) or managed cloud |
+| **Pricing model** | Priced on tracked assets (plus software users on ITAM plans) | Flat per workspace, unlimited assets and users |
+| **Asset limits** | 50 on the free plan; paid plans billed on an asset quota | No asset caps on any plan |
+| **User limits** | Unlimited users on paid plans | Unlimited on every plan |
+| **Equipment booking** | Yes: reservations with calendars, buffer times, business hours, booking windows, recurring bookings, request approvals | Yes: availability calendar with automatic conflict prevention, self-service booking for members |
+| **Custody tracking** | Loan history per asset (who, out, back, notes) plus an asset changelog with old and new values | Custody chain per asset with every check-out, return and transfer |
+| **Kit management** | Kits and kit templates; checked out and returned as a unit; kit reservations are admin-only per Reftab's docs | Kits booked, checked out and verified as one unit; missing components flagged on return |
+| **QR labels** | Custom label designer (fields, logo, size, QR or barcode), Avery sheets and label rolls | Custom branded QR labels, Avery sheets and label printers |
+| **Open source** | No, proprietary SaaS | Yes, full codebase available |
 | **Self-hosting** | Not available | Available |
 | **Mobile experience** | Native iOS and Android apps | Native iOS & Android app (Shelf Companion) + mobile web |
-| **Integrations** | Zendesk, M365, Okta, NinjaOne, Zapier, Jira | Open source codebase; CSV import/export |
-| **Multi-team workspaces** | Single instance with role-based access | Separated workspaces per department |
-| **Operational reports** | Asset and assignment reports with CSV export | Built-in operational reports (booking compliance, top booked assets and kits, utilization, idle, custody, distribution, audit completion) with CSV/PDF export |
+| **Integrations** | Intune, Jamf, Jira, Microsoft 365, Okta, Zendesk, NinjaOne, Zapier and more | Open source codebase; CSV import/export |
+| **Multi-team workspaces** | One account with locations, sub-locations and access roles | Separated workspaces per department |
+| **Operational reports** | Asset, loan and changelog reports with Excel/CSV export | Built-in operational reports (booking compliance, top booked assets and kits, utilization, idle, custody, distribution) with CSV/PDF export |
 
 ---
 
 ## Where Shelf Takes a Different Approach
 
-### 1. Equipment Booking and Reservations
+### 1. Flat Pricing With No Asset Quota
 
-Reftab handles asset assignment — an administrator checks out a device to a user and checks it back in when returned. There is no native booking or reservation system for scheduling shared equipment in advance.
+Reftab's free plan stops at 50 assets. Beyond that, the price is tied to how many assets you track: the ITAM bundle is priced "based on assets + software users", and the pricing FAQ talks about a billable asset quota. That is a normal model for IT asset management, where each asset is a laptop worth tracking on its own.
 
-Shelf includes a full [booking system](/features/bookings) with real-time availability calendars, automatic double-booking prevention, and multi-day reservation support. Users can self-serve their own reservations without needing administrator intervention. This matters for environments where multiple people share the same equipment and need to plan ahead — film crews, university gear rooms, or IT loaner pools.
+Shelf does not cap assets or users on any plan. Whether you track 200 items or 20,000, the price stays the same. For teams whose inventory is thousands of cables, lenses, tools and batteries rather than a few hundred laptops, that difference decides the bill.
 
-See: [Bookings](/features/bookings)
-
-![Bookings overview showing reservation calendar](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/bookings.jpg)
+See: [Pricing](/pricing)
 
 ---
 
-### 2. No Asset Caps or Tier Pressure
+### 2. Open Source and Self-Hosting
 
-Reftab gates the number of assets by pricing tier. The Free plan allows 50 assets. Even the Starter tier caps you at 250 assets for $31.25/month. Organizations that outgrow these limits face incremental upgrades, and managing more than 3,000 assets requires custom pricing.
+Reftab is proprietary SaaS. The source code is not available, there is no self-hosted option, and your data lives on Reftab's infrastructure. For most teams that is fine. For organizations with data sovereignty requirements, air-gapped sites, or a policy of inspectable code, it is a hard constraint.
 
-Shelf does not cap assets or users on any plan. Whether you track 200 items or 20,000, the pricing stays predictable. For teams that grow quickly or manage large inventories across departments, this eliminates the pressure of tier-based limits.
-
-See: [Location Tracking](/features/location-tracking)
-
-![Location tracking showing asset positions across sites](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/location-tracking.jpg)
+Shelf is [open source](/solutions/open-source-asset-management) with a fully public codebase. Teams can read every line, self-host on their own infrastructure, or use Shelf's managed cloud. There is no vendor lock-in, and teams with development resources can extend Shelf to connect with any system their organization uses.
 
 ---
 
-### 3. Full Custody Chain vs Assignment Logs
+### 3. Multi-Department Workspaces
 
-Reftab records who has a device and when it was assigned. This works for tracking which laptop belongs to which employee. But for shared equipment that changes hands frequently — loaner devices, field tools, production gear — a simple assignment log does not capture the full picture.
+Reftab runs one account per organization, structured with unlimited locations and sub-locations and controlled with access roles. That works well for one IT team managing one estate. When IT, facilities, a media department and a teaching lab each want their own inventory, their own members and their own settings, the scoping has to be built out of roles and locations.
 
-Shelf maintains a permanent, timestamped [custody chain](/features/custody) for every asset. Every check-out, return, and transfer is recorded with the user's identity, location, and timestamp. Need proof of who had a projector last Thursday? Filter by asset and date, then export the trail as a record.
-
-See: [Custody](/features/custody)
-
-![Custody tracking showing who is responsible for each asset](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/custodians.jpg)
-
----
-
-### 4. Kit Tracking and Component Verification
-
-Reftab tracks assets individually. Reviewers have noted that you cannot print a list of items in a kit and that accessory management feels limited. If you manage a camera kit with a body, lenses, batteries, and a charger, those are separate records with no inherent relationship during checkout.
-
-Shelf groups related equipment into [kits](/features/kits) that are booked, checked out, and verified as a single unit. When a kit comes back, Shelf flags missing components before the next user picks it up. This prevents the gradual loss of accessories that plagues every shared equipment operation.
-
-See: [Kits](/features/kits)
-
-![Kits overview showing grouped equipment sets](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/kits.jpg)
-
----
-
-### 5. Open Source and Self-Hosting
-
-Reftab is proprietary SaaS. The source code is not available, there is no self-hosted option, and your data lives on Reftab's infrastructure. For organizations with data sovereignty requirements, compliance mandates, or a preference for inspectable code, this is a hard constraint.
-
-Shelf is [open source](/solutions/open-source-asset-management) with a fully public codebase. Teams can inspect every line of code, self-host on their own infrastructure, or use Shelf's managed cloud. There is no vendor lock-in, and teams with development resources can extend Shelf to connect with any system their organization uses.
-
----
-
-### 6. Multi-Department Workspaces
-
-Reftab operates as a single inventory with role-based permissions. This works for a single IT team managing one equipment pool. When multiple departments — IT, facilities, media, education — need to manage their own equipment within the same organization, permissions get complex and cross-department clutter is hard to avoid.
-
-Shelf uses [workspaces](/features/workspaces) to give each team a fully separate inventory. Each workspace has its own assets, users, and settings. Administrators retain visibility across the entire organization without any department seeing another's equipment.
+Shelf uses [workspaces](/features/workspaces) to give each team a fully separate inventory. Each workspace has its own assets, users, bookings and settings, and a person can belong to several. Nobody sees another department's equipment unless they are invited into that workspace.
 
 See: [Workspaces](/features/workspaces)
 
@@ -132,43 +132,61 @@ See: [Workspaces](/features/workspaces)
 
 ---
 
-### 7. Platform Consistency
+### 4. Kit Checks on Return
 
-Reftab offers both a web interface and native mobile apps for iOS and Android. However, reviewers on Capterra and Software Advice have noted that the desktop and mobile versions feel different, making it difficult to adapt to both. Some editing tasks — like managing accessory barcodes — are limited on mobile.
+Both products have kits. Reftab added kit templates in its January 2020 release notes: a template defines the components (a quantity from a category, specific assets, accessories), the app shows how many complete kits you can build, and scanning items fills in the checklist. Kits are checked out and returned as a unit, and items inside a kit can be returned separately. Reftab's own documentation says that reserving a kit template is limited to admins.
 
-Shelf is a mobile-first web application. The same interface works on desktop and mobile browsers with consistent behavior — QR scanning, custody transfers, and booking confirmations work in either context. For field-heavy iPhone workflows, the free [Shelf Companion app](/mobile-app) is also on the App Store and Google Play. The web stays the canonical experience either way.
+Shelf's [kits](/features/kits) are built the other way round: a kit is a fixed set of named assets that is booked, checked out and returned together by anyone with the right role. When a kit comes back, Shelf flags which components are missing before the next person picks it up. If your pain is the slow loss of chargers and lens caps from shared kits, that return check is the feature to compare.
+
+See: [Kits](/features/kits)
+
+![Kits overview showing grouped equipment sets](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/kits.jpg)
+
+---
+
+### 5. Bookings: Both Have Them, Built for Different Rooms
+
+Reftab's reservation system is mature. Users reserve assets, accessories and licenses for a date range, reserved items are blocked from checkout for those dates, and admins can set buffer times between reservations, business hours per location, how far ahead people may book, maximum reserved items per user, recurring bookings, and approval flows for requests. It is designed for an IT help desk or an equipment room with staff who fulfil reservations.
+
+Shelf's [booking system](/features/bookings) is built for the people who use the gear. Any member with the right role books from a live availability calendar, Shelf prevents overlapping bookings automatically, and the booking carries straight into check-out and return on a phone, kit included. There is no separate request-then-fulfil step unless you want one.
+
+See: [Bookings](/features/bookings)
+
+![Bookings overview showing reservation calendar](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/bookings.jpg)
+
+---
+
+### 6. Custody History
+
+Reftab keeps a loan history for every asset (who it was loaned to, when it went out, when it came back, who returned it, notes) and a separate changelog that records field changes with old and new values. Both can be reported on and exported.
+
+Shelf keeps a [custody chain](/features/custody) for every asset as well, with each check-out, return and transfer stamped with the person, time and location. The difference is less in what is stored than in how it is written: in Shelf the transfer happens by scanning the asset's QR code on a phone, so the record is created by the person holding the item, not by an admin at a desk later.
+
+See: [Custody](/features/custody)
+
+![Custody tracking showing who is responsible for each asset](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/custodians.jpg)
 
 ---
 
 ## When Teams Choose Shelf Instead of Reftab
 
-Teams typically choose Shelf over Reftab when their equipment needs go beyond static tracking:
-
-- **Shared equipment needs scheduling**: Multiple people need the same assets on different days, and a booking system prevents conflicts
-- **Custody accountability matters**: Knowing the full chain of who had equipment — not just the current assignee — is important for compliance, insurance, or dispute resolution
-- **Kits need to stay complete**: Production, education, and field teams managing grouped equipment need kit-level tracking and return verification
-- **Asset caps are a concern**: Growing teams and large inventories should not be penalized with forced tier upgrades
-- **Open source is a requirement**: Data sovereignty, self-hosting, and codebase transparency are organizational priorities
-- **Multiple departments share one platform**: IT, facilities, and media teams each need their own workspace without cross-department noise
+- **The inventory is large and cheap per item**: Thousands of cables, tools, props or batteries make per-asset pricing expensive, and Shelf has no asset quota
+- **Open source is a requirement**: Data sovereignty, self-hosting, or a policy of inspectable code
+- **Several departments share one platform**: Each team wants its own workspace, members and settings rather than one shared account scoped by roles
+- **Kits must come back complete**: Return verification that flags missing components is the daily problem
+- **Everyone books and scans**: Students, crew or field staff book and check out themselves from a phone, with no fulfilment desk in between
 
 ---
 
 ## When Reftab May Be a Better Fit
 
-Reftab has genuine strengths that make it the right choice for certain teams:
+- **IT asset management end to end**: Reftab covers hardware lifecycle, software licences and SaaS usage in one product. Shelf tracks physical assets and does not do software asset management
+- **Device-management integrations**: Intune, Jamf, Jira, Okta and 30+ others sync device and user data into Reftab. Shelf's integration path is its open-source codebase and CSV import/export
+- **Maintenance and work orders**: Reftab's paid plan includes maintenance and work orders. Shelf has no maintenance module
+- **Request approvals**: Reftab's request portal with approval flows suits help desks that gate equipment behind a sign-off
+- **Managed-only simplicity**: Teams that never want to think about hosting get everything run by Reftab
 
-- **Quick IT inventory setup**: Teams that need to be tracking laptops and devices within a single afternoon will appreciate Reftab's streamlined onboarding
-- **Approval workflows**: Reftab's service catalog and request approval system is useful for IT departments managing hardware and software provisioning
-- **Enterprise integrations**: Native connections to Zendesk, Microsoft 365, Okta, NinjaOne, and Jira Cloud are valuable for teams already embedded in those ecosystems
-- **Responsive support**: Reftab consistently receives high marks for customer service speed and helpfulness
-- **Native mobile on both iOS and Android**: Reftab ships native apps on both platforms today, and Shelf Companion is on the App Store and Google Play
-- **Managed-only simplicity**: Teams that do not want to think about hosting, updates, or infrastructure benefit from Reftab handling everything
-
-Both platforms track physical assets — but they optimize for different realities. Reftab is built for IT teams that need a clean asset register with approval workflows. Shelf is built for teams where equipment circulates and the daily reality is check-outs, bookings, and custody transfers.
-
----
-
-**Ready to move your data from Reftab?** [Switching From Another Asset Tool to Shelf](/knowledge-base/switching-from-another-asset-tool) walks through exporting from your current tool, mapping the columns to Shelf's import file, and keeping the barcode or QR stickers already on your equipment.
+Both platforms track physical assets, but they optimize for different realities. Reftab is built for IT teams that want one system for hardware, software and the help-desk workflow around them. Shelf is built for teams where equipment circulates daily and the people doing the check-outs are not administrators.
 
 ---
 
