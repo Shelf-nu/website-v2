@@ -22,7 +22,7 @@ comparisonTable:
   - feature: "Flat price that does not rise with asset count"
     shelf: true
     competitor: false
-  - feature: "Separate workspaces per department"
+  - feature: "Self-serve workspaces per department"
     shelf: true
     competitor: false
   - feature: "Equipment bookings & reservations"
@@ -31,7 +31,7 @@ comparisonTable:
   - feature: "Loan / custody history per asset"
     shelf: true
     competitor: true
-  - feature: "Kits with check-out as one unit"
+  - feature: "Kits with check-out as one unit (Reftab: paid plans)"
     shelf: true
     competitor: true
   - feature: "QR codes with custom labels"
@@ -88,14 +88,14 @@ Shelf focuses on what happens when equipment moves between people. It tracks cus
 | **Asset limits** | 50 on the free plan; paid plans billed on an asset quota | No asset caps on any plan |
 | **User limits** | Unlimited users on paid plans | Unlimited on every plan |
 | **Equipment booking** | Yes, reservations with admin-set rules and a request-then-fulfil step | Yes, availability calendar with automatic conflict prevention, booked by the people who use the gear |
-| **Custody tracking** | Loan history and a field changelog per asset | Custody chain per asset, written by a QR scan at hand-over |
-| **Kit management** | Kits and kit templates; reserving a kit is admin-only | Kits booked, checked out and verified as one unit; missing components flagged on return |
+| **Custody tracking** | Loan history on every plan; field changelog on paid plans | Custody chain per asset, written by a QR scan at hand-over |
+| **Kit management** | Kits and kit templates on paid plans; kit templates can only be reserved by admins | Kits booked, checked out and verified as one unit; missing components flagged on return |
 | **QR labels** | Label designer, Avery sheets and rolls | Custom branded QR labels, Avery sheets and label printers |
 | **Open source** | No, proprietary SaaS | Yes, full codebase available |
 | **Self-hosting** | Not available | Available |
 | **Mobile experience** | Native iOS and Android apps | Native iOS & Android app (Shelf Companion) + mobile web |
 | **Integrations** | Intune, Jamf, Jira, Okta, Zendesk and others | Open source codebase; CSV import/export |
-| **Multi-team workspaces** | One account with locations, sub-locations and access roles | Separated workspaces per department |
+| **Multi-team workspaces** | One account with locations, sub-locations and access roles; separate tenants on request | Separated workspaces per department |
 | **Operational reports** | Asset and loan reports with CSV export | Built-in operational reports (booking compliance, top booked assets and kits, utilization, idle, custody, distribution) with CSV/PDF export |
 
 ---
@@ -134,7 +134,7 @@ See: [Workspaces](/features/workspaces)
 
 ### 4. Kit Checks on Return
 
-Reftab has kits and kit templates: a template lists the required components and scanning fills in the checklist when a kit is assembled. Reserving a kit is limited to admins, per Reftab's own documentation, so the people who actually use the gear cannot book one.
+Reftab has kits and kit templates: a template lists the required components and scanning fills in the checklist when a kit is assembled. Kits are not on Reftab's free plan, and reserving a kit template is limited to admins, per Reftab's own documentation, so the people who actually use the gear cannot book one from a template.
 
 Shelf's [kits](/features/kits) are a fixed set of named assets that anyone with the right role books, checks out and returns together. When a kit comes back, Shelf flags which components are missing before the next person picks it up. If your pain is the slow loss of chargers and lens caps from shared kits, that return check is the feature to compare.
 
@@ -146,7 +146,7 @@ See: [Kits](/features/kits)
 
 ### 5. Bookings Without a Desk in the Middle
 
-Reftab has reservations. A user requests a date range, admins set the rules (buffer times, booking windows, business hours, approvals), and staff fulfil the reservation at pickup by scanning or selecting the assets. It is a help-desk model: the request goes to a desk, the desk hands the gear over.
+Reftab has reservations. A user requests a date range, admins set the rules (buffer times, booking windows, business hours, approvals), and, in the default "Reserve Only" portal setting, staff fulfil the reservation at pickup by scanning or selecting the assets. It is a help-desk model by default: the request goes to a desk, the desk hands the gear over.
 
 Shelf's [booking system](/features/bookings) is built for the people who use the gear. Any member with the right role books from a live availability calendar, Shelf prevents overlapping bookings automatically, and the booking carries straight into check-out and return on a phone, kit included. There is no desk in the middle unless you want one.
 
