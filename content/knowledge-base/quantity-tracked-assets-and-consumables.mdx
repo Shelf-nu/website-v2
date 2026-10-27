@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-10-22"
+updated: "2026-10-27"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -264,8 +264,11 @@ The value you set on an asset is its **per-unit** value. For a quantity-tracked 
 | A booking's total value, including the pull-list PDF | Only the units booked for those dates |
 | The **Custody Snapshot** report | Only the units that custodian is holding |
 | Value at risk on the **Overdue Items** report | Only the units still out on the late booking |
+| A location's **Total value** on its overview page | Only the units placed at that location, the same *N units at this location* its **Assets** tab shows |
 
 So a booking that reserves 5 cables out of a 100-cable pool shows €10, not €200, and the same 5 cables show €10 on a kit that holds them.
+
+A location has followed the same rule since 26 October 2026. Before that, a location's total counted a pool's whole stock, so 143 pens at €1.50 kept as 99 in one room and 44 in another added the full €214.50 to both rooms; now the first room adds €148.50 and the second €66. The **By Location** breakdown of the **Asset Distribution** report counts placed units the same way, and since the same date counts a location's units once even when a manual placement and a kit slice of the same pool share that location, instead of adding them up.
 
 A standard export carries both numbers side by side: **Value** is the per-unit price and **Total value** is the quantity-aware total. The import-ready export carries only the per-unit price, so the file re-imports without inflating anything.
 
