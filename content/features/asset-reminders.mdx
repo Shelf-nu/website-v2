@@ -9,7 +9,7 @@ personas:
   - "it"
 canonicalUrl: "/features/asset-reminders"
 date: "2025-01-01"
-updated: "2026-10-19"
+updated: "2026-10-27"
 seo:
   title: "Equipment Reminder & Maintenance Notifications"
   description: "Put a date on an asset and get an email when it arrives. Reminders for inspections, calibrations, warranties and service, sent to the people you choose."
@@ -19,7 +19,7 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 # Asset Reminders
 
-A reminder is a date on an asset with a message and a list of people. When the date arrives, Shelf emails those people and writes a note on the asset. That is the whole feature, and it covers a lot: inspections, calibrations, warranty ends, licence renewals, "decide whether to retire this".
+A reminder is a date on an asset with a message and a list of people. When the date arrives, Shelf emails those people and writes a note on the asset. A reminder can fire once or repeat on a schedule. It covers a lot: inspections, calibrations, warranty ends, licence renewals, "decide whether to retire this".
 
 ![Asset reminders overview showing scheduled notifications](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reminders2-min.png)
 
@@ -49,11 +49,17 @@ At the chosen date and time Shelf sends one email to each person on the reminder
 
 ### Seen before they fire
 
-Upcoming reminders show in three places: the **Upcoming reminders** card on the Home page, the asset's own overview, and the **Reminders** page in the sidebar, which lists every reminder in the workspace with its status: **Pending**, **Sent**, or **Paused** for reminders on an archived asset. Pending reminders can be edited; sent ones can only be deleted.
+Upcoming reminders show in three places: the **Upcoming reminders** card on the Home page, the asset's own overview, and the **Reminders** page in the sidebar, which lists every reminder in the workspace with its status: **Pending**, **Sent**, or **Paused** for reminders on an archived asset. Pending reminders can be edited. A one-time reminder that has been sent can only be deleted; a repeating one stays editable for as long as it runs.
+
+### Repeating reminders
+
+On the Plus and Team plans a reminder can repeat: daily, weekly, every 2 weeks, monthly, every 3 months, every 6 months or yearly, at the same time of day. Add an end date if the series should stop, or leave it open until you delete it. A yearly calibration or a quarterly safety check becomes one reminder instead of one per occurrence.
+
+Each email says when the next one is due, and each occurrence leaves its own note on the asset. Monthly and longer cadences keep the same day of the month. A series set on the 29th to 31st moves to the last day of a shorter month and stays on that earlier day from then on, so the 1st to the 28th are the safe choice. An archived asset's series keeps its schedule but sends nothing until the asset is reinstated. The free Personal plan has one-time reminders only.
 
 ### What a reminder is not, yet
 
-Each reminder is one date, set by hand. Reminders do not repeat on a schedule and they are not driven by a date custom field such as *Warranty expiry* or *Next calibration*: if you store those dates on your assets, you set the reminder yourself, 30 or 90 days ahead, as you prefer. Repeating and field-driven reminders are on our list, but not built. Return dates for borrowed equipment are handled by [Bookings](/features/bookings), which send their own reminders.
+Reminders are set by hand. They are not driven by a date custom field such as *Warranty expiry* or *Next calibration*: if you store those dates on your assets, you set the reminder yourself, 30 or 90 days ahead, as you prefer. Field-driven reminders are on our list, but not built. Return dates for borrowed equipment are handled by [Bookings](/features/bookings), which send their own reminders.
 
 ---
 
@@ -62,6 +68,7 @@ Each reminder is one date, set by hand. Reminders do not repeat on a schedule an
 - **Deadlines attached to the asset**, not to a person's memory
 - **Named recipients per reminder**, so each team hears only about its own gear
 - **An audit trail**, since every fired reminder becomes a note on the asset
+- **Repeating schedules** for checks that come back every month, quarter or year (Plus and Team)
 - **Workspace-wide overview** on the Reminders page and the Home card
 
 ---
