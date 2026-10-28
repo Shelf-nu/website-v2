@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/solutions/maintenance-tracking"
 date: "2026-03-12"
-updated: "2026-10-14"
+updated: "2026-10-27"
 seo:
   title: "Equipment Maintenance Tracking Software — Reminders & Service Log"
   description: "Lightweight maintenance tracking — not a full CMMS. Set reminders for service and inspection dates, log service history, and email your team when work is due. Open source, free to start."
@@ -68,7 +68,7 @@ If your maintenance needs center on scheduling reminders, logging completed serv
 - **Warranty expiration**: Get notified before coverage lapses so you can renew or plan for replacement
 - **Lease renewals**: Equipment lease end dates with advance notice for budget planning
 
-Each reminder is attached to a specific asset, is set for a specific date, and notifies designated team members by email as the date approaches. Reminders do not repeat on their own: when the work is done, log it and set the next reminder.
+Each reminder is attached to a specific asset, is set for a specific date, and notifies designated team members by email as the date approaches. On the Plus and Team plans a reminder can repeat (monthly, quarterly, every 6 months, yearly and more), so a recurring inspection is set up once. On the free plan each reminder fires once: when the work is done, log it and set the next one.
 
 ![Reminders tab on an asset showing calibration, cleaning, warranty, and disposal reminders with per-reminder status](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/asset-reminders.webp)
 
@@ -112,7 +112,7 @@ No separate maintenance log to maintain. No paperwork to file. The asset itself 
 
 ### Calibration Dates — A Register, Not a Metrology System
 
-Keep each instrument's calibration due date in a date [custom field](/knowledge-base/custom-field-types-in-shelf), with the certificate number and provider in text fields, and set an [Asset Reminder](/features/asset-reminders) ahead of the due date. Shelf is a register and a reminder, not a calibration or metrology system: it does not store certificate files, record pass/fail results or measurement uncertainty, or schedule recurring calibrations. Teams that perform calibrations themselves should use dedicated calibration software.
+Keep each instrument's calibration due date in a date [custom field](/knowledge-base/custom-field-types-in-shelf), with the certificate number and provider in text fields, and set an [Asset Reminder](/features/asset-reminders) ahead of the due date. Shelf is a register and a reminder, not a calibration or metrology system: a yearly repeating reminder can flag each calibration (Plus and Team), but Shelf does not store certificate files or record pass/fail results or measurement uncertainty. Teams that perform calibrations themselves should use dedicated calibration software.
 
 ---
 
@@ -164,7 +164,7 @@ See: [Track consumables by quantity](/features/consumables-tracking)
 | Need | Shelf | Full CMMS |
 |---|---|---|
 | **Date-based reminders** | Yes — set per asset, per due date | Yes |
-| **Recurring maintenance schedules** | No — set the next reminder after each service | Yes |
+| **Recurring maintenance schedules** | Reminders only — repeat daily to yearly on Plus and Team; no work orders are generated | Yes |
 | **Service history log** | Yes — via custom fields + activity history | Yes — dedicated work orders |
 | **Team notifications** | Yes — email alerts to assigned members | Yes — plus technician dispatch |
 | **Work order management** | No | Yes |
