@@ -1,0 +1,16 @@
+---
+title: "Select All Acts on Exactly the Assets the List Showed"
+description: "Select all re-runs the list's search on the server to find every matching asset. It built that query with a second, older copy of the list's rules, so a bulk action could reach assets you had not seen. It now uses the list's own query, in the asset index and in the booking, kit and location pickers."
+date: "2026-10-27"
+readMoreUrl: "/knowledge-base/using-batch-actions-in-shelf"
+layout: "update"
+---
+
+**Select all N entries** means every asset that matches the list in front of you, across every page. To find them, Shelf re-runs the list's search on the server. That query was built by a second copy of the list's rules that had drifted from the list itself, so in a few cases a bulk action touched assets the list never showed:
+
+- **A search** matched titles only, while the list searches eleven fields (barcodes, custom fields, custodians, model names and more). A select-all after a barcode search acted on a different set from the one on screen.
+- **The booking picker** ignored its own hiding rules (unbookable assets, kitted units, booking-window clashes), so it added assets the reserve then refused.
+- **Self-service and Base members** on the asset index could select all beyond the assets their role sees, in both simple and advanced mode.
+- **The kit picker** dropped its **Not in kit** filter, and **Remove from kit** read no filters at all, so a select-all detached every kitted asset in the workspace.
+
+Since 27 October 2026 select-all builds its query with the same code and the same options as the list's loader, so the count in the link is the number the action touches. Rows you tick one by one were never affected. One list keeps its own rule on purpose: a location's **Assets** tab really does search titles only, and its select-all matches that.
