@@ -51,6 +51,7 @@ const ARTICLES = {
   "checkin-receipt": "articles/checkin-receipt.mjs",
   "checkin-confirm-dialog": "articles/checkin-confirm-dialog.mjs",
   "progressive-checkout-dropdown": "articles/progressive-checkout-dropdown.mjs",
+  "repeating-reminders": "articles/repeating-reminders.mjs",
   "custody-source-location": "articles/custody-source-location.mjs",
   "asset-model-view": "articles/asset-model-view.mjs",
   "unsaved-changes-bar": "articles/unsaved-changes-bar.mjs",
