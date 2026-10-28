@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CTA } from "@/components/sections/cta";
-import { ArrowRight, HardHat, GraduationCap, Monitor, Video, FlaskConical, Layers } from "lucide-react";
+import { ArrowRight, HardHat, GraduationCap, Monitor, Video, FlaskConical, Tent, Layers } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import { PagefindWrapper } from "@/components/search/pagefind-wrapper";
 import { StructuredData } from "@/components/seo/structured-data";
@@ -21,6 +21,7 @@ const industryIcons: Record<string, LucideIcon> = {
     "construction": HardHat,
     "education": GraduationCap,
     "engineering": FlaskConical,
+    "events": Tent,
     "it": Monitor,
     "media-production": Video,
 };
@@ -40,7 +41,7 @@ export default function IndustriesIndexPage() {
     });
 
     return (
-        <PagefindWrapper type="Page" title="Industries — Shelf Asset Management" keywords="industries sectors education construction IT media">
+        <PagefindWrapper type="Page" title="Industries — Shelf Asset Management" keywords="industries sectors education construction IT media events">
             <StructuredData data={collectionSchema} />
             <div className="flex min-h-screen flex-col relative overflow-hidden">
                 {/* Ambient Background */}
