@@ -147,7 +147,7 @@ See: [Importing Assets: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv
 
 ## What Shelf Does Not Do
 
-**A booking has no venue field.** Shelf bookings carry a name, dates, a custodian, a description and tags, but no event location. Teams put the venue in the booking name (it shows on the calendar) or the description (it prints on the pick sheet). Checking gear out also does not move it to a venue location. If gear waits at a second store between events, make that store a [location](/features/location-tracking) and move items there with the scanner's **Update location** action.
+**A booking has no venue field, but a tag works as one.** Shelf bookings carry a name, dates, a custodian, a description and tags, but no dedicated event location. Make one [tag](/knowledge-base/what-is-a-tag-in-shelf-and-what-can-they-be-used-for) per venue and set its **Use for** to **Booking**. Then switch on **Require tags for bookings** in your booking settings, so no event can be saved without one, and filter the bookings list by **Tags** to see everything going to a venue. The setting asks for at least one tag of any kind, so give venue tags a clear name, such as "Venue: Riverside Park". Checking gear out also does not move it to a venue location. If gear waits at a second store between events, make that store a [location](/features/location-tracking) and move items there with the scanner's **Update location** action.
 
 **No client rental.** Shelf has no quotes, invoices, deposits, online store or customer accounts. It is built for gear your own team uses at your own events. If your business rents gear to clients, look at rental software built for that, such as Booqable, which is what most searches for "event rental software" are after.
 
@@ -197,7 +197,7 @@ Yes. Group the tables under an Asset Model and book the model with a quantity, f
 
 ### Where do we record the event venue?
 
-In the booking name or description. Bookings have no separate venue field today. The name shows on the booking calendar and the description prints on the booking checklist PDF.
+With a tag. Bookings have no separate venue field, so make one tag per venue, set its **Use for** to **Booking**, and switch on **Require tags for bookings** in the booking settings so every event gets one. Filter the bookings list by **Tags** to see everything headed to one venue. The setting only asks for at least one tag, so a clear name such as "Venue: Riverside Park" helps. You can still add the full address to the booking description, which prints on the booking checklist PDF.
 
 ### Can the warehouse team check gear out from a phone?
 
