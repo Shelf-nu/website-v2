@@ -221,7 +221,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Asset Management",
         name: "Asset Reminders",
         description:
-            "Schedule reminders and alerts for assets with email notifications",
+            "One-time email reminders on any asset for a date you choose",
         availability: {
             free: "included",
             plus: "included",
@@ -234,6 +234,27 @@ export const pricingFeatures: PricingFeature[] = [
             tier_2: "included",
             custom: "included",
         },
+    },
+    {
+        // Gated by TierLimit.canUseRecurringReminders (shelf.nu #2685)
+        id: "recurring-reminders",
+        category: "Asset Management",
+        name: "Repeating Reminders",
+        description:
+            "Reminders that repeat daily, weekly, monthly, every 3 or 6 months, or yearly, with an optional end date",
+        availability: {
+            free: "not-included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "not-included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
+        requiresPremiumEnabled: true,
     },
 
     // ============================================================================
