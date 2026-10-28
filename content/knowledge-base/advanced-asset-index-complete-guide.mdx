@@ -3,7 +3,7 @@ title: "Advanced Asset Index: Complete Guide"
 description: "The advanced asset index in Shelf provides powerful ways to view, filter, sort, and manage your assets. This guide covers how to enable it, all the features, and best practices."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-27"
+updated: "2026-10-28"
 layout: "knowledge-base"
 ---
 
@@ -266,6 +266,10 @@ The system uses natural sorting for logical number ordering:
 - Equipment series appear in proper order
 - Serial numbers sort correctly
 - Case-insensitive ordering
+
+### Sorting by a Custom Field
+
+Every custom field column sorts, whatever the field is called: **Weight (kg)**, **S/N** or **Cost (USD)** sort like any other column. Number and amount fields sort as numbers, so 3 comes before 12.5, and assets with the field empty go last in both directions, so a descending sort on a field most assets leave blank opens on the assets that have a value. Until 27 October 2026 a sort on a field whose name held brackets, slashes or other symbols was dropped silently, and the rows stayed in created order.
 
 ### Multi-Field (Stacked) Sorting
 
