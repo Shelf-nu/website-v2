@@ -24,20 +24,20 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 # Equipment Tracking for Teams That Run Their Own Events
 
-Festival organisers, corporate event teams, caterers and venue operations crews own a warehouse of gear: gazebos with their legs and weights, trestle tables, chairs, freezers, generators, staging, signage. Most of them also hold stock that never comes back whole, like drinks, cups, gas bottles and cable ties.
+Festival organisers, corporate event teams, caterers and venue crews own a warehouse of gear: gazebos with their legs and weights, trestle tables, chairs, freezers, generators, staging, signage. Most of them also hold stock that never comes back whole, like drinks, cups and gas bottles.
 
-The loop is the same every week. An item sits on a shelf in the warehouse, gets pulled onto an event's pick list, spends a weekend at the event, and comes back into central stock, or doesn't. Shelf tracks that loop: each event is a booking, the gear is scanned out at the dock and back in after the event, and the stock that got used up is counted at check-in.
+The loop is the same every week. Gear leaves the warehouse for an event, spends a weekend on site, and comes back, or doesn't. Shelf tracks that loop: each event is a booking, gear is scanned out at the dock and back in afterwards, and stock that got used up is counted when it returns.
 
-This page is for teams that use their own gear at their own events. If you rent gear to clients and need quotes, invoices and deposits, Shelf is the wrong tool; [see below](#what-shelf-does-not-do).
+Shelf is for gear your own team uses at your own events. If you rent gear to clients and need quotes, invoices and deposits, it isn't the right tool; [more on that below](#what-shelf-does-not-do).
 
 ---
 
 ## Common Challenges for Event Teams
 
-- **The same gear promised to two events**: two planners each pencil the 6x3m gazebos in for the same Saturday, and the clash shows up on the loading dock.
+- **The same gear promised to two events**: two planners each pencil in the big gazebos for the same Saturday, and the clash shows up on the loading dock.
 - **Pick lists that drift from the warehouse**: the spreadsheet says 40 tables; the shelf holds 34, because six never came back from the last job.
 - **Half a gazebo returns**: the canopy is back, two legs and four weights are still at the venue.
-- **Consumables counted only when they run out**: nobody knows how many cases of water went out against how many came back unopened, so the reorder happens the day before the next event.
+- **Consumables counted only when they run out**: nobody knows how many cases of water went out against how many came back, so the reorder happens the day before the next event.
 - **Servicing slips between seasons**: freezers and generators that sat idle all winter go out in spring without a check.
 
 ---
@@ -46,31 +46,33 @@ This page is for teams that use their own gear at their own events. If you rent 
 
 ### Each Event Is a Booking
 
-Create a booking per event with a start and end date and time, a custodian, and the gear. Shelf will not let the same unit sit in two bookings whose dates overlap: an item that is already taken is marked **Already booked**, and a booking that still holds one cannot be reserved until it is removed. The booking calendar shows every event by month, week or day, so you can see which weekend is already full before you promise anything.
+Create a booking for each event, with its dates, the person responsible and the gear it needs. Shelf won't let the same item be booked for two events that overlap, so a clash shows up while you plan, not on the loading dock. The booking calendar shows every event by month, week or day.
 
 ![Shelf booking calendar in month view, with bookings shown across the days they run](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/calendar-month.webp)
 
-Bookings are on the Team plan.
+See: [Bookings](/features/bookings) · [Booking Calendar](/features/calendar)
 
-See: [Bookings](/features/bookings) · [Booking Calendar](/features/calendar) · [Troubleshooting Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts)
+---
+
+### Tag Each Event With Its Venue
+
+Bookings don't have a dedicated venue field, so use tags for it: one tag per venue, set to apply to bookings. You can make a tag required on every booking, so no event is saved without one, and filter the bookings list by tag to see everything going to the same venue. The address and get-in times can go in the booking's description.
+
+See: [What Is a Tag in Shelf?](/knowledge-base/what-is-a-tag-in-shelf-and-what-can-they-be-used-for)
 
 ---
 
 ### Book "12 Tables", Pick the Units at the Warehouse
 
-Most event gear is interchangeable: any 12 of your 40 trestle tables will do. Group identical units under an [Asset Model](/glossary/asset-models), then switch the advanced asset index to the **Asset model view**, tick the models you need, choose **Book selection**, and either **Create new booking** or **Add to existing** with the number of units per model. The booking holds 12 tables without naming which 12.
+Most event gear is interchangeable: any 12 of your 40 trestle tables will do. Group identical items under an asset model and book a quantity ("12 tables") without naming which ones. Whoever loads the van scans the actual tables, and the booking records exactly which 12 left. Each table keeps its own QR code and history, which is how you find out that table #31 is the one that keeps coming back with a cracked top.
 
-At the warehouse, whoever loads the van scans the actual units. The **Fulfil reservations & check out** scanner assigns each scanned table to the booking and checks it out in one go, so the booking ends up recording exactly which 12 left. Every unit keeps its own QR code and history, which is how you find out that table #31 is the one that keeps coming back with a cracked top.
-
-Asset Models are on every plan; booking by model rides on bookings, so it needs the Team plan.
-
-See: [Book by Model](/features/bookings#book-by-model) · [Asset Model View](/knowledge-base/advanced-asset-index-complete-guide#asset-model-view)
+See: [Book by Model](/features/bookings#book-by-model)
 
 ---
 
 ### Print the Pick Sheet
 
-Open a booking, then **Actions → Generate overview PDF**. Shelf opens a **Booking checklist** for that event with a **Download PDF** button. Each row lists the item's image, name, quantity, kit, category, **Location** (where it lives in your warehouse, which is the column a picker needs) and its code next to a tick box. The booking's description prints at the top, so anything you wrote there, like the venue address or the get-in time, goes to the warehouse on the same sheet.
+Every booking prints as a checklist PDF: each item with its photo, quantity, where it lives in the warehouse, its code and a tick box. Whatever you wrote in the booking's description prints at the top, so the venue address goes to the warehouse on the same sheet.
 
 See: [How to Generate a PDF Overview of a Booking](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings)
 
@@ -78,9 +80,9 @@ See: [How to Generate a PDF Overview of a Booking](/knowledge-base/how-to-genera
 
 ### Scan Out at the Dock, Scan Back In After the Event
 
-Every item and kit gets a QR label. The free [Shelf Companion app](/mobile-app) for iPhone and Android scans them to check a booking's gear out and back in from the warehouse floor, so nobody has to walk back to a desk. The web app's scanner does the same on a laptop, with its camera or a handheld barcode scanner.
+Every item and kit gets a QR label. The free [Shelf Companion app](/mobile-app) for iPhone and Android scans them to check gear out and back in from the warehouse floor. On a laptop, the web app's scanner does the same with the camera or a handheld barcode scanner.
 
-When a van comes back short, check in what returned and leave the rest checked out. The booking shows what is still missing and who had it.
+When a van comes back short, check in what returned and leave the rest out. The booking shows what is still missing and who had it.
 
 See: [Equipment Check-In/Out](/solutions/equipment-check-in) · [Partial Check-Ins](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns)
 
@@ -88,38 +90,27 @@ See: [Equipment Check-In/Out](/solutions/equipment-check-in) · [Partial Check-I
 
 ### Kits: the Gazebo, Its Legs and Its Weights Move as One
 
-Group a gazebo with its legs, weights and bag into a [kit](/features/kits). The kit gets its own QR code. Booking the kit puts every item in it on the booking, and scanning the kit's code at check-out covers all its items, so the legs can't be left on the shelf.
+Group a gazebo with its legs, weights and bag into a [kit](/features/kits) with its own QR code. Book the kit and every part comes with it; scan the kit at check-out and all its parts are covered, so the legs can't be left on the shelf.
 
 ![A kit in Shelf: the items it holds listed with category and location, and the kit's own QR code beside them](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/solutions/equipment-check-in-kit.webp)
 
-Kits are on every plan.
-
-See: [Kits](/features/kits) · [Kits guide](/knowledge-base/kits)
+See: [Kits](/features/kits)
 
 ---
 
 ### Drinks and Other Stock That Gets Used Up
 
-Wet goods don't need a QR code per can. Track them by quantity instead: one record per product with a count and a unit of measure (cases, crates, bottles), set to **Used up (one-way)**. A booking takes a number of units, for example 30 cases of water.
+Wet goods don't need a QR code per can. Track them as a count instead: one record per product, in cases, crates or bottles, and book a number of them to an event, such as 30 cases of water.
 
-At the end of the event there are two ways back:
+When the event is checked in, you either count everything that went out as used, or split it: how many were used, how many came back unopened (back into stock), and how many were lost or damaged. Set a minimum for each product, and every Owner and Admin of the workspace gets an email when stock drops to it, then another once it's restocked.
 
-- **Quick check-in** counts everything still out as consumed. Right when the whole lot was used.
-- **Explicit check-in** lets you split it: how many were **Consumed**, how many came back unopened (**Returned**, back into stock), and how many were **Lost** or **Damaged**.
-
-Set a **Min quantity** on each product. When available stock drops to or below it, including through a booking check-in, Shelf emails every Owner and Admin of the workspace, and a **back in stock** email follows once you restock. The alert fires once per dip, not on every check-in.
-
-Quantity tracking is on every plan; booking stock out to an event needs Team.
-
-See: [Consumables Tracking](/features/consumables-tracking) · [Quantity-Tracked Assets and Consumables](/knowledge-base/quantity-tracked-assets-and-consumables)
+See: [Consumables Tracking](/features/consumables-tracking)
 
 ---
 
 ### Servicing Reminders for Freezers, Generators and Gazebos
 
-Put a reminder on any asset and set it to **Repeat**: daily, weekly, every 2 weeks, monthly, every 3 months, every 6 months or yearly, with an optional end date. A yearly safety check on each freezer, or a pre-season inspection of every gazebo, keeps coming back without anyone re-entering it.
-
-One-time reminders are on every plan; repeating reminders need Plus, Team or Enterprise.
+Put a repeating reminder on any item, from daily to yearly. A yearly safety check on each freezer, or a pre-season inspection of every gazebo, keeps coming back without anyone re-entering it.
 
 See: [Asset Reminders](/features/asset-reminders)
 
@@ -127,38 +118,34 @@ See: [Asset Reminders](/features/asset-reminders)
 
 ### Count the Warehouse Between Seasons
 
-When the season ends, an audit lists what should be in the warehouse; you scan what is actually there, and Shelf flags what is found, missing or unexpected. Audits are a paid add-on to the Team plan, with a free trial.
+When the season ends, an audit lists what should be in the warehouse; you scan what is actually there, and Shelf flags what is found, missing or unexpected.
 
-See: [Audits](/features/audits) · [Run Your First Audit](/knowledge-base/run-your-first-audit)
+See: [Audits](/features/audits)
 
 ---
 
-### Moving Over From Sortly or a Spreadsheet
+### Moving Over From a Spreadsheet or Another Tool
 
-Export your items from Sortly and upload the file as it is under **Assets → Import**. Shelf shows **Check how your columns map**: each column, a few sample values and the Shelf field it proposes. A Sortly export maps without editing: *Entry Name* becomes the name, *Primary Folder* the location, *Min Level* the low-stock minimum, and *Sortly ID* is skipped. Change any match that looks wrong, then **Preview import** before anything is created.
+Upload your spreadsheet, or the export from your current tool such as Sortly, as it is. Shelf suggests which field each column belongs to, shows a few sample values, and lets you check everything before anything is created.
 
-![Shelf's import column mapping for a Sortly export: Entry Name to Title, Primary Folder to Location, Min Level to the low-stock threshold, Sortly ID skipped](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/import-column-mapping.webp)
-
-Self-serve import is on Plus and above.
-
-See: [Importing Assets: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv-guide#checking-how-your-columns-map) · [Shelf vs Sortly](/alternatives/sortly) · [Switching From Another Asset Tool](/knowledge-base/switching-from-another-asset-tool)
+See: [Switching From Another Asset Tool](/knowledge-base/switching-from-another-asset-tool) · [Shelf vs Sortly](/alternatives/sortly)
 
 ---
 
 ## What Shelf Does Not Do
 
-**A booking has no venue field, but a tag works as one.** Shelf bookings carry a name, dates, a custodian, a description and tags, but no dedicated event location. Make one [tag](/knowledge-base/what-is-a-tag-in-shelf-and-what-can-they-be-used-for) per venue and set its **Use for** to **Booking**. Then switch on **Require tags for bookings** in your booking settings, so no event can be saved without one, and filter the bookings list by **Tags** to see everything going to a venue. The setting asks for at least one tag of any kind, so give venue tags a clear name, such as "Venue: Riverside Park". Checking gear out also does not move it to a venue location. If gear waits at a second store between events, make that store a [location](/features/location-tracking) and move items there with the scanner's **Update location** action.
+**No client rental.** Shelf has no quotes, invoices, deposits, online store or customer accounts. If your business rents gear to clients, look at software built for rental, such as Booqable, which is what most searches for "event rental software" are after.
 
-**No client rental.** Shelf has no quotes, invoices, deposits, online store or customer accounts. It is built for gear your own team uses at your own events. If your business rents gear to clients, look at rental software built for that, such as Booqable, which is what most searches for "event rental software" are after.
+**No purchasing.** Shelf tells you when stock is low; it doesn't raise purchase orders or reorder for you.
 
-**No purchasing.** Shelf tells you when drinks stock is low; it does not raise purchase orders or reorder for you.
+**Checking out doesn't move gear to the venue.** Checked-out gear stays recorded at its warehouse location while it's out. If gear waits at a second store between events, make that store a [location](/features/location-tracking) and move items there.
 
 ---
 
 ## Who This Helps
 
 - **Festival and outdoor event organisers** running marquees, fencing, furniture and bar stock across several sites a season
-- **Corporate event and internal events teams** that own their stands, AV and branded kit
+- **Corporate and internal events teams** that own their stands, AV and branded kit
 - **Caterers** with their own freezers, chafing dishes, tables and drinks stock
 - **Venue operations teams** moving furniture and staging between rooms and outdoor spaces
 - **Sports clubs and charities** that put on their own fundraisers and match days
@@ -177,11 +164,11 @@ See: [Importing Assets: CSV Guide](/knowledge-base/importing-assets-to-shelf-csv
 
 ## Getting Started
 
-1. **Import your gear**: upload your Sortly export or spreadsheet under **Assets → Import** and check the column mapping.
-2. **Group identical units**: put interchangeable tables, chairs and gazebos under Asset Models, and bundle gazebo parts into kits.
-3. **Set up stock**: make drinks and other used-up items quantity-tracked with a Min quantity.
+1. **Bring your list**: upload your spreadsheet or your current tool's export and check how the columns map.
+2. **Group what belongs together**: identical tables and chairs under one model, gazebo parts in a kit.
+3. **Set up your stock**: track drinks and other used-up items as counts, with a minimum.
 4. **Label everything**: print QR labels for items and kits.
-5. **Book the next event**: create a booking, add the gear, print the checklist, and scan it out at the dock.
+5. **Book the next event**: create a booking, tag the venue, add the gear, print the checklist and scan it out at the dock.
 
 ---
 
@@ -193,24 +180,24 @@ No. Shelf has no quotes, invoices, deposits or online checkout. It is for gear y
 
 ### Can we book 12 tables without choosing which 12?
 
-Yes. Group the tables under an Asset Model and book the model with a quantity, from the Asset model view or from the booking. Whoever loads the van scans any 12 units, and the booking records which ones went. This needs the Team plan.
+Yes. Group the tables under an asset model and book a quantity. Whoever loads the van scans any 12, and the booking records which ones went.
 
 ### Where do we record the event venue?
 
-With a tag. Bookings have no separate venue field, so make one tag per venue, set its **Use for** to **Booking**, and switch on **Require tags for bookings** in the booking settings so every event gets one. Filter the bookings list by **Tags** to see everything headed to one venue. The setting only asks for at least one tag, so a clear name such as "Venue: Riverside Park" helps. You can still add the full address to the booking description, which prints on the booking checklist PDF.
+With a tag. Make one tag per venue for bookings, make tags required so every event gets one, and filter the bookings list by tag to see everything headed to a venue. The address can go in the booking description, which prints on the checklist.
 
 ### Can the warehouse team check gear out from a phone?
 
-Yes. The free Shelf Companion app for iPhone and Android scans item and kit QR codes to check a booking's gear out and back in. Booking features need a Team workspace.
+Yes. The free Shelf Companion app for iPhone and Android scans item and kit QR codes to check gear out and back in.
 
 ### What happens to drinks stock when an event is checked in?
 
-Items set to Used up (one-way) are counted as consumed. Quick check-in consumes everything still out; Explicit check-in lets you enter how many were consumed and how many came back unopened, which go back into stock. If stock falls to the Min quantity you set, every Owner and Admin gets an email.
+It's counted as used, or you split it into used, returned unopened (back into stock), lost and damaged. If stock falls to the minimum you set, every Owner and Admin gets an email.
 
 ### Which plan does an events team need?
 
-Team, because bookings, booking checklists and booking by model are Team features. Kits, Asset Models and quantity tracking are on every plan, repeating reminders start at Plus, and Audits are a paid add-on to Team. See [pricing](/pricing).
+Team, because bookings, the booking checklist and booking by quantity are Team features. Kits, asset models and stock counts are on every plan, repeating reminders start at Plus, importing a spreadsheet yourself starts at Plus, and audits are a paid add-on to Team. See [pricing](/pricing).
 
 ### Can we bring our data from Sortly?
 
-Yes. Upload the Sortly CSV export as it is under Assets → Import. Shelf proposes a Shelf field for each column, you check the mapping, preview, and import. Self-serve import is on Plus and above.
+Yes. Upload the Sortly export as it is. Shelf suggests a field for each column, you check the mapping and a preview, and then import.
