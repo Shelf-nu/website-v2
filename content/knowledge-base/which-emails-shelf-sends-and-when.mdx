@@ -3,7 +3,7 @@ title: "Which Emails Shelf Sends, and When"
 description: "Every automatic email Shelf sends from a workspace in one table: booking reminders and their fixed timing, overdue notices, asset reminders, audit reminders, low-stock alerts and team emails, with who receives each one."
 category: "Getting Started"
 date: "2026-10-19"
-updated: "2026-10-27"
+updated: "2026-10-29"
 layout: "knowledge-base"
 keywords:
   - "email notifications"
@@ -31,7 +31,7 @@ Who receives booking emails is configured in **Settings > Bookings**: the custod
 | **Check-in reminder** | **1 hour before the end time**. If the booking is checked out with less than an hour left, it is sent at checkout instead |
 | **Overdue** | **Once, at the end time**, if the booking is still checked out. The booking's status changes to Overdue at the same moment |
 | **Booking complete** | When the booking is checked in |
-| **Booking extended** | When the end date is extended. The check-in reminder and overdue notice are rescheduled against the new end time |
+| **Booking extended** / **Booking shortened** | When a running booking's end date moves later or earlier. The check-in reminder and overdue notice are rescheduled against the new end time |
 | **Booking updated** | When dates, custodian or other details of a reserved booking are edited |
 | **Reverted to draft** | When a reserved booking is sent back to Draft |
 | **Booking cancelled** | When the booking is cancelled |
@@ -43,7 +43,7 @@ Three things people often expect that Shelf does **not** do today:
 - The overdue email is sent **once**. It does not repeat daily while the equipment stays out. The **Overdue bookings** card on the Home page and the **Overdue Items** report are the live view of what is still out.
 - Reminders go to the people on the booking, as configured above. They are not sent to a department mailbox.
 
-The person who performs an action (cancels, extends, checks in) is left out of the email that action triggers, unless they are the custodian or the creator. Scheduled emails (the two reminders and the overdue notice) go to everyone on the list regardless.
+The person who performs an action (cancels, changes the end date, checks in) is left out of the email that action triggers, unless they are the custodian or the creator. Scheduled emails (the two reminders and the overdue notice) go to everyone on the list regardless.
 
 ## Asset reminders
 

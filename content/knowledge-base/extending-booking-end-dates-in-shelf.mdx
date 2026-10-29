@@ -1,89 +1,85 @@
 ---
-title: "Extending Booking End Dates in Shelf"
-description: "This guide explains how to prolong existing bookings in Shelf's asset management system without creating new ones, useful for situations where assets are needed longer than initially planned."
+title: "Extending or Shortening a Booking's End Date in Shelf"
+description: "Move a running booking's end date later or earlier with Change end date on the web, or extend it from the Shelf Companion phone app, without creating a new booking."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-10-28"
+updated: "2026-10-29"
 layout: "knowledge-base"
 ---
 
 ## Overview
 
-The "Extend Booking End Date" capability allows users to lengthen existing booking durations without requiring new booking creation. This is particularly valuable for situations where assets are needed for longer than initially planned, reducing administrative work and maintaining accurate tracking within Shelf's booking system.
+A booking that is already running can get a new end date without starting a new booking. Move the end later when the equipment is needed for longer, or earlier when the job finishes early, so the next team can reserve the gear for the time after the new end.
 
+On the web the action is called **Change end date** and works in both directions. The [Shelf Companion](/mobile-app) phone app can only move the end later; see [On the phone](#on-the-phone).
 
-![Extend booking end date modal in Shelf](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/extending-booking-1.webp)
 ## Feature Availability
 
-This functionality applies to bookings with these statuses:
+You can change the end date of bookings with these statuses:
 
 - **Ongoing** (checked out, within its dates)
 - **Overdue** (past its end date with items still out)
 
-The end date of a **Reserved** booking cannot be changed this way. Reference the [Introduction to Bookings](/knowledge-base/introduction-to-bookings) documentation for details about different booking statuses.
+A **Reserved** booking has no **Change end date** action, and its dates are locked on the booking page. To move them, use **Revert to Draft** from the same **Actions** menu, edit the dates, and reserve it again. Reference the [Introduction to Bookings](/knowledge-base/introduction-to-bookings) documentation for details about different booking statuses.
 
-## How to Extend a Booking
+## How to Change the End Date on the Web
 
-1. Navigate to the specific booking requiring extension
-2. Find the "Actions" dropdown menu on the booking details page
-3. Select "Extend Booking" from available options
-4. A modal appears allowing new end date selection
-5. Choose a new end date **later than the current end** and confirm
-6. The system updates the booking with the new end date
+1. Open the booking
+2. Open the **Actions** menu on the booking page
+3. Choose **Change end date**
+4. Pick the new end date and time
+5. Click **Submit**
 
-The new end has to be after the current one. A time at or before the current end is refused, inline and as a toast, with *The new end date must be after the current end date.* Something on the booking also has to be out still: a booking whose items have all come back is completed, not extended.
+The new end has to be after the booking's start, in the future, and different from the current end. Something on the booking also has to be out still: when everything has come back, Shelf asks you to complete the booking instead. Because the new end must be in the future, an **Overdue** booking can only move later.
+
+Your workspace's working hours apply to the new end, and so do its minimum advance notice and maximum booking length unless your role is allowed to skip them, the same rules as when you create a booking.
+
+### Moving the end later
 
 When the end moves later, Shelf checks the added days only, from the current end to the new one, against the other bookings of the same assets, kits and [asset models](/glossary/asset-models). A clash there is refused with the other booking named, and a unit whose model is spoken for on those days with the message that starts *Some assets cannot be booked for these dates* ([what it means](/knowledge-base/troubleshooting-booking-conflicts#some-assets-cannot-be-booked-by-name-for-these-dates)). Until 27 October 2026 a model's pool was re-measured over the whole booking, from its first day, and every booking that touched it was added up as if they all ran at once, so long bookings were refused extensions the pool had room for.
 
+### Moving the end earlier
+
+Since 29 October 2026 the web also takes an end earlier than the current one. Only the date moves: the items stay checked out until someone checks them in, and if they come back after the new end, the booking becomes **Overdue**. An earlier end cannot clash with anything new, so no availability check runs. Other bookings can reserve those items for the time after the new end.
+
 ### On the phone
 
-Since the update of 20 October 2026 the [Shelf Companion](/mobile-app) app extends bookings too. Open an **Ongoing** or **Overdue** booking, tap **More actions** and choose **Extend booking**, the first entry. The sheet opens on the current end: change it with the date and time picker, or tap **+1 hour**, **+4 hours** or **+1 day**, then confirm. The same rules apply as on the web, through the same check on the server: the new end must be later than the current one, and a clash with another booking is refused with that booking's name. The action shows for the same roles as on the web, on bookings they may change.
+Since the update of 20 October 2026 the [Shelf Companion](/mobile-app) app extends bookings too. Open an **Ongoing** or **Overdue** booking, tap **More actions** and choose **Extend booking**, the first entry. The sheet opens on the current end: change it with the date and time picker, or tap **+1 hour**, **+4 hours** or **+1 day**, then confirm. The phone only moves the end later: a time at or before the current end is refused with *The new end must be after the current end.* To shorten a booking, use **Change end date** on the web. A later end goes through the same check on the server as on the web, so a clash with another booking is refused with that booking's name. The action shows for the same roles as on the web, on bookings they may change.
 
-## What Happens When You Extend a Booking
+## What Happens When You Change the End Date
 
-### For Overdue Bookings
+The booking reads **Ongoing** afterwards, whichever way the end moved, because the new end is in the future. An **Overdue** booking that is extended goes back to **Ongoing**.
 
-- Booking status transitions from **Overdue** to **Ongoing**
-- Fresh reminders schedule based on the new end date:
-  - Check-in reminder
-  - Overdue reminder
-
-### For Ongoing Bookings
-
-- Booking maintains **Ongoing** status
-- All existing scheduled reminders reschedule per the new end date:
-  - Check-in reminder
-  - Overdue reminder
+The check-in reminder and the overdue notice are rescheduled against the new end time, and the booking's **Activity** records who *extended* or *shortened* the booking, from which end to which.
 
 ## Notifications
 
-Upon extending a booking, an email notification is sent to the relevant team members informing them of the extension and the new end date. This ensures transparent communication regarding asset availability.
+The people on the booking get a **Booking extended** or **Booking shortened** email with the old and the new end. The person who made the change is left out of it unless they are the booking's custodian or creator. See [Which emails Shelf sends and when](/knowledge-base/which-emails-shelf-sends-and-when).
 
-## What Extending Does Not Change
+## What Changing the End Date Does Not Change
 
-Extending moves the booking's live end date. It does not move the **planned** end date. That one is recorded when the booking is created, still moves with any edit made while the booking is a draft, and is fixed from the moment the booking is reserved.
+Changing the end date moves the booking's live end date, later or earlier. It does not move the **planned** end date. That one is recorded when the booking is created, still moves with any edit made while the booking is a draft, and is fixed from the moment the booking is reserved.
 
 That distinction is what the [Booking Compliance report](/knowledge-base/getting-started-with-reports#how-booking-compliance-decides-on-time-or-late) measures against. A booking that was due Friday and is extended to Monday leaves Overdue Items straight away, because it is no longer late against its current deadline. When it comes back on Monday it is still recorded as a late return, because the deadline it was agreed to was Friday. Extending keeps operations moving; it is not a way to clear a late return from the record.
 
 ## Data Export Considerations
 
-The booking CSV export carries both periods in four columns: **Planned start date** and **Planned end date** hold what was agreed, **Actual start date** and **Actual end date** hold where the booking finished up. On an extended booking the two end dates differ, so the full history is preserved.
+The booking CSV export carries both periods in four columns: **Planned start date** and **Planned end date** hold what was agreed, **Actual start date** and **Actual end date** hold where the booking finished up. On a booking whose end date changed the two end dates differ, so the full history is preserved.
 
 The booking's PDF overview shows an **Original period** row underneath the booking period whenever the two differ.
 
 ## Use Cases
 
-Booking extension supports various scenarios including:
+Changing the end date helps when:
 
-- Equipment loans requiring extended duration
-- Unexpected project timeline modifications
-- Production delays necessitating continued asset access
-- Preventing unnecessary duplicate bookings for identical assets
-- Streamlining shared resource management
+- A loan or a shoot runs longer than planned
+- A production is delayed and the crew still needs the kit
+- A job finishes early and the next team wants the gear for the time after it
+- You would otherwise create a second booking for the same equipment
 
 ## Permissions
 
-Owners, Administrators, [Managers](/knowledge-base/user-roles-and-their-permissions#manager) and Self-service users can extend a booking; a Self-service user only their own. Base users cannot: the **Extend Booking** action does not appear for them. Consult the [user roles and permissions](/knowledge-base/user-roles-and-their-permissions) documentation for additional permission details.
+Owners, Administrators, [Managers](/knowledge-base/user-roles-and-their-permissions#manager) and Self-service users can change a booking's end date; a Self-service user only on their own bookings. Base users cannot: **Change end date** does not appear for them on the web, nor **Extend booking** on the phone. Consult the [user roles and permissions](/knowledge-base/user-roles-and-their-permissions) documentation for additional permission details.
 
 ## Related Resources
 
