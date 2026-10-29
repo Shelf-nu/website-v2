@@ -92,6 +92,14 @@ async function main() {
         console.log("Repeat trigger not found as combobox; capturing closed dialog");
       }
     }
+    // The team-member picker lists real names and email addresses: blur them.
+    await dialog.evaluate((el) => {
+      for (const node of el.querySelectorAll("*")) {
+        if (node.children.length === 0 && /@/.test(node.textContent || "")) {
+          (node.parentElement || node).style.filter = "blur(6px)";
+        }
+      }
+    });
     await initAnnotations(page);
     if (!opened && hasRepeat) {
       await highlight(page, "text:Repeat", { spotlight: true, padding: 10 });
@@ -105,7 +113,7 @@ async function main() {
     await page.keyboard.press("Escape");
     await page.waitForTimeout(400);
     await page.keyboard.press("Escape");
-    urls.dialog = await upload(toWebP(shot2), `${BUCKET_PREFIX}/set-reminder-repeat.webp`);
+    urls.dialog = await upload(toWebP(shot2), `${BUCKET_PREFIX}/set-reminder-repeat-v2.webp`);
 
     await context.close();
     Object.entries(urls).forEach(([k, u]) => console.log(`  ✅ ${k}: ${u}`));
