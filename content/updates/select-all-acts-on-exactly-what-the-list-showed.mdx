@@ -11,6 +11,6 @@ layout: "update"
 - **A search** matched titles only, while the list searches eleven fields (barcodes, custom fields, custodians, model names and more). A select-all after a barcode search acted on a different set from the one on screen.
 - **The booking picker** ignored its own hiding rules (unbookable assets, kitted units, booking-window clashes), so it added assets the reserve then refused.
 - **Self-service and Base members** on the asset index could select all beyond the assets their role sees, in both simple and advanced mode.
-- **The kit picker** dropped its **Not in kit** filter, and **Remove from kit** read no filters at all, so a select-all detached every kitted asset in the workspace.
+- **The kit picker** dropped its **Not in any kit** filter, and **Remove from kit** read no filters at all, so a select-all detached every kitted asset in the workspace.
 
 Since 27 October 2026 select-all builds its query with the same code and the same options as the list's loader, so the count in the link is the number the action touches. Rows you tick one by one were never affected. One list keeps its own rule on purpose: a location's **Assets** tab really does search titles only, and its select-all matches that.

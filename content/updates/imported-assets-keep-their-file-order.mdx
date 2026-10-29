@@ -1,10 +1,10 @@
 ---
 title: "Imported Assets Keep Their File Order on the Asset Index"
-description: "Assets imported from a CSV were written a hundred at a time with the same creation moment, so each block of a hundred came out shuffled on the asset index's default sort. Each row is now stamped a moment after the one before it, so the index lists an import in file order, the same order as its SAM IDs."
+description: "Assets imported from a CSV were written a hundred at a time with the same creation time, so each block of a hundred came out shuffled on the asset index's date sort. Each row now gets its own creation time in file order, matching the order of its Asset IDs."
 date: "2026-10-27"
 layout: "update"
 ---
 
-The background importer writes assets a hundred rows at a time, and every row in a block got the same creation moment. The asset index sorts by that moment, so each block of a hundred imported assets came out in a random order on the default sort, and a file prepared in SAM-ID order did not read that way once it was in.
+The importer writes assets a hundred rows at a time, and every row in a block got the same creation time. The asset index sorts by **Date created**, so each block of a hundred imported assets came out in a random order, and a file prepared in order did not read that way once it was in.
 
-Since 27 October 2026 each imported row is stamped a moment after the one before it, in file order, starting after the newest asset already in the workspace. The default sort (newest first) and the new SAM IDs now agree with your file. Imports made before this keep their shared stamps: sort those by **SAM ID** to read them in file order. See [Running the import](/knowledge-base/importing-assets-to-shelf-csv-guide#running-the-import).
+Since 27 October 2026 each imported row gets a creation time a moment after the row before it, starting after the newest asset already in the workspace. Sorting by **Date created** now follows your file, the same order as the new **Asset IDs**: the default (newest first) puts your last row at the top, and **Ascending** reads from the first row down. Imports made before this keep their shared times: sort those by the **Asset ID** column in advanced mode to read them in file order. See [Running the import](/knowledge-base/importing-assets-to-shelf-csv-guide#running-the-import).
