@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering the column mapping review, file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-23"
+updated: "2026-10-28"
 layout: "knowledge-base"
 ---
 
@@ -238,6 +238,8 @@ Click **Import N assets**, type "I AGREE" and click **Import**. Shelf imports th
 You do not have to stay on the page. While the import runs, a small progress card follows you around Shelf, and the assets list shows everyone in the workspace that an import is running. When it finishes, the person who started it gets an email: **Your asset import is complete**, or **Your asset import stopped**.
 
 One import runs in a workspace at a time. The import page holds the upload form until the running import finishes.
+
+**Imported assets keep the order of your file.** Each row gets a creation time a moment after the row before it, and its **Asset ID** (`SAM-0001` style) is handed out in the same order. The asset index sorts by **Date created**, newest first, so a fresh import lists your last row at the top; set the direction to **Ascending** to read it from the first row down. Imports made before 27 October 2026 gave every row in a block of a hundred the same creation time, so each block can appear shuffled when sorted by date. To read one of those in file order, sort by the **Asset ID** column in [advanced mode](/knowledge-base/advanced-asset-index-complete-guide).
 
 ### If the Import Stops
 

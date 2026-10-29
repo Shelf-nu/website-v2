@@ -3,7 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
-updated: "2026-10-22"
+updated: "2026-10-28"
 layout: "knowledge-base"
 ---
 
@@ -40,7 +40,7 @@ Every report except **Audit Completion** has a **filter bar** above it, next to 
 |---|---|
 | Booking Compliance | Category, Location, Custodian, Status, Asset model, Custom field |
 | Top Booked Assets | Category, Location, Asset model, Custom field |
-| Top Booked Kits | Category and Location show in the bar but do not change the result yet: the report always ranks every kit |
+| Top Booked Kits | Category, Location |
 | Monthly Booking Trends | Category, Location, Asset model, Custom field |
 | Overdue Items | Category, Location, Custodian, Asset model, Custom field |
 | Asset Inventory | Category, Location, Status, Asset model, Custom field |
@@ -61,7 +61,11 @@ Applied filters show as chips above the report; remove one, or use **Clear all f
 
 **Filters live in the URL.** A filtered report is a link you can bookmark and send to a colleague, which is what makes "Idle Assets in the Amsterdam warehouse, last 90 days" one click away. Links made before October 2026 with the old parameter spellings (`categories=`, `custodian=`) still open filtered. One filter has no dropdown and works from the URL only: the single `asset` on **Asset Activity Summary**.
 
-Until 21 October 2026 these filters existed only as URL parameters, and **Monthly Booking Trends** accepted category and location without applying them. It now applies every filter in its bar.
+Until 21 October 2026 these filters existed only as URL parameters, and **Monthly Booking Trends** accepted category and location without applying them. It now applies every filter in its bar. **Top Booked Kits** did the same until 27 October 2026: its Category and Location chips appeared but the table, the totals and the CSV stayed unfiltered. They now narrow the report by the kit's own category and location, the same columns the table shows. Category takes several values; Location takes one. **Without location** picks the kits that have none, and with both filters set a kit has to match both.
+
+![The Top Booked Kits report filtered to Location: Studio A, showing one kit, its three bookings in the Total Bookings figure and the Location column reading Studio A](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/top-booked-kits-location-filter.webp)
+
+**When a filtered report comes back empty**, a report with a results table says **No matching results** instead of its usual "nothing happened yet" message, so a blank page under a filter reads as the filter's doing. If a filter leaves fewer pages than the one you were on, the page says **No results on this page** with a **Go to page 1** link that keeps your filters.
 
 ## Read the Result
 
@@ -118,6 +122,8 @@ Booking Compliance keeps its own, narrower definition on purpose, because it ans
 **Archiving no longer erases history.** Archiving rewrites a booking's status, so reports that matched on **Complete** used to lose every completed booking the moment it aged into the archive. Both **Monthly Booking Trends** ("Completed") and **Idle Assets** ("last used") now count an archived booking as a real, returned use, as long as it was actually checked in. An archive that went straight from Reserved without ever being checked out still counts as nothing, because nothing went out. See [what archiving means for reports](/knowledge-base/archiving-bookings#what-archiving-means-for-reports).
 
 **Utilization cannot exceed 100%.** Days in use is the merged union of a booking's days inside the window, not the sum of them, so two overlapping bookings of the same asset no longer count the same Tuesday twice.
+
+**Idle Assets judges each asset by its own trips.** An asset is idle when it is not out on a booking right now and no booking it went out on has ended since the cutoff (30 days by default, or the idle threshold you pick). "Out right now" is read from the asset's own line on the booking, so an asset already checked back in on a long booking that is still running counts as idle, and an asset that stayed behind when its booking went out does not count as used when that booking ends. Until 27 October 2026 a page of the report could hold fewer rows than its footer said, and when enough recently used assets sat in the list some idle assets fell off the last page. Every page now holds what it says, and the pages together list every idle asset once.
 
 **Kit rankings are frozen at the time of booking.** **Top Booked Kits** credits a kit from what the booking itself recorded when the gear went out, not from the kit's membership today. Two consequences: booking an asset on its own no longer credits a kit that happens to contain it, and editing a kit's contents no longer rewrites its booking history. Bookings made before Shelf started recording that provenance fall back to current membership.
 

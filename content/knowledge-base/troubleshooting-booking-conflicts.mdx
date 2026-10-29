@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-10-23"
+updated: "2026-10-28"
 layout: "knowledge-base"
 ---
 
@@ -162,13 +162,15 @@ A unit that is **already on this booking** is never refused here — the scan is
 
 ## "Some assets cannot be booked by name for these dates"
 
-You tried to put a specific unit on a booking, and every free unit of its [asset model](/glossary/asset-models) is already reserved by model on other bookings for your dates. A model reservation promises a number of units without naming them, so a unit picked by name elsewhere would leave that booking short when it comes to collect. Shelf refuses instead. The message names each model and shows the count:
+You tried to put a specific unit on a booking, and every free unit of its [asset model](/glossary/asset-models) is already spoken for on your dates: in custody, booked by name elsewhere, or reserved by model on other bookings. A model reservation promises a number of units without naming them, so a unit picked by name elsewhere would leave that booking short when it comes to collect. Shelf refuses instead. Each short model gets one line that says what this booking needs, the day inside your dates when the pool runs out, and what holds the units then:
 
-> Some assets cannot be booked by name for these dates:
-> "Dell Latitude 5550": 1 unit requested by name, but 2 units are reserved by model on other bookings for these dates and only 0 more can be booked.
-> Remove them, or change the dates.
+> Some assets cannot be booked for these dates:
+> "Dell Latitude 5550": this booking needs 1 unit by name, but on 12 May 2026 only 0 of 3 are free: 1 unit in custody, 2 units reserved by model for "Field day".
+> Change the dates, or free a unit of that model: assign a specific unit to the reservation named above, or remove a unit from one of those bookings.
 
-If units of that model are in custody or already booked by name on other bookings, the line says so as well, so the numbers add up.
+The day is written in your own date format and time zone. The bookings holding the reservations are named only when your role lets you see other people's bookings; otherwise the line reads *reserved by model for other bookings* and the last sentence tells you what would free a unit without saying whose booking it is. A booking that reserves the model itself and also picks units by name is measured for both, as *1 unit by name and 2 units still to assign from its own reservation*.
+
+**The pool is measured at its busiest moment, not added up.** Until 27 October 2026 Shelf added together every booking of the model that touched your dates, as if they all ran at the same time, so bookings that handed one unit from job to job could fill a pool that was never close to full. A three-unit model could refuse an extension as *3 units booked by name on other bookings* when no more than two of its units were ever out at the same time. A model's pool is now measured at the single instant inside your dates when demand peaks, the way [pooled stock](#quantity-tracked-assets-stock-conflict-and-insufficient-stock) already was, and the refusal names that day.
 
 You'll usually see the warning before this. In **Manage assets**, those units carry a **Reserved by model** badge and can't be selected. The refusal covers the other ways a unit gets onto a booking: scanning it on, reserving a draft that already holds it, or extending the dates. Reserving shows the message in full. The website's scan drawer does not display it yet: the unit is not added, but no message appears. If a scanned unit doesn't land on the booking, check whether its model is reserved for your dates.
 
@@ -184,7 +186,7 @@ Your own reservation doesn't count against you twice. If your booking reserves t
 
 ## Extending a booking hits a conflict
 
-If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. That check now covers kits as well as assets, so an extension that would run a kit into somebody else's booking is refused rather than allowed. It also covers model reservations: if the extra days run into a period where other bookings have reserved every free unit of a model, and your booking holds one of those units by name, the extension is refused with [the by-name message](#some-assets-cannot-be-booked-by-name-for-these-dates). Options:
+If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. That check now covers kits as well as assets, so an extension that would run a kit into somebody else's booking is refused rather than allowed. It also covers model reservations: if the extra days run into a period where other bookings have reserved every free unit of a model, and your booking holds one of those units by name, the extension is refused with [the by-name message](#some-assets-cannot-be-booked-by-name-for-these-dates). Only the added days are measured, from the current end to the new one, so a booking that started months ago is not re-checked against everything since it began. Options:
 
 - Shorten your extension to end before the next booking starts
 - Ask the next booking's owner to shift their start date
@@ -231,10 +233,10 @@ At most three assets are listed by name, and the rest are counted. Take those it
 A draft's [model reservations](/glossary/asset-models) do not hold units, because a draft is still a plan. Shelf measures them when the draft is reserved, or checked out straight from Draft, against what the model can still supply for those dates. If they no longer fit, for example because another booking was reserved for the same units first, the booking stays a draft and you see this under **Booking conflict**:
 
 > Cannot reserve booking. Some model reservations no longer fit:
-> "Dell Latitude 5550": 4 units still to assign, but only 2 can be booked. 1 unit in custody and 3 units reserved by model on other bookings count against the pool for these dates.
+> "Dell Latitude 5550": 4 units still to assign, but on 12 May 2026 only 2 of 6 are free: 1 unit in custody, 3 units reserved by model for "Field day".
 > Reduce them, or change the dates.
 
-Every short model gets its own line, and each line says what is taking the units: units in custody, units other bookings hold by name, units other bookings reserved by model. Lower the reservation to what can be booked, or move the dates, and reserve again. A booking that is already **Reserved** is not measured again at check-out, so a pool that shrinks after you reserved does not strand your booking at the counter.
+Every short model gets its own line, and each line names the day inside your dates when the pool runs out and what is taking the units then: units in custody, units other bookings hold by name, units other bookings reserved by model (named when you may see those bookings). A line ends with *This booking also holds N units of it by name* when some of the model's units are already on your booking. Lower the reservation to what can be booked, or move the dates, and reserve again. A booking that is already **Reserved** is not measured again at check-out, so a pool that shrinks after you reserved does not strand your booking at the counter.
 
 ### A reserved booking cannot be emptied
 

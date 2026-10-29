@@ -1,0 +1,12 @@
+---
+title: "A Location's Value Counts Only the Units Placed There"
+description: "The Total value on a location's overview now adds up only the units of a quantity-tracked pool that are placed at that location, instead of the pool's whole stock. The Asset Distribution report's location breakdown counts the same way."
+date: "2026-10-26"
+image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/custody-on-location-page.webp"
+readMoreUrl: "/knowledge-base/quantity-tracked-assets-and-consumables#what-total-value-counts"
+layout: "update"
+---
+
+A [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) pool can be kept at several locations at once, with a placement row per location saying how many units sit there. Until now a location's **Total value** ignored those rows: it multiplied the per-unit value by the pool's whole stock, so a box of 143 pens at €1.50, kept as 99 in Suite A and 44 in Suite B, added the full €214.50 to both suites. Since 26 October 2026 each location adds only the units placed there, the same *N units at this location* its **Assets** tab already shows: €148.50 in Suite A and €66 in Suite B. An individually tracked asset has one placement of one unit, so its value is unchanged, and archived assets stay out of the total as before.
+
+The **By Location** breakdown of the **Asset Distribution** report follows the same rule, and now counts a location's units once even when a manual placement and a kit slice of the same pool share that location. The headline value of your inventory, on **Home** and in the reports, still counts everything you hold. See [What total value counts](/knowledge-base/quantity-tracked-assets-and-consumables#what-total-value-counts) for every place a total appears and what it adds up.

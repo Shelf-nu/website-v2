@@ -1,0 +1,13 @@
+---
+title: "The Sign-in Code Page No Longer Promises a Code"
+description: "The one-time code page said a code had been sent even when none went out, as for an account that must sign in with SSO. It now says a code was sent only if the address can sign in with one, and Send again says the same."
+date: "2026-10-27"
+readMoreUrl: "/knowledge-base/how-to-log-in-to-the-shelf-application#log-in-via-otp-one-time-password"
+layout: "update"
+---
+
+After **Continue with OTP**, the code page used to say *We have sent a code to* your address, and **Send again** answered *Email sent successfully*. That was not always true: an account on a domain that must sign in with SSO is sent no code, so its owner waited for an email that was never coming.
+
+Since 27 October 2026 the page reads *If (your address) can sign in with a code, we have sent one to it*, and **Send again** replies *If this address can receive a code, a new one is on its way*. The page answers every address the same way, so it does not tell anyone trying addresses which ones have an account. If no code arrives, check the spelling of the address, then the [delivery checks](/knowledge-base/troubleshooting-invite-not-received); if your company uses SSO, sign in with **Login with SSO** instead.
+
+On a self-hosted Shelf with sign-ups turned off, asking for a code for an address with no account used to show the raw error *Signups not allowed for otp*. It now lands on the same code page, and no code is sent.

@@ -1,0 +1,11 @@
+---
+title: "Scanned Rows Say Which Reservation They Fill, and Finished Bookings Read as Returned"
+description: "Scan to assign names each scanned asset and says whether it fills a reserved unit or comes in as an extra. On a finished booking, the progress bar and the check-in receipt now count every item that went out as returned."
+date: "2026-10-28"
+readMoreUrl: "/knowledge-base/adding-assets-and-kits-to-a-booking#what-each-scanned-row-tells-you"
+layout: "update"
+---
+
+**Scan to assign** on a booking that reserves gear by [asset model](/glossary/asset-models) now explains every row. Each scanned asset shows its asset ID and the code you scanned, such as *ID SAM-0104 · Scanned k02sohceyl*, so two rows with the same name can be told apart. A green **Counts toward _model_** badge marks a scan that fills a reserved unit, and an amber **Extra** badge marks one that will be added on top, either because every reserved unit of its model is already filled or because the model is not reserved at all. In **Fulfil reservations & check out**, the green **Ready** badge names the model it counts toward. Saving a large scan was also made much lighter, after a save of about a hundred assets onto a booking with 54 reserved models timed out.
+
+Finished bookings now tell one story. On a **Complete** or **Archived** booking, the check-in progress bar and the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking) count every individually tracked item that went out as **Returned**, the same as the asset rows on the booking page. Some older bookings had no stored check-in time on a line, so the receipt printed *Nothing returned* with every item still out, and the bar counted those items as **Fully out**. Where no time or person was recorded, the receipt now leaves the date and name blank instead of guessing.
