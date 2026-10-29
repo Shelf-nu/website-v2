@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Capture for shelf.nu #3271: the Top Booked Kits report with a Location filter applied.
- * content/knowledge-base/getting-started-with-reports.mdx, content/updates/reports-top-booked-kits-filters-and-idle-paging.mdx
- * Read-only: opens the Location dropdown, picks the first location, screenshots the filtered report.
+ * content/knowledge-base/getting-started-with-reports.mdx, content/updates/top-booked-kits-filters-apply-and-idle-assets-pages-add-up.mdx
+ * Read-only: opens the Location dropdown, picks Studio A, screenshots the filtered report.
  */
 import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
