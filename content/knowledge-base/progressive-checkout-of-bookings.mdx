@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-10-23"
+updated: "2026-10-29"
 layout: "knowledge-base"
 ---
 
@@ -70,7 +70,7 @@ The headline above the bar adapts to the phase you're in. While any items are st
 
 #### What a Finished Booking Shows
 
-A **Complete** or **Archived** booking reports what its records actually say, rather than assuming everything came back. A line that went out and was checked back in reads **Returned**. A line that went out with no return recorded against it stays **Fully out**, and a quantity-tracked line with only some of its units back reads **Partial**, so a closed booking still holding gear says so on its face. Older bookings that were checked out all at once, before Shelf recorded checkout on each line, have nothing to read per line and still show as fully **Returned**.
+On a **Complete** or **Archived** booking, every individually tracked item that went out counts as **Returned**. The booking only finishes once its items are checked in, so its status is the record that they came back, even on the few older bookings where Shelf stored no check-in time for a line. Items that never left stay **Booked**. [Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) lines are still counted from their unit logs, because a booking can close with units outstanding: a line with only some units back reads **Partial**, and one with none back stays **Fully out**, so a closed booking still owing units says so on its face. This matches the asset rows below the bar and the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking). Until 28 October 2026 the bar counted an item with no stored check-in time as **Fully out** on a finished booking, even though its row said **Returned**. Older bookings that were checked out all at once, before Shelf recorded checkout on each line, have nothing to read per line and still show as fully **Returned**.
 
 If your workspace counts [each kit as a single unit](/knowledge-base/partial-check-ins-efficiently-handle-incomplete-returns#how-the-check-in-progress-bar-counts-kits), the lifecycle bar honors that setting too — the tooltip reads *"Kits count as one item."* Otherwise every asset is counted individually, with the tooltip *"All assets inside kits are counted individually."*
 
@@ -157,7 +157,7 @@ Shelf handles this honestly so your records and reports stay accurate:
 - **Progressive check-in** won't let you check in an item that was never checked out, since there's nothing to return. It refuses with *"Cannot check in assets that were never checked out: [item names]."*
 - An item you have **already** checked in is refused separately, with *"These assets are already checked in."*, so the reason you see matches the reason you were stopped.
 - **Quick and full check-in** won't log or label never-checked-out items as "returned." They're skipped from the activity log, system notes, and the per-row **Returned** badge.
-- **Quick and full check-in settle only what went out.** A used-up (one-way) [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line that never left consumes nothing when the booking is closed with the one-click button, and a line that was partly handed over consumes only the units still out. Before 6 October 2026 the button could consume a one-way line's whole booked quantity, units that never left the shelf included.
+- **Quick and full check-in settle only what went out.** A used-up (one-way) [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line that never left consumes nothing when the booking is closed with the one-click button, and a line that was partly handed over consumes only the units still out. Before 6 October 2026 the button could consume a one-way line's whole booked quantity, units that never left the shelf included. Since 26 October 2026 a returnable (two-way) line is treated the same way: the button returns only the units that went out, and a line that never left is not logged as returned. Before that, closing a partly checked-out booking logged such a line as returned in full, so the booking read *3 / 3* and the asset's activity said *returned 3 pcs* for units that never moved. Bookings closed that way before the fix keep those entries.
 - A **kit** only counts as returned once all of its assets were actually checked out — so a kit that went out incomplete won't be marked fully returned.
 
 Unlike check-in, progressive checkout **never auto-completes** the booking. Checking out the last item simply finishes the checkout phase; you still check the items back in when they return.

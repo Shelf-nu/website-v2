@@ -1,0 +1,12 @@
+---
+title: "Check-In Returns Only the Units That Went Out"
+description: "Closing a partly checked-out booking with the Check in button no longer logs a returnable quantity line that never left the shelf as returned. Only units that actually went out are returned or used up."
+date: "2026-10-26"
+image: "/images/updates/partial-check-ins.jpg"
+readMoreUrl: "/knowledge-base/progressive-checkout-of-bookings#the-mixed-state-items-that-never-left"
+layout: "update"
+---
+
+When a booking is checked out by scanning only some of its items and then closed with the one-click **Check in** button, Shelf settles each [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) line on it. For a used-up (one-way) line that has worked by what actually left since 6 October 2026. A returnable (two-way) line still did not ask: it was logged as returned in full, so a line of 3 units that never left the shelf showed **3 / 3** on the booking and *returned 3 pcs* in the asset's activity.
+
+Since 26 October 2026 the check-in returns only the units a line sent out. A line that never left gets no entry at all, a line partly handed over returns only the units still out, and the booking completes as before. The rule is the one the rest of Shelf uses: only units that actually departed can be returned or used up. Bookings closed the old way keep their earlier entries. See [The mixed state: items that never left](/knowledge-base/progressive-checkout-of-bookings#the-mixed-state-items-that-never-left).
