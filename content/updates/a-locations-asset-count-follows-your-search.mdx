@@ -1,0 +1,13 @@
+---
+title: "A Location's Asset Count Follows Your Search"
+description: "Searching or filtering by custodian on a location's Assets tab kept the full asset count and a pager sized for every asset, so Next could open a page saying the location has no assets. The count and the pager now follow the search. The Assets and Kits tabs also keep other people's custody private for members who may not see it."
+date: "2026-10-27"
+layout: "update"
+---
+
+On a location's **Assets** tab, a search or a custodian filter narrowed the rows but not the count above them: a search that matched 3 of a location's 80 assets still reported 80, with a pager sized for all 80, so the next-page arrow opened a page that said the location had no assets. Since 27 October 2026 the count and the pager follow the search and the custodian filter, the same as the rows they head. The count the start-audit dialog uses stays the location's total.
+
+Two smaller things on the same tabs, found while fixing that:
+
+- **Other people's custody stays private.** For a Self-service or Base member in a workspace that hides custody, the **Assets** tab no longer carries other custodians' names in its page data, and on both tabs a link that filters by a colleague as custodian returns none of that colleague's assets. Your own custody stays visible, and **Without custody** still applies. See [Configure what Self-service and Base users can see](/knowledge-base/configure-what-self-service-and-base-users-can-see).
+- **"Archived assets are hidden" no longer answers a search.** An Active-view search with no matches used to say that archived assets were hidden, pointing at an Archived view with no matches either. The note now appears only on an unfiltered list.
