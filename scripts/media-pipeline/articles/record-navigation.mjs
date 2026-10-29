@@ -25,6 +25,12 @@ async function main() {
     const rowLink = page.locator('a[href*="/assets/"][href$="/overview"]').first();
     await rowLink.waitFor();
     const firstHref = await rowLink.getAttribute("href");
+    // The next asset of the list is the second distinct asset the list links to.
+    const rowHrefs = await page
+      .locator('a[href*="/assets/"][href$="/overview"]')
+      .evaluateAll((links) => [...new Set(links.map((a) => new URL(a.href).pathname))]);
+    const expectedNext = rowHrefs[1];
+    if (!expectedNext) throw new Error("the list needs at least two assets");
     await rowLink.click();
     await page.waitForURL((u) => u.pathname.endsWith("/overview"));
     const next = page.locator('button[aria-label="Next in list"]:visible');
@@ -52,8 +58,8 @@ async function main() {
     // Prove the key works: ] opens the next asset of the same list.
     const before = page.url();
     await page.keyboard.press("]");
-    await page.waitForURL((u) => u.href !== before, { timeout: 20000 });
-    console.log("] moved", before, "->", page.url());
+    await page.waitForURL((u) => u.pathname === expectedNext, { timeout: 20000 });
+    console.log("] moved", before, "->", page.url(), "(expected", expectedNext + ")");
 
     // A direct link has no list context: both arrows are disabled.
     const direct = new URL(page.url()).pathname;
