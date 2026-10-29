@@ -3,7 +3,7 @@ import { getContentBySlug, getContentSlugs } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx-content";
 import { Metadata } from "next";
-import { buildContentMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { buildContentMetadata, breadcrumbJsonLd, faqJsonLd, extractFaqsFromMdx } from "@/lib/seo";
 import { StructuredData } from "@/components/seo/structured-data";
 import { PagefindWrapper, frontmatterKeywords } from "@/components/search/pagefind-wrapper";
 import { Frontmatter } from "@/lib/content/schema";
@@ -42,15 +42,23 @@ export default async function IndustryPage({ params }: PageProps) {
 
     const Layout = resolveLayout(frontmatter.layout);
 
-    const jsonLd = breadcrumbJsonLd([
+    const breadcrumbs = breadcrumbJsonLd([
         { name: "Home", href: "/" },
         { name: "Industries", href: "/industries" },
         { name: frontmatter.title, href: `/industries/${slug}` },
     ]);
 
+    // FAQPage schema for pages with a "## Frequently Asked Questions" section,
+    // the same way solution and alternative pages emit it.
+    const faqs = extractFaqsFromMdx(content);
+    const schemas: Record<string, unknown>[] = [breadcrumbs];
+    if (faqs.length > 0) {
+        schemas.push(faqJsonLd(faqs));
+    }
+
     return (
         <PagefindWrapper type="Industry" title={frontmatter.title} keywords={frontmatterKeywords(frontmatter)}>
-            <StructuredData data={jsonLd} />
+            <StructuredData data={schemas} />
             {/* eslint-disable-next-line react-hooks/static-components */}
             <Layout frontmatter={frontmatter}>
                 <MDXContent source={content} />

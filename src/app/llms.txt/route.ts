@@ -192,6 +192,7 @@ const LINK_INDEX = `## Key Links
 - [Construction](${BASE_URL}/industries/construction): Track tools, equipment, and job-site gear with mobile-first workflows for crews and project managers.
 - [Education](${BASE_URL}/industries/education): Manage shared equipment — AV gear, cameras, laptops, lab resources — with simple workflows for students and staff.
 - [Engineering](${BASE_URL}/industries/engineering): Track engineering equipment, instruments, and prototypes across labs, field sites, and shared workshops.
+- [Events](${BASE_URL}/industries/events): For teams that run events with their own gear: book gazebos, tables and freezers to each event, print the pick list, scan gear out and back in, and count drinks stock used up. Not client rental software.
 - [IT & Technology](${BASE_URL}/industries/it): Track laptops, loaner devices, peripherals, and shared equipment with QR-first workflows and custody tracking.
 - [Media & Production](${BASE_URL}/industries/media-production): Manage cameras, lighting gear, audio kits, and accessories with workflows designed for real-world shoots.
 
