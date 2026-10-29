@@ -47,6 +47,21 @@ async function countLinks(page, label, selectors) {
   return counts;
 }
 
+/**
+ * Scrolls the first link matching `selector` into view and tags it, so the
+ * highlight lands on a count that is on screen. Throws when there is none, so
+ * a page with no count link never replaces the published image.
+ */
+async function markFirstLink(page, selector, label) {
+  const link = page.locator(selector).first();
+  if ((await page.locator(selector).count()) === 0) {
+    throw new Error(`${label}: no count link to highlight, not uploading`);
+  }
+  await link.scrollIntoViewIfNeeded();
+  await link.evaluate((el) => el.setAttribute("data-shot", "count-link"));
+  return '[data-shot="count-link"]';
+}
+
 async function main() {
   const tmpDir = await mkdtemp(join(tmpdir(), "shelf-count-links-"));
   const browser = await launchBrowser();
@@ -65,19 +80,16 @@ async function main() {
       assetCountLinks: 'table a[href*="/assets?tag="]',
       bookingCountLinks: 'table a[href*="/bookings?tag="]',
     });
+    const tagTarget = await markFirstLink(page, 'table a[href*="/assets?tag="]', "/tags");
     await initAnnotations(page);
-    if (tagCounts.assetCountLinks > 0) {
-      await highlight(page, 'table a[href*="/assets?tag="]', { padding: 6 });
-      await callout(
-        page,
-        'table a[href*="/assets?tag="]',
-        "Opens the asset list filtered to this tag",
-        { label: "Assets", side: "right" }
-      );
-    }
+    await highlight(page, tagTarget, { padding: 6 });
+    await callout(page, tagTarget, "Opens the asset list filtered to this tag", {
+      label: "Assets",
+      side: "right",
+    });
     await caption(
       page,
-      "Tags: the Assets and Bookings columns count what carries each tag, and each count opens that list"
+      "Tags: the Assets and Bookings columns count what carries each tag; click a count above zero to open that list"
     );
     const tagsShot = await screenshot(page, join(tmpDir, "tags-list-counts.png"));
     await clearAll(page);
@@ -89,16 +101,13 @@ async function main() {
     const catCounts = await countLinks(page, "/categories", {
       assetCountLinks: 'table a[href*="/assets?category="]',
     });
+    const catTarget = await markFirstLink(page, 'table a[href*="/assets?category="]', "/categories");
     await initAnnotations(page);
-    if (catCounts.assetCountLinks > 0) {
-      await highlight(page, 'table a[href*="/assets?category="]', { padding: 6 });
-      await callout(
-        page,
-        'table a[href*="/assets?category="]',
-        "Opens the asset list filtered to this category",
-        { label: "Assets", side: "right" }
-      );
-    }
+    await highlight(page, catTarget, { padding: 6 });
+    await callout(page, catTarget, "Opens the asset list filtered to this category", {
+      label: "Assets",
+      side: "right",
+    });
     await caption(
       page,
       "Categories: click an asset count to open the asset list filtered to that category"
@@ -116,7 +125,12 @@ async function main() {
       custodianLinks: 'table a[href*="/assets?teamMember="], table a[href*="/settings/team/users/"]',
     });
     await navigateTo(page, "/locations");
-    await page.locator("table").first().waitFor({ state: "visible" });
+    // An empty workspace shows an empty state instead of a table: count zero.
+    await page
+      .locator("table")
+      .first()
+      .waitFor({ state: "visible", timeout: 15000 })
+      .catch(() => console.log("  /locations: no table (empty list)"));
     await page.waitForTimeout(800);
     await countLinks(page, "/locations", {
       assetsCountLinks: 'table a[href$="/assets"]',
