@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" color="#18181b" role="img" aria-label="When you tap a push, the app waits until you are signed in and your workspaces are loaded, switches to the push's workspace if needed, and opens the screen. A tap for a workspace you have left is dropped." font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="currentColor">
+  <rect x="0.5" y="0.5" width="759" height="299" rx="12" fill="#ffffff" stroke="#e4e4e7"/>
+  <defs>
+    <marker id="arrow3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <!-- boxes on a 180px rhythm -->
+  <g stroke="currentColor" stroke-width="1.5" fill="none">
+    <rect x="20" y="60" width="140" height="64" rx="6"/>
+    <rect x="200" y="60" width="140" height="64" rx="6"/>
+    <rect x="380" y="60" width="140" height="64" rx="6"/>
+    <rect x="560" y="60" width="180" height="64" rx="6" stroke="#EF6820" stroke-width="2"/>
+  </g>
+  <text x="90" y="86" text-anchor="middle" font-weight="600">You tap</text>
+  <text x="90" y="105" text-anchor="middle" opacity="0.7">app open or closed</text>
+
+  <text x="270" y="86" text-anchor="middle" font-weight="600">Signed in?</text>
+  <text x="270" y="105" text-anchor="middle" opacity="0.7">wait while loading</text>
+
+  <text x="450" y="86" text-anchor="middle" font-weight="600">Right workspace?</text>
+  <text x="450" y="105" text-anchor="middle" opacity="0.7">switch if not</text>
+
+  <text x="650" y="86" text-anchor="middle" font-weight="600">Open the screen</text>
+  <text x="650" y="105" text-anchor="middle" opacity="0.7">the booking, audit or asset</text>
+
+  <g stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow3)">
+    <line x1="160" y1="92" x2="200" y2="92"/>
+    <line x1="340" y1="92" x2="380" y2="92"/>
+    <line x1="520" y1="92" x2="560" y2="92"/>
+  </g>
+
+  <!-- drops -->
+  <g stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow3)">
+    <line x1="270" y1="124" x2="270" y2="180"/>
+    <line x1="450" y1="124" x2="450" y2="180"/>
+  </g>
+  <text x="270" y="200" text-anchor="middle" font-weight="600">Dropped</text>
+  <text x="270" y="218" text-anchor="middle" opacity="0.8">you are signed out</text>
+  <text x="450" y="200" text-anchor="middle" font-weight="600">Dropped</text>
+  <text x="450" y="218" text-anchor="middle" opacity="0.8">you left that workspace</text>
+
+  <text x="20" y="262" font-size="12" opacity="0.8">A tap is handled once, even when the app is relaunched by it.</text>
+  <text x="20" y="280" font-size="12" opacity="0.8">A failed workspace load keeps the tap waiting; a network error never drops it.</text>
+</svg>
