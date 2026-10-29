@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/features/reports"
 date: "2026-04-30"
-updated: "2026-10-22"
+updated: "2026-10-28"
 seo:
   title: "Equipment Reports & Analytics"
   description: "Run booking compliance, utilization, custody, and inventory reports in Shelf. Filter by category, location, and timeframe. Export to CSV or PDF."
@@ -41,7 +41,7 @@ Reports cover the parts of the workflow operations managers are usually asked ab
 
 - **Booking Compliance** — On-time returns, late returns, and overdue items across the timeframe you pick. Lateness is measured against the deadline the booking was agreed to, so extending a booking does not clear a late return from the record. Filter by status, custodian, location, category, asset model, or a custom field.
 - **Top Booked Assets** — The most frequently booked assets and their utilization patterns. Useful for capacity planning and replacement decisions.
-- **Top Booked Kits** — The most frequently booked kits, ranked by how often each kit goes out. A kit is counted once per booking it appears in, so multiple assets from the same kit in one booking collapse to a single kit-booking. Useful when you bundle and lend equipment as kits and want to plan kit-level capacity.
+- **Top Booked Kits** — The most frequently booked kits, ranked by how often each kit goes out. A kit is counted once per booking it appears in, so multiple assets from the same kit in one booking collapse to a single kit-booking. Filter it by the kit's category or location. Useful when you bundle and lend equipment as kits and want to plan kit-level capacity.
 - **Monthly Booking Trends** — Booking volume over time with month-over-month comparisons.
 - **Overdue Items** — A live view of every booking that is currently past its end date. Filter by custodian or location to chase down what is missing right now.
 
@@ -77,7 +77,7 @@ Time-based reports include a timeframe picker with presets for the last 7 / 30 /
 
 ### Filter to the Slice You Care About
 
-Every booking, asset and custody report except Top Booked Kits can be filtered from a filter bar with the filters that fit its data: category, location, status and custodian where they apply, plus **asset model** and **custom field** filters on every asset-based report, so you can ask for "Booking compliance for assets whose Condition is Good" or "Idle cameras of one model". Applied filters show as chips, the CSV and PDF exports carry exactly the same filters, and the filters are saved in the URL, so you can bookmark or share a specific report view.
+Every booking, asset and custody report can be filtered from a filter bar with the filters that fit its data: category, location, status and custodian where they apply, plus **asset model** and **custom field** filters on every asset-based report, so you can ask for "Booking compliance for assets whose Condition is Good" or "Idle cameras of one model". Applied filters show as chips, the CSV and PDF exports carry exactly the same filters, and the filters are saved in the URL, so you can bookmark or share a specific report view.
 
 ![The Asset Distribution report with its filter bar (Category, Location, Asset model, Custom field) above four donut breakdowns, including the new By Asset Model](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports-filter-bar.webp)
 
@@ -134,7 +134,7 @@ The Audit Completion report turns a season of audits into one rate: how many wer
 ## Benefits
 
 - **Self-serve** — Operations managers run reports themselves, without waiting on engineering or exporting to BI tools. Reports are an Administrator and Owner surface, included on the Plus and Team plans
-- **Filterable** — Every booking, asset and custody report except Top Booked Kits can be filtered from a filter bar that matches how teams already organize their inventory
+- **Filterable** — Every booking, asset and custody report can be filtered from a filter bar that matches how teams already organize their inventory
 - **Shareable** — URLs encode the filters, so a saved view can be sent to a colleague or bookmarked
 - **Exportable** — CSV for analysis, PDF for distribution
 - **Live where it matters** — Snapshot reports (Custody, Overdue, Inventory) always reflect current state
