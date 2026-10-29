@@ -11,7 +11,7 @@ personas:
   - "it"
 canonicalUrl: "/solutions/equipment-check-in"
 date: "2025-01-01"
-updated: "2026-10-15"
+updated: "2026-10-26"
 seo:
   title: "Free Equipment Check-In and Check-Out Software — Scan, Return"
   description: "Scan a QR code to check gear out and back in. See who has what and where it is — free for individuals, no credit card. Used by 3,000+ teams."
@@ -120,7 +120,7 @@ See: [Kits](/features/kits)
 
 Track equipment across buildings, campuses, warehouses, job sites, and vehicles. Each location maintains its own inventory while sharing visibility across the organization. Shelf supports up to [12 levels of location hierarchy](/knowledge-base/sublocations-organize-locations-into-hierarchies).
 
-When an asset is checked in at a different site than where it was checked out, the location updates automatically.
+When equipment goes out to a job site on a booking, record the move while it is out: **Update location** on the asset works while it is checked out, and the move is logged in the asset's activity like any other. Checking in does not change an asset's location on its own, so set the new site whenever the gear actually moves.
 
 ![Locations index with parent/child hierarchy, asset and kit counts per site — full visibility across every facility](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/solutions/equipment-check-in-locations.webp)
 
@@ -170,7 +170,7 @@ See: [Location Tracking](/features/location-tracking)
 2. **Add your equipment** manually or [import from a CSV file](/knowledge-base/importing-assets-to-shelf-csv-guide).
 3. **Print QR labels** and attach them to each item. [Custom branding available](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
 4. **Invite your team** and [assign roles](/knowledge-base/user-roles-and-their-permissions): self-service users can check out on their own, base users can browse and request, managers hand gear out and take it back for everyone, administrators manage everything.
-5. **Start scanning** — team members scan QR codes (in the browser or via Shelf Companion on iPhone and Android) to check equipment in or out. Custody logs, location updates, and booking confirmations happen automatically.
+5. **Start scanning** — team members scan QR codes (in the browser or via Shelf Companion on iPhone and Android) to check equipment in or out. Custody logs and booking confirmations happen automatically. When gear moves to a new site, record it with **Update location**, on the asset or as a scanner batch action.
 
 Most teams are fully operational within an hour.
 
@@ -186,7 +186,7 @@ Process checkouts and returns from the floor with the free [Shelf Companion app]
 
 ### How is this different from a spreadsheet or sign-out sheet?
 
-A spreadsheet requires every person to manually update the same file, every time, without fail. One missed entry and the data is unreliable. Shelf automates the process: scan a QR code to check out, scan again to return. Custody, location, and availability update automatically. There is no manual data entry to forget.
+A spreadsheet requires every person to manually update the same file, every time, without fail. One missed entry and the data is unreliable. Shelf automates the process: scan a QR code to check out, scan again to return. Custody and availability update automatically, and every scan is recorded, with where it happened when the device shares its position. Moving equipment to a new site is one more action, **Update location**, which the scanner can apply to a whole batch. There is no spreadsheet to keep in step.
 
 ### Does everyone on my team need an account?
 
