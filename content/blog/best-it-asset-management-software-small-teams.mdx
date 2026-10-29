@@ -206,10 +206,11 @@ These two are a different kind of product, so they get their own table.
       label: "Starting price",
       values: [
         { value: "From €270/mo, billed annually", warning: "Starter includes 2,000 assets. The page showed prices in euros when we checked." },
-        { value: "From $125/mo per 500 asset units", warning: "This is the IT asset management price. The service desk is priced separately, from $19 per agent per month billed annually." }
+        { value: "From $125/mo per 500 asset units", warning: "Extra asset units on top of a service desk plan. Growth ($49 per agent per month, billed annually) and higher include 100 asset units; Starter includes none." }
       ]
     },
-    { label: "Priced by", values: ["Plan with an asset allowance", "Asset units (a laptop counts as 1)"] },
+    { label: "Priced by", values: ["Plan with an asset allowance", "Agents plus asset units (a laptop counts as 1)"] },
+    { label: "Self-host / on-premises", values: ["On-premises install on Windows", "Not on pricing page"] },
     { label: "Network and agent discovery", values: [true, true] },
     { label: "MDM connectors", values: ["SCCM, Intune, Airwatch, G-Suite MDM", "Not on pricing page"] },
     { label: "Software license management", values: ["Not on pricing page", "Pro and Enterprise"] },
@@ -232,12 +233,12 @@ A worked example helps more than a list of starting prices. Say you look after 1
 | itemit | Starter (up to 1,000 assets, 1 to 3 users) or Pro (unlimited users) | £399/yr or £1,599/yr |
 | Sortly | Ultra (2,000 items, 5 users) | $149/mo list; $888/yr in the first year on annual billing |
 | Reftab | Hardware Asset Management | $125/mo; the asset count it covers is not stated |
-| Freshservice | IT asset management, 1,000 asset units | From $125/mo per 500 units, plus service desk agents if you use them |
+| Freshservice | Growth service desk for 5 agents, plus 2 packs of 500 asset units | $495/mo at the starting rates (5 × $49 agents billed annually, plus 2 × $125 unit packs) |
 | Lansweeper | Starter (includes 2,000 assets) | From €270/mo, billed annually |
 | EZO | Above 500 items | Quote ("Let's Talk") |
 | Asset Panda | Any | Quote only |
 
-Two things this table does not show. Five IT staff on itemit's Starter plan is over its 3-user limit, so Pro is the realistic itemit plan. And Sortly's Ultra plan has 5 user licenses, so nobody outside the IT team could sign in.
+Three things this table does not show. Five IT staff on itemit's Starter plan is over its 3-user limit, so Pro is the realistic itemit plan. Sortly's Ultra plan has 5 user licenses, so nobody outside the IT team could sign in. And the Freshservice figure works like this: 1,000 laptops use 1,000 asset units; the Growth plan includes 100, so the other 900 need two 500-unit packs; Starter ($19 per agent) includes no asset units, so Growth is the cheapest plan that does.
 
 ---
 
@@ -446,6 +447,7 @@ Two things this table does not show. Five IT staff on itemit's Starter plan is o
 - **Discovery is the product:** IT, OT, cloud and agent discovery, plus connectors that import from SCCM, Intune, Airwatch and G-Suite MDM, and automatic warranty collection.
 - **Unlimited user seats** on every plan, and SSO from Starter.
 - **Free tier:** after a 14-day full trial, you can continue free for up to 100 assets.
+- **Runs on your own server if you want:** Lansweeper can be installed on-premises on a Windows machine, with the scanning service, database and web console on the same computer or split across several. The pricing page counts installations per plan (1 on Starter, up to 3 on Pro).
 
 **Limitations:**
 - **Built to find devices, not to lend them:** the pricing page lists no check-out, custody or loaner reservations.
@@ -454,7 +456,7 @@ Two things this table does not show. Five IT staff on itemit's Starter plan is o
 
 **Best for:** IT teams that need to know everything on the network, including devices nobody registered, and can pair it with a register for hand-outs.
 
-**Pricing:** Free (up to 100 assets, after a 14-day trial) → Starter from €270/mo (2,000 assets) → Pro from €474/mo (2,000, expandable to 9,000) → Enterprise (custom, from 10,000), all billed annually. Source: [lansweeper.com/pricing](https://www.lansweeper.com/pricing/), as of 2026-10-29.
+**Pricing:** Free (up to 100 assets, after a 14-day trial) → Starter from €270/mo (2,000 assets) → Pro from €474/mo (2,000, expandable to 9,000) → Enterprise (custom, from 10,000), all billed annually. Sources: [lansweeper.com/pricing](https://www.lansweeper.com/pricing/), [on-premises install guide](https://docs.lansweeper.com/classic/docs/install-lansweeper-on-prem), as of 2026-10-29.
 
 ---
 
@@ -469,12 +471,12 @@ Two things this table does not show. Five IT staff on itemit's Starter plan is o
 - **Laptops are cheap in asset units:** a desktop, laptop or mobile device counts as 1 unit, and a physical asset without an IP address counts as 1/25 of a unit.
 
 **Limitations:**
-- **Two prices to add up:** the service desk is $19, $49 or $99 per agent per month billed annually (Starter, Growth, Pro), and asset management starts at $125/mo per 500 asset units. The asset management page does not say whether a service desk plan is also required, so ask their sales team.
+- **Two prices to add up:** the service desk is $19, $49 or $99 per agent per month billed annually (Starter, Growth, Pro). Growth, Pro and Enterprise include the asset management Growth package with 100 asset units; Starter does not. More units cost from $125/mo per pack of 500. For 1,000 laptops and 5 IT agents on Growth, that is 5 × $49 plus 2 × $125, or $495 a month at the starting rates. The asset management page does not say whether it can be bought without a service desk plan.
 - **No check-out or loaner reservations on the pricing pages.**
 
 **Best for:** IT teams that want ticketing, discovery and license management in one suite and will pay per technician.
 
-**Pricing:** Service desk from $19 per agent per month billed annually; asset management from $125/mo per 500 asset units; 14-day trial. Sources: [service desk pricing](https://www.freshworks.com/freshservice/pricing/), [asset management pricing](https://www.freshworks.com/freshservice/itam/pricing/), as of 2026-10-29.
+**Pricing:** Service desk Starter $19, Growth $49, Pro $99 per agent per month billed annually (Growth and up include 100 asset units); extra asset units from $125/mo per 500; 14-day trial. Sources: [service desk pricing](https://www.freshworks.com/freshservice/pricing/), [asset management pricing](https://www.freshworks.com/freshservice/itam/pricing/), as of 2026-10-29.
 
 ---
 
@@ -551,7 +553,7 @@ If we were buying as a small IT team, not as a competitor, here is where we woul
 - **With a sysadmin who can host it,** we would start with Snipe-IT. It is free, its license and depreciation tracking go further than anything else on this page at that price, and it syncs from the common MDM tools.
 - **For a cloud tool with MDM sync and no per-user fees,** we would trial Reftab, after asking how many assets the $125 plan covers.
 - **For "what is actually on our network",** we would add Lansweeper, whatever register we used.
-- **For ticketing, discovery and licenses in one place,** we would look at Freshservice and do the math per technician.
+- **For ticketing, discovery and licenses in one place,** we would look at Freshservice and budget per technician plus asset units: about $495 a month for 5 agents and 1,000 laptops at its starting rates.
 
 We built Shelf for teams whose problem is physical: devices that change hands, loaners that need booking, chargers that walk away. For that job, with unlimited users on one flat price, we think it is the best option. If your problem is discovery, licenses or tickets, one of the tools above is the better answer.
 
@@ -566,7 +568,7 @@ Before you trial anything, answer four questions:
 1. **How do devices get into the system?** If you want them to appear by themselves, you need discovery (Lansweeper, Freshservice) or an MDM sync (Snipe-IT, Reftab, Asset Panda). If a CSV import and a QR label per device is fine, every tool on this page works.
 2. **Do you track software licenses?** If yes, your shortlist is Snipe-IT, Reftab's software plan or Freshservice Pro. Shelf does not track licenses.
 3. **Who needs to sign in?** If staff outside IT book loaners or confirm hand-outs, rule out tools with low user caps (Sortly, itemit Starter) and per-technician pricing for those users. Shelf Team, Snipe-IT, Reftab, EZO, AssetTiger and Lansweeper all list unlimited users.
-4. **Who runs it?** Self-hosting Snipe-IT is free but someone has to maintain the server. Everything else here is a hosted service.
+4. **Who runs it?** Three tools here can run on your own server: Snipe-IT (free to self-host), Shelf (a community-maintained Docker setup that needs your own Supabase instance) and Lansweeper (an on-premises install on Windows). Someone has to maintain that server. The other tools on this page did not list a self-hosted option on the pages we checked.
 
 </Callout>
 
@@ -588,7 +590,7 @@ Yes. Snipe-IT is free if you host it yourself, with no asset or user limits. She
 
 ### How much does IT asset management software cost for a small team?
 
-It depends on the pricing model. For 1,000 devices at published prices on 2026-10-29: Shelf Team is $370 a year for unlimited users, Snipe-IT hosting is $399.99 a year, AssetTiger Core is $40 a month, and Lansweeper Starter is from €270 a month billed annually. Asset Panda and EZO above 500 items are quote-based.
+It depends on the pricing model. For 1,000 devices at published prices on 2026-10-29: Shelf Team is $370 a year for unlimited users, Snipe-IT hosting is $399.99 a year, AssetTiger Core is $40 a month, Lansweeper Starter is from €270 a month billed annually, and Freshservice is about $495 a month for 5 Growth agents plus two 500-unit asset packs. Asset Panda and EZO above 500 items are quote-based.
 
 ### Do I need network discovery for a small IT team?
 
