@@ -1,0 +1,17 @@
+---
+title: "A Model's Pool Is Measured at Its Busiest Moment, Not Added Up"
+description: "Reserving or extending a booking that holds units of an asset model was refused when the model's bookings over the window added up to more than its units, even if they never ran at the same time. Shelf now measures the pool at the instant demand peaks, checks an extension against its added days only, and the refusal names that day and what holds the units. Large bookings reserve faster too."
+date: "2026-10-27"
+readMoreUrl: "/knowledge-base/troubleshooting-booking-conflicts#some-assets-cannot-be-booked-by-name-for-these-dates"
+layout: "update"
+---
+
+When a booking holds a unit of an [asset model](/glossary/asset-models) by name, Shelf checks that other bookings' reservations of that model still fit. Until 27 October 2026 it did that by adding up every booking of the model that touched the window, as if they all ran at the same time. Bookings that handed one unit from job to job, or different units on non-overlapping jobs, all stacked. With long bookings the sum passed the model's size while the pool was never close to full: a three-unit model could refuse an extension as *3 units booked by name on other bookings* when no more than two of its units were ever out at the same time.
+
+Three things changed:
+
+- **The pool is measured at its peak.** For each model, Shelf finds the single instant inside your dates when demand is highest and counts what holds units then: units in custody, units on other bookings by name, and units reserved by model. That is how [pooled stock](/knowledge-base/quantity-tracked-assets-and-consumables) was already counted; model pools now follow the same rule.
+- **An extension checks the added days only**, from the current end to the new one. A booking that started in May is no longer re-measured against everything since May to approve two more weeks.
+- **The refusal says what to do.** Instead of *requested by name* and *reserved by model* arithmetic, each line reads like *"Dell Latitude 5550": this booking needs 1 unit by name, but on 12 May 2026 only 0 of 3 are free: 1 unit in custody, 2 units reserved by model for "Field day"*, followed by what would free a unit. The day is in your own time zone, and the other bookings are named only when your role may see them.
+
+Reserving, extending, adding assets to or scanning into a large booking is also faster. Every model's pool is now read in a fixed handful of statements whatever the booking's size, where before each model and each quantity-tracked item cost its own round trips; reserving also has more time to finish its checks, where a draft with a few dozen items could run out of time and fail with **Could not reserve the booking.** The speed-up on its own changes no answer: only the switch from the sum to the peak does.

@@ -3,7 +3,7 @@ title: "Extending Booking End Dates in Shelf"
 description: "This guide explains how to prolong existing bookings in Shelf's asset management system without creating new ones, useful for situations where assets are needed longer than initially planned."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-10-20"
+updated: "2026-10-28"
 layout: "knowledge-base"
 ---
 
@@ -17,10 +17,10 @@ The "Extend Booking End Date" capability allows users to lengthen existing booki
 
 This functionality applies to bookings with these statuses:
 
-- **CHECKED OUT** (Ongoing bookings)
-- **OVERDUE** (Bookings exceeding their end date)
+- **Ongoing** (checked out, within its dates)
+- **Overdue** (past its end date with items still out)
 
-The "Extend Booking" option remains unavailable for **RESERVED** status bookings. Reference the [Introduction to Bookings](/knowledge-base/introduction-to-bookings) documentation for details about different booking statuses.
+The end date of a **Reserved** booking cannot be changed this way. Reference the [Introduction to Bookings](/knowledge-base/introduction-to-bookings) documentation for details about different booking statuses.
 
 ## How to Extend a Booking
 
@@ -33,22 +33,24 @@ The "Extend Booking" option remains unavailable for **RESERVED** status bookings
 
 The new end has to be after the current one. A time at or before the current end is refused, inline and as a toast, with *The new end date must be after the current end date.* Something on the booking also has to be out still: a booking whose items have all come back is completed, not extended.
 
+When the end moves later, Shelf checks the added days only, from the current end to the new one, against the other bookings of the same assets, kits and [asset models](/glossary/asset-models). A clash there is refused with the other booking named, and a unit whose model is spoken for on those days with the message that starts *Some assets cannot be booked for these dates* ([what it means](/knowledge-base/troubleshooting-booking-conflicts#some-assets-cannot-be-booked-by-name-for-these-dates)). Until 27 October 2026 a model's pool was re-measured over the whole booking, from its first day, and every booking that touched it was added up as if they all ran at once, so long bookings were refused extensions the pool had room for.
+
 ### On the phone
 
 Since the update of 20 October 2026 the [Shelf Companion](/mobile-app) app extends bookings too. Open an **Ongoing** or **Overdue** booking, tap **More actions** and choose **Extend booking**, the first entry. The sheet opens on the current end: change it with the date and time picker, or tap **+1 hour**, **+4 hours** or **+1 day**, then confirm. The same rules apply as on the web, through the same check on the server: the new end must be later than the current one, and a clash with another booking is refused with that booking's name. The action shows for the same roles as on the web, on bookings they may change.
 
 ## What Happens When You Extend a Booking
 
-### For OVERDUE Bookings
+### For Overdue Bookings
 
-- Booking status transitions from **OVERDUE** to **CHECKED OUT**
+- Booking status transitions from **Overdue** to **Ongoing**
 - Fresh reminders schedule based on the new end date:
   - Check-in reminder
   - Overdue reminder
 
-### For CHECKED OUT Bookings
+### For Ongoing Bookings
 
-- Booking maintains **CHECKED OUT** status
+- Booking maintains **Ongoing** status
 - All existing scheduled reminders reschedule per the new end date:
   - Check-in reminder
   - Overdue reminder
