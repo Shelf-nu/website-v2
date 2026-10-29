@@ -1,0 +1,13 @@
+---
+title: "Asset List Fixes: Filters, Zero Values and Sorting by Value"
+description: "Picking a filter on page 3 no longer shows an empty page, a value of 0.00 survives an edit, sorting by value orders individual assets, and Enter picks the highlighted option in an advanced filter."
+date: "2026-10-28"
+layout: "update"
+---
+
+Four fixes to the asset list and the asset form, live since 28 October 2026:
+
+- **Changing a filter goes back to page 1.** Picking, removing or clearing a filter value while on page 2 or later used to keep you on that page of the now smaller result, so a report could read *"Your inventory is empty"* above *"Showing 21-4 of 4 results"*. Every filter dropdown that changes the list (assets, bookings, kits, a location's assets and kits, the asset pickers) now starts the result on page 1 and keeps your page size and other filters.
+- **A value of 0.00 stays 0.00.** The edit form showed an asset worth 0.00 with an empty **Value** field, and saving the form, even without touching it, cleared the value. The field now shows 0 and saving keeps it.
+- **Sorting by value orders individual assets.** Sorting the advanced list by value only ordered [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) assets; individually tracked ones all tied. They now sort by their value, and assets without a value go last in either direction.
+- **Enter picks the option you highlighted.** In an advanced filter's short value list, such as **Status**, the arrow keys moved the highlight but Enter picked the first option. Enter and Space now pick the highlighted one, and the list opens on the current value.
