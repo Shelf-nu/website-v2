@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-10-28"
+updated: "2026-10-29"
 layout: "knowledge-base"
 ---
 
@@ -83,7 +83,7 @@ A reservation is settled by putting a matching asset on the booking. Every route
 
 Whichever door the asset comes through, Shelf matches it against an outstanding reservation for its model and ticks the reservation down. Only genuinely new rows count, so re-saving the **Manage assets** dialog with the same selection never discharges a reservation twice.
 
-**A unit that was already on the booking can still count, if you scan it.** Sometimes the right unit is on the booking, as a loose item, before the reservation it should answer: it was added before anyone reserved its model, or its model was changed after it was added. Scan it in **Scan to assign** or in **Fulfil reservations & check out** and it answers the reservation. The row gets a green badge, *"Already here, now counts toward Dell Latitude 5550"*, and the progress count moves. This only works if the unit is not already counting toward a reservation and its model still has reserved units outstanding. A unit that is on the booking only inside a kit is not affected. A scan that matches no open reservation behaves as before. Re-saving **Manage assets** never does this: opening and saving a dialog is not a sign that someone meant to count a unit.
+**A unit that was already on the booking can still count, if you scan it.** Sometimes the right unit is on the booking, as a loose item, before the reservation it should answer: it was added before anyone reserved its model, or its model was changed after it was added. Scan it in **Scan to assign** or in **Fulfil reservations & check out** and it answers the reservation. The row gets a green badge, *"Already here, now counts toward Dell Latitude 5550"*, and the progress count moves. This only works if the unit is not already counting toward a reservation and its model still has reserved units outstanding. A unit that is on the booking only inside a kit is not affected. A scan that matches no open reservation is added as an extra item and labelled as one (see below). Re-saving **Manage assets** never does this: opening and saving a dialog is not a sign that someone meant to count a unit.
 
 ### Scan to assign shows what is left to pull
 
@@ -95,6 +95,22 @@ Whichever door the asset comes through, Shelf matches it against an outstanding 
 Each scan that answers a reservation moves the count and takes a **Pending** row away, so the list in front of you is what is still missing. You do not have to finish it: submitting a scan that covers part of the reservation still saves what you scanned, and the rest stays open for later. The counts include units assigned in earlier sessions, so coming back to a half-done booking starts from where you left off.
 
 This is the same display the **Fulfil reservations & check out** scanner has. Use **Scan to assign** to pull and assign units ahead of time without starting a check-out, and the fulfil scanner when the gear is leaving.
+
+#### What each scanned row tells you
+
+Since 28 October 2026 every scanned row in **Scan to assign** says which asset it is and what the scan does for the reservations, so a long list of identical model names can be checked and fixed:
+
+- **Which asset.** Under the title, the row prints the asset ID and the code that was scanned, for example *ID SAM-0104 · Scanned k02sohceyl*. When you scanned or typed the asset ID itself, it is printed once. Long codes, such as a Code128 value or an external QR link, wrap rather than being cut off.
+- **What the scan does.** On a booking that reserves models, each scanned asset carries one badge:
+  - Green **Counts toward _model name_**: it fills one of the reserved units of that model.
+  - Amber **Extra: every _model name_ unit is already filled**: its model is reserved, but every reserved unit is already filled, including units filled before you opened the scanner.
+  - Amber **Extra: model not reserved**: the booking reserves no units of its model.
+
+  An extra is not refused. Submitting adds it to the booking as an item of its own, as before; the badge only makes sure you see that before you submit. Quantity-tracked scans, rows Shelf will refuse on submit (for example an asset checked out on another booking), and bookings that reserve no models get no badge.
+
+In **Fulfil reservations & check out**, the same asset ID and scanned code show on every row, and the green **Ready** badge names the model it counts toward, for example **Ready, counts toward Dell Latitude 5550**.
+
+Saving a large scan was also made much lighter on 28 October 2026, after a save of about a hundred scanned assets onto a booking with 54 reserved models ran out of time and added nothing. Each reserved asset now takes a fraction of the database work it did, and the save is given more time.
 
 ### A unit inside a kit counts too
 
