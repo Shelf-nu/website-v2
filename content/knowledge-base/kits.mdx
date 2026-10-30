@@ -3,7 +3,7 @@ title: "Kits"
 description: "Kits are a powerful feature in Shelf that allows you to group assets together, making it easier to manage and track your inventory."
 category: "Kits"
 date: "2024-06-01"
-updated: "2026-10-20"
+updated: "2026-10-30"
 layout: "knowledge-base"
 ---
 
@@ -173,6 +173,7 @@ You can also set or change the location from **Actions → Edit** on the kit pag
 ### Adding and removing assets
 
 - **Adding an asset to a kit that has a location** moves the asset (or the kit's slice of it) to that location straight away, so the kit never claims a member that's sitting somewhere else.
+- **Adding an asset to a kit with no location** leaves the asset where it is. The add dialog says *"This kit has no location, so the assets you add keep their current location."* Until 29 October 2026 that dialog wrongly warned that the assets would lose their location; they never did.
 - **Removing an individually tracked asset from a kit**, or deleting the kit, leaves the asset at the location the kit gave it. It keeps the placement instead of becoming unplaced.
 - **Removing a quantity-tracked asset from a kit** releases the kit's slice; those units become unplaced and can be placed again manually.
 - **Clearing a kit's location** leaves individually tracked members where they are and releases the quantity-tracked slices.
@@ -186,6 +187,8 @@ Swapping a member out of a kit, a network switch in a rack for example, affects 
 ### Adding a member
 
 A booking that carries a kit carries the kit as a unit, so an asset you add to the kit is added to the bookings that already hold that kit and are still **Draft**, **Reserved**, **Ongoing** or **Overdue**. It appears under the kit on those bookings, at the kit's own quantity for a quantity-tracked member, so a kit that gains a part does not leave its live bookings short of it. Completed, archived and cancelled bookings are left alone: they are a record of what went out.
+
+**An individually tracked asset can only be in one kit.** If you tick one that already sits in another kit, confirming moves it: it leaves that kit, comes off that kit's **Draft** and **Reserved** bookings, and joins the bookings this kit is on. Since 29 October 2026 the add dialog warns you first with a **Kit move notice** that names each asset and the kit it leaves, for example *"Camera A (from Box 1)"*, listing three and counting the rest. Quantity-tracked assets are not listed, because their units can sit in several kits at once and the other kits keep theirs.
 
 Only the bookings holding **this** kit are touched. That matters when a quantity-tracked asset belongs to several kits at once, which is common for shared stock like banners, cabling and fixings. A booking that holds a different kit containing the same shared asset is a different booking's business and is not changed.
 
@@ -226,6 +229,7 @@ Every member asset goes into that person's custody with the kit, and each of tho
 - **Release custody on a single member is refused**, with *"This asset is in custody because its kit is. Release the kit's custody instead."* That answer is the same on the asset page, in the bulk **Release custody** action on the assets index, and in the [Shelf Companion](/mobile-app) app.
 - **Handing one member to a different person is refused too**, for the same reason.
 - **A member cannot be given custody on its own, even while the kit is not in custody.** Since 8 October 2026, **Assign custody** on an individually tracked member is greyed out with *"This asset is part of kit "Interview Kit". Assign custody to the kit, or remove the asset from the kit first."* That applies on the asset page, in the bulk action on the assets index and in the app. [Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) stock is the exception: a kit holds only its slice of the pool, so the free units can still go to someone directly.
+- **A kit cannot be given custody while one of its members already has a custodian.** If an individually tracked member is in someone's custody, **Assign Custody** on the kit is refused with the member named: *"Cannot assign custody. Some assets in the kit are already in custody: Canon R5. Release their custody first."* Quantity-tracked members never block it, since the kit takes their remaining units, and archived members stay out of kit custody, so theirs does not block either. Before 29 October 2026 a member that gained custody after the kit page loaded made this fail with a generic error.
 - **The two ways out both go through the kit.** Release the kit's custody and every member hold clears with it. Or take the asset out of the kit, which takes the kit's hold with it and returns the asset to **Available** unless something else is still holding it.
 
 Custody given to a member directly before 8 October 2026, when that was still allowed, is separate and releases as it always did. See [Custody a kit put there belongs to the kit](/knowledge-base/custody-feature-for-long-term-equipment-lend-outs#custody-a-kit-put-there-belongs-to-the-kit).
@@ -235,6 +239,8 @@ Custody given to a member directly before 8 October 2026, when that was still al
 Each individual asset page documents kit custody changes to designated persons, creating a transparent record of modifications. A member's activity names the person whose custody started or ended and links the kit it came through, for example *"Alex released Sarah's custody via kit assignment **Camera Kit**"*.
 
 **Releasing several kits at once names each kit's own holder.** Select kits on the Kits index, or in the [Shelf Companion](/mobile-app) app, and use **Release custody**, and every asset's note and every `CUSTODY_RELEASED` event carries the custodian of the kit *that asset* came through. Before 18 September 2026 a batch like this took the first selected kit's custodian and wrote that one name against every asset in the batch, so releasing Sarah's kit and Tom's kit together left Tom's gear claiming Sarah had been holding it, and any report grouped by the released custodian counted them all against Sarah. Notes and events written before that date can name the wrong person; releases from a single kit were never affected, and nothing about who actually held what was ever wrong, only the record of it.
+
+**Moves between kits and deleted kits are recorded on the asset.** Since 29 October 2026 an asset moved from one kit to another reads *"changed kit from Box A to Box B"*; before, the kit it left was missing from the line. A quantity-tracked asset added to a second kit is recorded as an add, not a move, because it stays in the first. Deleting a kit now leaves a line on every member, *"deleted kit Box B, which removed this asset from it"* (or *"which removed 5 pens from it"* for a quantity-tracked member), written together with the deletion. A member whose custody the deletion released keeps the custody-release line instead, which already names the kit, so it does not get two.
 
 ## Tracking Assignments
 
