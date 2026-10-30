@@ -3,7 +3,7 @@ title: "Require Explicit Check-in and Check-out"
 description: "Make Admins and Managers, or Self-service users, scan or select the assets instead of handing a whole booking over at once. Two workspace settings, one per direction."
 category: "Bookings & Custody"
 date: "2026-09-16"
-updated: "2026-10-23"
+updated: "2026-10-30"
 layout: "knowledge-base"
 ---
 
@@ -73,6 +73,7 @@ The two settings are independent. Requiring explicit check-out says nothing abou
 Since 8 October 2026, Shelf records how each booking check-out and check-in was made and where, whether or not these switches are on. You can read it in two places:
 
 - **The booking's activity.** The line ends with the method, for example *checked-out the booking (selected on the phone)* or *performed a partial check-in: Tripod (scanned on the web)*. A one-click action reads *in one click on the web* or *in one tap on the phone*. A batch that mixed scans and ticks reads *scanned and selected on the web*.
+- **Each asset's activity.** Since 29 October 2026 every whole-booking check-out and check-in writes a line on each asset that actually moved, with the method, for example *checked out asset with Studio Shoot (scanned on the web)* or *checked in asset with Studio Shoot (in one tap on the phone)*. Before, only the one-click buttons on the web wrote these lines, so a booking scanned out in full, or checked out or in from the phone, left the asset's history without them. A partial check-in that returns the last items reads *checked in the last items still out on Studio Shoot (scanned on the web), which completed the booking.*
 - **The [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking).** A **Check-in method** line in the header when every returned item came back the same way, otherwise the method under each row's **Checked in by**.
 
 Check-outs and check-ins made before that date carry no method, and neither does one from a phone app that has not taken the update of 8 October 2026.
