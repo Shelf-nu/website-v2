@@ -3,7 +3,7 @@ title: "How to Generate a PDF Overview of Your Reserved Assets (Bookings)"
 description: "The Shelf bookings feature enables users to pre-book assets from inventory and generate printable PDF overviews, which is valuable for event preparation and equipment loan tracking."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-10-15"
+updated: "2026-10-30"
 layout: "knowledge-base"
 ---
 
@@ -13,8 +13,11 @@ The bookings feature allows you to pre-book assets from your available inventory
 
 1. Navigate to any booking in your Shelf account
 2. Open the **Actions** dropdown in the top right
-3. Choose **Generate overview PDF**
-4. The checklist opens as a preview. Click **Download PDF** to save it
+3. Choose **Generate PDF**
+4. If your workspace has more than one [PDF document](#pdf-documents-saved-layouts-for-different-jobs), pick one from the **Document** dropdown. The preview reloads with that layout
+5. Click **Download PDF** to save it
+
+The PDF is titled with the document and the booking, for example *"Check-out receipt - Festival load-in"*. Shelf remembers the document you picked last in each workspace and offers it first next time.
 
 The preview's own subtitle tells you how the list is ordered, for example *"Assets are sorted by Status (descending)."*
 
@@ -24,7 +27,7 @@ When a match belongs to a kit, the whole kit comes into the PDF with it, exactly
 
 ## What's Included in the PDF?
 
-When you generate a PDF, the server creates a comprehensive document containing:
+The **Checklist**, the document every workspace starts with, contains:
 
 
 ![Generated PDF overview showing booking details and asset list](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/generate-pdf-1.webp)
@@ -35,6 +38,43 @@ When you generate a PDF, the server creates a comprehensive document containing:
 - Booking description, when the booking has one (a booking without a description prints no empty Description row)
 - The asset table, with a number, image, name, quantity, kit, category, location, and **Code** for every booked line. An asset's description prints under its row, cut at 300 characters with an ellipsis, so a long description does not take over the sheet
 - Date of PDF generation
+
+The header also prints the **Total assets value** of everything on the booking. Other documents can leave parts of this out, as described below.
+
+## PDF Documents: Saved Layouts for Different Jobs
+
+One booking PDF often does several jobs: a pick list in the warehouse, a cross-check at return, a hand-over with a client, a priced list for the office. Instead of one fixed layout, a workspace keeps named **PDF documents**, and the person generating the PDF picks one by name.
+
+Every workspace on a paid plan starts with two:
+
+- **Checklist**: the full pull list described above. It is the default.
+- **Check-out receipt**: a signed list of what went out. Rows are sorted A to Z, the booking description, the asset descriptions and the total value are left off, and signature lines for the custodian and the person issuing the gear (each with a date) print at the foot. It is the departure twin of the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking).
+
+### What a document decides
+
+- **Columns**: Image, Qty, Kit, Category and Location can each be switched on or off. #, Name and Code always print, in a fixed order.
+- **Custom fields**: up to 3 custom fields, each printed as its own column before Code. A multi-line text field prints under the asset instead, while the description row is on. An asset with no value prints an empty cell.
+- **Asset description under each asset**: on or off.
+- **Group by**: no grouping, or by category.
+- **Sort by**: the same order as the booking page (status by default), or name A to Z with a kit's members kept together.
+- **Booking description** and **Total assets value** lines in the header: on or off.
+- **Signature lines** at the foot: on or off.
+
+Code pictures are not part of a document: they follow the workspace's **Print code images on PDFs** switch (below) on every document.
+
+### Creating and editing documents
+
+Owners and Administrators manage documents under **Settings → General**, in the **PDF documents** card:
+
+1. Type a name in **New document name** (for example *Client quote*) and click **Add document**.
+2. Choose the columns, custom fields, rows and header lines, then click **Save document**.
+3. Use **Duplicate** to start from an existing layout, **Make default** to choose the document the dialog opens with, or **Delete** to remove one. A workspace always keeps at least one document; deleting the default makes another one the default.
+
+Document names are unique in a workspace, ignoring capital letters.
+
+![Settings, General, the PDF documents card listing the Checklist as the default document and the Check-out receipt, each with Edit, Duplicate and Delete, and a field to add a new document](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-pdf-documents-settings.webp)
+
+If your workspace's plan does not include PDF documents, the card shows an upgrade note instead and every booking prints the Checklist, with no **Document** dropdown in the dialog.
 
 ## The Code Column
 
@@ -59,13 +99,13 @@ The picture on the checklist is the **same code as the sticker on the item**. A 
 If that matters to your team, an Owner or Administrator can switch the image off for the whole workspace:
 
 1. Open **Settings → General**.
-2. Find the **Code images on PDFs** row, described as *"Control whether each item's code is printed as a picture on the booking checklist and the audit receipt."*
+2. Find the **Code images on PDFs** row, described as *"Control whether each item's code is printed as a picture on booking documents and the audit receipt."*
 3. Turn **Print code images on PDFs** off.
 4. Click **Save**.
 
 ![Settings, General, the Code images on PDFs row with the Print code images on PDFs switch turned on](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/code-images-on-pdfs-setting.webp)
 
-The switch is on by default, so nothing changes until you turn it off. It applies to both sheets that print code pictures, the booking checklist and the [audit receipt](/knowledge-base/run-your-first-audit#step-5-complete-the-audit). The booking's [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking) never prints one. It is a workspace setting rather than a checkbox on the print dialog: a control the person taking the shortcut can untick before printing is not a control.
+The switch is on by default, so nothing changes until you turn it off. It applies to every sheet that prints code pictures: every booking [PDF document](#pdf-documents-saved-layouts-for-different-jobs) and the [audit receipt](/knowledge-base/run-your-first-audit#step-5-complete-the-audit). The booking's [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking) never prints one. It is a workspace setting rather than a checkbox on the print dialog: a control the person taking the shortcut can untick before printing is not a control.
 
 With the pictures off, the tick box and the code stay and the rows get shorter. The sheet is still matchable by eye, which is why the printed code and this switch arrived together.
 
@@ -86,9 +126,10 @@ It matters for [quantity-tracked stock](/knowledge-base/quantity-tracked-assets-
 Users have found numerous valuable applications for this feature:
 
 1. **Pre-packing Checklist**: Use the PDF as a checklist when packing items for transport, ensuring nothing is left behind.
-2. **Physical Sign-off**: Collect physical signatures from custodians taking responsibility for assets, providing accountability. For the return, print the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking) instead: it records what came back, when, and who received it, and it has its own signature lines.
+2. **Physical Sign-off**: Print the **Check-out receipt** document for the hand-over: it carries signature lines for the custodian and the person issuing the gear. For the return, print the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking) instead: it records what came back, when, and who received it, and it has its own signature lines.
 3. **Offline Backup**: Keep a physical record of assets checked out, useful where digital access might be limited.
 4. **Inventory Audits**: Quickly cross-reference physical assets against the booking list during audits or spot checks.
+5. **Client or office copies**: Save a document with the columns that audience needs, for example a *Client quote* that prints a price custom field and groups the items by category.
 
 ## Best Practices
 

@@ -3,7 +3,7 @@ title: "Print a Check-in Receipt for a Booking"
 description: "Print a one-page record of what came back from a booking: each item's return state, when it was checked in and by whom, a totals ledger, and signature lines for the hand-back."
 category: "Bookings & Custody"
 date: "2026-09-14"
-updated: "2026-10-29"
+updated: "2026-10-30"
 layout: "knowledge-base"
 ---
 
@@ -19,10 +19,10 @@ The **check-in receipt** is the other half. It is a record of what happened on t
 
 1. Open the booking.
 2. Open the **Actions** menu in the top right.
-3. Choose **Generate check-in receipt**. It sits right under **Generate overview PDF**.
+3. Choose **Generate check-in receipt**. It sits right under **Generate PDF**.
 4. The receipt opens as a preview. Click **Download PDF** to save or print it.
 
-![The booking Actions menu with Generate check-in receipt highlighted, directly under Generate overview PDF](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-checkin-receipt-menu.webp)
+![The booking Actions menu with Generate check-in receipt highlighted, directly under the booking PDF item](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/booking-checkin-receipt-menu.webp)
 
 ### When the entry is available
 
@@ -73,7 +73,7 @@ A row for an item that was taken out of its kit after the booking was made says 
 
 Under the table, a ledger counts **Items booked**, **Units sent out**, **Returned**, **Consumed**, **Lost**, **Damaged**, and **Still out**. Every line prints, zeros included, because a zero is evidence that nothing was lost.
 
-At the foot of the sheet are two signature lines for name, signature and date. When units came back they read **Returned by (custodian)** and **Received by**. When nothing was returned they read **Confirmed by (custodian)** and **Recorded by**, so nobody is asked to sign for a return that did not happen. The signatures are on paper only; Shelf does not collect them.
+At the foot of the sheet are two signature lines for name, signature and date. When units came back they read **Returned by (custodian)** and **Received by**. When nothing was returned they read **Confirmed by (custodian)** and **Recorded by**, so nobody is asked to sign for a return that did not happen. The signatures are on paper only; Shelf does not collect them. For the departure, the **Check-out receipt** [PDF document](/knowledge-base/how-to-generate-a-pdf-overview-of-your-reserved-assets-bookings#pdf-documents-saved-layouts-for-different-jobs) prints the same kind of signature lines under the list of what went out.
 
 The receipt prints no asset values and no prices, so it is safe to hand to a custodian or a client.
 
