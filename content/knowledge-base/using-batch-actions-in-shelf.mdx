@@ -1,9 +1,9 @@
 ---
 title: "Using Batch Actions in Shelf"
-description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, asset model, kits, availability, audits, archiving, and deletion."
+description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, custom fields, asset model, kits, availability, audits, archiving, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-28"
+updated: "2026-10-30"
 layout: "knowledge-base"
 ---
 
@@ -54,6 +54,7 @@ Available operations, in the order they appear in the menu:
 - **Remove tags**: Remove tags from assets in bulk
 - **Update location**: Change the location of selected assets
 - **Update category**: Modify the category of selected assets
+- **Set custom field**: Give the selected assets one value for one custom field. By default it only fills assets that have no value yet. See [Setting a Custom Field on Many Assets](#setting-a-custom-field-on-many-assets)
 - **Set min quantity**: Give the selected quantity-tracked assets the same low-stock threshold, or leave it empty to clear it. See [Stock columns on the asset list](/knowledge-base/quantity-tracked-assets-and-consumables#stock-columns-on-the-asset-list)
 - **Update asset model**: Group the selected assets into one [Asset Model](/glossary/asset-models)
 - **Remove from asset model**: Take the selected assets out of whatever model they belong to
@@ -92,6 +93,30 @@ In every case the dialog warns you **before** you confirm, naming how many of th
 **What the records say.** A batch records only what it actually did. Move a tripod and a roll of gaffer tape to a new location together and the destination's own activity feed names the tripod alone, because the tape never moved. The same holds for an asset that was already at the location you picked: nothing happened to it, so nothing is written about it. Before 18 September 2026 the location's feed listed every asset you had selected, including the ones it skipped, which made a location's history claim stock that had never arrived. Feed entries written before that date can overstate what a bulk move brought in.
 
 **Update location also refuses assets that sit in a kit.** A kit owns its members' location, so a selection holding one is turned down with *"Cannot update location for assets that belong to kits: [kit names]. Update the kit locations instead."* Nothing in the batch moves when that happens. Change the kit's location instead, and every asset inside follows — see [Kit Location](/knowledge-base/kits#kit-location).
+
+## Setting a Custom Field on Many Assets
+
+**Set custom field** fills in a custom field such as *Brand*, *Supplier* or *Warranty end* for a whole selection, instead of opening each asset or exporting, editing and re-importing a spreadsheet.
+
+1. Filter or search the index down to the assets you want, then select them.
+2. Open **Actions** and choose **Set custom field**.
+3. Pick the field. The value input follows the field's type: a dropdown for an option field, yes or no for a boolean, a date picker, a number, or text.
+4. Choose what happens to assets that already have a value: **Leave them as they are (only fill empty fields)**, the default, or **Replace their value**.
+5. Click **Confirm**.
+
+![The Set custom field dialog over the asset index, with the S/N field picked, a note that it applies only to assets in the Camera category, an empty value box, and the option to leave assets that already have a value as they are](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bulk-set-custom-field.webp)
+
+The message afterwards says how many assets changed and why the rest were left alone, for example *"Set on 3 assets."* or *"No asset needed changing. 3 assets already had a value and were left alone."*
+
+A few rules decide which assets change:
+
+- **Only empty fields, unless you say otherwise.** The dialog starts on the only-fill-empty option every time it opens, so a **Replace** chosen for an earlier batch never carries over.
+- **Category-limited fields follow the asset form.** A field [linked to certain categories](/knowledge-base/linking-custom-fields-to-categories) is skipped on assets in other categories, and on assets with no category. The dialog says so under the field (*"Only for assets in: Camera. Other assets are skipped."*), and the message afterwards counts them.
+- **Same value, no change.** An asset that already holds the value you picked is not touched.
+- **The value must fit the field.** An option the field does not have, or a date or number that does not parse, is refused with the field named, and nothing is written.
+- **Archived assets are refused**, as in the other bulk edits.
+
+Each asset that changes gets the same line in its activity as a single edit, for example *set **Brand** to **Westermo***, or *updated **Brand** from … to …* when a value was replaced. Owners and Administrators can use this action.
 
 ## Grouping a Fleet into an Asset Model
 
