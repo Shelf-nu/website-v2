@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-10-29"
+updated: "2026-10-30"
 layout: "knowledge-base"
 ---
 
@@ -195,6 +195,16 @@ A model reservation holds a number of units, not particular ones, so the risk is
 - Every other way in is refused as well: scanning the unit onto the booking (on the web or in the [Shelf Companion app](/mobile-app)), reserving a draft that already holds one, and extending a booking into the days where the model is spoken for (only the added days are measured). When you reserve, the refusal, headed **Not enough units**, names the model, the day the pool runs out and what holds the units then, and says what would free one. The website's scan drawer does not show a message yet: the scanned unit is simply not added.
 
 If your own booking reserves the model, naming units of it fills that reservation first, so those units are never counted twice against you. See [Troubleshooting: Booking Conflicts](/knowledge-base/troubleshooting-booking-conflicts#some-assets-cannot-be-booked-by-name-for-these-dates) for the message and what to do about it.
+
+### Duplicating a booking keeps its model reservations
+
+**Duplicate** copies a booking into a new draft with the dates you pick, and since 29 October 2026 the copy keeps the source's model reservations too. Before, only the named assets came across, so a booking planned by model came back without its reservations.
+
+The copy reserves what the source still had **open**. Units already scanned in are named assets on the source and are copied as named assets, so they are not counted a second time: a reservation of 10 with 6 scanned becomes 6 named assets plus a reservation of 4. A reservation that was fully scanned is not copied as a reservation.
+
+Each model is reserved up to what is free for the new dates rather than refusing the copy. When a model comes up short, the confirmation says so next to any archived assets left out, for example *"Only 1 of 4 × Camera could be reserved for the new dates."* With several short models it lists the first three and how many more. If a reservation could not be written at all, it says *"Could not reserve 4 × Camera. Try again from the booking."* Raise the reservation on the copy later if units free up, or change its dates.
+
+Duplicating from the [Shelf Companion app](/mobile-app) keeps the reservations too; the app's "Booking duplicated" message names the short models from its next update.
 
 ## Reading the counts on a booking
 
