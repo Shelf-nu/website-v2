@@ -3,13 +3,13 @@ title: "Bulk Updating Assets via CSV"
 description: "Use the Update Existing Assets workflow to edit asset records in bulk — export to CSV, make changes in Excel or Google Sheets, preview every diff, then apply."
 category: "Assets"
 date: "2026-04-06"
-updated: "2026-10-22"
+updated: "2026-10-30"
 layout: "knowledge-base"
 ---
 
 The **Update Existing Assets** feature lets you edit up to 1,000 asset records per file using a CSV. The workflow has three stages: upload your edited CSV, preview every change in a spreadsheet-style diff, and confirm to apply.
 
-This is useful when you need to reassign dozens of assets to a new location, correct category assignments across your inventory, group a fleet under an asset model, reset low-stock thresholds on your consumables, or update custom field values for a large group of assets without editing them one by one.
+This is useful when you need to reassign dozens of assets to a new location, correct category assignments across your inventory, group a fleet under an asset model, reset low-stock thresholds on your consumables, or update custom field values for a large group of assets without editing them one by one. To give a selection of assets one value for one custom field, the **Set custom field** [batch action](/knowledge-base/using-batch-actions-in-shelf#setting-a-custom-field-on-many-assets) on the asset index does it without a file.
 
 The round trip is **Export → edit → Import**, and the **Import-ready** export format is built for it: it carries an `id` column so every row finds its asset, and it writes the quantity fields in the shape this workflow expects.
 
