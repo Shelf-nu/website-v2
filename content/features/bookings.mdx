@@ -10,7 +10,7 @@ personas:
   - "operations"
 canonicalUrl: "/features/bookings"
 date: "2025-01-01"
-updated: "2026-10-30"
+updated: "2026-11-02"
 seo:
   title: "Equipment Booking Software — Conflict-Free Reservations"
   description: "Reserve equipment without double-bookings. Visual booking calendar, availability checking, and pull-list PDFs for cameras, tools, laptops, and shared gear."
@@ -74,6 +74,8 @@ Shelf validates every booking in real time. For an individually tracked item, a 
 
 Pooled stock gets the same guarantee, counted rather than matched: Shelf checks how many units are free on your dates and won't let a booking take units that aren't there. See [Quantity-Tracked Reservations](#quantity-tracked-reservations) below.
 
+A reservation nobody picked up stops holding the gear once its dates have passed. It reads **Expired** on the bookings list, with its own filter, the items it named read free again, and checking it out late asks whether to start it now with a new end date or record it as overdue, instead of landing it weeks overdue in one click. See [Checking out after the reserved period has ended](/knowledge-base/early-check-in-and-check-out-of-bookings#checking-out-after-the-reserved-period-has-ended).
+
 ---
 
 ### Unified with Custody
@@ -126,7 +128,7 @@ See: [Consumables Tracking](/features/consumables-tracking)
 
 ### Flexible, Progressive Checkout and Returns
 
-Real handoffs are rarely all-or-nothing. Shelf lets you check a booking's gear out **as it's picked up** — scan each item at the counter, or select a subset from the **Actions** menu — instead of forcing one all-at-once checkout. The same two styles work in the [Shelf Companion app](/mobile-app): **Scan to Check Out** on the booking's screen, or **Select to Check Out** to tick assets and whole kits. The booking goes live on the first item, and a segmented **Booked / Partial / Fully out / Returned** lifecycle bar shows exactly what's gone out and what's still waiting. Returns work the same way: check items back in one at a time or in bulk, even when not everything comes back together. When plans change mid-booking, **Change end date** moves a running booking's end later or earlier on the web: an earlier end frees the gear for other reservations after it, while the items stay checked out until they come back.
+Real handoffs are rarely all-or-nothing. Shelf lets you check a booking's gear out **as it's picked up** — scan each item at the counter, or select a subset from the **Actions** menu — instead of forcing one all-at-once checkout. The same two styles work in the [Shelf Companion app](/mobile-app): **Scan to Check Out** on the booking's screen, or **Select to Check Out** to tick assets and whole kits. The booking goes live on the first item, and a segmented **Booked / Partial / Fully out / Returned** lifecycle bar shows exactly what's gone out and what's still waiting. Returns work the same way: check items back in one at a time or in bulk, even when not everything comes back together. When plans change mid-booking, **Change end date** moves a running booking's end later or earlier on the web: an earlier end frees the gear for other reservations after it, while the items stay checked out until they come back. Before you pick a later end, the dialog says how long every item still out is free and which booking needs what after that, with one click to take the last free end, and a refusal names the items in the way rather than just the bookings. On a busy counter the **Bookings** list does the hand-over itself: each row carries **Check out** or **Check in**, and **Actions** checks out or checks in up to 50 selected bookings at once, through the same dialogs ([how](/knowledge-base/check-bookings-out-and-in-from-the-bookings-list)).
 
 When gear comes back, print a **check-in receipt** from the booking's **Actions** menu. It states, item by item, whether each one was returned, is still out, or never left, when it was checked in and who received it. A totals ledger counts units returned, consumed, lost, damaged and still out, and signature lines at the foot cover the hand-back. It works on a partial return too, and it prints no asset values, so it can go to a client.
 
