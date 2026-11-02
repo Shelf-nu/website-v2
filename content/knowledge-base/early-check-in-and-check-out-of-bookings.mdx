@@ -51,9 +51,9 @@ A **Reserved** booking whose end date has passed reads **Expired** on its chip (
 - **Check out as overdue.** The dates stay as they were and the booking lands **Overdue**.
 - **Cancel** leaves the booking as it is.
 
-**A new end date rewrites the plan.** This is the one case where the planned period moves after a booking was reserved. The period you commit at the counter becomes the period the booking was agreed for, so the compliance report and the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking) measure the return against the dates the gear actually went out for. The replaced period is kept on the booking's **Activity** tab, as *checked out an expired reservation with a new period: 7 Oct 2026, 14:00 to 7 Oct 2026, 16:00 became 2 Nov 2026, 09:12 to 2 Nov 2026, 11:12*, with the start date and the end date change recorded the way an extension records them.
+**A new end date becomes the booking's planned period**, so reports and the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking) measure the return against it. The old dates stay on the booking's **Activity** tab.
 
-Only **Check out** in the booking header can give a booking a new end date, because a new period is a new reservation and has to be judged for the whole booking. **Scan to check out**, **Fulfil reservations & check out**, **Actions → Check out selected items** and the row buttons on the **Bookings** list judge only the items in front of them, so on an expired reservation they offer **as overdue** only and point you to the booking page for new dates. On the [Shelf Companion](/mobile-app) app, **Check Out All Assets** keeps the dates and lands the booking in **Overdue**.
+Only **Check out** in the booking header offers a new end date. **Scan to check out**, **Fulfil reservations & check out**, **Actions → Check out selected items** and the row buttons on the **Bookings** list check an expired reservation out **as overdue**. On the [Shelf Companion](/mobile-app) app, **Check Out All Assets** keeps the dates and lands the booking in **Overdue**.
 
 An expired reservation does not have to be checked out at all. It has stopped counting against the gear, and it can be [archived](/knowledge-base/archiving-bookings) by hand or by the **Auto-archive reserved bookings after their end date** setting, or cancelled.
 
