@@ -36,15 +36,19 @@ Your workspace's working hours apply to the new end, and so do its minimum advan
 
 ### Moving the end later
 
-When the end moves later, Shelf checks the added days only, from the current end to the new one, against the other bookings of the same assets, kits and [asset models](/glossary/asset-models). A clash there is refused with the other booking named, and a unit whose model is spoken for on those days with the message that starts *Some assets cannot be booked for these dates* ([what it means](/knowledge-base/troubleshooting-booking-conflicts#some-assets-cannot-be-booked-by-name-for-these-dates)). Until 27 October 2026 a model's pool was re-measured over the whole booking, from its first day, and every booking that touched it was added up as if they all ran at once, so long bookings were refused extensions the pool had room for.
+When the end moves later, Shelf checks the added days only, from the current end to the new one, against the other bookings of the same assets, kits and [asset models](/glossary/asset-models).
+
+**The dialog shows how far you can go.** When another booking has reserved one of the items later, **Change end date** says until when they are free and which booking needs them next, and offers a **Use …** button with the latest end that fits. A later date that clashes is refused with the bookings in the way and the items they need. Quantity-tracked items are checked by how many units are free, and a unit whose model is spoken for on those days is refused with the message that starts *Some assets cannot be booked for these dates* ([what it means](/knowledge-base/troubleshooting-booking-conflicts#some-assets-cannot-be-booked-by-name-for-these-dates)).
+
+On a running booking, each asset or kit another booking has reserved next carries a **Needed** badge with the date it is needed from, so you can see what has to come back first.
 
 ### Moving the end earlier
 
-Since 29 October 2026 the web also takes an end earlier than the current one. Only the date moves: the items stay checked out until someone checks them in, and if they come back after the new end, the booking becomes **Overdue**. An earlier end cannot clash with anything new, so no availability check runs. Other bookings can reserve those items for the time after the new end.
+On the web the end can also move earlier than the current one. Only the date moves: the items stay checked out until someone checks them in, and if they come back after the new end, the booking becomes **Overdue**. An earlier end cannot clash with anything new, so no availability check runs. Other bookings can reserve those items for the time after the new end.
 
 ### On the phone
 
-Since the update of 20 October 2026 the [Shelf Companion](/mobile-app) app extends bookings too. Open an **Ongoing** or **Overdue** booking, tap **More actions** and choose **Extend booking**, the first entry. The sheet opens on the current end: change it with the date and time picker, or tap **+1 hour**, **+4 hours** or **+1 day**, then confirm. The phone only moves the end later: a time at or before the current end is refused with *The new end must be after the current end.* To shorten a booking, use **Change end date** on the web. A later end goes through the same check on the server as on the web, so a clash with another booking is refused with that booking's name. The action shows for the same roles as on the web, on bookings they may change.
+The [Shelf Companion](/mobile-app) app extends bookings too. Open an **Ongoing** or **Overdue** booking, tap **More actions** and choose **Extend booking**, the first entry. The sheet opens on the current end: change it with the date and time picker, or tap **+1 hour**, **+4 hours** or **+1 day**, then confirm. The phone only moves the end later: a time at or before the current end is refused with *The new end must be after the current end.* To shorten a booking, use **Change end date** on the web. A later end that clashes with another booking is refused with that booking's name and the items it shares with yours, for example *Camera day (Cam 1)*. The action shows for the same roles as on the web, on bookings they may change.
 
 ## What Happens When You Change the End Date
 
