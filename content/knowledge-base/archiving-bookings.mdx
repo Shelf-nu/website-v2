@@ -3,7 +3,7 @@ title: "Archiving Bookings"
 description: "Move finished bookings out of your active list, manually or automatically. Covers which bookings can be archived, the auto-archive settings, and what archiving means for reporting."
 category: "Bookings & Custody"
 date: "2026-07-22"
-updated: "2026-10-14"
+updated: "2026-11-02"
 layout: "knowledge-base"
 ---
 
@@ -18,7 +18,7 @@ This guide covers which bookings can be archived, how to archive them one at a t
 Two kinds of bookings are eligible:
 
 - **Completed bookings**: the gear went out and was checked back in. The classic case.
-- **Reserved bookings whose end date has passed**: reservations that were never checked out. Their assets were never taken out of circulation, so archiving simply files the booking away.
+- **Reserved bookings whose end date has passed**: reservations that were never checked out. Their assets were never taken out of circulation, so archiving simply files the booking away. These read **Expired**, in gray, on the web app's bookings lists, they don't count against the gear they named, and the **Status** filter has an **Expired** option that lists exactly them, so the ones to archive are one filter away. See [Introduction to Bookings](/knowledge-base/introduction-to-bookings#2-reserved).
 
 Bookings that are **Ongoing** or **Overdue** cannot be archived. Their assets are physically checked out, so hiding the booking would leave equipment in someone's hands with no active booking to trace it to. Check the booking in first, then archive it.
 
@@ -79,7 +79,7 @@ Moves a booking to Archived a set number of days after it is checked in.
 
 ### Auto-archive reserved bookings after their end date
 
-Moves a reserved booking to Archived a set number of days after its end date passes. This is the one for teams who use Shelf as a **reservation calendar**, booking gear ahead of time without ever running a formal check-out. Those bookings never reach Completed, so before this setting existed the only ways to clear them were to cancel them (which emails the custodian and reads as "cancelled") or delete them (which loses the record).
+Moves a reserved booking to Archived a set number of days after its end date passes, that is, once it reads **Expired**. This is the one for teams who use Shelf as a **reservation calendar**, booking gear ahead of time without ever running a formal check-out. Those bookings never reach Completed, and this setting clears them without cancelling them (which emails the custodian and reads as "cancelled") or deleting them (which loses the record).
 
 Turning the toggle on also schedules the existing backlog, so past-due reservations already sitting in your index get cleaned up too. You don't have to work through them by hand first.
 

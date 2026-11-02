@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-10-29"
+updated: "2026-11-02"
 layout: "knowledge-base"
 ---
 
@@ -24,7 +24,7 @@ It works like opening a tab: the booking is "open" from the very first item that
 
 When a booking is **Reserved** and ready to go, the **Check out** button at the top of the booking opens a menu with two ways to start:
 
-- **Check out**: the traditional all-at-once action that checks out every remaining item together. It opens a **Check out booking** dialog first: *"This checks out every asset of Studio Shoot and starts the booking."* **Check out** goes ahead; **Cancel** leaves the booking **Reserved**. Checking out more than 15 minutes before the start shows the [early check-out](/knowledge-base/early-check-in-and-check-out-of-bookings) question instead.
+- **Check out**: the traditional all-at-once action that checks out every remaining item together. It opens a **Check out booking** dialog first: *"This checks out every asset of Studio Shoot and starts the booking."* **Check out** goes ahead; **Cancel** leaves the booking **Reserved**. Checking out more than 15 minutes before the start shows the [early check-out](/knowledge-base/early-check-in-and-check-out-of-bookings) question instead, and a reservation whose end date has already passed asks whether to start it now with a new end date or check it out as overdue; see [Checking out after the reserved period has ended](/knowledge-base/early-check-in-and-check-out-of-bookings#checking-out-after-the-reserved-period-has-ended).
 - **Scan to check out**: opens a dedicated scanner so you can check out items individually as they're picked up.
 
 Both options live in that one menu; there is no second scan button elsewhere on the page. Once every item has been checked out, **Scan to check out** is no longer offered, since there is nothing left to scan. When only one of the two options applies, Shelf shows it as a plain button instead of a menu.
@@ -80,7 +80,7 @@ If your workspace counts [each kit as a single unit](/knowledge-base/partial-che
 2. The scanner opens with the booking's details and the lifecycle bar at the top.
 3. Scan each asset's QR code or barcode as it's handed over.
 4. Shelf validates every scan against the booking — it blocks items that aren't part of the booking, are already checked out, are in custody elsewhere, or break kit rules.
-5. The first successful scan moves the booking from **Reserved** to **Ongoing** (or **Overdue** if the end date has already passed), and schedules the check-in reminder.
+5. The first successful scan moves the booking from **Reserved** to **Ongoing** and schedules the check-in reminder. If the reservation's end date has already passed, the scanner asks first and can only check the items out **as overdue**; to start the booking with a new end date, use **Check out** in the booking header instead ([why](/knowledge-base/early-check-in-and-check-out-of-bookings#checking-out-after-the-reserved-period-has-ended)).
 6. Keep scanning across as many sessions as you need. The lifecycle bar updates after each scan so you always know what's still booked.
 
 If you scan before the booking's scheduled start time, Shelf shows the same early-checkout warning as a normal check-out — you can cancel, adjust the start date to now, or proceed without changing the dates. See [Early Check-in and Check-out of Bookings](/knowledge-base/early-check-in-and-check-out-of-bookings).
@@ -92,7 +92,7 @@ When scanning isn't practical — damaged labels, or you're working from a pick 
 1. On the booking detail page, tick the checkboxes next to the assets being handed out.
 2. Open the **Actions** dropdown.
 3. Choose **Check out selected items**.
-4. Confirm. The selected assets are checked out, and the booking goes **Ongoing** if it wasn't already.
+4. Confirm. The selected assets are checked out, and the booking goes **Ongoing** if it wasn't already. On a reservation whose end date has passed, the confirmation offers **as overdue** only.
 
 Bulk checkout works with both individual assets and complete kits.
 
