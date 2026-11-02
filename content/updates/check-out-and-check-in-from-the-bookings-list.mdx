@@ -8,8 +8,8 @@ layout: "update"
 inApp: true
 ---
 
-Moving bookings along from **Bookings** used to mean opening each one, checking it out or in, and coming back to the list. The list now does it in place.
+The **Bookings** list checks bookings out and in without opening each one.
 
-**On every row**, a **Reserved** booking carries **Check out**, and an **Ongoing** or **Overdue** booking carries **Check in**, plus **Check out remaining** while it still has items to hand out. Each button opens the confirmation the booking page would open, early check-out and early check-in questions included, and posts to the same action, so the permission check, the asset notes and the emails are the ones you already have. A row shows no button when your role cannot take that action, when your workspace requires each item to be scanned or selected, or when the booking still has reserved model units to assign.
+**On every row**, a **Reserved** booking carries **Check out**, and an **Ongoing** or **Overdue** booking carries **Check in**, plus **Check out remaining** while it still has items to hand out. Each button opens the confirmation the booking page would open, early check-out and early check-in questions included, with the same asset notes and emails. A row shows no button when your role cannot take that action or when your workspace requires each item to be scanned or selected. While a Reserved booking still has reserved model units to assign, its **Check out** is greyed out: *Can't check out yet. Open the booking to assign the reserved units first.*
 
 **In the Actions menu**, select up to 50 bookings and choose **Check out** (every selected booking Reserved and still inside its dates) or **Check in** (every one Ongoing or Overdue). The whole selection is checked first and refused with the bookings named if one does not qualify; then each booking is processed one by one with its dates kept, and if one fails the message says how many before it were done and that the rest were not touched.
