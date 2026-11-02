@@ -240,7 +240,7 @@ Each individual asset page documents kit custody changes to designated persons, 
 
 **Releasing several kits at once names each kit's own holder.** Select kits on the Kits index, or in the [Shelf Companion](/mobile-app) app, and use **Release custody**, and every asset's note and every `CUSTODY_RELEASED` event carries the custodian of the kit *that asset* came through. Before 18 September 2026 a batch like this took the first selected kit's custodian and wrote that one name against every asset in the batch, so releasing Sarah's kit and Tom's kit together left Tom's gear claiming Sarah had been holding it, and any report grouped by the released custodian counted them all against Sarah. Notes and events written before that date can name the wrong person; releases from a single kit were never affected, and nothing about who actually held what was ever wrong, only the record of it.
 
-**Moves between kits and deleted kits are recorded on the asset.** An asset moved from one kit to another reads *"changed kit from Box A to Box B"*. A quantity-tracked asset added to a second kit is recorded as an add, not a move, because it stays in the first. Deleting a kit leaves a line on every member, *"deleted kit Box B, which removed this asset from it"* (or *"which removed 5 pens from it"* for a quantity-tracked member), written together with the deletion. A member whose custody the deletion released keeps the custody-release line instead, which already names the kit, so it does not get two.
+**Moves between kits and deleted kits are recorded on the asset.** An asset moved from one kit to another reads *"changed kit from Box A to Box B"*, and deleting a kit leaves a line on every member that names the kit.
 
 ## Tracking Assignments
 
