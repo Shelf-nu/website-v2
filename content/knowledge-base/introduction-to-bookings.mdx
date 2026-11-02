@@ -3,7 +3,7 @@ title: "Introduction to Bookings"
 description: "This guide explains the fundamental concepts of Shelf's Bookings feature, which enables users to reserve equipment for specific time periods while preventing double-bookings."
 category: "Bookings & Custody"
 date: "2026-03-30"
-updated: "2026-10-29"
+updated: "2026-11-02"
 layout: "knowledge-base"
 ---
 
@@ -36,6 +36,10 @@ The booking is being configured. Every new booking starts here, whichever button
 
 The booking is fully configured. Assets become unavailable for overlapping bookings. The booking period is in the future and hasn't been checked out yet -- assets retain an **Available** status. Administrators can still take or assign custody. Options include **Check-out**, **Delete**, or **Cancel**.
 
+**A reservation whose end date passes without a check-out reads Expired.** Since 30 October 2026 its chip turns gray and says **Expired** instead of blue **Reserved**, on the bookings list, the booking page, an asset's or kit's **Bookings** tab and **My bookings**, and the **Status** filter on those lists has its own **Expired** option. The stored status is still Reserved, so the booking keeps every action a reserved booking has, but it no longer holds the gear: the asset's status badge, its hover card and the **Reserved** figures on the asset page and the asset list leave it out, so a pool that only expired reservations were holding reads **Available** again. A late pickup whose end date is still ahead is not expired; it keeps counting until that end passes. Checking an expired reservation out asks what to do first; see [Checking out after the reserved period has ended](/knowledge-base/early-check-in-and-check-out-of-bookings#checking-out-after-the-reserved-period-has-ended).
+
+![The Bookings list filtered to Expired: reservations whose end date passed without a check-out, each with a gray Expired chip](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bookings-expired-filter.webp)
+
 A reserved booking can also be sent back to **Draft** from the **Actions** menu with **Revert to Draft** — the way a reservation request is handed back for changes rather than refused. The booking keeps everything on it and becomes editable again, and Shelf emails the custodian to say so. See [Booking Notification Settings](/knowledge-base/booking-notification-settings#when-a-reservation-is-sent-back-to-draft).
 
 You can check out the whole booking at once with **Check Out**, which first asks you to confirm in a **Check out booking** dialog, or hand items out as they're picked up using **Scan to check out** (or **Actions > Check out selected items**). See [Progressive Checkout](/knowledge-base/progressive-checkout-of-bookings).
@@ -64,7 +68,7 @@ A booking reaches **Completed** once everything that actually went out has been 
 ![5. Completed](https://cdn.prod.website-files.com/641c35b7e5057648c76fa79f/66aa0c00fc659d558b6df617_65d35f5e180a8e89af8537ca_Completed.png)
 ### 6. Archived
 
-Bookings can be archived to organize the index. Two kinds qualify: **Completed** bookings, and **Reserved** bookings whose end date has already passed (the reservations teams make without ever running a formal check-out). Ongoing and Overdue bookings cannot be archived, since their assets are still checked out.
+Bookings can be archived to organize the index. Two kinds qualify: **Completed** bookings, and **Reserved** bookings whose end date has already passed, the ones that read **Expired** (the reservations teams make without ever running a formal check-out). Ongoing and Overdue bookings cannot be archived, since their assets are still checked out.
 
 Archived bookings are hidden in the default view but accessible via dropdown filter selection. Administrators can also have Shelf archive them automatically after a set number of days.
 

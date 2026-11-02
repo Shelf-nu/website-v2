@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const ARTICLES = {
+  "bookings-list-expired-and-row-actions": "articles/bookings-list-expired-and-row-actions.mjs",
   "last-scan-card": "articles/last-scan-card.mjs",
   "scan-history-sheet": "articles/scan-history-sheet.mjs",
   "manager-role": "articles/manager-role.mjs",

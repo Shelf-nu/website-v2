@@ -1,0 +1,15 @@
+---
+title: "A Reservation Nobody Picked Up Stops Counting"
+description: "A reserved booking whose end date has passed now reads Expired on the Bookings list, has its own Status filter and no longer holds the gear. Checking one out asks first: start it now with a new end date, or record it as overdue."
+date: "2026-10-30"
+image: "/images/updates/bookings-beta.jpg"
+readMoreUrl: "/knowledge-base/early-check-in-and-check-out-of-bookings#checking-out-after-the-reserved-period-has-ended"
+layout: "update"
+inApp: true
+---
+
+A reservation whose dates passed without anyone checking it out used to stay blue **Reserved** forever. It kept counting against the asset's stock, and one click on **Check out** landed it in **Overdue** by however many weeks had passed, with no warning, no reminder, and a compliance report that called a short loan weeks late.
+
+Such a booking now reads gray **Expired** on the **Bookings** list, the booking page, an asset's or kit's **Bookings** tab and **My bookings**, and the **Status** filter has an **Expired** option that lists exactly them. It stops counting: the asset's status badge, its hover card and the **Reserved** figures leave it out, and the hover card says so on a line of its own, *2 expired reservations, not counted*. Nothing else about the booking changes, so it can still be archived, cancelled or checked out.
+
+Checking one out asks first. **Check out** on the booking page opens **Reservation dates have passed** with two answers: **Check out with new end date** starts the booking now, ends it at the date you pick (proposed: now plus the planned length) and schedules the check-in reminder, after the same checks an extension passes; **Check out as overdue** keeps the dates and lands it in Overdue, as before. A new end date becomes the booking's planned period, and the replaced one goes on its activity. The scanner, the fulfil scanner and **Check out selected items** offer **as overdue** only, and the phone app keeps today's outcome until it has the prompt.

@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-10-27"
+updated: "2026-11-02"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -209,7 +209,7 @@ What can still stop a pooled line is its own capacity for your dates, which is t
 
 ### Reading the asset page
 
-The **Free now** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, held by a kit, or checked out on its own. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across.
+The **Free now** row on the **Quantity Overview** card answers a different question: what's on the shelf **right now**. It's the total, less anything in someone's custody, held by a kit, or checked out on its own. A booking three weeks out doesn't touch it. Those units sit on their own **Reserved (bookings)** row, with a tooltip saying how many bookings they're spread across. A reservation whose end date passed without a check-out is not in that row: since 30 October 2026 an expired reservation stops counting, on this card, in the **Reserved** column of the asset list and in the status badge's hover card, which opens with how many units are *free right now*, lists the expired ones on a gray line of their own, *2 expired reservations (last ended 9 Oct), not counted*, and prints the units held in kits, so the figures and the bookings list still agree. See [Introduction to Bookings](/knowledge-base/introduction-to-bookings#2-reserved).
 
 Units a kit holds are counted once, under **In kits**, whether the kit is sitting on the shelf or out on a booking. **Checked out (bookings)** is the fuller picture: every unit physically out, loose ones and kit-held ones together. The two rows overlap on purpose, so don't add them up.
 

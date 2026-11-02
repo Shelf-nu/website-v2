@@ -3,7 +3,7 @@ title: "Use Case Scenarios Explaining Our Bookings Feature"
 description: "This article walks through common booking scenarios to clarify the concept and value of using Shelf's booking feature from both self-service user and administrator perspectives."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-06-17"
+updated: "2026-11-02"
 layout: "knowledge-base"
 ---
 
@@ -156,7 +156,7 @@ David performs a **Check-in** action, changing the booking to **Completed**.
 ## Booking Status Flow
 
 1. **Draft** - Editable, not confirmed
-2. **Reserved** - Confirmed, awaiting check-out
+2. **Reserved** - Confirmed, awaiting check-out (reads **Expired** once its end date passes without a check-out, and stops holding the gear)
 3. **Ongoing** - Assets checked out and in use
 4. **Overdue** - Check-in deadline passed (if applicable)
 5. **Complete** - All assets returned and checked in
