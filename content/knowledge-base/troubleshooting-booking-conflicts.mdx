@@ -3,7 +3,7 @@ title: "Troubleshooting: Booking Conflicts and Scheduling Issues"
 description: "Can't book an asset? Getting a conflict error? Here's how Shelf's booking conflict prevention works and what to do when you're blocked."
 category: "Troubleshooting"
 date: "2026-04-17"
-updated: "2026-10-28"
+updated: "2026-11-02"
 layout: "knowledge-base"
 ---
 
@@ -29,6 +29,8 @@ An admin may have marked the asset as **not available for bookings**. This is se
 1. Open the asset → right sidebar → look for **Available for bookings** toggle
 2. If it's off, the asset can't be booked regardless of dates
 3. Only admins and owners can toggle this setting
+
+To see who switched it off and when, open the asset's **Activity** tab. Every real change is recorded there, for example *marked the asset as unavailable for bookings*, whether it was made with the switch on the asset, the bulk **Mark as available** / **Mark as unavailable** actions or a CSV update import.
 
 Common reasons an asset is marked unavailable: it's in maintenance, out for repair, decommissioned, or reserved for a specific department outside the booking system.
 
@@ -118,6 +120,8 @@ Two things count against you no matter what dates you pick:
 - **Overdue bookings.** Nobody knows when a late return is coming back, so its units stay unavailable for every date until someone checks it in.
 - **Units in custody or earmarked to a kit.** These come off the pool before dates are considered at all.
 
+One thing never counts: a reservation whose end date has already passed without a check-out. It reads **Expired** on the bookings list, and its units are free for any dates. See [Introduction to Bookings](/knowledge-base/introduction-to-bookings#2-reserved).
+
 ### "Cannot reduce quantity below commitments"
 
 You tried to lower an asset's **total** quantity below the units already promised out. Shelf blocks this so stock can't vanish from under a booking that depends on it. Release the custody, remove the units from the kit, or reduce the overlapping bookings first, then lower the total.
@@ -186,9 +190,11 @@ Your own reservation doesn't count against you twice. If your booking reserves t
 
 ## Extending a booking hits a conflict
 
-If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) but the extension overlaps with the next booking, Shelf blocks the extension. That check now covers kits as well as assets, so an extension that would run a kit into somebody else's booking is refused rather than allowed. It also covers model reservations: if the extra days run into a period where other bookings have reserved every free unit of a model, and your booking holds one of those units by name, the extension is refused with [the by-name message](#some-assets-cannot-be-booked-by-name-for-these-dates). Only the added days are measured, from the current end to the new one, so a booking that started months ago is not re-checked against everything since it began. Options:
+If you try to [extend a booking's end date](/knowledge-base/extending-booking-end-dates-in-shelf) and the extension overlaps with the next booking of an item still out, Shelf refuses it and names the bookings in the way and the items they need. The **Change end date** dialog shows how far you can go before you pick, with a **Use …** button for the latest end that fits, and items another booking needs next carry a **Needed** badge on the running booking.
 
-- Shorten your extension to end before the next booking starts
+The check covers kits as well as assets, so an extension that would run a kit into somebody else's booking is refused rather than allowed. It also covers model reservations: if the extra days run into a period where other bookings have reserved every free unit of a model, and your booking holds one of those units by name, the extension is refused with [the by-name message](#some-assets-cannot-be-booked-by-name-for-these-dates). [Quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) stock is measured as a pool over the added days and refused only when the units really run short, with the numbers named. Only the added days are measured, from the current end to the new one, so a booking that started months ago is not re-checked against everything since it began. Options:
+
+- Take the suggested end, or shorten your extension to end before the next booking starts
 - Ask the next booking's owner to shift their start date
 - Return the asset on time and create a new booking after the gap
 
