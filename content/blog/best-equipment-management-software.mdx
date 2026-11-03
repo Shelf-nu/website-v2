@@ -8,7 +8,7 @@ layout: blog
 canonicalUrl: >-
   /blog/best-equipment-management-software
 date: "2026-04-02"
-updated: "2026-10-12"
+updated: "2026-11-03"
 author: carlos-virreira
 category: asset-tracking-management
 seo:
@@ -71,7 +71,7 @@ If you need equipment booking and checkout, comparing Shelf to a CMMS tool is ap
 
 ## Quick Comparison
 
-Prices are based on publicly available information as of April 2026. SaaS pricing changes — verify on each vendor's site before making decisions.
+Prices and features were checked on each vendor's own website and pricing page on 3 November 2026. SaaS pricing changes — verify on each vendor's site before making decisions.
 
 <ComparisonTable
   headers={["Shelf", "Cheqroom", "Sortly", "Snipe-IT", "EZO", "Asset Panda", "Reftab"]}
@@ -80,24 +80,24 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
       label: "Free plan",
       values: [
         "Yes (unlimited assets, 1 user)",
-        { value: "No — demo only", warning: "No free plan or trial. Must request a demo to test the software." },
+        { value: "No", warning: "No free plan or free trial listed on the pricing page. Core can be bought online; otherwise you book a demo." },
         "Yes (100 items, 1 user)",
         "Yes (self-hosted)",
-        "Trial only",
-        "Trial only",
-        "Yes (50 assets, unlimited users)"
+        "14-day trial",
+        "7-day trial",
+        "Yes (50 assets)"
       ]
     },
     {
       label: "Paid pricing",
       values: [
         { value: "$67/mo flat", link: "/pricing" },
-        { value: "From $184/admin/mo", warning: "Hidden minimum admin requirement — not disclosed on pricing page. Core tier ($184) locked to 1 location, no reporting, no custom roles." },
-        { value: "$49–$299/mo", warning: "Caps on both items and users per tier. Multiple reviewers report steep renewal price hikes after year one." },
-        "$40–$250/mo (hosted)",
-        { value: "From $40/mo (250 items)", warning: "Scales steeply with items: $40/mo for 250 → $136/mo for 1,500. 'Unlimited users' subject to fair-use policy." },
-        { value: "~$50/user/mo", warning: "Now behind 'Request Quote' wall. Historical floor: $50/user/mo, minimum 5 users ($3,000/year)." },
-        "From $31.25/mo"
+        { value: "From $184/admin/mo", warning: "Billed annually, and every plan starts at 3 admins, so Core starts at $552/month. Core is limited to 1 location, with no reporting, custom roles or PDF documents." },
+        { value: "$49–$299/mo", warning: "Caps on both items and users per tier. New yearly plans are 50% off in year one only; after that the yearly discount is 20%." },
+        "$39.99–$249.99/mo (hosted)",
+        { value: "From $44.75/mo (100 items)", warning: "Billed yearly. Price rises with item count: Essential is $81.41/mo for 500 items and $156.68/mo for 1,500. 'Unlimited users' is subject to a fair-use policy." },
+        { value: "Custom quote", warning: "No prices published. The pricing page offers a custom quote and a 7-day trial." },
+        "$125/mo (Hardware plan)"
       ]
     },
     {
@@ -105,11 +105,11 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
       values: [
         "Flat per workspace",
         "Per admin seat",
-        "Per user + item cap",
+        "Tiers with item + user caps",
         "Free self-host or hosted",
         "Per item count",
-        "Per user",
-        "Per asset count (unlimited users)"
+        "Custom quote",
+        "Flat plan (unlimited users); custom for full IT suite"
       ]
     },
     { label: "Open source", values: [true, false, false, true, false, false, false] },
@@ -121,29 +121,29 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
     { label: "Booking / reservations", values: [true, true, false, false, true, true, true] },
     {
       label: "Custody chain",
-      values: ["Yes", "Yes", "Folder-based", "Basic assign", "Basic", "Yes (with signatures)", "Basic assign"]
+      values: ["Yes", "Yes", "Check-in/out (Advanced and up)", "Assign + transfer", "Basic", "Yes (with signatures)", "Basic assign"]
     },
     {
       label: "Kit management",
-      values: [true, true, false, false, "Limited", false, "Paid plans"]
+      values: [true, true, "Not listed", true, "Advanced plan and up", "Not listed", "Kit templates (plan not stated)"]
     },
     {
       label: "Maintenance / CMMS",
       values: [
-        "Tracking, not full CMMS",
-        false,
-        false,
-        false,
-        { value: "Add-on", warning: "Maintenance is priced separately per admin user — not included in base plans." },
-        "Limited",
-        "Business tier"
+        "Reminders, not full CMMS",
+        { value: "Add-on", warning: "Work orders and maintenance management are a paid add-on on every plan, priced per admin plus per operator." },
+        "Date-based alerts (Ultra and up)",
+        "Maintenance history",
+        { value: "Add-on", warning: "Preventive maintenance and work orders need the CMMS add-on on Premium (priced per admin user) or the Enterprise plan. Basic service records start on Advanced." },
+        "Work orders",
+        "Hardware plan"
       ]
     },
-    { label: "Depreciation tracking", values: [false, false, false, true, true, true, false] },
-    { label: "License tracking", values: [false, false, false, true, false, false, "Limited"] },
+    { label: "Depreciation tracking", values: [false, "Business plan and up", false, true, true, true, true] },
+    { label: "License tracking", values: [false, false, false, true, false, false, true] },
     {
       label: "Native mobile app",
-      values: ["iOS + Android (Shelf Companion); PWA on any browser", "Yes (iOS/Android)", "Yes (iOS/Android)", false, "Yes (iOS/Android)", "Yes (iOS/Android)", "Yes (iOS/Android)"]
+      values: ["iOS + Android (Shelf Companion); PWA on any browser", "Yes (iOS/Android)", "Yes (iOS/Android)", "Beta (iOS TestFlight, Android)", "Yes (iOS/Android)", "Yes (iOS/Android)", "Yes (iOS/Android)"]
     },
     {
       label: "Best for",
@@ -171,22 +171,22 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 **Strengths:**
 - **Flat pricing with unlimited users** — $67/month for the Team plan covers your entire organization. No per-seat fees. This matters most for schools and large teams where dozens of people need checkout access.
 - **QR-first workflow** — scanning is the primary interaction, not data entry. Students, staff, and field workers pick it up without training.
-- **Equipment booking** — visual calendar with conflict prevention. Reserve shared gear ahead of time.
-- **Kit management** — bundle a camera with its lens, battery, and SD card. Missing components are flagged at check-in.
+- **Equipment booking** — visual calendar with conflict prevention. Reserve shared gear ahead of time (Team plan).
+- **Kit management** — bundle a camera with its lens, battery, and SD card, on every plan. When you scan a booking back in, any kit item not yet returned stays listed as pending.
 - **Open source** — full codebase is public. Self-host if you need to. No vendor lock-in.
 - **Free plan** — unlimited assets for one user. Genuinely usable, not a demo.
 - **Native iOS + Android app + PWA** — the free Shelf Companion app is on the App Store and Google Play (field workflows: scan, audit, custody, bookings). The web app also runs as a PWA in any modern phone browser.
 
 **Limitations — where we'll be honest:**
-- **Maintenance tracking, not full CMMS** — Shelf offers asset reminders, service history logging, and custom maintenance fields — but it does not have work orders, parts inventory, or technician dispatching. If full CMMS is your primary need, look at EZOfficeInventory or a dedicated maintenance platform.
+- **Maintenance reminders, not full CMMS** — Shelf has asset reminders (one-time on every plan, repeating on Plus and Team), and each reminder it sends is noted in the asset's activity. You record the service itself in notes and custom fields. There is no dedicated service log, no work orders, no parts inventory and no technician dispatching. If full CMMS is your primary need, look at EZO, Asset Panda or a dedicated maintenance platform.
 - **No depreciation or fixed asset accounting** — Shelf tracks operational use, not financial lifecycle. Snipe-IT or Asset Panda are better if depreciation reporting is required.
 - **The mobile app is a field client, not a second admin console** — the Shelf Companion app covers scanning, audits (including notes and photos on individual scans), custody handoffs, and bookings. Setting audits up, bulk imports, custom field configuration, user and role management, reporting, and integrations stay on the web app.
-- **No help desk integrations** — no Zendesk, Jira, or ServiceNow connectors. EZOfficeInventory has these.
+- **No help desk integrations** — no Zendesk, Jira, or ServiceNow connectors. EZO (Zendesk, Jira) and Asset Panda (Zendesk, Jira, ServiceNow) have these.
 - **Smaller ecosystem** — Shelf has fewer integrations and a smaller community than tools that have been on the market for 10+ years.
 
 **Best for:** Schools and universities (unlimited users, no per-seat cost), media and production companies (booking + kits), operations teams managing shared equipment, anyone who values open source and pricing transparency.
 
-**Pricing:** Free (1 user, unlimited assets) → Plus $34/mo (1 user, more features) → Team $67/mo (unlimited users) → Enterprise (custom). [See pricing →](/pricing)
+**Pricing:** Free (1 user, unlimited assets) → Plus $34/mo (1 user, adds reports and repeating reminders) → Team $67/mo (unlimited users, adds bookings) → Enterprise (custom). [See pricing →](/pricing)
 
 [Full details →](/)
 
@@ -201,20 +201,21 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 **Strengths:**
 - **Purpose-built for media/AV** — their workflows are specifically designed for camera cages, production equipment rooms, and studio gear management.
 - **Booking and reservations** — calendar-based scheduling with availability views.
-- **Kit management** — group items into kits with completeness tracking.
+- **Kit management** — unlimited kits on every plan.
+- **Unlimited users and items on every plan** — only admins pay (plus operators, if you add work orders). SSO, Slack, API, webhooks and Zapier are on every plan.
 - **Native mobile apps on iOS and Android** — both platforms today.
-- **Education case studies** — they serve real universities (Portland State, CUNY, UT Arlington) and understand higher-ed workflows.
+- **Higher-ed experience** — a dedicated higher-education page and published university customer stories.
 
 **Limitations:**
-- **Expensive per-admin pricing** — plans start at $184/admin/month (Core), scaling to $275 (Business) and $367 (Enterprise). The cheapest Core tier is artificially restricted: locked to exactly 1 location, with custom roles, reporting, and document generation stripped out to force upgrades to the $275/month Business tier. Minimum admin counts apply but aren't disclosed upfront.
-- **No free trial or free plan** — you must request a demo to test the software. This is a significant barrier compared to tools you can try immediately.
+- **Expensive per-admin pricing** — $184 per admin per month on Core, $275 on Business and $367 on Enterprise, billed annually. Every plan starts at 3 admins, so the smallest Core contract is $552 a month. Core is limited to 1 location and leaves out reporting, data export, custom roles, PDF documents, audits and depreciation; those start on Business.
+- **No free plan or free trial listed** — you can buy Core online from the pricing page, but to try it first you book a demo. That is a barrier compared to tools you can try on your own.
 - **Closed source** — no self-hosting option, no code transparency.
-- **Reporting limitations** — multiple reviewers note reporting is basic and not easily customizable. Reporting is unavailable on the Core tier entirely.
-- **Primarily higher-ed focused** — less content and fewer features targeting K-12 schools or non-media use cases.
+- **Reporting starts on Business** — Core has no standard reporting, and enterprise reporting is on the Enterprise plan only.
+- **Maintenance costs extra** — work orders and maintenance management are a paid add-on on every plan, priced per admin plus per operator.
 
 **Best for:** Media production companies and university AV departments that need dedicated equipment checkout workflows and can justify the per-admin cost. Teams with a small number of administrators managing equipment for many users.
 
-**Pricing:** Core $184/admin/mo → Business $275/admin/mo → Enterprise $367/admin/mo (billed annually, minimum admin counts apply). No free plan or self-serve trial.
+**Pricing:** Core $184/admin/mo → Business $275/admin/mo → Enterprise $367/admin/mo → E.L.A. (custom). Billed annually; every plan starts at 3 admins. Unlimited users and items on every plan. No free plan or free trial listed.
 
 [Read full Shelf vs Cheqroom comparison →](/alternatives/cheqroom)
 
@@ -227,20 +228,20 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 **Strengths:**
 - **Visual-first approach** — every item gets photos. The interface is clean and intuitive. Non-technical users love it.
 - **Simple setup** — you can start cataloging items in minutes. Low learning curve.
-- **Offline mode** — available on Ultra+ plans. Useful for field work.
-- **Low stock alerts** — set minimums, get notified. Good for consumables.
+- **Offline mobile access** — on every plan, including Free. Useful for field work.
+- **Low stock alerts** — set minimums, get notified, from the Advanced plan. Good for consumables.
 - **Free plan** — 100 items, 1 user.
 
 **Limitations:**
 - **No equipment booking or reservations** — this is the critical gap. Sortly cannot schedule who gets what equipment and when. If you need to prevent double-bookings, Sortly is not the right tool.
-- **"Check-out" is a folder move** — Sortly has a check-in/check-out feature, but it works by moving an item to a folder representing a person. There are no due dates, no return reminders, no availability calendar.
-- **No kit management** — items are tracked individually. You can't bundle a camera with its accessories.
+- **Basic check-out** — check-in/check-out starts on the Advanced plan, and Sortly's help center describes checking an item out as moving it to a folder. Sortly's pages don't mention due dates, return reminders or an availability calendar.
+- **No kits listed** — Sortly's pricing and feature pages don't mention kits or bundles, so plan on tracking a camera and its accessories as separate items.
 - **Item and user caps on every plan** — the most common complaint. You start at 100 items (free). Even on their $299/month Premium tier, you are strictly capped at 8 users and 5,000 items. If you need 10 people to just view inventory, you're forced into custom enterprise pricing.
-- **Price increase complaints** — multiple reviewers report significant renewal price hikes after the first year.
+- **Year-two price jump** — new yearly plans are 50% off in the first year only; after that the yearly discount is 20%. Advanced costs $288 for year one and about $470 a year after that.
 
 **Best for:** Small businesses that need a simple, visual catalog of what they own and where it is. Homeowners tracking valuables. Teams where "what do we have?" is a bigger question than "who has it right now?"
 
-**Pricing:** Free (100 items) → Advanced $49/mo → Ultra $149/mo → Premium $299/mo → Enterprise (custom). Annual billing reduces costs significantly in year one; watch for renewal increases.
+**Pricing:** Free (100 items, 1 user) → Advanced $49/mo (500 items, 2 users) → Ultra $149/mo (2,000 items, 5 users) → Premium $299/mo (5,000 items, 8 users) → Enterprise (quote; 10,000+ items, 12+ users). New yearly plans are half price in year one, then 20% off. 14-day free trial on paid plans.
 
 [Read full Shelf vs Sortly comparison →](/alternatives/sortly)
 
@@ -255,20 +256,20 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 **Strengths:**
 - **Free and self-hosted** — the entire platform is free to run on your own server. No per-asset or per-user limits. This is genuinely free, not freemium.
 - **Deep IT lifecycle features** — depreciation, license management, consumables tracking, component tracking. No other tool on this list matches its IT asset depth.
-- **LDAP/Active Directory integration** — pulls users directly from your directory. Important for IT teams.
+- **LDAP/Active Directory, SAML SSO and SCIM** — pulls users directly from your directory. Important for IT teams.
+- **Kits** — pre-defined kits for faster checkouts.
 - **Extensive API** — well-documented REST API for custom integrations.
-- **Large community** — 13,000+ GitHub stars, active development, extensive documentation.
+- **Large community** — 15,000+ GitHub stars, active development, extensive documentation.
 
 **Limitations:**
-- **No booking or reservation system** — you can assign an asset to a user, but you cannot reserve it for a future date. For shared equipment scheduling, this is a deal-breaker.
+- **No booking or reservation system** — you can check an asset out to a user (with an optional signature on acceptance) and users can request assets marked as requestable, but you cannot reserve one for a future date. Snipe-IT's own README points to a third-party add-on for reservations. For shared equipment scheduling, this is a deal-breaker.
 - **Dated user interface** — the UI is functional but feels like a 2015 Bootstrap admin panel. Non-technical users (teachers, production crews, field staff) will struggle.
 - **Requires technical setup** — self-hosting needs a LAMP stack and command-line comfort. Not accessible to non-technical teams.
-- **No custody chain** — check-out is binary (assigned or not). No multi-step handoff tracking.
-- **Weak mobile experience** — no dedicated mobile app. The responsive web UI works but isn't optimized for phone-based scanning workflows.
+- **Mobile app still in beta** — the official app is in beta (TestFlight on iOS, Google Play on Android). Otherwise you use the mobile-friendly web UI.
 
 **Best for:** IT departments managing laptops, servers, network gear, and software licenses. Organizations with technical staff who can self-host. Teams that need depreciation tracking and IT lifecycle reporting.
 
-**Pricing:** Free (self-hosted, unlimited) → Hosted plans from ~$40/month.
+**Pricing:** Free (self-hosted, unlimited) → Hosted from $39.99/month (Basic) to $249.99/month (small dedicated server), unlimited users and assets. Larger dedicated servers are $5,000–$7,500 a year.
 
 [Read full Shelf vs Snipe-IT comparison →](/alternatives/snipe-it)
 
@@ -276,26 +277,28 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 
 ### EZOfficeInventory (EZO)
 
-**What it is:** A mid-market asset tracking and maintenance platform that bridges equipment checkout and CMMS functionality. EZO (formerly EZOfficeInventory) combines reservation workflows with maintenance scheduling and integrates with help desk tools like Zendesk and Jira.
+**What it is:** A mid-market asset tracking and maintenance platform that bridges equipment checkout and CMMS functionality. EZOfficeInventory is now sold as EZO EAM. It combines reservation workflows with maintenance scheduling and integrates with help desk tools like Zendesk and Jira.
 
 **Strengths:**
-- **Reservations + maintenance available** — one of the few platforms that combines equipment booking with maintenance tracking. However, maintenance is priced as a separate per-admin add-on, not included in the base plan.
-- **Integrations** — Zendesk, Jira, and Slack are available, but only on the Premium tier ($65+/month). Lower tiers don't include them.
-- **Depreciation and compliance** — built-in depreciation tracking and audit reporting.
+- **Reservations + maintenance available** — reservations are on every plan, and one of the few platforms that combines equipment booking with maintenance. Preventive maintenance and work orders come through a CMMS add-on priced per admin user (or the Enterprise plan); basic service records start on Advanced.
+- **Kits** — packages and bundles from the Advanced plan.
+- **Integrations** — Zendesk, Jira, QuickBooks Online, Google Workspace and GPS, plus LDAP and SAML, on the Premium and Enterprise plans. Lower tiers don't include them.
+- **Depreciation and compliance** — depreciation on every plan; audits from Advanced.
 - **Native mobile apps** — iOS and Android with barcode scanning.
-- **Custom roles and permissions** — granular access control for complex organizations.
-- **"Unlimited users"** — advertised on all plans, though subject to a fair-use policy.
+- **Roles and permissions** — team-based access controls from Advanced, advanced roles and permissions on Premium.
+- **"Unlimited users"** — on all plans, subject to a fair-use policy.
+- **14-day free trial** — no credit card required.
 
 **Limitations:**
-- **Per-item pricing that scales steeply** — $40/month for 250 items, but $136/month for 1,500 items. Schools and large teams hit high costs fast.
-- **Maintenance is a separate add-on** — not included in base plans. Priced separately per admin user.
-- **Key integrations tier-locked** — Zendesk and Jira require the Premium tier ($65+/month for just 250 items).
+- **Per-item pricing that scales steeply** — Essential is $44.75/month for 100 items but $156.68/month for 1,500 items, billed yearly ($48 and $197.24 billed monthly). Premium at 1,500 items is $315.80/month billed yearly. Schools and large teams hit high costs fast.
+- **Maintenance is a separate add-on** — preventive maintenance and work orders are not in Essential, Advanced or Premium. They need the CMMS add-on, priced per admin user, or the Enterprise plan.
+- **Key integrations tier-locked** — Zendesk and Jira require Premium (from $57.50/month for just 100 items, billed yearly).
 - **UI complexity** — powerful but cluttered. The learning curve is real. Non-technical staff can feel overwhelmed.
 - **Closed source** — no self-hosting, no code transparency.
 
 **Best for:** Mid-market operations teams that need equipment checkout AND are willing to pay for maintenance add-ons. Teams already on Zendesk/Jira who can justify Premium tier pricing.
 
-**Pricing:** Essentials $40/mo (250 items) → Advanced $55/mo → Premium $65/mo. Scales steeply with item count. Maintenance is a separate add-on. Verify current pricing at [ezo.io](https://ezo.io/ezofficeinventory/pricing/).
+**Pricing:** Essential from $44.75/mo → Advanced from $52.25/mo → Premium from $57.50/mo (100 items, billed yearly) → Enterprise (custom). At 500 items it is $81.41 / $117.11 / $142.10 a month, billed yearly. Scales steeply with item count. The CMMS add-on is priced separately. Verify current pricing at [ezo.io](https://ezo.io/ezofficeinventory/pricing/).
 
 [Read full Shelf vs EZOfficeInventory comparison →](/alternatives/ezofficeinventory)
 
@@ -309,23 +312,25 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 
 **Strengths:**
 - **Deep customization** — custom fields, statuses, workflows, forms, and conditional logic. One of the most configurable platforms in the category.
-- **Check-in/check-out with digital signatures** — full custody workflow including DocuSign integration and condition documentation.
-- **Reservation system** — calendar-based with approval workflows and hold times.
-- **Compliance and audit trails** — every action logged. Built for regulated environments.
+- **Check-in/check-out with signatures** — signatures at pickup where your process needs them, condition photos, and a DocuSign integration.
+- **Reservation system** — calendar and Gantt views, approval managers, and checks against overlapping bookings.
+- **Maintenance** — work orders and recurring service with reminders.
+- **Compliance and audit trails** — assignment, transfer and return history kept on each asset.
 - **Depreciation tracking** — built-in fixed asset accounting.
-- **Strong education positioning** — dedicated education page, K-12 and higher-ed case studies, SSO via Azure AD/Okta.
+- **Wide integrations** — Zendesk, Jira, ServiceNow, Slack, Intune, Jamf, DocuSign, Microsoft Entra ID and Okta.
+- **Strong education positioning** — dedicated K-12 and higher-ed pages with customer stories.
 
 **Limitations:**
-- **Expensive and opaque pricing** — Asset Panda has moved pricing behind a "Request Quote" wall. Historical data indicates a floor around $50/user/month with a 5-user minimum ($3,000/year), making it the most expensive option on this list. You'll need to contact sales to get a current quote.
+- **Pricing on request only** — the pricing page shows no prices. You get a custom quote, and their team sets up a 7-day trial for you. You can't compare cost without talking to sales.
 - **Steep learning curve** — weeks of configuration before first use. The platform's power comes with setup complexity.
 - **Search is weak** — multiple reviewers describe it as nearly unusable unless you know the exact item name.
 - **Reservation UX is clunky** — the feature exists, but old reservations pile up and must be deleted individually. Reviewers find it cumbersome compared to purpose-built booking tools.
 - **Performance issues** — slow loading and timeouts reported in both mobile and web apps.
 - **Closed source** — no self-hosting, no code transparency.
 
-**Best for:** Enterprise organizations with complex compliance requirements, dedicated asset management staff, and budget for per-user licensing. Government, healthcare, and large institutions where configurability justifies the cost.
+**Best for:** Enterprise organizations with complex compliance requirements, dedicated asset management staff, and budget for a custom-quoted contract. Government, healthcare, and large institutions where configurability justifies the cost.
 
-**Pricing:** Now behind a "Request Quote" wall. Historical floor: ~$50/user/month with a 5-user minimum (~$3,000/year). Contact their sales team for current pricing.
+**Pricing:** Custom quote only; no prices published. 7-day free trial, set up by their team. Contact their sales team for current pricing.
 
 [Read full Shelf vs Asset Panda comparison →](/alternatives/asset-panda)
 
@@ -333,27 +338,28 @@ Prices are based on publicly available information as of April 2026. SaaS pricin
 
 ### Reftab
 
-**What it is:** An IT-focused asset tracking tool that has expanded beyond basic inventory into reservations, kit management, and maintenance. Reftab charges by asset count with unlimited users on all plans — a pricing model that works well for teams with many people but modest inventories.
+**What it is:** An IT-focused asset tracking tool that has expanded beyond basic inventory into reservations, kits, maintenance and software tracking. Reftab has a free plan for 50 assets and a flat $125/month Hardware plan with unlimited users — a pricing model that works well for teams with many people.
 
 **Strengths:**
-- **Unlimited users on all plans** — including free. No per-seat fees. This is a genuine differentiator for teams where many people need access.
+- **Unlimited users on the Hardware plan** — no per-seat fees, and the free plan lists no user limit. This is a genuine differentiator for teams where many people need access.
 - **Reservations and calendar** — equipment booking with calendar views, included on all plans including free.
-- **Kit bundles and templates** — group related items (available on Starter+).
-- **Active Directory / LDAP integration** — pulls users from your directory.
+- **Kit templates** — pre-define the parts of a kit and check them out together. The pricing page doesn't say which plans include them.
+- **LDAP sync and SAML SSO** — LDAP adds directory users as borrowers; SSO works with Microsoft Entra ID, Okta and ADFS.
 - **Native mobile apps** — iOS and Android apps for scanning and asset management.
-- **Maintenance and work orders** — available on Business tier ($125/mo).
-- **API access** — REST API for custom integrations.
+- **Maintenance and work orders** — on the Hardware plan ($125/month).
+- **Depreciation and software tracking** — straight-line depreciation, plus a separate Software Asset Management plan.
+- **API access** — public API for paying customers.
 - **Free tier** — 50 assets with reservations, calendars, and mobile app access.
 
 **Limitations:**
-- **Per-asset pricing hits hard at scale** — Free covers 50 assets, Starter ($31.25/mo) and Business ($125/mo) scale by asset count. Because pricing is strictly per-asset, organizations with large volumes of low-value items (cables, adapters, accessories, chairs) blow through tiers fast. If you track 5,000 items, you'll be deep into enterprise pricing. Shelf flat-rates assets, so you aren't punished for tracking the small stuff.
-- **Smaller ecosystem** — fewer integrations, smaller community, and less documentation than larger competitors.
+- **Asset count still matters past the free plan** — Free covers 50 assets. The pricing page doesn't say how many assets the $125/month Hardware plan covers, and Complete ITAM is custom-priced on assets plus software users. Accessories and licenses don't count as assets. If you track thousands of items, ask for a quote before you commit. Shelf doesn't charge by asset count.
+- **Smaller community** — less third-party documentation and fewer community resources than the oldest tools here.
 - **IT-focused positioning** — less content and fewer workflows tailored to non-IT use cases (education, media, field operations).
 - **Closed source** — no self-hosting option.
 
-**Best for:** Teams with many users but moderate asset counts. IT departments that need reservations, kit tracking, and maintenance in one tool without per-seat fees.
+**Best for:** Teams with many users but moderate asset counts. IT departments that need reservations, kits, and maintenance in one tool without per-seat fees.
 
-**Pricing:** Free (50 assets, unlimited users) → Starter $31.25/mo → Business $125/mo → Enterprise (custom). All plans include unlimited users. Verify at [reftab.com/pricing](https://www.reftab.com/pricing).
+**Pricing:** Free (50 assets) → Hardware Asset Management $125/mo (unlimited users) → Complete ITAM (custom, based on assets + software users). Software Asset Management on its own is $9 per tracked software user per year. 14-day free trial on paid plans. Verify at [reftab.com/pricing](https://www.reftab.com/pricing).
 
 [Read full Shelf vs Reftab comparison →](/alternatives/reftab)
 
@@ -372,7 +378,7 @@ Your priorities: tight budget, many users (students + staff), equipment booking 
 - **Best overall:** Shelf — unlimited users on flat pricing, QR-first workflows students adopt immediately, booking with conflict prevention, VPAT/508 compliance docs, [education-specific content](/industries/education)
 - **If you need higher-ed AV checkout specifically:** Cheqroom — purpose-built for media/AV rooms, university case studies, native mobile app on iOS and Android
 - **If you need IT device tracking (Chromebooks, laptops):** Snipe-IT — free self-hosted, LDAP integration, depreciation tracking. But no booking system.
-- **If budget allows and you need maximum configurability:** Asset Panda — education case studies, SSO, compliance features. But expensive at $3,000+/year.
+- **If budget allows and you need maximum configurability:** Asset Panda — K-12 and higher-ed pages, Microsoft Entra ID and Okta integrations, compliance features. But pricing is by custom quote only.
 
 </SummaryBox>
 
@@ -408,8 +414,8 @@ Your priorities: tracking hardware lifecycle (procurement → deployment → dep
 
 - **Best for IT lifecycle management:** Snipe-IT — free, open source, depreciation, licenses, consumables, LDAP. The most complete IT asset tool on this list.
 - **If you need both IT tracking and equipment checkout:** Shelf for the operational layer (checkout, booking) + Snipe-IT for the lifecycle layer. Some teams use both.
-- **If you need help desk integration:** EZOfficeInventory — Zendesk and Jira connectors
-- **For small IT teams wanting simplicity with reservations:** Reftab — affordable, includes booking calendar, AD integration, mobile apps
+- **If you need help desk integration:** EZO (Zendesk and Jira on Premium) or Asset Panda (Zendesk, Jira and ServiceNow)
+- **For small IT teams wanting simplicity with reservations:** Reftab — free for 50 assets, $125/month for the Hardware plan with unlimited users; booking calendar, LDAP sync, SAML SSO, mobile apps
 
 </SummaryBox>
 
@@ -431,7 +437,7 @@ Your priorities: simplicity, low cost, fast setup, answer the question "what do 
 
 If we were evaluating these tools as a buyer — not a competitor — here's where we'd land:
 
-- **For a university media department**, we'd choose between Shelf and Cheqroom. Both handle the core workflow with native iOS apps. The choice comes down to: do you value open source and flat pricing (Shelf), or Android support today and AV-specific heritage (Cheqroom)?
+- **For a university media department**, we'd choose between Shelf and Cheqroom. Both handle the core workflow with native iOS and Android apps. The choice comes down to: do you value open source and flat pricing (Shelf), or AV-specific heritage and add-ons like RFID, room management and work orders (Cheqroom)?
 - **For an IT department**, we'd use Snipe-IT. Its lifecycle and license tracking features are unmatched in this category, and it's free to self-host.
 - **For a production company that also needs maintenance tracking**, we'd look at EZOfficeInventory. It bridges equipment checkout and CMMS — though maintenance is a separate paid add-on, not included in the base plan.
 - **For someone who just wants to catalog their stuff**, we'd start with Sortly. It does the simple thing beautifully.
@@ -448,14 +454,14 @@ We built Shelf for teams that need equipment checkout, booking, and custody trac
 
 Before you trial anything, answer four questions:
 
-1. **Do you need booking/reservations?** If yes, your options are Shelf, Cheqroom, EZO, Asset Panda, or Reftab. Sortly and Snipe-IT don't have it.
-2. **How many people need access?** If it's more than 10, per-user pricing (Asset Panda) and per-admin pricing (Cheqroom at $184+/admin) add up fast. Flat pricing (Shelf), unlimited users (Reftab), and free self-hosting (Snipe-IT) don't penalize team size.
+1. **Do you need booking/reservations?** If yes, your options are Shelf, Cheqroom, EZO, Asset Panda, or Reftab. Sortly doesn't list it, and Snipe-IT needs a third-party add-on.
+2. **How many people need access?** If it's more than 10, user caps (Sortly tops out at 8 users before Enterprise) and per-admin pricing (Cheqroom at $184+ per admin, 3-admin minimum) add up fast. Flat pricing (Shelf), unlimited users (Reftab, EZO), and free self-hosting (Snipe-IT) don't penalize team size.
 3. **How much time do you have to set this up?** Sortly and Shelf can be operational in an afternoon. Asset Panda is known for requiring weeks of complex workflow configuration before you can scan your first item. EZO sits in between. If you need to be tracking equipment by Friday, eliminate the tools that need a multi-week implementation.
 4. **What's your technical capacity?** If you have a sysadmin who can manage a server, Snipe-IT's free self-hosting is compelling. If you want zero setup, a cloud-hosted SaaS (Shelf, Cheqroom, Sortly, EZO) is the right path.
 
 </Callout>
 
-Most tools on this list offer a free plan or free trial — Cheqroom is the exception (demo request only). Don't choose based on a comparison page — including this one. Try the 2-3 tools that fit your situation and decide based on your own experience.
+Most tools on this list offer a free plan or free trial — Cheqroom is the exception (no free plan or trial listed; you book a demo or buy Core). Don't choose based on a comparison page — including this one. Try the 2-3 tools that fit your situation and decide based on your own experience.
 
 ## Frequently Asked Questions
 
@@ -481,6 +487,6 @@ At minimum: a way to identify each item (QR code or barcode), a record of who ha
 
 ---
 
-*Last updated: October 2026. We review and update this page quarterly. If you notice something that's changed or inaccurate, [let us know](mailto:carlos@shelf.nu).*
+*Last updated: November 2026 (competitor prices and features checked on 3 November 2026). We review and update this page quarterly. If you notice something that's changed or inaccurate, [let us know](mailto:carlos@shelf.nu).*
 
 *Shelf is one of the tools compared on this page. We've tried to be fair, but we're human and we built one of these products. Read our competitors' pages too. The best decision is an informed one.*
