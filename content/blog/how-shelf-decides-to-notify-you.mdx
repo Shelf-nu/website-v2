@@ -8,7 +8,7 @@ description: >-
 layout: blog
 canonicalUrl: /blog/how-shelf-decides-to-notify-you
 date: "2026-10-29"
-updated: "2026-10-29"
+updated: "2026-11-03"
 author: carlos-virreira
 category: software-features-capabilities
 tags:
@@ -35,7 +35,7 @@ Every few years someone reposts Slack's notification flowchart. It is a wall of 
 
 Sophie Alpert wrote a good rebuttal, [Everyone is wrong about that Slack flowchart](https://sophiebits.com/2024/10/30/everyone-is-wrong-about-that-slack-flowchart): most of the maze is the same question asked six times in six places, plus two sets of settings treated as different worlds when they are almost the same. Redrawn with the right framing, the chart is a handful of boxes in a straight line.
 
-We built push notifications for [Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) this autumn, and we had that post pinned to the wall. This is the version we ended up with. It is short enough to draw, and we would like to keep it that way, so here it is in public where it can be held against us.
+We built push notifications for [Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) this autumn, and we had that post pinned to the wall. They shipped in Shelf Companion 1.7.0 on the App Store and Google Play, on the Plus, Team and Enterprise plans. This is the version we ended up with. It is short enough to draw, and we would like to keep it that way, so here it is in public where it can be held against us.
 
 ## Two questions, asked at different moments
 
@@ -53,7 +53,7 @@ Keeping those two apart is most of what keeps the picture small. The code that k
 
 Every push, whatever triggered it, goes through the same five questions in the same order, and the first "no" ends it.
 
-1. **Does the workspace's plan include push?** If not, nobody in that workspace gets pushes and the chain stops here. On a self-hosted Shelf this is always yes.
+1. **Does the workspace's plan include push?** Plus, Team and Enterprise do; Free does not. If not, nobody in that workspace gets pushes and the chain stops here. On a self-hosted Shelf this is always yes.
 2. **Are you still a member of that workspace?** This is checked when the push is sent, not when the event happened. If your access was removed in between, the push is not sent. What happens in a workspace you left is no longer yours.
 3. **Are your switches on?** You have one master switch and one switch per category: Bookings, Audits, and Stock and reminders. A push is sent only when the master switch and its category are both on. If you have never touched them, they are on.
 4. **Do you have a signed-in phone?** A device you signed out of, or one the phone's platform told us no longer exists, does not count. If you have no device, the email still reaches you.
@@ -78,7 +78,7 @@ Two consequences follow without any extra rules:
 - **You are never pushed about your own action.** If you reserve a booking for yourself, you already know. The email list keeps you so the record is complete; the push drops you.
 - **An external custodian, someone without a Shelf account, gets the email and no push.** There is no phone to send to, and nothing special has to be written to handle that.
 
-The same sentence covers the other categories. An audit assignment pushes the people assigned to it. A stock or maintenance reminder on an asset pushes the team members the reminder was set for. Each of those is a one-line answer in the code, which is how we know the sentence is doing its job.
+The same sentence covers the other categories. An audit assignment pushes the people assigned to it. An asset reminder, such as a calibration or maintenance date, pushes the team members the reminder was set for. Each of those is a one-line answer in the code, which is how we know the sentence is doing its job.
 
 There is one deliberate addition: when a booking's custodian is swapped for someone else, the previous custodian gets a push saying they were removed. Without it, the only person whose plans changed would be the only one not told.
 
@@ -111,6 +111,6 @@ We are not pretending the problem is finished, only that the picture is.
 
 ## Where the switches are
 
-In Shelf Companion, open **Settings**, then **Push notifications**. The first time, the app asks the phone for permission; after that you will find the master switch and the three categories. Turning the master switch off silences everything at once and keeps your category choices for when you turn it back on.
+Update Shelf Companion to 1.7.0, open **Settings**, then **Notifications**, and tap **Turn on notifications**. Only then does the app ask the phone for permission; after that you will find the master switch and the three categories. The same switches are on the web under **Account settings → Notifications**. Turning the master switch off silences everything at once and keeps your category choices for when you turn it back on. The full list of what pushes, and to whom, is in [Push Notifications on Shelf Companion](/knowledge-base/push-notifications-on-shelf-companion).
 
 If you run into a push that this article says you should not have received, or did not get one it says you should, tell us. The point of writing the rules down is that they can be checked.
