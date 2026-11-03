@@ -99,7 +99,7 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "Is the mobile app included with my plan?",
-        answer: "Yes. Shelf Companion (iPhone and Android) is free with any Shelf account, including the free Personal plan. Nothing is sold through the app — it's purely an optional field client for your existing Shelf workspace. Sign in with the credentials you already use on shelf.nu."
+        answer: "Yes. Shelf Companion (iPhone and Android) is free with any Shelf account, including the free Personal plan. Nothing is sold through the app — it's purely an optional field client for your existing Shelf workspace. Sign in with the credentials you already use on shelf.nu. Push notifications in the app (bookings, audits and asset reminders) are included in Plus, Team and Enterprise."
     },
     {
         question: "Is there an Android version?",
