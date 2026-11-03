@@ -233,10 +233,10 @@ Prices and features were checked on each vendor's own website and pricing page o
 - **Free plan** — 100 items, 1 user.
 
 **Limitations:**
-- **No equipment booking or reservations** — this is the critical gap. Sortly cannot schedule who gets what equipment and when. If you need to prevent double-bookings, Sortly is not the right tool.
+- **No equipment booking or reservations listed** — Sortly's plan comparison lists check-in/check-out but no reservations or booking calendar. If you need to prevent double-bookings, look elsewhere.
 - **Basic check-out** — check-in/check-out starts on the Advanced plan, and Sortly's help center describes checking an item out as moving it to a folder. Sortly's pages don't mention due dates, return reminders or an availability calendar.
 - **No kits listed** — Sortly's pricing and feature pages don't mention kits or bundles, so plan on tracking a camera and its accessories as separate items.
-- **Item and user caps on every plan** — the most common complaint. You start at 100 items (free). Even on their $299/month Premium tier, you are strictly capped at 8 users and 5,000 items. If you need 10 people to just view inventory, you're forced into custom enterprise pricing.
+- **Item and user caps on every plan** — you start at 100 items (free). Even on their $299/month Premium tier, you are strictly capped at 8 users and 5,000 items. If you need 10 people to just view inventory, you're forced into custom enterprise pricing.
 - **Year-two price jump** — new yearly plans are 50% off in the first year only; after that the yearly discount is 20%. Advanced costs $288 for year one and about $470 a year after that.
 
 **Best for:** Small businesses that need a simple, visual catalog of what they own and where it is. Homeowners tracking valuables. Teams where "what do we have?" is a bigger question than "who has it right now?"
@@ -263,8 +263,7 @@ Prices and features were checked on each vendor's own website and pricing page o
 
 **Limitations:**
 - **No booking or reservation system** — you can check an asset out to a user (with an optional signature on acceptance) and users can request assets marked as requestable, but you cannot reserve one for a future date. Snipe-IT's own README points to a third-party add-on for reservations. For shared equipment scheduling, this is a deal-breaker.
-- **Dated user interface** — the UI is functional but feels like a 2015 Bootstrap admin panel. Non-technical users (teachers, production crews, field staff) will struggle.
-- **Requires technical setup** — self-hosting needs a LAMP stack and command-line comfort. Not accessible to non-technical teams.
+- **Free means running your own server** — Snipe-IT is web software with no installer; the free version runs on your own web server (Linux, Windows or Mac, or Docker). Hosting by the vendor starts at $39.99/month.
 - **Mobile app still in beta** — the official app is in beta (TestFlight on iOS, Google Play on Android). Otherwise you use the mobile-friendly web UI.
 
 **Best for:** IT departments managing laptops, servers, network gear, and software licenses. Organizations with technical staff who can self-host. Teams that need depreciation tracking and IT lifecycle reporting.
@@ -293,7 +292,7 @@ Prices and features were checked on each vendor's own website and pricing page o
 - **Per-item pricing that scales steeply** — Essential is $44.75/month for 100 items but $156.68/month for 1,500 items, billed yearly ($48 and $197.24 billed monthly). Premium at 1,500 items is $315.80/month billed yearly. Schools and large teams hit high costs fast.
 - **Maintenance is a separate add-on** — preventive maintenance and work orders are not in Essential, Advanced or Premium. They need the CMMS add-on, priced per admin user, or the Enterprise plan.
 - **Key integrations tier-locked** — Zendesk and Jira require Premium (from $57.50/month for just 100 items, billed yearly).
-- **UI complexity** — powerful but cluttered. The learning curve is real. Non-technical staff can feel overwhelmed.
+- **Offline mobile app is Enterprise-only** — Essential, Advanced and Premium include the mobile app, but offline mode is only on the custom-priced Enterprise plan.
 - **Closed source** — no self-hosting, no code transparency.
 
 **Best for:** Mid-market operations teams that need equipment checkout AND are willing to pay for maintenance add-ons. Teams already on Zendesk/Jira who can justify Premium tier pricing.
@@ -322,10 +321,8 @@ Prices and features were checked on each vendor's own website and pricing page o
 
 **Limitations:**
 - **Pricing on request only** — the pricing page shows no prices. You get a custom quote, and their team sets up a 7-day trial for you. You can't compare cost without talking to sales.
-- **Steep learning curve** — weeks of configuration before first use. The platform's power comes with setup complexity.
-- **Search is weak** — multiple reviewers describe it as nearly unusable unless you know the exact item name.
-- **Reservation UX is clunky** — the feature exists, but old reservations pile up and must be deleted individually. Reviewers find it cumbersome compared to purpose-built booking tools.
-- **Performance issues** — slow loading and timeouts reported in both mobile and web apps.
+- **No self-serve start** — the quote form books a call, and their team sets up your trial account. You can't sign up and try it on your own the same day.
+- **No kits listed** — Asset Panda's site doesn't mention kits or bundles, so ask how they handle gear that goes out together.
 - **Closed source** — no self-hosting, no code transparency.
 
 **Best for:** Enterprise organizations with complex compliance requirements, dedicated asset management staff, and budget for a custom-quoted contract. Government, healthcare, and large institutions where configurability justifies the cost.
@@ -353,8 +350,7 @@ Prices and features were checked on each vendor's own website and pricing page o
 
 **Limitations:**
 - **Asset count still matters past the free plan** — Free covers 50 assets. The pricing page doesn't say how many assets the $125/month Hardware plan covers, and Complete ITAM is custom-priced on assets plus software users. Accessories and licenses don't count as assets. If you track thousands of items, ask for a quote before you commit. Shelf doesn't charge by asset count.
-- **Smaller community** — less third-party documentation and fewer community resources than the oldest tools here.
-- **IT-focused positioning** — less content and fewer workflows tailored to non-IT use cases (education, media, field operations).
+- **IT-first product** — Reftab sells itself as IT asset management, and its paid plans center on IT work: Intune and Jamf integrations, onboarding and offboarding tasks, software license tracking.
 - **Closed source** — no self-hosting option.
 
 **Best for:** Teams with many users but moderate asset counts. IT departments that need reservations, kits, and maintenance in one tool without per-seat fees.
@@ -389,7 +385,7 @@ Your priorities: booking shared gear (cameras, audio, lighting), kit management 
 <SummaryBox title="Best Fit for Media & Production">
 
 - **Best overall:** Shelf or Cheqroom — both have booking, kits, and custody. Shelf wins on pricing (flat vs per-admin), open source, and a native iOS + Android Companion app. Cheqroom wins on AV-specific heritage.
-- **Avoid:** Sortly (no booking), Snipe-IT (no booking, dated UI)
+- **Avoid:** Sortly (no booking listed), Snipe-IT (no built-in booking)
 - **If you also need maintenance tracking:** EZOfficeInventory — combines reservations with CMMS (maintenance is a paid add-on)
 
 </SummaryBox>
@@ -425,7 +421,7 @@ Your priorities: simplicity, low cost, fast setup, answer the question "what do 
 
 <SummaryBox title="Best Fit for Small Business">
 
-- **Simplest visual inventory:** Sortly — photo-first, intuitive, works immediately. Best for cataloging what you own. But no checkout or booking.
+- **Simplest visual inventory:** Sortly — photo-first, intuitive, works immediately. Best for cataloging what you own. Check-in/check-out starts on the paid Advanced plan, and no booking is listed.
 - **If you need checkout/booking too:** Shelf — free plan covers unlimited assets for one user. Upgrade only when you need the team features.
 - **If you're still using spreadsheets:** Read our [spreadsheet vs. Shelf comparison](/alternatives/spreadsheets) — it covers exactly when spreadsheets stop working and what the minimum viable upgrade looks like.
 
@@ -456,7 +452,7 @@ Before you trial anything, answer four questions:
 
 1. **Do you need booking/reservations?** If yes, your options are Shelf, Cheqroom, EZO, Asset Panda, or Reftab. Sortly doesn't list it, and Snipe-IT needs a third-party add-on.
 2. **How many people need access?** If it's more than 10, user caps (Sortly tops out at 8 users before Enterprise) and per-admin pricing (Cheqroom at $184+ per admin, 3-admin minimum) add up fast. Flat pricing (Shelf), unlimited users (Reftab, EZO), and free self-hosting (Snipe-IT) don't penalize team size.
-3. **How much time do you have to set this up?** Sortly and Shelf can be operational in an afternoon. Asset Panda is known for requiring weeks of complex workflow configuration before you can scan your first item. EZO sits in between. If you need to be tracking equipment by Friday, eliminate the tools that need a multi-week implementation.
+3. **How much time do you have to set this up?** Shelf, Sortly, Reftab, EZO and Cheqroom let you start a free plan or trial on your own today. Asset Panda's team sets up your trial with you after a call, and Snipe-IT's free version needs your own server. If you need to be tracking equipment by Friday, start with the tools you can sign up for today.
 4. **What's your technical capacity?** If you have a sysadmin who can manage a server, Snipe-IT's free self-hosting is compelling. If you want zero setup, a cloud-hosted SaaS (Shelf, Cheqroom, Sortly, EZO) is the right path.
 
 </Callout>
