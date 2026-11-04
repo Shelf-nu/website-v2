@@ -3,7 +3,7 @@ title: "Bulk Updating Assets via CSV"
 description: "Use the Update Existing Assets workflow to edit asset records in bulk — export to CSV, make changes in Excel or Google Sheets, preview every diff, then apply."
 category: "Assets"
 date: "2026-04-06"
-updated: "2026-10-30"
+updated: "2026-11-04"
 layout: "knowledge-base"
 ---
 
@@ -92,6 +92,8 @@ If a file matches your assets but carries no column this workflow can write, She
 
 - `Name`, `Description`, and boolean fields, which cannot be emptied at all
 - `Asset model`, `Quantity`, `Min quantity`, `Unit of measure`, and `Consumption type`, which keep their current value when the cell is blank. Change these on the asset itself if you need to remove them
+
+**Moving an asset into a model fills its empty fields.** When an `Asset model` cell puts an asset into a model with [default values](/glossary/asset-models#default-values), those defaults fill the fields the asset still has empty after the update. A value in the file always wins, and so does a cell that clears a value.
 
 ### Assets with stock in more than one location
 
