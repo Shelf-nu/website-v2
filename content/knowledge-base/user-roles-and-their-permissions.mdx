@@ -3,7 +3,7 @@ title: "User Roles and Their Permissions"
 description: "See what each Shelf user role can do — a full permissions matrix for Owner, Administrator, Manager, Self-service and Base, plus how to restrict who books equipment."
 category: "Team"
 date: "2024-06-01"
-updated: "2026-11-02"
+updated: "2026-11-04"
 layout: "knowledge-base"
 ---
 
@@ -11,7 +11,7 @@ Shelf uses **fixed roles** (sometimes called user types): you assign each person
 
 <SummaryBox title="How access works in Shelf">
 
-- **A role sets what a person can *do*.** **Base** users request gear; **Self-service** users check it out themselves; **Managers** run everyone's bookings, custody and audits without touching the catalogue; **Administrators** manage everything. (Full breakdown in the [matrix below](#full-permissions-reference).)
+- **A role sets what a person can *do*.** **Base** users request gear; **Self-service** users check it out themselves; **Managers** run everyone's bookings, custody and audits, and add or edit assets and kits only if the owner allows it; **Administrators** manage everything. (Full breakdown in the [matrix below](#full-permissions-reference).)
 - **Two toggles set what they can *see*.** By default, Base and Self-service users only see custody and bookings for gear they're personally involved with. An admin can switch on **custody visibility** and **booking visibility** in **Settings ▸ Workspace ▸ Permissions** to let them see everyone's. Seeing is not doing: neither toggle widens what a person can assign, book, or edit. [What the toggles do and don't reach](/knowledge-base/configure-what-self-service-and-base-users-can-see#what-the-toggles-never-reach).
 - **Separate workspaces are hard walls.** Give each department its own workspace and one never sees another's inventory, people, or bookings.
 
@@ -23,7 +23,7 @@ Shelf uses **fixed roles** (sometimes called user types): you assign each person
 
 - **Owner** — the single account owner. Full control, and the only role that can create or delete workspaces. One per workspace.
 - **Administrator** — the people who run the workspace. Full operational control: manage inventory, people, bookings, and settings.
-- **Manager** — equipment-room staff and coordinators who hand gear out and take it back for everyone. They see, create, check out, check in, cancel and delete any booking, assign and release custody to anyone, and create, run, archive and delete any audit. They cannot change assets, kits, locations, categories, custom fields, settings, billing or the team, and they do not see the dashboard or Reports. Added 15 October 2026.
+- **Manager** — equipment-room staff and coordinators who hand gear out and take it back for everyone. They see, create, check out, check in, cancel and delete any booking, assign and release custody to anyone, and create, run, archive and delete any audit. By default they cannot change assets, kits, locations, categories, custom fields, settings, billing or the team, and they do not see the dashboard or Reports. The workspace owner can let them add and edit assets and kits with one switch. Added 15 October 2026.
 - **Self-service** — trusted staff and power users who check gear out and back in themselves without waiting on an admin.
 - **Base** — the broadest group (students, occasional users). They can browse gear and submit booking requests; an admin approves and hands it over.
 - **NRM** — a name on record for custody/tracking, with no login.
@@ -75,12 +75,12 @@ Administrators have comprehensive access to the workspace across all locations. 
 
 ### Manager
 
-A Manager runs the day-to-day hand-over of equipment for the whole workspace without administering it. Think of the person at the equipment counter, the lab coordinator or the warehouse lead: they decide who gets what and when, but they do not change what is in the catalogue or who is on the team. The role sits between Administrator and Self-service, and it was added on 15 October 2026.
+A Manager runs the day-to-day hand-over of equipment for the whole workspace without administering it. Think of the person at the equipment counter, the lab coordinator or the warehouse lead: they decide who gets what and when, but by default they do not change what is in the catalogue, and they never change who is on the team. The role sits between Administrator and Self-service, and it was added on 15 October 2026.
 
 - **Bookings:** see every booking in the workspace; create, edit, check out, check in, change the end date of, cancel and delete any of them, including bookings other people made; name anyone as the custodian; take items off a Draft, Reserved, Ongoing or Overdue booking; use the bookings list's bulk actions; print the checklist PDF and the check-in receipt for any booking; and manage a booking's notification recipients. Time limits that apply to Self-service bookings do not apply to a Manager.
 - **Custody:** see who holds what across the workspace, whatever the visibility toggles say, and assign or release custody of assets and kits to anyone, including non-registered members.
 - **Audits:** see every audit; create, edit, run, complete, cancel, archive and delete any audit; and add audit notes. Buying or starting the Audits add-on stays with the Owner.
-- **Catalogue, read-only:** see every asset, kit, location and asset model, including assets marked unavailable for bookings and archived assets. A Manager cannot create, edit, import, export, archive or delete assets, kits, locations, categories, tags, custom fields or asset models. They can add notes on an asset's **Activity** tab, delete their own, and set asset reminders.
+- **Catalogue, read-only by default:** see every asset, kit, location and asset model, including assets marked unavailable for bookings and archived assets. By default a Manager cannot create, edit, import, export, archive or delete assets, kits, locations, categories, tags, custom fields or asset models. The workspace owner can open up adding and editing, see [Letting Managers add and edit assets and kits](#letting-managers-add-and-edit-assets-and-kits). They can add notes on an asset's **Activity** tab, delete their own, and set asset reminders.
 - **Team:** read the team, and add or edit non-registered members (the name-only records used for custody). Inviting, removing or changing the role of a user is not theirs, and neither are the private notes on a team member's profile.
 - **Not for a Manager:** the workspace settings, billing, the dashboard and the **Reports** area. Signing in lands a Manager on **Bookings** rather than on the asset list.
 - **Notifications:** a Manager receives the broadcast when a booking is reserved, can be picked as a notification recipient, and sees the full recipient preview on a booking. Low-stock alerts for [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables) still go to Owners and Administrators only.
@@ -89,6 +89,24 @@ A Manager runs the day-to-day hand-over of equipment for the whole workspace wit
 ![The Invite team members dialog on Settings → Team with the role list open, offering Administrator, Manager, Self service and Base](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/invite-role-list-manager.webp)
 
 > **On the phone too.** The [Shelf Companion](/mobile-app) app has known the Manager role since its over-the-air update of 15 October 2026: a Manager who signs in on the phone gets the same reach as on the web. An app that has not picked up that update yet shows a Manager what a **Base** user sees; opening the app twice fetches it.
+
+#### Letting Managers add and edit assets and kits
+
+When the people at the counter are also the ones who spot a wrong location or receive new gear, the workspace owner can let Managers fix the catalogue without making them Administrators. Go to **Workspace settings ▸ General ▸ Permissions**, and under **Managers** switch on **Add and edit assets and kits**. It is off in every workspace until the owner turns it on.
+
+![The Permissions card under Workspace settings, General: the Managers section with its default line and the Add and edit assets and kits switch, above the Self service and Base sections](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/managers-edit-assets-switch.webp)
+
+With the switch on, a Manager can:
+
+- create assets, from the new asset form, by duplicating one, from an unclaimed QR code, or with **New asset** in the [Shelf Companion](/mobile-app) app;
+- edit an asset: name, description, image, value, its category, location and tags (picking ones that exist), custom field values, whether it can be booked, quantity settings and barcodes;
+- update the location of one asset or of a selection, on the web and on the phone;
+- link, relink and swap QR codes and alternative barcodes on assets and kits;
+- create and edit kits, and add assets to a kit or take them out.
+
+Some things stay with Owners and Administrators either way: deleting, archiving or reinstating assets and kits, CSV imports, bulk edits other than location (category, tags, asset model, availability, minimum quantity, kits), creating assets in bulk from an asset model, and creating, renaming or deleting categories, locations, tags, custom fields and asset models, including the **Create new** shortcut inside a picker. Bookings, custody and audits work as they always do for a Manager.
+
+Only the owner can change the switch. An Administrator sees it greyed out with *"Only the workspace owner can change this setting."* The role description shown when you invite someone or change a role says the same: a Manager adds and edits assets and kits only when the workspace owner allows it. The phone app follows the switch too: with it on, a Manager sees the same add and edit buttons there as on the web.
 
 ### Self-service
 
@@ -135,7 +153,8 @@ Every checkmark is what the role can actually do in Shelf today.
     { label: "See assets marked unavailable for bookings in the asset list (other than ones they hold)", values: [true, true, true, false, false] },
     { label: "Read the custom field values recorded on an asset", values: [true, true, true, true, true] },
     { label: "View an asset's Activity tab (notes and scan history)", values: [true, true, true, false, false] },
-    { label: "Add, edit and delete assets", values: [true, true, false, false, false] },
+    { label: "Add and edit assets", values: [true, true, "If the owner allows", false, false] },
+    { label: "Delete assets", values: [true, true, false, false, false] },
     { label: "Archive and reinstate assets", values: [true, true, false, false, false] },
     { label: "See archived assets", values: [true, true, true, false, false] },
     { label: "Import and export asset data", values: [true, true, false, false, false] },
@@ -155,7 +174,7 @@ Every checkmark is what the role can actually do in Shelf today.
     { label: "Manage everyone's bookings", values: [true, true, true, false, false] },
     { label: "Bulk actions on the bookings list", values: [true, true, true, false, false] },
     { label: "View and book Kits", values: [true, true, true, true, true] },
-    { label: "Create and edit Kits", values: [true, true, false, false, false] },
+    { label: "Create and edit Kits", values: [true, true, "If the owner allows", false, false] },
     { label: "Manage categories, tags and locations", values: [true, true, false, false, false] },
     { label: "Manage custom fields", values: [true, true, false, false, false] },
     { label: "Perform any audit in the workspace (scan items, add notes, complete)", values: [true, true, true, false, false] },
