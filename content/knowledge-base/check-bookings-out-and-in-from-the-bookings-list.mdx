@@ -1,18 +1,19 @@
 ---
 title: "Check Bookings Out and In From the Bookings List"
-description: "Move bookings along from the Bookings list without opening each one: a Check out or Check in button on every row that can take it, and bulk Check out and Check in in the Actions menu for up to 50 bookings at once."
+description: "Move bookings along from the Bookings list without opening each one: a Check out or Check in button on every row that can take it, a More actions menu to extend, cancel, archive, duplicate or print a booking, and bulk Check out and Check in for up to 50 bookings at once."
 category: "Bookings & Custody"
 date: "2026-11-02"
+updated: "2026-11-04"
 layout: "knowledge-base"
 ---
 
-On a busy counter the **Bookings** list is where you work. It checks bookings out and in without opening them, through the same dialogs as the booking page's header, one row at a time or for a selection.
+On a busy counter the **Bookings** list is where you work. It checks bookings out and in without opening them, through the same dialogs as the booking page's header, one row at a time or for a selection, and each row's **More actions** menu extends, cancels, archives, duplicates or prints the booking.
 
 ![The Bookings list with the last column of row buttons: Check out on Reserved rows, Check in on Ongoing and Overdue rows](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bookings-list-row-actions.webp)
 
 ## The buttons on each row
 
-The last column of the list holds the actions the booking can take right now. Hover a button for its name.
+The last column of the list, **Quick actions**, holds the check-out and check-in buttons the booking can take right now, followed by the [More actions menu](#the-more-actions-menu-on-each-row). Hover a button for its name.
 
 | Booking status | Buttons |
 |---|---|
@@ -36,6 +37,28 @@ The success message, the activity lines on the booking and on each asset, and th
 - **Reserved units are still unassigned.** A Reserved booking that reserves gear by [asset model](/glossary/asset-models) and has units nobody has assigned keeps **Check out** greyed out, with *"Can't check out yet. Open the booking to assign the reserved units first."* The booking page's **Check out** leads to the fulfil scanner for those.
 - **A pool is kept at several locations.** When a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) item on the booking is placed at two or more locations, the check-out has to ask [where the units leave from](/knowledge-base/progressive-checkout-of-bookings#where-the-units-leave-from). The row cannot ask, so the check-out is refused with *"This booking needs a from-location choice. Open the booking to check it out."* and nothing changes.
 
+## The More actions menu on each row
+
+Next to the check-out and check-in buttons, every row has a **More actions** button (three dots). It opens the booking page's own **Actions** items, so you can do the everyday jobs without leaving the list:
+
+- **Change end date**, to [extend](/knowledge-base/extending-booking-end-dates-in-shelf) an Ongoing or Overdue booking. The dialog shows how far the booking can go before the next reservation of its items, as it does on the booking page.
+- **Cancel**
+- **Archive**, for a booking that [can be archived](/knowledge-base/archiving-bookings)
+- **Duplicate booking**
+- **Generate PDF** and **Generate check-in receipt**. Until something has come back, the receipt stays in the menu greyed out with the reason, such as *"Nothing has been checked in yet."* See [when the receipt is available](/knowledge-base/print-a-check-in-receipt-for-a-booking#when-the-entry-is-available).
+
+![A bookings list row with its More actions menu open: Cancel, Archive and Duplicate booking, then Generate PDF and a greyed Generate check-in receipt](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/bookings-list-quick-actions-menu.webp)
+
+Each item opens the same dialog and follows the same rules as on the booking page, so the activity notes, emails and messages are the ones you already know. The menu shows only what your role may do with that booking:
+
+| Role | Check out and in, Change end date, Cancel, Archive | Duplicate booking, PDFs |
+|---|---|---|
+| Owner, Administrator, Manager | every booking | every booking |
+| Self-service | bookings they hold | bookings they hold |
+| Base | never | bookings they hold |
+
+**Revert to Draft**, **Delete** and **Manage notifications** are not in the row menu on purpose: open the booking for those. The same **Quick actions** column appears on every bookings list in Shelf: **My bookings**, and the **Bookings** tab of a kit, an asset or a team member.
+
 ## Several bookings at once
 
 Tick the bookings, open **Actions** and the menu offers **Check out** and **Check in** ahead of **Cancel**, **Archive** and **Delete**.
@@ -58,6 +81,7 @@ Two things follow from that:
 
 - It does not scan. **Scan to check out**, **Scan to assign**, **Fulfil reservations & check out** and **Explicit check-in** live on the booking page.
 - It does not reschedule an expired reservation; see above.
+- It does not revert a booking to Draft, delete a single booking or manage its notifications; open the booking for those.
 - The [Shelf Companion](/mobile-app) app's bookings list has no row buttons; open the booking there.
 
 ## Related Articles
