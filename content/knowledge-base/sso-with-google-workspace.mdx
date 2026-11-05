@@ -3,7 +3,7 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Available as an add-on on the Team plan and included on Enterprise."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-10-22"
+updated: "2026-11-05"
 layout: "knowledge-base"
 ---
 
@@ -227,6 +227,25 @@ Shelf reads a person's groups each time they sign in with SSO. When they no long
 - their name stays on the custody records and bookings they already have, so the history still reads correctly.
 
 The change is applied at their **next SSO sign-in**, so removing someone from a group in your identity provider takes effect in Shelf the next time they sign in.
+
+To make it take effect now instead of waiting, [log them out of Shelf](#applying-a-change-right-away-log-them-out-of-shelf).
+
+### Applying a Change Right Away: Log Them Out of Shelf
+
+A role or group change in your identity provider reaches Shelf only when the person signs in again. When it must apply now, for example a demotion, an owner or Administrator of the workspace can sign them out instead of asking them to do it:
+
+1. Go to **Workspace settings → Team → Users**, or open the person's own page
+2. Open the **Actions** menu and choose **Log out of Shelf**
+3. The confirmation names the person and their email. Click **Log out**
+
+They are signed out of Shelf on every device, including the Shelf Companion mobile app. On their next click in the web app they land on the login page with the notice *"You have been logged out. Please log back in again."* When they sign in again through your identity provider, Shelf reads their groups and applies the new role.
+
+Good to know:
+
+- **Only in SSO workspaces, only for SSO members.** The option appears only when the workspace has SSO enabled, and only for people whose email domain is one of the workspace's SSO domains, because those are the members whose role comes from your identity provider.
+- **Owner and Administrators can use it**, including on another Administrator. It is greyed out on yourself (*"You cannot log yourself out from here"*) and on the workspace owner (*"The workspace owner cannot be logged out"*).
+- **It signs them out of all of Shelf**, not only this workspace. A sign-in belongs to the person, so any other workspaces they use need a fresh sign-in too.
+- **It does not remove access by itself.** If they should no longer use the workspace, remove them from the mapped group in your identity provider first; logging them out then applies that at once.
 
 ### Signed In, but Nobody Can Give You Custody?
 
