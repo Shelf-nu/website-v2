@@ -21,6 +21,13 @@ export function frontmatterKeywords(frontmatter: Pick<Frontmatter, "title" | "se
  * - `data-pagefind-meta="title:…"` gives Pagefind the correct display title.
  * - `keywords` adds hidden, highly-weighted search terms so pages rank for
  *    their primary topic (e.g. the Demo page ranks first for "demo").
+ *
+ * The keyword block exists only for the Pagefind indexer. `npm run build` removes
+ * it from the built HTML once the index is written
+ * (scripts/strip-pagefind-keywords.mjs), so the deployed pages carry no hidden
+ * keyword text; `next dev` still renders it. That script matches this exact
+ * element, so keep the two in sync. Render this wrapper from a server component:
+ * from client code, hydration re-creates the block, and the build fails.
  */
 export function PagefindWrapper({
     type,
