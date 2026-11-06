@@ -221,7 +221,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Asset Management",
         name: "Asset Reminders",
         description:
-            "One-time email reminders on any asset for a date you choose",
+            "Email reminders on any asset, once or on a repeating schedule (repeating on paid plans)",
         availability: {
             free: "included",
             plus: "included",
