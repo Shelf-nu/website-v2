@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="400" viewBox="0 0 760 400" color="#18181b" role="img" aria-label="A booking event fans out to an email list of up to five kinds of people, and to a push for the custodian only. The person who acted is removed from both." font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="currentColor">
+  <rect x="0.5" y="0.5" width="759" height="399" rx="12" fill="#ffffff" stroke="#e4e4e7"/>
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <!-- event -->
+  <rect x="30" y="160" width="230" height="80" rx="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <text x="145" y="192" text-anchor="middle" font-weight="600">A booking event</text>
+  <text x="145" y="212" text-anchor="middle" opacity="0.7">reserved, extended, cancelled,</text>
+  <text x="145" y="228" text-anchor="middle" opacity="0.7">reminder due, overdue...</text>
+
+  <!-- email branch -->
+  <line x1="260" y1="185" x2="330" y2="120" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <text x="284" y="150" font-size="11" opacity="0.7" text-anchor="end">emails</text>
+  <rect x="340" y="40" width="400" height="140" rx="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <text x="360" y="66" font-weight="600">Everyone with a reason to know</text>
+  <g opacity="0.85">
+    <text x="360" y="90">the custodian</text>
+    <text x="360" y="108">the person who created the booking (workspace setting)</text>
+    <text x="360" y="126">the booking audience, when a reservation needs handling</text>
+    <text x="360" y="144">the always-notify list</text>
+    <text x="360" y="162">people added to this booking</text>
+  </g>
+
+  <!-- push branch -->
+  <line x1="260" y1="215" x2="330" y2="280" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <text x="288" y="262" font-size="11" opacity="0.7" text-anchor="end">pushes</text>
+  <rect x="340" y="250" width="400" height="70" rx="6" stroke="#EF6820" stroke-width="2" fill="none"/>
+  <text x="360" y="278" font-weight="600">The custodian only</text>
+  <text x="360" y="298" opacity="0.85">the one person whose plans the event changes</text>
+
+  <!-- actor exclusion -->
+  <g stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" fill="none">
+    <path d="M530,180 L530,215"/>
+    <path d="M530,250 L530,215"/>
+  </g>
+  <rect x="440" y="200" width="180" height="30" rx="15" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <text x="530" y="219" text-anchor="middle" font-size="12">minus whoever did it</text>
+
+  <!-- footnote -->
+  <text x="30" y="360" font-size="12" opacity="0.8">Swapping the custodian also tells the previous one they were removed, by push.</text>
+  <text x="30" y="378" font-size="12" opacity="0.8">A custodian without an account (an external person) gets the email and no push.</text>
+</svg>
