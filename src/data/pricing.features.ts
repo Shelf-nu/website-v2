@@ -336,7 +336,7 @@ export const pricingFeatures: PricingFeature[] = [
         id: "role-based-access",
         category: "Team Collaboration",
         name: "Role-Based Access",
-        description: "User roles: Owner, Admin, Base, Self-service",
+        description: "User roles: Owner, Admin, Manager, Self-service, Base",
         availability: {
             free: "included",
             plus: "included",
