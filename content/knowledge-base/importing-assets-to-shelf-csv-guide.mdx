@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering the column mapping review, file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-11-03"
+updated: "2026-11-06"
 layout: "knowledge-base"
 ---
 
@@ -96,7 +96,7 @@ A stock answer makes every row [quantity-tracked](/knowledge-base/quantity-track
 | `imageUrl` | No | Public `http(s)` link to an image (no file extension required) | "https://example.com/image.jpg" |
 | `valuation` | No | Asset monetary value (plain number, `.` decimal) | "1200.50" |
 | `qrId` | No | Existing unclaimed Shelf QR code identifier | "qr_abc123" |
-| `assetModel` | No | Asset model by name (case-insensitive, created if missing) | "MacBook Pro 13-inch" |
+| `assetModel` | No | Asset model by name (case-insensitive, created if missing). The model's [default values](/glossary/asset-models#default-values) fill the row's empty cells | "MacBook Pro 13-inch" |
 | `type` | No | `INDIVIDUAL` (default) or `QUANTITY_TRACKED` | "QUANTITY_TRACKED" |
 | `quantity` | No | Number of units. Defaults to `1`; required and greater than 0 for quantity-tracked rows | "250" |
 | `minQuantity` | No | Low-stock threshold for quantity-tracked assets | "50" |
