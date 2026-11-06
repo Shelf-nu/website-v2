@@ -1,0 +1,69 @@
+---
+title: "Push Notifications on Shelf Companion"
+description: "Get a push on your phone when a booking you hold is reserved, changed, due or overdue, when you are assigned an audit, and when an asset reminder names you. How to turn push on, which kinds you can switch off, and which plans include it."
+category: "Getting Started"
+date: "2026-11-03"
+layout: "knowledge-base"
+keywords:
+  - "push notifications"
+  - "mobile notifications"
+  - "booking reminder on phone"
+  - "Shelf Companion notifications"
+---
+
+Shelf Companion can send a push to your phone for the things that are about you: a booking you are the custodian of, an audit you are assigned to, and an asset reminder that names you. Tap the push and the app opens that booking, audit or asset, even when it belongs to another of your workspaces.
+
+Push needs **Shelf Companion 1.7.0** or later on iPhone, iPad or Android, and a **paid plan** (see [Which plans include push](#which-plans-include-push)). Push never replaces email: every email described in [Which Emails Shelf Sends, and When](/knowledge-base/which-emails-shelf-sends-and-when) keeps arriving as before.
+
+## Turn Push On
+
+1. Update Shelf Companion from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion) if it is older than 1.7.0.
+2. In the app, open **Settings → Notifications**.
+3. Tap **Turn on notifications** and allow notifications when your phone asks.
+
+The app only asks for permission when you tap that button, never on its own. If you declined earlier, the screen says notifications are off for Shelf in your phone's settings and offers **Open Settings**, so you can allow them there.
+
+Do this on every phone you want pushes on. Signing out of the app stops pushes to that phone.
+
+## What You Get a Push For
+
+| Kind | You get a push when |
+|---|---|
+| **Bookings** | A booking you are the **custodian** of is reserved, updated, extended, shortened, cancelled, sent back to draft, deleted or checked in; before it is due to go out and before it is due back; and when it is overdue. You also get one when a booking is handed to you, or taken away from you. |
+| **Audits** | You are **assigned** to an audit, before it is due, and when an audit you are assigned to or created is overdue. |
+| **Stock and reminders** | An [asset reminder](/knowledge-base/asset-reminders) that includes you comes due. |
+
+Three rules decide who is pushed:
+
+- **Only the custodian gets booking pushes.** The booking creator, the always-notify list, extra per-booking recipients and the owners, administrators and managers who hear about new reservations still get their emails, but no push. Who gets those emails is set in [Booking Notification Settings](/knowledge-base/booking-notification-settings).
+- **You are never pushed about your own action.** Reserve or extend your own booking and the app stays quiet.
+- **Push follows the same timing as email.** A checkout reminder pushes when the checkout reminder email is sent, and so on. The fixed times are in [Which Emails Shelf Sends, and When](/knowledge-base/which-emails-shelf-sends-and-when).
+
+## Choose Which Pushes You Get
+
+Open **Settings → Notifications** in the app, or **Account settings → Notifications** on the web. Both show the same switches:
+
+- **Push notifications** pauses every push at once. Your choices below it are kept for when you turn it back on.
+- **Bookings**, **Audits** and **Stock and reminders** turn one kind off on its own.
+
+The switches belong to you, not to a phone, so a change applies to every phone you are signed in on. They silence push only; your emails do not change.
+
+## Which Plans Include Push
+
+Push is included in the **Plus**, **Team** and **Enterprise** plans. It is not part of the Free plan. What counts is the plan of the workspace the booking, audit or reminder belongs to, checked when the push is sent: if you belong to a Team workspace and a free personal workspace, you get pushes for the Team workspace only.
+
+When none of your workspaces includes push, **Settings → Notifications** says *Push notifications are not included in your workspaces' plans.* The app itself stays free on every plan. See [Pricing](/pricing).
+
+## Troubleshooting
+
+- **No push arrives.** Check that the app is 1.7.0 or later, that **Settings → Notifications** shows the switches (not the **Turn on notifications** button), and that the kind is switched on. Then check your phone's own notification settings for Shelf.
+- **"This phone isn't connected for notifications yet."** The phone could not register. Tap **Try again** on that notice.
+- **"Push notifications aren't available."** You are signed in to a Shelf server that does not support push yet, such as an older [private server](/knowledge-base/connect-shelf-companion-to-your-own-server). Email keeps working.
+- **A teammate wants pushes for every booking.** Booking pushes only go to the custodian. Add the teammate to the always-notify list in **Settings > Bookings** for the emails instead.
+
+## Related Articles
+
+- [Getting Started with Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started)
+- [Which Emails Shelf Sends, and When](/knowledge-base/which-emails-shelf-sends-and-when)
+- [Booking Notification Settings](/knowledge-base/booking-notification-settings)
+- [Asset Reminders](/knowledge-base/asset-reminders)

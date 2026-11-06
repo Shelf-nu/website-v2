@@ -68,6 +68,7 @@ export const builtForApp = [
     "Hand custody over, or take it back, on the spot",
     "Check a booking's gear out and back in where the gear is",
     "Correct a stock count on the shelf, with a reason attached",
+    "Get a push when your booking is due, your audit is assigned, or a reminder names you (from 1.7.0, paid plans)",
     "Sign in against your organization's own Shelf server (from 1.5.0)",
 ];
 
@@ -113,7 +114,7 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     },
     {
         question: "Is it free?",
-        answer: "Yes. The app is free with any Shelf account, including the free tier. Nothing is sold through the app. Pricing for the web platform stays exactly the same.",
+        answer: "Yes. The app is free with any Shelf account, including the free tier. Nothing is sold through the app. Pricing for the web platform stays exactly the same. The one part that depends on your plan is push notifications, which are included in Plus, Team and Enterprise.",
     },
     {
         question: "Is it available on Android?",
@@ -122,6 +123,10 @@ export const mobileAppFaqs: MobileAppFAQ[] = [
     {
         question: "Does it work on an iPad or a tablet?",
         answer: "Yes, from version 1.6.0. Shelf Companion runs as a real iPad app and fills an Android tablet's screen. On a larger tablet held sideways (and a 13-inch iPad either way), the tab bar becomes a sidebar on the left. Phones look the same as before.",
+    },
+    {
+        question: "Does the app send push notifications?",
+        answer: "Yes, from version 1.7.0, on the Plus, Team and Enterprise plans. You get a push when a booking you are the custodian of is reserved, changed, due to go out or come back, or overdue; when you are assigned an audit and before it is due; and when an asset reminder that includes you comes due. Tap it to open that booking, audit or asset. Turn push on in the app under Settings, Notifications, and switch off any kind there or under Account settings on the web. Emails keep arriving as before. See: /knowledge-base/push-notifications-on-shelf-companion",
     },
     {
         question: "Can I capture audit evidence (photos, notes) from the app?",

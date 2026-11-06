@@ -1,9 +1,9 @@
 ---
 title: "Getting Started with Shelf Companion for iPhone"
-description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone, iPad and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, and multi-workspace switching."
+description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone, iPad and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, push notifications, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-11-02"
+updated: "2026-11-03"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -19,10 +19,10 @@ This guide walks through downloading the app, signing in, and using each of the 
 Before installing Shelf Companion:
 
 - **An existing Shelf account.** The app does not create a separate account or workspace — it connects to your current Shelf workspace using the same login. If you do not have one yet, sign up free at [app.shelf.nu/join](https://app.shelf.nu/join).
-- **An iPhone or iPad running iOS 15.1 or later, or an Android phone or tablet.** Both stores carry the same release, built from the same code, so the version number in the app matches on either platform. The current release is **1.6.0**.
+- **An iPhone or iPad running iOS 15.1 or later, or an Android phone or tablet.** Both stores carry the same release, built from the same code, so the version number in the app matches on either platform. The current release is **1.7.0**.
 - Optional: assets in your workspace already labelled with Shelf QR codes (or registered Code 128, Code 39, EAN-13, DataMatrix, or external QR codes). If you do not have labels yet, you can still browse and act on assets manually — see [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
 
-The app is **free with any Shelf plan**, including the free Personal tier. Nothing is sold through the app. If your workspace does not have an add-on enabled (for example, the Audits add-on), the app shows an informational message rather than a paywall.
+The app is **free with any Shelf plan**, including the free Personal tier. Nothing is sold through the app. [Push notifications](/knowledge-base/push-notifications-on-shelf-companion) are the one part that depends on your plan: they are included in Plus, Team and Enterprise. If your workspace does not have an add-on enabled (for example, the Audits add-on), the app shows an informational message rather than a paywall.
 
 ## 1. Download the App
 
@@ -253,6 +253,12 @@ The full custody chain is logged with timestamps. The web app's audit log shows 
 
 **Low stock at a glance.** When the free units drop to or below the minimum you set for the asset, the **Free now** figure on the detail screen turns amber. Since the update of 21 October 2026 the figure is called **Free now** on the phone, the asset page and the asset list alike: the units you could hand over today. It uses the same rule as the web, so an asset flagged low on your phone is flagged low on the web too.
 
+## 11. Push Notifications
+
+From version 1.7.0 the app can push the news that is about you: a booking you are the custodian of is reserved, changed, due to go out or come back, or overdue; you are assigned an audit, or it is due; an asset reminder that includes you comes due. Open **Settings → Notifications** and tap **Turn on notifications** to start. Tapping a push opens that booking, audit or asset, switching workspace when it belongs to another one.
+
+The same screen turns each kind (**Bookings**, **Audits**, **Stock and reminders**) off on its own, or pauses all of them. The switches follow you to every phone you are signed in on, and they never stop your emails. Push is included in the Plus, Team and Enterprise plans. The full list of pushes and the plan rules are in [Push Notifications on Shelf Companion](/knowledge-base/push-notifications-on-shelf-companion).
+
 ## Workspace Add-Ons — What the App Shows
 
 The app respects whether your workspace has an add-on enabled:
@@ -269,7 +275,15 @@ For clarity, these are real, intentional gaps. They are on our radar, but they a
 - **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
 - **Adding or editing an asset's codes.** The detail screen lists the codes an asset carries, but registering a new barcode or changing one is a web job.
 
-This guide describes **version 1.6.0**, live on the App Store and Google Play since 20 October 2026. The one thing that needs it is the tablet layout (step 1); everything else in this guide also reached phones on 1.5.0, by over-the-air update. The updates of 20 and 21 October 2026 brought an asset's **Bookings** section, booking a number of units of stock, **Extend booking**, the closing note on **Complete audit**, the **Value** field on **New asset**, the archived-kit warnings and reservation-shortfall chips, **Free now** on the asset screen, and search in long dropdown fields. Before 1.6.0, version 1.5.0 was live from 31 August 2026. Grouping a booking's kits and the **Manage Placements** editor reached 1.5.0 through an over-the-air update on 10 September 2026, so the version number did not change. **Scan to Check Out**, picking a kit as one thing, and the booking's location lines and search followed the same way on 14 September 2026. A further update on 21 September 2026 brought the **Codes** card on asset and kit screens, the custody-through-a-booking rows, the paused camera resuming on any tap, manual code entry above the keyboard, kits counted as one thing in the check-out and check-in questions, sheets that stay open when a save fails, and the tick box hidden on a kit the mode cannot pick. The update of 2 October 2026 brought unit counts to the custody scan, check-in limited to what actually went out, the reservation count's lower limit, and the device and app version on each scan. Three updates on 8 October 2026 brought the **From location** question for pooled stock on assign and check-out, the greyed **Assign Custody** on a kit member, opening an asset from an audit row with Back returning to the audit, and the line that explains a hidden **Check Out All Assets** or **Check In All**. The update of 15 October 2026 brought the **Manager** role, **Show more** on long booking and audit descriptions, the 5,000-character count on asset descriptions, and the fix that makes a link to a second booking or audit open that one. The update of 27 October 2026 brought three repairs: **Edit Asset** no longer asks *Discard Changes?* after a save (or twice on Cancel) and the asset screen and list show the new details straight after saving; a barcode scanned inside an audit is recorded as an audit scan rather than an ordinary scan, so it no longer writes a note on the asset; and **Create tag** accepts names shorter than three characters, such as **AV**. The app downloads an update like this in the background when you open it and uses it from the next time you open it. If your app is older, take the update from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion). Two items that used to sit on the list above shipped in 1.3.0 and moved into the guide: **recording where a scan happened** (step 4) and **claiming a brand new QR code** (step 4, for admins and owners). The booking calendar, the audit evidence action, and the model and asset ID rows need **1.4.0**. [Connecting to your own server](/knowledge-base/connect-shelf-companion-to-your-own-server), undoing an audit scan, and the scanner's clearer results need **1.5.0**.
+This guide describes **version 1.7.0**. Most of it works on any version from 1.5.0, because the app also takes smaller updates in the background: it downloads them when you open it and uses them the next time you open it. A few things need a newer store version:
+
+- **1.7.0**: push notifications (step 11)
+- **1.6.0**: the tablet layout (step 1)
+- **1.5.0**: [connecting to your own server](/knowledge-base/connect-shelf-companion-to-your-own-server), undoing an audit scan, and the scanner's clearer results
+- **1.4.0**: the booking calendar, audit photos and notes, and the model and asset ID rows
+- **1.3.0**: recording where a scan happened, and claiming a brand new QR code (step 4)
+
+If your app is older, update it from the [App Store](https://apps.apple.com/app/id6765639874) or [Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion).
 
 Anything Shelf changes on the server side reaches every installed version at once, whatever it says in Settings. The booking-visibility rule described in step 9 is one of those.
 

@@ -351,6 +351,29 @@ export const pricingFeatures: PricingFeature[] = [
         },
     },
 
+    {
+        // Gated by TierLimit.canUsePushNotifications, checked on the
+        // workspace owner's tier at send time (shelf.nu #3249, #3250)
+        id: "push-notifications",
+        category: "Team Collaboration",
+        name: "Push Notifications",
+        description:
+            "Shelf Companion pushes for your bookings, audits and asset reminders",
+        availability: {
+            free: "not-included",
+            plus: "included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "not-included",
+            tier_1: "included",
+            tier_2: "included",
+            custom: "included",
+        },
+        requiresPremiumEnabled: true,
+    },
+
     // ============================================================================
     // BOOKINGS & RESERVATIONS
     // ============================================================================
