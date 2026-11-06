@@ -3,7 +3,7 @@ title: "Importing Assets to Shelf: CSV Guide"
 description: "A comprehensive guide on how to prepare and import asset data using CSV files into Shelf, covering the column mapping review, file requirements, standard columns, custom fields, barcodes, and troubleshooting."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-28"
+updated: "2026-11-03"
 layout: "knowledge-base"
 ---
 
@@ -125,7 +125,7 @@ If the field doesn't exist in your workspace, Shelf creates it on import with th
 
 **Supported field types** (exactly seven):
 
-- **text** -- Standard text input (default if `type:` is omitted)
+- **text** -- Standard text input (default if `type:` is omitted). Add `format:link` (e.g. `cf:User manual,type:text,format:link`) to create a [Link field](/knowledge-base/custom-field-types-in-shelf#link-format-manuals-certificates-and-folders): every value in the column must then be a web link
 - **multiline text** -- Extended text areas / markdown
 - **option** -- Dropdown selections. **Allowed values are collected automatically** from the data in that column — you do not declare options in the header
 - **boolean** -- Accepts `yes` or `no` only (case-insensitive). Any other value (including `true`, `false`, `1`, `0`) is silently skipped for that row

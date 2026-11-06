@@ -3,7 +3,7 @@ title: "Mastering Custom Fields in Shelf: Complete Guide to Asset Information Cu
 description: "An overview of field types that can be used as custom fields in Shelf, enabling organizations to customize their asset management systems to match specific workflow requirements."
 category: "Custom Fields"
 date: "2024-06-01"
-updated: "2026-10-30"
+updated: "2026-11-03"
 layout: "knowledge-base"
 ---
 
@@ -35,6 +35,25 @@ Ideal for concise, searchable, and comparable information.
 - Simple classification labels
 
 **Example:** Asset Tag: "NYC-LAB-001"
+
+#### Link format: manuals, certificates and folders
+
+A single-line text field has a **Format** setting: **Plain** (the default) or **Link**. Choose **Link** for a field that should always hold a web address, such as *User manual*, *Calibration certificate* or *Project folder*, kept wherever your team already stores files: SharePoint, OneDrive, Google Drive, Dropbox, Box or any other site.
+
+- **Only a web link is accepted.** Every value must be a link, like `https://example.com/manual.pdf`. A value that is not a link is refused, whether it is typed in the asset form, edited inline, set on many assets at once, entered in Shelf Companion or imported from a CSV.
+- **It shows as a short, readable link.** Instead of a long address, the asset page and the advanced index show the page's title when Shelf can read it, or else what the link is and where it lives, such as *PDF · SharePoint* or *Folder · Google Drive*. Links open in a new tab.
+- **Name a link once for everyone.** On the asset page, anyone who can edit assets can click **Name this link** next to a Link field's value and give it a clearer name. The name is used for that link across the whole workspace; **Remove name** goes back to the automatic one.
+- **Switching an existing field to Link** keeps the values already saved. Values that are not links stay as they are until someone edits them, and then they have to become a link.
+
+Shelf stores the link, not the file: the document stays in your own storage, with its own sharing rules.
+
+![A Manual Link field on an asset page, shown as a short link reading X-T4 Complete Guide, PDF from dl.fujifilm-x.com, with the Name this link button beside it](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/link-field-chip.webp)
+
+![The Name this link popover with the name X-T4 Complete Guide typed in and a note that it is shown everywhere this link appears in the workspace](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/link-field-rename.webp)
+
+The same readable links appear for any web address typed into a plain text field, an asset description or a note. See [Links in notes and activity](/knowledge-base/custom-field-types-in-shelf#links-in-notes-and-activity) below.
+
+**Example:** Calibration certificate: *Certificate 2026 · SharePoint*
 
 ### Multi-line Text
 
@@ -154,7 +173,7 @@ For Amount and Number fields, **0** is a real answer and an empty field is not:
 
 ### Import and Export Intelligence
 
-- **CSV Import**: declare the field type in the header (e.g. `cf:Purchase Date,type:date`); Shelf auto-creates the custom field if it does not exist, using the type from the header. For `option` fields, the set of allowed values is collected automatically from the data in that column.
+- **CSV Import**: declare the field type in the header (e.g. `cf:Purchase Date,type:date`); Shelf auto-creates the custom field if it does not exist, using the type from the header. For `option` fields, the set of allowed values is collected automatically from the data in that column. Add `format:link` to create a Link field (e.g. `cf:User manual,type:text,format:link`); every value in that column must then be a web link.
 - **Export Formatting**: Currency fields export with symbols, numbers export plain
 - **Template Generation**: Download pre-configured CSV templates
 - **Data Validation**: Import validation prevents data corruption
@@ -236,6 +255,12 @@ Select assets on the asset index and choose **Actions → Set custom field** to 
 - Amount fields: Enter numbers without currency symbols (1234.56)
 - Number fields: Include negative values when needed (-40)
 - Test imports with small batches before full deployment
+
+## Links in Notes and Activity
+
+Web links are readable wherever they appear in Shelf, not only in Link fields. A link in a note (on assets, bookings, locations, audits and team members), in an automatic activity line, in an asset description or in a text custom field shows as the same short link with the page's title or its kind and source. Links written as Markdown (`[label](https://...)`) keep the label you wrote.
+
+On the phone, Shelf Companion shows links in custom field values the same way; tap one to open it.
 
 ## Integration with Workflows
 
