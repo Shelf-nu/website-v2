@@ -31,6 +31,7 @@ const ARTICLES = {
   "booking-draft-and-checkout-confirm": "articles/booking-draft-and-checkout-confirm.mjs",
   "category-color-picker": "articles/category-color-picker.mjs",
   "count-links": "articles/count-links.mjs",
+  "activity-summary-details": "articles/activity-summary-details.mjs",
   "date-time-preferences": "articles/date-time-preferences.mjs",
   "low-stock-visibility": "articles/low-stock-visibility.mjs",
   "quantity-overview-free-now": "articles/quantity-overview-free-now.mjs",

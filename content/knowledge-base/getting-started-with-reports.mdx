@@ -3,7 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
-updated: "2026-11-02"
+updated: "2026-11-06"
 layout: "knowledge-base"
 ---
 
@@ -76,6 +76,24 @@ Reports are laid out in three layers:
 3. **Tables** at the bottom — the underlying records that make up the numbers.
 
 Compliance and utilization reports use color to flag entries that need attention — late bookings, idle assets that have not moved in months, or custodians with overdue items.
+
+## Read the Asset Activity Summary
+
+The **Asset Activity Summary** lists what happened to your assets in the timeframe, one row per change: created, updated, assigned to and returned from a team member, checked out and in, moved to another location or category, archived and reinstated.
+
+The **Details** column says what changed, in words and with names:
+
+- *Location changed: Studio → Debriefing Room*, *Location set to Hull depot*, *Location removed, was Studio*
+- *Category set to Machinery*, *Tags added: Fragile; removed: Keep cold*, *Serial number changed: SN-1234 → SN-9999*
+- For [quantity-tracked assets](/knowledge-base/quantity-tracked-assets-and-consumables), the units moved, in the asset's own unit of measure: *12 units moved: Leeds unit → Hull depot*, *40 kg placed at Hull depot*
+
+![The Asset Activity Summary with its Details column naming each move, such as Location changed: Gear Room → Studio B, and the Archived / Reinstated chip in the legend](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/activity-summary-details.webp)
+
+Long details show three lines and a **Show more** button. Names are the record's current name, so a location renamed since shows its new name on older rows, and one deleted since reads *(deleted location)*.
+
+**Archived** and **Reinstated** rows record when an asset was taken out of service and when it came back. See [Archive and reinstate assets](/knowledge-base/archive-and-reinstate-assets).
+
+**The CSV is the full movement history for the period.** It has one row per change with these columns: **Date**, **Asset ID**, **SAM ID**, **QR Code ID**, **Asset Name**, **Activity Type**, **Description**, **From** and **To**, **Performed By**. SAM ID and QR Code ID are the same codes the asset page and its label show, and From and To hold the names on each side of the change. The file covers the whole timeframe and every filter you applied, up to 100,000 rows. A period holding more ends with a row saying where the export stopped; narrow the date range to export the rest.
 
 ## How Booking Compliance Decides On Time or Late
 
@@ -206,6 +224,7 @@ What each report shows is still scoped to the workspace it was run in.
 - **"How well are we returning bookings on time?"** → Booking Compliance
 - **"Who has what right now?"** → Custody Snapshot
 - **"What's the inventory state for an audit?"** → Asset Inventory
+- **"Where was each asset kept, and who moved it?"** → Asset Activity Summary
 - **"How are bookings trending month over month?"** → Monthly Booking Trends
 - **"Are audits getting done, and what did they find?"** → Audit Completion
 
