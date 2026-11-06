@@ -152,6 +152,45 @@ node scripts/analytics.mjs experiments deploy <id>            # Mark experiment 
 - In client components: `import { trackEvent } from "@/lib/analytics"; trackEvent("event_name", { key: "value" })`
 - In server components: use `<TrackedLink>` from `@/components/analytics/tracked-link`
 
+## Public voice: what we publish, and how
+
+Two audiences read this site, and they need different things:
+
+- **Users** read the knowledge base. It must be complete and exact: every behaviour, every limit, every caveat. If the product changed, the KB changes. No exceptions, no spin.
+- **Prospects** read `/updates`, feature pages, solutions, alternatives and the blog. These are sales surfaces. They are also truthful, but *what* we publish there is a commercial choice.
+
+Being truthful means never saying something false. It does not mean announcing everything. The rules:
+
+1. **An `/updates` post answers "what can you do now?"** Frame it as the capability. A post whose honest subject is "what was broken" belongs in the KB as a plain factual correction, with no post.
+2. **A bug fix gets a post only when the fix is something customers asked for and the capability stands on its own.** Then write about the capability, not the bug. No "the bug people hit", no error-message quotes, no "used to refuse". "Customers asked for it" needs evidence in the PR: a customer quote or ticket cited in the shelf.nu PR, or Carlos saying so in the website PR. Without it, the fix stays KB-only.
+3. **Never publish as news:** we made a mistake; a regression; a removed feature; a tighter limit; a comparison page corrected because it was wrong; a security or data patch. Fix it, document the current behaviour in the KB, move on. The internal PR body still says plainly what was wrong.
+4. **Every public post must pass "why would a buyer care?"** If the answer is "they wouldn't", it is KB-only. The in-app bar in the content pipeline is the same question asked harder.
+5. **Internal honesty stays total.** PR descriptions, commit messages, review notes and KB text say exactly what happened, including "this was a bug". The filter is only on what prospects see.
+6. **Nothing becomes less accurate because of these rules.** When in doubt, keep the fact and lose the post.
+
+Quick test for a draft `/updates` entry: if a competitor's salesperson could paste it into a deck against us, it is not an update, it is a KB note.
+
+Individual `/updates/<slug>` pages are `noindex` and out of the sitemap (since 2026-03-10). An entry buys the in-app draft, the RSS/JSON feed and a KB link, nothing more. So an entry is written only for a launch worth the feed or the in-app panel; everything else is carried by the KB and the prospect pages.
+
+### How a post is judged
+
+- **Per paragraph, not per post.** A paragraph whose honest subject is a fix is cut and lives in the KB only, even inside a post about a real feature.
+- **No "until now" openers.** A post may not open with what the product could not do, even for a design limit that was never a bug. Lead with the job the reader can now do.
+- **Explicit statements count; inference does not.** "Shelf now logs moves from the web, the phone app and kit moves" passes even if a careful reader could infer something was missing before.
+- **Limits and caveats belong in the KB.** A post states one only if the reader would otherwise be misled.
+- **Long-form blog may name a deliberate design trade-off** when the candour is the point of the piece and the same sentence gives the reader the upside. It may never name a defect.
+- **Old posts are not grandfathered.** Posts on `main` that fail these rules are rewritten or unpublished in a one-off sweep.
+
+### How a content PR is judged
+
+- **Under-reach blocks a merge only when an untouched page becomes false or misleading.** If an untouched page only becomes understated, merge and put the sentence in a follow-up PR.
+- **Pre-existing errors found nearby** go in the follow-up, not a change request on the PR that happened to sit next to them.
+- **Internal links are checked against `main` plus the PR.** A PR whose links resolve only through another open PR waits for that PR.
+- **A PR lists any ACME demo-workspace data it changed** to capture a screenshot.
+- **An automated reviewer may merge only** a diff limited to `content/**`, copy fields in `src/data/**`, `public/images/**` and `scripts/media-pipeline/articles/**`. Anything else (routes, components, build scripts, workflows) is report-only and waits for a human.
+
+These rules apply to anyone writing or reviewing content here, human or automated, including the `pr-kb-analyzer` pipeline and any PR reviewer.
+
 ## Environment variables
 
 | Variable | Scope | Purpose |
