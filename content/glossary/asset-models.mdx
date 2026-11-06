@@ -11,7 +11,7 @@ personas:
   - "education"
 canonicalUrl: "/glossary/asset-models"
 date: "2026-07-03"
-updated: "2026-10-08"
+updated: "2026-11-04"
 
 seo:
   title: "What Are Asset Models? | Definition & Examples"
@@ -21,7 +21,7 @@ seo:
 
 # Asset Models
 
-An **Asset Model** groups identical, individually tracked units under one shared template, for example "Dell Latitude 5550" or a fleet of the same camera body. Every unit remains its own asset with its own QR label, custody chain, and history; the model is the family it belongs to. Creating assets from a model pre-fills shared defaults such as category and valuation, so fleets stay consistent as they grow.
+An **Asset Model** groups identical, individually tracked units under one shared template, for example "Dell Latitude 5550" or a fleet of the same camera body. Every unit remains its own asset with its own QR label, custody chain, and history; the model is the family it belongs to. A model can hold default values, a category, a value and any of your custom fields such as Brand or Supplier, and they fill the empty fields of every asset that joins it, so fleets stay consistent as they grow.
 
 This sits between the two tracking methods in Shelf: [individually tracked assets](/features/asset-pages), where each item is unique, and [quantity-tracked assets](/glossary/quantity-tracked-assets), where interchangeable stock is one record with a count. Asset Models give you fleet-level convenience without giving up per-unit identity.
 
@@ -29,12 +29,29 @@ This sits between the two tracking methods in Shelf: [individually tracked asset
 
 ## Why group units under a model
 
-- **Consistent records**: new units inherit the model's defaults, so a fleet of 30 laptops does not drift into 30 slightly different records.
+- **Consistent records**: units that join the model get its defaults in their empty fields, so a fleet of 30 laptops does not drift into 30 slightly different records. See [Default values](#default-values).
 - **One picture for the whole fleet**: upload a photo once on the model and every unit that has no photo of its own shows it.
 - **Per-unit accountability stays intact**: each unit keeps its own QR label, custody, maintenance reminders, and audit trail, so you always know exactly who has which unit. Joining, leaving or switching a model is part of that trail: the unit's activity names the model it left and the one it joined.
 - **Book by model**: reservations can target the model instead of a specific unit.
 - **See the fleet at a glance**: the asset index's **Asset model view** lists your models instead of your assets, with how many units match your filters and where they are right now (in, out, in custody). Click a count to see the units behind it. The asset search matches model names too, so typing a model's name finds every unit of it. See [Asset Model View](/knowledge-base/advanced-asset-index-complete-guide#asset-model-view).
-- **Group a fleet you already own**: select the units in the asset index, then **Actions → Update asset model**. You can create the model from inside the picker, and **Remove from asset model** ungroups a selection the same way. Only the model link changes: category, value, and custody stay as they are, and quantity-tracked assets in the selection are skipped rather than blocking the batch. See [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf#grouping-a-fleet-into-an-asset-model). If you are changing several fields at once, an `Asset model` column in [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) does the same job as part of a wider edit, matching names case-insensitively and creating a model that doesn't exist yet.
+- **Group a fleet you already own**: select the units in the asset index, then **Actions → Update asset model**. You can create the model from inside the picker, and **Remove from asset model** ungroups a selection the same way. The model's defaults fill the empty fields of the grouped units, values they already have and custody stay as they are, and quantity-tracked assets in the selection are skipped rather than blocking the batch. See [Using Batch Actions in Shelf](/knowledge-base/using-batch-actions-in-shelf#grouping-a-fleet-into-an-asset-model). If you are changing several fields at once, an `Asset model` column in [Bulk Updating Assets via CSV](/knowledge-base/bulk-updating-assets-via-csv) does the same job as part of a wider edit, matching names case-insensitively and creating a model that doesn't exist yet.
+
+---
+
+## Default values
+
+Under **Workspace settings → Asset models**, a model's form holds a **Default category**, a **Default valuation** and a **Default custom field values** section with one row per custom field of your workspace. Fill in what every unit of the model shares, such as the brand, the supplier or the warranty length.
+
+![The asset model form's Default custom field values section: one row per custom field, with the note that defaults fill empty fields only and that yes/no fields can't have a default](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/asset-model-default-field-values.webp)
+
+The rule is the same wherever an asset joins the model: creating an asset from it, bulk-creating units, picking the model on an asset's edit form, **Actions → Update asset model** on a selection, an import, or an `Asset model` column in a CSV update. Each default fills the matching field **only if it is empty**. Nothing the asset already holds is replaced, and nothing stays linked afterwards: the asset can change the value, and editing the model later does not rewrite its units.
+
+- **On the asset form** the model's default value and custom field values appear in the empty inputs as soon as you pick the model, so a required field the model covers does not block the save. Pick a different model and only the values the first model put there change.
+- **A field limited to some categories** is filled only for assets in one of them. The category is settled first, so a default category can make such a field apply.
+- **Yes/no fields** can't have a default, because the form always submits them.
+- **Each filled asset gets a note** on its activity naming the model and the values, for example *filled empty fields from the asset model Dell Latitude 5550: value US$450.00, Brand Dell.* A bulk grouping also says in its message how many assets the defaults filled.
+
+**Units already in the model.** Defaults fill assets as they join. When units already in the model have empty fields its defaults could fill, the model's edit page says how many, field by field, with a **Fill empty fields on N assets** button. It fills only fields that are empty and never replaces a value.
 
 ---
 
