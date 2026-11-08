@@ -94,7 +94,7 @@ export interface MobileAppFAQ {
 export const mobileAppFaqs: MobileAppFAQ[] = [
     {
         question: "Do I have to install the Shelf Companion app to use Shelf?",
-        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion — an optional native app for iPhone and Android, focused on field workflows like scanning, audits, and custody handoffs. Many teams use a mix: admins on the web, field crews on the Companion app. Same workspace, same data, same login on every path.",
+        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion — an optional native app for iPhone, iPad and Android, focused on field workflows like scanning, audits, and custody handoffs. Many teams use a mix: admins on the web, field crews on the Companion app. Same workspace, same data, same login on every path.",
     },
     {
         question: "Where can I get the app?",

@@ -91,15 +91,15 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "What reports does Shelf include?",
-        answer: "Shelf ships with built-in operational reports across bookings, assets, and custody — Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, and Custody Snapshot. Each report has timeframe and filter controls; URL state encodes the filters so views are bookmarkable. Every report exports to CSV and chart-based reports also export to PDF. Reports are included on the Plus and Team plans. Within a workspace, opening and exporting reports is available to owners and administrators; self-service and base users do not see the Reports area."
+        answer: "Shelf ships with built-in operational reports across bookings, assets, and custody — Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, and Custody Snapshot. Each report has timeframe and filter controls; URL state encodes the filters so views are bookmarkable. Every report exports to CSV and Booking Compliance, Asset Inventory and Custody Snapshot also export to PDF. Reports are included on the Plus and Team plans. Within a workspace, opening and exporting reports is available to owners and administrators; self-service and base users do not see the Reports area."
     },
     {
         question: "Do I have to install the Shelf Companion app to use Shelf?",
-        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion — an optional native app for iPhone and Android, focused on field workflows. Many teams use a mix. Same workspace, same data, same login on every path."
+        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion — an optional native app for iPhone, iPad and Android, focused on field workflows. Many teams use a mix. Same workspace, same data, same login on every path."
     },
     {
         question: "Is the mobile app included with my plan?",
-        answer: "Yes. Shelf Companion (iPhone and Android) is free with any Shelf account, including the free Personal plan. Nothing is sold through the app — it's purely an optional field client for your existing Shelf workspace. Sign in with the credentials you already use on shelf.nu. Push notifications in the app (bookings, audits and asset reminders) are included in Plus, Team and Enterprise."
+        answer: "Yes. Shelf Companion (iPhone, iPad and Android) is free with any Shelf account, including the free Personal plan. Nothing is sold through the app — it's purely an optional field client for your existing Shelf workspace. Sign in with the credentials you already use on shelf.nu. Push notifications in the app (bookings, audits and asset reminders) are included in Plus, Team and Enterprise."
     },
     {
         question: "Is there an Android version?",
@@ -111,6 +111,6 @@ export const pricingFaqs: PricingFAQ[] = [
     },
     {
         question: "Can I capture audit evidence (photos, notes) from the mobile app?",
-        answer: "Yes, on iPhone and Android. Tap any row in the scanned-items list during an audit to open the evidence sheet, write a condition note, and attach a photo taken with the camera on the spot or picked from your photo library. Each row shows a badge with how much evidence it already carries, and everything lands on the same audit record you see on the web. Creating and configuring audits still happens on the web."
+        answer: "Yes, on iPhone, iPad and Android. Tap any row in the scanned-items list during an audit to open the evidence sheet, write a condition note, and attach a photo taken with the camera on the spot or picked from your photo library. Each row shows a badge with how much evidence it already carries, and everything lands on the same audit record you see on the web. Creating and configuring audits still happens on the web."
     }
 ];

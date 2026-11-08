@@ -3,7 +3,7 @@ title: "Progressive Checkout: Hand Out Booking Items as They're Picked Up"
 description: "Progressive checkout lets you check out a booking's assets one at a time by scanning, or in bulk from the Actions menu, instead of only all at once — perfect when gear leaves the cage in stages."
 category: "Bookings & Custody"
 date: "2026-06-17"
-updated: "2026-11-02"
+updated: "2026-11-08"
 layout: "knowledge-base"
 ---
 
@@ -80,7 +80,7 @@ If your workspace counts [each kit as a single unit](/knowledge-base/partial-che
 2. The scanner opens with the booking's details and the lifecycle bar at the top.
 3. Scan each asset's QR code or barcode as it's handed over.
 4. Shelf validates every scan against the booking — it blocks items that aren't part of the booking, are already checked out, are in custody elsewhere, or break kit rules.
-5. The first successful scan moves the booking from **Reserved** to **Ongoing** and schedules the check-in reminder. If the reservation's end date has already passed, the scanner asks first and can only check the items out **as overdue**; to start the booking with a new end date, use **Check out** in the booking header instead ([why](/knowledge-base/early-check-in-and-check-out-of-bookings#checking-out-after-the-reserved-period-has-ended)).
+5. Scanned items collect in the list beside the scanner. When everything going out is on it, select **Check out assets**: Shelf checks those items out, moves the booking from **Reserved** to **Ongoing** and schedules the check-in reminder. If the reservation's end date has already passed, the scanner asks first and can only check the items out **as overdue**; to start the booking with a new end date, use **Check out** in the booking header instead ([why](/knowledge-base/early-check-in-and-check-out-of-bookings#checking-out-after-the-reserved-period-has-ended)).
 6. Keep scanning across as many sessions as you need. The lifecycle bar updates after each scan so you always know what's still booked.
 
 If you scan before the booking's scheduled start time, Shelf shows the same early-checkout warning as a normal check-out — you can cancel, adjust the start date to now, or proceed without changing the dates. See [Early Check-in and Check-out of Bookings](/knowledge-base/early-check-in-and-check-out-of-bookings).
@@ -104,7 +104,7 @@ The **Bookings** list carries the same two buttons on each row that can take the
 
 ### Checking Out From the Phone
 
-The free [Shelf Companion app](/mobile-app) on iPhone and Android offers both styles on a booking's screen:
+The free [Shelf Companion app](/mobile-app) on iPhone, iPad and Android offers both styles on a booking's screen:
 
 - **Scan to Check Out** opens the phone's scanner for that booking. Scan each asset or kit as you hand it over, then send the list. Like the web scanner, it refuses anything that is not on the booking or can't go out, and says why. A kit's code adds the kit's assets that can go out.
 - **Select to Check Out** lets you tick assets and kits on the booking's list and check them out together. A kit is picked as one thing, with one tick box for the whole kit.

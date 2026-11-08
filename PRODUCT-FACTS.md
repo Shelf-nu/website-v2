@@ -11,11 +11,17 @@
 - For tracking equipment/assets a team **uses** — IT hardware, AV/camera gear, tools, vehicles, lab, education/media. **Not** retail/SKU/stock inventory.
 
 ## Mobile / apps
-- **Shelf Companion (iPhone): LIVE on the Apple App Store since 2026-05-25** — `https://apps.apple.com/app/id6765639874`. iPhone-only (iOS 15.1+), **free**, requires an existing Shelf account. A field **companion**: scan QR/barcodes, run live audits, manage custody, booking check-in/out; syncs with the web workspace.
+- **Shelf Companion (iPhone): LIVE on the Apple App Store since 2026-05-25** — `https://apps.apple.com/app/id6765639874`. iPhone and **iPad** (a native iPad app since 1.6.0; the App Store lists iPad devices and iPad screenshots; `supportsTablet: true` in apps/companion/app.json), iOS 15.1+, **free**, requires an existing Shelf account. A field **companion**: scan QR/barcodes, run live audits, manage custody, booking check-in/out; syncs with the web workspace.
 - **Shelf Companion (Android): LIVE on Google Play since 2026-06-09** — `https://play.google.com/store/apps/details?id=com.shelf.companion`. **Free**, requires an existing Shelf account. Same field companion as the iPhone app (scan QR/barcodes, run live audits, manage custody, booking check-in/out).
 - **Web app / PWA:** the full Shelf platform runs in any modern browser (iOS, Android, macOS, Windows, Linux) and installs as a PWA — no app store needed. The web app is the **complete platform / source of truth**; the native apps are optional companions.
 - ❌ **Never say:** "native app coming soon", "join the (beta) waitlist", "the upcoming native app", "Android is in development / coming soon", "Shelf has no native app / no app-store option." Both Companion apps (iPhone + Android) are live.
 - ✅ **Say:** "Shelf Companion is on the App Store and Google Play — free on iPhone & Android; listing iOS and Android in operatingSystem structured data is now correct; the web app works in any browser."
+
+## Reports (verified 2026-11-08 against shelf.nu main @197f3b4)
+- Reports are on the **Plus and Team** plans (`REPORTS_PLAN_TITLE`, apps/webapp/app/modules/reports/plan-copy.ts); Owners and Admins only.
+- **CSV export on every report. PDF download on three only: Booking Compliance, Asset Inventory, Custody Snapshot** (`REPORTS_WITH_PDF`, components/reports/report-export-actions.tsx; the generate-pdf route handles only those three). ❌ Never say "chart-based reports export to PDF" or list Top Booked Assets, Monthly Booking Trends, Activity Summary, Utilization or Distribution as PDF reports.
+- **Asset Utilization counts booking time only**, not custody. ❌ Never say "based on booking and custody time".
+- Asset Inventory, Asset Distribution and Idle Assets count active assets only; Activity Summary, Utilization and Top Booked Assets keep archived assets' history inside the timeframe.
 
 ## Pricing (verify against `/pricing` + `src/data/pricing.ts`)
 - **Free** — single user, unlimited assets, QR scanning, custody. $0.
