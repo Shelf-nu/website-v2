@@ -129,7 +129,7 @@ const INFRA_RULES = [
 // Corrected claims (website PR from the pr-kb-analyzer run of 2026-11-08,
 // verified against shelf.nu main @197f3b4). See PRODUCT-FACTS.md "Reports".
 const CORRECTED_CLAIMS = [
-  { re: /chart-based reports[^\n]{0,40}PDF|PDF[^\n]{0,40}chart-based reports/i,
+  { re: /chart(-based)? reports[^\n]{0,40}PDF|PDF[^\n]{0,40}chart(-based)? reports|reports with charts[^\n]{0,40}PDF/i,
     why: "Only Booking Compliance, Asset Inventory and Custody Snapshot download as PDF (REPORTS_WITH_PDF); 'chart-based reports' is the wrong set." },
   { re: /based on booking and custody time/i,
     why: "Asset Utilization counts booking time only, not custody." },
