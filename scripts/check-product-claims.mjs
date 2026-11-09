@@ -133,6 +133,8 @@ const CORRECTED_CLAIMS = [
     why: "Only Booking Compliance, Asset Inventory and Custody Snapshot download as PDF (REPORTS_WITH_PDF); 'chart-based reports' is the wrong set." },
   { re: /based on booking and custody time/i,
     why: "Asset Utilization counts booking time only, not custody." },
+  { re: /^\|\s*\*\*Maintenance scheduling\*\*\s*\|[^\n]*\|\s*No\s*\|\s*$/i,
+    why: "Shelf has repeating asset reminders (Plus and Team) for service dates; a bare 'No' in the Maintenance scheduling row is wrong. Say 'Partly' and name what is missing (work orders)." },
 ];
 
 const TARGETS = [
