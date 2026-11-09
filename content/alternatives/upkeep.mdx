@@ -11,7 +11,7 @@ personas:
   - "it"
 canonicalUrl: "/alternatives/upkeep"
 date: "2026-01-01"
-updated: "2026-10-16"
+updated: "2026-11-09"
 seo:
   title: "UpKeep Alternative — Asset Tracking Without Maintenance Bloat"
   description: "UpKeep is a CMMS with deep maintenance capabilities. Shelf focuses on fast equipment tracking, custody, bookings, and movement workflows. Compare the differences."
@@ -39,13 +39,13 @@ Shelf takes a fundamentally different approach. Instead of managing maintenance 
 | **Primary focus** | Work orders, preventive maintenance, technician dispatch | Equipment check-out, booking, custody, location |
 | **Pricing model** | Per user/month (from $20) | Free (self-hosted) or managed cloud |
 | **Work order management** | Core feature with checklists, photos, time logging | Not a focus — built for equipment workflows |
-| **Preventive maintenance** | Automated schedules, meter-based triggers, IoT alerts | No — maintenance scheduling is not the use case |
+| **Preventive maintenance** | Automated schedules, meter-based triggers, IoT alerts | No work orders, meter triggers or sensor alerts. [Asset reminders](/features/asset-reminders) for service and inspection dates, repeating daily to yearly on Plus and Team |
 | **Equipment booking** | Not a core feature | Built-in with conflict prevention |
 | **Kit management** | Individual asset records only | Kit-aware booking and return verification |
 | **IoT / sensor integration** | Yes — wireless sensors with auto-work-order creation | No — QR-first, no hardware needed |
 | **Parts & consumables** | Yes — purchase orders, reorder automation, work-order-linked parts consumption | Tracks consumables/spare parts by quantity with min-quantity low-stock email alerts; no purchase-order automation |
 | **Open source** | No — proprietary SaaS | Yes — full codebase available |
-| **Per-user pricing** | Yes — every user adds cost | No — unlimited users |
+| **Per-user pricing** | Yes — every user adds cost | No — flat price per workspace; unlimited users on Team and Enterprise |
 | **Mobile experience** | Native iOS/Android app | Native iOS & Android app (Shelf Companion) + mobile web |
 | **Multi-team workspaces** | Single inventory with roles | Separated workspaces per department |
 | **Operational reports** | Strong maintenance, work-order, and asset-history reports | Built-in operational reports for bookings/custody/utilization (booking compliance, top booked assets and kits, utilization, idle, custody, distribution, audit completion) with CSV/PDF export |
@@ -70,7 +70,7 @@ See: [Custody](/features/custody)
 
 UpKeep's per-user pricing creates a direct tension: the more people who need to interact with equipment, the higher the bill. For a 50-person team on the Starter plan, that's $27,000/year. Organizations often respond by limiting who gets access, which defeats the purpose of having a system that tracks accountability across the team. Review sites surface this complaint regularly, with users noting that costs escalate quickly when advanced features require tier upgrades.
 
-Shelf includes unlimited users on all plans. The equipment room manager, the field technician, the department head checking availability, and the intern picking up a loaner laptop all participate without adding line items to the invoice. This is particularly important for education and media environments where dozens of users interact with shared gear.
+Shelf's Team plan includes unlimited users at a flat price per workspace (the free Personal plan and Plus are single-user). The equipment room manager, the field technician, the department head checking availability, and the intern picking up a loaner laptop all participate without adding line items to the invoice. This is particularly important for education and media environments where dozens of users interact with shared gear.
 
 ---
 
@@ -79,6 +79,8 @@ Shelf includes unlimited users on all plans. The equipment room manager, the fie
 UpKeep schedules maintenance events: inspections, PM routines, sensor-triggered alerts. What it does not provide is a reservation system for shared equipment. If three production teams need the same camera package next week, UpKeep has no native way to manage that conflict.
 
 Shelf's booking system handles exactly this: real-time availability calendars, automatic double-booking prevention, and multi-day reservation support. Film crews scheduling camera packages, universities managing student gear loans, and IT teams coordinating laptop pools all rely on booking-first workflows that UpKeep was never designed to support.
+
+Fleets of identical gear can also be reserved by model on the Team plan: book "4x HDMI cable" or "6x camera body" and hand out whichever units are on the shelf at pickup, while each unit keeps its own QR label and history. See [Book by Model](/features/bookings#book-by-model).
 
 See: [Bookings](/features/bookings)
 

@@ -11,7 +11,7 @@ personas:
   - "education"
 canonicalUrl: "/alternatives/itemit"
 date: "2026-01-01"
-updated: "2026-10-16"
+updated: "2026-11-09"
 seo:
   title: "Itemit Alternative — Free QR Equipment Tracking Software"
   description: "Looking for an Itemit alternative? Shelf offers QR-first equipment tracking with bookings, custody chains, and kit management — free to start, open source."
@@ -48,7 +48,7 @@ Shelf takes a different approach. Rather than layering hardware technologies, Sh
 | **Kit management** | Individual asset tracking only | Kit-aware booking and verification |
 | **Custody chains** | Limited audit trail | Full custody history with accountability |
 | **Open source** | No -- proprietary SaaS | Yes -- full codebase available |
-| **Unlimited users** | Pro tier and above | Yes |
+| **Unlimited users** | Pro tier and above | On Team and Enterprise; Personal and Plus are single-user |
 | **Per-user pricing** | Yes (Starter tier) | No -- flat pricing |
 | **Multi-team workspaces** | Single inventory with roles | Separated workspaces per department |
 | **Operational reports** | Asset list and audit exports | Built-in operational reports (booking compliance, top booked assets and kits, utilization, idle, custody, distribution, audit completion) with CSV/PDF export |
@@ -87,6 +87,8 @@ Itemit offers basic check-in/check-out functionality where users can scan an ass
 
 Shelf's booking system is built directly into the platform: real-time availability calendars, automatic double-booking prevention, and multi-day reservation support. Teams can see at a glance what equipment is available for any date range without toggling between separate tools. This matters for film productions scheduling camera packages, universities managing student gear loans, or IT teams coordinating laptop pools.
 
+Fleets of identical gear can also be reserved by model on the Team plan: book "4x HDMI cable" or "6x camera body" and hand out whichever units are on the shelf at pickup, while each unit keeps its own QR label and history. See [Book by Model](/features/bookings#book-by-model).
+
 See: [Bookings](/features/bookings)
 
 ![Bookings overview showing reservation calendar](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/bookings.jpg)
@@ -110,6 +112,8 @@ See: [Kits](/features/kits)
 Itemit organizes assets into a single inventory with role-based permissions. Reviewers note that the information visible to each user type is not customizable, which becomes a friction point when multiple departments need to manage their own equipment independently.
 
 Shelf uses workspaces to separate inventories by department, program, or location. IT, facilities, media production, and athletics each manage their own equipment independently, with organization-level visibility for administrators. No cross-department clutter, no permission complexity.
+
+Inside a workspace, roles follow the equipment counter. A **Manager** sees, checks out, checks in and cancels every booking, assigns custody to anyone and runs audits, without changing workspace settings, billing or who is on the team; **Self-service** users book and check out for themselves, and **Base** users request gear for an Administrator or Manager to hand over. See [user roles and their permissions](/knowledge-base/user-roles-and-their-permissions).
 
 See: [Workspaces](/features/workspaces)
 

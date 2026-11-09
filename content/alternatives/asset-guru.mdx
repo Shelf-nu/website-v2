@@ -11,7 +11,7 @@ personas:
   - "education"
 canonicalUrl: "/alternatives/asset-guru"
 date: "2026-01-01"
-updated: "2026-10-16"
+updated: "2026-11-09"
 seo:
   title: "Asset Guru Alternative — Open-Source Equipment Management"
   description: "Evaluating AssetGuru? Compare approval-heavy enterprise workflows with Shelf's scan-to-act equipment tracking approach."
@@ -28,7 +28,7 @@ Asset.Guru is a cloud-based fixed asset management platform founded in 2014 and 
 
 Asset.Guru offers three tiers: Micro Edition Plus ($99/month for up to 500 assets and 3 users), Starter Edition ($179/month for up to 1,000 assets and 10 users), and Enterprise Edition (custom pricing for 5,000+ assets and 50 users). Critically, check-in/check-out functionality is only available on the Starter Edition and above, meaning the entry-level plan lacks the most basic equipment circulation feature. Asset.Guru also does not offer a public API, limiting integration and automation possibilities.
 
-Shelf focuses on what happens when people interact with equipment every day. Instead of treating assets primarily as financial line items to depreciate, Shelf's QR-first approach makes every interaction intentional: scan to check out, scan to return, scan to see who booked it next. Shelf is also open source, so teams can inspect the codebase, self-host for free, or extend functionality without vendor dependency. All features are available on every plan—no critical capabilities locked behind higher tiers.
+Shelf focuses on what happens when people interact with equipment every day. Instead of treating assets primarily as financial line items to depreciate, Shelf's QR-first approach makes every interaction intentional: scan to check out, scan to return, scan to see who booked it next. Shelf is also open source, so teams can inspect the codebase, self-host for free, or extend functionality without vendor dependency. The free Personal plan covers assets, QR labels, custody and kits for one user; bookings and unlimited users come with the Team plan at a flat price per workspace, not per seat.
 
 ---
 
@@ -38,8 +38,8 @@ Shelf focuses on what happens when people interact with equipment every day. Ins
 |---|---|---|
 | **Primary focus** | Depreciation, financial reporting, fixed asset register | Equipment check-out, booking, custody |
 | **Pricing** | From $99/month (500 assets, 3 users) | Free (self-hosted) or managed cloud |
-| **Check-in/check-out** | Starter Edition and above only ($179/month) | Available on all plans |
-| **Equipment booking** | Not a core feature | Built-in with conflict prevention |
+| **Check-in/check-out** | Starter Edition and above only ($179/month) | Custody check-out and return on every plan; booking check-out on Team |
+| **Equipment booking** | Not a core feature | Built-in with conflict prevention (Team plan) |
 | **Kit management** | Individual asset tracking only | Kit-aware booking and verification |
 | **Depreciation tracking** | Yes — automated with accounting sync | No — operational focus |
 | **Accounting integration** | Xero, QuickBooks Online, NetSuite | No native accounting sync |
@@ -69,7 +69,7 @@ See: [Custody](/features/custody)
 
 Asset.Guru's check-in/check-out feature is locked behind the Starter Edition at $179/month. Teams on the Micro Edition Plus plan—the most affordable tier—cannot assign equipment to staff or track who has what. This means the most fundamental equipment operation requires upgrading before you can even start.
 
-Shelf includes check-in and check-out on every plan, including the free self-hosted option. There is no feature gating on core equipment workflows. A team of five and a team of five hundred both get the same custody tracking, the same QR scanning, and the same audit trail.
+Shelf includes custody, assigning an asset to a person and releasing it again, on every plan, including the free Personal plan and the self-hosted option. Bookings with scheduled check-out and check-in come with the Team plan, where a team of five and a team of five hundred pay the same flat price and get the same custody tracking, the same QR scanning, and the same audit trail.
 
 See: [Location Tracking](/features/location-tracking)
 
@@ -82,6 +82,8 @@ See: [Location Tracking](/features/location-tracking)
 Asset.Guru focuses on tracking asset ownership and location, but it does not offer a dedicated booking and reservation system. If a team needs to schedule shared equipment—conference room AV gear, pool vehicles, camera kits—they need to manage that outside the platform or rely on manual coordination.
 
 Shelf's booking system is designed for high-frequency shared equipment environments: real-time availability calendars, automatic double-booking prevention, and multi-day reservation support. This matters for film productions scheduling camera packages, universities managing student gear loans, or IT teams coordinating laptop pools.
+
+Fleets of identical gear can also be reserved by model on the Team plan: book "4x HDMI cable" or "6x camera body" and hand out whichever units are on the shelf at pickup, while each unit keeps its own QR label and history. See [Book by Model](/features/bookings#book-by-model).
 
 See: [Bookings](/features/bookings)
 
