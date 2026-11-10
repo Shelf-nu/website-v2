@@ -730,7 +730,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Reports & Exports",
         name: "Booking PDFs (Pull Lists)",
         description:
-            "Export booking details as PDF pull lists, with saved PDF documents (Checklist, Check-out receipt with signature lines, or your own layouts with chosen columns and custom fields)",
+            "Export booking details as PDF pull lists, with saved PDF templates in every team workspace (Checklist, Check-out receipt with signature lines, or your own layouts with chosen columns and custom fields)",
         availability: {
             free: "not-included",
             plus: "not-included",
