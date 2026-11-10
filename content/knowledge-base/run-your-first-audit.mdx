@@ -1,9 +1,9 @@
 ---
 title: "Run Your First Audit"
-description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report. Covers the 7-day free trial."
+description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report, including how pooled stock is counted by units and what each photo says about when it was taken. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-10-27"
+updated: "2026-11-10"
 layout: "knowledge-base"
 ---
 
@@ -75,7 +75,45 @@ Two ways to register assets:
 
 Each scan registers the asset as **Found**. The progress bar updates live: "Audit: Studio B (Equipment Check) • 3/19 found".
 
+### Counting Quantity-Tracked Stock
+
+A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is one record for a pool of units (14 sandbags, 200 cable ties), so one scan cannot say whether the whole pool is there. Since 9 November 2026 the web scan page asks:
+
+1. Scan the pool's label. A dialog titled **How many did you find?** opens with the expected number prefilled in **Units found**. Type the number you counted, or click **All here (14)** to record the full amount. **Discard scan** drops the scan without recording anything. The scan is saved only once it has a count, and completing the audit waits while a count is still being saved.
+2. Miscounted? Scan the pool again, or click **Edit count** on its row, and the **Update count** dialog replaces the number. The audit's **Activity** tab records the correction, for example *recounted Sandbag: 8 of 14 (was 6)*.
+3. Any whole number from 0 up is accepted, including more than expected: a surplus is a finding too. The field refuses anything else with *"Enter a whole number, 0 or more."*
+
+The expected number is the units in the audit's scope at the moment the audit was created or the asset was added: the units placed at the audited location for a location audit, the units in the kit for a kit audit, or the units the person holds for a custody audit. An audit of selected assets, or a pool with none of its units in that scope, expects the whole pool. A pool that was not on the audit's list is counted without an expectation (no **All here** button, blank field).
+
+What you read afterwards, on the scanned rows, the overview, the row details, the **Complete Audit** dialog and the receipt:
+
+| Row | Meaning |
+|---|---|
+| **8 of 14 pcs** | 8 units counted of the 14 expected (the unit of measure is the asset's own) |
+| **16 of 14 pcs (+2)** | more counted than expected |
+| **0 of 14 pcs** | the pool was expected and nothing was counted, once the audit is completed |
+| **14 pcs expected** | the pool has not been scanned yet |
+| **3 pcs counted** | a pool that was not on the list |
+| **Not counted** | the pool was scanned from a phone app build that does not ask for a count; the scan still registers the asset as Found |
+
+The statistics gain a **Units counted** line (for example *Units counted: 8 of 14 across 1 quantity-tracked asset*), and the receipt adds a **Quantity** column and the same line, both only when the audit holds a pool. The Expected / Found / Not scanned / Unexpected tiles still count assets, not units.
+
+The [Shelf Companion](/mobile-app) app does not ask for a count yet: it records a scan of a pool the way it always did, and the web shows that row as **Not counted**.
+
+![Web scan drawer with a quantity-tracked row reading 8 of 14 pcs, the Units counted line, and the Update count dialog](https://gist.githubusercontent.com/carlosvirreira/eb049ad280149de8e740762fdfd801b6/raw/23e1586368a465124e8b54ec57e084f7d246f6c8/web-scan.png)
+
 You can also **Add comment** or **Add image** per asset during the scan — useful for documenting condition, damage, or wrong labels.
+
+#### What a Photo Says About Itself
+
+Since 9 November 2026 every audit photo carries two facts next to its thumbnail: how it reached Shelf and when it was taken, read from the photo file itself. Nothing is drawn on the photo.
+
+- An icon says where it came from. Hover the photo or open the preview for the words: **Shelf app camera**, **Photo library**, **Web upload** or **Phone app** (a photo from a Companion app version that does not say how it was taken).
+- The date and time under the thumbnail is when the photo was taken. The preview spells it out, for example *Photo library · file says 1 Oct 2026, 08:30 · 27 days before upload*.
+- A photo taken more than a day before it was uploaded gets an amber **Old photo** chip. A photo whose file carries no capture time gets a grey **No date** chip. A photo that is fine gets no chip at all.
+- Photos uploaded before 9 November 2026 show their upload time and are never flagged, because their capture time was never read.
+
+The chips appear on the audit overview, the scan details, the Findings column, the full-size preview and the printed receipt, which adds a one-line key above the photos because paper cannot be hovered. A capture time in a file can be edited, so treat a date from the **Photo library** or a **Web upload** as what the file says; a **Shelf app camera** photo is what the app reports.
 
 Those two buttons sit on assets you have **not** scanned yet as well as on the ones you have. That is deliberate: the empty shelf where the camera should have been is worth photographing, and the note belongs on the audit whether or not the item ever turned up.
 
@@ -161,11 +199,11 @@ When scanning is done:
 
 1. Click **Complete Audit** (bottom-right of the scan page, or from the Actions dropdown on the overview)
 2. Check the **Audit Summary** in the confirmation dialog. It states the Expected, Found, Missing and Unexpected counts one last time, and completing cannot be undone. Here **Missing** is a preview: it counts the expected assets that are still **Not scanned** and will become Missing when you confirm
-3. Add a **Completion Note** and up to five photos if you have closing observations. Both are optional, and both print in the receipt's Findings section
+3. Add a **Completion Note** and up to five photos if you have closing observations. Both are optional, and both print in the receipt's Findings section. When the audit holds quantity-tracked stock the dialog also shows the **Units counted** line
 4. Confirm with **Complete Audit**. Shelf sends a **summary email** to the audit creator with final counts
 5. From the completed audit's overview, click **Actions → Download Receipt** to export a **PDF report** with found/missing/unexpected breakdowns
 
-The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review. It carries a **Findings** section as well as the counts: your completion note and its photos first, then one block per asset holding what was written about that item next to the pictures taken of it.
+The PDF is your compliance artifact — hand it to insurance, your manager, or file it for regulatory review. It carries a **Findings** section as well as the counts: your completion note and its photos first, then one block per asset holding what was written about that item next to the pictures taken of it. Under each photo it prints where the photo came from and when it was taken, with any **Old photo** or **No date** flag, and a key line above the photos explains them. An audit with quantity-tracked stock prints a **Quantity** column in the asset table and the **Units counted** line under the statistics.
 
 To see how audits are going across the workspace rather than one at a time, open **Reports → Audit Completion**. It lists every audit created in the timeframe with its expected, found, missing and unexpected counts and an accuracy figure, and puts the completion rate, the overdue audits and the assets found missing at the top. See [How Audit Completion counts](/knowledge-base/getting-started-with-reports#how-audit-completion-counts).
 
@@ -226,7 +264,7 @@ If you found value during the trial, the add-on is available on every Shelf plan
 - **Print test labels first**: run a [test print](/knowledge-base/using-shelf-qr-codes-with-avery-label-sheets#3-drop-in-the-pngs-and-print-then-test) and scan several codes before committing a full batch.
 - **Assign the audit to yourself** for your first run — you'll understand the scan flow before delegating to someone else.
 - **Use the camera toggle on your phone** if you don't have a handheld scanner. It works with any phone camera, no app needed.
-- **Add photos during the scan** for anything that looks damaged, misplaced, or mislabelled — it saves a second pass later.
+- **Add photos during the scan** for anything that looks damaged, misplaced, or mislabelled — it saves a second pass later. A photo taken on the spot shows no flag; one picked from the library that was taken days earlier is marked **Old photo**, so take the picture during the count.
 
 ---
 
@@ -254,6 +292,14 @@ The asset table below points you at them. Every row that carries something shows
 Findings holds what **people** recorded. Shelf's own trail (statuses changing, the audit being started and completed) stays on the **Activity** tab, and that tab is where the note log downloads as CSV.
 
 ![One asset's Findings card, with the condition note above the photographs taken of the same item](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audit-findings-asset.webp)
+
+### Why does a photo say "Old photo" or "No date"?
+
+Each audit photo shows when it was taken, read from the file, and compares it with the moment it was uploaded. **Old photo** means the picture was taken more than a day before it reached Shelf, for example a library photo from last month. **No date** means the file carries no capture time at all. Neither stops the upload; both are there so a reviewer knows which photos to look at twice. A photo taken with the Shelf app's own camera during the count shows neither.
+
+### How is a quantity-tracked asset counted?
+
+Scanning its label on the web scan page opens **How many did you find?** with the expected units prefilled. Record the count (or **All here**), and the row reads **8 of 14 pcs**; scan again or click **Edit count** to correct it. See [Counting quantity-tracked stock](#counting-quantity-tracked-stock).
 
 ### Can I add a note after the audit is finished?
 
