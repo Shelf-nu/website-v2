@@ -40,6 +40,23 @@ export function contentImage(fm: Frontmatter): string | undefined {
 const SOCIAL_IMAGE_FORMATS = /\.(jpe?g|png|webp|gif)$/i;
 
 /**
+ * The generic share card (public/og.webp) and its looping video. Frame 0 of
+ * the video is the card itself, so apps that only read og:image (Slack, X,
+ * LinkedIn, WhatsApp…) show the same picture the video starts on; iMessage,
+ * Discord and Telegram can play the video. Re-render the video under a new
+ * filename (og-video-v2.mp4) instead of overwriting it: preview caches key on
+ * the URL.
+ */
+export const DEFAULT_OG_IMAGE = { url: `${BASE_URL}/og.webp`, width: 1200, height: 800 };
+export const DEFAULT_OG_VIDEO = {
+    url: `${BASE_URL}/og-video-v1.mp4`,
+    secureUrl: `${BASE_URL}/og-video-v1.mp4`,
+    type: "video/mp4",
+    width: 1200,
+    height: 800,
+};
+
+/**
  * `updated` from frontmatter, for dateModified. Dropped unless it is a real
  * YYYY-MM-DD calendar date on or after `date`: a modified date before the
  * publish date is a typo, and Google reads it as a conflicting signal.
@@ -96,9 +113,10 @@ export function buildContentMetadata(
         ? pageImage
         : undefined;
     // Only the generic card's size is known. Page images come in whatever size
-    // they were uploaded at (1920×1080, 1600×1066…), so don't claim 1200×630.
-    const ogImage = socialImage ?? `${BASE_URL}/og.webp`;
-    const ogImages = socialImage ? [{ url: socialImage }] : [{ url: ogImage, width: 1200, height: 630 }];
+    // they were uploaded at (1920×1080, 1600×1066…), so they get no size, and
+    // the generic card's video only goes with the generic card.
+    const ogImage = socialImage ?? DEFAULT_OG_IMAGE.url;
+    const ogImages = socialImage ? [{ url: socialImage }] : [DEFAULT_OG_IMAGE];
     const modifiedTime = contentModifiedDate(frontmatter);
 
     const metadata: Metadata = {
@@ -112,6 +130,7 @@ export function buildContentMetadata(
             type: cfg.ogType,
             siteName: "Shelf",
             images: ogImages,
+            ...(socialImage ? {} : { videos: [DEFAULT_OG_VIDEO] }),
             ...(cfg.ogType === "article" && frontmatter.date
                 ? { publishedTime: frontmatter.date }
                 : {}),

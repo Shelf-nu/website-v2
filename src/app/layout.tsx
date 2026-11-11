@@ -9,7 +9,7 @@ import { CrispChat } from "@/components/chat/crisp-chat";
 import { PostHogProvider } from "@/components/analytics/posthog-provider";
 import { ReducedMotionConfig } from "@/components/ui/reduced-motion-config";
 import { StructuredData } from "@/components/seo/structured-data";
-import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_VIDEO, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { FEED_TITLE, JSON_FEED_URL, RSS_FEED_URL } from "@/lib/updates-feed";
 
 const geistSans = Geist({
@@ -52,13 +52,12 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.shelf.nu/og.webp",
-        width: 1200,
-        height: 630,
+        ...DEFAULT_OG_IMAGE,
         alt: "Shelf Asset Management Interface",
         type: "image/webp",
       },
     ],
+    videos: [DEFAULT_OG_VIDEO],
   },
   twitter: {
     card: "summary_large_image",
@@ -66,7 +65,7 @@ export const metadata: Metadata = {
     description: "Modern open source asset tracking for teams. Star us on GitHub.",
     creator: "@shelf_nu",
     site: "@shelf_nu",
-    images: ["https://www.shelf.nu/og.webp"],
+    images: [DEFAULT_OG_IMAGE.url],
   },
   robots: {
     index: true,
