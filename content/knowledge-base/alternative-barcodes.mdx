@@ -3,7 +3,7 @@ title: "Alternative Barcodes (Barcode, Datamatrix, QR Code)"
 description: "Learn about Shelf's alternative barcode feature that extends beyond standard QR codes, enabling organizations to integrate multiple barcode formats into their asset tracking systems."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-19"
+updated: "2026-11-13"
 layout: "knowledge-base"
 ---
 
@@ -86,6 +86,10 @@ The **Workspace default** row in the radio group also tells you what it will res
 ### Finding an asset by its barcode value
 
 On the booking detail page (when filtering the assets attached to a booking) and on the audit asset picker, you can now type a barcode value into the search box and the matching asset will appear. Useful when you have a sticker in hand and want to jump to the row that represents it. Both surfaces are backed by GIN trigram indexes on `Barcode.value` and `Qr.id`, so the substring search stays fast even on large workspaces.
+
+### Scanning QR labels from your previous system
+
+A QR label printed by another system usually holds a web address, sometimes one shaped like a Shelf link, such as `https://old-vendor.example/qr/a1B2c3D4`. Register that exact text as an **External QR** value and the label opens its asset or kit wherever you scan it: the web scanner with the camera or with a handheld scanner, and the [Shelf Companion](/knowledge-base/shelf-ios-companion-getting-started) scanner and audit scanner. Only a link to your own Shelf server, Shelf's short label links and a bare QR ID are read as Shelf QR codes; anything else is looked up among your barcodes, with its capital letters kept. If a label opens nothing, compare the stored value with the text a phone camera app shows for it (see [Switching from another asset tool](/knowledge-base/switching-from-another-asset-tool)).
 
 ### Scanning a barcode value that looks like a SAM ID
 
