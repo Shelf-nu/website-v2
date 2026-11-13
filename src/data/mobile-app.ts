@@ -28,7 +28,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Field Audits",
         description:
-            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan and read them back later, take a mis-scan back off, and complete the audit with a closing note when done. Scanned rows say where each asset lives, and anything the audit did not expect is counted separately.",
+            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, count pooled stock by units, attach a condition note or photo to any scan and read them back later, take a mis-scan back off, and complete the audit with a closing note when done. Scanned rows say where each asset lives, and anything the audit did not expect is counted separately.",
         icon: ClipboardCheck,
     },
     {
@@ -52,7 +52,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Built for the Floor",
         description:
-            "Tap a Shelf QR with the phone camera and jump straight to the asset. Walk, scan, act — the app is built for moments away from the desk.",
+            "Tap a Shelf QR with the phone camera and jump straight to the asset. Links in descriptions, notes and custom fields open inside the app. Walk, scan, act — the app is built for moments away from the desk.",
         icon: WifiOff,
     },
 ];

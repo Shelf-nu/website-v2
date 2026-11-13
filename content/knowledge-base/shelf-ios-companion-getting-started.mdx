@@ -3,7 +3,7 @@ title: "Getting Started with Shelf Companion for iPhone"
 description: "Download, sign in, and start scanning with the free Shelf Companion app on iPhone, iPad and Android. Covers QR scanning, kits, audits, custody, bookings, the booking calendar, push notifications, and multi-workspace switching."
 category: "Getting Started"
 date: "2026-05-25"
-updated: "2026-11-10"
+updated: "2026-11-13"
 layout: "knowledge-base"
 seo:
   title: "Getting Started with Shelf Companion for iPhone — Quick Guide"
@@ -19,7 +19,7 @@ This guide walks through downloading the app, signing in, and using each of the 
 Before installing Shelf Companion:
 
 - **An existing Shelf account.** The app does not create a separate account or workspace — it connects to your current Shelf workspace using the same login. If you do not have one yet, sign up free at [app.shelf.nu/join](https://app.shelf.nu/join).
-- **An iPhone or iPad running iOS 15.1 or later, or an Android phone or tablet.** Both stores carry the same release, built from the same code, so the version number in the app matches on either platform. The current release is **1.7.0**.
+- **An iPhone or iPad running iOS 15.1 or later, or an Android phone or tablet.** Both stores carry the same release, built from the same code, so the version number in the app matches on either platform. The current release is **1.8.0**.
 - Optional: assets in your workspace already labelled with Shelf QR codes (or registered Code 128, Code 39, EAN-13, DataMatrix, or external QR codes). If you do not have labels yet, you can still browse and act on assets manually — see [Printing QR labels](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf).
 
 The app is **free with any Shelf plan**, including the free Personal tier. Nothing is sold through the app. [Push notifications](/knowledge-base/push-notifications-on-shelf-companion) are the one part that depends on your plan: they are included in Plus, Team and Enterprise. If your workspace does not have an add-on enabled (for example, the Audits add-on), the app shows an informational message rather than a paywall.
@@ -56,6 +56,7 @@ If you belong to multiple Shelf workspaces, tap **Settings** in the app and choo
 Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR label or any registered barcode (Code 128, Code 39, EAN-13, DataMatrix, external QR).
 
 - If the code is linked to an asset in your workspace, the app jumps straight to the asset detail screen.
+- A QR label from your previous system, registered on an asset or kit as an **External QR** [barcode](/knowledge-base/alternative-barcodes), opens that asset or kit too, whatever web address the label holds. A label from another Shelf server works only on that server.
 - If the code already belongs to your workspace but is not linked to an asset yet (a sticker you claimed earlier, or a code whose asset was deleted), the app offers **Create Asset**. Tap it and the asset creation screen opens with that code attached, so the asset you save is linked to the physical label straight away. You need asset-creation permission in the workspace to see the button.
 - If the code has not been claimed by any workspace yet (a fresh sticker off a new label sheet), what happens depends on your role. **Admins and owners** claim it without leaving the app: the app offers **Create New Asset** and **Link Existing Asset**, and either one claims the code into the workspace you are currently in before continuing. **Base and self-service members** cannot claim codes at all, in the app or on the web, so they get **Link in Browser** and an administrator has to claim the sticker before it can be used. Codes that belong to a kit open in the browser for everyone.
 
@@ -66,6 +67,8 @@ Tap the **Scan** action from the home tab. Point the phone camera at a Shelf QR 
 If you switch workspaces while an unclaimed code is waiting to be linked, the app stops rather than claiming the sticker into the wrong place: it tells you **"The scanned QR code belongs to the workspace you started in. Scan it again from this workspace to link it here."** and takes you back.
 
 **The camera pauses itself, and any tap wakes it.** After about thirty seconds without a scan the camera stops and the screen reads **Camera Paused — Tap anywhere to resume scanning**. Tapping anywhere that is not a control brings it back. It used to take a tap on the small play button, because the strips across the top and bottom of the view swallowed everything else.
+
+**The controls stay above the list.** From version 1.8.0, **Enter code**, pause and the flashlight sit in one row under the mode pills, so the list of scanned items never covers them, and the flashlight stays on for a whole batch. Tap the chevron in the list's header (**Collapse scanned items**) to fold the list away; a scan that lands while it is folded is named in the header for a moment.
 
 **Can't scan a label?** Tap **Enter code** to type a QR ID, barcode value, or sequential ID (a SAM, such as `SAM-0001`) by hand. The field opens in the strip at the top of the camera view with the keyboard already up, so one tap is enough to start typing — it used to sit at the bottom, where the keyboard covered it. When a drawer is open, the closed **Enter code** pill moves to the top strip as well, so it stays reachable. This is handy when a label is damaged, hard to reach, or printed on packaging the camera can't focus on. Typed SAM IDs resolve to their asset on both the general and audit scanners; the lookup itself needs no add-on (running a full audit still requires the [Audits add-on](/features/audits)). A barcode value shaped like a SAM ID — `LAPTOP-0001`, say — resolves too: the app checks your sequential IDs first and then your workspace's [barcodes](/knowledge-base/alternative-barcodes), so a label printed in that shape no longer ends in **Lookup Failed**. That second step is part of the alternative-barcodes add-on; without it, a SAM-shaped code that matches no asset still fails. It all runs on the server, so the app you already have picks it up with nothing to install.
 
@@ -132,9 +135,11 @@ If your workspace has the [Audits add-on](/features/audits) enabled, you can run
 
 **"Not scanned", not "missing".** An expected asset nobody has reached yet reads **Not scanned** for as long as the audit is open, and only becomes **Missing** once you complete the audit. The app uses exactly the same words, filters, and colours as the web for this, so a count you start in the morning never reads as though half the inventory has vanished. The filter pills follow the same rule: **Not scanned** is offered while the audit is open, **Missing** once it is finished.
 
+**Count pooled stock.** From version 1.8.0, scanning a [quantity-tracked](/knowledge-base/quantity-tracked-assets-and-consumables) asset opens **Count units** with the units the audit expects prefilled. Change the number if you found more or fewer and tap **Record**. A count above what was expected is kept as a surplus and reads, for example, *16 of 14 (+2)*. Scan the same pool again to open **Update count** with the count you recorded and correct it. Older app versions record the scan as Found without a count, and the web shows that row as **Not counted**.
+
 **Audits nobody was assigned to.** An audit with no specific assignee shows **Unassigned · owners, admins and managers can scan**, so it is clear who is expected to pick it up rather than leaving the row looking unowned.
 
-**Add evidence as you scan.** Each scanned row carries an explicit **Add photo/note** action — tap it (or the row) to open the evidence sheet, write a condition note, and attach a photo taken with the camera on the spot or picked from the photo library. Once a row holds evidence the action becomes a count of what it carries. The first time a scanned row appears, a one-time hint points the action out: *"Tap a scanned item to add a photo or condition note."* Notes and photos land on the same audit record the web app writes to.
+**Add evidence as you scan.** Each scanned row carries an explicit **Add photo/note** action — tap it (or the row) to open the evidence sheet, write a condition note, and attach a photo taken with the camera on the spot or picked from the photo library. Once a row holds evidence the action becomes a count of what it carries. The first time a scanned row appears, a one-time hint points the action out: *"Tap a scanned item to add a photo or condition note."* Notes and photos land on the same audit record the web app writes to. From version 1.8.0 each photo also says how it reached Shelf, **Shelf app camera** or **Photo library**, and when it was taken, the same as on the web; photos sent from older versions say **Phone app**.
 
 **Read the evidence back.** On the audit's asset list, any row that carries evidence shows a chip that says what it holds — "1 note, 2 photos" — and tapping the chip opens the full record: every note and every photo, each with who recorded it and when. Notes and photos are counted separately on purpose, so one note plus one photo never collapses into an ambiguous "2".
 
@@ -194,7 +199,7 @@ Reserved units that have no physical unit behind them yet are counted on the boo
 
 **A link to another booking opens that booking.** With a booking open, following a link to a second one (a shared link, or a link from somewhere else in the app) used to keep showing the first. Since the same update it shows the one you asked for; the audit screen had the same bug and got the same fix.
 
-**Manage the booking's lifecycle.** Reserve, cancel, archive, delete, or duplicate a booking without leaving the app. Delete is for Owners, Administrators and Managers; since 10 November 2026 a Self-service or Base user is not offered it and archives their own finished bookings instead. The one-tap **Discard draft** those two roles get on the web is not in app version 1.7.0: drop a draft from the web app until the next app release.
+**Manage the booking's lifecycle.** Reserve, cancel, archive, delete, or duplicate a booking without leaving the app. Delete is for Owners, Administrators and Managers; since 10 November 2026 a Self-service or Base user is not offered it and archives their own finished bookings instead. From version 1.8.0, **Discard draft** sits with the booking's lifecycle actions for a Self-service or Base user's own draft and asks you to confirm, as on the web.
 
 **Extend a booking that is running.** Since the update of 20 October 2026 an **Ongoing** or **Overdue** booking offers **Extend booking** under **More actions**; see [Extending booking end dates](/knowledge-base/extending-booking-end-dates-in-shelf#on-the-phone).
 
@@ -275,8 +280,9 @@ For clarity, these are real, intentional gaps. They are on our radar, but they a
 - **Workspace administration.** User and role management, bulk imports, custom field setup, reporting, and billing stay on the web.
 - **Adding or editing an asset's codes.** The detail screen lists the codes an asset carries, but registering a new barcode or changing one is a web job.
 
-This guide describes **version 1.7.0**. Most of it works on any version from 1.5.0, because the app also takes smaller updates in the background: it downloads them when you open it and uses them the next time you open it. A few things need a newer store version:
+This guide describes **version 1.8.0**. Most of it works on any version from 1.5.0, because the app also takes smaller updates in the background: it downloads them when you open it and uses them the next time you open it. A few things need a newer store version:
 
+- **1.8.0**: counting pooled stock in an audit, the photo source on audit photos, **Discard draft**, links that open inside the app, the scanner's single control row, and layouts for foldable phones
 - **1.7.0**: push notifications (step 11)
 - **1.6.0**: the tablet layout (step 1)
 - **1.5.0**: [connecting to your own server](/knowledge-base/connect-shelf-companion-to-your-own-server), undoing an audit scan, and the scanner's clearer results
@@ -290,6 +296,8 @@ Anything Shelf changes on the server side reaches every installed version at onc
 ## Opening Shelf Links in the App
 
 If you have Shelf Companion installed, tapping a Shelf link on your phone — an asset, booking, audit, or QR code URL at `app.shelf.nu` — opens it directly in the app instead of bouncing through the browser. This works on both iPhone (Universal Links) and Android (App Links). Sign-in and account pages still open in your browser, so links that need a full web session behave exactly as before.
+
+**Links inside the app are tappable.** From version 1.8.0, a link in an asset, kit, booking or audit description, an activity note, an audit note or a custom field value can be tapped, including a bare address such as `canon.com/manual.pdf`. A website or file opens in a browser sheet inside the app (Safari on iPhone and iPad, a Chrome tab on Android), and a Shelf link to an asset, kit, booking or audit opens its screen in the app. A Shelf page the app has no screen for says **Only on the web app**. Press and hold a link to **Copy link** or **Share** it.
 
 ## Where to Go Next
 
