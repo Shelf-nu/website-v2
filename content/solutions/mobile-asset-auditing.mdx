@@ -10,7 +10,7 @@ personas:
   - "field"
 canonicalUrl: "/solutions/mobile-asset-auditing"
 date: "2025-01-01"
-updated: "2026-10-23"
+updated: "2026-11-13"
 seo:
   title: "Mobile Asset Audit Software — Scan QR Labels from Any Phone"
   description: "Audit assets from any phone or tablet. Scan QR labels, verify locations, update records, and generate compliance reports on the go. Free to start, open source."
@@ -21,7 +21,7 @@ image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/websit
 
 ![Mobile QR scanning for asset audits](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/solutions/phone-qr-alt-2.png)
 
-Asset audits should not require a clipboard or a desktop computer. With Shelf, teams can audit equipment from any phone or tablet — in the browser or via the free [Shelf Companion app](/mobile-app) on iPhone and Android. Scan QR labels, verify locations, update records, and confirm asset conditions in the field. Everything syncs in real time, so the back office sees results the moment they happen.
+Asset audits should not require a clipboard or a desktop computer. With Shelf, teams can audit equipment from any phone or tablet — in the browser or via the free [Shelf Companion app](/mobile-app) on iPhone, iPad and Android. Scan QR labels, verify locations, update records, and confirm asset conditions in the field. Everything syncs in real time, so the back office sees results the moment they happen.
 
 ---
 
@@ -42,7 +42,7 @@ Mobile auditing eliminates these problems by putting the audit tool in every tea
 
 ### Works on Any Device
 
-Shelf runs in the browser on any phone, tablet, or laptop — nothing to install on the web side. For a native field experience, the free [Shelf Companion app](/mobile-app) is on the App Store and Google Play. If a device has a camera and a browser, it can run an audit; if you want a native app on iPhone or Android, you have one.
+Shelf runs in the browser on any phone, tablet, or laptop — nothing to install on the web side. For a native field experience, the free [Shelf Companion app](/mobile-app) is on the App Store and Google Play. If a device has a camera and a browser, it can run an audit; if you want a native app on iPhone, iPad or Android, you have one.
 
 ---
 
@@ -54,7 +54,7 @@ Each asset has a unique QR label. During an audit, the user scans the code to pu
 
 ### GPS Updates on Scan
 
-When a QR code is scanned, Shelf can record where the scan happened from the device's GPS coordinates, so an asset's record shows where it was last seen. This keeps location data current without requiring manual entry, which is especially valuable for equipment that moves between sites. It works in the web app from the browser, and from version 1.3.0 in the [Shelf Companion app](/mobile-app) on iPhone and Android. On the phone it is opt-in: the app asks for permission once when you first open the scanner, and scanning works normally if you decline.
+When a QR code is scanned, Shelf can record where the scan happened from the device's GPS coordinates, so an asset's record shows where it was last seen. This keeps location data current without requiring manual entry, which is especially valuable for equipment that moves between sites. It works in the web app from the browser, and from version 1.3.0 in the [Shelf Companion app](/mobile-app) on iPhone, iPad and Android. On the phone it is opt-in: the app asks for permission once when you first open the scanner, and scanning works normally if you decline.
 
 Every audit scan is recorded on the asset as well, whether the label carries a QR code, a barcode or a SAM ID; the same person scanning the same code on the same asset again within 30 seconds counts as one scan. After a count, the [Last scan card](/knowledge-base/where-an-asset-was-last-scanned) of each asset scanned in the audit shows who scanned it, when, and with which code.
 
@@ -71,7 +71,8 @@ Every scan and update syncs immediately to the central database. Managers monito
 ## Key Features
 
 - **Multi-device support**: Audit from phones, tablets, or laptops in the browser, or from iPhone, iPad and Android via the Shelf Companion app.
-- **Evidence on every scan**: Attach a condition note and a photo to any scanned asset, from the web or from the Companion app, with the camera or the photo library — then read it back on either, with who recorded it and when.
+- **Evidence on every scan**: Attach a condition note and a photo to any scanned asset, from the web or from the Companion app, with the camera or the photo library — then read it back on either, with who recorded it and when. Each photo also shows where it came from and when it was taken, read from the file, and a picture taken more than a day before its upload is flagged **Old photo**, so the evidence is as dated as the count.
+- **Pooled stock is counted by units**: a quantity-tracked asset (cables, sandbags, consumables) asks how many were found when its label is scanned, with the expected units prefilled, on the web scan page in any phone browser and in the Companion app from version 1.8.0. The row reads **8 of 14 pcs**; a surplus and a recount are both recorded.
 - **Correct a mis-scan on the spot**: Scan the wrong label and take it straight back off, from the web or, from Companion 1.5.0, from the phone. An expected asset returns to Not scanned, an unexpected one leaves the audit, and the counts recount from the rows. Notes and photos survive the correction, because evidence is attached to the audit's row for the asset rather than to the scan.
 - **Custom fields**: Verify and update any field during the audit — condition, serial number, notes, or organization-specific data.
 - **Location tracking**: Confirm or update asset locations as part of the audit workflow. In Companion 1.5.0 a scanned row on the phone shows where the asset lives instead of repeating "Found", so a walk through a room tells you which of the found items are not where your records say they are. Anything the audit did not expect reads **Not on this audit**, and the count of those is tappable to see just them.
@@ -82,7 +83,7 @@ Every scan and update syncs immediately to the central database. Managers monito
 
 ## Common Use Cases
 
-- **Warehouse audits**: Walk the floor with a phone, scan each item, and confirm inventory counts match records.
+- **Warehouse audits**: Walk the floor with a phone, scan each item, and confirm inventory counts match records, pooled stock included: one scan of the sandbag pile records how many are there.
 - **Field inspections**: Verify equipment at remote job sites, construction zones, or client locations without returning to the office.
 - **Compliance checks**: Generate documented proof that assets were verified at specific times and locations for regulatory requirements.
 - **Insurance documentation**: Maintain current records for policy renewals and claims, with per-asset photos captured on the spot from the phone or added later from the web.
@@ -103,11 +104,11 @@ Shelf is free to start with unlimited assets for one user. No credit card requir
 1. **Sign up** at [app.shelf.nu](https://app.shelf.nu/join)
 2. **Add your assets** manually or [import from CSV](/knowledge-base/importing-assets-to-shelf-csv-guide)
 3. **Print QR labels** and attach them to your equipment
-4. **Walk the floor** — [scan from your phone](/knowledge-base/shelf-mobile-app), verify, and update (browser or Shelf Companion on iPhone & Android)
+4. **Walk the floor** — [scan from your phone](/knowledge-base/shelf-mobile-app), verify, and update (browser or Shelf Companion on iPhone, iPad & Android)
 
 ---
 
-<Callout type="info" title="On iPhone & Android: Shelf Companion">
+<Callout type="info" title="On iPhone, iPad & Android: Shelf Companion">
 
 Run audits live from the floor with the free [Shelf Companion app](/mobile-app) on the App Store and Google Play: scan, watch found/expected counts update in real time, attach a note or a photo to any scan, and complete the audit when done. Free with any Shelf account.
 

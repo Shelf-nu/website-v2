@@ -711,7 +711,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Reports & Exports",
         name: "Reports",
         description:
-            "Ready-to-run reports across bookings, assets, and custody (Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. Every report exports to CSV; chart-based reports also export to PDF. Included on the Plus and Team plans, and open to Administrators and Owners.",
+            "Ready-to-run reports across bookings, assets, and custody (Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. Every report exports to CSV; Booking Compliance, Asset Inventory and Custody Snapshot also export to PDF. Included on the Plus and Team plans, and open to Administrators and Owners.",
         availability: {
             free: "not-included",
             plus: "included",
@@ -730,7 +730,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Reports & Exports",
         name: "Booking PDFs (Pull Lists)",
         description:
-            "Export booking details as PDF pull lists, with saved PDF documents (Checklist, Check-out receipt with signature lines, or your own layouts with chosen columns and custom fields)",
+            "Export booking details as PDF pull lists, with saved PDF templates in every team workspace (Checklist, Check-out receipt with signature lines, or your own layouts with chosen columns and custom fields)",
         availability: {
             free: "not-included",
             plus: "not-included",

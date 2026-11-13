@@ -3,7 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
-updated: "2026-11-06"
+updated: "2026-11-10"
 layout: "knowledge-base"
 ---
 
@@ -93,6 +93,8 @@ Long details show three lines and a **Show more** button. Names are the record's
 
 **Archived** and **Reinstated** rows record when an asset was taken out of service and when it came back. See [Archive and reinstate assets](/knowledge-base/archive-and-reinstate-assets).
 
+**Which reports count archived assets.** Asset Inventory, Asset Distribution and Idle Assets describe what you have today, so they count active assets only and leave archived ones out. Asset Activity Summary, Asset Utilization and Top Booked Assets look back over a timeframe, so an asset archived later still shows the activity and bookings it had inside that window.
+
 **The CSV is the full movement history for the period.** It has one row per change with these columns: **Date**, **Asset ID**, **SAM ID**, **QR Code ID**, **Asset Name**, **Activity Type**, **Description**, **From** and **To**, **Performed By**. SAM ID and QR Code ID are the same codes the asset page and its label show, and From and To hold the names on each side of the change. The file covers the whole timeframe and every filter you applied, up to 100,000 rows. A period holding more ends with a row saying where the export stopped; narrow the date range to export the rest.
 
 ## How Booking Compliance Decides On Time or Late
@@ -129,7 +131,7 @@ An overdue booking extended to next week disappears from Overdue Items straight 
 
 The booking reports used to disagree about their own headline. Three of them could give three different answers to "how many bookings?" for the same workspace and the same window. They now share one set of rules, and the rules are worth knowing because they explain figures that will have moved.
 
-**Drafts and cancelled bookings are not usage.** A draft is a plan and a cancellation never happened, so neither is counted in **Top Booked Assets**, **Monthly Booking Trends** or **Asset Utilization**. "Total Bookings" means the same thing in Top Booked and in Trends: real bookings, not plans.
+**Drafts and cancelled bookings are not usage.** A draft is a plan and a cancellation never happened, so neither is counted in **Top Booked Assets**, **Top Booked Kits**, **Monthly Booking Trends** or **Asset Utilization**. Since 10 November 2026 the same four reports also leave out a booking that was archived before anything went out: an expired reservation filed away, or a draft a Self-service or Base user dropped with **Discard draft**. "Total Bookings" means the same thing in Top Booked and in Trends: real bookings, not plans.
 
 Booking Compliance keeps its own, narrower definition on purpose, because it answers a different question: only bookings with a measurable outcome (returned or overdue) can tell you whether a deadline was honoured. Its hero says so on the page.
 
@@ -203,7 +205,7 @@ The PDF versions total the same way, so a printed report and the CSV behind it n
 
 Report CSVs are written as UTF-8 with a byte order mark, so category, location and custodian names in any alphabet open correctly in Excel without an import wizard. See [How the file is encoded](/knowledge-base/export-exporting-workspace-data-from-shelf#how-the-file-is-encoded).
 
-Reports with charts also support **PDF download** — Shelf renders the charts and tables into a print-ready document. PDF download is available for chart-based reports (Booking Compliance, Top Booked Assets, Monthly Booking Trends, Asset Activity Summary, Asset Utilization, Asset Distribution); reports without a chart — Asset Inventory, Idle Assets, Overdue Items, Custody Snapshot, Top Booked Kits, and Audit Completion — export to CSV. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
+Three reports also download as a **PDF**: Booking Compliance, Asset Inventory and Custody Snapshot. Shelf renders the report into a print-ready document. The other reports (Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution and Audit Completion) export to CSV only. PDFs are useful for board packs, audit trails, and sharing with people outside the workspace.
 
 ## Who Can Run Reports
 

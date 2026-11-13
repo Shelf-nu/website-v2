@@ -1,6 +1,6 @@
 ---
 title: "Reports: partial returns, accurate compliance, fresh thumbnails"
-description: "Overdue Items now tracks partial check-ins, Booking Compliance lateness math is rebuilt to match reality, and report tables refresh asset thumbnails server-side."
+description: "Overdue Items now tracks partial check-ins, Booking Compliance lateness math is centralized, and report tables refresh asset thumbnails server-side."
 date: "2026-05-01"
 image: "https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/reports.webp"
 readMoreUrl: "/features/reports"
@@ -11,7 +11,7 @@ A few refinements to Reports following the v1 launch.
 
 **Overdue Items now reflects partial returns.** The hero KPI — now labelled **Assets Outstanding** — counts only the assets still out, with partial check-ins subtracted. Each row shows a `X / Y` progress bar of assets checked in, so a booking that has been mostly returned no longer looks as urgent as a booking with nothing returned. The table header now reads **Overdue Bookings** to match.
 
-**Booking Compliance now matches reality.** The on-time rate could previously show 100% even when overdue bookings appeared in the table, and the **Return Status** column froze at the moment a booking auto-transitioned to OVERDUE. Lateness math has been rebuilt and centralized between the booking detail page and every compliance compute path:
+**Booking Compliance counts overdue bookings live.** Lateness math is centralized between the booking detail page and every compliance compute path:
 
 - **OVERDUE** bookings count live time past the due date, so the figure keeps growing until the booking is checked in.
 - **Complete** bookings are measured from the actual check-in time (resolved from the canonical activity event), not from a stale `updatedAt` timestamp.
