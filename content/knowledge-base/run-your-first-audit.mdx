@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report, including how pooled stock is counted by units and what each photo says about when it was taken. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-11-10"
+updated: "2026-11-13"
 layout: "knowledge-base"
 ---
 
@@ -94,11 +94,11 @@ What you read afterwards, on the scanned rows, the overview, the row details, th
 | **0 of 14 pcs** | the pool was expected and nothing was counted, once the audit is completed |
 | **14 pcs expected** | the pool has not been scanned yet |
 | **3 pcs counted** | a pool that was not on the list |
-| **Not counted** | the pool was scanned from a phone app build that does not ask for a count; the scan still registers the asset as Found |
+| **Not counted** | the pool was scanned from a Shelf Companion version older than 1.8.0, which does not ask for a count; the scan still registers the asset as Found |
 
 The statistics gain a **Units counted** line (for example *Units counted: 8 of 14 across 1 quantity-tracked asset*), and the receipt adds a **Quantity** column and the same line, both only when the audit holds a pool. The Expected / Found / Not scanned / Unexpected tiles still count assets, not units.
 
-The [Shelf Companion](/mobile-app) app does not ask for a count yet: it records a scan of a pool the way it always did, and the web shows that row as **Not counted**.
+The [Shelf Companion](/mobile-app) app counts pools from version 1.8.0. Scanning one opens **Count units** with the expected units prefilled; change the number and tap **Record**. A count above what was expected reads, for example, *16 of 14 (+2)*. Scanning the same pool again opens **Update count** with the recorded count, to correct it. An older app version records the scan without a count, and the web shows that row as **Not counted**.
 
 ![Web scan drawer with a quantity-tracked row reading 8 of 14 pcs, the Units counted line, and the Update count dialog](https://gist.githubusercontent.com/carlosvirreira/eb049ad280149de8e740762fdfd801b6/raw/23e1586368a465124e8b54ec57e084f7d246f6c8/web-scan.png)
 

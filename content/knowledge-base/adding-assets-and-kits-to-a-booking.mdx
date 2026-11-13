@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-11-10"
+updated: "2026-11-13"
 layout: "knowledge-base"
 ---
 
@@ -68,6 +68,18 @@ If you or other users have configured one or more kits you'll be able to utilize
 2. Switch from **Assets** to **Kits** using the tabs
 3. Select one or multiple kits
 4. Click **Confirm** to add your selection of kits to the booking
+
+## Reserving by model
+
+If your workspace groups identical gear under [Asset Models](/glossary/asset-models), you can reserve a number of units of a model instead of picking units by name. Open **Manage assets** (or **Manage kits**) on the booking and switch to the **Models** tab.
+
+Each model is a row, like on the **Assets** tab, with its image, its name and its default category. A badge says how many units you can still reserve for the booking's dates, for example "3 of 5 available", or "2 more available" once the booking holds some.
+
+1. Find the model with **Search models**
+2. Enter how many units you need and click **Add**
+3. To change a reservation, enter the new number and click **Update**; **Remove** drops it while none of its units has been assigned yet
+
+The booking's own reservations are listed first. A model whose units are all assigned shows **Fulfilled** and can no longer be changed here. Models with no individually tracked asset are hidden, because nothing can be reserved from them; choose **All models** instead of **Models with assets** to list them anyway.
 
 ## Settling a model reservation
 
@@ -167,7 +179,7 @@ Two limits apply at every status:
 
 Lowering a reservation is never refused for lack of availability. Giving units back cannot need headroom, and measuring anyway used to block the case that matters most: a booking holding more units than the pool still contains, because a unit was retired or taken into custody mid-booking, could not release anything at all.
 
-The same numbers and the same floor apply on the **Models** tab inside **Manage assets**, where each row reads "3 reserved · 1 assigned · 12 total in workspace".
+The same numbers and the same floor apply on the **Models** tab inside **Manage assets**, where a reserved row reads "3 reserved · 1 assigned" and its quantity is changed with **Update**.
 
 Adjusting a reservation on a live booking matters beyond the booking itself: outstanding reservations on Ongoing and Overdue bookings keep counting against every other booking whose window overlaps, so a unit you are never going to hand over stays unavailable to everyone else until the reservation is reduced.
 
