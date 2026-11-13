@@ -109,6 +109,17 @@ const MOBILE_LIVE_RULES_EXTRA = [
 
 MOBILE_LIVE_RULES.push(...MOBILE_LIVE_RULES_EXTRA);
 
+// Booking PDF layouts are "PDF templates" under Settings > Bookings, in every team
+// workspace, since shelf.nu#3354 (2026-11-09; see PRODUCT-FACTS.md "Booking PDF
+// templates"). The old name, the old settings path and the old plan gate were
+// corrected across the KB on 2026-11-10. Narrow on purpose: "PDF document" as plain
+// English (a PDF file) stays legal.
+const PDF_TEMPLATE_RULES = [
+  { re: /PDF documents? card|Settings (→|->|,) General[^\n]{0,24}PDF documents|(New|Add|Save) document\b(?! (file|upload))|plan (does not|doesn't) include PDF documents|the \*\*Document\*\* dropdown/i,
+    why: "Booking PDF layouts are 'PDF templates': card PDF templates under Settings > Bookings, buttons Add template / Save template, Template dropdown, in every team workspace (shelf.nu#3354). Don't describe the old PDF documents card or a plan gate." },
+];
+MOBILE_LIVE_RULES.push(...PDF_TEMPLATE_RULES);
+
 // Hosting facts, verified 2026-09-18 against product origin/main and live
 // production (see PRODUCT-FACTS.md, "Hosting, data location and
 // sub-processors"). Both claims below shipped on this site and in sales
