@@ -60,6 +60,10 @@
 - Be **honest** in competitor comparisons — don't claim Shelf wins on every axis. Where a competitor is genuinely stronger (e.g. deeper integrations, CMMS depth, enterprise features), say so.
 - Lead with the real, uncopyable wedge: **genuinely free + AGPL open-source + self-host + QR-first.**
 
+## Workspace access and visibility (verified 2026-11-16 against shelf.nu main @7ea81cb)
+- **A lapsed Team workspace is refused on the web AND on the phone.** A Team workspace whose owner's tier limit is back to `free` or `tier_1` (trial or subscription ended), or one a Shelf admin disabled, shows **Workspace disabled** in the browser, and since shelf.nu#3367 the mobile API refuses it too (403 "Workspace inactive"), reads and writes, so Shelf Companion cannot keep working in it. Personal workspaces are never refused for their tier; a custom tier limit never counts as lapsed; self-hosted with premium features off, only the admin switch refuses. Data is kept.
+- **The Checked out badge's hover card follows the visibility toggles** (shelf.nu#3409): it names the booking holding the asset only when the viewer may see its custodian (custody visibility, or their own booking), and links to it only when they may open it (booking visibility, or their own booking).
+
 ## Maintenance — the "agentically compiled" part
 1. A scheduled IC (GitHub Action and/or Claude routine) re-verifies the volatile facts — App Store listing, GitHub releases/tags, the pricing config, the latest `/content/updates` changelog — refreshes `lastVerified` + this file, and opens an issue if reality has drifted.
 2. `scripts/check-product-claims.mjs` runs in CI and on the IC cadence: it greps content for the ❌ phrasings above and fails/flags, so a stale claim can never quietly ship again. (This is what would have caught the mobile-app page.) Update its patterns when the facts here change.
