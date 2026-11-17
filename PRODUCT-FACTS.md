@@ -20,7 +20,7 @@
 ## Reports (verified 2026-11-08 against shelf.nu main @197f3b4)
 - Reports are on the **Plus and Team** plans (`REPORTS_PLAN_TITLE`, apps/webapp/app/modules/reports/plan-copy.ts); Owners and Admins only.
 - **CSV export on every report. PDF download on three only: Booking Compliance, Asset Inventory, Custody Snapshot** (`REPORTS_WITH_PDF`, components/reports/report-export-actions.tsx; the generate-pdf route handles only those three). ❌ Never say "chart-based reports export to PDF" or list Top Booked Assets, Monthly Booking Trends, Activity Summary, Utilization or Distribution as PDF reports.
-- **Asset Utilization counts booking time only**, not custody. ❌ Never say "based on booking and custody time".
+- **Asset Utilization counts booking time only**, not custody. ❌ Never say "based on booking and custody time". For a quantity-tracked pool the **Usage Rate** is booked unit-time over the pool's capacity in the period, rebuilt from the stock ledger and capped at 100% (1 of 14 units for the whole period = 7%); **Days Booked** is booked time rounded up to whole days. Individual assets: days booked ÷ days in the period (`computeQuantityUtilization`, `modules/reports/helpers.server.ts`; verified 2026-11-17 against shelf.nu main @fe58055, shelf.nu#3352).
 - Asset Inventory, Asset Distribution and Idle Assets count active assets only; Activity Summary, Utilization and Top Booked Assets keep archived assets' history inside the timeframe.
 
 ## Pricing (verify against `/pricing` + `src/data/pricing.ts`)

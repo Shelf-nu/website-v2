@@ -3,7 +3,7 @@ title: "Getting Started with Reports"
 description: "Run your first report in Shelf — pick a report, set the timeframe, apply filters, and export the result to CSV or PDF."
 category: "Getting Started"
 date: "2026-04-30"
-updated: "2026-11-10"
+updated: "2026-11-17"
 layout: "knowledge-base"
 ---
 
@@ -142,6 +142,8 @@ Booking Compliance keeps its own, narrower definition on purpose, because it ans
 **Archiving no longer erases history.** Archiving rewrites a booking's status, so reports that matched on **Complete** used to lose every completed booking the moment it aged into the archive. Both **Monthly Booking Trends** ("Completed") and **Idle Assets** ("last used") now count an archived booking as a real, returned use, as long as it was actually checked in. An archive that went straight from Reserved without ever being checked out still counts as nothing, because nothing went out. See [what archiving means for reports](/knowledge-base/archiving-bookings#what-archiving-means-for-reports).
 
 **Utilization cannot exceed 100%.** Days in use is the merged union of a booking's days inside the window, not the sum of them, so two overlapping bookings of the same asset no longer count the same Tuesday twice.
+
+**Pooled stock is measured by units.** For a quantity-tracked asset, **Usage Rate** in Asset Utilization weighs the units that were booked against the units the pool held during the period. One cable booked for the whole period out of a pool of 14 reads about 7%, where it used to read 100%. Stock added or removed during the period is taken into account, and the rate tops out at 100% when bookings overlap. **Days Booked** counts the time any part of the pool was booked, rounded up to whole days. Individual assets are unchanged: usage rate is days booked divided by days in the period.
 
 **Idle Assets judges each asset by its own trips.** An asset is idle when it is not out on a booking right now and no booking it went out on has ended since the cutoff (30 days by default, or the idle threshold you pick). "Out right now" is read from the asset's own line on the booking, so an asset already checked back in on a long booking that is still running counts as idle, and an asset that stayed behind when its booking went out does not count as used when that booking ends. Until 27 October 2026 a page of the report could hold fewer rows than its footer said, and when enough recently used assets sat in the list some idle assets fell off the last page. Every page now holds what it says, and the pages together list every idle asset once.
 
