@@ -3,7 +3,8 @@
  * Read-only: opens Settings > Bookings, asserts the card and both switch
  * labels are on screen, and shoots the card. Changes no setting.
  */
-import { mkdir } from "node:fs/promises";
+import { mkdir, mkdtemp } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   launchBrowser,
@@ -15,7 +16,8 @@ import { screenshot } from "../lib/capture.mjs";
 import { toWebP } from "../lib/convert.mjs";
 import { upload } from "../lib/upload.mjs";
 
-const OUT = process.env.OUT_DIR || join(process.cwd(), "tmp");
+// A fresh directory per run, so two runs never share a PNG.
+const OUT_BASE = process.env.OUT_DIR || tmpdir();
 const LABELS = [
   "Booking approval",
   "Base users request bookings",
@@ -23,7 +25,8 @@ const LABELS = [
 ];
 
 async function main() {
-  await mkdir(OUT, { recursive: true });
+  await mkdir(OUT_BASE, { recursive: true });
+  const OUT = await mkdtemp(join(OUT_BASE, "booking-approval-"));
   const browser = await launchBrowser();
   try {
     const ctx = await createContext(browser);
@@ -38,13 +41,14 @@ async function main() {
     for (const label of LABELS) {
       if (!body.includes(label)) throw new Error(`Missing on page: ${label}`);
     }
+    const states = [];
     for (const title of LABELS.slice(1)) {
       const sw = page.locator(`[title="${title}"]`).first();
-      console.log(
-        `switch "${title}":`,
+      const state =
         (await sw.getAttribute("aria-checked")) ??
-          (await sw.getAttribute("data-state"))
-      );
+        (await sw.getAttribute("data-state"));
+      console.log(`switch "${title}":`, state);
+      states.push(state);
     }
 
     // Shoot the card alone: the cards around it carry workspace data that
@@ -70,6 +74,11 @@ async function main() {
     });
     console.log("shot:", shot);
     if (process.env.UPLOAD === "1") {
+      // The published image is captioned "both off": refuse to replace it
+      // with any other state. This script never changes the setting.
+      if (!states.every((s) => s === "false" || s === "unchecked")) {
+        throw new Error(`Not uploading: switches are ${states.join(", ")}`);
+      }
       const url = await upload(toWebP(shot), "knowledgebase/booking-approval-settings.webp");
       console.log("uploaded:", url);
     }
