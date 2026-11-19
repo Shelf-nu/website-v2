@@ -22,7 +22,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "QR & Barcode Scanning",
         description:
-            "Scan Shelf QR labels and standard barcodes (Code128, EAN-13, DataMatrix) to instantly pull up any asset.",
+            "Scan Shelf QR labels to instantly pull up any asset. Standard barcodes (Code128, EAN-13, DataMatrix) scan too with the Alternative Barcodes add-on.",
         icon: QrCode,
     },
     {
