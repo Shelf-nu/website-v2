@@ -3,7 +3,7 @@ title: "How to Generate a PDF Overview of Your Reserved Assets (Bookings)"
 description: "The Shelf bookings feature enables users to pre-book assets from inventory and generate printable PDF overviews, which is valuable for event preparation and equipment loan tracking."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-11-10"
+updated: "2026-11-19"
 layout: "knowledge-base"
 ---
 
@@ -52,7 +52,7 @@ One booking PDF often does several jobs: a pick list in the warehouse, a cross-c
 Every team workspace has templates, whatever its plan, and starts with two:
 
 - **Checklist**: the full pull list described above. It is the default.
-- **Check-out receipt**: a signed list of what went out. Rows are sorted A to Z, the booking description, the asset descriptions and the total value are left off, and signature lines for the custodian and the person issuing the gear (each with a date) print at the foot. It is the departure twin of the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking).
+- **Check-out receipt**: a signed list of what went out. It prints every item on the booking, so if only part of the booking has been checked out, strike what stayed behind before anyone signs. Rows are sorted A to Z, the booking description, the asset descriptions and the total value are left off, and signature lines for the custodian and the person issuing the gear (each with a date) print at the foot. It is the departure twin of the [check-in receipt](/knowledge-base/print-a-check-in-receipt-for-a-booking).
 
 ### What a template decides
 
@@ -72,7 +72,7 @@ Owners and Administrators manage templates under **Settings → Bookings**, in t
 
 1. Type a name in **New template name** (for example *Client quote*) and click **Add template**.
 2. In **Edit template**, choose the columns, custom fields, rows and header lines, then click **Save template**. The custom field slots open a searchable list (**Search custom fields**) that shows each field's type as a hint.
-3. Use **Duplicate** to start from an existing layout, **Make default** to choose the template the dialog opens with, or **Delete** to remove one. A workspace always keeps at least one template; deleting the default makes another one the default.
+3. Use **Duplicate** to start from an existing layout, **Make default** to choose the template the dialog opens with for anyone who has not picked one before (a person's own last pick comes first), or **Delete** to remove one. A workspace always keeps at least one template; deleting the default makes another one the default.
 
 Template names are unique in a workspace, ignoring capital letters.
 
