@@ -3,7 +3,7 @@ title: "Booking Notification Settings"
 description: "Control who receives booking email notifications at the workspace level and per booking. Configure creator notifications, admin broadcasts, always-notify users, and per-booking recipients."
 category: "Bookings & Custody"
 date: "2026-03-30"
-updated: "2026-11-03"
+updated: "2026-11-18"
 layout: "knowledge-base"
 ---
 
@@ -93,6 +93,7 @@ Base-role and Self-Service users do not see the full recipient list.
 | Booking Event | Custodian | Creator (if on) | Owners, Admins and Managers (if on) | Always-Notify Users | Per-Booking Recipients |
 |---|---|---|---|---|---|
 | Reserved | Always | Yes | **Yes** | Yes | Yes |
+| Approved (with [booking approval](/knowledge-base/booking-approval) on) | Always | Yes | No | Yes | Yes |
 | Reverted to draft | Always | Yes | No | Yes | Yes |
 | Checkout Reminder | Always | Yes | No | Yes | Yes |
 | Checkin Reminder | Always | Yes | No | Yes | Yes |
@@ -115,7 +116,16 @@ Shelf now emails the same people this event would reach if it were any other lif
 
 Recipients follow the **Reverted to draft** row in the matrix above: the custodian always, the creator while **Notify booking creator** is on, everyone on the always-notify list, and anyone added to that booking. The admin broadcast does **not** fire — that one is reserved for new reservation requests, and this event is the answer to a request rather than a new one.
 
-This matters most for the request-and-approve pattern. A Base or Self-service user submits a reservation with **Request reservation**, an administrator sends it back for changes, and until now the requester was told nothing: their booking quietly became a draft again and they found out the next time they opened it. Every other transition on a booking — reserved, cancelled, checked in, extended, deleted — already sent an email; this one was the gap.
+This matters most for the request-and-approve pattern. A Base or Self-service user submits a reservation with **Request reservation**, an administrator sends it back for changes, and the requester is told by email instead of finding a draft the next time they open the booking. The person sending it back can add a **Reason (optional)** in the dialog, and the email carries it under *What to change*.
+
+## When Booking Approval Is On
+
+A workspace can make reservations by Base users, Self-service users or both wait for approval (see [Booking Approval](/knowledge-base/booking-approval)). Two emails change for those requests:
+
+- **Booking request received** replaces the reserved confirmation. It goes to the same recipients a reservation would reach, the broadcast included while **Notify all owners, administrators and managers on new booking requests** is on, and says the items are held and that an Administrator or Manager will review the request before check-out.
+- **Booking approved** is sent when an Owner, Administrator or Manager approves the request, and says the equipment can be checked out for the booking period.
+
+Reservations by Owners, Administrators and Managers are approved in the same step and send the usual reserved confirmation.
 
 ## Related Articles
 

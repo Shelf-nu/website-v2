@@ -38,6 +38,23 @@
 - Calendar apps refresh subscribed calendars on their own schedule; the feed itself is cached for 5 minutes.
 - ❌ **Never say:** "two-way calendar sync", "edit bookings from Outlook/Google", "real-time / instant sync", or that two-way sync is on the roadmap. None is built or committed.
 
+## Booking approval (verified 2026-11-18 against shelf.nu main @669be38 + a read-only check on app.shelf.nu, shelf.nu#3322)
+- **Opt-in, per requesting role.** Workspace settings → Bookings → **Booking approval** card has two switches, **Base users request bookings** and **Self service users request bookings**. Both are off by default. Owners and Administrators change them (`workingHours:update`); Managers cannot.
+- **A request is a RESERVED booking with no approval stamp, never a new status.** It holds its items like any reservation, shows a **Pending approval** badge, and reports, exports and the calendar read it as Reserved. Never write "Pending" as a booking status.
+- **Who approves:** Owner, Administrator, Manager (`booking:approve`). Base and Self-service cannot approve, their own requests included. Their own reservations (Owner, Administrator, Manager) are approved in the same write.
+- **Approving and checking out are two steps.** A pending request cannot be checked out by anyone, approvers included, on any path (web, scan, bulk, mobile API). After approval a Self-service user checks out themself; a Base user's booking is checked out by an Administrator or Manager.
+- **Saying no:** Revert to Draft takes an optional reason (500 characters), emailed to the custodian under "What to change". Re-reserving makes it pending again. An ended request cannot be approved.
+- **Emails:** "Booking request received" replaces the reserved confirmation for a request; "Booking approved" goes out on approval.
+- **Switching off:** new reservations by that role are final; waiting requests stay pending while either switch is on; both off releases them.
+- **Plan:** no gate of its own. It rides on bookings, so it is Team (and Enterprise).
+- **Companion:** the server guard applies to every phone build today. The phone's own **Pending approval** badge and **Approve request** button are merged but NOT on phones on 2026-11-18 (no production OTA or store build carries shelf.nu#3322). Until one does, say "approve in the web app".
+
+## Facts settled by fixes (verified 2026-11-18 against shelf.nu main @669be38)
+- **SSO sign-in started from the identity provider's dashboard** (an Okta tile, Microsoft My Apps) shows a **Continue to Shelf?** step naming the account before it signs in. A sign-in started at Shelf's own SSO page completes only in the browser that started it; opened elsewhere, the link reads "This sign-in link has expired or was opened in a different browser." (shelf.nu#3421)
+- **Asset Activity Summary shows an asset's first location** ("Location set to ...", or "N units placed at ..." for a pool) for assets created from 2026-11-17 on, by any create path including import. There is no backfill: older assets have no first-arrival row. (shelf.nu#3418)
+- **Web scanners keep the scanned list when a save gets no answer** and show a notice instead of an error page; the list is kept in the browser for twelve hours per signed-in user on the booking, kit and location scanners and the bulk-action scanner. (shelf.nu#3407)
+- **Settings cards have link anchors** on Settings → General, Bookings and Emails (for example `/settings/bookings#automation`), with a copy-link icon beside the card title. The Booking approval card has no anchor yet. (shelf.nu#3423)
+
 ## Asset reminders (verified 2026-10-27 against product origin/main + a live test on app.shelf.nu)
 - One-time reminders on **every plan**. **Repeating reminders** (daily, weekly, every 2 weeks, monthly, every 3 months, every 6 months, yearly, optional end date) on **Plus, Team and Enterprise only** (shelf.nu PR #2685, live 2026-10-27). Free = Repeat locked to "Never".
 - Each repeat email names the next date; each occurrence writes a note on the asset. Archived asset = series shows **Paused** and sends nothing until reinstated.
