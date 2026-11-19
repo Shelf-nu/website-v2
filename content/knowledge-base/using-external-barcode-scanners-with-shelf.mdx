@@ -3,7 +3,7 @@ title: "Using External Barcode Scanners with Shelf"
 description: "Shelf supports handheld and wireless barcode scanners on the desktop interface, allowing you to scan QR asset tags using barcode scanning equipment for rapid processing of multiple items."
 category: "Other"
 date: "2024-06-01"
-updated: "2026-09-09"
+updated: "2026-11-13"
 layout: "knowledge-base"
 ---
 
@@ -32,7 +32,7 @@ The text field in **Barcode scanner** mode is not limited to Shelf's own QR code
 
 1. **A SAM ID** — the workspace's sequential asset number, such as `SAM-0042`. Anything shaped like one (letters, a hyphen, and four or more digits) is treated as a SAM ID first.
 2. **A Shelf QR code** — either the full URL printed in the label's code, or the bare QR ID underneath it.
-3. **A barcode value** — any Code 128, Code 39, DataMatrix, External QR or EAN-13 value registered on an asset or a kit in your workspace. This needs the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes).
+3. **A barcode value** — any Code 128, Code 39, DataMatrix, External QR or EAN-13 value registered on an asset or a kit in your workspace. This needs the [alternative-barcodes add-on](/knowledge-base/alternative-barcodes). A QR label from your previous system is matched here too, even when its address looks like a Shelf link (`https://old-vendor.example/qr/a1B2c3D4`): only a link to your own Shelf server or a Shelf short link counts as a Shelf QR code in step 2.
 
 ### When your barcode value looks like a SAM ID
 
