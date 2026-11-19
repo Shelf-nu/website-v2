@@ -3,7 +3,7 @@ title: "SSO with Google Workspace"
 description: "Shelf supports single sign-on (SSO) using Google Workspace (formerly known as GSuite). Available as an add-on on the Team plan and included on Enterprise."
 category: "Workspaces"
 date: "2026-03-26"
-updated: "2026-11-08"
+updated: "2026-11-19"
 layout: "knowledge-base"
 ---
 
@@ -245,7 +245,7 @@ Good to know:
 - **Only in SSO workspaces, only for SSO members.** The option appears only when the workspace has SSO enabled, and only for people whose email domain is one of the workspace's SSO domains, because those are the members whose role comes from your identity provider.
 - **Owner and Administrators can use it**, including on another Administrator. It is greyed out on yourself (*"You cannot log yourself out from here"*) and on the workspace owner (*"The workspace owner cannot be logged out"*).
 - **It signs them out of all of Shelf**, not only this workspace. A sign-in belongs to the person, so any other workspaces they use need a fresh sign-in too.
-- **It does not remove access by itself.** If they should no longer use the workspace, remove them from the mapped group in your identity provider first; logging them out then applies that at once.
+- **It does not remove access by itself.** If they should no longer use the workspace, remove them from every group mapped to this workspace in your identity provider first (a member of two mapped groups keeps access through the other); logging them out then applies that at once.
 
 ### Signed In, but Nobody Can Give You Custody?
 

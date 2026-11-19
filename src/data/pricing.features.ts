@@ -241,7 +241,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Asset Management",
         name: "Repeating Reminders",
         description:
-            "Reminders that repeat daily, weekly, monthly, every 3 or 6 months, or yearly, with an optional end date",
+            "Reminders that repeat daily, weekly, every 2 weeks, monthly, every 3 or 6 months, or yearly, with an optional end date",
         availability: {
             free: "not-included",
             plus: "included",
