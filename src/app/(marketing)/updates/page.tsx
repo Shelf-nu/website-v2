@@ -8,7 +8,7 @@ import { collectionPageJsonLd } from "@/lib/seo";
 export const metadata: Metadata = {
     title: "Product Updates",
     description:
-        "See what's new in Shelf. A timeline of every product improvement, new feature, and platform update since day one.",
+        "See what's new in Shelf. A timeline of new features and notable product improvements since day one.",
     alternates: {
         canonical: "https://www.shelf.nu/updates",
     },
@@ -21,7 +21,7 @@ export default function UpdatesPage() {
     const collectionSchema = collectionPageJsonLd({
         name: "Shelf Product Updates",
         description:
-            "See what's new in Shelf. A timeline of every product improvement, new feature, and platform update since day one.",
+            "See what's new in Shelf. A timeline of new features and notable product improvements since day one.",
         url: "/updates",
         items: allUpdates.slice(0, 30).map((u) => ({
             name: u.frontmatter.title,

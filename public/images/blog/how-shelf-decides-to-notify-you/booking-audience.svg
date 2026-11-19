@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="400" viewBox="0 0 760 400" color="#18181b" role="img" aria-label="A booking event fans out to an email list of up to five kinds of people, and to a push for the custodian only. The person who acted is removed from both." font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="currentColor">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="400" viewBox="0 0 760 400" color="#18181b" role="img" aria-label="A booking event fans out to an email list of up to five kinds of people, and to a push for the custodian only. The person who acted is dropped from the push, and from the email list unless they are the custodian or the creator." font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="currentColor">
   <rect x="0.5" y="0.5" width="759" height="399" rx="12" fill="#ffffff" stroke="#e4e4e7"/>
   <defs>
     <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
@@ -42,5 +42,5 @@
 
   <!-- footnote -->
   <text x="30" y="360" font-size="12" opacity="0.8">Swapping the custodian also tells the previous one they were removed, by push.</text>
-  <text x="30" y="378" font-size="12" opacity="0.8">A custodian without an account (an external person) gets the email and no push.</text>
+  <text x="30" y="378" font-size="12" opacity="0.8">A custodian without a Shelf account gets neither: there is no address or phone to send to.</text>
 </svg>

@@ -3,7 +3,7 @@ title: "Asset Reminders"
 description: "Asset reminders help track time-sensitive tasks related to assets in Shelf, ensuring users never miss important deadlines for maintenance, inspections, or contract renewals."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-11-03"
+updated: "2026-11-19"
 layout: "knowledge-base"
 ---
 
@@ -35,11 +35,11 @@ Fill out the following required information:
 - **Message**: Add details about what needs attention
 - **Alert Date**: Set the date and time when the reminder should be sent
 - **Team Members**: Select who should receive this reminder
-- **Repeat** (optional, Plus and Team plans): Leave on **Never** for a one-time reminder, or pick Daily, Weekly, Every 2 weeks, Monthly, Every 3 months, Every 6 months or Yearly. A repeating reminder can also get an **Ends on** date
+- **Repeat** (optional, Plus, Team and Enterprise plans): Leave on **Never** for a one-time reminder, or pick Daily, Weekly, Every 2 weeks, Monthly, Every 3 months, Every 6 months or Yearly. A repeating reminder can also get an **Ends on** date
 
 ### Step 4: Confirm Creation
 
-Click "Confirm" to create the reminder. The system will send email notifications to selected team members when the alert date arrives. On the Plus, Team and Enterprise plans, team members who use Shelf Companion 1.7.0 or later also get a [push notification](/knowledge-base/push-notifications-on-shelf-companion) that opens the asset.
+Click "Confirm" to create the reminder. The system will send email notifications to selected team members when the alert date arrives. On the Plus, Team and Enterprise plans, team members who use Shelf Companion 1.7.0 or later, with notifications switched on in the app, also get a [push notification](/knowledge-base/push-notifications-on-shelf-companion) that opens the asset.
 
 ## Managing Reminders
 
@@ -81,15 +81,15 @@ To delete a reminder:
 
 ## Repeating Reminders
 
-![The Set Reminder dialog with the Repeat field highlighted, set to Never (send this reminder once), with the cadences daily to yearly and an optional end date available on Plus and Team](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/set-reminder-repeat-v2.webp)
+![The Set Reminder dialog with the Repeat field highlighted, set to Never (send this reminder once), with the cadences daily to yearly and an optional end date available on Plus, Team and Enterprise](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/set-reminder-repeat-v2.webp)
 
-On the Plus and Team plans, a reminder can repeat on a schedule. After each occurrence Shelf moves the reminder to its next date, so the reminder lists always show the next one due, with the cadence (for example **Monthly**) under the date.
+On the Plus, Team and Enterprise plans, a reminder can repeat on a schedule. After each occurrence Shelf moves the reminder to its next date, so the reminder lists always show the next one due, with the cadence (for example **Monthly**) under the date.
 
 - **Same time, same day**: each occurrence goes out at the reminder's time of day. Weekly cadences keep the weekday; monthly and longer ones keep the day of the month. A series set on the 29th to 31st moves to the last day of a shorter month and stays on that day afterwards.
-- **What the email says**: each email names the next date, and the last email of a series with an end date says it was the last one. Every occurrence also leaves a note on the asset.
+- **What the email says**: each email names the next date, and the last email of a series with an end date says it was the last one. Each occurrence that is sent also leaves a note on the asset.
 - **Editing**: a repeating reminder stays editable while it runs. Editing changes the whole series, including the next date. Set Repeat to **Never** to turn it back into a one-time reminder.
 - **Ending**: set an **Ends on** date, or delete the reminder to stop it at any time.
-- **Archived assets**: while an asset is archived its repeating reminders show **Paused** and send nothing. Once the asset is reinstated, they continue from the next date.
+- **Archived assets**: while an asset is archived its repeating reminders show **Paused**, send nothing and write no note; the dates that pass are skipped. Once the asset is reinstated, they continue from the next date.
 - **Free plan**: the Repeat option is locked to **Never**. If a workspace moves to the free plan with repeating reminders already set, the next email still goes out and says that later ones will not be sent. After that the series sends nothing until the plan includes repeating reminders again. Its name, message and recipients can still be edited, and it can be turned off or deleted, but its schedule cannot be changed.
 
 ## Reminder Statuses
@@ -97,8 +97,10 @@ On the Plus and Team plans, a reminder can repeat on a schedule. After each occu
 Reminders can have the following statuses:
 
 - **Pending**: Scheduled but not yet sent
-- **Sent**: Notification has been delivered to recipients
-- **Paused**: The asset is archived, so the reminder sends nothing until the asset is reinstated
+- **Sending**: The date has arrived and the emails are going out
+- **Reminder sent**: Notification has been delivered to recipients
+- **Paused**: The asset is archived and the reminder is still ahead (or is a repeating one), so it sends nothing until the asset is reinstated
+- **Not sent**: A one-time reminder whose date passed while its asset was archived. It was skipped and is not sent later, even after the asset is reinstated; set a new reminder if you still need it
 
 ## Team Member Considerations
 

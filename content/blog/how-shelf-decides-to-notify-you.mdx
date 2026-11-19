@@ -8,7 +8,7 @@ description: >-
 layout: blog
 canonicalUrl: /blog/how-shelf-decides-to-notify-you
 date: "2026-11-06"
-updated: "2026-11-06"
+updated: "2026-11-19"
 author: carlos-virreira
 category: software-features-capabilities
 tags:
@@ -69,14 +69,14 @@ The question that produces most of Slack's boxes is not "may we send" but "to wh
 An email goes to everyone with a reason to know. A push goes only to the person the event is about, and never to the person who caused it.
 </Callout>
 
-![A booking event fans out to an email list of up to five kinds of people, and to a push for the custodian only. The person who acted is removed from both.](/images/blog/how-shelf-decides-to-notify-you/booking-audience.svg)
+![A booking event fans out to an email list of up to five kinds of people, and to a push for the custodian only. The person who acted is dropped from the push, and from the email list unless they are the custodian or the creator.](/images/blog/how-shelf-decides-to-notify-you/booking-audience.svg)
 
 Take a booking. When it is reserved, extended, cancelled, or becomes overdue, the email can reach up to five kinds of people: the custodian, the person who created the booking if the workspace wants that, the workspace's booking audience when a reservation needs handling, an always-notify list, and anyone added to that specific booking. The push reaches one of them: the custodian. It is their plans the event changes. Everyone else is being kept informed, and an email is the right weight for that.
 
 Two consequences follow without any extra rules:
 
 - **You are never pushed about your own action.** If you reserve a booking for yourself, you already know. The email list keeps you so the record is complete; the push drops you.
-- **An external custodian, someone without a Shelf account, gets the email and no push.** There is no phone to send to, and nothing special has to be written to handle that.
+- **A custodian without a Shelf account gets neither.** Shelf has no email address and no phone for them, so the people on the rest of the email list are the ones who hear about it.
 
 The same sentence covers the other categories. An audit assignment pushes the people assigned to it. An asset reminder, such as a calibration or maintenance date, pushes the team members the reminder was set for. Each of those is a one-line answer in the code, which is how we know the sentence is doing its job.
 
