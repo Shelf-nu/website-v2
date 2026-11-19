@@ -3,7 +3,7 @@ title: "Archiving Bookings"
 description: "Move finished bookings out of your active list, manually or automatically. Covers which bookings can be archived, the auto-archive settings, and what archiving means for reporting."
 category: "Bookings & Custody"
 date: "2026-07-22"
-updated: "2026-11-04"
+updated: "2026-11-10"
 layout: "knowledge-base"
 ---
 
@@ -22,7 +22,7 @@ Two kinds of bookings are eligible:
 
 Bookings that are **Ongoing** or **Overdue** cannot be archived. Their assets are physically checked out, so hiding the booking would leave equipment in someone's hands with no active booking to trace it to. Check the booking in first, then archive it.
 
-**Draft**, **Cancelled**, and **future-dated Reserved** bookings are not archivable either. A draft or a cancelled booking is already out of the active flow, and a reservation that hasn't happened yet is still live.
+**Draft**, **Cancelled**, and **future-dated Reserved** bookings are not archivable either. A draft or a cancelled booking is already out of the active flow, and a reservation that hasn't happened yet is still live. The one exception is **Discard draft**: a Self-service or Base user, who cannot delete a booking, drops their own draft with it, and Shelf files the draft as archived (with the note *discarded the draft* on the booking) so the record is kept. Owners, Administrators and Managers delete a draft instead and are not offered it.
 
 > **Archiving is not the same as completing.** A reserved booking that is archived was never checked out, and Shelf does not pretend otherwise: it is never recorded as a returned booking. See [What archiving means for reports](#what-archiving-means-for-reports) below.
 
@@ -99,7 +99,7 @@ Shelf re-checks each booking at the moment it's due to be archived. If the booki
 
 Archiving rewrites a booking's status, and the reports have to see through that. Two rules cover every case.
 
-**A booking archived straight from Reserved was never checked back in**, because it was never checked out. Counting it as an on-time return would inflate your numbers, so Shelf leaves these bookings out of **Booking Compliance** entirely. They neither help nor hurt your on-time rate, and they are not counted as a use anywhere else either.
+**A booking archived straight from Reserved was never checked back in**, because it was never checked out. Counting it as an on-time return would inflate your numbers, so Shelf leaves these bookings out of **Booking Compliance** entirely. They neither help nor hurt your on-time rate, and since 10 November 2026 they are not counted as a use anywhere else either: **Top Booked Assets**, **Top Booked Kits**, **Monthly Booking Trends** and **Asset Utilization** all leave out a booking archived before anything went out, a discarded draft included.
 
 **A booking archived from Completed still counts as a completed, returned booking.** It keeps counting toward compliance exactly as before, and it now also keeps counting in the two places that used to lose it:
 

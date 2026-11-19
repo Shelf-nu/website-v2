@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, custom fields, asset model, kits, availability, audits, archiving, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-11-04"
+updated: "2026-11-16"
 layout: "knowledge-base"
 ---
 
@@ -27,6 +27,7 @@ Access the Assets page in your Shelf workspace.
 - The checkbox in the header row ticks everything on the page you are looking at
 - Once anything is selected, a **Select all XX entries** link appears next to the count. It reaches every asset that matches your current search and filters, across every page, not just the ones on screen
 - Moving to another page of results, or changing how many rows a page shows, keeps your selection, so you can tick rows on page 1 and page 2 and act on them together
+- After **Select all XX entries**, the rows on the other pages show ticked as well, because the selection already covers them. Untick one row and Select all turns off: a **Select all is off** notice says how many ticked rows on the current page are still selected, and the next bulk action reaches only those
 - Changing the search, a filter, or the sort **clears** your selection. Select after you have narrowed the list, not before
 
 **Select all follows your filters, not the whole workspace.** This is the part worth being sure about before you use a destructive action. Search the index down to 12 items, click **Select all 12 entries**, and the action that follows applies to those 12 — not to the whole inventory. Clear your filters first and the same link covers everything, which is then exactly what you asked for. The count in the link is the number the action will touch, so read it before you confirm. Since 26 October 2026 this also holds when a search is combined with a tag, custodian, **Without tag**, **Uncategorized** or **Without location** filter; before, those filters were combined with *or* rather than *and*, so a select-all could reach assets the list did not show.
@@ -47,7 +48,7 @@ Available operations, in the order they appear in the menu:
 
 - **Download QR Codes**: Get the QR labels for every selected asset in one `.zip` file. The zip also holds a `labels.csv` with each asset's name, SAM ID, QR ID, QR URL, category and location, for label printer software. See [Printing labels for assets you already have](/knowledge-base/how-to-print-custom-branded-qr-code-labels-with-shelf#printing-labels-for-assets-you-already-have)
 - **Create audit**: Start a new audit covering the selected assets
-- **Add to existing audit**: Fold the selected assets into an audit that is already running
+- **Add to existing audit**: Fold the selected assets into an audit that is already running. The picker lists the pending audits you can see: every one in the workspace for Owners, Administrators and Managers, only the audits assigned to you for Self-service and Base users
 - **Release custody**: Remove the current custodian from selected assets
 - **Assign custody**: Assign a new custodian to selected assets (self-service users see **Take custody**)
 - **Assign tags**: Add tags to assets in bulk
