@@ -53,6 +53,13 @@
 - ❌ **Never say:** "Row Level Security" / "RLS policies", "Frankfurt (Fly.io EU region)", "Fly.io Frankfurt", or "customer data does not leave the EU" (email delivery and error monitoring run in the US). `scripts/check-product-claims.mjs` enforces the first two.
 - ✅ **Say:** "Data stored in the EU (Frankfurt), application servers in Amsterdam." "SOC 2 Type 2 certified infrastructure" is accurate (Supabase is SOC 2 Type 2); keep it.
 
+## Users per plan and roles (verified 2026-11-09 against shelf.nu main @197f3b4)
+- **Personal (free) and Plus: one user.** A personal workspace cannot invite anyone (`assertUserCanInviteUsersToWorkspace`, `apps/webapp/app/utils/subscription.server.ts`). **Team and Enterprise: unlimited users**, at a flat price per workspace, not per seat (`src/data/pricing.ts`).
+- Not every feature is on every plan: bookings (and book by model) are Team; Reports are Plus and Team; repeating reminders are Plus, Team and Enterprise.
+- ❌ **Never say:** "unlimited users on all plans" / "on every plan", or "all features are available on every plan". `scripts/check-product-claims.mjs` enforces both (`PLAN_CLAIM_RULES`).
+- **Manager role** (Team workspaces, since 2026-10-15): sees, creates, checks out, checks in, cancels and deletes every booking, assigns custody to anyone, creates and runs audits; reads the team but does not change workspace settings, billing or members; no dashboard or Reports. Adds and edits assets and kits only when the workspace owner switches that on (`packages/permissions/src/matrix.ts`, shelf.nu#3306).
+- **Model reservations hold against named bookings:** when other bookings reserved every free unit of a model for the dates, its units show **Reserved by model** in **Manage assets** and cannot be ticked (`components/booking/availability-label.tsx`, shelf.nu#3023).
+
 ## Social proof (verify before quoting)
 - "3,000+ teams"; **5.0 on G2**. Marquee customers incl. Chicago Bulls, UC Berkeley, British Airways, Kent State, USS Midway Museum, University of Missouri (`src/data/customer-logos.ts`).
 

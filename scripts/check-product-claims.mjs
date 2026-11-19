@@ -120,6 +120,21 @@ const INFRA_RULES = [
     why: "Fly.io runs the application servers in Amsterdam. Frankfurt (AWS eu-central-1) is where Supabase holds the data. Don't attribute Frankfurt to Fly.io." },
 ];
 
+// Plan claims (pr-kb-analyzer follow-up run 2026-11-09, verified against
+// shelf.nu main @197f3b4; see PRODUCT-FACTS.md "Users per plan and roles").
+// Registered through INFRA_RULES, the same way MOBILE_LIVE_RULES_EXTRA is, so
+// the TARGETS lines stay as they are.
+const PLAN_CLAIM_RULES = [
+  { re: /unlimited users (on|across|in) (all|every) (shelf )?(plans?|tiers?)/i,
+    why: "Personal (free) and Plus are single-user; unlimited users are on Team and Enterprise only. Corrected on alternatives/upkeep (2026-11-09)." },
+  { re: /all features (are )?(available )?(on|in) every plan/i,
+    why: "Bookings are Team, Reports Plus and Team, repeating reminders Plus and up. Corrected on alternatives/asset-guru (2026-11-09)." },
+  { re: /maintenance scheduling is not the use case/i,
+    why: "Repeating asset reminders (Plus and Team) cover service dates; say what Shelf has and lacks (no work orders). Corrected on alternatives/upkeep (2026-11-09)." },
+];
+
+INFRA_RULES.push(...PLAN_CLAIM_RULES);
+
 // NOTE: PRICE_RULES deliberately do NOT run over `content`. Blog posts and
 // comparison pages legitimately quote competitor pricing ("Reftab Business
 // $125/mo") and equipment budget ranges ("$1,200 - $1,800/yr") — those are
