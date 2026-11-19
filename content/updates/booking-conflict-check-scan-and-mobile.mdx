@@ -12,6 +12,6 @@ Shelf prevents double-bookings by checking availability before an item is commit
 
 **All-at-once mobile checkout skipped the guard.** Checking a whole booking out from the companion app in one action didn't pass the booking's dates to the conflict check, so the guard never ran — an asset overlapping another booking could be checked out under both. Mobile checkout now sends the booking's dates, exactly like checkout on the web, so the same protection applies. (Per-item checkout was already safe.)
 
-The rule is precise: it blocks an item that's reserved or checked out **and** overlaps the booking's dates. An item reserved for a separate, non-overlapping window is still perfectly fine to add — matching the availability filter you already see on the web.
+The rule is precise: it blocks an individually tracked item that's reserved or checked out **and** overlaps the booking's dates. A quantity-tracked asset can sit in several bookings at once, so it is measured by units instead: it is blocked only when too few units are free for the dates, counting the units on overlapping bookings as well as units held in custody or placed in kits. An item reserved for a separate, non-overlapping window is still perfectly fine to add — matching the availability filter you already see on the web.
 
 No action is needed. The check applies automatically everywhere assets are scanned in or checked out, on the web and in the companion app.

@@ -241,7 +241,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Asset Management",
         name: "Repeating Reminders",
         description:
-            "Reminders that repeat daily, weekly, monthly, every 3 or 6 months, or yearly, with an optional end date",
+            "Reminders that repeat daily, weekly, every 2 weeks, monthly, every 3 or 6 months, or yearly, with an optional end date",
         availability: {
             free: "not-included",
             plus: "included",
@@ -711,7 +711,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Reports & Exports",
         name: "Reports",
         description:
-            "Ready-to-run reports across bookings, assets, and custody (Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. Every report exports to CSV; chart-based reports also export to PDF. Included on the Plus and Team plans, and open to Administrators and Owners.",
+            "Ready-to-run reports across bookings, assets, and custody (Booking Compliance, Top Booked Assets, Top Booked Kits, Monthly Booking Trends, Overdue Items, Asset Inventory, Asset Activity Summary, Asset Utilization, Idle Assets, Asset Distribution, Custody Snapshot) with timeframe and filter controls. Every report exports to CSV; Booking Compliance, Asset Inventory and Custody Snapshot also export to PDF. Included on the Plus and Team plans, and open to Administrators and Owners.",
         availability: {
             free: "not-included",
             plus: "included",
@@ -730,7 +730,7 @@ export const pricingFeatures: PricingFeature[] = [
         category: "Reports & Exports",
         name: "Booking PDFs (Pull Lists)",
         description:
-            "Export booking details as PDF pull lists, with saved PDF documents (Checklist, Check-out receipt with signature lines, or your own layouts with chosen columns and custom fields)",
+            "Export booking details as PDF pull lists, with saved PDF templates in every team workspace (Checklist, Check-out receipt with signature lines, or your own layouts with chosen columns and custom fields)",
         availability: {
             free: "not-included",
             plus: "not-included",

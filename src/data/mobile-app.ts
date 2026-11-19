@@ -28,7 +28,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Field Audits",
         description:
-            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, attach a condition note or photo to any scan and read them back later, take a mis-scan back off, and complete the audit with a closing note when done. Scanned rows say where each asset lives, and anything the audit did not expect is counted separately.",
+            "Walk an audit on-site — scan assets, watch found/expected counts update in real time, count pooled stock by units, attach a condition note or photo to any scan and read them back later, take a mis-scan back off, and complete the audit with a closing note when done. Scanned rows say where each asset lives, and anything the audit did not expect is counted separately.",
         icon: ClipboardCheck,
     },
     {
@@ -52,7 +52,7 @@ export const mobileAppFeatures: MobileAppFeature[] = [
     {
         title: "Built for the Floor",
         description:
-            "Tap a Shelf QR with the phone camera and jump straight to the asset. Walk, scan, act — the app is built for moments away from the desk.",
+            "Tap a Shelf QR with the phone camera and jump straight to the asset. Links in descriptions, notes and custom fields open inside the app. Walk, scan, act — the app is built for moments away from the desk.",
         icon: WifiOff,
     },
 ];
@@ -94,7 +94,7 @@ export interface MobileAppFAQ {
 export const mobileAppFaqs: MobileAppFAQ[] = [
     {
         question: "Do I have to install the Shelf Companion app to use Shelf?",
-        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion — an optional native app for iPhone and Android, focused on field workflows like scanning, audits, and custody handoffs. Many teams use a mix: admins on the web, field crews on the Companion app. Same workspace, same data, same login on every path.",
+        answer: "No — the app is optional, not required. You have three ways to use Shelf on your phone: (1) the Shelf web app in any modern phone browser, with full access to bookings, custody, audits, and everything else; (2) install the web app as a Progressive Web App (PWA) on your home screen for a native-feeling icon and fullscreen experience, no App Store needed; or (3) Shelf Companion — an optional native app for iPhone, iPad and Android, focused on field workflows like scanning, audits, and custody handoffs. Many teams use a mix: admins on the web, field crews on the Companion app. Same workspace, same data, same login on every path.",
     },
     {
         question: "Where can I get the app?",
