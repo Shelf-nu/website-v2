@@ -3,7 +3,7 @@ title: "Adding Assets and Kits to a Booking"
 description: "This guide explains how to add equipment to a booking in Shelf, covering the process for adding both individual assets and pre-configured kits to time-based check-outs."
 category: "Bookings & Custody"
 date: "2024-06-01"
-updated: "2026-11-13"
+updated: "2026-11-20"
 layout: "knowledge-base"
 ---
 
@@ -140,7 +140,9 @@ Only individually tracked units answer a model reservation. [Quantity-tracked](/
 
 ### Your fulfil scan list survives a reload
 
-Since 8 October 2026, the list you build in the **Fulfil reservations & check out** scanner is kept in your browser for twelve hours, for each booking and each person signed in. Reload the page, close the tab or let the device sleep, open the scanner on the same booking again, and the list comes back. Each row is looked up again as it returns, so it shows the item as it is now rather than as it was when you scanned it. A check-out that goes through clears the list; one that is refused keeps it, so you can fix the problem and submit again. The list stays in that one browser and does not follow you to another device. The other scanners, **Scan to check out** included, still start empty.
+The list you build in a booking scanner is kept in your browser for twelve hours, for each booking and each person signed in. That covers the scanner that adds items to a booking, **Fulfil reservations & check out**, **Scan to check out** and the check-in scanner. Reload the page, close the tab or let the device sleep, open the same scanner on the same booking again, and the list comes back. Each row is looked up again as it returns, so it shows the item as it is now rather than as it was when you scanned it. A save that goes through clears the list; one that is refused keeps it, so you can fix the problem and submit again. The list stays in that one browser and does not follow you to another device. The kit and location scanners and the bulk actions on the **QR code scanner** page keep their lists the same way. **Fulfil reservations & check out** has done this since 8 October 2026, the others since 17 November 2026.
+
+If a save gets no answer (a timeout or a dropped connection), the scanner stays on screen with your list and a notice, for example *The save took too long to answer.* followed by *Your scanned list is still here. The save may have gone through anyway, so check before you confirm again.* On a booking scanner the notice links to the booking with **Open the booking**, which opens in a new tab so the scanner and its list stay where they are. Look at the booking first, and confirm again only if the save did not land.
 
 ### Scanning kits in Fulfil reservations & check out
 

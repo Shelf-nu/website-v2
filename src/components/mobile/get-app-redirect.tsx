@@ -59,7 +59,7 @@ export function GetAppRedirect() {
         <div className="mx-auto max-w-md text-center">
             <h1 className="text-2xl font-bold tracking-tight text-heading">Get Shelf Companion</h1>
             <p className="mt-3 text-muted-foreground">
-                Free with any Shelf account, on iPhone and Android. Scan the code with your phone, or pick a store.
+                Free with any Shelf account, on iPhone, iPad and Android. Scan the code with your phone, or pick a store.
             </p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
