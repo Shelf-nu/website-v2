@@ -165,13 +165,13 @@ const CORRECTED_CLAIMS = [
     why: "Shelf has repeating asset reminders (Plus and Team) for service dates; a bare 'No' in the Maintenance scheduling row is wrong. Say 'Partly' and name what is missing (work orders)." },
   // Added 2026-11-20, once the PRs that corrected these phrases had merged
   // (website-v2#479, #480, #481, #488).
-  { re: /reports?[^\n]{0,160}with CSV\/PDF export/i,
+  { re: /reports?[^\n]{0,160}with CSV\/PDF export/i, unless: /Booking Compliance|Asset Inventory|Custody Snapshot/,
     why: "Every report exports to CSV; only Booking Compliance, Asset Inventory and Custody Snapshot download as PDF (corrected on 12 pages 2026-11-10)." },
-  { re: /(?<![-\w\/])(self[- ]service|base)( users?| members?)?[^\n]{0,80}\b(can|may) (delete|\*\*delete\*\*)[^\n]{0,40}(booking|draft)/i,
+  { re: /(?<![-\w\/])(self[- ]service|base)( users?| members?)?[^\n.;:,]{0,80}\b(can|may) (delete|\*\*delete\*\*)[^\n]{0,40}(booking|draft)/i,
     why: "Self-service and Base users cannot delete bookings (shelf.nu#3365); a draft is dropped with Discard draft." },
   { re: /\*\*Pending\*\*,? \*\*Sent\*\*|- \*\*Sent\*\*: Notification/i,
     why: "The reminder status reads Reminder sent, and Not sent exists (reminder-status.ts, website-v2#488)." },
-  { re: /without (a|an) (Shelf )?account[^\n]{0,60}gets the email/i,
+  { re: /without (a|an) (Shelf )?account[^\n]{0,60}gets the email/i, unless: /\b(never|not|neither|no longer)\b[^\n]{0,40}gets the email/i,
     why: "A booking custodian without a Shelf account gets neither email nor push (notification-recipients.server.ts, website-v2#488)." },
   { re: /timeline of every product improvement/i,
     why: "/updates is selective since the Public voice rules (website-v2#478, #488)." },
