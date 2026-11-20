@@ -71,7 +71,7 @@ export default function FeaturesPage() {
                                     Shelf Companion is now on the App Store and Google Play
                                 </p>
                                 <p className="text-xs text-muted-foreground">
-                                    Scan, audit, and manage assets in the field. Free with any Shelf account. On iPhone and Android.
+                                    Scan, audit, and manage assets in the field. Free with any Shelf account. On iPhone, iPad and Android.
                                 </p>
                             </div>
                             <span className="flex items-center text-sm font-semibold text-orange-600 group-hover:translate-x-0.5 transition-transform">

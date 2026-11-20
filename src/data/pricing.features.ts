@@ -397,6 +397,25 @@ export const pricingFeatures: PricingFeature[] = [
         },
     },
     {
+        id: "booking-approval",
+        category: "Bookings & Reservations",
+        name: "Booking approval",
+        description:
+            "Make reservations by Base or Self-service users wait for an Owner, Administrator or Manager to approve them. One switch per role, off by default.",
+        availability: {
+            free: "not-included",
+            plus: "not-included",
+            team: "included",
+            enterprise: "included",
+        },
+        internalAvailability: {
+            free: "not-included",
+            tier_1: "not-included",
+            tier_2: "included",
+            custom: "included",
+        },
+    },
+    {
         id: "booking-calendar",
         category: "Bookings & Reservations",
         name: "Booking Calendar",

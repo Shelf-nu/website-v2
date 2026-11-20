@@ -117,6 +117,8 @@ MOBILE_LIVE_RULES.push(...MOBILE_LIVE_RULES_EXTRA);
 const PDF_TEMPLATE_RULES = [
   { re: /PDF documents? card|Settings (→|->|,) General[^\n]{0,24}PDF documents|(New|Add|Save) document\b(?! (file|upload))|plan (does not|doesn't) include PDF documents|the \*\*Document\*\* dropdown/i,
     why: "Booking PDF layouts are 'PDF templates': card PDF templates under Settings > Bookings, buttons Add template / Save template, Template dropdown, in every team workspace (shelf.nu#3354). Don't describe the old PDF documents card or a plan gate." },
+  { re: /on paid plans[^\n]{0,80}PDF (documents|templates)/i,
+    why: "PDF templates are in every team workspace, whatever its plan (shelf.nu#3354)." },
 ];
 MOBILE_LIVE_RULES.push(...PDF_TEMPLATE_RULES);
 
@@ -161,6 +163,18 @@ const CORRECTED_CLAIMS = [
     why: "Asset Utilization counts booking time only, not custody." },
   { re: /^\|\s*\*\*Maintenance scheduling\*\*\s*\|[^\n]*\|\s*No\s*\|\s*$/i,
     why: "Shelf has repeating asset reminders (Plus and Team) for service dates; a bare 'No' in the Maintenance scheduling row is wrong. Say 'Partly' and name what is missing (work orders)." },
+  // Added 2026-11-20, once the PRs that corrected these phrases had merged
+  // (website-v2#479, #480, #481, #488).
+  { re: /reports?[^\n]{0,160}with CSV\/PDF export/i,
+    why: "Every report exports to CSV; only Booking Compliance, Asset Inventory and Custody Snapshot download as PDF (corrected on 12 pages 2026-11-10)." },
+  { re: /(?<![-\w\/])(self[- ]service|base)( users?| members?)?[^\n]{0,80}\b(can|may) (delete|\*\*delete\*\*)[^\n]{0,40}(booking|draft)/i,
+    why: "Self-service and Base users cannot delete bookings (shelf.nu#3365); a draft is dropped with Discard draft." },
+  { re: /\*\*Pending\*\*,? \*\*Sent\*\*|- \*\*Sent\*\*: Notification/i,
+    why: "The reminder status reads Reminder sent, and Not sent exists (reminder-status.ts, website-v2#488)." },
+  { re: /without (a|an) (Shelf )?account[^\n]{0,60}gets the email/i,
+    why: "A booking custodian without a Shelf account gets neither email nor push (notification-recipients.server.ts, website-v2#488)." },
+  { re: /timeline of every product improvement/i,
+    why: "/updates is selective since the Public voice rules (website-v2#478, #488)." },
 ];
 
 const TARGETS = [

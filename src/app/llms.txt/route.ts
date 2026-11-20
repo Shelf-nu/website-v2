@@ -61,7 +61,7 @@ function renderPricingParagraph(): string {
         `Three paid add-ons extend a Team workspace: ${addOnPart}.`,
         `Add-ons can be switched on or off anytime from workspace settings, and Audits and Alternative Barcodes are free to enable during the 7-day Team trial.`,
         `${services[0].name} is a one-time service from ${formatUSD(services[0].priceFrom)}.`,
-        `Shelf Companion for iPhone and Android is free with any plan, including the free Personal tier; nothing is sold through the app.`,
+        `Shelf Companion for iPhone, iPad and Android is free with any plan, including the free Personal tier; nothing is sold through the app.`,
     ].join(" ");
 }
 
@@ -146,7 +146,7 @@ const LINK_INDEX = `## Key Links
 - [Homepage](${BASE_URL}): Asset management platform overview and primary landing page.
 - [Features](${BASE_URL}/features): All product capabilities indexed in one place.
 - [Pricing](${BASE_URL}/pricing): Plans, add-on pricing, billing, and feature comparison across tiers.
-- [Shelf Companion for iPhone & Android (optional)](${BASE_URL}/mobile-app): Optional free native app for scanning, audits, custody, and booking checkouts in the field. Requires an existing Shelf account. The web app still works in any phone browser — the page documents all three options (browser / PWA / Companion).
+- [Shelf Companion for iPhone, iPad & Android (optional)](${BASE_URL}/mobile-app): Optional free native app for scanning, audits, custody, and booking checkouts in the field. Requires an existing Shelf account. The web app still works in any phone browser — the page documents all three options (browser / PWA / Companion).
 - [Download Shelf Companion on the App Store](https://apps.apple.com/app/id6765639874): Direct App Store link for Shelf Companion (iPhone, free).
 - [Download Shelf Companion on Google Play](https://play.google.com/store/apps/details?id=com.shelf.companion): Direct Google Play link for Shelf Companion (Android, free).
 - [Book a Demo](${BASE_URL}/demo): Schedule a guided walkthrough with the Shelf team.
