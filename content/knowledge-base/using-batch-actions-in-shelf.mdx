@@ -3,7 +3,7 @@ title: "Using Batch Actions in Shelf"
 description: "Shelf's batch actions let you act on many assets at once from the asset index Actions menu: custody, tags, location, category, custom fields, asset model, kits, availability, audits, archiving, and deletion."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-11-16"
+updated: "2026-11-25"
 layout: "knowledge-base"
 ---
 
@@ -14,7 +14,6 @@ layout: "knowledge-base"
 />
 
 ## How to Use Batch Actions
-
 
 ![Batch actions menu with multiple assets selected in Shelf](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/knowledgebase/batch-actions-1.webp)
 ### Step 1: Navigate to Assets Page
@@ -59,8 +58,8 @@ Available operations, in the order they appear in the menu:
 - **Set min quantity**: Give the selected quantity-tracked assets the same low-stock threshold, or leave it empty to clear it. See [Stock columns on the asset list](/knowledge-base/quantity-tracked-assets-and-consumables#stock-columns-on-the-asset-list)
 - **Update asset model**: Group the selected assets into one [Asset Model](/glossary/asset-models)
 - **Remove from asset model**: Take the selected assets out of whatever model they belong to
-- **Add to kit**: Put the selected assets into a kit
-- **Remove from kit**: Take the selected assets out of their kit
+- **Add to kit**: Put the selected assets into a kit. After **Select all XX entries** that is every asset your filters match, on every page, so read the count in the link first
+- **Remove from kit**: Take the selected assets out of their kit. A quantity-tracked asset that sits in several kits leaves each of them, and units that were in custody through one of those kits are released; custody you assigned to a person directly stays
 - **Mark as available**: Make items bookable/reservable in bulk
 - **Mark as unavailable**: Make items unbookable/unreservable in bulk
 - **Archive**: Take the selected assets out of your lists and current reports without deleting them (Owners and Administrators). Assets that are checked out, in custody, in a reserved or checked-out booking, quantity-tracked or already archived are skipped. See [Archive and Reinstate Assets](/knowledge-base/archive-and-reinstate-assets)
@@ -89,7 +88,13 @@ Follow the prompts to finalize your chosen operation. Once the action succeeds, 
 | **Add to kit** | A kit holds a slice of the pool, so the slice needs a size. Add it from the kit's manage-assets page. |
 | **Update asset model** | [Asset Models](/glossary/asset-models) group individually tracked units only. |
 
-In every case the dialog warns you **before** you confirm, naming how many of the selected assets will be skipped, so nothing is a silent no-op. The batch still runs on the individually tracked assets in the selection. If *every* asset you selected is quantity-tracked there is nothing left to act on, and the action is refused outright with the same reason.
+With hand-picked rows, each of these dialogs warns you **before** you confirm and names how many of the selected assets will be skipped. The batch still runs on the individually tracked assets in the selection, and the result message repeats the number skipped.
+
+**After Select all, the dialog can see one page.** **Select all XX entries** reaches assets on pages the dialog has not loaded, so it cannot count the pools among them. **Assign custody**, **Update location** and **Add to kit** therefore warn whenever Select all is on: *"Any quantity-tracked assets in your selection will be skipped."* when none is on the page in front of you, or the number on that page *"and any on others"* when some are. The warning shows even in a workspace that tracks nothing by quantity. **Release custody** and **Update asset model** warn when a pool is on the current page. Whichever dialog you used, the result message gives the real number, for example *"2 quantity-tracked asset(s) were skipped."*, so read it after a Select all.
+
+If *every* asset you selected is quantity-tracked there is nothing left to act on, and the action is refused outright with the same reason.
+
+The [scanner's Update location action](/knowledge-base/batch-scanning-actions#update-location) is stricter than the menu: it has no warning step, so it does not skip a scanned pool. It blocks the save until the pool is removed from the list.
 
 **What the records say.** A batch records only what it actually did. Move a tripod and a roll of gaffer tape to a new location together and the destination's own activity feed names the tripod alone, because the tape never moved. The same holds for an asset that was already at the location you picked: nothing happened to it, so nothing is written about it. Before 18 September 2026 the location's feed listed every asset you had selected, including the ones it skipped, which made a location's history claim stock that had never arrived. Feed entries written before that date can overstate what a bulk move brought in.
 

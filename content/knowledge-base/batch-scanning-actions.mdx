@@ -3,7 +3,7 @@ title: "Batch Scanning Actions"
 description: "Shelf's Batch QR Scanning feature enables users to perform actions on multiple assets simultaneously by scanning their QR codes in succession, significantly improving efficiency when managing groups of assets."
 category: "Assets"
 date: "2024-06-01"
-updated: "2026-10-09"
+updated: "2026-11-25"
 layout: "knowledge-base"
 ---
 
@@ -73,6 +73,10 @@ Change the location of multiple assets at once with this option.
 
 You can mix **kit** QR codes into the same batch. A scanned kit shows up in the list with its asset count, and sending the batch to a location moves the kit **and every asset inside it**. See [Kits](/knowledge-base/kits#kit-location) for exactly how that cascade works for individually tracked and quantity-tracked members.
 
+**Quantity-tracked assets are not moved by this action.** A [quantity-tracked asset](/knowledge-base/quantity-tracked-assets-and-consumables) is placed per location with a unit count, and the scanned list has no count per row. Since 24 November 2026 a scanned pool is listed under **Needs attention** and the save stays disabled until you remove it from the list. Before that date it stayed where it was while the rest of the list moved. Set its placements, with a quantity per location, on the asset page with **Manage placements**. A quantity-tracked asset that travels inside a scanned kit is not affected: the kit moves its members as described above.
+
+The [Shelf Companion app](/knowledge-base/shelf-ios-companion-getting-started) holds the same line. A scanned quantity-tracked asset raises a blocker card there too, and the submit button stays disabled until you remove it (Shelf Companion 1.8.0 with the app update published on 25 November 2026). On a copy without that update the scanned assets are turned down together when the list is sent: the message names the quantity-tracked ones and none of the scanned assets move. Kits in the same list are sent in their own request, so a scanned kit, with the assets inside it, can already be at the new location.
+
 ## Handling Conflicts
 
 When using batch actions, the system automatically checks for potential conflicts. Different actions have different types of blockers:
@@ -89,6 +93,7 @@ When using batch actions, the system automatically checks for potential conflict
 - Kits already in custody
 - Kits with assets in custody
 - Kits that are checked out
+- Archived assets, and kits that hold only archived assets
 - Invalid or unregistered QR codes
 
 ### For Release Custody
@@ -103,9 +108,11 @@ When using batch actions, the system automatically checks for potential conflict
 
 ### For Update Location
 
+- Archived assets (*"Archived assets can't be moved to a location."*)
+- Quantity-tracked assets (*"Quantity-tracked assets are placed per location with a unit count. Set their placements on the asset page."*)
 - Invalid or unregistered QR codes
 
-Update Location has no other blockers. Assets in custody, checked-out assets, and kits are all accepted, and a kit in the batch relocates its member assets along with it.
+Assets in custody, checked-out assets, and kits are all accepted, and a kit in the batch relocates its member assets along with it.
 
 ### If conflicts are detected, the system will:
 

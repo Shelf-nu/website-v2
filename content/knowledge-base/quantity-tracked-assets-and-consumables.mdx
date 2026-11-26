@@ -3,7 +3,7 @@ title: "Quantity-Tracked Assets and Consumables"
 description: "Track fungible items by count instead of one record per unit — cables, gloves, supplies, and consumables. Set a quantity, a unit of measure, low-stock alerts, and how stock is consumed."
 category: "Assets"
 date: "2026-06-30"
-updated: "2026-11-13"
+updated: "2026-11-25"
 layout: "knowledge-base"
 seo:
   keywords:
@@ -322,7 +322,7 @@ An asset whose units sit in more than one location is the one exception: the `Lo
 
 ### Batch actions on the asset index
 
-The **Actions** menu on the asset index works on individually tracked assets. Five of its entries — **Assign custody**, **Release custody**, **Update location**, **Add to kit** and **Update asset model** — skip quantity-tracked assets, because each of them needs a number of units that a single batch cannot supply. A mixed selection still runs on the individually tracked assets in it, and the dialog tells you up front how many will be skipped. Do these on the asset itself, where you can name the quantity. For custody, the scanner is the batch route, on the web and in the Companion app: its **Assign custody** and **Release custody** actions ask for a quantity on each scanned pool (see [Batch Scanning Actions](/knowledge-base/batch-scanning-actions#assign-custody)). See [Quantity-Tracked Assets in a Batch](/knowledge-base/using-batch-actions-in-shelf#quantity-tracked-assets-in-a-batch).
+The **Actions** menu on the asset index works on individually tracked assets. Five of its entries — **Assign custody**, **Release custody**, **Update location**, **Add to kit** and **Update asset model** — skip quantity-tracked assets, because each of them needs a number of units that a single batch cannot supply. A mixed selection still runs on the individually tracked assets in it. The dialog warns you up front, and the result message says how many were skipped. Do these on the asset itself, where you can name the quantity. The scanner's **Update location** action does not take pools either: a scanned pool has to come off the list before the rest can be moved, on the web and in the Companion app. For custody, the scanner is the batch route, on the web and in the Companion app: its **Assign custody** and **Release custody** actions ask for a quantity on each scanned pool (see [Batch Scanning Actions](/knowledge-base/batch-scanning-actions#assign-custody)). See [Quantity-Tracked Assets in a Batch](/knowledge-base/using-batch-actions-in-shelf#quantity-tracked-assets-in-a-batch).
 
 ---
 
