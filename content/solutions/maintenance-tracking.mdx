@@ -10,7 +10,7 @@ personas:
   - "it"
 canonicalUrl: "/solutions/maintenance-tracking"
 date: "2026-03-12"
-updated: "2026-11-19"
+updated: "2026-11-26"
 seo:
   title: "Equipment Maintenance Tracking Software — Reminders & Service Log"
   description: "Lightweight maintenance tracking — not a full CMMS. Set reminders for service and inspection dates, log service history, and email your team when work is due. Open source, free to start."
@@ -111,6 +111,14 @@ No separate maintenance log to maintain. No paperwork to file. The asset itself 
 
 ---
 
+### Report a Problem: Hear About Faults From the People Using the Gear
+
+Most faults are found by whoever has the equipment in their hands. In a Team workspace every member, including Base and Self-service users, has **Report a problem** in the **Actions** menu of the asset page. They scan the QR label, type what is wrong and press **Send**. The report is saved in the asset's history with their name, and emailed to the workspace's owners, administrators and managers, who can reply to the reporter straight from the email.
+
+This is a way to hear about a fault, not a ticket system: a report has no status, no assignee and no list of open reports, and it does not take the asset out of service by itself. See [Report a Problem With an Asset](/knowledge-base/report-a-problem-with-an-asset).
+
+---
+
 ### Calibration Dates — A Register, Not a Metrology System
 
 Keep each instrument's calibration due date in a date [custom field](/knowledge-base/custom-field-types-in-shelf), with the certificate number and provider in text fields, and set an [Asset Reminder](/features/asset-reminders) ahead of the due date. Shelf is a register and a reminder, not a calibration or metrology system: a yearly repeating reminder can flag each calibration (Plus and Team), but Shelf does not store certificate files or record pass/fail results or measurement uncertainty. Teams that perform calibrations themselves should use dedicated calibration software.
@@ -141,6 +149,7 @@ See: [Track consumables by quantity](/features/consumables-tracking)
 - **Email notifications**: Designated team members receive alerts when maintenance is approaching or overdue
 - **Custom fields**: Track service dates, costs, providers, certificate numbers, and any maintenance-specific data
 - **Activity history**: Permanent, timestamped log of every maintenance action and field update
+- **Problem reports**: Every member of a Team workspace can report a fault from the asset page; it is saved on the asset and emailed to owners, administrators and managers
 - **QR scanning**: Scan equipment in the field to view its maintenance status, last service date, and upcoming reminders
 - **Multi-location**: See maintenance status across all sites from one dashboard
 - **CSV export**: Pull maintenance records for audits, insurance, or compliance reporting
@@ -168,6 +177,7 @@ See: [Track consumables by quantity](/features/consumables-tracking)
 | **Recurring maintenance schedules** | Reminders only — repeat daily to yearly on Plus, Team and Enterprise; no work orders are generated | Yes |
 | **Service history log** | Yes — via custom fields + activity history | Yes — dedicated work orders |
 | **Team notifications** | Yes — email alerts to assigned members | Yes — plus technician dispatch |
+| **Problem reports from equipment users** | Yes: from the asset page, saved on the asset and emailed to owners, administrators and managers (Team workspaces). No ticket queue | Yes, as maintenance requests |
 | **Work order management** | No | Yes |
 | **Spare-parts stock counts** | Basic — count by quantity with low-stock email | Yes — full parts catalog + purchase orders |
 | **Technician scheduling** | No | Yes |
@@ -221,6 +231,10 @@ Yes. Each asset gets its own reminders, set individually. Add a reminder for the
 ### How do I log completed maintenance?
 
 Update the asset's custom fields (Last Service Date, Service Notes, etc.) — the change is automatically logged in the activity history with a timestamp and the user who made the update. This creates a permanent maintenance record.
+
+### Can my team report broken equipment?
+
+Yes, in a Team workspace. Every member, including Base and Self-service users, can open the asset, choose **Report a problem** in the **Actions** menu and describe the fault. The report is saved in the asset's history and emailed to the workspace's owners, administrators and managers. Shelf does not turn it into a work order or track it as open or resolved. See [Report a Problem With an Asset](/knowledge-base/report-a-problem-with-an-asset).
 
 ### Can I export maintenance records for audits?
 
