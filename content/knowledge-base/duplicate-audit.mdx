@@ -3,11 +3,11 @@ title: "Duplicate an Audit"
 description: "Re-run a completed, cancelled, or archived audit on the same asset list — without rebuilding the scope by hand. Owners, administrators and managers can duplicate any terminal-state audit in one click."
 category: "Audits"
 date: "2026-05-14"
-updated: "2026-10-15"
+updated: "2026-11-28"
 layout: "knowledge-base"
 ---
 
-Recurring audits — monthly stock counts, post-event verifications, quarterly compliance checks — usually run against the same asset list each time. Duplicating an audit takes a terminal-state audit (Completed, Cancelled, or Archived) and creates a fresh **Pending** copy with the same name, description, and asset selection, ready to scan.
+Recurring audits — monthly stock counts, post-event verifications, quarterly compliance checks — usually run against the same asset list each time. Duplicating an audit takes a terminal-state audit (Completed, Cancelled, or Archived) and creates a fresh **Pending** copy with the same name, description, asset selection and assignees, ready to scan.
 
 Duplicate is available to **Owner**, **Administrator** and **Manager** roles only, and only on audits that have already reached **Completed**, **Cancelled**, or **Archived** status. Pending and Active audits don't show the option — they have their own **Edit** and **Cancel** actions instead.
 
@@ -23,34 +23,34 @@ Click the **actions menu (⋯)** in the top-right of the audit overview page.
 
 ### Step 3: Choose Duplicate Audit
 
-Select **Duplicate audit** from the dropdown. Shelf opens a confirmation dialog showing how many of the original audit's assets are still available in your workspace.
+Select **Duplicate audit** from the dropdown. Shelf opens a confirmation dialog that names the copy, the source's name followed by "(Copy)", and says what it will hold: the same description, the same assets, and the assignees who are still in the workspace.
 
 ### Step 4: Review the Asset Count
 
 The dialog shows one of three states depending on whether the original assets still exist:
 
-- **All assets available** — every asset from the original audit is still in your workspace. The duplicate will include exactly the same scope. Click **Duplicate** to proceed.
-- **Some assets missing (yellow warning)** — one or more of the original audit's assets have been deleted from your workspace since the source audit ran. The dropped count is shown explicitly (e.g. *"3 of 19 original assets are no longer in your workspace and will be dropped from the new audit"*). The duplicate still proceeds; only the missing assets are excluded.
-- **All assets missing (red error)** — every asset from the original audit has been deleted. The **Duplicate** button is disabled. To audit the same area, create a new audit from scratch.
+- **All assets available**: every asset from the original audit is still in your workspace, and no warning is shown. The duplicate will include exactly the same scope.
+- **Some assets missing (yellow warning)**: one or more of the original audit's assets have been deleted from your workspace since the source audit ran. The dialog gives the count, for example *"3 of 19 assets from the original audit no longer exist and will not be included."* The duplicate still proceeds; only the missing assets are left out.
+- **All assets missing (red error)**: every asset from the original audit has been deleted. The dialog reads *"None of the original assets exist anymore. Cannot duplicate this audit."* and the **Confirm** button is disabled. To audit the same area, create a new audit from scratch.
 
 ### Step 5: Confirm
 
-Click **Duplicate audit** to create the new session. Shelf redirects you to the new audit's overview page.
+Click **Confirm** to create the new session. Shelf opens the new audit's overview page.
 
 ## What Carries Over
 
 The duplicate inherits from the source audit:
 
-- **Name** — with a " (Copy)" suffix appended (e.g. "Studio B Q1 Check" → "Studio B Q1 Check (Copy)"). Rename it after creation if you prefer.
-- **Description** — copied as-is.
-- **Scope metadata** — the filter criteria (location, category, tag) used to build the original asset list.
-- **Asset list** — every asset from the source audit that still exists in your workspace.
+- **Name**: with a " (Copy)" suffix appended (e.g. "Studio B Q1 Check" → "Studio B Q1 Check (Copy)"). Rename it after creation if you prefer.
+- **Description**: copied as-is.
+- **Scope metadata**: the filter criteria (location, category, tag) used to build the original asset list.
+- **Asset list**: every asset from the source audit that still exists in your workspace.
+- **Assignees**: everyone assigned to the source audit who is still a member of the workspace. Each of them gets the assignment email for the copy (not you, if you are one of them). Someone who has left the workspace is dropped without stopping the duplicate.
 
 ## What Doesn't Carry Over
 
 The new audit starts in a clean **Pending** state. It does **not** inherit:
 
-- Assigned scanner
 - Due date
 - Notes added during the source audit
 - Photos attached to source-audit assets
@@ -66,12 +66,12 @@ This means the duplicate is ready to scan from scratch — without the previous 
 | Re-running the same scope you audited last month | **Duplicate** the previous audit |
 | Same general area but different filter criteria | Create a new audit and rebuild the scope |
 | Source audit lost all its assets (red error in the dialog) | Create a new audit from scratch |
-| You want to keep the source audit's assignee and due date | Create a new audit (those don't carry over) |
+| Same scope, different people on this round | **Duplicate**, then change the assignees with **Actions → Edit details** |
 
 ## Notes
 
 - **Source audit is unchanged** — duplicating only copies. The original audit stays in its current state with all its data intact.
-- **Naming**: rename the duplicate before assigning it to the next round of scanning so your team can tell the new session apart from the source.
+- **Naming**: rename the duplicate with **Actions → Edit details** so your team can tell the new session apart from the source. The due date is not copied, so set a new one there too.
 - **Missing assets aren't deleted from Shelf** — the dialog only reports that some of the *source audit's* assets no longer exist. Use the [Run Your First Audit](/knowledge-base/run-your-first-audit) guide if you need to audit a fresh scope.
 
 ## Related Articles
