@@ -12,7 +12,7 @@ personas:
   - "field"
 canonicalUrl: "/features/audits"
 date: "2026-03-06"
-updated: "2026-11-19"
+updated: "2026-11-28"
 seo:
   title: "Asset Audits — Physical Inventory Verification"
   description: "Run structured physical audits with QR scanning. Shelf flags found, missing, and unexpected assets automatically. Download a PDF audit receipt with the full asset list. Paid add-on with 7-day free trial."
@@ -131,7 +131,7 @@ The audit's **Activity** tab has a separate **Export activity CSV** button once 
 
 ### 5. Edit, Duplicate, Archive, and Delete for Record-Keeping
 
-While an audit is still **Pending** or **Active**, owners, admins and managers can open it and choose **Actions → Edit details** to change its name, description, due date and assignee. A count that slips by a week or passes to a different person is a quick edit rather than a rebuild. Once the audit reaches a terminal state the record is fixed, which is what makes its receipt worth keeping.
+While an audit is still **Pending** or **Active**, owners, admins and managers can open it and choose **Actions → Edit details** to change its name, description, due date and assignees. A count that slips by a week, passes to a different person or needs two more people is a quick edit rather than a rebuild. Once the audit reaches a terminal state the record is fixed, which is what makes its receipt worth keeping.
 
 Once a completed or cancelled audit is no longer actively referenced, owners, admins and managers can **archive** it. Archived audits are removed from the default audit list but remain accessible by filtering for the **Archived** status.
 
@@ -156,12 +156,13 @@ For recurring audits — monthly stock counts, post-event sweeps, quarterly comp
 - **Pooled stock is counted, not ticked**: on the web scan page a quantity-tracked asset asks for the number of units found (expected units prefilled, **All here** for the full amount), accepts a surplus, lets you correct the count with another scan or **Edit count**, and prints a **Quantity** column and a **Units counted** line on the receipt. A location audit expects the units placed there, a kit audit the units in the kit. The Shelf Companion app counts pools too from version 1.8.0, with the expected units prefilled and a second scan to correct the count.
 - **Findings, grouped by asset**: One column on the audit collects every note and photo people recorded, with the words and the pictures for the same item together. Each row in the asset table carries a chip counting what is on it, so a large count shows at a glance which items were worth writing about.
 - **Correct a mis-scan while the audit is live**: Remove a scan from the scan page and the asset goes back to Not scanned, or leaves the audit if nothing but the scan put it there. Counts are recomputed from the rows, and the change is attributed in the audit's activity. Scans are fixed once the audit is Completed or Cancelled. From Shelf Companion 1.5.0 the same correction is available on the phone, where the mis-scan usually happens: open the scanned row and tap **Remove scan**. Notes and photos survive it, because evidence is attached to the audit's row for the asset rather than to the scan.
+- **A team on one audit**: Assign several people to the same audit when you create it, or add them later from **Edit details**. Each assignee scans from their own phone or computer into that one audit, so a warehouse or a campus is split between people without splitting the record. Everyone who is added gets the assignment email and, in the Shelf Companion app, a push.
 - **Real-time progress**: Live counts of expected, found, not scanned, and unexpected assets update as scanning happens, on the audit itself and in the audit list.
 - **Location context in scan list**: When auditing by tag, category, or any non-location filter, each asset in the scan list shows its current location beneath its name — helping auditors identify where they need to look without leaving the scan view. Location is automatically hidden when the audit is scoped to a specific location to avoid redundancy. In Shelf Companion 1.5.0 a scanned row carries the same answer: where the asset lives, rather than the word "Found" that every row on that list already was. An asset the audit did not expect reads **Not on this audit**, and the count of those is tappable to filter the list down to just them.
 - **PDF audit receipt**: **Actions → Download Receipt** produces one document with the counts, the full asset table, a Findings section pairing each asset's notes with its photos, and the activity log, for compliance, insurance, or management review. The Activity tab exports its note log separately as CSV.
 - **Completion notifications**: Email summaries sent automatically when an audit is completed.
 - **Full audit lifecycle management**: Archive completed or cancelled audits to remove them from the default list while keeping the data accessible. When the data is no longer needed, permanently delete archived audits — individually or in bulk — removing all scan records, notes, and images. Archive individually or in bulk from the **Actions** dropdown; delete follows the same pattern with a type-to-confirm safety step.
-- **One-click recurring audits**: Duplicate any Completed, Cancelled, or Archived audit to re-run it on the same asset list. The copy starts clean (no notes, no scans, no assignee, no due date) and inherits the source's name, description, and scope. If the source's assets have shifted, Shelf reports the dropped count up front and blocks the duplicate if every asset is gone — no silent failures.
+- **One-click recurring audits**: Duplicate any Completed, Cancelled, or Archived audit to re-run it on the same asset list. The copy starts clean (no notes, no scans, no due date) and inherits the source's name, description, scope, and the assignees who are still in the workspace. If the source's assets have shifted, Shelf reports the dropped count up front and blocks the duplicate if every asset is gone — no silent failures.
 - **Runs on any device**: Browser-based scanning on phone, tablet, or laptop — you can [run audits from your phone](/knowledge-base/shelf-mobile-app) in any browser — plus a native iPhone, iPad and Android experience via the [Shelf Companion app](/mobile-app).
 
 ---
@@ -216,7 +217,7 @@ Owners, administrators and [managers](/knowledge-base/user-roles-and-their-permi
 
 ### Can multiple people scan during the same audit?
 
-Currently, each audit session supports a single assigned scanner. For large-scale audits, you can create multiple audit sessions scoped to different areas and assign each to a different team member.
+Yes. An audit can have several assignees: pick them in the **Select assignees** list when you create the audit, or add them later with **Edit details**. Each assignee opens the same audit on their own phone or computer, and their scans, notes and photos land in that one audit, with one receipt at the end. Owners, administrators and managers can scan an audit whether or not they are assigned to it. An assignee can also complete the audit, so agree who closes it.
 
 ### How do I export audit results?
 
@@ -226,7 +227,7 @@ There is no CSV of the asset results. The one CSV an audit produces is **Export 
 
 ### Can I change an audit's name, due date, or assignee after creating it?
 
-Yes, while it is still running. Open the audit, click the actions menu (⋯), and choose **Edit details**. The dialog updates the audit's name, description, due date and assignee in one go, so a count that slips a week or moves to a different person does not have to be rebuilt from scratch.
+Yes, while it is still running. Open the audit, click the actions menu (⋯), and choose **Edit details**. The dialog updates the audit's name, description, due date and assignees in one go, so a count that slips a week, moves to a different person or needs more people does not have to be rebuilt from scratch. People you add get the assignment email. On an Active audit, a self-service or base user you remove loses access to it right away.
 
 This is an **Owner, Admin or Manager** action, and it is available on **Pending** and **Active** audits only. Once an audit is Completed, Cancelled or Archived its record is fixed, which is what makes the PDF receipt worth keeping. To re-run a finished audit on the same scope, duplicate it instead.
 
@@ -236,7 +237,7 @@ The audit's **scope** is not editable here. The asset list is set when the audit
 
 Yes. The creator of an audit can cancel their own audit at any time before it reaches a terminal state. Workspace **owners, admins and managers** can also cancel any audit in the workspace — including audits created by other team members. Open the audit, click the actions menu (⋯), and select **Cancel**. Once an audit is **Completed**, **Cancelled**, or **Archived** it can no longer be cancelled.
 
-Cancelling sends a notification email to the audit creator and any assigned scanner.
+Cancelling sends a notification email to the audit creator and the assignees, except the person who cancelled it.
 
 ### Can I archive an audit?
 
@@ -252,7 +253,7 @@ To delete multiple archived audits at once, filter the audit list to the **Archi
 
 ### Can I duplicate an audit to re-run it?
 
-Yes. Owners, admins and managers can duplicate any **Completed**, **Cancelled**, or **Archived** audit from the actions menu (⋯). The new audit inherits the source's name (with a "(Copy)" suffix), description, and asset list, and starts in a clean **Pending** state — no notes, scans, assignee, or due date carry over. If some of the source audit's assets have since been deleted, Shelf shows a yellow warning with the dropped count before you proceed; if every asset is gone, the duplicate is blocked and you'll need to create a new audit instead. Pending and Active audits don't show the Duplicate option — they have their own **Edit** and **Cancel** actions. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
+Yes. Owners, admins and managers can duplicate any **Completed**, **Cancelled**, or **Archived** audit from the actions menu (⋯). The new audit inherits the source's name (with a "(Copy)" suffix), description, and asset list, and starts in a clean **Pending** state: no notes, scans, photos or due date carry over. The assignees who are still in the workspace are assigned to the copy and get the assignment email. If some of the source audit's assets have since been deleted, Shelf shows a yellow warning with the dropped count before you proceed; if every asset is gone, the duplicate is blocked and you'll need to create a new audit instead. Pending and Active audits don't show the Duplicate option — they have their own **Edit** and **Cancel** actions. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
 
 ---
 

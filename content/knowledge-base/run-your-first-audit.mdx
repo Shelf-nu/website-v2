@@ -3,7 +3,7 @@ title: "Run Your First Audit"
 description: "Step-by-step guide to running your first physical inventory audit in Shelf — from creating the session to exporting the PDF report, including how pooled stock is counted by units and what each photo says about when it was taken. Covers the 7-day free trial."
 category: "Assets"
 date: "2026-04-17"
-updated: "2026-11-13"
+updated: "2026-11-28"
 layout: "knowledge-base"
 ---
 
@@ -31,17 +31,18 @@ You need three things in place:
 
 ## Step 1: Create an Audit Session
 
-1. Click **Audits** in the sidebar
-2. Click **New Audit** (top-right)
-3. Fill in:
-   - **Name** — something descriptive for your team (e.g. "Studio B Equipment Check", "Server Room Q2 2026")
-   - **Description** *(optional)* — instructions for the person doing the scan (e.g. "Scan each asset and provide a condition photo")
-   - **Due date** *(optional)* — when the audit should be completed by
-4. **Select which assets to include** — you can scope by location, category, tag, or any combination. Shelf builds the "expected" asset list from your current records.
-5. **Assign the audit** *(optional)* — pick a team member who'll do the scanning. Owners, administrators and managers can perform any audit in the workspace whether or not it is assigned, so assigning is how you hand the job to a **self-service** or **base** user. It also tells everyone else whose job it is.
-6. Click **Save** to create the session
+An audit is created from the list of things you want to count.
 
-> **Shortcut: start an audit from your Locations or Kits.** Instead of building the scope inside the dialog, you can kick off an audit straight from a list page. On the **Locations** page (or the **Kits** page), tick one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates a single audit covering the union of every asset across the selected locations or kits — ideal for a room-by-room sweep or for confirming kit contents are complete. If you select all with a search or filter active, only the matching rows are included. You'll still name the audit and (optionally) assign it before it's created.
+1. Click **Audits** in the sidebar, then **New Audit** (top-right). The dialog names the three places an audit can start from and links to each: the **Assets** list in advanced mode, the **Locations** page and the **Kits** page
+2. On that page, tick the rows you want to count, open the **Actions** dropdown and choose **Create audit**. On the Assets list you can filter by location, category or tag first and select what matches. Shelf builds the "expected" asset list from your selection and your current records
+3. Fill in:
+   - **Audit name**: something descriptive for your team (e.g. "Studio B Equipment Check", "Server Room Q2 2026")
+   - **Description** *(optional)*: instructions for the people doing the scan (e.g. "Scan each asset and provide a condition photo")
+   - **Due date** *(optional)*: when the audit should be completed by
+4. **Select assignees** *(optional)*: pick the team members who will do the scanning, one or several, or click **Assign to self**. Owners, administrators and managers can perform any audit in the workspace whether or not it is assigned, so assigning is how you hand the job to **self-service** or **base** users. Several people can share one audit: each of them gets an email saying they were assigned (and a push in the Shelf Companion app), and each scans into the same audit from their own device. It also tells everyone else whose job it is.
+5. Click **Create audit**. If you are one of the assignees, or nobody is assigned, Shelf opens the scan page straight away. If you assigned the audit only to other people, it opens the audit's overview
+
+> **One audit across several locations or kits.** On the **Locations** page (or the **Kits** page), tick one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates a single audit covering the union of every asset across the selected locations or kits, which suits a room-by-room sweep or a check that kit contents are complete. If you select all with a search or filter active, only the matching rows are included.
 
 ![Audit list in Shelf showing pending and completed sessions](https://qliecghuzfchfjwaisyx.supabase.co/storage/v1/object/public/website-images/features/audits-list.webp)
 
@@ -52,7 +53,7 @@ You need three things in place:
 Click into the audit you just created. The **Overview** tab shows:
 
 - **Statistics** — Expected / Found / Not scanned / Unexpected counts. On a fresh audit, everything sits under **Not scanned**, because nothing has been counted yet
-- **Audit Information** — status, created date, assignee, due date
+- **Audit Information** — status, created date, who the audit is assigned to, due date
 - **Findings** — the notes and photos people record as they go, grouped by the asset each one is about. On a fresh audit it reads *Nothing was recorded during this audit*
 - **Asset list** — every asset Shelf expects to find, each with a **Not scanned** chip until someone reaches it
 
@@ -329,11 +330,19 @@ The scan stays. Its row on the scan page keeps the name the asset had when it wa
 
 ### Can multiple people scan the same audit?
 
-Currently, each audit session supports a single assigned scanner. For large-scale audits, create multiple sessions scoped to different areas and assign each to a different team member.
+Yes. An audit can have several assignees. Pick them under **Select assignees** when you create the audit, or open the audit later and choose **Actions → Edit details** to add or remove people (an Owner, Administrator or Manager action, on Pending and Active audits). Each assignee opens the same audit on their own phone or computer, and their scans, notes and photos land in that one audit.
+
+Three things to know when a team shares an audit:
+
+- People you add get the assignment email, and a push in the Shelf Companion app. You get no email about your own change.
+- On an Active audit, a self-service or base user you remove loses access to it right away. Their earlier scans stay in the audit.
+- An assignee can complete the audit, and completing it closes it for the whole team, so agree who presses **Complete Audit**.
+
+The audit list shows the first assignee and a count for the rest; click the count to see every name. The audit's **Activity** tab records who was added and removed.
 
 ### Can I create an audit from the Locations or Kits page?
 
-Yes. You don't have to build the scope inside the **New Audit** dialog. On the **Locations** page or the **Kits** page, select one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates one audit covering the union of every asset across the selected locations or kits. Selecting all with a search or filter applied audits only the matching rows. This is the fastest way to start a multi-location or multi-kit audit, and it requires the same permission as the **New Audit** button — so anyone who can already create audits can use it.
+Yes. On the **Locations** page or the **Kits** page, select one or more rows, open the **Actions** dropdown, and choose **Create audit**. Shelf creates one audit covering the union of every asset across the selected locations or kits. Selecting all with a search or filter applied audits only the matching rows. This is the fastest way to start a multi-location or multi-kit audit, and it requires the same permission as the **New Audit** button — so anyone who can already create audits can use it.
 
 ### Why does my audit say "Not scanned" instead of "Missing"?
 
@@ -347,7 +356,7 @@ Nothing is automatically changed in your Shelf database. Missing means "expected
 
 No. Completed audits are final — their results, statuses, and PDF receipt are preserved exactly as they were when the audit closed.
 
-If you want to re-run the same scope, **duplicate the audit instead** of starting from scratch. Owners, administrators and managers can open any Completed, Cancelled, or Archived audit, click **Actions → Duplicate audit**, and Shelf creates a fresh Pending session with the same asset list, name (with a "(Copy)" suffix), and description. No notes, scans, or assignee carry over — the duplicate is ready to scan. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
+If you want to re-run the same scope, **duplicate the audit instead** of starting from scratch. Owners, administrators and managers can open any Completed, Cancelled, or Archived audit, click **Actions → Duplicate audit**, and Shelf creates a fresh Pending session with the same asset list, name (with a "(Copy)" suffix), and description. Notes, scans, photos and the due date do not carry over. The assignees who are still in the workspace do, and they get the assignment email for the copy. See [Duplicate an Audit](/knowledge-base/duplicate-audit) for full instructions.
 
 ### Can I cancel an audit?
 
